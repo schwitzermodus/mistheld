@@ -1,21 +1,19 @@
 /* =====================================================
-   Mistheld · App-Logik (refactored)
-   - Pointer Events API · GPU-beschleunigte Animationen
-   - Stack-Depth 2 (front + 1 behind)
-   - Cross-Phase-Undo: blockiert (zu komplexer State-Rebuild)
-   - Magic Numbers in CFG zentral
+   Mistheld · App-Logik (refactored + audio + slower swipe)
 ===================================================== */
 
 const CFG = Object.freeze({
-  STACK_DEPTH: 2,
+  STACK_DEPTH: 3,            // front + 2 behind (Stack-Vorschau)
   SWIPE_DISTANCE: 40,        // px
   SWIPE_VELOCITY: 0.3,       // px/ms
-  FLY_DURATION_MS: 320,
+  FLY_DURATION_MS: 580,      // langsamere Karten-Flug-Animation
   LOADING_DELAY_MS: 700,
   ALT_LOADING_DELAY_MS: 450,
   MAX_PROPOSALS: 4,
   HAPTIC_MS: 6,
-  TYPES: ['Origin', 'Adventure', 'Greatness', 'Variable Might']
+  TYPES: ['Origin', 'Adventure', 'Greatness', 'Variable Might'],
+  AUDIO_VOLUME: 0.4,
+  MUTED_KEY: 'mistheld:muted'
 });
 
 const state = {
@@ -28,7 +26,7 @@ const state = {
   proposals: [],
   proposalIndex: 0,
   themeCarouselIndex: 0,
-  busy: false  // schützt vor Mehrfach-Trigger während async-Übergängen
+  busy: false
 };
 
 /* =====================================================
@@ -68,7 +66,70 @@ function showLoading(text) {
 function hideLoading() { $('loading').classList.remove('active'); }
 
 /* =====================================================
-   SCORING (DRY: ein Helper für alle Score-Mutationen)
+   AUDIO (Hintergrundmusik mit Mute-Toggle)
+   - Browser blockieren Autoplay ohne Interaktion (v.a. iOS Safari).
+   - Strategie: direkt versuchen, sonst beim ersten Touch/Click starten.
+   - Mute-State persistiert in localStorage.
+===================================================== */
+
+const audio = $('bg-audio');
+const muteBtn = $('btn-mute');
+
+function isMuted() {
+  try { return localStorage.getItem(CFG.MUTED_KEY) === '1'; } catch (_) { return false; }
+}
+function setMutedPersisted(m) {
+  try { localStorage.setItem(CFG.MUTED_KEY, m ? '1' : '0'); } catch (_) {}
+}
+
+function updateMuteUI() {
+  muteBtn.classList.toggle('muted', audio.muted);
+  muteBtn.setAttribute('aria-label', audio.muted ? 'Musik anschalten' : 'Musik stumm schalten');
+}
+
+function tryPlay() {
+  // .play() returnt ein Promise, das auf modernen Browsern bei Autoplay-Block rejected wird
+  const p = audio.play();
+  if (p && typeof p.catch === 'function') p.catch(() => { /* still blocked, will retry */ });
+}
+
+function initAudio() {
+  audio.volume = CFG.AUDIO_VOLUME;
+  audio.muted = isMuted();
+  updateMuteUI();
+  tryPlay();
+
+  // Fallback: beim ersten User-Input einmalig versuchen (für iOS Safari nötig)
+  const kickstart = () => {
+    tryPlay();
+    document.removeEventListener('pointerdown', kickstart);
+    document.removeEventListener('touchstart', kickstart);
+    document.removeEventListener('keydown', kickstart);
+    document.removeEventListener('click', kickstart);
+  };
+  document.addEventListener('pointerdown', kickstart, { once: false });
+  document.addEventListener('touchstart', kickstart, { passive: true });
+  document.addEventListener('keydown', kickstart);
+  document.addEventListener('click', kickstart);
+
+  // Wenn der Tab wieder sichtbar wird, weiterspielen
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && !audio.muted && audio.paused) tryPlay();
+  });
+}
+
+muteBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  audio.muted = !audio.muted;
+  setMutedPersisted(audio.muted);
+  updateMuteUI();
+  if (!audio.muted && audio.paused) tryPlay();
+});
+
+initAudio();
+
+/* =====================================================
+   SCORING
 ===================================================== */
 
 function applyScore(card, dir, sign) {
@@ -105,7 +166,7 @@ function loadPhase() {
   const phase = PHASES[state.phaseIndex];
   state.shuffledCards = shuffleArray(phase.cards.slice());
   state.cardIndex = 0;
-  renderCard();  // ruft updatePhaseUI() selbst
+  renderCard();
 }
 
 function updatePhaseUI() {
@@ -124,7 +185,6 @@ function updatePhaseUI() {
   $('btn-undo').disabled = !canUndo();
 }
 
-/* Cross-Phase-Undo blockiert (State-Rebuild der vorherigen Phase wäre fragil) */
 function canUndo() {
   if (state.swipes.length === 0) return false;
   const last = state.swipes[state.swipes.length - 1];
@@ -133,7 +193,6 @@ function canUndo() {
 
 function renderCard() {
   const stage = $('card-stage');
-  // .abandoned (= fliegt gerade raus) bleibt im DOM bis ihr setTimeout abläuft
   stage.querySelectorAll('.card:not(.abandoned)').forEach(c => c.remove());
 
   if (state.cardIndex >= state.shuffledCards.length) {
@@ -146,7 +205,7 @@ function renderCard() {
     return;
   }
 
-  // Stack hinten zuerst zeichnen, vorderste zuletzt → richtiges Z-Stacking
+  // Stack hinten zuerst, vorderste zuletzt → richtiges Z-Stacking
   for (let i = CFG.STACK_DEPTH - 1; i >= 0; i--) {
     const idx = state.cardIndex + i;
     if (idx >= state.shuffledCards.length) continue;
@@ -279,11 +338,10 @@ function flyOut(cardEl, direction) {
 
   try { if (navigator.vibrate) navigator.vibrate(CFG.HAPTIC_MS); } catch (_) {}
 
-  // State sofort updaten, neue Karte rendert parallel zur Flug-Animation
   decide(direction);
   renderCard();
 
-  setTimeout(() => cardEl.remove(), CFG.FLY_DURATION_MS + 50);
+  setTimeout(() => cardEl.remove(), CFG.FLY_DURATION_MS + 80);
 }
 
 function decide(direction) {
@@ -343,7 +401,7 @@ function generateProposal(mode = 'initial', baseProposal = null) {
     if (mode === 'initial')        return pickTopThemebook(type);
     if (mode === 'tags-only')      return baseProposal.themes[i].themebook;
     if (mode === 'new-themebooks') return pickTopThemebook(type, [baseProposal.themes[i].themebook]);
-    /* fresh */                    return pickRandomTb(type);
+    return pickRandomTb(type);
   });
   return { mode, themes: themebooks.map(generateTheme) };
 }
@@ -357,7 +415,6 @@ function finishSwiping() {
     state.proposalIndex = 0;
     state.themeCarouselIndex = 0;
     show('screen-result');
-    // requestAnimationFrame: Track ist erst nach Display-Toggle messbar
     requestAnimationFrame(() => {
       renderResult();
       hideLoading();
@@ -512,29 +569,24 @@ function pdfSectionLabel(doc, label, x, y) {
 }
 
 function pdfThemeBlock(doc, theme, x, y, cardW, cardH) {
-  // Frame
   doc.setDrawColor(...PDF_COLORS.ink);
   doc.setLineWidth(0.3);
   doc.rect(x, y, cardW, cardH);
 
-  // Header band
   doc.setFillColor(...PDF_COLORS.band);
   doc.rect(x, y, cardW, 16, 'F');
   doc.line(x, y + 16, x + cardW, y + 16);
 
-  // Type
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(7);
   doc.setTextColor(...PDF_COLORS.accent);
   doc.text(theme.type.toUpperCase(), x + cardW / 2, y + 6, { align: 'center' });
 
-  // Themebook
   doc.setFont('helvetica', 'italic');
   doc.setFontSize(8);
   doc.setTextColor(...PDF_COLORS.inkSoft);
   doc.text(`Themebook · ${theme.themebook}`, x + cardW / 2, y + 11, { align: 'center' });
 
-  // Title tag
   doc.setFont('times', 'italic');
   doc.setFontSize(13);
   doc.setTextColor(...PDF_COLORS.ink);
@@ -543,7 +595,6 @@ function pdfThemeBlock(doc, theme, x, y, cardW, cardH) {
 
   let cy = y + 22 + titleLines.length * 5 + 4;
 
-  // Power tags
   cy = pdfSectionLabel(doc, 'POWER TAGS', x, cy);
   doc.setFont('times', 'normal');
   doc.setFontSize(10);
@@ -555,7 +606,6 @@ function pdfThemeBlock(doc, theme, x, y, cardW, cardH) {
   });
   cy += 3;
 
-  // Weakness
   cy = pdfSectionLabel(doc, 'WEAKNESS TAG', x, cy);
   doc.setFont('times', 'italic');
   doc.setFontSize(10);
@@ -564,7 +614,6 @@ function pdfThemeBlock(doc, theme, x, y, cardW, cardH) {
   doc.text(wLines, x + 4, cy);
   cy += wLines.length * 4.5 + 4;
 
-  // Quest
   cy = pdfSectionLabel(doc, 'QUEST', x, cy);
   doc.setFont('times', 'italic');
   doc.setFontSize(10);
@@ -627,7 +676,6 @@ $('btn-restart').addEventListener('click', () => {
   show('screen-welcome');
 });
 
-// Keyboard support (Desktop): ← / → für Swipe, Backspace für Undo
 document.addEventListener('keydown', (e) => {
   if (!$('screen-swipe').classList.contains('active')) return;
   if (e.key === 'ArrowRight') { e.preventDefault(); programmaticDecide('yes'); }
