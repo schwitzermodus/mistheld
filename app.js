@@ -2,7 +2,7 @@
    Mistheld · App-Logik (refactored)
    - Pointer Events API · GPU-beschleunigte Animationen
    - Stack-Depth 2 (front + 1 behind)
-   - Cross-Phase-Undo: blockiert (Undo nur innerhalb Phase)
+   - Cross-Phase-Undo: blockiert (zu komplexer State-Rebuild)
    - Magic Numbers in CFG zentral
 ===================================================== */
 
@@ -124,7 +124,7 @@ function updatePhaseUI() {
   $('btn-undo').disabled = !canUndo();
 }
 
-/* Cross-Phase-Undo bewusst blockiert (zu komplexer State-Rebuild) */
+/* Cross-Phase-Undo blockiert (State-Rebuild der vorherigen Phase wäre fragil) */
 function canUndo() {
   if (state.swipes.length === 0) return false;
   const last = state.swipes[state.swipes.length - 1];
@@ -133,7 +133,7 @@ function canUndo() {
 
 function renderCard() {
   const stage = $('card-stage');
-  // abandoned (=fliegt gerade raus) bleibt im DOM bis ihr setTimeout abläuft
+  // .abandoned (= fliegt gerade raus) bleibt im DOM bis ihr setTimeout abläuft
   stage.querySelectorAll('.card:not(.abandoned)').forEach(c => c.remove());
 
   if (state.cardIndex >= state.shuffledCards.length) {
@@ -279,7 +279,7 @@ function flyOut(cardEl, direction) {
 
   try { if (navigator.vibrate) navigator.vibrate(CFG.HAPTIC_MS); } catch (_) {}
 
-  // State sofort update, neue Karte rendert parallel zur Flug-Animation
+  // State sofort updaten, neue Karte rendert parallel zur Flug-Animation
   decide(direction);
   renderCard();
 
@@ -340,10 +340,10 @@ function generateTheme(themebookName) {
 
 function generateProposal(mode = 'initial', baseProposal = null) {
   const themebooks = CFG.TYPES.map((type, i) => {
-    if (mode === 'initial')             return pickTopThemebook(type);
-    if (mode === 'tags-only')           return baseProposal.themes[i].themebook;
-    if (mode === 'new-themebooks')      return pickTopThemebook(type, [baseProposal.themes[i].themebook]);
-    /* fresh */                         return pickRandomTb(type);
+    if (mode === 'initial')        return pickTopThemebook(type);
+    if (mode === 'tags-only')      return baseProposal.themes[i].themebook;
+    if (mode === 'new-themebooks') return pickTopThemebook(type, [baseProposal.themes[i].themebook]);
+    /* fresh */                    return pickRandomTb(type);
   });
   return { mode, themes: themebooks.map(generateTheme) };
 }
@@ -357,7 +357,7 @@ function finishSwiping() {
     state.proposalIndex = 0;
     state.themeCarouselIndex = 0;
     show('screen-result');
-    // requestAnimationFrame stellt sicher, dass der Track sichtbar ist (clientWidth > 0)
+    // requestAnimationFrame: Track ist erst nach Display-Toggle messbar
     requestAnimationFrame(() => {
       renderResult();
       hideLoading();
@@ -408,7 +408,6 @@ function renderResult() {
     pagination.appendChild(dot);
   });
 
-  // Scroll-Listener nur einmal pro Render binden (overrides previous via .onscroll)
   track.onscroll = onTrackScroll;
 
   const btnAlt = $('btn-alternative');
@@ -479,9 +478,7 @@ function updateThemeDots() {
    PDF GENERATION (A4 Querformat)
 ===================================================== */
 
-const PDF_LAYOUT = {
-  pageW: 297, pageH: 210, marginX: 12, marginY: 12, gap: 4
-};
+const PDF_LAYOUT = { pageW: 297, pageH: 210, marginX: 12, marginY: 12, gap: 4 };
 const PDF_COLORS = {
   paper:   [250, 243, 223],
   ink:     [42, 36, 25],
@@ -492,9 +489,9 @@ const PDF_COLORS = {
 };
 
 function pdfHeader(doc) {
-  const { pageW, marginX, marginY } = PDF_LAYOUT;
+  const { pageW, pageH, marginX, marginY } = PDF_LAYOUT;
   doc.setFillColor(...PDF_COLORS.paper);
-  doc.rect(0, 0, pageW, PDF_LAYOUT.pageH, 'F');
+  doc.rect(0, 0, pageW, pageH, 'F');
 
   doc.setTextColor(...PDF_COLORS.ink);
   doc.setFont('helvetica', 'bold');
@@ -504,6 +501,14 @@ function pdfHeader(doc) {
   doc.setDrawColor(...PDF_COLORS.gold);
   doc.setLineWidth(0.4);
   doc.line(marginX, marginY + 9, pageW - marginX, marginY + 9);
+}
+
+function pdfSectionLabel(doc, label, x, y) {
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(7);
+  doc.setTextColor(...PDF_COLORS.accent);
+  doc.text(label, x + 4, y);
+  return y + 4;
 }
 
 function pdfThemeBlock(doc, theme, x, y, cardW, cardH) {
@@ -517,11 +522,13 @@ function pdfThemeBlock(doc, theme, x, y, cardW, cardH) {
   doc.rect(x, y, cardW, 16, 'F');
   doc.line(x, y + 16, x + cardW, y + 16);
 
+  // Type
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(7);
   doc.setTextColor(...PDF_COLORS.accent);
   doc.text(theme.type.toUpperCase(), x + cardW / 2, y + 6, { align: 'center' });
 
+  // Themebook
   doc.setFont('helvetica', 'italic');
   doc.setFontSize(8);
   doc.setTextColor(...PDF_COLORS.inkSoft);
@@ -536,42 +543,34 @@ function pdfThemeBlock(doc, theme, x, y, cardW, cardH) {
 
   let cy = y + 22 + titleLines.length * 5 + 4;
 
-  cy = pdfSection(doc, 'POWER TAGS', x, cy, cardW, () => {
-    doc.setFont('times', 'normal');
-    doc.setFontSize(10);
-    doc.setTextColor(...PDF_COLORS.ink);
-    theme.powerTags.forEach(tag => {
-      const lines = doc.splitTextToSize(`◦ ${tag}`, cardW - 8);
-      doc.text(lines, x + 4, cy);
-      cy += lines.length * 4.5;
-    });
-  });
-
-  cy = pdfSection(doc, 'WEAKNESS TAG', x, cy + 3, cardW, () => {
-    doc.setFont('times', 'italic');
-    doc.setFontSize(10);
-    doc.setTextColor(...PDF_COLORS.accent);
-    const lines = doc.splitTextToSize(theme.weaknessTag, cardW - 8);
+  // Power tags
+  cy = pdfSectionLabel(doc, 'POWER TAGS', x, cy);
+  doc.setFont('times', 'normal');
+  doc.setFontSize(10);
+  doc.setTextColor(...PDF_COLORS.ink);
+  theme.powerTags.forEach(tag => {
+    const lines = doc.splitTextToSize(`◦ ${tag}`, cardW - 8);
     doc.text(lines, x + 4, cy);
     cy += lines.length * 4.5;
   });
+  cy += 3;
 
-  pdfSection(doc, 'QUEST', x, cy + 4, cardW, () => {
-    doc.setFont('times', 'italic');
-    doc.setFontSize(10);
-    doc.setTextColor(...PDF_COLORS.ink);
-    const lines = doc.splitTextToSize(`„${theme.quest}"`, cardW - 8);
-    doc.text(lines, x + 4, cy);
-  });
-}
-
-function pdfSection(doc, label, x, y, cardW, drawBody) {
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(7);
+  // Weakness
+  cy = pdfSectionLabel(doc, 'WEAKNESS TAG', x, cy);
+  doc.setFont('times', 'italic');
+  doc.setFontSize(10);
   doc.setTextColor(...PDF_COLORS.accent);
-  doc.text(label, x + 4, y);
-  drawBody();
-  return y + 4;
+  const wLines = doc.splitTextToSize(theme.weaknessTag, cardW - 8);
+  doc.text(wLines, x + 4, cy);
+  cy += wLines.length * 4.5 + 4;
+
+  // Quest
+  cy = pdfSectionLabel(doc, 'QUEST', x, cy);
+  doc.setFont('times', 'italic');
+  doc.setFontSize(10);
+  doc.setTextColor(...PDF_COLORS.ink);
+  const qLines = doc.splitTextToSize(`„${theme.quest}"`, cardW - 8);
+  doc.text(qLines, x + 4, cy);
 }
 
 function pdfFooter(doc) {
