@@ -1,0 +1,42 @@
+# Mistheld
+
+Ein Heldengenerator für **Legend in the Mist** – auf Deutsch, mobile first, mit Swipe-Mechanik.
+
+🌐 **Live:** https://schwitzermodus.github.io/mistheld/
+
+## Was das ist
+
+Mistheld ist ein MVP. Der Generator führt dich in vier Phasen durch einen Stapel Karten – Stimmung, Herkunft, Können, Antrieb. Du wischst nach rechts, wenn etwas zu deinem Helden passt, und nach links, wenn nicht. Am Ende generiert Mistheld einen vollständigen LitM-Helden mit vier Themes, Title Tag, drei Power Tags, Weakness Tag und Quest pro Theme. Du kannst bis zu vier Vorschläge anfordern (je weiter, desto stärker variiert) und den finalen Helden als PDF im Querformat herunterladen.
+
+Die App nutzt ausschließlich Inhalte aus dem offiziellen LitM Core Book Vol. 1 (20 Themebooks aus den Kategorien Origin, Adventure, Greatness, Variable Might).
+
+## Technik
+
+Single-File-HTML, alles inline. Keine Backends, keine Datenbank, keine Persistenz. Helden gehen verloren, wenn die Session geschlossen wird.
+
+- **PDF-Export:** [jsPDF](https://github.com/parallax/jsPDF) via CDN
+- **Fonts:** Cormorant Garamond + Inter via Google Fonts
+- **Hosting:** GitHub Pages
+
+## Lokal ausprobieren
+
+```
+git clone https://github.com/schwitzermodus/mistheld.git
+cd mistheld
+# Einfach index.html im Browser öffnen
+```
+
+Oder via Mini-Server:
+
+```
+python3 -m http.server 8000
+# Browser: http://localhost:8000
+```
+
+## Status
+
+MVP, bewusst schlank. Erweiterungen wie persistente Heldenliste, Story Tag (Backpack), Heldenname, drei Erstellungsmethoden (Vorgefertigte / Tropes / Detailed) sind in der Full-Blown-Version geplant.
+
+## Lizenz
+
+Code: MIT. Inhalte (Themebooks, Tags, Quest-Ideen) basieren auf *Legend in the Mist* von Son of Oak Game Studio und sind nicht-kommerziell genutzt.
