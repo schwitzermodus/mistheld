@@ -1,10 +1,5 @@
 /* =====================================================
    Mistheld · App-Logik
-   - Pointer Events API (iOS Safari 13+)
-   - GPU-beschleunigte Animationen (translate3d)
-   - Velocity-basierte Swipe-Erkennung
-   - Card-Stack (3 Karten gestapelt)
-   - body.swipe-active lockt iOS-Scroll
 ===================================================== */
 
 const state = {
@@ -61,9 +56,12 @@ function updatePhaseUI() {
   document.getElementById('btn-undo').disabled = state.swipes.length === 0;
 }
 
+/* renderCard zeichnet front + behind, ohne fliegende (.abandoned) Karten zu killen */
 function renderCard() {
   const stage = document.getElementById('card-stage');
-  stage.innerHTML = '';
+
+  // Nur lebende Karten entfernen, abandoned (=fliegt gerade raus) bleibt im DOM
+  [...stage.querySelectorAll('.card:not(.abandoned)')].forEach(c => c.remove());
 
   if (state.cardIndex >= state.shuffledCards.length) {
     if (state.phaseIndex < PHASES.length - 1) {
@@ -75,14 +73,14 @@ function renderCard() {
     return;
   }
 
-  // Stack: zeichne max. 3 Karten, hinterste zuerst, vorderste zuletzt
+  // Stack: max. 3 Karten, hinterste zuerst, vorderste zuletzt
   const stackDepth = 3;
   for (let i = stackDepth - 1; i >= 0; i--) {
     const idx = state.cardIndex + i;
     if (idx >= state.shuffledCards.length) continue;
     const card = state.shuffledCards[idx];
     const cardEl = document.createElement('div');
-    cardEl.className = 'card' + (i === 0 ? ' front' : ' behind');
+    cardEl.className = 'card' + (i === 0 ? ' front' : ' behind behind-' + i);
     cardEl.style.zIndex = String(10 - i);
     cardEl.innerHTML = `
       <div class="card-decision-overlay yes">Passt</div>
@@ -97,7 +95,6 @@ function renderCard() {
   updatePhaseUI();
 }
 
-/* Adaptive Re-Sort innerhalb der Phase: thematisch ähnliche Karten zusammen */
 function adaptiveResort() {
   if (state.cardIndex < 2) return;
   if (state.cardIndex >= state.shuffledCards.length - 1) return;
@@ -131,29 +128,28 @@ function adaptiveResort() {
 }
 
 /* =====================================================
-   SWIPE INTERACTION (Pointer Events)
+   SWIPE INTERACTION
 ===================================================== */
 
 function attachSwipe(cardEl) {
-  let startX = 0, startY = 0;
+  let startX = 0;
   let dx = 0, dy = 0;
   let dragging = false;
   let lastX = 0, lastTime = 0;
   let velocityX = 0;
   let activePointerId = null;
-  let locked = false;
 
   const yesEl = cardEl.querySelector('.yes');
   const noEl = cardEl.querySelector('.no');
 
   const onDown = (e) => {
-    if (locked || activePointerId !== null) return;
+    if (cardEl.classList.contains('abandoned')) return;
+    if (activePointerId !== null) return;
     activePointerId = e.pointerId;
     try { cardEl.setPointerCapture(e.pointerId); } catch (_) {}
     dragging = true;
     cardEl.classList.add('dragging');
     startX = e.clientX;
-    startY = e.clientY;
     lastX = e.clientX;
     lastTime = performance.now();
     dx = 0; dy = 0;
@@ -168,23 +164,22 @@ function attachSwipe(cardEl) {
     const dt = now - lastTime;
     if (dt > 0) {
       const instantV = (e.clientX - lastX) / dt;
-      // Low-pass-Filter für stabile Velocity
-      velocityX = velocityX * 0.6 + instantV * 0.4;
+      velocityX = velocityX * 0.5 + instantV * 0.5;
     }
     lastX = e.clientX;
     lastTime = now;
     dx = e.clientX - startX;
-    dy = e.clientY - startY;
+    dy = e.clientY - startX === 0 ? 0 : (e.clientY - lastTime); // not used
 
     const rotate = Math.max(-18, Math.min(18, dx * 0.06));
     cardEl.style.transform =
-      `translate3d(${dx}px, ${dy * 0.18}px, 0) rotate(${rotate}deg)`;
+      `translate3d(${dx}px, 0, 0) rotate(${rotate}deg)`;
 
-    if (dx > 12) {
-      yesEl.style.opacity = String(Math.min(1, (dx - 12) / 60));
+    if (dx > 8) {
+      yesEl.style.opacity = String(Math.min(1, (dx - 8) / 40));
       noEl.style.opacity = '0';
-    } else if (dx < -12) {
-      noEl.style.opacity = String(Math.min(1, (-dx - 12) / 60));
+    } else if (dx < -8) {
+      noEl.style.opacity = String(Math.min(1, (-dx - 8) / 40));
       yesEl.style.opacity = '0';
     } else {
       yesEl.style.opacity = '0';
@@ -199,22 +194,20 @@ function attachSwipe(cardEl) {
     cardEl.classList.remove('dragging');
     try { cardEl.releasePointerCapture(e.pointerId); } catch (_) {}
 
-    const distanceThreshold = 70;
-    const velocityThreshold = 0.55;
+    // Sehr niedrige Schwellwerte für schnelles Swipen
+    const distanceThreshold = 40;
+    const velocityThreshold = 0.3;
 
     const swipeYes = dx > distanceThreshold ||
-      (velocityX > velocityThreshold && dx > 10);
+      (velocityX > velocityThreshold && dx > 4);
     const swipeNo = dx < -distanceThreshold ||
-      (velocityX < -velocityThreshold && dx < -10);
+      (velocityX < -velocityThreshold && dx < -4);
 
     if (swipeYes) {
-      locked = true;
-      flyOut(cardEl, 'yes', velocityX, dy);
+      flyOut(cardEl, 'yes');
     } else if (swipeNo) {
-      locked = true;
-      flyOut(cardEl, 'no', velocityX, dy);
+      flyOut(cardEl, 'no');
     } else {
-      // Spring zurück
       cardEl.style.transform = 'translate3d(0, 0, 0) rotate(0deg)';
       yesEl.style.opacity = '0';
       noEl.style.opacity = '0';
@@ -225,36 +218,26 @@ function attachSwipe(cardEl) {
   cardEl.addEventListener('pointermove', onMove, { passive: false });
   cardEl.addEventListener('pointerup', onUp);
   cardEl.addEventListener('pointercancel', onUp);
-  // Defensive: blockiere Touchmove, falls Pointer Events nicht greifen
   cardEl.addEventListener('touchmove', (e) => {
     if (dragging && e.cancelable) e.preventDefault();
   }, { passive: false });
 }
 
-function flyOut(cardEl, direction, velocityX, dy) {
-  const sign = direction === 'yes' ? 1 : -1;
+/* flyOut markiert Karte als abandoned, animiert sie raus, rendert sofort die nächste */
+function flyOut(cardEl, direction) {
+  if (cardEl.classList.contains('abandoned')) return;
+
+  cardEl.classList.add('abandoned');
   cardEl.classList.add(direction === 'yes' ? 'gone-right' : 'gone-left');
 
-  // Mache nächste (behind) Karte sofort zur neuen front
-  const stage = cardEl.parentElement;
-  if (stage) {
-    const next = stage.querySelector('.card.behind');
-    if (next) {
-      next.classList.remove('behind');
-      next.classList.add('front');
-      next.style.transform = 'translate3d(0, 0, 0) scale(1)';
-      next.style.opacity = '1';
-    }
-  }
+  try { if (navigator.vibrate) navigator.vibrate(6); } catch (_) {}
 
-  // Haptik (auf iOS leider weitgehend ignoriert, schadet aber nicht)
-  try { if (navigator.vibrate) navigator.vibrate(8); } catch (_) {}
-
+  // State sofort updaten + neue Karten rendern (alte fliegt parallel raus)
   decide(direction);
+  renderCard();
 
-  setTimeout(() => {
-    renderCard();
-  }, 380);
+  // Alte Karte nach Animation aus dem DOM
+  setTimeout(() => cardEl.remove(), 350);
 }
 
 function decide(direction) {
@@ -279,16 +262,11 @@ function decide(direction) {
   adaptiveResort();
 }
 
-// Tap auf Buttons → simulierter Swipe
 function programmaticDecide(direction) {
   const stage = document.getElementById('card-stage');
-  const cardEl = stage.querySelector('.card.front');
-  if (!cardEl || cardEl.classList.contains('gone-left') ||
-      cardEl.classList.contains('gone-right')) return;
-
-  const overlay = cardEl.querySelector(direction === 'yes' ? '.yes' : '.no');
-  if (overlay) overlay.style.opacity = '1';
-  flyOut(cardEl, direction, 0, 0);
+  const cardEl = stage.querySelector('.card.front:not(.abandoned)');
+  if (!cardEl) return;
+  flyOut(cardEl, direction);
 }
 
 function undoLast() {
@@ -456,7 +434,7 @@ function renderResult() {
     card.innerHTML = `
       <div class="theme-card-header">
         <div class="theme-type-badge">${theme.type}</div>
-        <div class="theme-themebook">Themebook · ${theme.themebook}</div>
+        <div class="theme-themebook">${theme.themebook}</div>
         <div class="theme-title-tag">${theme.titleTag}</div>
       </div>
       <div class="theme-section">
@@ -466,7 +444,7 @@ function renderResult() {
         </ul>
       </div>
       <div class="theme-section">
-        <div class="theme-section-label">Weakness Tag</div>
+        <div class="theme-section-label">Weakness</div>
         <div class="tag-weakness">${theme.weaknessTag}</div>
       </div>
       <div class="theme-section">
@@ -490,10 +468,6 @@ function renderResult() {
       updateThemeDots();
     }
   };
-
-  document.getElementById('result-counter').textContent =
-    `Vorschlag ${state.proposalIndex + 1} von ${Math.min(4, state.proposals.length)}` +
-    (state.proposals.length < 4 ? ` · noch ${4 - state.proposals.length} möglich` : '');
 
   const btnAlt = document.getElementById('btn-alternative');
   btnAlt.disabled = state.proposals.length >= 4;
