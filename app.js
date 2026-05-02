@@ -1,12 +1,12 @@
 /* =====================================================
-   Mistheld · App-Logik (refactored + audio + slower swipe)
+   Mistheld · App-Logik
 ===================================================== */
 
 const CFG = Object.freeze({
-  STACK_DEPTH: 3,            // front + 2 behind (Stack-Vorschau)
-  SWIPE_DISTANCE: 40,        // px
-  SWIPE_VELOCITY: 0.3,       // px/ms
-  FLY_DURATION_MS: 580,      // langsamere Karten-Flug-Animation
+  STACK_DEPTH: 3,
+  SWIPE_DISTANCE: 40,
+  SWIPE_VELOCITY: 0.3,
+  FLY_DURATION_MS: 580,
   LOADING_DELAY_MS: 700,
   ALT_LOADING_DELAY_MS: 450,
   MAX_PROPOSALS: 4,
@@ -66,10 +66,7 @@ function showLoading(text) {
 function hideLoading() { $('loading').classList.remove('active'); }
 
 /* =====================================================
-   AUDIO (Hintergrundmusik mit Mute-Toggle)
-   - Browser blockieren Autoplay ohne Interaktion (v.a. iOS Safari).
-   - Strategie: direkt versuchen, sonst beim ersten Touch/Click starten.
-   - Mute-State persistiert in localStorage.
+   AUDIO
 ===================================================== */
 
 const audio = $('bg-audio');
@@ -88,9 +85,8 @@ function updateMuteUI() {
 }
 
 function tryPlay() {
-  // .play() returnt ein Promise, das auf modernen Browsern bei Autoplay-Block rejected wird
   const p = audio.play();
-  if (p && typeof p.catch === 'function') p.catch(() => { /* still blocked, will retry */ });
+  if (p && typeof p.catch === 'function') p.catch(() => {});
 }
 
 function initAudio() {
@@ -99,20 +95,12 @@ function initAudio() {
   updateMuteUI();
   tryPlay();
 
-  // Fallback: beim ersten User-Input einmalig versuchen (für iOS Safari nötig)
-  const kickstart = () => {
-    tryPlay();
-    document.removeEventListener('pointerdown', kickstart);
-    document.removeEventListener('touchstart', kickstart);
-    document.removeEventListener('keydown', kickstart);
-    document.removeEventListener('click', kickstart);
-  };
-  document.addEventListener('pointerdown', kickstart, { once: false });
+  const kickstart = () => { tryPlay(); };
+  document.addEventListener('pointerdown', kickstart);
   document.addEventListener('touchstart', kickstart, { passive: true });
   document.addEventListener('keydown', kickstart);
   document.addEventListener('click', kickstart);
 
-  // Wenn der Tab wieder sichtbar wird, weiterspielen
   document.addEventListener('visibilitychange', () => {
     if (!document.hidden && !audio.muted && audio.paused) tryPlay();
   });
@@ -205,7 +193,6 @@ function renderCard() {
     return;
   }
 
-  // Stack hinten zuerst, vorderste zuletzt → richtiges Z-Stacking
   for (let i = CFG.STACK_DEPTH - 1; i >= 0; i--) {
     const idx = state.cardIndex + i;
     if (idx >= state.shuffledCards.length) continue;
@@ -497,7 +484,10 @@ function buildThemeCard(theme) {
     </div>
     <div class="theme-section">
       <div class="theme-section-label">Quest</div>
-      <div class="tag-quest">„${escapeHtml(theme.quest)}"</div>
+      <div class="tag-quest">
+        <div class="tag-quest-title">„${escapeHtml(theme.quest.title)}"</div>
+        <div class="tag-quest-description">${escapeHtml(theme.quest.description)}</div>
+      </div>
     </div>
   `;
   return card;
@@ -618,8 +608,15 @@ function pdfThemeBlock(doc, theme, x, y, cardW, cardH) {
   doc.setFont('times', 'italic');
   doc.setFontSize(10);
   doc.setTextColor(...PDF_COLORS.ink);
-  const qLines = doc.splitTextToSize(`„${theme.quest}"`, cardW - 8);
+  const qLines = doc.splitTextToSize(`„${theme.quest.title}"`, cardW - 8);
   doc.text(qLines, x + 4, cy);
+  cy += qLines.length * 4.5 + 1;
+
+  doc.setFont('times', 'italic');
+  doc.setFontSize(8.5);
+  doc.setTextColor(...PDF_COLORS.inkSoft);
+  const dLines = doc.splitTextToSize(theme.quest.description, cardW - 8);
+  doc.text(dLines, x + 4, cy);
 }
 
 function pdfFooter(doc) {
