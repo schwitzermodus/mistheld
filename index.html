@@ -1,0 +1,1821 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#f4ead5" />
+<title>Mistheld – LitM Heldengenerator</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+:root {
+  --bg: #f4ead5;
+  --bg-2: #ece0c4;
+  --paper: #faf3df;
+  --ink: #2a2419;
+  --ink-soft: #5b5240;
+  --accent: #8b3a2b;
+  --accent-soft: #b85540;
+  --gold: #a98646;
+  --green: #5b6b3a;
+  --line: rgba(42, 36, 25, 0.18);
+  --line-soft: rgba(42, 36, 25, 0.10);
+  --shadow: 0 10px 30px rgba(60, 40, 10, 0.15), 0 2px 6px rgba(60, 40, 10, 0.08);
+  --shadow-soft: 0 4px 12px rgba(60, 40, 10, 0.10);
+  --serif: 'Cormorant Garamond', 'Garamond', 'Georgia', serif;
+  --sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--bg);
+  background-image:
+    radial-gradient(ellipse at top left, rgba(169, 134, 70, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(139, 58, 43, 0.06) 0%, transparent 50%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' seed='5'/><feColorMatrix values='0 0 0 0 0.16 0 0 0 0 0.13 0 0 0 0 0.08 0 0 0 0.05 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  min-height: 100vh;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Screen base */
+.screen {
+  flex: 1;
+  display: none;
+  flex-direction: column;
+  padding: 20px;
+  animation: fadeIn 0.35s ease;
+}
+.screen.active { display: flex; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Typography */
+h1, h2, h3, h4 {
+  font-family: var(--serif);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+}
+
+h1 { font-size: 2.4rem; line-height: 1.1; }
+h2 { font-size: 1.7rem; line-height: 1.2; }
+h3 { font-size: 1.25rem; line-height: 1.3; }
+
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.muted { color: var(--ink-soft); }
+
+/* ===================== WELCOME ===================== */
+#screen-welcome {
+  justify-content: center;
+  text-align: center;
+  padding: 40px 28px;
+}
+.welcome-mark {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--accent);
+  margin-bottom: 8px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.welcome-title {
+  font-size: 3rem;
+  font-weight: 500;
+  font-style: italic;
+  margin: 6px 0 8px;
+  color: var(--ink);
+  position: relative;
+  display: inline-block;
+}
+.welcome-title::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  transform: translateX(-50%);
+}
+.welcome-sub {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  color: var(--ink-soft);
+  margin: 22px auto 28px;
+  max-width: 320px;
+  line-height: 1.4;
+}
+.welcome-instructions {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 22px 20px;
+  margin: 0 auto 32px;
+  max-width: 360px;
+  text-align: left;
+  box-shadow: var(--shadow-soft);
+  position: relative;
+}
+.welcome-instructions::before,
+.welcome-instructions::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--gold);
+}
+.welcome-instructions::before { top: 6px; left: 6px; border-right: 0; border-bottom: 0; }
+.welcome-instructions::after { bottom: 6px; right: 6px; border-left: 0; border-top: 0; }
+
+.welcome-instructions h3 {
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  text-align: center;
+}
+.welcome-instructions ul {
+  list-style: none;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+}
+.welcome-instructions li {
+  padding: 6px 0;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.welcome-instructions li::before {
+  content: '◆';
+  color: var(--gold);
+  font-size: 0.7rem;
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  position: relative;
+  min-height: 48px;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+.btn-primary {
+  background: var(--ink);
+  color: var(--bg);
+}
+.btn-primary:hover { background: var(--accent); }
+.btn-primary:active { transform: scale(0.98); }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+.btn-secondary:hover { border-color: var(--ink); background: var(--paper); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink-soft);
+  border: none;
+  font-size: 0.85rem;
+}
+.btn-ghost:hover { color: var(--accent); }
+
+.btn-block { width: 100%; }
+
+/* ===================== SWIPE ===================== */
+#screen-swipe {
+  padding: 16px 20px 28px;
+}
+
+.swipe-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+  gap: 12px;
+}
+
+.phase-label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.phase-eyebrow {
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.phase-title {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.phase-progress {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+.phase-dot {
+  width: 22px;
+  height: 4px;
+  background: var(--line);
+  border-radius: 0;
+  transition: background 0.3s;
+}
+.phase-dot.done { background: var(--gold); }
+.phase-dot.active { background: var(--accent); }
+
+.card-counter {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  margin-bottom: 14px;
+  letter-spacing: 0.05em;
+}
+
+.card-stage {
+  position: relative;
+  flex: 1;
+  min-height: 380px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  box-shadow: var(--shadow);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: grab;
+  user-select: none;
+  touch-action: pan-y;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
+  will-change: transform;
+}
+.card.dragging {
+  transition: none;
+  cursor: grabbing;
+}
+.card.gone-left {
+  transform: translateX(-130%) rotate(-22deg);
+  opacity: 0;
+}
+.card.gone-right {
+  transform: translateX(130%) rotate(22deg);
+  opacity: 0;
+}
+
+.card-glyph {
+  font-size: 2.2rem;
+  color: var(--gold);
+  margin-bottom: 14px;
+  font-family: var(--serif);
+  font-style: italic;
+  position: relative;
+}
+.card-glyph::before, .card-glyph::after {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--gold);
+  vertical-align: middle;
+  margin: 0 12px;
+  opacity: 0.6;
+}
+
+.card-title {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.25;
+  margin-bottom: 12px;
+  color: var(--ink);
+  max-width: 280px;
+}
+.card-text {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 260px;
+}
+
+.card-decision-overlay {
+  position: absolute;
+  top: 16px;
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border: 3px solid;
+  border-radius: 4px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.1s;
+}
+.card-decision-overlay.yes {
+  right: 18px;
+  color: var(--green);
+  border-color: var(--green);
+  transform: rotate(-12deg);
+}
+.card-decision-overlay.no {
+  left: 18px;
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: rotate(12deg);
+}
+
+.swipe-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.swipe-btn {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2px solid;
+  background: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.swipe-btn:active { transform: scale(0.92); }
+.swipe-btn-no {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.swipe-btn-no:hover { background: var(--accent); color: var(--paper); }
+.swipe-btn-yes {
+  border-color: var(--green);
+  color: var(--green);
+}
+.swipe-btn-yes:hover { background: var(--green); color: var(--paper); }
+
+.swipe-btn-undo {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--ink-soft);
+  transition: all 0.18s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.swipe-btn-undo:hover { color: var(--ink); border-color: var(--ink); }
+.swipe-btn-undo:disabled { opacity: 0.3; cursor: not-allowed; }
+
+.swipe-btn svg { width: 28px; height: 28px; }
+.swipe-btn-undo svg { width: 20px; height: 20px; }
+
+.swipe-hint {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  margin-top: 12px;
+  letter-spacing: 0.05em;
+  font-style: italic;
+  font-family: var(--serif);
+}
+
+/* ===================== RESULT (Theme Carousel) ===================== */
+#screen-result {
+  padding: 16px 16px 28px;
+}
+
+.result-header {
+  text-align: center;
+  margin-bottom: 18px;
+}
+.result-header .eyebrow { display: block; margin-bottom: 4px; }
+.result-header h2 {
+  font-style: italic;
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+.result-header .meta {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin-top: 4px;
+  font-family: var(--serif);
+}
+
+.theme-carousel {
+  position: relative;
+  margin: 0 -4px;
+}
+
+.theme-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  gap: 12px;
+  padding: 4px;
+  scroll-behavior: smooth;
+}
+.theme-track::-webkit-scrollbar { display: none; }
+
+.theme-card {
+  flex: 0 0 calc(100% - 8px);
+  scroll-snap-align: center;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 22px 20px;
+  box-shadow: var(--shadow-soft);
+  min-height: 460px;
+  position: relative;
+}
+
+.theme-card-header {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 12px;
+  margin-bottom: 14px;
+  text-align: center;
+}
+.theme-type-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.theme-themebook {
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+.theme-title-tag {
+  font-family: var(--serif);
+  font-size: 1.6rem;
+  font-style: italic;
+  font-weight: 600;
+  color: var(--ink);
+  margin-top: 6px;
+  line-height: 1.2;
+}
+
+.theme-section {
+  margin-bottom: 16px;
+}
+.theme-section-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.theme-section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--line-soft);
+}
+
+.tag-list {
+  list-style: none;
+  font-family: var(--serif);
+  font-size: 1rem;
+  color: var(--ink);
+  line-height: 1.5;
+}
+.tag-list li {
+  padding: 3px 0;
+  padding-left: 16px;
+  position: relative;
+}
+.tag-list li::before {
+  content: '◦';
+  position: absolute;
+  left: 0;
+  top: 3px;
+  color: var(--gold);
+}
+
+.tag-weakness {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--accent);
+  padding: 8px 12px;
+  background: rgba(139, 58, 43, 0.06);
+  border-left: 2px solid var(--accent);
+  border-radius: 0;
+}
+
+.tag-quest {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--ink);
+  line-height: 1.45;
+}
+
+.theme-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 16px 0 20px;
+}
+.theme-page-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--line);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.theme-page-dot.active { background: var(--accent); transform: scale(1.4); }
+
+.result-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.result-counter {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  font-family: var(--serif);
+  font-style: italic;
+  margin-bottom: 12px;
+}
+
+/* Loading state */
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(244, 234, 213, 0.92);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  flex-direction: column;
+  gap: 18px;
+  backdrop-filter: blur(2px);
+}
+.loading-overlay.active { display: flex; }
+.loading-spinner {
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--line);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-text {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+/* utility */
+.center { text-align: center; }
+.mt-12 { margin-top: 12px; }
+.mt-20 { margin-top: 20px; }
+
+@media (max-height: 700px) {
+  .card-stage { min-height: 320px; }
+  .welcome-title { font-size: 2.4rem; }
+  .welcome-sub { margin: 16px auto 22px; }
+  .theme-card { min-height: 400px; }
+}
+</style>
+</head>
+<body>
+
+<div class="app">
+
+<!-- WELCOME -->
+<section id="screen-welcome" class="screen active">
+  <div class="welcome-mark">Legend in the Mist</div>
+  <h1 class="welcome-title">Mistheld</h1>
+  <p class="welcome-sub">Erstelle deinen LitM-Helden mit ein paar Swipes durch den Nebel.</p>
+
+  <div class="welcome-instructions">
+    <h3>So funktioniert's</h3>
+    <ul>
+      <li>Du siehst Karten mit Stimmungen, Hintergründen, Fähigkeiten und Antrieben.</li>
+      <li>Wische rechts (oder tippe ✓), wenn die Karte zu deinem Helden passt.</li>
+      <li>Wische links (oder tippe ✗), wenn nicht.</li>
+      <li>Am Ende generiert Mistheld 4 Themes mit Tags und Quest.</li>
+    </ul>
+  </div>
+
+  <button class="btn btn-primary" id="btn-start">Los geht's</button>
+</section>
+
+<!-- SWIPE -->
+<section id="screen-swipe" class="screen">
+  <div class="swipe-header">
+    <div class="phase-label">
+      <span class="phase-eyebrow" id="phase-eyebrow">Phase 1 von 4</span>
+      <span class="phase-title" id="phase-title">Stimmung &amp; Welt</span>
+    </div>
+    <div class="phase-progress" id="phase-progress">
+      <div class="phase-dot active"></div>
+      <div class="phase-dot"></div>
+      <div class="phase-dot"></div>
+      <div class="phase-dot"></div>
+    </div>
+  </div>
+
+  <div class="card-counter" id="card-counter">Karte 1 von 9</div>
+
+  <div class="card-stage" id="card-stage">
+    <!-- Cards injected here -->
+  </div>
+
+  <div class="swipe-controls">
+    <button class="swipe-btn swipe-btn-no" id="btn-no" aria-label="Passt nicht">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <button class="swipe-btn-undo" id="btn-undo" aria-label="Letzte Karte zurück" disabled>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 00-15-6.7L3 13"/></svg>
+    </button>
+    <button class="swipe-btn swipe-btn-yes" id="btn-yes" aria-label="Passt">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+    </button>
+  </div>
+
+  <p class="swipe-hint">Wische links oder rechts</p>
+</section>
+
+<!-- RESULT -->
+<section id="screen-result" class="screen">
+  <div class="result-header">
+    <span class="eyebrow">Dein Held</span>
+    <h2 id="result-title">Aus dem Nebel geboren</h2>
+    <p class="meta" id="result-meta">4 Themes · 12 Power Tags · 4 Weakness Tags · 4 Quests</p>
+  </div>
+
+  <div class="theme-carousel">
+    <div class="theme-track" id="theme-track"></div>
+    <div class="theme-pagination" id="theme-pagination"></div>
+  </div>
+
+  <p class="result-counter" id="result-counter">Vorschlag 1 von 4</p>
+
+  <div class="result-actions">
+    <button class="btn btn-primary btn-block" id="btn-accept">Held übernehmen &amp; PDF</button>
+    <button class="btn btn-secondary btn-block" id="btn-alternative">Anderen Vorschlag</button>
+    <button class="btn btn-ghost btn-block" id="btn-restart">Nochmal swipen</button>
+  </div>
+</section>
+
+</div>
+
+<div class="loading-overlay" id="loading">
+  <div class="loading-spinner"></div>
+  <div class="loading-text" id="loading-text">Helden weben...</div>
+</div>
+
+<script>
+/* =====================================================
+   LITM DATA
+   Themebooks aus Vol. 1 mit dem System Origin / Adventure / Greatness / Variable Might
+   Tag-Pools sind aus den Power-Tag- und Weakness-Tag-Fragen sowie Theme-Kits abgeleitet.
+   Sprache: Deutsch (Inhalte), Fachbegriffe Englisch.
+===================================================== */
+
+const THEMEBOOKS = {
+  // ORIGIN
+  Circumstance: {
+    type: 'Origin',
+    description: 'Hintergrund · Sozialer Status · Lebenssituation',
+    titleTagSuggestions: ['gefallener Adel', 'flüchtiger Außenseiter', 'Schankhaus-Schläger', 'einsamer Schänkengast', 'verlorenes Erbe', 'Stimme des Volkes'],
+    powerTagPool: [
+      'standesgemäße Kleidung', 'kennt jeden im Ort', 'verlässliche Schaubühne', 'sicheres Versteck', 'Zunge wie ein Messer', 'Standesvorrecht',
+      'verborgene Gönner', 'durchschaut Masken', 'kann sich verstecken', 'ein Ort, wo ich frei bin', 'leise Beobachtung', 'Hofmanieren',
+      'beschwichtigender Tonfall', 'spricht für die Schwachen', 'Schloss aufbrechen', 'spielt den Narren', 'lebt vom Wenigen', 'meine Leute halten zu mir'
+    ],
+    weaknessTagPool: [
+      'gehetzt von einer Macht', 'vom Standesdünkel verfolgt', 'gilt als Außenseiter', 'verboten an manchen Orten', 'Schulden, die mich einholen', 'gebrochene Hände'
+    ],
+    questPool: [
+      'Ich beweise meinen Wert trotz allem.', 'Ich werde meinen alten Namen wiederherstellen.', 'Ich finde einen Ort, an dem ich frei sein kann.', 'Ich bleibe meiner Sippe treu, koste es, was es wolle.'
+    ]
+  },
+  Devotion: {
+    type: 'Origin',
+    description: 'Wichtige Bindungen · Verpflichtung gegenüber Person, Gruppe oder Ideal',
+    titleTagSuggestions: ['Schwertschwur', 'Werdender Ritter', 'Verteidiger des Dorfes', 'Diener der Göttin', 'Pflegerin der Kranken', 'Liebe meines Lebens'],
+    powerTagPool: [
+      'Schwur ablegen', 'Mut sammeln', 'Schutzschild für die Schwachen', 'erinnert sich an einen Schwur', 'tröstet die Verzagten', 'kennt heilende Kräuter',
+      'einfache Heilkunst', 'spricht für die Stille', 'hält ein heiliges Symbol', 'Hände, die heilen', 'Ritualgesang', 'schützt mit dem eigenen Leib',
+      'sammelt Almosen für andere', 'kennt jedes Gebet', 'auf das Wort verlassen', 'schreitet ein, wo andere wegsehen'
+    ],
+    weaknessTagPool: [
+      'blind durch Hingabe', 'verpflichtet, nicht zu fliehen', 'jeder Schmerz der Gruppe ist meiner', 'die Pflicht verschlingt die Zeit', 'unbarmherzig gegen Verräter'
+    ],
+    questPool: [
+      'Ich beschütze sie, bis ich sterbe.', 'Mein Gelübde halte ich, was auch geschieht.', 'Ich bringe das Heiligtum zurück, das wir verloren haben.', 'Ich bestehe die Pilgerfahrt.'
+    ]
+  },
+  Past: {
+    type: 'Origin',
+    description: 'Prägendes Lebensereignis · Trauma oder Glücksfall',
+    titleTagSuggestions: ['Verflucht', 'Im Krieg geschmiedet', 'Letzter meines Volkes', 'mystischer Pilger', 'aus den Trümmern', 'der Heimkehrer'],
+    powerTagPool: [
+      'altes Andenken', 'narbiges Schwertarm', 'Sprache der Verlorenen', 'Erinnerungen, die warnen', 'getragene Reisetracht', 'durchgemacht und überlebt',
+      'kennt das Schlachtfeld', 'spürt einen Fluch', 'hat die Ruinen gesehen', 'einst gelernte Liturgie', 'eiserner Wille', 'sieht durch Lügen',
+      'Erinnerungsstück eines Toten', 'eine Lektion aus Leid', 'kennt den Weg zurück', 'spricht eine vergessene Zunge'
+    ],
+    weaknessTagPool: [
+      'Albträume kehren wieder', 'verfolgt von alten Feinden', 'das Mal des Fluches', 'eine Schuld, die nie erlischt', 'Erinnerung schmerzt'
+    ],
+    questPool: [
+      'Ich finde heraus, was wirklich geschah.', 'Ich befreie mich von dem, was mich bindet.', 'Ich bringe das Vergangene zur Ruhe.', 'Ich rette, was noch zu retten ist.'
+    ]
+  },
+  People: {
+    type: 'Origin',
+    description: 'Abstammung · Erbe · Kultur · Spezies',
+    titleTagSuggestions: ['Sylvenelf', 'Highlanderin', 'Battlerider', 'Hexenblut', 'Karawanenvolk', 'Bibervolk'],
+    powerTagPool: [
+      'kennt die Sitten meines Volkes', 'altertümliches Lied', 'angeborener Sinn für Spuren', 'Werkzeug aus der Heimat', 'Bogen meines Volkes', 'wettergegerbte Haut',
+      'die Sprache der Ahnen', 'Tracht meines Volkes', 'Ruf der Verbündeten', 'unerwartete Stärke', 'angeborene Schnelligkeit', 'leiser Schritt',
+      'Schwert meines Volkes', 'Heimischer Boden gibt Kraft', 'sieht im Dunkeln', 'Affinität zu Tieren'
+    ],
+    weaknessTagPool: [
+      'gemieden in dieser Gegend', 'angeborene Schwäche', 'misstrauisch gegen Fremde', 'aus dem Element gerissen', 'auffälliges Merkmal'
+    ],
+    questPool: [
+      'Ich erhebe mein Volk wieder zu Würde.', 'Ich erfülle eine Prophezeiung meiner Sippe.', 'Ich bewahre die Lieder meines Volkes vor dem Vergessen.', 'Ich finde meinesgleichen.'
+    ]
+  },
+  Personality: {
+    type: 'Origin',
+    description: 'Wesen · Aura · Verhalten · innerer Kern',
+    titleTagSuggestions: ['Herz aus Gold', 'das gelbe Lächeln', 'mürrisch wie Stein', 'übte Lügnerin', 'unstillbar neugierig', 'tröstet die Welt'],
+    powerTagPool: [
+      'durchschaut eine Lüge', 'Lacher in dunkler Stunde', 'frohe Geschichte', 'Sturheit als Tugend', 'einnehmendes Lächeln', 'kennt die richtige Frage',
+      'gibt anderen Hoffnung', 'kalter Blick', 'einschüchterndes Auftreten', 'einfühlsame Stille', 'spielt den Narren', 'sucht nach der Wahrheit',
+      'plaudert sich aus jeder Lage', 'gibt einen Rat, der hilft', 'macht Mut zum Aufstehen', 'keine Gerüchte entgehen mir'
+    ],
+    weaknessTagPool: [
+      'leicht zu provozieren', 'sentimental im falschen Moment', 'ausnutzbar', 'spricht zu viel', 'erwartet Anerkennung'
+    ],
+    questPool: [
+      'Ich bleibe mir treu, koste es, was es wolle.', 'Ich helfe denen, die sonst niemand sieht.', 'Ich verstehe endlich, wer ich wirklich bin.', 'Ich bringe Licht in dunkle Räume.'
+    ]
+  },
+  'Skill or Trade': {
+    type: 'Origin',
+    description: 'Handwerk · Beruf · geübte Fähigkeit',
+    titleTagSuggestions: ['Hinterland-Spurenleser', 'Schmied der Berge', 'taschendiebischer Wandersmann', 'Heilkundige', 'Steuermann', 'Bogenbauer'],
+    powerTagPool: [
+      'meisterhaft an der Esse', 'Werkzeug meines Handwerks', 'kennt jede Spur im Wald', 'gut sortierte Vorratskammer', 'flinke Finger', 'liest die Karte',
+      'kennt jeden Knoten', 'Pfeil und Bogen geübt', 'eingespielte Schrittfolge', 'Stahl bis zur Klinge', 'leise Schritte', 'fester Griff',
+      'umgeht jede Wache', 'gut gemachte Werkzeuge', 'fachkundiger Blick', 'verlässliche Routine'
+    ],
+    weaknessTagPool: [
+      'überfordert ohne Werkzeug', 'wirkt einseitig', 'misstrauisch beobachtet', 'oft erschöpft vom Üben', 'kennt nur eine Welt'
+    ],
+    questPool: [
+      'Ich werde der Beste in meinem Fach.', 'Ich bewahre mein Handwerk vor dem Vergessen.', 'Ich finde Anwendung für meine Kunst, die wirklich zählt.', 'Ich gebe mein Wissen weiter.'
+    ]
+  },
+  Trait: {
+    type: 'Origin',
+    description: 'Körperliches oder geistiges Merkmal · besondere Gabe',
+    titleTagSuggestions: ['stark wie ein Ochse', 'akrobatische Beweglichkeit', 'unheimlich schön', 'prophetische Visionen', 'Kraft des Wassers', 'unerschütterlich'],
+    powerTagPool: [
+      'leichter Schritt', 'unbändige Kraft', 'unverwundbar wirkende Schönheit', 'sieht, was kommen wird', 'spricht im Schlaf', 'springt höher als andere',
+      'taucht tief und lange', 'fühlt magische Spuren', 'unermüdlich', 'klettert wie eine Katze', 'ungewöhnlich präzise', 'lacht, wo andere schreien',
+      'übermenschliche Sinne', 'erinnert sich an alles', 'sehr geschickt', 'sieht im Halbdunkel'
+    ],
+    weaknessTagPool: [
+      'auffällig für Feinde', 'wird beneidet', 'erschöpft sich rasch', 'wirkt befremdlich', 'unbeholfen ohne Gabe'
+    ],
+    questPool: [
+      'Ich finde heraus, woher meine Gabe stammt.', 'Ich nutze meine Gabe für etwas Größeres.', 'Ich versuche, normal zu sein.', 'Ich überwinde die Grenzen meiner Gabe.'
+    ]
+  },
+
+  // ADVENTURE
+  Duty: {
+    type: 'Adventure',
+    description: 'Schwur · Auftrag · Verantwortung',
+    titleTagSuggestions: ['Licht gegen die Finsternis', 'auf Vertrag', 'Schwur dem Lehnsherrn', 'Hüterin des Landes', 'Rachezwang', 'Bote des Königs'],
+    powerTagPool: [
+      'leuchtende Rüstung', 'kennt die Verbündeten der Sache', 'kraftvoller Schwur', 'Banner meines Lehnsherrn', 'Recht auf freien Durchgang', 'Recht auf Kost und Quartier',
+      'mein Eid macht mich stark', 'kennt das Reich von Norden bis Süden', 'gefürchteter Gegner des Bösen', 'Vertrag in der Hand', 'Anweisungen ausführen',
+      'kommandiert Soldaten', 'kennt Strategien des Kampfes', 'unbeirrbar im Zweck'
+    ],
+    weaknessTagPool: [
+      'rivalisiert um die Aufgabe', 'verhasst bei Feinden des Auftrags', 'fühlt Schuld bei Versagen', 'an Befehle gebunden'
+    ],
+    questPool: [
+      'Ich erfülle meinen Schwur, koste es, was es wolle.', 'Ich bringe die Auftraggeber zu Fall, wenn sie das Versprechen brechen.', 'Ich räche das Unrecht, das mir geschah.', 'Ich beschütze das Land, dem ich diene.'
+    ]
+  },
+  Influence: {
+    type: 'Adventure',
+    description: 'Schlüsselposition · Autorität · Kontakte · persönliche Macht',
+    titleTagSuggestions: ['Dockmeisterin', 'graue Eminenz', 'Stadtrat', 'Gildenführer', 'Anführerin der Schmuggler', 'Diplomatin'],
+    powerTagPool: [
+      'Spitzel an jeder Ecke', 'kennt die wahren Mächte der Stadt', 'spricht mit Befehlsgewalt', 'Gefälligkeiten einfordern', 'Gold öffnet Türen', 'eine Karte mit allen Namen',
+      'Boten in jede Richtung', 'Briefe öffnen Tore', 'kennt das Geheimnis aller', 'Gildensiegel', 'Recht auf Audienz', 'Beobachter überall',
+      'Schatzkammer im Hintergrund', 'Vertrauen der Mächtigen'
+    ],
+    weaknessTagPool: [
+      'Konkurrenz um die Position', 'erpressbar durch Geheimnisse', 'der Hof ist ein Schlangennest', 'unsichtbare Feinde'
+    ],
+    questPool: [
+      'Ich verteidige meine Position bis zum Ende.', 'Ich nutze meinen Einfluss, um die Welt zu wenden.', 'Ich entlarve die wahren Strippenzieher.', 'Ich werde der Mächtigste in dieser Stadt.'
+    ]
+  },
+  Knowledge: {
+    type: 'Adventure',
+    description: 'Geheime oder mystische Erkenntnis',
+    titleTagSuggestions: ['Sterndeuter', 'Bewohner des Verborgenen', 'kennt jedes Land', 'Bibliothekar des Verbotenen', 'Studium der alten Reiche', 'Sprachgelehrter'],
+    powerTagPool: [
+      'liest in den Sternen', 'kennt die alten Sprachen', 'erkennt jedes Symbol', 'sieht die Zeichen', 'kennt verbotene Riten', 'erinnert sich an jedes Buch',
+      'analysiert eine Substanz', 'übersetzt jede Schrift', 'kennt Bestienkunde', 'führt geheime Forschung', 'ein Lexikon an Lore', 'kennt den Weg zur Wahrheit',
+      'spricht die Sprache der Toten', 'kennt jedes Provinzwappen'
+    ],
+    weaknessTagPool: [
+      'gefährliches Wissen anziehend für Feinde', 'verloren in der Welt der Bücher', 'körperlich nicht stark', 'verfolgt von neugierigen Mächten'
+    ],
+    questPool: [
+      'Ich enthülle die letzte Wahrheit, koste es, was es wolle.', 'Ich bewahre dieses Wissen vor dem Falschen.', 'Ich finde die Quelle der alten Lieder.', 'Ich verstehe, was niemand sonst versteht.'
+    ]
+  },
+  'Prodigious Ability': {
+    type: 'Adventure',
+    description: 'Außergewöhnliche Fähigkeit · bemerkenswerte Meisterschaft',
+    titleTagSuggestions: ['fesselnder Geschichtenerzähler', 'meisterhafter Koch', 'gefürchteter Klingenmeister', 'wundersamer Heiler', 'unbestechlicher Bogenschütze', 'Meister des Spiels'],
+    powerTagPool: [
+      'Schwertkunst, die staunen macht', 'eigene Signaturtechnik', 'verzaubert mit Worten', 'erfindet im Augenblick', 'staunenswerter Sprung', 'einmalige Heiltechnik',
+      'erkennt den schwachen Punkt', 'erkennt jeden Zauber', 'wundersames Werk', 'unfehlbarer Pfeil', 'unbestreitbare Eleganz', 'erstaunliche Geschwindigkeit',
+      'gilt als der Beste', 'reißt jede Menge mit'
+    ],
+    weaknessTagPool: [
+      'arrogant gegenüber Schwächeren', 'wird ständig herausgefordert', 'erschöpft im Alltag', 'misstrauisch beobachtet'
+    ],
+    questPool: [
+      'Ich werde unangefochten der Beste.', 'Ich gebe meine Kunst weiter, bevor ich sterbe.', 'Ich vollbringe das Meisterwerk meines Lebens.', 'Ich nutze meine Gabe für etwas Würdiges.'
+    ]
+  },
+  Relic: {
+    type: 'Adventure',
+    description: 'Magisches Item · seltsames Erbstück · uralter Artefakt',
+    titleTagSuggestions: ['die Riesenfaust', 'Beutel mit Zauberstaub', 'Kessel der Beschwörung', 'verfluchte Klinge', 'Stab der alten Zeiten', 'Krone der Vergessenen'],
+    powerTagPool: [
+      'donnernder Faustschlag', 'beschwört nützliche Dinge', 'lauscht den Geistern', 'der Stein flüstert mir zu', 'die Klinge schneidet alles', 'Kraft aus dem Artefakt',
+      'wärmt die Seele', 'leuchtet im Dunkeln', 'leitet zum Ziel', 'verbirgt mich vor Bösem', 'enthüllt verborgene Wahrheiten', 'bindet feindliche Magie',
+      'der Helm zeigt Visionen', 'die Münze kommt zurück'
+    ],
+    weaknessTagPool: [
+      'der Gegenstand hat einen eigenen Willen', 'Diebe begehren ihn', 'Magie hat ihren Preis', 'kann verloren gehen'
+    ],
+    questPool: [
+      'Ich entschlüssele das Geheimnis dieses Artefakts.', 'Ich erfülle, was die alte Magie von mir verlangt.', 'Ich bringe das Artefakt an seinen Ursprung zurück.', 'Ich befreie mich von seinem Bann.'
+    ]
+  },
+  'Uncanny Being': {
+    type: 'Adventure',
+    description: 'Übernatürliches Wesen · verfluchte oder verwandelte Person · Geist',
+    titleTagSuggestions: ['körperloser Geist', 'Höllenkind', 'Kleiner Hob', 'Wechselgestalt', 'Mondgeborene', 'Schattenwandler'],
+    powerTagPool: [
+      'verschwindet in den Schatten', 'sieht das Unsichtbare', 'spricht mit Toten', 'unverletzlich durch Stahl', 'kann sich verwandeln', 'spürt lebende Seelen',
+      'übersteht Feuer', 'bewegt Dinge ohne Berührung', 'Krallen oder Reißzähne', 'fließt durch Spalten', 'erscheint und verschwindet', 'flüstert Gedanken in andere',
+      'spürt böse Magie', 'liebt Dunkelheit'
+    ],
+    weaknessTagPool: [
+      'gebannt durch Salz / Eisen / Sonne', 'gemieden von Mensch und Tier', 'angreifbar durch heiliges Symbol', 'gehasst von beiden Welten'
+    ],
+    questPool: [
+      'Ich finde heraus, was ich wirklich bin.', 'Ich finde meinen Platz unter den Menschen.', 'Ich bin meinem Wesen treu, koste es, was es wolle.', 'Ich befreie mich von seinem Bann.'
+    ]
+  },
+
+  // GREATNESS
+  Destiny: {
+    type: 'Greatness',
+    description: 'Prophezeiung · Vorbestimmter Pfad · große Bestimmung',
+    titleTagSuggestions: ['Erbin des Throns', 'Untergang der Welt', 'finde den Erzähler', 'Auserwählter der Götter', 'das letzte Licht', 'das Kind der Sterne'],
+    powerTagPool: [
+      'das Schicksal beschützt mich', 'Zeichen weisen den Weg', 'Verbündete erscheinen', 'Glück folgt meinen Schritten', 'wundersame Rettung', 'die Welt hört auf mich',
+      'Vorhersehung leitet mich', 'verborgene Helfer', 'Wege öffnen sich', 'Türen, die niemand öffnen sollte', 'mein Antlitz erkennt jeder', 'Bestimmung pulsiert in mir',
+      'Träume offenbaren Geheimnisse', 'unerschütterlicher Mut'
+    ],
+    weaknessTagPool: [
+      'Feinde wollen mich verhindern', 'der Pfad ist eng', 'Hochmut verfolgt mich', 'andere fordern meinen Tod'
+    ],
+    questPool: [
+      'Ich erfülle, wozu ich geboren wurde.', 'Ich beweise, dass ich frei bin trotz meiner Bestimmung.', 'Ich rette die Welt vor dem, was kommt.', 'Ich entdecke, wer mich auserwählt hat.'
+    ]
+  },
+  Dominion: {
+    type: 'Greatness',
+    description: 'Land oder Königreich · Macht über ein Volk oder eine Organisation',
+    titleTagSuggestions: ['Herrin der Mark', 'Anführerin der Gilde', 'Lehnsherr von Stein', 'Königin des Tales', 'Befehlshaber der Wache'],
+    powerTagPool: [
+      'Soldaten meines Reiches', 'Tribute aus dem Land', 'Banner und Wappen', 'Recht zu richten', 'Burg auf dem Berg', 'Räte und Berater',
+      'Steuereinnahmen', 'eingespielte Verwaltung', 'kennt die Adligen', 'Boten in jede Richtung', 'spricht für ein Volk', 'Recht auf Krieg',
+      'beste Spione weit und breit'
+    ],
+    weaknessTagPool: [
+      'der Thron wird begehrt', 'Schulden gegenüber Mächtigen', 'Aufstand gärt', 'einsam an der Spitze'
+    ],
+    questPool: [
+      'Ich vergrößere mein Reich.', 'Ich beschütze mein Land vor allen Feinden.', 'Ich bin der gerechte Herrscher, den dieses Land verdient.', 'Ich finde heraus, wer mich verraten hat.'
+    ]
+  },
+  Mastery: {
+    type: 'Greatness',
+    description: 'Bester im Reich · weltverändernde Kunstfertigkeit',
+    titleTagSuggestions: ['legendärer Schmied', 'Meister der Klinge', 'Erbauer der Welten', 'Königin der Stimme', 'unangefochtene Heilerin'],
+    powerTagPool: [
+      'Werkzeuge eines Meisters', 'gilt als Legende', 'Schüler aus aller Welt', 'kann das Unmögliche schaffen', 'kennt jede Variante', 'meisterhafte Kontrolle',
+      'eine Werkstatt mit eigenem Namen', 'Werke werden Jahrhunderte überdauern', 'andere Meister suchen Rat', 'andere Disziplinen ähnlich beherrscht',
+      'unverwechselbarer Stil', 'kann keinen Wettkampf verlieren', 'geheime Techniken'
+    ],
+    weaknessTagPool: [
+      'gefährdet durch Neid', 'jeder will von mir lernen', 'erwartet zu hohe Standards', 'wird zur Geisel meiner Größe'
+    ],
+    questPool: [
+      'Ich erschaffe das Meisterwerk meines Lebens.', 'Ich gebe meine Kunst an die nächste Generation weiter.', 'Ich verändere die Welt mit meiner Kunst.', 'Ich finde jemanden, der mich übertrifft.'
+    ]
+  },
+  Monstrosity: {
+    type: 'Greatness',
+    description: 'Riesengröße · überragende innewohnende Macht · arkanes Wesen',
+    titleTagSuggestions: ['Drachenwurm', 'Sturmtitan', 'Nebelhydra', 'das Größenwesen aus dem See', 'der Wandelnde Wald'],
+    powerTagPool: [
+      'enorme Größe', 'flügelschlag wie Sturm', 'unverletzbare Haut', 'magische Aura der Furcht', 'unstillbarer Hunger', 'Schwanz, der Bäume fällt',
+      'Atem aus Feuer / Eis / Säure', 'Schreckenskreis um mich', 'unergründlicher Blick', 'Diener gehorchen mir', 'übermächtige Stärke',
+      'rufe Stürme', 'gigantische Schritte'
+    ],
+    weaknessTagPool: [
+      'eine verwundbare Stelle', 'jagdwürdig in den Augen vieler', 'zu groß für menschliche Welt', 'der Hunger erschüttert mich'
+    ],
+    questPool: [
+      'Ich finde meinesgleichen.', 'Ich akzeptiere mein Wesen.', 'Ich beschütze meine Brut, koste es, was es wolle.', 'Ich kehre zur menschlichen Form zurück.'
+    ]
+  },
+
+  // VARIABLE MIGHT
+  Companion: {
+    type: 'Variable Might',
+    description: 'Verbündeter · Begleiter · Tier oder Geist',
+    titleTagSuggestions: ['Schwertbande', 'imposanter Wolfshund', 'Schutzgeist', 'frecher Pixie', 'Falke meiner Mutter', 'Beschwörter Geist'],
+    powerTagPool: [
+      'imposanter Wolfshund', 'spürt feindliche Absichten', 'Bande Schwertkämpfer', 'kämpft mit mir Schulter an Schulter', 'gehorcht jedem Befehl', 'Ablenkung mit Verve',
+      'unsichtbarer Schutzgeist', 'flüstert Warnungen', 'zerstreut die Wache', 'läuft schneller als mein Pferd', 'schmuggelt Botschaften', 'tröstet mich in der Nacht',
+      'unfehlbare Spürnase', 'Familie an meiner Seite'
+    ],
+    weaknessTagPool: [
+      'gerät leicht in Gefahr', 'lärmig und unbeherrscht', 'kann mich verlassen', 'beschützt nur mich'
+    ],
+    questPool: [
+      'Ich beschütze meinen Begleiter um jeden Preis.', 'Ich erfülle einen Auftrag mit meinem Begleiter.', 'Ich bringe ihn / sie heim.', 'Ich befreie ihn / sie aus dem Bann.'
+    ]
+  },
+  Magic: {
+    type: 'Variable Might',
+    description: 'Zauberei und Hexerei · angeborene Magie · Macht durch Götter / Geister',
+    titleTagSuggestions: ['Hexe der Wälder', 'Sturmrufer', 'Heiler der Götter', 'Banner der Geister', 'rituelle Zauberin', 'Alchemistin'],
+    powerTagPool: [
+      'kleines Zauberwerk', 'Bannkreis ziehen', 'spricht alte Worte', 'verflucht den Feind', 'segnet die Verbündeten', 'spricht mit Geistern',
+      'verwandelt sich in Tier', 'sieht durch Schleier', 'braut starke Tränke', 'schreibt mächtige Runen', 'beschwört kleine Wesen', 'Heilkräuter und Salben',
+      'Magieeisen erkennen', 'lenkt die Winde', 'hext Dinge in die Bewegung', 'flüstert in die Träume'
+    ],
+    weaknessTagPool: [
+      'erschöpft durch Magie', 'gehasst und gehetzt', 'verlangt einen Preis', 'unkontrollierbare Nebenwirkungen'
+    ],
+    questPool: [
+      'Ich verstehe, woher meine Magie wirklich kommt.', 'Ich nutze meine Magie nur für Würdiges.', 'Ich befreie die, denen ich Unrecht tat.', 'Ich finde einen Lehrer, der mich vollendet.'
+    ]
+  },
+  Possessions: {
+    type: 'Variable Might',
+    description: 'Ausrüstung · ein besonderes Objekt · Besitz',
+    titleTagSuggestions: ['handgefertigte Panflöte', 'verborgene Dolche', 'Pferd und Rüstung', 'Brief des Fürsten', 'Kette aus Gold', 'mein Werkzeugkasten'],
+    powerTagPool: [
+      'meisterhaft geschmiedete Klinge', 'reich gefüllte Reisetasche', 'Pferd, das mir gehorcht', 'verborgene Dolche', 'verziertes Wams', 'Werkzeug für jeden Fall',
+      'Brief mit Siegel', 'Kette von Wert', 'gut gewartete Rüstung', 'silberne Pfeile', 'Reisekarten', 'wertvoller Schmuck',
+      'Truhe mit Wertsachen', 'getarnter Reisemantel'
+    ],
+    weaknessTagPool: [
+      'verletzlich gegen Diebe', 'braucht Pflege', 'auffällig im Wert', 'Bindung an einen Ort'
+    ],
+    questPool: [
+      'Ich verbessere mein Werkzeug, bis es perfekt ist.', 'Ich behalte das Erbstück um jeden Preis.', 'Ich finde das fehlende Stück meiner Sammlung.', 'Ich teile, was ich habe, gerecht aus.'
+    ]
+  }
+};
+
+// Themebooks zu Type-Pool gruppiert
+const TYPE_TO_THEMEBOOKS = {
+  'Origin': ['Circumstance', 'Devotion', 'Past', 'People', 'Personality', 'Skill or Trade', 'Trait'],
+  'Adventure': ['Duty', 'Influence', 'Knowledge', 'Prodigious Ability', 'Relic', 'Uncanny Being'],
+  'Greatness': ['Destiny', 'Dominion', 'Mastery', 'Monstrosity'],
+  'Variable Might': ['Companion', 'Magic', 'Possessions']
+};
+
+/* =====================================================
+   CARDS
+   4 Phasen, jede Phase mit Karten, jede Karte hat
+   Themebook-Affinitäten (Themebook -> Gewicht)
+   und ein paar tonale "Hooks" (Stichworte für die spätere Tag-Auswahl)
+===================================================== */
+
+const PHASES = [
+  {
+    id: 1,
+    title: 'Stimmung & Welt',
+    eyebrow: 'Phase 1 von 4',
+    cards: [
+      { title: 'Ein Hof am Waldrand bei Nebel', text: 'Stille zwischen den Bäumen, Rauch über dem Dach.', affinities: { 'Skill or Trade': 2, 'People': 1, 'Past': 1, 'Companion': 1 }, hooks: ['ländlich','wildnis','ruhig'] },
+      { title: 'Eine zerstörte Burg, in der noch jemand wohnt', text: 'Die Mauern sind alt, aber der Rauch ist frisch.', affinities: { 'Past': 2, 'Circumstance': 2, 'Relic': 1, 'Dominion': 1 }, hooks: ['düster','vergangenheit','geheimnis'] },
+      { title: 'Marktplatz, Geschrei, Diebesfinger', text: 'Das Leben drängt, der Geldbeutel ist leichter geworden.', affinities: { 'Skill or Trade': 2, 'Personality': 2, 'Influence': 1, 'Circumstance': 1 }, hooks: ['stadt','gewitzt','sozial'] },
+      { title: 'Ein Buch, das niemand lesen sollte', text: 'Tinte, die sich noch bewegt. Die Seiten sind warm.', affinities: { 'Knowledge': 3, 'Magic': 1, 'Relic': 1, 'Past': 1 }, hooks: ['verboten','wissen','magisch'] },
+      { title: 'Ein Schwur am Sterbebett', text: 'Hand auf dem fiebrigen Brustkorb, Worte, die binden.', affinities: { 'Devotion': 3, 'Duty': 2, 'Past': 1 }, hooks: ['eid','pflicht','schmerz'] },
+      { title: 'Die offene Straße im Morgenlicht', text: 'Hinter mir die Heimat, vor mir das Unbekannte.', affinities: { 'Past': 2, 'Knowledge': 1, 'Personality': 1, 'Circumstance': 1 }, hooks: ['wanderer','frei','aufbruch'] },
+      { title: 'Eine alte Schmiede mit Funkenflug', text: 'Jeder Hammerschlag hallt durch das Tal.', affinities: { 'Skill or Trade': 3, 'Mastery': 1, 'Possessions': 1 }, hooks: ['handwerk','feuer'] },
+      { title: 'Ein Saal voll mit Adligen', text: 'Worte werden hier gewogen wie Gold und sind oft tödlicher.', affinities: { 'Circumstance': 2, 'Influence': 2, 'Personality': 1, 'Dominion': 1 }, hooks: ['hof','intrige','sozial'] },
+      { title: 'Ein Kreis aus Kerzen, mitten in der Nacht', text: 'Die Schatten zucken im Takt einer fremden Sprache.', affinities: { 'Magic': 3, 'Knowledge': 1, 'Devotion': 1, 'Relic': 1 }, hooks: ['ritual','magisch','geheim'] }
+    ]
+  },
+  {
+    id: 2,
+    title: 'Herkunft & Hintergrund',
+    eyebrow: 'Phase 2 von 4',
+    cards: [
+      { title: 'Aus einer alten Familie mit Geheimnissen', text: 'Mein Name öffnet Türen und schließt andere für immer.', affinities: { 'People': 2, 'Past': 2, 'Circumstance': 1 }, hooks: ['adel','erbe','geheimnis'] },
+      { title: 'Aufgewachsen unter Fremden', text: 'Niemand wusste, wer ich wirklich war. Vielleicht ich auch nicht.', affinities: { 'Past': 3, 'Circumstance': 1, 'Personality': 1 }, hooks: ['außenseiter','geheimnis'] },
+      { title: 'Im Krieg verloren, im Frieden nicht heimisch', text: 'Ich kenne die Schlachtfelder besser als die Marktplätze.', affinities: { 'Past': 3, 'Duty': 1, 'Circumstance': 1 }, hooks: ['veteran','trauma','soldat'] },
+      { title: 'Der einzige Überlebende meines Dorfes', text: 'Ich trage die Asche der Meinen mit mir. Niemand sonst tut es.', affinities: { 'Past': 3, 'People': 1, 'Devotion': 1 }, hooks: ['verlust','erinnerung'] },
+      { title: 'Geboren in Reichtum, alles verloren', text: 'Heute kenne ich den Preis von Brot. Damals nicht.', affinities: { 'Circumstance': 3, 'Past': 1, 'Personality': 1 }, hooks: ['gefallen','adel'] },
+      { title: 'Meine Familie übte ein Handwerk seit Generationen', text: 'Ich kannte den Geruch der Werkstatt, bevor ich laufen konnte.', affinities: { 'Skill or Trade': 3, 'People': 1, 'Possessions': 1 }, hooks: ['handwerk','tradition'] },
+      { title: 'Adelige Erziehung, eigene Wege', text: 'Sie haben mir alles beigebracht, außer wer ich sein will.', affinities: { 'Circumstance': 2, 'Personality': 2, 'Knowledge': 1, 'Influence': 1 }, hooks: ['adel','rebellion'] },
+      { title: 'Aufgewachsen mit ungewöhnlichen Lehrern', text: 'Was sie mir beibrachten, lernt man nicht in den Städten.', affinities: { 'Knowledge': 2, 'People': 1, 'Magic': 2 }, hooks: ['gelehrt','ungewöhnlich'] },
+      { title: 'Ein Versprechen, das alles veränderte', text: 'Ein einziges Wort, gesagt zur falschen Zeit. Oder zur richtigen.', affinities: { 'Devotion': 3, 'Duty': 2 }, hooks: ['eid','wendepunkt'] },
+      { title: 'Ich war nie wie die anderen', text: 'Schon als Kind wusste ich es. Andere wussten es auch.', affinities: { 'Trait': 3, 'Personality': 1, 'Uncanny Being': 1 }, hooks: ['anders','besonders'] }
+    ]
+  },
+  {
+    id: 3,
+    title: 'Können & Wesen',
+    eyebrow: 'Phase 3 von 4',
+    cards: [
+      { title: 'Ein altes Schwert, das nur ich führen kann', text: 'Es kennt meine Hand. Niemand sonst kann es heben.', affinities: { 'Relic': 3, 'Possessions': 1, 'Past': 1 }, hooks: ['relikt','waffe','erbe'] },
+      { title: 'Ich verstehe, was Tiere sagen', text: 'Sie haben Geschichten. Manche sind Warnungen.', affinities: { 'Magic': 2, 'Trait': 1, 'Companion': 2, 'Uncanny Being': 1 }, hooks: ['tiere','magie','trait'] },
+      { title: 'Ich lüge so gut, dass es manchmal wahr wird', text: 'Worte sind weicher als Stahl und schneiden tiefer.', affinities: { 'Skill or Trade': 2, 'Personality': 2, 'Influence': 1 }, hooks: ['list','sozial'] },
+      { title: 'Ich kann Wunden flicken, die andere für tödlich halten', text: 'Hände, die wissen, wo der Faden hin muss.', affinities: { 'Skill or Trade': 2, 'Knowledge': 2, 'Magic': 1, 'Devotion': 1 }, hooks: ['heilung','handwerk'] },
+      { title: 'Ich bin schneller, als jemand wie ich sein dürfte', text: 'Niemand sieht den Schritt kommen, der mich rettet.', affinities: { 'Trait': 3, 'Prodigious Ability': 2 }, hooks: ['gabe','gewandt'] },
+      { title: 'Eine Magie, die ich nicht ganz beherrsche', text: 'Manchmal hilft sie. Manchmal lässt sie mich allein.', affinities: { 'Magic': 3, 'Uncanny Being': 1, 'Past': 1 }, hooks: ['magie','wild'] },
+      { title: 'Ein Wesen, das mir folgt und mir gehört', text: 'Ich bin nicht allein, auch wenn es niemand sieht.', affinities: { 'Companion': 3, 'Magic': 1, 'Uncanny Being': 1 }, hooks: ['begleiter','geist'] },
+      { title: 'Wissen über Dinge, die andere fürchten', text: 'Ich weiß, was im Schatten lauert. Sie wissen es nicht.', affinities: { 'Knowledge': 3, 'Past': 1, 'Magic': 1 }, hooks: ['gelehrt','dunkel'] },
+      { title: 'Eine Bestimmung, die mir vorausgesagt wurde', text: 'Eine alte Frau sah es. Ich habe es lange nicht geglaubt.', affinities: { 'Destiny': 3, 'Past': 1 }, hooks: ['schicksal','prophezeiung'] },
+      { title: 'Ich bin etwas anderes als ein Mensch', text: 'Mein Blut weiß es. Mein Spiegelbild auch.', affinities: { 'Uncanny Being': 3, 'Trait': 1, 'Monstrosity': 1 }, hooks: ['nicht-mensch','magisch'] }
+    ]
+  },
+  {
+    id: 4,
+    title: 'Antrieb & Verwundbarkeit',
+    eyebrow: 'Phase 4 von 4',
+    cards: [
+      { title: 'Ich suche jemanden, den ich verloren habe', text: 'Sein/ihr Name ist mein erstes Wort beim Aufwachen.', affinities: { 'Devotion': 2, 'Past': 2, 'Duty': 1 }, hooks: ['quest:suchen','liebe','vermisst'] },
+      { title: 'Ich will herausfinden, was ich wirklich bin', text: 'Es gibt eine Antwort. Ich hoffe, ich kann mit ihr leben.', affinities: { 'Past': 2, 'Uncanny Being': 1, 'Trait': 1, 'Destiny': 1 }, hooks: ['quest:identität'] },
+      { title: 'Ich vertraue niemandem mehr', text: 'Einmal war einmal zu oft.', affinities: { 'Personality': 2, 'Past': 2 }, hooks: ['weakness:misstrauen'] },
+      { title: 'Mein Stolz ist mein größtes Problem', text: 'Ich weiß es. Und tue trotzdem nichts dagegen.', affinities: { 'Personality': 2, 'Mastery': 1, 'Circumstance': 1 }, hooks: ['weakness:stolz'] },
+      { title: 'Ich habe einen Schwur zu erfüllen', text: 'Worte, die ich nicht zurücknehmen kann. Ich will es auch nicht.', affinities: { 'Devotion': 2, 'Duty': 3 }, hooks: ['quest:eid'] },
+      { title: 'Ich will gegen ein Unrecht kämpfen', text: 'Solange es steht, schlafe ich nicht ruhig.', affinities: { 'Duty': 2, 'Devotion': 2, 'Influence': 1 }, hooks: ['quest:gerechtigkeit'] },
+      { title: 'Ich habe eine Schuld zu begleichen', text: 'Sie steht in mir wie ein Stein. Eines Tages werfe ich ihn.', affinities: { 'Past': 3, 'Duty': 1 }, hooks: ['quest:schuld'] },
+      { title: 'Ich will herausfinden, was hinter dem Nebel liegt', text: 'Andere drehen um. Ich gehe weiter.', affinities: { 'Knowledge': 2, 'Past': 1, 'Destiny': 1, 'Personality': 1 }, hooks: ['quest:erkenntnis'] }
+    ]
+  }
+];
+
+/* =====================================================
+   STATE
+===================================================== */
+
+const state = {
+  phaseIndex: 0,
+  cardIndex: 0,
+  shuffledCards: [],   // Karten der aktuellen Phase, sortiert
+  swipes: [],          // {phase, card, dir} Verlauf
+  affinityScores: {},  // themebook -> score
+  hookCounts: {},      // hook -> count
+  proposals: [],       // Liste der Vorschläge
+  proposalIndex: 0,
+  themeCarouselIndex: 0
+};
+
+/* =====================================================
+   PHASES MANAGEMENT
+===================================================== */
+
+function startSwipe() {
+  state.phaseIndex = 0;
+  state.cardIndex = 0;
+  state.swipes = [];
+  state.affinityScores = {};
+  state.hookCounts = {};
+  state.proposals = [];
+  state.proposalIndex = 0;
+  loadPhase();
+  show('screen-swipe');
+}
+
+function loadPhase() {
+  const phase = PHASES[state.phaseIndex];
+  state.shuffledCards = shuffleArray([...phase.cards]);
+  state.cardIndex = 0;
+  updatePhaseUI();
+  renderCard();
+}
+
+function updatePhaseUI() {
+  const phase = PHASES[state.phaseIndex];
+  document.getElementById('phase-eyebrow').textContent = phase.eyebrow;
+  document.getElementById('phase-title').textContent = phase.title;
+  document.getElementById('card-counter').textContent = `Karte ${state.cardIndex + 1} von ${state.shuffledCards.length}`;
+
+  const dots = document.querySelectorAll('#phase-progress .phase-dot');
+  dots.forEach((dot, i) => {
+    dot.classList.remove('active', 'done');
+    if (i < state.phaseIndex) dot.classList.add('done');
+    else if (i === state.phaseIndex) dot.classList.add('active');
+  });
+
+  document.getElementById('btn-undo').disabled = state.swipes.length === 0;
+}
+
+function renderCard() {
+  const stage = document.getElementById('card-stage');
+  stage.innerHTML = '';
+
+  if (state.cardIndex >= state.shuffledCards.length) {
+    // phase done
+    if (state.phaseIndex < PHASES.length - 1) {
+      state.phaseIndex++;
+      loadPhase();
+    } else {
+      finishSwiping();
+    }
+    return;
+  }
+
+  const card = state.shuffledCards[state.cardIndex];
+  const cardEl = document.createElement('div');
+  cardEl.className = 'card';
+  cardEl.innerHTML = `
+    <div class="card-decision-overlay yes">Passt</div>
+    <div class="card-decision-overlay no">Nicht</div>
+    <div class="card-glyph">~</div>
+    <div class="card-title">${card.title}</div>
+    <div class="card-text">${card.text}</div>
+  `;
+  stage.appendChild(cardEl);
+  attachSwipe(cardEl);
+  updatePhaseUI();
+}
+
+/* Adaptive Re-Sort: nach 2-3 Karten der Phase die verbleibenden so sortieren,
+   dass thematisch ähnliche zusammen kommen (basierend auf Affinitäten) */
+function adaptiveResort() {
+  if (state.cardIndex < 2) return;
+  if (state.cardIndex >= state.shuffledCards.length - 1) return;
+
+  const remaining = state.shuffledCards.slice(state.cardIndex + 1);
+  const seen = state.shuffledCards.slice(0, state.cardIndex + 1);
+
+  // Hauptaffinitäten der bisher rechts-geswipten Karten in dieser Phase
+  const phasePref = {};
+  state.swipes
+    .filter(s => s.dir === 'yes' && s.phase === state.phaseIndex)
+    .forEach(s => {
+      Object.entries(s.card.affinities || {}).forEach(([tb, w]) => {
+        phasePref[tb] = (phasePref[tb] || 0) + w;
+      });
+    });
+
+  if (Object.keys(phasePref).length === 0) return;
+
+  remaining.sort((a, b) => {
+    const score = (card) => {
+      let total = 0;
+      Object.entries(card.affinities || {}).forEach(([tb, w]) => {
+        if (phasePref[tb]) total += phasePref[tb] * w;
+      });
+      return total;
+    };
+    return score(b) - score(a);
+  });
+
+  state.shuffledCards = [...seen, ...remaining];
+}
+
+/* =====================================================
+   SWIPE INTERACTION
+===================================================== */
+
+function attachSwipe(cardEl) {
+  let startX = 0, startY = 0, dx = 0, dy = 0, dragging = false;
+
+  const onPointerDown = (e) => {
+    dragging = true;
+    cardEl.classList.add('dragging');
+    const p = getPoint(e);
+    startX = p.x; startY = p.y;
+    dx = 0; dy = 0;
+  };
+  const onPointerMove = (e) => {
+    if (!dragging) return;
+    const p = getPoint(e);
+    dx = p.x - startX;
+    dy = p.y - startY;
+    cardEl.style.transform = `translate(${dx}px, ${dy * 0.3}px) rotate(${dx * 0.06}deg)`;
+    const yes = cardEl.querySelector('.yes');
+    const no  = cardEl.querySelector('.no');
+    if (dx > 30) { yes.style.opacity = Math.min(1, dx / 100); no.style.opacity = 0; }
+    else if (dx < -30) { no.style.opacity = Math.min(1, -dx / 100); yes.style.opacity = 0; }
+    else { yes.style.opacity = 0; no.style.opacity = 0; }
+  };
+  const onPointerUp = () => {
+    if (!dragging) return;
+    dragging = false;
+    cardEl.classList.remove('dragging');
+    const threshold = 100;
+    if (dx > threshold)      decide('yes', cardEl);
+    else if (dx < -threshold) decide('no', cardEl);
+    else {
+      cardEl.style.transform = '';
+      cardEl.querySelector('.yes').style.opacity = 0;
+      cardEl.querySelector('.no').style.opacity = 0;
+    }
+  };
+
+  function getPoint(e) {
+    if (e.touches && e.touches[0]) return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    if (e.changedTouches && e.changedTouches[0]) return { x: e.changedTouches[0].clientX, y: e.changedTouches[0].clientY };
+    return { x: e.clientX, y: e.clientY };
+  }
+
+  cardEl.addEventListener('mousedown', onPointerDown);
+  cardEl.addEventListener('touchstart', onPointerDown, { passive: true });
+  document.addEventListener('mousemove', onPointerMove);
+  document.addEventListener('touchmove', onPointerMove, { passive: true });
+  document.addEventListener('mouseup', onPointerUp);
+  document.addEventListener('touchend', onPointerUp);
+  cardEl._cleanup = () => {
+    document.removeEventListener('mousemove', onPointerMove);
+    document.removeEventListener('touchmove', onPointerMove);
+    document.removeEventListener('mouseup', onPointerUp);
+    document.removeEventListener('touchend', onPointerUp);
+  };
+}
+
+function decide(direction, cardEl) {
+  const card = state.shuffledCards[state.cardIndex];
+  if (!cardEl) {
+    cardEl = document.querySelector('.card-stage .card');
+  }
+
+  // Score updaten
+  if (direction === 'yes') {
+    Object.entries(card.affinities || {}).forEach(([tb, w]) => {
+      state.affinityScores[tb] = (state.affinityScores[tb] || 0) + w;
+    });
+    (card.hooks || []).forEach(h => {
+      state.hookCounts[h] = (state.hookCounts[h] || 0) + 1;
+    });
+  } else {
+    // Sehr leichte Abwertung bei klarer Nicht-Wahl, damit am Ende eine Tendenz da ist
+    Object.entries(card.affinities || {}).forEach(([tb, w]) => {
+      state.affinityScores[tb] = (state.affinityScores[tb] || 0) - 0.2 * w;
+    });
+  }
+
+  state.swipes.push({ phase: state.phaseIndex, card, dir: direction });
+
+  // Animation
+  if (cardEl) {
+    cardEl.classList.add(direction === 'yes' ? 'gone-right' : 'gone-left');
+  }
+
+  setTimeout(() => {
+    if (cardEl && cardEl._cleanup) cardEl._cleanup();
+    state.cardIndex++;
+    adaptiveResort();
+    renderCard();
+  }, 300);
+}
+
+function undoLast() {
+  if (state.swipes.length === 0) return;
+  const last = state.swipes.pop();
+
+  // Score zurückbauen
+  if (last.dir === 'yes') {
+    Object.entries(last.card.affinities || {}).forEach(([tb, w]) => {
+      state.affinityScores[tb] = (state.affinityScores[tb] || 0) - w;
+    });
+    (last.card.hooks || []).forEach(h => {
+      state.hookCounts[h] = Math.max(0, (state.hookCounts[h] || 0) - 1);
+    });
+  } else {
+    Object.entries(last.card.affinities || {}).forEach(([tb, w]) => {
+      state.affinityScores[tb] = (state.affinityScores[tb] || 0) + 0.2 * w;
+    });
+  }
+
+  // Wenn die letzte Karte aus einer früheren Phase war: Phase zurück
+  if (last.phase !== state.phaseIndex) {
+    state.phaseIndex = last.phase;
+    // Phase neu aufbauen: alle Karten dieser Phase erneut, aber Position so, dass last die nächste ist
+    const phase = PHASES[state.phaseIndex];
+    state.shuffledCards = phase.cards.slice();
+    // last card als nächste an Position cardIndex setzen
+    const idx = state.shuffledCards.findIndex(c => c.title === last.card.title);
+    if (idx >= 0) {
+      const [target] = state.shuffledCards.splice(idx, 1);
+      // Wir setzen sie an die aktuelle Position; cardIndex soll auf sie zeigen
+      state.shuffledCards.splice(0, 0, target);
+      state.cardIndex = 0;
+    }
+  } else {
+    state.cardIndex = Math.max(0, state.cardIndex - 1);
+    // last card wieder einfügen, falls sie schon weg war
+    const exists = state.shuffledCards.some((c, i) => i >= state.cardIndex && c.title === last.card.title);
+    if (!exists) {
+      state.shuffledCards.splice(state.cardIndex, 0, last.card);
+    }
+  }
+
+  renderCard();
+}
+
+/* =====================================================
+   GENERATOR LOGIK
+===================================================== */
+
+function pickTopThemebook(typeName, scores, exclude = []) {
+  const candidates = TYPE_TO_THEMEBOOKS[typeName].filter(tb => !exclude.includes(tb));
+  let best = candidates[0], bestScore = -Infinity;
+  candidates.forEach(tb => {
+    const s = scores[tb] || 0;
+    if (s > bestScore) { bestScore = s; best = tb; }
+  });
+  return best;
+}
+
+function pickRandomDifferent(arr, count, exclude = []) {
+  const pool = arr.filter(x => !exclude.includes(x));
+  const result = [];
+  const used = new Set();
+  while (result.length < count && used.size < pool.length) {
+    const idx = Math.floor(Math.random() * pool.length);
+    if (used.has(idx)) continue;
+    used.add(idx);
+    result.push(pool[idx]);
+  }
+  return result;
+}
+
+function generateTheme(themebookName) {
+  const tb = THEMEBOOKS[themebookName];
+  const titleTag = pickRandomDifferent(tb.titleTagSuggestions, 1)[0];
+  const powerTags = pickRandomDifferent(tb.powerTagPool, 3);
+  const weaknessTag = pickRandomDifferent(tb.weaknessTagPool, 1)[0];
+  const quest = pickRandomDifferent(tb.questPool, 1)[0];
+  return {
+    type: tb.type,
+    themebook: themebookName,
+    titleTag,
+    powerTags,
+    weaknessTag,
+    quest
+  };
+}
+
+function generateProposal(mode = 'initial', baseProposal = null) {
+  // mode: 'initial' | 'tags-only' | 'new-themebooks' | 'fresh'
+  const scores = state.affinityScores;
+
+  let originTb, adventureTb, greatnessTb, mightTb;
+
+  if (mode === 'initial') {
+    originTb    = pickTopThemebook('Origin', scores);
+    adventureTb = pickTopThemebook('Adventure', scores);
+    greatnessTb = pickTopThemebook('Greatness', scores);
+    mightTb     = pickTopThemebook('Variable Might', scores);
+  } else if (mode === 'tags-only' && baseProposal) {
+    originTb    = baseProposal.themes[0].themebook;
+    adventureTb = baseProposal.themes[1].themebook;
+    greatnessTb = baseProposal.themes[2].themebook;
+    mightTb     = baseProposal.themes[3].themebook;
+  } else if (mode === 'new-themebooks' && baseProposal) {
+    // 2nd best themebook in jeder Kategorie
+    originTb    = pickTopThemebook('Origin', scores, [baseProposal.themes[0].themebook]);
+    adventureTb = pickTopThemebook('Adventure', scores, [baseProposal.themes[1].themebook]);
+    greatnessTb = pickTopThemebook('Greatness', scores, [baseProposal.themes[2].themebook]);
+    mightTb     = pickTopThemebook('Variable Might', scores, [baseProposal.themes[3].themebook]);
+  } else { // 'fresh'
+    // Komplett zufällig aus jeder Kategorie
+    const r = arr => arr[Math.floor(Math.random() * arr.length)];
+    originTb    = r(TYPE_TO_THEMEBOOKS['Origin']);
+    adventureTb = r(TYPE_TO_THEMEBOOKS['Adventure']);
+    greatnessTb = r(TYPE_TO_THEMEBOOKS['Greatness']);
+    mightTb     = r(TYPE_TO_THEMEBOOKS['Variable Might']);
+  }
+
+  return {
+    mode,
+    themes: [
+      generateTheme(originTb),
+      generateTheme(adventureTb),
+      generateTheme(greatnessTb),
+      generateTheme(mightTb)
+    ]
+  };
+}
+
+function finishSwiping() {
+  showLoading('Helden weben...');
+  setTimeout(() => {
+    state.proposals = [generateProposal('initial')];
+    state.proposalIndex = 0;
+    state.themeCarouselIndex = 0;
+    renderResult();
+    show('screen-result');
+    hideLoading();
+  }, 800);
+}
+
+function generateAlternative() {
+  const idx = state.proposals.length;
+  let mode;
+  if (idx === 1) mode = 'tags-only';
+  else if (idx === 2) mode = 'new-themebooks';
+  else if (idx === 3) mode = 'fresh';
+  else return; // max 4
+
+  showLoading('Anderen Helden weben...');
+  setTimeout(() => {
+    state.proposals.push(generateProposal(mode, state.proposals[0]));
+    state.proposalIndex = state.proposals.length - 1;
+    state.themeCarouselIndex = 0;
+    renderResult();
+    hideLoading();
+  }, 600);
+}
+
+/* =====================================================
+   RESULT RENDER
+===================================================== */
+
+function renderResult() {
+  const proposal = state.proposals[state.proposalIndex];
+  const track = document.getElementById('theme-track');
+  const pagination = document.getElementById('theme-pagination');
+
+  track.innerHTML = '';
+  pagination.innerHTML = '';
+
+  proposal.themes.forEach((theme, i) => {
+    const card = document.createElement('div');
+    card.className = 'theme-card';
+    card.innerHTML = `
+      <div class="theme-card-header">
+        <div class="theme-type-badge">${theme.type}</div>
+        <div class="theme-themebook">Themebook · ${theme.themebook}</div>
+        <div class="theme-title-tag">${theme.titleTag}</div>
+      </div>
+      <div class="theme-section">
+        <div class="theme-section-label">Power Tags</div>
+        <ul class="tag-list">
+          ${theme.powerTags.map(t => `<li>${t}</li>`).join('')}
+        </ul>
+      </div>
+      <div class="theme-section">
+        <div class="theme-section-label">Weakness Tag</div>
+        <div class="tag-weakness">${theme.weaknessTag}</div>
+      </div>
+      <div class="theme-section">
+        <div class="theme-section-label">Quest</div>
+        <div class="tag-quest">„${theme.quest}"</div>
+      </div>
+    `;
+    track.appendChild(card);
+
+    const dot = document.createElement('div');
+    dot.className = 'theme-page-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => scrollToTheme(i));
+    pagination.appendChild(dot);
+  });
+
+  // Track scroll listener für dots
+  track.onscroll = () => {
+    const w = track.clientWidth;
+    const idx = Math.round(track.scrollLeft / w);
+    if (idx !== state.themeCarouselIndex) {
+      state.themeCarouselIndex = idx;
+      updateThemeDots();
+    }
+  };
+
+  // Result counter
+  document.getElementById('result-counter').textContent = `Vorschlag ${state.proposalIndex + 1} von ${Math.min(4, state.proposals.length)}` + (state.proposals.length < 4 ? ` · noch ${4 - state.proposals.length} möglich` : '');
+
+  // Disable alt button when 4 reached
+  document.getElementById('btn-alternative').disabled = state.proposals.length >= 4;
+  document.getElementById('btn-alternative').style.opacity = state.proposals.length >= 4 ? 0.4 : 1;
+  document.getElementById('btn-alternative').textContent = state.proposals.length >= 4 ? 'Alle Vorschläge gesehen' : 'Anderen Vorschlag';
+
+  scrollToTheme(0);
+}
+
+function scrollToTheme(i) {
+  const track = document.getElementById('theme-track');
+  track.scrollTo({ left: i * track.clientWidth, behavior: 'smooth' });
+  state.themeCarouselIndex = i;
+  updateThemeDots();
+}
+
+function updateThemeDots() {
+  document.querySelectorAll('#theme-pagination .theme-page-dot').forEach((d, i) => {
+    d.classList.toggle('active', i === state.themeCarouselIndex);
+  });
+}
+
+/* =====================================================
+   PDF GENERATION (Querformat, schlicht, am LitM-Charakterbogen orientiert)
+===================================================== */
+
+async function generatePDF() {
+  const proposal = state.proposals[state.proposalIndex];
+  const { jsPDF } = window.jspdf;
+  // Querformat A4
+  const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
+
+  const pageW = 297;
+  const pageH = 210;
+  const marginX = 12;
+  const marginY = 12;
+
+  // Hintergrundton (sehr dezent)
+  doc.setFillColor(250, 243, 223);
+  doc.rect(0, 0, pageW, pageH, 'F');
+
+  // Titel
+  doc.setTextColor(42, 36, 25);
+  doc.setFont('helvetica', 'bold');
+  doc.setFontSize(22);
+  doc.text('LEGEND IN THE MIST · HERO CARD', marginX, marginY + 6);
+
+  // Trennlinie
+  doc.setDrawColor(169, 134, 70);
+  doc.setLineWidth(0.4);
+  doc.line(marginX, marginY + 9, pageW - marginX, marginY + 9);
+
+  // 4 Theme-Karten in einer Reihe nebeneinander
+  const cardW = (pageW - 2 * marginX - 3 * 4) / 4; // 4mm gap
+  const cardX0 = marginX;
+  const cardY0 = marginY + 16;
+  const cardH  = pageH - cardY0 - marginY;
+
+  proposal.themes.forEach((theme, i) => {
+    const x = cardX0 + i * (cardW + 4);
+    const y = cardY0;
+
+    // Karten-Rahmen
+    doc.setDrawColor(42, 36, 25);
+    doc.setLineWidth(0.3);
+    doc.rect(x, y, cardW, cardH);
+
+    // Header-Bereich
+    doc.setFillColor(236, 224, 196);
+    doc.rect(x, y, cardW, 16, 'F');
+    doc.setDrawColor(42, 36, 25);
+    doc.line(x, y + 16, x + cardW, y + 16);
+
+    // Type Badge
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(7);
+    doc.setTextColor(139, 58, 43);
+    doc.text(theme.type.toUpperCase(), x + cardW / 2, y + 6, { align: 'center' });
+
+    // Themebook
+    doc.setFont('helvetica', 'italic');
+    doc.setFontSize(8);
+    doc.setTextColor(91, 82, 64);
+    doc.text(`Themebook · ${theme.themebook}`, x + cardW / 2, y + 11, { align: 'center' });
+
+    // Title Tag (großer Eyecatcher)
+    doc.setFont('times', 'italic');
+    doc.setFontSize(13);
+    doc.setTextColor(42, 36, 25);
+    const titleLines = doc.splitTextToSize(theme.titleTag, cardW - 6);
+    doc.text(titleLines, x + cardW / 2, y + 22, { align: 'center' });
+
+    let cursorY = y + 22 + (titleLines.length * 5) + 4;
+
+    // Power Tags
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(7);
+    doc.setTextColor(139, 58, 43);
+    doc.text('POWER TAGS', x + 4, cursorY);
+    cursorY += 4;
+
+    doc.setFont('times', 'normal');
+    doc.setFontSize(10);
+    doc.setTextColor(42, 36, 25);
+    theme.powerTags.forEach(tag => {
+      const lines = doc.splitTextToSize(`◦ ${tag}`, cardW - 8);
+      doc.text(lines, x + 4, cursorY);
+      cursorY += lines.length * 4.5;
+    });
+
+    cursorY += 3;
+
+    // Weakness Tag
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(7);
+    doc.setTextColor(139, 58, 43);
+    doc.text('WEAKNESS TAG', x + 4, cursorY);
+    cursorY += 4;
+
+    doc.setFont('times', 'italic');
+    doc.setFontSize(10);
+    doc.setTextColor(139, 58, 43);
+    const wLines = doc.splitTextToSize(theme.weaknessTag, cardW - 8);
+    doc.text(wLines, x + 4, cursorY);
+    cursorY += wLines.length * 4.5 + 4;
+
+    // Quest
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(7);
+    doc.setTextColor(139, 58, 43);
+    doc.text('QUEST', x + 4, cursorY);
+    cursorY += 4;
+
+    doc.setFont('times', 'italic');
+    doc.setFontSize(10);
+    doc.setTextColor(42, 36, 25);
+    const qLines = doc.splitTextToSize(`„${theme.quest}"`, cardW - 8);
+    doc.text(qLines, x + 4, cursorY);
+  });
+
+  // Footer
+  doc.setFont('helvetica', 'normal');
+  doc.setFontSize(7);
+  doc.setTextColor(91, 82, 64);
+  doc.text('Mistheld · LitM Heldengenerator', pageW - marginX, pageH - 4, { align: 'right' });
+
+  doc.save('mistheld-character.pdf');
+}
+
+/* =====================================================
+   UI HELPERS
+===================================================== */
+
+function show(screenId) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(screenId).classList.add('active');
+}
+
+function showLoading(text) {
+  document.getElementById('loading-text').textContent = text || 'Einen Moment...';
+  document.getElementById('loading').classList.add('active');
+}
+function hideLoading() {
+  document.getElementById('loading').classList.remove('active');
+}
+
+function shuffleArray(a) {
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+/* =====================================================
+   EVENT BINDINGS
+===================================================== */
+
+document.getElementById('btn-start').addEventListener('click', startSwipe);
+
+document.getElementById('btn-yes').addEventListener('click', () => {
+  const cardEl = document.querySelector('.card-stage .card');
+  if (!cardEl) return;
+  decide('yes', cardEl);
+});
+document.getElementById('btn-no').addEventListener('click', () => {
+  const cardEl = document.querySelector('.card-stage .card');
+  if (!cardEl) return;
+  decide('no', cardEl);
+});
+document.getElementById('btn-undo').addEventListener('click', undoLast);
+
+document.getElementById('btn-accept').addEventListener('click', generatePDF);
+document.getElementById('btn-alternative').addEventListener('click', generateAlternative);
+document.getElementById('btn-restart').addEventListener('click', () => {
+  show('screen-welcome');
+});
+
+</script>
+</body>
+</html>
