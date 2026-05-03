@@ -76,6 +76,12 @@ function escapeHtml(s) {
   }[m]));
 }
 
+// #18: Ersten Buchstaben eines Tags großschreiben
+function capitalizeFirst(s) {
+  if (!s) return s;
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
 function shuffleArray(a) {
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -123,17 +129,17 @@ const MIGHT_DE = {
 function displayMight(level) { return MIGHT_DE[level] || level; }
 
 const THEMEBOOK_DE = {
-  'Circumstance':       'Umstände',
+  'Circumstance':       'Umst\u00e4nde',
   'Devotion':           'Hingabe',
   'Past':               'Vergangenheit',
   'People':             'Volk',
-  'Personality':        'Persönlichkeit',
-  'Skill or Trade':     'Können & Beruf',
+  'Personality':        'Pers\u00f6nlichkeit',
+  'Skill or Trade':     'K\u00f6nnen & Beruf',
   'Trait':              'Begabung',
   'Duty':               'Pflicht',
   'Influence':          'Einfluss',
   'Knowledge':          'Wissen',
-  'Prodigious Ability': 'Außergewöhnliche Fähigkeit',
+  'Prodigious Ability': 'Au\u00dfergew\u00f6hnliche F\u00e4higkeit',
   'Relic':              'Relikt',
   'Uncanny Being':      'Seltsames Wesen',
   'Destiny':            'Bestimmung',
@@ -153,7 +159,6 @@ function displayThemebook(name) { return THEMEBOOK_DE[name] || name; }
 function show(screenId) {
   $$('.screen').forEach(s => s.classList.remove('active'));
   $(screenId).classList.add('active');
-  // Settings-Icon nur auf Startseite sichtbar
   const settingsBtn = $('btn-settings');
   if (settingsBtn) settingsBtn.style.display = screenId === 'screen-welcome' ? '' : 'none';
 }
@@ -230,6 +235,75 @@ function applyScore(card, dir, sign) {
 }
 
 /* =====================================================
+   PHASE INTROS  (#22)
+===================================================== */
+
+const PHASE_INTROS = [
+  {
+    eyebrow: 'Phase 1 von 4',
+    title: 'Stimmung & Welt',
+    narrative: 'Die Welt, die deinen Helden umgibt, spricht noch bevor er sich bewegt. Lass dich von Bildern und Atmosph\u00e4ren leiten.',
+    questions: [
+      'Welche Atmosph\u00e4re passt zu deinem Helden?',
+      'In welcher Art von Welt bewegt er sich?',
+      'Welche Orte und Stimmungen f\u00fchlen sich vertraut an?'
+    ]
+  },
+  {
+    eyebrow: 'Phase 2 von 4',
+    title: 'Herkunft & Hintergrund',
+    narrative: 'Die Welt hat Form gewonnen. Nun tauchen wir tiefer: Woher kommt dein Held? Was hat ihn gepr\u00e4gt, bevor die Geschichte ihn fand?',
+    questions: [
+      'Woher stammt dein Held wirklich?',
+      'Welches Erlebnis hat ihn geformt?',
+      'Was tr\u00e4gt er aus seiner Vergangenheit noch mit sich?'
+    ]
+  },
+  {
+    eyebrow: 'Phase 3 von 4',
+    title: 'K\u00f6nnen & Wesen',
+    narrative: 'Herkunft und Geschichte haben Gestalt angenommen. Jetzt erkunden wir, was deinen Helden in dieser Welt einzigartig macht.',
+    questions: [
+      'Welche F\u00e4higkeit oder Gabe besitzt er?',
+      'Was hebt ihn von anderen ab?',
+      'Was f\u00fcr ein Wesen verbirgt sich in ihm?'
+    ]
+  },
+  {
+    eyebrow: 'Phase 4 von 4 \u00b7 Letzte Phase',
+    title: 'Antrieb & Verwundbarkeit',
+    narrative: 'In dieser letzten Phase geht es um das, was deinen Helden antreibt \u2014 und jene Wunden und Sehns\u00fcchte, die ihn menschlich machen.',
+    questions: [
+      'Was ist sein tiefstes Ziel?',
+      'Wovor hat er Angst oder Scheu?',
+      'Wo liegt seine verwundbare Seite?'
+    ]
+  }
+];
+
+function showPhaseIntro(phaseIndex, callback) {
+  const intro = PHASE_INTROS[phaseIndex];
+  $('pi-eyebrow').textContent = intro.eyebrow;
+  $('pi-title').textContent = intro.title;
+  $('pi-narrative').textContent = intro.narrative;
+  const ql = $('pi-questions');
+  ql.innerHTML = '';
+  intro.questions.forEach(q => {
+    const li = document.createElement('li');
+    li.textContent = q;
+    ql.appendChild(li);
+  });
+  const overlay = $('phase-intro-overlay');
+  overlay.classList.add('active');
+  const dismiss = (e) => {
+    overlay.classList.remove('active');
+    overlay.removeEventListener('pointerup', dismiss);
+    callback();
+  };
+  overlay.addEventListener('pointerup', dismiss);
+}
+
+/* =====================================================
    PHASE MANAGEMENT
 ===================================================== */
 
@@ -243,8 +317,9 @@ function startSwipe() {
   state.proposalIndex = 0;
   state.busy = false;
   document.body.classList.add('swipe-active');
-  loadPhase();
   show('screen-swipe');
+  // #22: Zeige Phase-Intro vor dem ersten Kartenstapel
+  showPhaseIntro(0, loadPhase);
 }
 
 function loadPhase() {
@@ -280,7 +355,8 @@ function renderCard() {
   if (state.cardIndex >= state.shuffledCards.length) {
     if (state.phaseIndex < PHASES.length - 1) {
       state.phaseIndex++;
-      loadPhase();
+      // #22: Zwischenscreen vor neuer Phase
+      showPhaseIntro(state.phaseIndex, loadPhase);
     } else {
       finishSwiping();
     }
@@ -298,17 +374,22 @@ function renderCard() {
       <div class="card-decision-overlay no">Nicht</div>
       <div class="card-glyph">~</div>
       <div class="card-title">${escapeHtml(card.title)}</div>
+      <div class="card-divider"></div>
       <div class="card-text">${escapeHtml(card.text)}</div>
     `;
-    if (i === 0) attachSwipe(cardEl);
+    if (i === 0) {
+      attachSwipe(cardEl);
+      // #21: Hint-Animation nur auf der ersten Karte der ersten Phase
+      if (state.phaseIndex === 0 && state.cardIndex === 0 && state.swipes.length === 0) {
+        cardEl.classList.add('card-hint');
+      }
+    }
     stage.appendChild(cardEl);
   }
   updatePhaseUI();
 }
 
 function adaptiveResort() {
-  // Beginne mit Resorting ab der 3. Karte; schütz nur bereits entschiedene Karten.
-  // state.cardIndex wurde in decide() bereits inkrementiert → zeigt auf nächste Karte.
   if (state.cardIndex < 2 || state.cardIndex >= state.shuffledCards.length) return;
   const phasePref = {};
   state.swipes
@@ -317,8 +398,6 @@ function adaptiveResort() {
       phasePref[tb] = (phasePref[tb] || 0) + w;
     }));
   if (Object.keys(phasePref).length === 0) return;
-  // Korrekt: seen = alle bereits entschiedenen Karten (0 bis cardIndex-1)
-  // Die Karte bei cardIndex (nächste) darf ebenfalls resortiert werden
   const seen = state.shuffledCards.slice(0, state.cardIndex);
   const remaining = state.shuffledCards.slice(state.cardIndex);
   const score = (card) => Object.entries(card.affinities || {})
@@ -354,6 +433,8 @@ function attachSwipe(cardEl) {
   const onDown = (e) => {
     if (cardEl.classList.contains('abandoned')) return;
     if (activePointerId !== null) return;
+    // #21: Hint-Animation abbrechen sobald der User tippt
+    cardEl.style.animation = '';
     activePointerId = e.pointerId;
     try { cardEl.setPointerCapture(e.pointerId); } catch (_) {}
     dragging = true;
@@ -526,8 +607,6 @@ function generateAlternative() {
     state.proposals.push(generateProposal(mode, state.proposals[0]));
     state.proposalIndex = state.proposals.length - 1;
     state.themeCarouselIndex = 0;
-    // BUG FIX: state.busy muss VOR renderResult() auf false gesetzt werden,
-    // sonst setzt renderResult() btnAlt.disabled = exhausted || true → permanent disabled.
     state.busy = false;
     renderResult();
     hideLoading();
@@ -574,9 +653,10 @@ function buildThemeCard(theme) {
            : 'tc-origin';
   card.className = 'theme-card ' + mc;
 
+  // #18: Ersten Buchstaben jedes Tags großschreiben
   const allPowerHtml = [
-    `<div class="tc-power-title">${escapeHtml(theme.titleTag.text)}${expandedMark(theme.titleTag)}</div>`,
-    ...theme.powerTags.map(t => `<div class="tc-power-tag">${escapeHtml(t.text)}${expandedMark(t)}</div>`)
+    `<div class="tc-power-title">${escapeHtml(capitalizeFirst(theme.titleTag.text))}${expandedMark(theme.titleTag)}</div>`,
+    ...theme.powerTags.map(t => `<div class="tc-power-tag">${escapeHtml(capitalizeFirst(t.text))}${expandedMark(t)}</div>`)
   ].join('');
 
   card.innerHTML = `
@@ -585,7 +665,7 @@ function buildThemeCard(theme) {
       <div class="tc-might">${escapeHtml(displayMight(theme.type))}</div>
     </div>
     ${allPowerHtml}
-    <div class="tc-weakness">${escapeHtml(theme.weaknessTag.text)}${expandedMark(theme.weaknessTag)}</div>
+    <div class="tc-weakness">${escapeHtml(capitalizeFirst(theme.weaknessTag.text))}${expandedMark(theme.weaknessTag)}</div>
     <div class="tc-quest-section">
       <div class="tc-quest-label">Quest</div>
       <div class="tc-quest-title">&bdquo;${escapeHtml(theme.quest.title)}&ldquo;${expandedMark(theme.quest)}</div>
@@ -656,8 +736,10 @@ function pdfSectionLabel(doc, label, x, y) {
   return y + 4;
 }
 
+// #18: capitalizeFirst auch im PDF anwenden
 function pdfTagText(entry) {
-  return entry && entry.expanded ? `${entry.text} \u2736` : entry.text;
+  const t = capitalizeFirst(entry.text);
+  return entry.expanded ? `${t} \u2736` : t;
 }
 
 function pdfThemeBlock(doc, theme, x, y, cardW, cardH) {
@@ -690,7 +772,9 @@ function pdfThemeBlock(doc, theme, x, y, cardW, cardH) {
   cy += wLines.length * 4.5 + 4;
   cy = pdfSectionLabel(doc, 'QUEST', x, cy);
   doc.setFont('times', 'italic'); doc.setFontSize(10); doc.setTextColor(...PDF_COLORS.ink);
-  const questTitleText = theme.quest.expanded ? `\u201e${theme.quest.title}\u201c \u2736` : `\u201e${theme.quest.title}\u201c`;
+  const questTitleText = theme.quest.expanded
+    ? `\u201e${capitalizeFirst(theme.quest.title)}\u201c \u2736`
+    : `\u201e${capitalizeFirst(theme.quest.title)}\u201c`;
   const qLines = doc.splitTextToSize(questTitleText, cardW - 8);
   doc.text(qLines, x + 4, cy);
   cy += qLines.length * 4.5 + 1;
