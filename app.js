@@ -11,7 +11,6 @@ const CFG = Object.freeze({
   ALT_LOADING_DELAY_MS: 450,
   MAX_PROPOSALS: 4,
   HAPTIC_MS: 6,
-  TYPES: ['Origin', 'Adventure', 'Greatness', 'Variable Might'],
   AUDIO_VOLUME: 0.4,
   MUTED_KEY: 'mistheld:muted',
   SETTINGS_KEY: 'mistheld:settings',
@@ -113,7 +112,7 @@ function pickWithExpansionPreference(arr, n) {
 }
 
 /* =====================================================
-   ANZEIGEÜBERSETZUNGEN  (#14 + #15)
+   ANZEIGEÜBERSETZUNGEN
 ===================================================== */
 
 const MIGHT_DE = {
@@ -154,7 +153,7 @@ function displayThemebook(name) { return THEMEBOOK_DE[name] || name; }
 function show(screenId) {
   $$('.screen').forEach(s => s.classList.remove('active'));
   $(screenId).classList.add('active');
-  // Settings-Icon nur auf Startseite sichtbar (#13 + #16)
+  // Settings-Icon nur auf Startseite sichtbar
   const settingsBtn = $('btn-settings');
   if (settingsBtn) settingsBtn.style.display = screenId === 'screen-welcome' ? '' : 'none';
 }
@@ -308,7 +307,9 @@ function renderCard() {
 }
 
 function adaptiveResort() {
-  if (state.cardIndex < 2 || state.cardIndex >= state.shuffledCards.length - 1) return;
+  // Beginne mit Resorting ab der 3. Karte; schütz nur bereits entschiedene Karten.
+  // state.cardIndex wurde in decide() bereits inkrementiert → zeigt auf nächste Karte.
+  if (state.cardIndex < 2 || state.cardIndex >= state.shuffledCards.length) return;
   const phasePref = {};
   state.swipes
     .filter(s => s.dir === 'yes' && s.phase === state.phaseIndex)
@@ -316,8 +317,10 @@ function adaptiveResort() {
       phasePref[tb] = (phasePref[tb] || 0) + w;
     }));
   if (Object.keys(phasePref).length === 0) return;
-  const seen = state.shuffledCards.slice(0, state.cardIndex + 1);
-  const remaining = state.shuffledCards.slice(state.cardIndex + 1);
+  // Korrekt: seen = alle bereits entschiedenen Karten (0 bis cardIndex-1)
+  // Die Karte bei cardIndex (nächste) darf ebenfalls resortiert werden
+  const seen = state.shuffledCards.slice(0, state.cardIndex);
+  const remaining = state.shuffledCards.slice(state.cardIndex);
   const score = (card) => Object.entries(card.affinities || {})
     .reduce((sum, [tb, w]) => sum + (phasePref[tb] || 0) * w, 0);
   remaining.sort((a, b) => score(b) - score(a));
@@ -523,9 +526,11 @@ function generateAlternative() {
     state.proposals.push(generateProposal(mode, state.proposals[0]));
     state.proposalIndex = state.proposals.length - 1;
     state.themeCarouselIndex = 0;
+    // BUG FIX: state.busy muss VOR renderResult() auf false gesetzt werden,
+    // sonst setzt renderResult() btnAlt.disabled = exhausted || true → permanent disabled.
+    state.busy = false;
     renderResult();
     hideLoading();
-    state.busy = false;
   }, CFG.ALT_LOADING_DELAY_MS);
 }
 
