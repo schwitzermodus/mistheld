@@ -95,7 +95,6 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 .welcome-instructions h3 { font-size: 1.1rem; margin-bottom: 12px; text-align: center; }
 .welcome-instructions ul { list-style: none; font-size: 0.95rem; color: var(--ink-soft); }
 .welcome-instructions li { padding: 6px 0; display: flex; gap: 12px; align-items: flex-start; }
-/* #12 fix: CSS Unicode braucht \25c6 ohne 'u'-Prefix */
 .welcome-instructions li::before { content: '\25c6'; color: var(--gold); font-size: 0.7rem; margin-top: 6px; flex-shrink: 0; }
 
 /* BUTTONS */
@@ -153,8 +152,10 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 .swipe-btn svg { width: 28px; height: 28px; }
 .swipe-btn-undo svg { width: 20px; height: 20px; }
 
-/* RESULT SCREEN */
-#screen-result { padding: 64px 14px 14px; height: 100vh; height: 100dvh; overflow: hidden; }
+/* RESULT SCREEN
+   Nur noch Mute-Button (rechts oben, ~54px hoch) — Settings-Icon hier ausgeblendet.
+   56px top-padding statt 64px. */
+#screen-result { padding: 56px 14px 14px; height: 100vh; height: 100dvh; overflow: hidden; }
 .theme-carousel { position: relative; flex: 1; min-height: 0; display: flex; flex-direction: column; }
 .theme-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; gap: 10px; padding: 4px; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; flex: 1; min-height: 0; }
 .theme-track::-webkit-scrollbar { display: none; }
@@ -390,7 +391,7 @@ input[type=checkbox]:disabled + .toggle-visual { opacity: 0.38; cursor: not-allo
   .welcome-title { font-size: 2.4rem; }
   .card-title { font-size: 1.45rem; }
   .card-text  { font-size: 1.02rem; }
-  #screen-result { padding-top: 58px; }
+  #screen-result { padding-top: 52px; }
 }
 </style>
 </head>
@@ -412,7 +413,7 @@ input[type=checkbox]:disabled + .toggle-visual { opacity: 0.38; cursor: not-allo
   </svg>
 </button>
 
-<!-- Settings button (top left) – nur auf Startseite sichtbar, Steuerung via app.js show() -->
+<!-- Settings button (top left) &ndash; nur auf Startseite sichtbar, Steuerung via app.js show() -->
 <button class="settings-btn" id="btn-settings" aria-label="Einstellungen" type="button">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <circle cx="12" cy="12" r="3"/>
