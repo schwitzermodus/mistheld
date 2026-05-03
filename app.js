@@ -19,40 +19,6 @@ const CFG = Object.freeze({
 });
 
 /* =====================================================
-   DISPLAY TRANSLATIONS  (#14 + #15)
-===================================================== */
-
-const MIGHT_DISPLAY = {
-  'Origin':         'Ursprung',
-  'Adventure':      'Abenteuer',
-  'Greatness':      'Allmacht',
-  'Variable Might': 'Theme-Typen mit veränderlichen Might-Stufen'
-};
-
-const THEMEBOOK_DISPLAY = {
-  'Circumstance':       'Lebensumstände',
-  'Devotion':           'Hingabe',
-  'Past':               'Vergangenheit',
-  'People':             'Volk',
-  'Personality':        'Persönlichkeit',
-  'Skill or Trade':     'Können & Handwerk',
-  'Trait':              'Besondere Eigenschaft',
-  'Duty':               'Pflicht',
-  'Influence':          'Einfluss',
-  'Knowledge':          'Wissen',
-  'Prodigious Ability': 'Außergewöhnliche Fähigkeit',
-  'Relic':              'Relikt',
-  'Uncanny Being':      'Seltsames Wesen',
-  'Destiny':            'Bestimmung',
-  'Dominion':           'Herrschaft',
-  'Mastery':            'Meisterschaft',
-  'Monstrosity':        'Ungeheuer',
-  'Companion':          'Begleiter',
-  'Magic':              'Magie',
-  'Possessions':        'Besitz'
-};
-
-/* =====================================================
    SETTINGS
 ===================================================== */
 
@@ -146,12 +112,51 @@ function pickWithExpansionPreference(arr, n) {
   return out;
 }
 
+/* =====================================================
+   ANZEIGEÜBERSETZUNGEN  (#14 + #15)
+===================================================== */
+
+const MIGHT_DE = {
+  'Origin':    'Ursprung',
+  'Adventure': 'Abenteuer',
+  'Greatness': 'Allmacht'
+};
+function displayMight(level) { return MIGHT_DE[level] || level; }
+
+const THEMEBOOK_DE = {
+  'Circumstance':       'Umstände',
+  'Devotion':           'Hingabe',
+  'Past':               'Vergangenheit',
+  'People':             'Volk',
+  'Personality':        'Persönlichkeit',
+  'Skill or Trade':     'Können & Beruf',
+  'Trait':              'Begabung',
+  'Duty':               'Pflicht',
+  'Influence':          'Einfluss',
+  'Knowledge':          'Wissen',
+  'Prodigious Ability': 'Außergewöhnliche Fähigkeit',
+  'Relic':              'Relikt',
+  'Uncanny Being':      'Seltsames Wesen',
+  'Destiny':            'Bestimmung',
+  'Dominion':           'Herrschaft',
+  'Mastery':            'Meisterschaft',
+  'Monstrosity':        'Ungeheuer',
+  'Companion':          'Begleiter',
+  'Magic':              'Magie',
+  'Possessions':        'Besitz'
+};
+function displayThemebook(name) { return THEMEBOOK_DE[name] || name; }
+
+/* =====================================================
+   SCREEN MANAGEMENT
+===================================================== */
+
 function show(screenId) {
   $$('.screen').forEach(s => s.classList.remove('active'));
   $(screenId).classList.add('active');
-  // Settings-Icon nur auf Startseite (#13 + #16)
+  // Settings-Icon nur auf Startseite sichtbar (#13 + #16)
   const settingsBtn = $('btn-settings');
-  if (settingsBtn) settingsBtn.style.display = screenId === 'screen-welcome' ? 'flex' : 'none';
+  if (settingsBtn) settingsBtn.style.display = screenId === 'screen-welcome' ? '' : 'none';
 }
 
 function showLoading(text) {
@@ -425,7 +430,7 @@ function undoLast() {
 }
 
 /* =====================================================
-   GENERATOR  (#4 + #5)
+   GENERATOR
 ===================================================== */
 
 function pickBestFrom(list, exclude) {
@@ -456,7 +461,6 @@ function generateTheme(themebookName) {
   const weaknessTag = pickWithExpansionPreference(tb.weaknessTagPool, 1)[0];
   const quest       = pickQuestWithExpansionPreference(tb.questPool);
 
-  // Variable Might: resolve to configured Might level (issue #5)
   let resolvedType = tb.type;
   if (tb.type === 'Variable Might') {
     const s = loadSettings();
@@ -473,7 +477,6 @@ function generateProposal(mode, baseProposal) {
   if (!enabledLevels.length) enabledLevels.push('Origin');
   const enabledVM = ['Companion','Magic','Possessions'].filter(k => s.variableMight[k].enabled);
 
-  // 3 standard slots (round-robin across enabled levels) + 1 Variable Might slot
   const standardSlots = [0,1,2].map(i => enabledLevels[i % enabledLevels.length]);
   const allSlots = enabledVM.length ? [...standardSlots, 'Variable Might'] :
     [...standardSlots, enabledLevels[standardSlots.length % enabledLevels.length]];
@@ -527,7 +530,7 @@ function generateAlternative() {
 }
 
 /* =====================================================
-   RESULT RENDER  (#6)
+   RESULT RENDER
 ===================================================== */
 
 function renderResult() {
@@ -560,18 +563,12 @@ function expandedMark(entry) {
 
 function buildThemeCard(theme) {
   const card = document.createElement('div');
-  // Might-spezifische CSS-Klasse für Farbgebung
   const mc = theme.type === 'Origin' ? 'tc-origin'
            : theme.type === 'Adventure' ? 'tc-adventure'
            : theme.type === 'Greatness' ? 'tc-greatness'
            : 'tc-origin';
   card.className = 'theme-card ' + mc;
 
-  // Übersetzte Anzeigenamen (#14 + #15)
-  const displayThemebook = THEMEBOOK_DISPLAY[theme.themebook] || theme.themebook;
-  const displayMight     = MIGHT_DISPLAY[theme.type]          || theme.type;
-
-  // Alle 3 Power Tags (Titel + 2 weitere) gelb hervorgehoben
   const allPowerHtml = [
     `<div class="tc-power-title">${escapeHtml(theme.titleTag.text)}${expandedMark(theme.titleTag)}</div>`,
     ...theme.powerTags.map(t => `<div class="tc-power-tag">${escapeHtml(t.text)}${expandedMark(t)}</div>`)
@@ -579,8 +576,8 @@ function buildThemeCard(theme) {
 
   card.innerHTML = `
     <div class="tc-header">
-      <div class="tc-type">${escapeHtml(displayThemebook)}</div>
-      <div class="tc-might">${escapeHtml(displayMight)}</div>
+      <div class="tc-type">${escapeHtml(displayThemebook(theme.themebook))}</div>
+      <div class="tc-might">${escapeHtml(displayMight(theme.type))}</div>
     </div>
     ${allPowerHtml}
     <div class="tc-weakness">${escapeHtml(theme.weaknessTag.text)}${expandedMark(theme.weaknessTag)}</div>
@@ -665,12 +662,10 @@ function pdfThemeBlock(doc, theme, x, y, cardW, cardH) {
   doc.setFillColor(...PDF_COLORS.band);
   doc.rect(x, y, cardW, 16, 'F');
   doc.line(x, y + 16, x + cardW, y + 16);
-  const _pdfMight = MIGHT_DISPLAY[theme.type] || theme.type;
-  const _pdfTb    = THEMEBOOK_DISPLAY[theme.themebook] || theme.themebook;
   doc.setFont('helvetica', 'bold'); doc.setFontSize(7); doc.setTextColor(...PDF_COLORS.accent);
-  doc.text(_pdfMight.toUpperCase(), x + cardW / 2, y + 6, { align: 'center' });
+  doc.text(displayMight(theme.type).toUpperCase(), x + cardW / 2, y + 6, { align: 'center' });
   doc.setFont('helvetica', 'italic'); doc.setFontSize(8); doc.setTextColor(...PDF_COLORS.inkSoft);
-  doc.text(`${_pdfTb}`, x + cardW / 2, y + 11, { align: 'center' });
+  doc.text(displayThemebook(theme.themebook), x + cardW / 2, y + 11, { align: 'center' });
   doc.setFont('times', 'italic'); doc.setFontSize(13); doc.setTextColor(...PDF_COLORS.ink);
   const titleLines = doc.splitTextToSize(pdfTagText(theme.titleTag), cardW - 6);
   doc.text(titleLines, x + cardW / 2, y + 22, { align: 'center' });
@@ -731,7 +726,7 @@ async function generatePDF() {
 }
 
 /* =====================================================
-   SETTINGS SCREEN  (#4)
+   SETTINGS SCREEN
 ===================================================== */
 
 function openSettings() {
@@ -750,12 +745,10 @@ function openSettings() {
 }
 
 function updateSettingsUI() {
-  // Mindestens eine Might-Stufe muss immer aktiv sein
   const mightCbs = [$('toggle-origin'), $('toggle-adventure'), $('toggle-greatness')];
   const checkedCount = mightCbs.filter(c => c.checked).length;
   mightCbs.forEach(cb => { cb.disabled = (checkedCount === 1 && cb.checked); });
 
-  // VM-Selects bei deaktiviertem Toggle ausgrauen
   [['toggle-companion','select-companion-level'],
    ['toggle-magic','select-magic-level'],
    ['toggle-possessions','select-possessions-level']].forEach(([tid, sid]) => {
