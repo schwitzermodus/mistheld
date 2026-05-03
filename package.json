@@ -1,0 +1,15 @@
+{
+  "name": "mistheld",
+  "version": "1.0.0",
+  "description": "LitM Heldengenerator",
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "test:syntax": "node --check app.js data.js",
+    "serve": "npx serve . -p 3000 --no-clipboard"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.43.0",
+    "serve": "^14.2.3"
+  }
+}
