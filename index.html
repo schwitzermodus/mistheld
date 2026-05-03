@@ -81,8 +81,8 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 .mute-btn.muted .icon-on { display: none; }
 .mute-btn.muted .icon-off { display: block; color: var(--accent); }
 
-/* WELCOME  (#19: Mist-Animation) */
-#screen-welcome { justify-content: center; text-align: center; padding: 40px 28px; position: relative; }
+/* WELCOME */
+#screen-welcome { justify-content: center; text-align: center; padding: 40px 28px; position: relative; overflow: hidden; }
 #screen-welcome > *:not(.mist-container) { position: relative; z-index: 1; }
 .welcome-mark { font-family: var(--serif); font-style: italic; font-size: 1rem; color: var(--accent); margin-bottom: 8px; letter-spacing: 0.12em; text-transform: uppercase; }
 .welcome-title { font-size: 3rem; font-weight: 500; font-style: italic; margin: 6px 0 8px; color: var(--ink); position: relative; display: inline-block; }
@@ -97,27 +97,14 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 .welcome-instructions li { padding: 6px 0; display: flex; gap: 12px; align-items: flex-start; }
 .welcome-instructions li::before { content: '\25c6'; color: var(--gold); font-size: 0.7rem; margin-top: 6px; flex-shrink: 0; }
 
-/* #19: Mist-Animation */
+/* Mist-Animation */
 .mist-container { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
-.mist-wisp {
-  position: absolute; border-radius: 50%;
-  animation: mist-float linear infinite;
-}
-.mist-1 { width: 220px; height: 80px; left: -5%; bottom: 22%;
-  background: radial-gradient(ellipse at center, rgba(169,134,70,0.10) 0%, transparent 70%);
-  animation-duration: 20s; animation-delay: 0s; }
-.mist-2 { width: 300px; height: 100px; left: 22%; bottom: 6%;
-  background: radial-gradient(ellipse at center, rgba(169,134,70,0.08) 0%, transparent 70%);
-  animation-duration: 26s; animation-delay: -9s; }
-.mist-3 { width: 180px; height: 65px; left: 58%; bottom: 38%;
-  background: radial-gradient(ellipse at center, rgba(139,58,43,0.07) 0%, transparent 70%);
-  animation-duration: 18s; animation-delay: -5s; }
-.mist-4 { width: 250px; height: 88px; left: 8%; bottom: 52%;
-  background: radial-gradient(ellipse at center, rgba(169,134,70,0.06) 0%, transparent 70%);
-  animation-duration: 24s; animation-delay: -13s; }
-.mist-5 { width: 160px; height: 55px; left: 70%; bottom: 12%;
-  background: radial-gradient(ellipse at center, rgba(169,134,70,0.07) 0%, transparent 70%);
-  animation-duration: 22s; animation-delay: -7s; }
+.mist-wisp { position: absolute; border-radius: 50%; animation: mist-float linear infinite; }
+.mist-1 { width: 220px; height: 80px; left: -5%; bottom: 22%; background: radial-gradient(ellipse at center, rgba(169,134,70,0.10) 0%, transparent 70%); animation-duration: 20s; animation-delay: 0s; }
+.mist-2 { width: 300px; height: 100px; left: 22%; bottom: 6%; background: radial-gradient(ellipse at center, rgba(169,134,70,0.08) 0%, transparent 70%); animation-duration: 26s; animation-delay: -9s; }
+.mist-3 { width: 180px; height: 65px; left: 58%; bottom: 38%; background: radial-gradient(ellipse at center, rgba(139,58,43,0.07) 0%, transparent 70%); animation-duration: 18s; animation-delay: -5s; }
+.mist-4 { width: 250px; height: 88px; left: 8%; bottom: 52%; background: radial-gradient(ellipse at center, rgba(169,134,70,0.06) 0%, transparent 70%); animation-duration: 24s; animation-delay: -13s; }
+.mist-5 { width: 160px; height: 55px; left: 70%; bottom: 12%; background: radial-gradient(ellipse at center, rgba(169,134,70,0.07) 0%, transparent 70%); animation-duration: 22s; animation-delay: -7s; }
 @keyframes mist-float {
   0%   { transform: translate(0, 0) scale(1); opacity: 0; }
   8%   { opacity: 1; }
@@ -149,26 +136,9 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 .phase-dot.active { background: var(--accent); }
 .card-counter { text-align: center; font-size: 0.8rem; color: var(--ink-soft); margin-bottom: 8px; letter-spacing: 0.05em; flex-shrink: 0; }
 
-/* #20: card-stage ohne swipe-controls, Karte ohne bottom-padding für Buttons */
-.card-stage {
-  position: relative; flex: 1; min-height: 320px;
-  margin: 0 auto; width: 100%; max-width: 360px;
-  display: flex; align-items: center; justify-content: center;
-  touch-action: none;
-}
+.card-stage { position: relative; flex: 1; min-height: 320px; margin: 0 auto; width: 100%; max-width: 360px; display: flex; align-items: center; justify-content: center; touch-action: none; }
 
-.card {
-  position: absolute; width: 100%; height: 100%;
-  background: var(--paper); border: 1px solid var(--line);
-  border-radius: 8px; box-shadow: var(--shadow);
-  padding: 28px 24px; /* #20: kein extra bottom-padding mehr für Buttons */
-  display: flex; flex-direction: column; justify-content: center;
-  align-items: center; text-align: center;
-  cursor: grab; user-select: none; -webkit-user-select: none;
-  touch-action: none; will-change: transform, opacity;
-  transform: translate3d(0,0,0);
-  transition: transform 0.4s cubic-bezier(0.18,0.89,0.32,1.18), opacity 0.3s ease-out;
-}
+.card { position: absolute; width: 100%; height: 100%; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow); padding: 28px 24px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; cursor: grab; user-select: none; -webkit-user-select: none; touch-action: none; will-change: transform, opacity; transform: translate3d(0,0,0); transition: transform 0.4s cubic-bezier(0.18,0.89,0.32,1.18), opacity 0.3s ease-out; }
 .card.dragging { transition: none; cursor: grabbing; }
 .card.behind { pointer-events: none; }
 .card.behind-1 { transform: translate3d(0, 10px, 0) scale(0.96); opacity: 0.95; }
@@ -178,7 +148,6 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 .card.gone-right { transform: translate3d( 130%, 30px, 0) rotate( 22deg) !important; opacity: 0; transition: transform 0.9s cubic-bezier(0.4,0,0.5,1), opacity 0.65s ease-out; }
 .card.abandoned { pointer-events: none; }
 
-/* #21: Swipe-Hint-Animation */
 @keyframes hint-swipe {
   0%   { transform: translate3d(0, 0, 0) rotate(0deg); }
   18%  { transform: translate3d(-28px, 0, 0) rotate(-4deg); }
@@ -191,16 +160,13 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 
 .card-glyph { font-size: 2.2rem; color: var(--gold); margin-bottom: 10px; font-family: var(--serif); font-style: italic; position: relative; }
 .card-glyph::before, .card-glyph::after { content: ''; display: inline-block; width: 24px; height: 1px; background: var(--gold); vertical-align: middle; margin: 0 12px; opacity: 0.6; }
-/* #24: Größere Schriften */
 .card-title { font-family: var(--serif); font-size: 1.85rem; font-weight: 600; font-style: italic; line-height: 1.2; margin-bottom: 0; color: var(--ink); max-width: 280px; }
-/* #24: Trennlinie zwischen Titel und Text */
 .card-divider { width: 36px; height: 1px; background: var(--gold); margin: 10px auto; opacity: 0.65; flex-shrink: 0; }
 .card-text  { font-family: var(--serif); font-size: 1.18rem; line-height: 1.5; color: var(--ink); max-width: 260px; }
 .card-decision-overlay { position: absolute; top: 16px; font-family: var(--serif); font-size: 2rem; font-style: italic; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 8px 16px; border: 3px solid; border-radius: 4px; opacity: 0; pointer-events: none; transition: opacity 0.05s linear; }
 .card-decision-overlay.yes { right: 18px; color: var(--green); border-color: var(--green); transform: rotate(-12deg); }
 .card-decision-overlay.no  { left:  18px; color: var(--accent); border-color: var(--accent); transform: rotate(12deg); }
 
-/* #20: Swipe-Controls außerhalb der Karte */
 .swipe-controls { display: flex; justify-content: center; align-items: center; gap: 14px; padding: 10px 0 6px; flex-shrink: 0; }
 .swipe-btn { width: 64px; height: 64px; border-radius: 50%; border: 2px solid; background: var(--paper); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.15s ease; box-shadow: 0 2px 8px rgba(60,40,10,0.12); }
 .swipe-btn:active { transform: scale(0.88); }
@@ -214,47 +180,18 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 .swipe-btn svg { width: 28px; height: 28px; }
 .swipe-btn-undo svg { width: 20px; height: 20px; }
 
-/* #22: Phasen-Intro-Overlay */
-.phase-intro-overlay {
-  position: absolute; inset: 0;
-  background: rgba(244, 234, 213, 0.97);
-  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
-  display: none; flex-direction: column;
-  align-items: center; justify-content: center;
-  z-index: 40; cursor: pointer;
-  padding: 24px 28px; text-align: center;
-}
+/* Phase-Intro-Overlay */
+.phase-intro-overlay { position: absolute; inset: 0; background: rgba(244, 234, 213, 0.97); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); display: none; flex-direction: column; align-items: center; justify-content: center; z-index: 40; cursor: pointer; padding: 24px 28px; text-align: center; }
 .phase-intro-overlay.active { display: flex; animation: fadeIn 0.4s ease; }
 .phase-intro-inner { max-width: 300px; }
-.phase-intro-eyebrow {
-  font-family: var(--sans); font-size: 0.62rem; letter-spacing: 0.18em;
-  color: var(--accent); font-weight: 600; text-transform: uppercase; margin-bottom: 10px;
-}
-.phase-intro-title {
-  font-family: var(--serif); font-size: 2.1rem; font-weight: 600;
-  font-style: italic; color: var(--ink); margin-bottom: 6px; line-height: 1.15;
-}
-.phase-intro-line {
-  width: 40px; height: 1px; background: var(--gold);
-  margin: 0 auto 14px; opacity: 0.7;
-}
-.phase-intro-narrative {
-  font-family: var(--serif); font-style: italic; font-size: 1rem;
-  color: var(--ink-soft); line-height: 1.55; margin-bottom: 16px;
-}
+.phase-intro-eyebrow { font-family: var(--sans); font-size: 0.62rem; letter-spacing: 0.18em; color: var(--accent); font-weight: 600; text-transform: uppercase; margin-bottom: 10px; }
+.phase-intro-title { font-family: var(--serif); font-size: 2.1rem; font-weight: 600; font-style: italic; color: var(--ink); margin-bottom: 6px; line-height: 1.15; }
+.phase-intro-line { width: 40px; height: 1px; background: var(--gold); margin: 0 auto 14px; opacity: 0.7; }
+.phase-intro-narrative { font-family: var(--serif); font-style: italic; font-size: 1rem; color: var(--ink-soft); line-height: 1.55; margin-bottom: 16px; }
 .phase-intro-questions { list-style: none; text-align: left; margin-bottom: 22px; }
-.phase-intro-questions li {
-  font-family: var(--serif); font-size: 0.88rem; color: var(--ink-soft);
-  padding: 4px 0; display: flex; gap: 8px; align-items: flex-start;
-}
-.phase-intro-questions li::before {
-  content: '\25c6'; color: var(--gold); font-size: 0.55rem; margin-top: 7px; flex-shrink: 0;
-}
-.phase-intro-start {
-  font-family: var(--sans); font-size: 0.67rem; letter-spacing: 0.14em;
-  color: var(--ink-soft); text-transform: uppercase;
-  animation: pulse-hint 2.2s ease-in-out infinite;
-}
+.phase-intro-questions li { font-family: var(--serif); font-size: 0.88rem; color: var(--ink-soft); padding: 4px 0; display: flex; gap: 8px; align-items: flex-start; }
+.phase-intro-questions li::before { content: '\25c6'; color: var(--gold); font-size: 0.55rem; margin-top: 7px; flex-shrink: 0; }
+.phase-intro-start { font-family: var(--sans); font-size: 0.67rem; letter-spacing: 0.14em; color: var(--ink-soft); text-transform: uppercase; animation: pulse-hint 2.2s ease-in-out infinite; }
 @keyframes pulse-hint { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.8; } }
 
 /* RESULT SCREEN */
@@ -262,68 +199,25 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 .theme-carousel { position: relative; flex: 1; min-height: 0; display: flex; flex-direction: column; }
 .theme-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; gap: 10px; padding: 4px; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; flex: 1; min-height: 0; }
 .theme-track::-webkit-scrollbar { display: none; }
-
-/* RESULT CARDS */
-.theme-card {
-  flex: 0 0 calc(100% - 8px);
-  scroll-snap-align: center;
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-left-width: 4px;
-  border-radius: 6px;
-  padding: 16px 16px 18px;
-  box-shadow: var(--shadow-soft);
-  display: flex; flex-direction: column;
-  overflow-y: auto; -webkit-overflow-scrolling: touch;
-  gap: 6px;
-}
+.theme-card { flex: 0 0 calc(100% - 8px); scroll-snap-align: center; background: var(--paper); border: 1px solid var(--line); border-left-width: 4px; border-radius: 6px; padding: 16px 16px 18px; box-shadow: var(--shadow-soft); display: flex; flex-direction: column; overflow-y: auto; -webkit-overflow-scrolling: touch; gap: 6px; }
 .tc-origin    { border-left-color: var(--might-origin);    --tc-color: var(--might-origin); }
 .tc-adventure { border-left-color: var(--might-adventure); --tc-color: var(--might-adventure); }
 .tc-greatness { border-left-color: var(--might-greatness); --tc-color: var(--might-greatness); }
-
 .tc-header { margin-bottom: 8px; padding-bottom: 10px; border-bottom: 1px solid var(--line-soft); }
 .tc-type { font-family: var(--serif); font-size: 1.5rem; font-weight: 600; color: var(--tc-color); line-height: 1.1; }
 .tc-might { font-family: var(--sans); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--tc-color); opacity: 0.75; margin-top: 3px; }
-
-.tc-power-title {
-  font-family: var(--serif); font-size: 1.55rem; font-style: italic; font-weight: 700;
-  line-height: 1.2; color: var(--ink);
-  background: rgba(169, 134, 70, 0.16); border-left: 2px solid var(--gold);
-  padding: 8px 12px; margin-bottom: 2px;
-}
-.tc-power-tag {
-  font-family: var(--serif); font-size: 1.05rem; line-height: 1.3; color: var(--ink);
-  background: rgba(169, 134, 70, 0.10); border-left: 2px solid rgba(169, 134, 70, 0.45);
-  padding: 5px 12px;
-}
-.tc-weakness {
-  font-family: var(--serif); font-style: italic; font-size: 1.0rem;
-  line-height: 1.3; color: #7a3010;
-  background: rgba(170, 80, 20, 0.09); border-left: 2px solid rgba(170, 80, 20, 0.38);
-  padding: 6px 12px; margin-top: 4px; margin-bottom: 4px;
-}
+.tc-power-title { font-family: var(--serif); font-size: 1.55rem; font-style: italic; font-weight: 700; line-height: 1.2; color: var(--ink); background: rgba(169, 134, 70, 0.16); border-left: 2px solid var(--gold); padding: 8px 12px; margin-bottom: 2px; }
+.tc-power-tag { font-family: var(--serif); font-size: 1.05rem; line-height: 1.3; color: var(--ink); background: rgba(169, 134, 70, 0.10); border-left: 2px solid rgba(169, 134, 70, 0.45); padding: 5px 12px; }
+.tc-weakness { font-family: var(--serif); font-style: italic; font-size: 1.0rem; line-height: 1.3; color: #7a3010; background: rgba(170, 80, 20, 0.09); border-left: 2px solid rgba(170, 80, 20, 0.38); padding: 6px 12px; margin-top: 4px; margin-bottom: 4px; }
 .tc-quest-section { margin-top: 6px; }
-.tc-quest-label {
-  font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--accent); font-weight: 600; display: flex; align-items: center;
-  gap: 8px; margin-bottom: 8px;
-}
+.tc-quest-label { font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 600; display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
 .tc-quest-label::before, .tc-quest-label::after { content: ''; flex: 1; height: 1px; background: var(--line-soft); }
-.tc-quest-title {
-  font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 1.08rem;
-  color: var(--ink); line-height: 1.3; margin-bottom: 6px;
-}
-.tc-quest-desc {
-  font-family: var(--serif); font-style: italic; font-size: 0.9rem;
-  color: var(--ink-soft); line-height: 1.5;
-}
-
+.tc-quest-title { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 1.08rem; color: var(--ink); line-height: 1.3; margin-bottom: 6px; }
+.tc-quest-desc { font-family: var(--serif); font-style: italic; font-size: 0.9rem; color: var(--ink-soft); line-height: 1.5; }
 .expanded-marker { display: inline-block; margin-left: 5px; font-size: 0.68em; color: var(--gold); vertical-align: middle; opacity: 0.8; font-style: normal; font-weight: normal; line-height: 1; }
-
 .theme-pagination { display: flex; justify-content: center; gap: 7px; margin: 10px 0 12px; flex-shrink: 0; }
 .theme-page-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--line); cursor: pointer; transition: all 0.2s; }
 .theme-page-dot.active { background: var(--accent); transform: scale(1.4); }
-
 .result-actions { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
 .result-actions .btn { padding: 9px 16px; min-height: 36px; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em; border-radius: 2px; }
 .result-actions .btn-primary { background: var(--paper); color: var(--ink); border: 1px solid var(--gold); }
@@ -334,73 +228,35 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 .result-actions .btn-ghost { color: var(--ink-soft); font-size: 0.78rem; min-height: 30px; padding: 4px 12px; opacity: 0.75; }
 .result-actions .btn-ghost:hover { opacity: 1; color: var(--accent); }
 
-/* #23: SETTINGS – kompakt + nicht-scrollbar + Header-Alignment */
-#screen-settings { padding: 12px 18px 14px; overflow: hidden; display: flex; flex-direction: column; }
+/* SETTINGS
+   BUG FIX: KEIN display:flex hier! ID-Selektor (0,1,0,0) > Klassen-Selektor (0,0,1,0)
+   => wuerde .screen{display:none} überschreiben => Settings immer sichtbar.
+   display + flex-direction kommen ausschliesslich von .screen / .screen.active */
+#screen-settings { padding: 12px 18px 14px; overflow: hidden; }
 
-/* Header auf gleicher Höhe wie Fixed-Buttons (top: ~12px) */
-.settings-header {
-  display: flex; align-items: center; gap: 14px;
-  margin-bottom: 12px; flex-shrink: 0;
-  padding-top: max(0px, env(safe-area-inset-top, 0px));
-}
-.settings-back-btn {
-  width: 42px; height: 42px; border-radius: 50%;
-  border: 1px solid var(--line); background: transparent;
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer; color: var(--ink-soft); flex-shrink: 0;
-  transition: all 0.15s ease;
-}
+.settings-header { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; flex-shrink: 0; padding-top: max(0px, env(safe-area-inset-top, 0px)); }
+.settings-back-btn { width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line); background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--ink-soft); flex-shrink: 0; transition: all 0.15s ease; }
 .settings-back-btn:active { transform: scale(0.9); }
 .settings-back-btn svg { width: 18px; height: 18px; }
-
-.settings-group {
-  background: var(--paper); border: 1px solid var(--line); border-radius: 4px;
-  padding: 10px 14px; margin-bottom: 8px; box-shadow: var(--shadow-soft);
-  flex-shrink: 0;
-}
-.settings-group-title {
-  font-family: var(--serif); font-size: 1rem; font-weight: 600;
-  color: var(--ink); margin-bottom: 2px;
-}
-.settings-group-sub {
-  font-size: 0.72rem; color: var(--ink-soft); margin-bottom: 8px;
-  line-height: 1.35; font-style: italic;
-}
-
-.settings-row {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 7px 0; border-top: 1px solid var(--line-soft); gap: 12px; cursor: default;
-}
+.settings-group { background: var(--paper); border: 1px solid var(--line); border-radius: 4px; padding: 12px 16px; margin-bottom: 10px; box-shadow: var(--shadow-soft); flex-shrink: 0; }
+.settings-group-title { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+.settings-group-sub { font-size: 0.82rem; color: var(--ink-soft); margin-bottom: 10px; line-height: 1.4; font-style: italic; }
+.settings-row { display: flex; align-items: center; justify-content: space-between; padding: 9px 0; border-top: 1px solid var(--line-soft); gap: 12px; cursor: default; }
 .settings-row:first-of-type { border-top: none; padding-top: 0; }
 .settings-row-info { flex: 1; }
-.settings-row-label { font-family: var(--serif); font-size: 1rem; color: var(--ink); display: block; line-height: 1.2; }
-.settings-row-hint { font-size: 0.70rem; color: var(--ink-soft); font-style: italic; line-height: 1.25; }
-
+.settings-row-label { font-family: var(--serif); font-size: 1.05rem; color: var(--ink); display: block; line-height: 1.2; }
+.settings-row-hint { font-size: 0.76rem; color: var(--ink-soft); font-style: italic; line-height: 1.3; }
 .toggle-wrap { position: relative; flex-shrink: 0; }
 .toggle-wrap input[type=checkbox] { position: absolute; opacity: 0; width: 0; height: 0; }
-.toggle-visual {
-  display: block; width: 44px; height: 25px;
-  background: rgba(42,36,25,0.2); border-radius: 12.5px;
-  position: relative; cursor: pointer; transition: background 0.2s ease;
-}
-.toggle-visual::after {
-  content: ''; position: absolute; top: 2.5px; left: 2.5px;
-  width: 20px; height: 20px; border-radius: 50%; background: #fff;
-  transition: transform 0.2s ease; box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-}
+.toggle-visual { display: block; width: 46px; height: 26px; background: rgba(42,36,25,0.2); border-radius: 13px; position: relative; cursor: pointer; transition: background 0.2s ease; }
+.toggle-visual::after { content: ''; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: #fff; transition: transform 0.2s ease; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
 input[type=checkbox]:checked  + .toggle-visual { background: var(--green); }
-input[type=checkbox]:checked  + .toggle-visual::after { transform: translateX(19px); }
+input[type=checkbox]:checked  + .toggle-visual::after { transform: translateX(20px); }
 input[type=checkbox]:disabled + .toggle-visual { opacity: 0.38; cursor: not-allowed; }
-
-.settings-vm-item { border-top: 1px solid var(--line-soft); padding: 6px 0; }
-.settings-vm-item:first-of-type { border-top: none; padding-top: 2px; }
-.settings-vm-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 5px; }
-.settings-select {
-  font-family: var(--sans); font-size: 0.8rem; color: var(--ink);
-  background: var(--bg); border: 1px solid var(--line); border-radius: 2px;
-  padding: 4px 8px; width: 100%; cursor: pointer;
-  -webkit-appearance: auto; transition: opacity 0.2s;
-}
+.settings-vm-item { border-top: 1px solid var(--line-soft); padding: 8px 0; }
+.settings-vm-item:first-of-type { border-top: none; padding-top: 4px; }
+.settings-vm-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 6px; }
+.settings-select { font-family: var(--sans); font-size: 0.9rem; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 2px; padding: 6px 10px; width: 100%; cursor: pointer; -webkit-appearance: auto; transition: opacity 0.2s; }
 .settings-select:disabled { opacity: 0.38; cursor: not-allowed; }
 
 /* LOADING */
@@ -448,7 +304,6 @@ input[type=checkbox]:disabled + .toggle-visual { opacity: 0.38; cursor: not-allo
 
 <!-- WELCOME -->
 <section id="screen-welcome" class="screen active">
-  <!-- #19: Mist-Animation -->
   <div class="mist-container" aria-hidden="true">
     <div class="mist-wisp mist-1"></div>
     <div class="mist-wisp mist-2"></div>
@@ -473,7 +328,6 @@ input[type=checkbox]:disabled + .toggle-visual { opacity: 0.38; cursor: not-allo
 
 <!-- SWIPE -->
 <section id="screen-swipe" class="screen">
-  <!-- #22: Phasen-Intro-Overlay -->
   <div id="phase-intro-overlay" class="phase-intro-overlay">
     <div class="phase-intro-inner">
       <div class="phase-intro-eyebrow" id="pi-eyebrow"></div>
@@ -484,7 +338,6 @@ input[type=checkbox]:disabled + .toggle-visual { opacity: 0.38; cursor: not-allo
       <div class="phase-intro-start">Tippe, um zu beginnen</div>
     </div>
   </div>
-
   <div class="swipe-header">
     <div class="phase-label">
       <span class="phase-eyebrow" id="phase-eyebrow">Phase 1 von 4</span>
@@ -498,9 +351,7 @@ input[type=checkbox]:disabled + .toggle-visual { opacity: 0.38; cursor: not-allo
     </div>
   </div>
   <div class="card-counter" id="card-counter">Karte 1 von 9</div>
-  <!-- #20: card-stage ohne swipe-controls innen -->
   <div class="card-stage" id="card-stage"></div>
-  <!-- #20: Buttons jetzt au&szlig;erhalb der Karte -->
   <div class="swipe-controls">
     <button class="swipe-btn swipe-btn-no" id="btn-no" aria-label="Passt nicht"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
     <button class="swipe-btn-undo" id="btn-undo" aria-label="Letzte Karte zur&uuml;ck" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 00-15-6.7L3 13"/></svg></button>
@@ -521,7 +372,7 @@ input[type=checkbox]:disabled + .toggle-visual { opacity: 0.38; cursor: not-allo
   </div>
 </section>
 
-<!-- SETTINGS  (#23: Facelift) -->
+<!-- SETTINGS -->
 <section id="screen-settings" class="screen">
   <div class="settings-header">
     <button class="settings-back-btn" id="btn-settings-back" aria-label="Zur&uuml;ck">
@@ -529,7 +380,6 @@ input[type=checkbox]:disabled + .toggle-visual { opacity: 0.38; cursor: not-allo
     </button>
     <h2>Einstellungen</h2>
   </div>
-
   <div class="settings-group">
     <div class="settings-group-title">Might-Stufen</div>
     <div class="settings-group-sub">Welche Might-Stufe sollen f&uuml;r deinen Helden entstehen k&ouml;nnen?</div>
@@ -538,77 +388,46 @@ input[type=checkbox]:disabled + .toggle-visual { opacity: 0.38; cursor: not-allo
         <span class="settings-row-label">Ursprung</span>
         <span class="settings-row-hint">Allgemein &middot; allt&auml;glich</span>
       </div>
-      <div class="toggle-wrap">
-        <input type="checkbox" id="toggle-origin" checked>
-        <label class="toggle-visual" for="toggle-origin"></label>
-      </div>
+      <div class="toggle-wrap"><input type="checkbox" id="toggle-origin" checked><label class="toggle-visual" for="toggle-origin"></label></div>
     </div>
     <div class="settings-row">
       <div class="settings-row-info">
         <span class="settings-row-label">Abenteuer</span>
         <span class="settings-row-hint">Besonders &middot; heldenhaft</span>
       </div>
-      <div class="toggle-wrap">
-        <input type="checkbox" id="toggle-adventure">
-        <label class="toggle-visual" for="toggle-adventure"></label>
-      </div>
+      <div class="toggle-wrap"><input type="checkbox" id="toggle-adventure"><label class="toggle-visual" for="toggle-adventure"></label></div>
     </div>
     <div class="settings-row">
       <div class="settings-row-info">
         <span class="settings-row-label">Allmacht</span>
         <span class="settings-row-hint">Legend&auml;r &middot; &uuml;bernat&uuml;rlich</span>
       </div>
-      <div class="toggle-wrap">
-        <input type="checkbox" id="toggle-greatness">
-        <label class="toggle-visual" for="toggle-greatness"></label>
-      </div>
+      <div class="toggle-wrap"><input type="checkbox" id="toggle-greatness"><label class="toggle-visual" for="toggle-greatness"></label></div>
     </div>
   </div>
-
   <div class="settings-group">
     <div class="settings-group-title">Theme-Typen mit ver&auml;nderlichen Might-Stufen</div>
     <div class="settings-group-sub">Welche Might-Stufe sollen diese Theme-Typen erhalten k&ouml;nnen?</div>
     <div class="settings-vm-item">
       <div class="settings-vm-top">
         <span class="settings-row-label">Begleiter</span>
-        <div class="toggle-wrap">
-          <input type="checkbox" id="toggle-companion" checked>
-          <label class="toggle-visual" for="toggle-companion"></label>
-        </div>
+        <div class="toggle-wrap"><input type="checkbox" id="toggle-companion" checked><label class="toggle-visual" for="toggle-companion"></label></div>
       </div>
-      <select id="select-companion-level" class="settings-select">
-        <option value="Origin">Ursprung</option>
-        <option value="Adventure">Abenteuer</option>
-        <option value="Greatness">Allmacht</option>
-      </select>
+      <select id="select-companion-level" class="settings-select"><option value="Origin">Ursprung</option><option value="Adventure">Abenteuer</option><option value="Greatness">Allmacht</option></select>
     </div>
     <div class="settings-vm-item">
       <div class="settings-vm-top">
         <span class="settings-row-label">Magie</span>
-        <div class="toggle-wrap">
-          <input type="checkbox" id="toggle-magic" checked>
-          <label class="toggle-visual" for="toggle-magic"></label>
-        </div>
+        <div class="toggle-wrap"><input type="checkbox" id="toggle-magic" checked><label class="toggle-visual" for="toggle-magic"></label></div>
       </div>
-      <select id="select-magic-level" class="settings-select">
-        <option value="Origin">Ursprung</option>
-        <option value="Adventure">Abenteuer</option>
-        <option value="Greatness">Allmacht</option>
-      </select>
+      <select id="select-magic-level" class="settings-select"><option value="Origin">Ursprung</option><option value="Adventure">Abenteuer</option><option value="Greatness">Allmacht</option></select>
     </div>
     <div class="settings-vm-item">
       <div class="settings-vm-top">
         <span class="settings-row-label">Besitz</span>
-        <div class="toggle-wrap">
-          <input type="checkbox" id="toggle-possessions" checked>
-          <label class="toggle-visual" for="toggle-possessions"></label>
-        </div>
+        <div class="toggle-wrap"><input type="checkbox" id="toggle-possessions" checked><label class="toggle-visual" for="toggle-possessions"></label></div>
       </div>
-      <select id="select-possessions-level" class="settings-select">
-        <option value="Origin">Ursprung</option>
-        <option value="Adventure">Abenteuer</option>
-        <option value="Greatness">Allmacht</option>
-      </select>
+      <select id="select-possessions-level" class="settings-select"><option value="Origin">Ursprung</option><option value="Adventure">Abenteuer</option><option value="Greatness">Allmacht</option></select>
     </div>
   </div>
 </section>
