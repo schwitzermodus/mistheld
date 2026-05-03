@@ -65,7 +65,7 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 
 .eyebrow { font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
 
-/* MUTE BUTTON (global, top-right) */
+/* MUTE BUTTON */
 .mute-btn {
   position: fixed;
   top: max(12px, env(safe-area-inset-top, 12px));
@@ -157,7 +157,7 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 .swipe-btn-undo svg { width: 20px; height: 20px; }
 .swipe-hint { text-align: center; font-size: 0.78rem; color: var(--ink-soft); margin-top: 10px; letter-spacing: 0.05em; font-style: italic; font-family: var(--serif); }
 
-/* RESULT - Karten zentral, Buttons dezent */
+/* RESULT */
 #screen-result { padding: 64px 14px 14px; height: 100vh; height: 100dvh; overflow: hidden; }
 .theme-carousel { position: relative; flex: 1; min-height: 0; display: flex; flex-direction: column; }
 .theme-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; gap: 10px; padding: 4px; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; flex: 1; min-height: 0; }
@@ -181,6 +181,19 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 .theme-pagination { display: flex; justify-content: center; gap: 7px; margin: 10px 0 12px; flex-shrink: 0; }
 .theme-page-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--line); cursor: pointer; transition: all 0.2s; }
 .theme-page-dot.active { background: var(--accent); transform: scale(1.4); }
+
+/* Marker für expandierte Tags - dezent in Gold */
+.expanded-marker {
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 0.68em;
+  color: var(--gold);
+  vertical-align: middle;
+  opacity: 0.8;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+}
 
 .result-actions { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
 .result-actions .btn { padding: 9px 16px; min-height: 36px; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em; border-radius: 2px; }

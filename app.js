@@ -13,7 +13,8 @@ const CFG = Object.freeze({
   HAPTIC_MS: 6,
   TYPES: ['Origin', 'Adventure', 'Greatness', 'Variable Might'],
   AUDIO_VOLUME: 0.4,
-  MUTED_KEY: 'mistheld:muted'
+  MUTED_KEY: 'mistheld:muted',
+  EXPANDED_PREFERENCE: 0.7  // 70% Chance, einen expandierten Tag zu ziehen, wenn welche vorhanden sind
 });
 
 const state = {
@@ -50,8 +51,36 @@ function shuffleArray(a) {
   return a;
 }
 
-function pickRandomN(arr, n) {
-  return shuffleArray(arr.slice()).slice(0, Math.min(n, arr.length));
+/* Tag-Format kann String oder { text, expanded } sein. Diese Helfer abstrahieren das. */
+function tagText(entry) {
+  return typeof entry === 'string' ? entry : entry.text;
+}
+function isExpanded(entry) {
+  return typeof entry === 'object' && entry && entry.expanded === true;
+}
+
+/* Picker mit Bevorzugung der expandierten Pool-Hälfte.
+   Pro gezogenem Element wird mit Wahrscheinlichkeit EXPANDED_PREFERENCE
+   aus dem expandierten Subset gezogen, sonst aus dem gesamten verfügbaren Rest.
+   Liefert immer ein Array von { text, expanded }-Objekten. */
+function pickWithExpansionPreference(arr, n) {
+  const pool = arr.slice();
+  const out = [];
+  const target = Math.min(n, pool.length);
+  while (out.length < target && pool.length > 0) {
+    const expandedIndices = pool
+      .map((entry, i) => isExpanded(entry) ? i : -1)
+      .filter(i => i >= 0);
+    let pickIdx;
+    if (expandedIndices.length > 0 && Math.random() < CFG.EXPANDED_PREFERENCE) {
+      pickIdx = expandedIndices[Math.floor(Math.random() * expandedIndices.length)];
+    } else {
+      pickIdx = Math.floor(Math.random() * pool.length);
+    }
+    const entry = pool.splice(pickIdx, 1)[0];
+    out.push({ text: tagText(entry), expanded: isExpanded(entry) });
+  }
+  return out;
 }
 
 function show(screenId) {
@@ -371,15 +400,27 @@ function pickRandomTb(typeName) {
   return list[Math.floor(Math.random() * list.length)];
 }
 
+function pickQuestWithExpansionPreference(pool) {
+  const expanded = pool.filter(q => q.expanded);
+  if (expanded.length > 0 && Math.random() < CFG.EXPANDED_PREFERENCE) {
+    return expanded[Math.floor(Math.random() * expanded.length)];
+  }
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
 function generateTheme(themebookName) {
   const tb = THEMEBOOKS[themebookName];
+  const titleTag = pickWithExpansionPreference(tb.titleTagSuggestions, 1)[0];
+  const powerTags = pickWithExpansionPreference(tb.powerTagPool, 3);
+  const weaknessTag = pickWithExpansionPreference(tb.weaknessTagPool, 1)[0];
+  const quest = pickQuestWithExpansionPreference(tb.questPool);
   return {
     type: tb.type,
     themebook: themebookName,
-    titleTag:    pickRandomN(tb.titleTagSuggestions, 1)[0],
-    powerTags:   pickRandomN(tb.powerTagPool, 3),
-    weaknessTag: pickRandomN(tb.weaknessTagPool, 1)[0],
-    quest:       pickRandomN(tb.questPool, 1)[0]
+    titleTag,        // { text, expanded }
+    powerTags,       // [{ text, expanded }, ...]
+    weaknessTag,     // { text, expanded }
+    quest            // { title, description, expanded? }
   };
 }
 
@@ -463,6 +504,13 @@ function renderResult() {
   scrollToTheme(0, false);
 }
 
+/* Marker für expanded-Tags: kleines Funkelchen in Gold */
+function expandedMark(entry) {
+  return entry && entry.expanded
+    ? '<span class="expanded-marker" title="Erweiterung" aria-label="Erweiterung">✦</span>'
+    : '';
+}
+
 function buildThemeCard(theme) {
   const card = document.createElement('div');
   card.className = 'theme-card';
@@ -470,22 +518,22 @@ function buildThemeCard(theme) {
     <div class="theme-card-header">
       <div class="theme-type-badge">${escapeHtml(theme.type)}</div>
       <div class="theme-themebook">${escapeHtml(theme.themebook)}</div>
-      <div class="theme-title-tag">${escapeHtml(theme.titleTag)}</div>
+      <div class="theme-title-tag">${escapeHtml(theme.titleTag.text)}${expandedMark(theme.titleTag)}</div>
     </div>
     <div class="theme-section">
       <div class="theme-section-label">Power Tags</div>
       <ul class="tag-list">
-        ${theme.powerTags.map(t => `<li>${escapeHtml(t)}</li>`).join('')}
+        ${theme.powerTags.map(t => `<li>${escapeHtml(t.text)}${expandedMark(t)}</li>`).join('')}
       </ul>
     </div>
     <div class="theme-section">
       <div class="theme-section-label">Weakness</div>
-      <div class="tag-weakness">${escapeHtml(theme.weaknessTag)}</div>
+      <div class="tag-weakness">${escapeHtml(theme.weaknessTag.text)}${expandedMark(theme.weaknessTag)}</div>
     </div>
     <div class="theme-section">
       <div class="theme-section-label">Quest</div>
       <div class="tag-quest">
-        <div class="tag-quest-title">„${escapeHtml(theme.quest.title)}"</div>
+        <div class="tag-quest-title">„${escapeHtml(theme.quest.title)}"${expandedMark(theme.quest)}</div>
         <div class="tag-quest-description">${escapeHtml(theme.quest.description)}</div>
       </div>
     </div>
@@ -558,6 +606,11 @@ function pdfSectionLabel(doc, label, x, y) {
   return y + 4;
 }
 
+/* PDF-Marker: kleiner gold-farbener Stern hinter dem expanded-Text */
+function pdfTagText(entry) {
+  return entry && entry.expanded ? `${entry.text} ✦` : entry.text;
+}
+
 function pdfThemeBlock(doc, theme, x, y, cardW, cardH) {
   doc.setDrawColor(...PDF_COLORS.ink);
   doc.setLineWidth(0.3);
@@ -580,7 +633,7 @@ function pdfThemeBlock(doc, theme, x, y, cardW, cardH) {
   doc.setFont('times', 'italic');
   doc.setFontSize(13);
   doc.setTextColor(...PDF_COLORS.ink);
-  const titleLines = doc.splitTextToSize(theme.titleTag, cardW - 6);
+  const titleLines = doc.splitTextToSize(pdfTagText(theme.titleTag), cardW - 6);
   doc.text(titleLines, x + cardW / 2, y + 22, { align: 'center' });
 
   let cy = y + 22 + titleLines.length * 5 + 4;
@@ -590,7 +643,7 @@ function pdfThemeBlock(doc, theme, x, y, cardW, cardH) {
   doc.setFontSize(10);
   doc.setTextColor(...PDF_COLORS.ink);
   theme.powerTags.forEach(tag => {
-    const lines = doc.splitTextToSize(`◦ ${tag}`, cardW - 8);
+    const lines = doc.splitTextToSize(`◦ ${pdfTagText(tag)}`, cardW - 8);
     doc.text(lines, x + 4, cy);
     cy += lines.length * 4.5;
   });
@@ -600,7 +653,7 @@ function pdfThemeBlock(doc, theme, x, y, cardW, cardH) {
   doc.setFont('times', 'italic');
   doc.setFontSize(10);
   doc.setTextColor(...PDF_COLORS.accent);
-  const wLines = doc.splitTextToSize(theme.weaknessTag, cardW - 8);
+  const wLines = doc.splitTextToSize(pdfTagText(theme.weaknessTag), cardW - 8);
   doc.text(wLines, x + 4, cy);
   cy += wLines.length * 4.5 + 4;
 
@@ -608,7 +661,8 @@ function pdfThemeBlock(doc, theme, x, y, cardW, cardH) {
   doc.setFont('times', 'italic');
   doc.setFontSize(10);
   doc.setTextColor(...PDF_COLORS.ink);
-  const qLines = doc.splitTextToSize(`„${theme.quest.title}"`, cardW - 8);
+  const questTitleText = theme.quest.expanded ? `„${theme.quest.title}" ✦` : `„${theme.quest.title}"`;
+  const qLines = doc.splitTextToSize(questTitleText, cardW - 8);
   doc.text(qLines, x + 4, cy);
   cy += qLines.length * 4.5 + 1;
 
@@ -624,7 +678,7 @@ function pdfFooter(doc) {
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(7);
   doc.setTextColor(...PDF_COLORS.inkSoft);
-  doc.text('Mistheld · LitM Heldengenerator', pageW - marginX, pageH - 4, { align: 'right' });
+  doc.text('Mistheld · LitM Heldengenerator · ✦ markiert erweiterte Inhalte', pageW - marginX, pageH - 4, { align: 'right' });
 }
 
 async function generatePDF() {
