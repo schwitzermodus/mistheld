@@ -19,7 +19,6 @@
   --ink: #2a2419;
   --ink-soft: #5b5240;
   --accent: #8b3a2b;
-  --accent-soft: #b85540;
   --gold: #a98646;
   --green: #5b6b3a;
   --line: rgba(42, 36, 25, 0.18);
@@ -28,12 +27,14 @@
   --shadow-soft: 0 4px 12px rgba(60, 40, 10, 0.10);
   --serif: 'Cormorant Garamond', 'Garamond', 'Georgia', serif;
   --sans: 'Inter', system-ui, -apple-system, sans-serif;
+  /* Might-Farben (Rustic Fantasy Pastell) */
+  --might-origin:    #3d5c2a;
+  --might-adventure: #8b3a2b;
+  --might-greatness: #2d4a6e;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-
 html, body { height: 100%; overflow-x: hidden; overscroll-behavior: none; }
-
 body {
   font-family: var(--sans);
   color: var(--ink);
@@ -41,18 +42,12 @@ body {
   background-image:
     radial-gradient(ellipse at top left, rgba(169, 134, 70, 0.08) 0%, transparent 50%),
     radial-gradient(ellipse at bottom right, rgba(139, 58, 43, 0.06) 0%, transparent 50%);
-  min-height: 100vh;
-  min-height: 100dvh;
-  font-size: 16px;
-  line-height: 1.5;
+  min-height: 100vh; min-height: 100dvh;
+  font-size: 16px; line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-user-select: none;
-  user-select: none;
+  -webkit-user-select: none; user-select: none;
 }
-
 body.swipe-active { overflow: hidden; position: fixed; inset: 0; width: 100%; height: 100%; touch-action: none; }
-
 .app { max-width: 480px; margin: 0 auto; min-height: 100vh; min-height: 100dvh; position: relative; display: flex; flex-direction: column; }
 .screen { flex: 1; display: none; flex-direction: column; padding: 20px; animation: fadeIn 0.35s ease; }
 .screen.active { display: flex; }
@@ -63,32 +58,31 @@ h1 { font-size: 2.4rem; line-height: 1.1; }
 h2 { font-size: 1.7rem; line-height: 1.2; }
 h3 { font-size: 1.25rem; line-height: 1.3; }
 
-.eyebrow { font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
-
-/* MUTE BUTTON */
-.mute-btn {
+/* FIXED BUTTONS (mute + settings) */
+.mute-btn, .settings-btn {
   position: fixed;
   top: max(12px, env(safe-area-inset-top, 12px));
-  right: max(12px, env(safe-area-inset-right, 12px));
   width: 42px; height: 42px;
   border-radius: 50%;
   border: 1px solid var(--line);
   background: rgba(250, 243, 223, 0.85);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
   display: flex; align-items: center; justify-content: center;
   cursor: pointer; color: var(--ink-soft);
   z-index: 200;
-  transition: transform 0.15s ease, color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  transition: transform 0.15s ease, color 0.2s ease;
   -webkit-tap-highlight-color: transparent;
 }
-.mute-btn:active { transform: scale(0.9); }
-.mute-btn:hover { color: var(--ink); border-color: var(--ink); }
-.mute-btn svg { width: 20px; height: 20px; }
+.mute-btn { right: max(12px, env(safe-area-inset-right, 12px)); }
+.settings-btn { left: max(12px, env(safe-area-inset-left, 12px)); }
+.mute-btn:active, .settings-btn:active { transform: scale(0.9); }
+.mute-btn:hover, .settings-btn:hover { color: var(--ink); border-color: var(--ink); }
+.mute-btn svg, .settings-btn svg { width: 20px; height: 20px; }
 .mute-btn .icon-off { display: none; }
 .mute-btn.muted .icon-on { display: none; }
 .mute-btn.muted .icon-off { display: block; color: var(--accent); }
 
+/* WELCOME */
 #screen-welcome { justify-content: center; text-align: center; padding: 40px 28px; }
 .welcome-mark { font-family: var(--serif); font-style: italic; font-size: 1rem; color: var(--accent); margin-bottom: 8px; letter-spacing: 0.12em; text-transform: uppercase; }
 .welcome-title { font-size: 3rem; font-weight: 500; font-style: italic; margin: 6px 0 8px; color: var(--ink); position: relative; display: inline-block; }
@@ -101,9 +95,10 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 .welcome-instructions h3 { font-size: 1.1rem; margin-bottom: 12px; text-align: center; }
 .welcome-instructions ul { list-style: none; font-size: 0.95rem; color: var(--ink-soft); }
 .welcome-instructions li { padding: 6px 0; display: flex; gap: 12px; align-items: flex-start; }
-.welcome-instructions li::before { content: '◆'; color: var(--gold); font-size: 0.7rem; margin-top: 6px; flex-shrink: 0; }
+.welcome-instructions li::before { content: '\u25c6'; color: var(--gold); font-size: 0.7rem; margin-top: 6px; flex-shrink: 0; }
 
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--sans); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.02em; padding: 14px 28px; border: none; border-radius: 2px; cursor: pointer; transition: all 0.2s ease; text-decoration: none; position: relative; min-height: 48px; user-select: none; }
+/* BUTTONS */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--sans); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.02em; padding: 14px 28px; border: none; border-radius: 2px; cursor: pointer; transition: all 0.2s ease; min-height: 48px; user-select: none; }
 .btn-primary { background: var(--ink); color: var(--bg); }
 .btn-primary:hover { background: var(--accent); }
 .btn-primary:active { transform: scale(0.98); }
@@ -113,6 +108,7 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 .btn-ghost:hover { color: var(--accent); }
 .btn-block { width: 100%; }
 
+/* SWIPE SCREEN */
 #screen-swipe { padding: 16px 20px 24px; touch-action: none; overflow: hidden; }
 .swipe-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; gap: 12px; padding-right: 56px; }
 .phase-label { display: flex; flex-direction: column; gap: 2px; }
@@ -125,85 +121,271 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 .card-counter { text-align: center; font-size: 0.8rem; color: var(--ink-soft); margin-bottom: 12px; letter-spacing: 0.05em; }
 .card-stage { position: relative; flex: 1; min-height: 420px; margin: 0 auto; width: 100%; max-width: 360px; display: flex; align-items: center; justify-content: center; touch-action: none; }
 
-.card { position: absolute; width: 100%; height: 100%; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow); padding: 28px 24px 100px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; cursor: grab; user-select: none; -webkit-user-select: none; touch-action: none; will-change: transform, opacity; transform: translate3d(0, 0, 0); transition: transform 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.18), opacity 0.3s ease-out; }
+.card { position: absolute; width: 100%; height: 100%; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow); padding: 28px 24px 100px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; cursor: grab; user-select: none; -webkit-user-select: none; touch-action: none; will-change: transform, opacity; transform: translate3d(0,0,0); transition: transform 0.4s cubic-bezier(0.18,0.89,0.32,1.18), opacity 0.3s ease-out; }
 .card.dragging { transition: none; cursor: grabbing; }
 .card.behind { pointer-events: none; }
 .card.behind-1 { transform: translate3d(0, 10px, 0) scale(0.96); opacity: 0.95; }
 .card.behind-2 { transform: translate3d(0, 20px, 0) scale(0.92); opacity: 0.82; }
 .card.front { z-index: 20; }
-.card.gone-left  { transform: translate3d(-130%, 30px, 0) rotate(-22deg) !important; opacity: 0; transition: transform 0.9s cubic-bezier(0.4, 0, 0.5, 1), opacity 0.65s ease-out; }
-.card.gone-right { transform: translate3d( 130%, 30px, 0) rotate( 22deg) !important; opacity: 0; transition: transform 0.9s cubic-bezier(0.4, 0, 0.5, 1), opacity 0.65s ease-out; }
+.card.gone-left  { transform: translate3d(-130%, 30px, 0) rotate(-22deg) !important; opacity: 0; transition: transform 0.9s cubic-bezier(0.4,0,0.5,1), opacity 0.65s ease-out; }
+.card.gone-right { transform: translate3d( 130%, 30px, 0) rotate( 22deg) !important; opacity: 0; transition: transform 0.9s cubic-bezier(0.4,0,0.5,1), opacity 0.65s ease-out; }
 .card.abandoned { pointer-events: none; }
 
 .card-glyph { font-size: 2.2rem; color: var(--gold); margin-bottom: 14px; font-family: var(--serif); font-style: italic; position: relative; }
 .card-glyph::before, .card-glyph::after { content: ''; display: inline-block; width: 24px; height: 1px; background: var(--gold); vertical-align: middle; margin: 0 12px; opacity: 0.6; }
 .card-title { font-family: var(--serif); font-size: 1.65rem; font-weight: 600; font-style: italic; line-height: 1.25; margin-bottom: 12px; color: var(--ink); max-width: 280px; }
-.card-text { font-family: var(--serif); font-size: 1.12rem; line-height: 1.5; color: var(--ink); max-width: 260px; }
+.card-text  { font-family: var(--serif); font-size: 1.12rem; line-height: 1.5; color: var(--ink); max-width: 260px; }
 .card-decision-overlay { position: absolute; top: 16px; font-family: var(--serif); font-size: 2rem; font-style: italic; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 8px 16px; border: 3px solid; border-radius: 4px; opacity: 0; pointer-events: none; transition: opacity 0.05s linear; }
 .card-decision-overlay.yes { right: 18px; color: var(--green); border-color: var(--green); transform: rotate(-12deg); }
-.card-decision-overlay.no { left: 18px; color: var(--accent); border-color: var(--accent); transform: rotate(12deg); }
+.card-decision-overlay.no  { left:  18px; color: var(--accent); border-color: var(--accent); transform: rotate(12deg); }
 
 .swipe-controls { position: absolute; bottom: 18px; left: 0; right: 0; display: flex; justify-content: center; align-items: center; gap: 14px; z-index: 30; }
 .swipe-btn { width: 64px; height: 64px; border-radius: 50%; border: 2px solid; background: var(--paper); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.15s ease; box-shadow: 0 2px 8px rgba(60,40,10,0.12); }
 .swipe-btn:active { transform: scale(0.88); }
-.swipe-btn-no { border-color: var(--accent); color: var(--accent); }
-.swipe-btn-no:active { background: var(--accent); color: var(--paper); }
-.swipe-btn-yes { border-color: var(--green); color: var(--green); }
-.swipe-btn-yes:active { background: var(--green); color: var(--paper); }
+.swipe-btn-no  { border-color: var(--accent); color: var(--accent); }
+.swipe-btn-no:active  { background: var(--accent); color: var(--paper); }
+.swipe-btn-yes { border-color: var(--green);  color: var(--green);  }
+.swipe-btn-yes:active { background: var(--green);  color: var(--paper); }
 .swipe-btn-undo { width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--line); background: rgba(250,243,223,0.9); display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--ink-soft); transition: all 0.15s ease; }
 .swipe-btn-undo:active { transform: scale(0.88); }
 .swipe-btn-undo:disabled { opacity: 0.3; cursor: not-allowed; }
 .swipe-btn svg { width: 28px; height: 28px; }
 .swipe-btn-undo svg { width: 20px; height: 20px; }
 
-/* RESULT */
+/* RESULT SCREEN */
 #screen-result { padding: 64px 14px 14px; height: 100vh; height: 100dvh; overflow: hidden; }
 .theme-carousel { position: relative; flex: 1; min-height: 0; display: flex; flex-direction: column; }
 .theme-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; gap: 10px; padding: 4px; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; flex: 1; min-height: 0; }
 .theme-track::-webkit-scrollbar { display: none; }
-.theme-card { flex: 0 0 calc(100% - 8px); scroll-snap-align: center; background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 16px 18px; box-shadow: var(--shadow-soft); position: relative; display: flex; flex-direction: column; overflow-y: auto; -webkit-overflow-scrolling: touch; }
-.theme-card-header { border-bottom: 1px solid var(--line); padding-bottom: 10px; margin-bottom: 12px; text-align: center; flex-shrink: 0; }
-.theme-type-badge { display: inline-block; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 2px; }
-.theme-themebook { font-family: var(--serif); font-size: 0.85rem; font-style: italic; color: var(--ink-soft); }
-.theme-title-tag { font-family: var(--serif); font-size: 1.45rem; font-style: italic; font-weight: 600; color: var(--ink); margin-top: 4px; line-height: 1.15; }
-.theme-section { margin-bottom: 12px; }
-.theme-section:last-child { margin-bottom: 0; }
-.theme-section-label { font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
-.theme-section-label::after { content: ''; flex: 1; height: 1px; background: var(--line-soft); }
-.tag-list { list-style: none; font-family: var(--serif); font-size: 0.98rem; color: var(--ink); line-height: 1.4; }
-.tag-list li { padding: 1px 0; padding-left: 14px; position: relative; }
-.tag-list li::before { content: '◦'; position: absolute; left: 0; top: 1px; color: var(--gold); }
-.tag-weakness { font-family: var(--serif); font-style: italic; font-size: 0.98rem; color: var(--accent); padding: 7px 11px; background: rgba(139, 58, 43, 0.06); border-left: 2px solid var(--accent); border-radius: 0; line-height: 1.35; }
-.tag-quest { padding: 9px 12px; background: rgba(169, 134, 70, 0.07); border-left: 2px solid var(--gold); border-radius: 0; }
-.tag-quest-title { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 1.02rem; color: var(--ink); line-height: 1.3; margin-bottom: 6px; }
-.tag-quest-description { font-family: var(--serif); font-style: italic; font-size: 0.92rem; color: var(--ink-soft); line-height: 1.5; }
+
+/* RESULT CARDS (Issue #6) */
+.theme-card {
+  flex: 0 0 calc(100% - 8px);
+  scroll-snap-align: center;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-left-width: 4px;
+  border-radius: 6px;
+  padding: 16px 16px 18px;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  gap: 6px;
+}
+/* Might-Farbgebung */
+.tc-origin    { border-left-color: var(--might-origin);    --tc-color: var(--might-origin);    --tc-bg: rgba(61,92,42,0.05); }
+.tc-adventure { border-left-color: var(--might-adventure); --tc-color: var(--might-adventure); --tc-bg: rgba(139,58,43,0.05); }
+.tc-greatness { border-left-color: var(--might-greatness); --tc-color: var(--might-greatness); --tc-bg: rgba(45,74,110,0.06); }
+
+/* Card header: Themebook + Might */
+.tc-header { margin-bottom: 8px; padding-bottom: 10px; border-bottom: 1px solid var(--line-soft); }
+.tc-type { font-family: var(--serif); font-size: 1.5rem; font-weight: 600; color: var(--tc-color); line-height: 1.1; }
+.tc-might { font-family: var(--sans); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--tc-color); opacity: 0.75; margin-top: 3px; }
+
+/* Title Power Tag – größte Schrift der Karte, gelb */
+.tc-power-title {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+  background: rgba(169, 134, 70, 0.16);
+  border-left: 2px solid var(--gold);
+  padding: 8px 12px;
+  margin-bottom: 2px;
+}
+/* Weitere Power Tags – gelb */
+.tc-power-tag {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  line-height: 1.3;
+  color: var(--ink);
+  background: rgba(169, 134, 70, 0.10);
+  border-left: 2px solid rgba(169, 134, 70, 0.45);
+  padding: 5px 12px;
+}
+/* Weakness – orange */
+.tc-weakness {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.0rem;
+  line-height: 1.3;
+  color: #7a3010;
+  background: rgba(170, 80, 20, 0.09);
+  border-left: 2px solid rgba(170, 80, 20, 0.38);
+  padding: 6px 12px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+/* Quest */
+.tc-quest-section { margin-top: 6px; }
+.tc-quest-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.tc-quest-label::before, .tc-quest-label::after { content: ''; flex: 1; height: 1px; background: var(--line-soft); }
+.tc-quest-title {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.08rem;
+  color: var(--ink);
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+.tc-quest-desc {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+.expanded-marker { display: inline-block; margin-left: 5px; font-size: 0.68em; color: var(--gold); vertical-align: middle; opacity: 0.8; font-style: normal; font-weight: normal; line-height: 1; }
+
 .theme-pagination { display: flex; justify-content: center; gap: 7px; margin: 10px 0 12px; flex-shrink: 0; }
 .theme-page-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--line); cursor: pointer; transition: all 0.2s; }
 .theme-page-dot.active { background: var(--accent); transform: scale(1.4); }
 
-/* Marker für expandierte Tags - dezent in Gold */
-.expanded-marker {
-  display: inline-block;
-  margin-left: 5px;
-  font-size: 0.68em;
-  color: var(--gold);
-  vertical-align: middle;
-  opacity: 0.8;
-  font-style: normal;
-  font-weight: normal;
-  line-height: 1;
-}
-
 .result-actions { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
 .result-actions .btn { padding: 9px 16px; min-height: 36px; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em; border-radius: 2px; }
 .result-actions .btn-primary { background: var(--paper); color: var(--ink); border: 1px solid var(--gold); }
-.result-actions .btn-primary:hover { background: var(--gold); color: var(--paper); border-color: var(--gold); }
+.result-actions .btn-primary:hover { background: var(--gold); color: var(--paper); }
 .result-actions .btn-primary:active { transform: scale(0.98); }
 .result-actions .btn-secondary { background: transparent; color: var(--ink-soft); border: 1px solid var(--line); }
 .result-actions .btn-secondary:hover { color: var(--ink); border-color: var(--ink-soft); background: var(--paper); }
 .result-actions .btn-ghost { color: var(--ink-soft); font-size: 0.78rem; min-height: 30px; padding: 4px 12px; opacity: 0.75; }
 .result-actions .btn-ghost:hover { opacity: 1; color: var(--accent); }
 
+/* SETTINGS SCREEN (Issue #4) */
+#screen-settings { padding: 20px; overflow-y: auto; }
+.settings-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+  padding-top: max(40px, calc(env(safe-area-inset-top, 0px) + 8px));
+}
+.settings-back-btn {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: transparent;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: var(--ink-soft);
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+}
+.settings-back-btn:active { transform: scale(0.9); }
+.settings-back-btn svg { width: 18px; height: 18px; }
+
+.settings-group {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 16px 18px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-soft);
+}
+.settings-group-title {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 3px;
+}
+.settings-group-sub {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  margin-bottom: 14px;
+  line-height: 1.4;
+  font-style: italic;
+}
+
+.settings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-top: 1px solid var(--line-soft);
+  gap: 12px;
+  cursor: default;
+}
+.settings-row:first-of-type { border-top: none; padding-top: 0; }
+.settings-row-info { flex: 1; }
+.settings-row-label {
+  font-family: var(--serif);
+  font-size: 1rem;
+  color: var(--ink);
+  display: block;
+  line-height: 1.2;
+}
+.settings-row-hint {
+  font-size: 0.73rem;
+  color: var(--ink-soft);
+  font-style: italic;
+  line-height: 1.3;
+}
+
+/* Custom Toggle */
+.toggle-wrap { position: relative; flex-shrink: 0; }
+.toggle-wrap input[type=checkbox] { position: absolute; opacity: 0; width: 0; height: 0; }
+.toggle-visual {
+  display: block;
+  width: 46px; height: 26px;
+  background: rgba(42,36,25,0.2);
+  border-radius: 13px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.toggle-visual::after {
+  content: '';
+  position: absolute;
+  top: 3px; left: 3px;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+input[type=checkbox]:checked  + .toggle-visual { background: var(--green); }
+input[type=checkbox]:checked  + .toggle-visual::after { transform: translateX(20px); }
+input[type=checkbox]:disabled + .toggle-visual { opacity: 0.38; cursor: not-allowed; }
+
+/* VM-Rows */
+.settings-vm-item {
+  border-top: 1px solid var(--line-soft);
+  padding: 10px 0;
+}
+.settings-vm-item:first-of-type { border-top: none; padding-top: 4px; }
+.settings-vm-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+.settings-select {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: 6px 10px;
+  width: 100%;
+  cursor: pointer;
+  -webkit-appearance: auto;
+  transition: opacity 0.2s;
+}
+.settings-select:disabled { opacity: 0.38; cursor: not-allowed; }
+
+/* LOADING */
 .loading-overlay { position: fixed; inset: 0; background: rgba(244, 234, 213, 0.92); display: none; align-items: center; justify-content: center; z-index: 100; flex-direction: column; gap: 18px; backdrop-filter: blur(2px); }
 .loading-overlay.active { display: flex; }
 .loading-spinner { width: 32px; height: 32px; border: 2px solid var(--line); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.9s linear infinite; }
@@ -213,14 +395,8 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 @media (max-height: 740px) {
   .card-stage { min-height: 360px; }
   .welcome-title { font-size: 2.4rem; }
-  .welcome-sub { margin: 16px auto 22px; }
   .card-title { font-size: 1.45rem; }
-  .card-text { font-size: 1.02rem; }
-  .theme-title-tag { font-size: 1.25rem; }
-  .tag-list { font-size: 0.92rem; }
-  .tag-weakness { font-size: 0.92rem; }
-  .tag-quest-title { font-size: 0.95rem; }
-  .tag-quest-description { font-size: 0.86rem; }
+  .card-text  { font-size: 1.02rem; }
   #screen-result { padding-top: 58px; }
 }
 </style>
@@ -229,6 +405,7 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 
 <audio id="bg-audio" loop preload="auto" src="./Fog%20Shrine%20Dusk.mp3"></audio>
 
+<!-- Mute button (top right) -->
 <button class="mute-btn" id="btn-mute" aria-label="Musik stumm schalten" type="button">
   <svg class="icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
@@ -242,8 +419,17 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
   </svg>
 </button>
 
+<!-- Settings button (top left) -->
+<button class="settings-btn" id="btn-settings" aria-label="Einstellungen" type="button">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="3"/>
+    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+  </svg>
+</button>
+
 <div class="app">
 
+<!-- WELCOME -->
 <section id="screen-welcome" class="screen active">
   <div class="welcome-mark">Legend in the Mist</div>
   <h1 class="welcome-title">Heldengenerator</h1>
@@ -260,6 +446,7 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
   <button class="btn btn-primary" id="btn-start">Los geht's</button>
 </section>
 
+<!-- SWIPE -->
 <section id="screen-swipe" class="screen">
   <div class="swipe-header">
     <div class="phase-label">
@@ -283,6 +470,7 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
   </div>
 </section>
 
+<!-- RESULT -->
 <section id="screen-result" class="screen">
   <div class="theme-carousel">
     <div class="theme-track" id="theme-track"></div>
@@ -292,6 +480,104 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
     <button class="btn btn-primary btn-block" id="btn-accept">Held übernehmen &amp; PDF</button>
     <button class="btn btn-secondary btn-block" id="btn-alternative">Anderen Vorschlag</button>
     <button class="btn btn-ghost btn-block" id="btn-restart">Nochmal swipen</button>
+  </div>
+</section>
+
+<!-- SETTINGS -->
+<section id="screen-settings" class="screen">
+  <div class="settings-header">
+    <button class="settings-back-btn" id="btn-settings-back" aria-label="Zurück">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    </button>
+    <h2>Einstellungen</h2>
+  </div>
+
+  <!-- Might-Stufen -->
+  <div class="settings-group">
+    <div class="settings-group-title">Might-Stufen</div>
+    <div class="settings-group-sub">Welche Stärke-Kategorien können für deinen Helden entstehen?</div>
+
+    <div class="settings-row">
+      <div class="settings-row-info">
+        <span class="settings-row-label">Origin</span>
+        <span class="settings-row-hint">Allgemein &middot; alltäglich</span>
+      </div>
+      <div class="toggle-wrap">
+        <input type="checkbox" id="toggle-origin" checked>
+        <label class="toggle-visual" for="toggle-origin"></label>
+      </div>
+    </div>
+    <div class="settings-row">
+      <div class="settings-row-info">
+        <span class="settings-row-label">Adventure</span>
+        <span class="settings-row-hint">Besonders &middot; heldenhaft</span>
+      </div>
+      <div class="toggle-wrap">
+        <input type="checkbox" id="toggle-adventure">
+        <label class="toggle-visual" for="toggle-adventure"></label>
+      </div>
+    </div>
+    <div class="settings-row">
+      <div class="settings-row-info">
+        <span class="settings-row-label">Greatness</span>
+        <span class="settings-row-hint">Legendär &middot; übernatürlich</span>
+      </div>
+      <div class="toggle-wrap">
+        <input type="checkbox" id="toggle-greatness">
+        <label class="toggle-visual" for="toggle-greatness"></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Variable Might -->
+  <div class="settings-group">
+    <div class="settings-group-title">Variable Might</div>
+    <div class="settings-group-sub">Begleiter, Magie &amp; Besitz — mit eigener Might-Stufe.</div>
+
+    <div class="settings-vm-item">
+      <div class="settings-vm-top">
+        <span class="settings-row-label">Begleiter</span>
+        <div class="toggle-wrap">
+          <input type="checkbox" id="toggle-companion" checked>
+          <label class="toggle-visual" for="toggle-companion"></label>
+        </div>
+      </div>
+      <select id="select-companion-level" class="settings-select">
+        <option value="Origin">Origin</option>
+        <option value="Adventure">Adventure</option>
+        <option value="Greatness">Greatness</option>
+      </select>
+    </div>
+
+    <div class="settings-vm-item">
+      <div class="settings-vm-top">
+        <span class="settings-row-label">Magie</span>
+        <div class="toggle-wrap">
+          <input type="checkbox" id="toggle-magic" checked>
+          <label class="toggle-visual" for="toggle-magic"></label>
+        </div>
+      </div>
+      <select id="select-magic-level" class="settings-select">
+        <option value="Origin">Origin</option>
+        <option value="Adventure">Adventure</option>
+        <option value="Greatness">Greatness</option>
+      </select>
+    </div>
+
+    <div class="settings-vm-item">
+      <div class="settings-vm-top">
+        <span class="settings-row-label">Besitz</span>
+        <div class="toggle-wrap">
+          <input type="checkbox" id="toggle-possessions" checked>
+          <label class="toggle-visual" for="toggle-possessions"></label>
+        </div>
+      </div>
+      <select id="select-possessions-level" class="settings-select">
+        <option value="Origin">Origin</option>
+        <option value="Adventure">Adventure</option>
+        <option value="Greatness">Greatness</option>
+      </select>
+    </div>
   </div>
 </section>
 
