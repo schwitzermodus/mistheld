@@ -1,6 +1,5 @@
 import { test, expect } from '@playwright/test';
 
-// Externe Ressourcen blockieren (Audio, Fonts) damit Tests nicht haengen
 test.beforeEach(async ({ page }) => {
   await page.route('**/*.mp3', route => route.abort());
   await page.route('**/fonts.googleapis.com/**', route => route.abort());
@@ -9,8 +8,7 @@ test.beforeEach(async ({ page }) => {
 
 // =============================================================
 // SCREEN VISIBILITY
-// Diese Tests haetten den display:flex Spezifitaets-Bug direkt gefangen:
-// "settings screen not visible on load" waere sofort rot gewesen.
+// Diese Tests hätten den display:flex Spezifitäts-Bug direkt gefangen.
 // =============================================================
 
 test('Startseite: Nur Welcome-Screen sichtbar', async ({ page }) => {
@@ -32,15 +30,12 @@ test('Startseite: Gear-Icon und Mute-Button sichtbar', async ({ page }) => {
 // SCREEN TRANSITIONS
 // =============================================================
 
-test('Einstellungen oeffnen und schliessen', async ({ page }) => {
+test('Einstellungen öffnen und schließen', async ({ page }) => {
   await page.goto('/');
-
   await page.locator('#btn-settings').click();
   await expect(page.locator('#screen-settings')).toBeVisible();
   await expect(page.locator('#screen-welcome')).not.toBeVisible();
-  // Gear-Icon verschwindet auf der Einstellungsseite
   await expect(page.locator('#btn-settings')).not.toBeVisible();
-
   await page.locator('#btn-settings-back').click();
   await expect(page.locator('#screen-welcome')).toBeVisible();
   await expect(page.locator('#screen-settings')).not.toBeVisible();
@@ -50,11 +45,9 @@ test('Einstellungen oeffnen und schliessen', async ({ page }) => {
 test('Los-gehts zeigt Swipe-Screen mit Phase-Intro', async ({ page }) => {
   await page.goto('/');
   await page.locator('#btn-start').click();
-
   await expect(page.locator('#screen-swipe')).toBeVisible();
   await expect(page.locator('#screen-welcome')).not.toBeVisible();
   await expect(page.locator('#phase-intro-overlay')).toBeVisible();
-  // Gear-Icon darf im Swipe-Screen nicht sichtbar sein
   await expect(page.locator('#btn-settings')).not.toBeVisible();
 });
 
@@ -62,10 +55,8 @@ test('Phase-Intro: Tippen startet Kartenstapel', async ({ page }) => {
   await page.goto('/');
   await page.locator('#btn-start').click();
   await expect(page.locator('#phase-intro-overlay')).toBeVisible();
-
   await page.locator('#phase-intro-overlay').click();
   await expect(page.locator('#phase-intro-overlay')).not.toBeVisible();
-
   await expect(page.locator('.card.front')).toBeVisible();
   await expect(page.locator('#btn-yes')).toBeVisible();
   await expect(page.locator('#btn-no')).toBeVisible();
@@ -73,7 +64,6 @@ test('Phase-Intro: Tippen startet Kartenstapel', async ({ page }) => {
 
 test('Gear-Icon im Ergebnis-Screen nicht sichtbar', async ({ page }) => {
   await page.goto('/');
-  // Direkt auf result-screen wechseln via show()
   await page.evaluate(() => show('screen-result'));
   await expect(page.locator('#screen-result')).toBeVisible();
   await expect(page.locator('#btn-settings')).not.toBeVisible();
@@ -91,7 +81,7 @@ test('Keine JS-Fehler beim Seitenaufruf', async ({ page }) => {
   expect(errors).toHaveLength(0);
 });
 
-test('THEMEBOOKS geladen (20 Eintraege)', async ({ page }) => {
+test('THEMEBOOKS geladen (20 Einträge)', async ({ page }) => {
   await page.goto('/');
   const count = await page.evaluate(() => Object.keys(THEMEBOOKS).length);
   expect(count).toBe(20);
@@ -106,7 +96,6 @@ test('PHASES geladen (4 Phasen)', async ({ page }) => {
 test('Settings-Default: Origin aktiv, Adventure+Greatness inaktiv', async ({ page }) => {
   await page.goto('/');
   await page.locator('#btn-settings').click();
-
   await expect(page.locator('#toggle-origin')).toBeChecked();
   await expect(page.locator('#toggle-adventure')).not.toBeChecked();
   await expect(page.locator('#toggle-greatness')).not.toBeChecked();
@@ -115,7 +104,44 @@ test('Settings-Default: Origin aktiv, Adventure+Greatness inaktiv', async ({ pag
 test('Letzter Toggle nicht deaktivierbar (min. 1 Might-Stufe)', async ({ page }) => {
   await page.goto('/');
   await page.locator('#btn-settings').click();
-
-  // Origin ist der einzige aktive Toggle -> muss disabled sein
   await expect(page.locator('#toggle-origin')).toBeDisabled();
+});
+
+// =============================================================
+// #17: ELEMENT-REROLL (Ergebnisseite)
+// =============================================================
+
+test('#17: Ergebnisseite zeigt Reroll-Buttons nach Generierung', async ({ page }) => {
+  await page.goto('/');
+  // finishSwiping direkt aufrufen um Ergebnisseite zu laden
+  await page.evaluate(() => {
+    state.proposals = [generateProposal('initial')];
+    state.proposalIndex = 0;
+    state.edits = {};
+    show('screen-result');
+    renderResult();
+  });
+  await expect(page.locator('#screen-result')).toBeVisible();
+  // Reroll-Buttons müssen vorhanden sein
+  const rerollBtns = page.locator('.tc-reroll-btn');
+  await expect(rerollBtns.first()).toBeVisible();
+  // Mindestens 6 Reroll-Buttons pro Karte (theme + title + pow0 + pow1 + weakness + quest)
+  const count = await rerollBtns.count();
+  expect(count).toBeGreaterThanOrEqual(6);
+});
+
+test('#17: Reroll eines einzelnen Tags erzeugt Navigation', async ({ page }) => {
+  await page.goto('/');
+  await page.evaluate(() => {
+    state.proposals = [generateProposal('initial')];
+    state.proposalIndex = 0;
+    state.edits = {};
+    show('screen-result');
+    renderResult();
+  });
+  // Klick auf ersten nicht-Theme Reroll-Button (title tag)
+  const titleReroll = page.locator('.tc-editable-row').first().locator('.tc-reroll-btn');
+  await titleReroll.click();
+  // Navigation soll erscheinen
+  await expect(page.locator('.tc-nav-pos').first()).toBeVisible();
 });

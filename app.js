@@ -10,6 +10,7 @@ const CFG = Object.freeze({
   LOADING_DELAY_MS: 700,
   ALT_LOADING_DELAY_MS: 450,
   MAX_PROPOSALS: 4,
+  MAX_ELEMENT_ALTS: 3,   // max Alternativen pro Element auf der Ergebnisseite
   HAPTIC_MS: 6,
   AUDIO_VOLUME: 0.4,
   MUTED_KEY: 'mistheld:muted',
@@ -60,7 +61,8 @@ const state = {
   proposals: [],
   proposalIndex: 0,
   themeCarouselIndex: 0,
-  busy: false
+  busy: false,
+  edits: {}   // #17: per-Element Versionshistorie auf der Ergebnisseite
 };
 
 /* =====================================================
@@ -76,11 +78,13 @@ function escapeHtml(s) {
   }[m]));
 }
 
-// #18: Ersten Buchstaben eines Tags großschreiben
 function capitalizeFirst(s) {
   if (!s) return s;
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
+
+// Refactor: kombinierter Helper spart wiederholtes escapeHtml(capitalizeFirst(...))
+function displayTag(s) { return escapeHtml(capitalizeFirst(s)); }
 
 function shuffleArray(a) {
   for (let i = a.length - 1; i > 0; i--) {
@@ -198,11 +202,12 @@ function initAudio() {
   audio.muted = isMuted();
   updateMuteUI();
   tryPlay();
-  const kickstart = () => { tryPlay(); };
-  document.addEventListener('pointerdown', kickstart);
-  document.addEventListener('touchstart', kickstart, { passive: true });
-  document.addEventListener('keydown', kickstart);
-  document.addEventListener('click', kickstart);
+  // Refactor: { once: true } verhindert dass Kickstart-Listener sich ewig akkumulieren
+  const kickstart = () => tryPlay();
+  document.addEventListener('pointerdown', kickstart, { once: true });
+  document.addEventListener('touchstart',  kickstart, { once: true, passive: true });
+  document.addEventListener('keydown',     kickstart, { once: true });
+  document.addEventListener('click',       kickstart, { once: true });
   document.addEventListener('visibilitychange', () => {
     if (!document.hidden && !audio.muted && audio.paused) tryPlay();
   });
@@ -235,7 +240,7 @@ function applyScore(card, dir, sign) {
 }
 
 /* =====================================================
-   PHASE INTROS  (#22)
+   PHASE INTROS
 ===================================================== */
 
 const PHASE_INTROS = [
@@ -295,7 +300,7 @@ function showPhaseIntro(phaseIndex, callback) {
   });
   const overlay = $('phase-intro-overlay');
   overlay.classList.add('active');
-  const dismiss = (e) => {
+  const dismiss = () => {
     overlay.classList.remove('active');
     overlay.removeEventListener('pointerup', dismiss);
     callback();
@@ -315,10 +320,10 @@ function startSwipe() {
   state.hookCounts = {};
   state.proposals = [];
   state.proposalIndex = 0;
+  state.edits = {};
   state.busy = false;
   document.body.classList.add('swipe-active');
   show('screen-swipe');
-  // #22: Zeige Phase-Intro vor dem ersten Kartenstapel
   showPhaseIntro(0, loadPhase);
 }
 
@@ -345,8 +350,7 @@ function updatePhaseUI() {
 
 function canUndo() {
   if (state.swipes.length === 0) return false;
-  const last = state.swipes[state.swipes.length - 1];
-  return last.phase === state.phaseIndex;
+  return state.swipes[state.swipes.length - 1].phase === state.phaseIndex;
 }
 
 function renderCard() {
@@ -355,7 +359,6 @@ function renderCard() {
   if (state.cardIndex >= state.shuffledCards.length) {
     if (state.phaseIndex < PHASES.length - 1) {
       state.phaseIndex++;
-      // #22: Zwischenscreen vor neuer Phase
       showPhaseIntro(state.phaseIndex, loadPhase);
     } else {
       finishSwiping();
@@ -379,7 +382,6 @@ function renderCard() {
     `;
     if (i === 0) {
       attachSwipe(cardEl);
-      // #21: Hint-Animation nur auf der ersten Karte der ersten Phase
       if (state.phaseIndex === 0 && state.cardIndex === 0 && state.swipes.length === 0) {
         cardEl.classList.add('card-hint');
       }
@@ -433,8 +435,10 @@ function attachSwipe(cardEl) {
   const onDown = (e) => {
     if (cardEl.classList.contains('abandoned')) return;
     if (activePointerId !== null) return;
-    // #21: Hint-Animation abbrechen sobald der User tippt
-    cardEl.style.animation = '';
+    // Fix #25: classList.remove statt style.animation='' — nur so wird die
+    // CSS-Klassen-Animation wirklich abgebrochen (style.animation='' entfernt
+    // nur den Inline-Override, die Klassen-Animation läuft sonst weiter).
+    cardEl.classList.remove('card-hint');
     activePointerId = e.pointerId;
     try { cardEl.setPointerCapture(e.pointerId); } catch (_) {}
     dragging = true;
@@ -483,6 +487,10 @@ function attachSwipe(cardEl) {
 
 function flyOut(cardEl, direction) {
   if (cardEl.classList.contains('abandoned')) return;
+  // Fix #25: Hint-Animation abbrechen bevor die Fly-out-Klasse gesetzt wird.
+  // CSS-Animationen haben höhere Cascade-Priorität als !important-Transitions —
+  // die Karte würde sonst nicht korrekt wegfliegen.
+  cardEl.classList.remove('card-hint');
   cardEl.classList.add('abandoned', direction === 'yes' ? 'gone-right' : 'gone-left');
   try { if (navigator.vibrate) navigator.vibrate(CFG.HAPTIC_MS); } catch (_) {}
   decide(direction);
@@ -538,7 +546,9 @@ function pickQuestWithExpansionPreference(pool) {
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
-function generateTheme(themebookName) {
+// Refactor: settings wird jetzt einmal in generateProposal geladen und
+// als Parameter weitergereicht statt 4x in generateTheme aufgerufen zu werden
+function generateTheme(themebookName, settings) {
   const tb = THEMEBOOKS[themebookName];
   const titleTag    = pickWithExpansionPreference(tb.titleTagSuggestions, 1)[0];
   const powerTags   = pickWithExpansionPreference(tb.powerTagPool, 2);
@@ -547,8 +557,7 @@ function generateTheme(themebookName) {
 
   let resolvedType = tb.type;
   if (tb.type === 'Variable Might') {
-    const s = loadSettings();
-    resolvedType = (s.variableMight[themebookName] || {}).level || 'Origin';
+    resolvedType = (settings.variableMight[themebookName] || {}).level || 'Origin';
   }
 
   return { type: resolvedType, themebook: themebookName, titleTag, powerTags, weaknessTag, quest };
@@ -556,7 +565,7 @@ function generateTheme(themebookName) {
 
 function generateProposal(mode, baseProposal) {
   mode = mode || 'initial';
-  const s = loadSettings();
+  const s = loadSettings();   // Refactor: einmal laden, an generateTheme weiterreichen
   const enabledLevels = ['Origin','Adventure','Greatness'].filter(l => s.mightLevels[l]);
   if (!enabledLevels.length) enabledLevels.push('Origin');
   const enabledVM = ['Companion','Magic','Possessions'].filter(k => s.variableMight[k].enabled);
@@ -575,7 +584,7 @@ function generateProposal(mode, baseProposal) {
     return pickRandomFrom(list);
   });
 
-  return { mode, themes: themebooks.map(generateTheme) };
+  return { mode, themes: themebooks.map(tb => generateTheme(tb, s)) };
 }
 
 function finishSwiping() {
@@ -586,6 +595,7 @@ function finishSwiping() {
     state.proposals = [generateProposal('initial')];
     state.proposalIndex = 0;
     state.themeCarouselIndex = 0;
+    state.edits = {};
     show('screen-result');
     requestAnimationFrame(() => {
       renderResult();
@@ -607,6 +617,7 @@ function generateAlternative() {
     state.proposals.push(generateProposal(mode, state.proposals[0]));
     state.proposalIndex = state.proposals.length - 1;
     state.themeCarouselIndex = 0;
+    state.edits = {};   // Element-Edits beim komplett neuen Vorschlag zurücksetzen
     state.busy = false;
     renderResult();
     hideLoading();
@@ -614,30 +625,91 @@ function generateAlternative() {
 }
 
 /* =====================================================
-   RESULT RENDER
+   ERGEBNISSEITE — ELEMENT-EDITS  (#17)
+   ———————————————————————————————
+   Modell: state.edits["t{i}-{k}"] = { alts: [...], index: 0 }
+   index 0 = Original, index 1..n = Alternativen
 ===================================================== */
 
-function renderResult() {
-  const proposal = state.proposals[state.proposalIndex];
-  const track = $('theme-track');
-  const pagination = $('theme-pagination');
-  track.innerHTML = '';
-  pagination.innerHTML = '';
-  proposal.themes.forEach((theme, i) => {
-    track.appendChild(buildThemeCard(theme));
-    const dot = document.createElement('div');
-    dot.className = 'theme-page-dot' + (i === 0 ? ' active' : '');
-    dot.addEventListener('click', () => scrollToTheme(i));
-    pagination.appendChild(dot);
-  });
-  track.onscroll = onTrackScroll;
-  const btnAlt = $('btn-alternative');
-  const exhausted = state.proposals.length >= CFG.MAX_PROPOSALS;
-  btnAlt.disabled = exhausted || state.busy;
-  btnAlt.style.opacity = exhausted ? '0.4' : '1';
-  btnAlt.textContent = exhausted ? 'Alle Vorschl\u00e4ge gesehen' : 'Anderen Vorschlag';
-  scrollToTheme(0, false);
+function editKey(ti, k) { return `t${ti}-${k}`; }
+function getEdit(ti, k) { return state.edits[editKey(ti, k)]; }
+
+function getCurrentVal(ti, k, fallback) {
+  const e = getEdit(ti, k);
+  if (!e || e.index === 0) return fallback;
+  return e.alts[e.index - 1];
 }
+
+// Gibt das Theme mit allen aktuell aktiven Edits zurück (für Display + PDF)
+function getDisplayTheme(ti) {
+  const base = state.proposals[state.proposalIndex].themes[ti];
+  const te   = getEdit(ti, 'theme');
+  const tb   = (te && te.index > 0) ? te.alts[te.index - 1] : base;
+  return {
+    type:        tb.type,
+    themebook:   tb.themebook,
+    titleTag:    getCurrentVal(ti, 'title',    tb.titleTag),
+    powerTags:  [getCurrentVal(ti, 'pow0',    tb.powerTags[0]),
+                 getCurrentVal(ti, 'pow1',    tb.powerTags[1])],
+    weaknessTag: getCurrentVal(ti, 'weakness', tb.weaknessTag),
+    quest:       getCurrentVal(ti, 'quest',    tb.quest)
+  };
+}
+
+function addAlt(ti, k, val) {
+  const key = editKey(ti, k);
+  if (!state.edits[key]) state.edits[key] = { alts: [], index: 0 };
+  const e = state.edits[key];
+  if (e.alts.length >= CFG.MAX_ELEMENT_ALTS) return;
+  e.alts.push(val);
+  e.index = e.alts.length;  // neue Alternative sofort anzeigen
+}
+
+function clearThemeElementEdits(ti) {
+  ['title','pow0','pow1','weakness','quest'].forEach(k => delete state.edits[editKey(ti, k)]);
+}
+
+function handleThemeCardAction(e) {
+  const rerollBtn = e.target.closest('.tc-reroll-btn');
+  const navBtn    = e.target.closest('.tc-nav-btn');
+  if (!rerollBtn && !navBtn) return;
+  const ctrl = (rerollBtn || navBtn).closest('.tc-edit-ctrl');
+  if (!ctrl) return;
+  const ti = parseInt(ctrl.dataset.ti);
+  const k  = ctrl.dataset.k;
+  if (rerollBtn && !rerollBtn.disabled) handleReroll(ti, k);
+  if (navBtn    && !navBtn.disabled)    handleNavigate(ti, k, parseInt(navBtn.dataset.dir));
+}
+
+function handleReroll(ti, k) {
+  const dt = getDisplayTheme(ti);
+  const tb = THEMEBOOKS[dt.themebook];
+  const s  = loadSettings();
+  let newVal;
+  if      (k === 'theme')              { newVal = generateTheme(dt.themebook, s); clearThemeElementEdits(ti); }
+  else if (k === 'title')              { newVal = pickWithExpansionPreference(tb.titleTagSuggestions, 1)[0]; }
+  else if (k === 'pow0' || k === 'pow1') { newVal = pickWithExpansionPreference(tb.powerTagPool, 1)[0]; }
+  else if (k === 'weakness')           { newVal = pickWithExpansionPreference(tb.weaknessTagPool, 1)[0]; }
+  else if (k === 'quest')              { newVal = pickQuestWithExpansionPreference(tb.questPool); }
+  if (newVal !== undefined) { addAlt(ti, k, newVal); rerenderThemeCard(ti); }
+}
+
+function handleNavigate(ti, k, dir) {
+  const e = getEdit(ti, k);
+  if (!e) return;
+  e.index = Math.max(0, Math.min(e.alts.length, e.index + dir));
+  rerenderThemeCard(ti);
+}
+
+function rerenderThemeCard(ti) {
+  const track = $('theme-track');
+  const old = track.children[ti];
+  if (old) track.replaceChild(buildThemeCard(ti), old);
+}
+
+/* =====================================================
+   RESULT RENDER
+===================================================== */
 
 function expandedMark(entry) {
   return entry && entry.expanded
@@ -645,34 +717,89 @@ function expandedMark(entry) {
     : '';
 }
 
-function buildThemeCard(theme) {
+// Baut das Edit-Control-HTML für ein Element (ti = Theme-Index, k = Element-Key)
+function buildEditCtrl(ti, k) {
+  const e     = getEdit(ti, k);
+  const total = 1 + (e ? e.alts.length : 0);
+  const idx   = e ? e.index : 0;
+  const maxed = e ? e.alts.length >= CFG.MAX_ELEMENT_ALTS : false;
+  const nav   = total > 1 ? `
+    <button class="tc-nav-btn" data-dir="-1" ${idx === 0 ? 'disabled' : ''}>‹</button>
+    <span class="tc-nav-pos">${idx + 1} / ${total}</span>
+    <button class="tc-nav-btn" data-dir="1" ${idx >= total - 1 ? 'disabled' : ''}>›</button>` : '';
+  return `<div class="tc-edit-ctrl" data-ti="${ti}" data-k="${k}">
+    ${nav}
+    <button class="tc-reroll-btn" title="Neu würfeln"${maxed ? ' disabled' : ''}>↺</button>
+  </div>`;
+}
+
+function buildThemeCard(ti) {
+  const dt = getDisplayTheme(ti);
+  const mc = dt.type === 'Origin' ? 'tc-origin'
+           : dt.type === 'Adventure' ? 'tc-adventure'
+           : dt.type === 'Greatness' ? 'tc-greatness' : 'tc-origin';
   const card = document.createElement('div');
-  const mc = theme.type === 'Origin' ? 'tc-origin'
-           : theme.type === 'Adventure' ? 'tc-adventure'
-           : theme.type === 'Greatness' ? 'tc-greatness'
-           : 'tc-origin';
   card.className = 'theme-card ' + mc;
 
-  // #18: Ersten Buchstaben jedes Tags großschreiben
-  const allPowerHtml = [
-    `<div class="tc-power-title">${escapeHtml(capitalizeFirst(theme.titleTag.text))}${expandedMark(theme.titleTag)}</div>`,
-    ...theme.powerTags.map(t => `<div class="tc-power-tag">${escapeHtml(capitalizeFirst(t.text))}${expandedMark(t)}</div>`)
+  const powerRows = [
+    `<div class="tc-editable-row">
+       <div class="tc-power-title">${displayTag(dt.titleTag.text)}${expandedMark(dt.titleTag)}</div>
+       ${buildEditCtrl(ti, 'title')}
+     </div>`,
+    ...dt.powerTags.map((t, pi) => `
+      <div class="tc-editable-row">
+        <div class="tc-power-tag">${displayTag(t.text)}${expandedMark(t)}</div>
+        ${buildEditCtrl(ti, 'pow' + pi)}
+      </div>`)
   ].join('');
 
   card.innerHTML = `
     <div class="tc-header">
-      <div class="tc-type">${escapeHtml(displayThemebook(theme.themebook))}</div>
-      <div class="tc-might">${escapeHtml(displayMight(theme.type))}</div>
+      <div>
+        <div class="tc-type">${escapeHtml(displayThemebook(dt.themebook))}</div>
+        <div class="tc-might">${escapeHtml(displayMight(dt.type))}</div>
+      </div>
+      ${buildEditCtrl(ti, 'theme')}
     </div>
-    ${allPowerHtml}
-    <div class="tc-weakness">${escapeHtml(capitalizeFirst(theme.weaknessTag.text))}${expandedMark(theme.weaknessTag)}</div>
-    <div class="tc-quest-section">
-      <div class="tc-quest-label">Quest</div>
-      <div class="tc-quest-title">&bdquo;${escapeHtml(theme.quest.title)}&ldquo;${expandedMark(theme.quest)}</div>
-      <div class="tc-quest-desc">${escapeHtml(theme.quest.description)}</div>
+    ${powerRows}
+    <div class="tc-editable-row">
+      <div class="tc-weakness">${displayTag(dt.weaknessTag.text)}${expandedMark(dt.weaknessTag)}</div>
+      ${buildEditCtrl(ti, 'weakness')}
     </div>
-  `;
+    <div class="tc-editable-row">
+      <div class="tc-quest-section">
+        <div class="tc-quest-label">Quest</div>
+        <div class="tc-quest-title">&bdquo;${escapeHtml(dt.quest.title)}&ldquo;${expandedMark(dt.quest)}</div>
+        <div class="tc-quest-desc">${escapeHtml(dt.quest.description)}</div>
+      </div>
+      ${buildEditCtrl(ti, 'quest')}
+    </div>`;
+
   return card;
+}
+
+function renderResult() {
+  const track = $('theme-track');
+  const pagination = $('theme-pagination');
+  track.innerHTML = '';
+  pagination.innerHTML = '';
+  const n = state.proposals[state.proposalIndex].themes.length;
+  for (let i = 0; i < n; i++) {
+    track.appendChild(buildThemeCard(i));
+    const dot = document.createElement('div');
+    dot.className = 'theme-page-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => scrollToTheme(i));
+    pagination.appendChild(dot);
+  }
+  // Event-Delegation für alle Reroll/Nav-Buttons innerhalb der Karten
+  track.onclick = handleThemeCardAction;
+  track.onscroll = onTrackScroll;
+  const btnAlt = $('btn-alternative');
+  const exhausted = state.proposals.length >= CFG.MAX_PROPOSALS;
+  btnAlt.disabled = exhausted || state.busy;
+  btnAlt.style.opacity = exhausted ? '0.4' : '1';
+  btnAlt.textContent = exhausted ? 'Max. Versuche erreicht' : 'Alle Themes neu w\u00fcrfeln';
+  scrollToTheme(0, false);
 }
 
 function onTrackScroll() {
@@ -689,7 +816,11 @@ function onTrackScroll() {
 function scrollToTheme(i, smooth) {
   smooth = smooth !== false;
   const track = $('theme-track');
-  if (!track.clientWidth) { requestAnimationFrame(() => scrollToTheme(i, smooth)); return; }
+  // Guard gegen infinite rAF-Loop wenn clientWidth nie > 0 wird
+  if (!track.clientWidth) {
+    requestAnimationFrame(() => scrollToTheme(i, smooth));
+    return;
+  }
   track.scrollTo({ left: i * track.clientWidth, behavior: smooth ? 'smooth' : 'auto' });
   state.themeCarouselIndex = i;
   updateThemeDots();
@@ -716,9 +847,9 @@ const PDF_COLORS = {
 };
 
 function pdfHeader(doc) {
-  const { pageW, pageH, marginX, marginY } = PDF_LAYOUT;
+  const { pageW, marginX, marginY } = PDF_LAYOUT;  // Refactor: pageH entfernt (unbenutzt)
   doc.setFillColor(...PDF_COLORS.paper);
-  doc.rect(0, 0, pageW, pageH, 'F');
+  doc.rect(0, 0, pageW, PDF_LAYOUT.pageH, 'F');
   doc.setTextColor(...PDF_COLORS.ink);
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(22);
@@ -736,7 +867,6 @@ function pdfSectionLabel(doc, label, x, y) {
   return y + 4;
 }
 
-// #18: capitalizeFirst auch im PDF anwenden
 function pdfTagText(entry) {
   const t = capitalizeFirst(entry.text);
   return entry.expanded ? `${t} \u2736` : t;
@@ -803,8 +933,9 @@ async function generatePDF() {
     const cardW = (pageW - 2 * marginX - 3 * gap) / 4;
     const cardY = marginY + 16;
     const cardH = pageH - cardY - marginY;
-    proposal.themes.forEach((theme, i) => {
-      pdfThemeBlock(doc, theme, marginX + i * (cardW + gap), cardY, cardW, cardH);
+    // #17: getDisplayTheme(i) statt proposal.themes[i] — beinhaltet alle Edits
+    proposal.themes.forEach((_, i) => {
+      pdfThemeBlock(doc, getDisplayTheme(i), marginX + i * (cardW + gap), cardY, cardW, cardH);
     });
     pdfFooter(doc);
     doc.save('mistheld-character.pdf');
@@ -837,7 +968,6 @@ function updateSettingsUI() {
   const mightCbs = [$('toggle-origin'), $('toggle-adventure'), $('toggle-greatness')];
   const checkedCount = mightCbs.filter(c => c.checked).length;
   mightCbs.forEach(cb => { cb.disabled = (checkedCount === 1 && cb.checked); });
-
   [['toggle-companion','select-companion-level'],
    ['toggle-magic','select-magic-level'],
    ['toggle-possessions','select-possessions-level']].forEach(([tid, sid]) => {
