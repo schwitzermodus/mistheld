@@ -123,39 +123,38 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 .phase-dot.done { background: var(--gold); }
 .phase-dot.active { background: var(--accent); }
 .card-counter { text-align: center; font-size: 0.8rem; color: var(--ink-soft); margin-bottom: 12px; letter-spacing: 0.05em; }
-.card-stage { position: relative; flex: 1; min-height: 380px; margin: 0 auto; width: 100%; max-width: 360px; display: flex; align-items: center; justify-content: center; touch-action: none; }
+.card-stage { position: relative; flex: 1; min-height: 420px; margin: 0 auto; width: 100%; max-width: 360px; display: flex; align-items: center; justify-content: center; touch-action: none; }
 
-.card { position: absolute; width: 100%; height: 100%; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow); padding: 28px 24px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; cursor: grab; user-select: none; -webkit-user-select: none; touch-action: none; will-change: transform, opacity; transform: translate3d(0, 0, 0); transition: transform 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.18), opacity 0.3s ease-out; }
+.card { position: absolute; width: 100%; height: 100%; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow); padding: 28px 24px 100px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; cursor: grab; user-select: none; -webkit-user-select: none; touch-action: none; will-change: transform, opacity; transform: translate3d(0, 0, 0); transition: transform 0.4s cubic-bezier(0.18, 0.89, 0.32, 1.18), opacity 0.3s ease-out; }
 .card.dragging { transition: none; cursor: grabbing; }
 .card.behind { pointer-events: none; }
 .card.behind-1 { transform: translate3d(0, 10px, 0) scale(0.96); opacity: 0.95; }
 .card.behind-2 { transform: translate3d(0, 20px, 0) scale(0.92); opacity: 0.82; }
 .card.front { z-index: 20; }
-.card.gone-left  { transform: translate3d(-130%, 30px, 0) rotate(-22deg) !important; opacity: 0; transition: transform 0.55s cubic-bezier(0.4, 0, 0.5, 1), opacity 0.4s ease-out; }
-.card.gone-right { transform: translate3d( 130%, 30px, 0) rotate( 22deg) !important; opacity: 0; transition: transform 0.55s cubic-bezier(0.4, 0, 0.5, 1), opacity 0.4s ease-out; }
+.card.gone-left  { transform: translate3d(-130%, 30px, 0) rotate(-22deg) !important; opacity: 0; transition: transform 0.9s cubic-bezier(0.4, 0, 0.5, 1), opacity 0.65s ease-out; }
+.card.gone-right { transform: translate3d( 130%, 30px, 0) rotate( 22deg) !important; opacity: 0; transition: transform 0.9s cubic-bezier(0.4, 0, 0.5, 1), opacity 0.65s ease-out; }
 .card.abandoned { pointer-events: none; }
 
 .card-glyph { font-size: 2.2rem; color: var(--gold); margin-bottom: 14px; font-family: var(--serif); font-style: italic; position: relative; }
 .card-glyph::before, .card-glyph::after { content: ''; display: inline-block; width: 24px; height: 1px; background: var(--gold); vertical-align: middle; margin: 0 12px; opacity: 0.6; }
-.card-title { font-family: var(--serif); font-size: 1.5rem; font-weight: 600; font-style: italic; line-height: 1.25; margin-bottom: 12px; color: var(--ink); max-width: 280px; }
-.card-text { font-family: var(--serif); font-size: 1.05rem; line-height: 1.5; color: var(--ink-soft); max-width: 260px; }
+.card-title { font-family: var(--serif); font-size: 1.65rem; font-weight: 600; font-style: italic; line-height: 1.25; margin-bottom: 12px; color: var(--ink); max-width: 280px; }
+.card-text { font-family: var(--serif); font-size: 1.12rem; line-height: 1.5; color: var(--ink); max-width: 260px; }
 .card-decision-overlay { position: absolute; top: 16px; font-family: var(--serif); font-size: 2rem; font-style: italic; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 8px 16px; border: 3px solid; border-radius: 4px; opacity: 0; pointer-events: none; transition: opacity 0.05s linear; }
 .card-decision-overlay.yes { right: 18px; color: var(--green); border-color: var(--green); transform: rotate(-12deg); }
 .card-decision-overlay.no { left: 18px; color: var(--accent); border-color: var(--accent); transform: rotate(12deg); }
 
-.swipe-controls { display: flex; justify-content: center; align-items: center; gap: 14px; margin-top: 20px; }
-.swipe-btn { width: 64px; height: 64px; border-radius: 50%; border: 2px solid; background: var(--paper); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.15s ease; }
+.swipe-controls { position: absolute; bottom: 18px; left: 0; right: 0; display: flex; justify-content: center; align-items: center; gap: 14px; z-index: 30; }
+.swipe-btn { width: 64px; height: 64px; border-radius: 50%; border: 2px solid; background: var(--paper); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.15s ease; box-shadow: 0 2px 8px rgba(60,40,10,0.12); }
 .swipe-btn:active { transform: scale(0.88); }
 .swipe-btn-no { border-color: var(--accent); color: var(--accent); }
 .swipe-btn-no:active { background: var(--accent); color: var(--paper); }
 .swipe-btn-yes { border-color: var(--green); color: var(--green); }
 .swipe-btn-yes:active { background: var(--green); color: var(--paper); }
-.swipe-btn-undo { width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--line); background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--ink-soft); transition: all 0.15s ease; }
+.swipe-btn-undo { width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--line); background: rgba(250,243,223,0.9); display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--ink-soft); transition: all 0.15s ease; }
 .swipe-btn-undo:active { transform: scale(0.88); }
 .swipe-btn-undo:disabled { opacity: 0.3; cursor: not-allowed; }
 .swipe-btn svg { width: 28px; height: 28px; }
 .swipe-btn-undo svg { width: 20px; height: 20px; }
-.swipe-hint { text-align: center; font-size: 0.78rem; color: var(--ink-soft); margin-top: 10px; letter-spacing: 0.05em; font-style: italic; font-family: var(--serif); }
 
 /* RESULT */
 #screen-result { padding: 64px 14px 14px; height: 100vh; height: 100dvh; overflow: hidden; }
@@ -212,11 +211,11 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 .loading-text { font-family: var(--serif); font-style: italic; color: var(--ink-soft); }
 
 @media (max-height: 740px) {
-  .card-stage { min-height: 320px; }
+  .card-stage { min-height: 360px; }
   .welcome-title { font-size: 2.4rem; }
   .welcome-sub { margin: 16px auto 22px; }
-  .card-title { font-size: 1.35rem; }
-  .card-text { font-size: 1rem; }
+  .card-title { font-size: 1.45rem; }
+  .card-text { font-size: 1.02rem; }
   .theme-title-tag { font-size: 1.25rem; }
   .tag-list { font-size: 0.92rem; }
   .tag-weakness { font-size: 0.92rem; }
@@ -247,15 +246,15 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 
 <section id="screen-welcome" class="screen active">
   <div class="welcome-mark">Legend in the Mist</div>
-  <h1 class="welcome-title">Mistheld</h1>
-  <p class="welcome-sub">Erstelle deinen LitM-Helden mit ein paar Swipes durch den Nebel.</p>
+  <h1 class="welcome-title">Heldengenerator</h1>
+  <p class="welcome-sub">Mit ein paar Swipes erschaffst du deinen nächsten Helden.</p>
   <div class="welcome-instructions">
     <h3>So funktioniert's</h3>
     <ul>
-      <li>Du siehst Karten mit Stimmungen, Hintergründen, Fähigkeiten und Antrieben.</li>
-      <li>Wische rechts (oder tippe ✓), wenn die Karte zu deinem Helden passt.</li>
-      <li>Wische links (oder tippe ✗), wenn nicht.</li>
-      <li>Am Ende generiert Mistheld 4 Themes mit Tags und Quest.</li>
+      <li>Du erhältst eine Auswahl von Karten mit verschiedenen Inspirationen für deinen neuen Helden.</li>
+      <li>Wische nach rechts, wenn die Karte zu deinem nächsten Helden passen könnte.</li>
+      <li>Wische nach links, wenn sie eher nicht passt.</li>
+      <li>Am Ende erhältst du verschiedene Vorschläge für deinen Helden.</li>
     </ul>
   </div>
   <button class="btn btn-primary" id="btn-start">Los geht's</button>
@@ -275,13 +274,13 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
     </div>
   </div>
   <div class="card-counter" id="card-counter">Karte 1 von 9</div>
-  <div class="card-stage" id="card-stage"></div>
-  <div class="swipe-controls">
-    <button class="swipe-btn swipe-btn-no" id="btn-no" aria-label="Passt nicht"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
-    <button class="swipe-btn-undo" id="btn-undo" aria-label="Letzte Karte zurück" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 00-15-6.7L3 13"/></svg></button>
-    <button class="swipe-btn swipe-btn-yes" id="btn-yes" aria-label="Passt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button>
+  <div class="card-stage" id="card-stage">
+    <div class="swipe-controls">
+      <button class="swipe-btn swipe-btn-no" id="btn-no" aria-label="Passt nicht"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+      <button class="swipe-btn-undo" id="btn-undo" aria-label="Letzte Karte zurück" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 00-15-6.7L3 13"/></svg></button>
+      <button class="swipe-btn swipe-btn-yes" id="btn-yes" aria-label="Passt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button>
+    </div>
   </div>
-  <p class="swipe-hint">Wische links oder rechts</p>
 </section>
 
 <section id="screen-result" class="screen">

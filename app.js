@@ -4,9 +4,9 @@
 
 const CFG = Object.freeze({
   STACK_DEPTH: 3,
-  SWIPE_DISTANCE: 40,
+  SWIPE_DISTANCE: 80,
   SWIPE_VELOCITY: 0.3,
-  FLY_DURATION_MS: 580,
+  FLY_DURATION_MS: 900,
   LOADING_DELAY_MS: 700,
   ALT_LOADING_DELAY_MS: 450,
   MAX_PROPOSALS: 4,
@@ -280,10 +280,10 @@ function attachSwipe(cardEl) {
 
   const updateOverlay = () => {
     if (dx > 8) {
-      yesEl.style.opacity = String(Math.min(1, (dx - 8) / 40));
+      yesEl.style.opacity = String(Math.min(1, (dx - 8) / 60));
       noEl.style.opacity  = '0';
     } else if (dx < -8) {
-      noEl.style.opacity  = String(Math.min(1, (-dx - 8) / 40));
+      noEl.style.opacity  = String(Math.min(1, (-dx - 8) / 60));
       yesEl.style.opacity = '0';
     } else {
       yesEl.style.opacity = '0';
@@ -411,14 +411,14 @@ function pickQuestWithExpansionPreference(pool) {
 function generateTheme(themebookName) {
   const tb = THEMEBOOKS[themebookName];
   const titleTag = pickWithExpansionPreference(tb.titleTagSuggestions, 1)[0];
-  const powerTags = pickWithExpansionPreference(tb.powerTagPool, 3);
+  const powerTags = pickWithExpansionPreference(tb.powerTagPool, 2);
   const weaknessTag = pickWithExpansionPreference(tb.weaknessTagPool, 1)[0];
   const quest = pickQuestWithExpansionPreference(tb.questPool);
   return {
     type: tb.type,
     themebook: themebookName,
     titleTag,        // { text, expanded }
-    powerTags,       // [{ text, expanded }, ...]
+    powerTags,       // [{ text, expanded }, ...] (2 items)
     weaknessTag,     // { text, expanded }
     quest            // { title, description, expanded? }
   };
@@ -533,7 +533,7 @@ function buildThemeCard(theme) {
     <div class="theme-section">
       <div class="theme-section-label">Quest</div>
       <div class="tag-quest">
-        <div class="tag-quest-title">„${escapeHtml(theme.quest.title)}"${expandedMark(theme.quest)}</div>
+        <div class="tag-quest-title">„${escapeHtml(theme.quest.title)}“${expandedMark(theme.quest)}</div>
         <div class="tag-quest-description">${escapeHtml(theme.quest.description)}</div>
       </div>
     </div>
@@ -608,7 +608,7 @@ function pdfSectionLabel(doc, label, x, y) {
 
 /* PDF-Marker: kleiner gold-farbener Stern hinter dem expanded-Text */
 function pdfTagText(entry) {
-  return entry && entry.expanded ? `${entry.text} ✦` : entry.text;
+  return entry && entry.expanded ? `${entry.text} ✶` : entry.text;
 }
 
 function pdfThemeBlock(doc, theme, x, y, cardW, cardH) {
@@ -661,7 +661,7 @@ function pdfThemeBlock(doc, theme, x, y, cardW, cardH) {
   doc.setFont('times', 'italic');
   doc.setFontSize(10);
   doc.setTextColor(...PDF_COLORS.ink);
-  const questTitleText = theme.quest.expanded ? `„${theme.quest.title}" ✦` : `„${theme.quest.title}"`;
+  const questTitleText = theme.quest.expanded ? `„${theme.quest.title}“ ✶` : `„${theme.quest.title}“`;
   const qLines = doc.splitTextToSize(questTitleText, cardW - 8);
   doc.text(qLines, x + 4, cy);
   cy += qLines.length * 4.5 + 1;
@@ -678,7 +678,7 @@ function pdfFooter(doc) {
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(7);
   doc.setTextColor(...PDF_COLORS.inkSoft);
-  doc.text('Mistheld · LitM Heldengenerator · ✦ markiert erweiterte Inhalte', pageW - marginX, pageH - 4, { align: 'right' });
+  doc.text('Mistheld · LitM Heldengenerator · ✶ markiert erweiterte Inhalte', pageW - marginX, pageH - 4, { align: 'right' });
 }
 
 async function generatePDF() {
