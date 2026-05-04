@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
 <meta name="theme-color" content="#f4ead5" />
-<title>Mistheld &ndash; LitM Heldengenerator</title>
+<title>Mistheld</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -148,7 +148,6 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 .card.gone-right { transform: translate3d( 130%, 30px, 0) rotate( 22deg) !important; opacity: 0; transition: transform 0.9s cubic-bezier(0.4,0,0.5,1), opacity 0.65s ease-out; }
 .card.abandoned { pointer-events: none; }
 
-/* Fix #25: card-hint ist jetzt eine Klasse die per classList entfernt wird, nicht per style */
 @keyframes hint-swipe {
   0%   { transform: translate3d(0, 0, 0) rotate(0deg); }
   18%  { transform: translate3d(-28px, 0, 0) rotate(-4deg); }
@@ -163,7 +162,7 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 .card-glyph::before, .card-glyph::after { content: ''; display: inline-block; width: 24px; height: 1px; background: var(--gold); vertical-align: middle; margin: 0 12px; opacity: 0.6; }
 .card-title { font-family: var(--serif); font-size: 1.85rem; font-weight: 600; font-style: italic; line-height: 1.2; margin-bottom: 0; color: var(--ink); max-width: 280px; }
 .card-divider { width: 36px; height: 1px; background: var(--gold); margin: 10px auto; opacity: 0.65; flex-shrink: 0; }
-.card-text  { font-family: var(--serif); font-size: 1.18rem; line-height: 1.5; color: var(--ink); max-width: 260px; }
+.card-text { font-family: var(--serif); font-size: 1.18rem; line-height: 1.5; color: var(--ink); max-width: 260px; }
 .card-decision-overlay { position: absolute; top: 16px; font-family: var(--serif); font-size: 2rem; font-style: italic; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 8px 16px; border: 3px solid; border-radius: 4px; opacity: 0; pointer-events: none; transition: opacity 0.05s linear; }
 .card-decision-overlay.yes { right: 18px; color: var(--green); border-color: var(--green); transform: rotate(-12deg); }
 .card-decision-overlay.no  { left:  18px; color: var(--accent); border-color: var(--accent); transform: rotate(12deg); }
@@ -181,14 +180,13 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 .swipe-btn svg { width: 28px; height: 28px; }
 .swipe-btn-undo svg { width: 20px; height: 20px; }
 
-/* Phase-Intro-Overlay — Fix #26: größere Schriften, besserer Kontrast */
+/* Phase-Intro-Overlay */
 .phase-intro-overlay { position: absolute; inset: 0; background: rgba(244, 234, 213, 0.97); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); display: none; flex-direction: column; align-items: center; justify-content: center; z-index: 40; cursor: pointer; padding: 24px 28px; text-align: center; }
 .phase-intro-overlay.active { display: flex; animation: fadeIn 0.4s ease; }
 .phase-intro-inner { max-width: 300px; }
 .phase-intro-eyebrow { font-family: var(--sans); font-size: 0.7rem; letter-spacing: 0.18em; color: var(--accent); font-weight: 600; text-transform: uppercase; margin-bottom: 10px; }
 .phase-intro-title { font-family: var(--serif); font-size: 2.2rem; font-weight: 600; font-style: italic; color: var(--ink); margin-bottom: 6px; line-height: 1.15; }
 .phase-intro-line { width: 40px; height: 1px; background: var(--gold); margin: 0 auto 14px; opacity: 0.7; }
-/* #26: narrative + questions jetzt in var(--ink) statt var(--ink-soft) für besseren Kontrast */
 .phase-intro-narrative { font-family: var(--serif); font-style: italic; font-size: 1.1rem; color: var(--ink); line-height: 1.55; margin-bottom: 16px; }
 .phase-intro-questions { list-style: none; text-align: left; margin-bottom: 22px; }
 .phase-intro-questions li { font-family: var(--serif); font-size: 1rem; color: var(--ink); padding: 4px 0; display: flex; gap: 8px; align-items: flex-start; }
@@ -201,18 +199,13 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 .theme-carousel { position: relative; flex: 1; min-height: 0; display: flex; flex-direction: column; }
 .theme-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; gap: 10px; padding: 4px; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; flex: 1; min-height: 0; }
 .theme-track::-webkit-scrollbar { display: none; }
-
-/* RESULT CARDS */
 .theme-card { flex: 0 0 calc(100% - 8px); scroll-snap-align: center; background: var(--paper); border: 1px solid var(--line); border-left-width: 4px; border-radius: 6px; padding: 14px 14px 16px; box-shadow: var(--shadow-soft); display: flex; flex-direction: column; overflow-y: auto; -webkit-overflow-scrolling: touch; gap: 4px; }
 .tc-origin    { border-left-color: var(--might-origin);    --tc-color: var(--might-origin); }
 .tc-adventure { border-left-color: var(--might-adventure); --tc-color: var(--might-adventure); }
 .tc-greatness { border-left-color: var(--might-greatness); --tc-color: var(--might-greatness); }
-
 .tc-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 6px; padding-bottom: 8px; border-bottom: 1px solid var(--line-soft); gap: 8px; }
 .tc-type { font-family: var(--serif); font-size: 1.4rem; font-weight: 600; color: var(--tc-color); line-height: 1.1; }
 .tc-might { font-family: var(--sans); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.16em; color: var(--tc-color); opacity: 0.75; margin-top: 3px; }
-
-/* #17: Editable rows + controls */
 .tc-editable-row { display: flex; flex-direction: column; margin-bottom: 2px; }
 .tc-edit-ctrl { display: flex; align-items: center; justify-content: flex-end; gap: 2px; padding: 2px 0; flex-shrink: 0; }
 .tc-nav-btn { background: none; border: none; color: var(--gold); cursor: pointer; font-size: 0.9rem; padding: 1px 5px; line-height: 1; }
@@ -221,7 +214,6 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 .tc-reroll-btn { background: rgba(169,134,70,0.10); border: 1px solid rgba(169,134,70,0.32); border-radius: 50%; width: 22px; height: 22px; flex-shrink: 0; color: var(--gold); cursor: pointer; font-size: 0.75rem; line-height: 1; display: flex; align-items: center; justify-content: center; transition: background 0.12s, color 0.12s; }
 .tc-reroll-btn[disabled] { opacity: 0.28; pointer-events: none; }
 .tc-reroll-btn:not([disabled]):active { background: var(--gold); color: var(--paper); }
-
 .tc-power-title { font-family: var(--serif); font-size: 1.45rem; font-style: italic; font-weight: 700; line-height: 1.2; color: var(--ink); background: rgba(169, 134, 70, 0.16); border-left: 2px solid var(--gold); padding: 7px 10px; }
 .tc-power-tag { font-family: var(--serif); font-size: 1.0rem; line-height: 1.3; color: var(--ink); background: rgba(169, 134, 70, 0.10); border-left: 2px solid rgba(169, 134, 70, 0.45); padding: 5px 10px; }
 .tc-weakness { font-family: var(--serif); font-style: italic; font-size: 0.95rem; line-height: 1.3; color: #7a3010; background: rgba(170, 80, 20, 0.09); border-left: 2px solid rgba(170, 80, 20, 0.38); padding: 5px 10px; }
@@ -230,13 +222,10 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 .tc-quest-label::before, .tc-quest-label::after { content: ''; flex: 1; height: 1px; background: var(--line-soft); }
 .tc-quest-title { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 1.0rem; color: var(--ink); line-height: 1.3; margin-bottom: 4px; }
 .tc-quest-desc { font-family: var(--serif); font-style: italic; font-size: 0.88rem; color: var(--ink-soft); line-height: 1.5; }
-
 .expanded-marker { display: inline-block; margin-left: 5px; font-size: 0.68em; color: var(--gold); vertical-align: middle; opacity: 0.8; font-style: normal; font-weight: normal; line-height: 1; }
-
 .theme-pagination { display: flex; justify-content: center; gap: 7px; margin: 10px 0 12px; flex-shrink: 0; }
 .theme-page-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--line); cursor: pointer; transition: all 0.2s; }
 .theme-page-dot.active { background: var(--accent); transform: scale(1.4); }
-
 .result-actions { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; }
 .result-actions .btn { padding: 9px 16px; min-height: 36px; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em; border-radius: 2px; }
 .result-actions .btn-primary { background: var(--paper); color: var(--ink); border: 1px solid var(--gold); }
@@ -248,10 +237,9 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 .result-actions .btn-ghost:hover { opacity: 1; color: var(--accent); }
 
 /* SETTINGS
-   BUG: Kein display:flex hier! ID-Selektor (0,1,0,0) > Klassen-Selektor (0,0,1,0)
-   => .screen{display:none} würde überschrieben => Settings permanent sichtbar */
+   BUG-SCHUTZ: Kein display:flex hier!
+   ID-Selektor (0,1,0,0) wuerde .screen{display:none} (0,0,1,0) ueberschreiben. */
 #screen-settings { padding: 12px 18px 14px; overflow: hidden; }
-
 .settings-header { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; flex-shrink: 0; padding-top: max(0px, env(safe-area-inset-top, 0px)); }
 .settings-back-btn { width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line); background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--ink-soft); flex-shrink: 0; transition: all 0.15s ease; }
 .settings-back-btn:active { transform: scale(0.9); }
@@ -300,7 +288,7 @@ input[type=checkbox]:disabled + .toggle-visual { opacity: 0.38; cursor: not-allo
 
 <audio id="bg-audio" loop preload="auto" src="./Fog%20Shrine%20Dusk.mp3"></audio>
 
-<button class="mute-btn" id="btn-mute" aria-label="Musik stumm schalten" type="button">
+<button class="mute-btn" id="btn-mute" type="button">
   <svg class="icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
     <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
@@ -313,7 +301,7 @@ input[type=checkbox]:disabled + .toggle-visual { opacity: 0.38; cursor: not-allo
   </svg>
 </button>
 
-<button class="settings-btn" id="btn-settings" aria-label="Einstellungen" type="button">
+<button class="settings-btn" id="btn-settings" type="button">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <circle cx="12" cy="12" r="3"/>
     <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
@@ -331,19 +319,14 @@ input[type=checkbox]:disabled + .toggle-visual { opacity: 0.38; cursor: not-allo
     <div class="mist-wisp mist-4"></div>
     <div class="mist-wisp mist-5"></div>
   </div>
-  <div class="welcome-mark">Legend in the Mist</div>
-  <h1 class="welcome-title">Heldengenerator</h1>
-  <p class="welcome-sub">Mit ein paar Swipes erschaffst du deinen n&auml;chsten Helden.</p>
+  <div class="welcome-mark"></div>
+  <h1 class="welcome-title"></h1>
+  <p class="welcome-sub"></p>
   <div class="welcome-instructions">
-    <h3>So funktioniert's</h3>
-    <ul>
-      <li>Du erh&auml;ltst eine Auswahl von Karten mit verschiedenen Inspirationen f&uuml;r deinen neuen Helden.</li>
-      <li>Wische nach rechts, wenn die Karte zu deinem n&auml;chsten Helden passen k&ouml;nnte.</li>
-      <li>Wische nach links, wenn sie eher nicht passt.</li>
-      <li>Am Ende erh&auml;ltst du verschiedene Vorschl&auml;ge f&uuml;r deinen Helden.</li>
-    </ul>
+    <h3></h3>
+    <ul></ul>
   </div>
-  <button class="btn btn-primary" id="btn-start">Los geht's</button>
+  <button class="btn btn-primary" id="btn-start"></button>
 </section>
 
 <!-- SWIPE -->
@@ -355,13 +338,13 @@ input[type=checkbox]:disabled + .toggle-visual { opacity: 0.38; cursor: not-allo
       <div class="phase-intro-line"></div>
       <p class="phase-intro-narrative" id="pi-narrative"></p>
       <ul class="phase-intro-questions" id="pi-questions"></ul>
-      <div class="phase-intro-start">Tippe, um zu beginnen</div>
+      <div class="phase-intro-start"></div>
     </div>
   </div>
   <div class="swipe-header">
     <div class="phase-label">
-      <span class="phase-eyebrow" id="phase-eyebrow">Phase 1 von 4</span>
-      <span class="phase-title" id="phase-title">Stimmung &amp; Welt</span>
+      <span class="phase-eyebrow" id="phase-eyebrow"></span>
+      <span class="phase-title" id="phase-title"></span>
     </div>
     <div class="phase-progress" id="phase-progress">
       <div class="phase-dot active"></div>
@@ -370,12 +353,12 @@ input[type=checkbox]:disabled + .toggle-visual { opacity: 0.38; cursor: not-allo
       <div class="phase-dot"></div>
     </div>
   </div>
-  <div class="card-counter" id="card-counter">Karte 1 von 9</div>
+  <div class="card-counter" id="card-counter"></div>
   <div class="card-stage" id="card-stage"></div>
   <div class="swipe-controls">
-    <button class="swipe-btn swipe-btn-no" id="btn-no" aria-label="Passt nicht"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
-    <button class="swipe-btn-undo" id="btn-undo" aria-label="Letzte Karte zur&uuml;ck" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 00-15-6.7L3 13"/></svg></button>
-    <button class="swipe-btn swipe-btn-yes" id="btn-yes" aria-label="Passt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button>
+    <button class="swipe-btn swipe-btn-no" id="btn-no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    <button class="swipe-btn-undo" id="btn-undo" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 00-15-6.7L3 13"/></svg></button>
+    <button class="swipe-btn swipe-btn-yes" id="btn-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button>
   </div>
 </section>
 
@@ -386,50 +369,68 @@ input[type=checkbox]:disabled + .toggle-visual { opacity: 0.38; cursor: not-allo
     <div class="theme-pagination" id="theme-pagination"></div>
   </div>
   <div class="result-actions">
-    <button class="btn btn-primary btn-block" id="btn-accept">Held &uuml;bernehmen &amp; PDF</button>
-    <button class="btn btn-secondary btn-block" id="btn-alternative">Alle Themes neu w&uuml;rfeln</button>
-    <button class="btn btn-ghost btn-block" id="btn-restart">Nochmal swipen</button>
+    <button class="btn btn-primary btn-block" id="btn-accept"></button>
+    <button class="btn btn-secondary btn-block" id="btn-alternative"></button>
+    <button class="btn btn-ghost btn-block" id="btn-restart"></button>
   </div>
 </section>
 
 <!-- SETTINGS -->
 <section id="screen-settings" class="screen">
   <div class="settings-header">
-    <button class="settings-back-btn" id="btn-settings-back" aria-label="Zur&uuml;ck">
+    <button class="settings-back-btn" id="btn-settings-back">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
     </button>
-    <h2>Einstellungen</h2>
+    <h2></h2>
   </div>
   <div class="settings-group">
-    <div class="settings-group-title">Might-Stufen</div>
-    <div class="settings-group-sub">Welche Might-Stufe sollen f&uuml;r deinen Helden entstehen k&ouml;nnen?</div>
+    <div class="settings-group-title" id="settings-might-title"></div>
+    <div class="settings-group-sub" id="settings-might-sub"></div>
     <div class="settings-row">
-      <div class="settings-row-info"><span class="settings-row-label">Ursprung</span><span class="settings-row-hint">Allgemein &middot; allt&auml;glich</span></div>
+      <div class="settings-row-info">
+        <span class="settings-row-label" data-might-label="Origin"></span>
+        <span class="settings-row-hint"  data-might-hint="Origin"></span>
+      </div>
       <div class="toggle-wrap"><input type="checkbox" id="toggle-origin" checked><label class="toggle-visual" for="toggle-origin"></label></div>
     </div>
     <div class="settings-row">
-      <div class="settings-row-info"><span class="settings-row-label">Abenteuer</span><span class="settings-row-hint">Besonders &middot; heldenhaft</span></div>
+      <div class="settings-row-info">
+        <span class="settings-row-label" data-might-label="Adventure"></span>
+        <span class="settings-row-hint"  data-might-hint="Adventure"></span>
+      </div>
       <div class="toggle-wrap"><input type="checkbox" id="toggle-adventure"><label class="toggle-visual" for="toggle-adventure"></label></div>
     </div>
     <div class="settings-row">
-      <div class="settings-row-info"><span class="settings-row-label">Allmacht</span><span class="settings-row-hint">Legend&auml;r &middot; &uuml;bernat&uuml;rlich</span></div>
+      <div class="settings-row-info">
+        <span class="settings-row-label" data-might-label="Greatness"></span>
+        <span class="settings-row-hint"  data-might-hint="Greatness"></span>
+      </div>
       <div class="toggle-wrap"><input type="checkbox" id="toggle-greatness"><label class="toggle-visual" for="toggle-greatness"></label></div>
     </div>
   </div>
   <div class="settings-group">
-    <div class="settings-group-title">Theme-Typen mit ver&auml;nderlichen Might-Stufen</div>
-    <div class="settings-group-sub">Welche Might-Stufe sollen diese Theme-Typen erhalten k&ouml;nnen?</div>
+    <div class="settings-group-title" id="settings-vm-title"></div>
+    <div class="settings-group-sub" id="settings-vm-sub"></div>
     <div class="settings-vm-item">
-      <div class="settings-vm-top"><span class="settings-row-label">Begleiter</span><div class="toggle-wrap"><input type="checkbox" id="toggle-companion" checked><label class="toggle-visual" for="toggle-companion"></label></div></div>
-      <select id="select-companion-level" class="settings-select"><option value="Origin">Ursprung</option><option value="Adventure">Abenteuer</option><option value="Greatness">Allmacht</option></select>
+      <div class="settings-vm-top">
+        <span class="settings-row-label" data-vm-label="Companion"></span>
+        <div class="toggle-wrap"><input type="checkbox" id="toggle-companion" checked><label class="toggle-visual" for="toggle-companion"></label></div>
+      </div>
+      <select id="select-companion-level" class="settings-select"></select>
     </div>
     <div class="settings-vm-item">
-      <div class="settings-vm-top"><span class="settings-row-label">Magie</span><div class="toggle-wrap"><input type="checkbox" id="toggle-magic" checked><label class="toggle-visual" for="toggle-magic"></label></div></div>
-      <select id="select-magic-level" class="settings-select"><option value="Origin">Ursprung</option><option value="Adventure">Abenteuer</option><option value="Greatness">Allmacht</option></select>
+      <div class="settings-vm-top">
+        <span class="settings-row-label" data-vm-label="Magic"></span>
+        <div class="toggle-wrap"><input type="checkbox" id="toggle-magic" checked><label class="toggle-visual" for="toggle-magic"></label></div>
+      </div>
+      <select id="select-magic-level" class="settings-select"></select>
     </div>
     <div class="settings-vm-item">
-      <div class="settings-vm-top"><span class="settings-row-label">Besitz</span><div class="toggle-wrap"><input type="checkbox" id="toggle-possessions" checked><label class="toggle-visual" for="toggle-possessions"></label></div></div>
-      <select id="select-possessions-level" class="settings-select"><option value="Origin">Ursprung</option><option value="Adventure">Abenteuer</option><option value="Greatness">Allmacht</option></select>
+      <div class="settings-vm-top">
+        <span class="settings-row-label" data-vm-label="Possessions"></span>
+        <div class="toggle-wrap"><input type="checkbox" id="toggle-possessions" checked><label class="toggle-visual" for="toggle-possessions"></label></div>
+      </div>
+      <select id="select-possessions-level" class="settings-select"></select>
     </div>
   </div>
 </section>
@@ -438,9 +439,10 @@ input[type=checkbox]:disabled + .toggle-visual { opacity: 0.38; cursor: not-allo
 
 <div class="loading-overlay" id="loading">
   <div class="loading-spinner"></div>
-  <div class="loading-text" id="loading-text">Helden weben...</div>
+  <div class="loading-text" id="loading-text"></div>
 </div>
 
+<script src="./strings.js"></script>
 <script src="./data.js"></script>
 <script src="./app.js"></script>
 </body>

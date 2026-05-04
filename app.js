@@ -10,7 +10,7 @@ const CFG = Object.freeze({
   LOADING_DELAY_MS: 700,
   ALT_LOADING_DELAY_MS: 450,
   MAX_PROPOSALS: 4,
-  MAX_ELEMENT_ALTS: 3,   // max Alternativen pro Element auf der Ergebnisseite
+  MAX_ELEMENT_ALTS: 3,
   HAPTIC_MS: 6,
   AUDIO_VOLUME: 0.4,
   MUTED_KEY: 'mistheld:muted',
@@ -62,7 +62,7 @@ const state = {
   proposalIndex: 0,
   themeCarouselIndex: 0,
   busy: false,
-  edits: {}   // #17: per-Element Versionshistorie auf der Ergebnisseite
+  edits: {}
 };
 
 /* =====================================================
@@ -83,7 +83,6 @@ function capitalizeFirst(s) {
   return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
-// Refactor: kombinierter Helper spart wiederholtes escapeHtml(capitalizeFirst(...))
 function displayTag(s) { return escapeHtml(capitalizeFirst(s)); }
 
 function shuffleArray(a) {
@@ -122,39 +121,87 @@ function pickWithExpansionPreference(arr, n) {
 }
 
 /* =====================================================
-   ANZEIGEÜBERSETZUNGEN
+   ANZEIGEÜBERSETZUNGEN — jetzt aus strings.js
 ===================================================== */
 
-const MIGHT_DE = {
-  'Origin':    'Ursprung',
-  'Adventure': 'Abenteuer',
-  'Greatness': 'Allmacht'
-};
-function displayMight(level) { return MIGHT_DE[level] || level; }
+function displayMight(level)       { return STRINGS.might[level]      || level; }
+function displayThemebook(name)    { return STRINGS.themebooks[name]  || name;  }
 
-const THEMEBOOK_DE = {
-  'Circumstance':       'Umst\u00e4nde',
-  'Devotion':           'Hingabe',
-  'Past':               'Vergangenheit',
-  'People':             'Volk',
-  'Personality':        'Pers\u00f6nlichkeit',
-  'Skill or Trade':     'K\u00f6nnen & Beruf',
-  'Trait':              'Begabung',
-  'Duty':               'Pflicht',
-  'Influence':          'Einfluss',
-  'Knowledge':          'Wissen',
-  'Prodigious Ability': 'Au\u00dfergew\u00f6hnliche F\u00e4higkeit',
-  'Relic':              'Relikt',
-  'Uncanny Being':      'Seltsames Wesen',
-  'Destiny':            'Bestimmung',
-  'Dominion':           'Herrschaft',
-  'Mastery':            'Meisterschaft',
-  'Monstrosity':        'Ungeheuer',
-  'Companion':          'Begleiter',
-  'Magic':              'Magie',
-  'Possessions':        'Besitz'
-};
-function displayThemebook(name) { return THEMEBOOK_DE[name] || name; }
+/* =====================================================
+   STRINGS INITIALISIERUNG
+   Füllt alle statischen HTML-Texte aus strings.js.
+===================================================== */
+
+function initStrings() {
+  // Seitentitel
+  document.title = STRINGS.pageTitle;
+
+  // Startseite
+  document.querySelector('.welcome-mark').textContent      = STRINGS.welcome.mark;
+  document.querySelector('.welcome-title').textContent     = STRINGS.welcome.title;
+  document.querySelector('.welcome-sub').textContent       = STRINGS.welcome.sub;
+  document.querySelector('.welcome-instructions h3').textContent = STRINGS.welcome.howTitle;
+  const ul = document.querySelector('.welcome-instructions ul');
+  ul.innerHTML = '';
+  STRINGS.welcome.howItems.forEach(text => {
+    const li = document.createElement('li');
+    li.textContent = text;
+    ul.appendChild(li);
+  });
+  $('btn-start').textContent = STRINGS.welcome.btnStart;
+
+  // Swipe-Screen
+  document.querySelector('.phase-intro-start').textContent = STRINGS.swipe.phaseIntroTap;
+  $('btn-no').setAttribute('aria-label',   STRINGS.swipe.ariaNo);
+  $('btn-undo').setAttribute('aria-label', STRINGS.swipe.ariaUndo);
+  $('btn-yes').setAttribute('aria-label',  STRINGS.swipe.ariaYes);
+
+  // Ergebnisseite
+  $('btn-accept').textContent      = STRINGS.result.btnAccept;
+  $('btn-alternative').textContent = STRINGS.result.btnAlternative;
+  $('btn-restart').textContent     = STRINGS.result.btnRestart;
+
+  // Settings-Screen
+  document.querySelector('#screen-settings h2').textContent                  = STRINGS.settings.heading;
+  $('btn-settings-back').setAttribute('aria-label', STRINGS.settings.ariaBack);
+  $('btn-settings').setAttribute('aria-label',      STRINGS.settings.ariaOpen);
+  $('settings-might-title').textContent = STRINGS.settings.mightGroup.title;
+  $('settings-might-sub').textContent   = STRINGS.settings.mightGroup.sub;
+  $('settings-vm-title').textContent    = STRINGS.settings.vmGroup.title;
+  $('settings-vm-sub').textContent      = STRINGS.settings.vmGroup.sub;
+
+  // Might-Zeilen: Labels + Hints
+  Object.entries(STRINGS.settings.mightRows).forEach(([key, row]) => {
+    const labelEl = document.querySelector(`[data-might-label="${key}"]`);
+    const hintEl  = document.querySelector(`[data-might-hint="${key}"]`);
+    if (labelEl) labelEl.textContent = row.label;
+    if (hintEl)  hintEl.textContent  = row.hint;
+  });
+
+  // VM-Labels
+  Object.entries(STRINGS.settings.vmLabels).forEach(([key, label]) => {
+    const el = document.querySelector(`[data-vm-label="${key}"]`);
+    if (el) el.textContent = label;
+  });
+
+  // Select-Optionen aus STRINGS.might generieren (alle 3 Selects)
+  ['select-companion-level', 'select-magic-level', 'select-possessions-level'].forEach(id => {
+    const sel = $(id);
+    if (!sel) return;
+    const current = sel.value || 'Origin';
+    sel.innerHTML = '';
+    Object.entries(STRINGS.might).forEach(([val, label]) => {
+      const opt = document.createElement('option');
+      opt.value = val;
+      opt.textContent = label;
+      sel.appendChild(opt);
+    });
+    sel.value = current;
+  });
+
+  // Lade-Text (Default)
+  $('loading-text').textContent = STRINGS.loading.default;
+}
 
 /* =====================================================
    SCREEN MANAGEMENT
@@ -168,7 +215,7 @@ function show(screenId) {
 }
 
 function showLoading(text) {
-  $('loading-text').textContent = text || 'Einen Moment...';
+  $('loading-text').textContent = text || STRINGS.loading.default;
   $('loading').classList.add('active');
 }
 function hideLoading() { $('loading').classList.remove('active'); }
@@ -189,7 +236,7 @@ function setMutedPersisted(m) {
 
 function updateMuteUI() {
   muteBtn.classList.toggle('muted', audio.muted);
-  muteBtn.setAttribute('aria-label', audio.muted ? 'Musik anschalten' : 'Musik stumm schalten');
+  muteBtn.setAttribute('aria-label', audio.muted ? STRINGS.audio.ariaOff : STRINGS.audio.ariaOn);
 }
 
 function tryPlay() {
@@ -202,7 +249,6 @@ function initAudio() {
   audio.muted = isMuted();
   updateMuteUI();
   tryPlay();
-  // Refactor: { once: true } verhindert dass Kickstart-Listener sich ewig akkumulieren
   const kickstart = () => tryPlay();
   document.addEventListener('pointerdown', kickstart, { once: true });
   document.addEventListener('touchstart',  kickstart, { once: true, passive: true });
@@ -220,8 +266,6 @@ muteBtn.addEventListener('click', (e) => {
   updateMuteUI();
   if (!audio.muted && audio.paused) tryPlay();
 });
-
-initAudio();
 
 /* =====================================================
    SCORING
@@ -243,53 +287,10 @@ function applyScore(card, dir, sign) {
    PHASE INTROS
 ===================================================== */
 
-const PHASE_INTROS = [
-  {
-    eyebrow: 'Phase 1 von 4',
-    title: 'Stimmung & Welt',
-    narrative: 'Die Welt, die deinen Helden umgibt, spricht noch bevor er sich bewegt. Lass dich von Bildern und Atmosph\u00e4ren leiten.',
-    questions: [
-      'Welche Atmosph\u00e4re passt zu deinem Helden?',
-      'In welcher Art von Welt bewegt er sich?',
-      'Welche Orte und Stimmungen f\u00fchlen sich vertraut an?'
-    ]
-  },
-  {
-    eyebrow: 'Phase 2 von 4',
-    title: 'Herkunft & Hintergrund',
-    narrative: 'Die Welt hat Form gewonnen. Nun tauchen wir tiefer: Woher kommt dein Held? Was hat ihn gepr\u00e4gt, bevor die Geschichte ihn fand?',
-    questions: [
-      'Woher stammt dein Held wirklich?',
-      'Welches Erlebnis hat ihn geformt?',
-      'Was tr\u00e4gt er aus seiner Vergangenheit noch mit sich?'
-    ]
-  },
-  {
-    eyebrow: 'Phase 3 von 4',
-    title: 'K\u00f6nnen & Wesen',
-    narrative: 'Herkunft und Geschichte haben Gestalt angenommen. Jetzt erkunden wir, was deinen Helden in dieser Welt einzigartig macht.',
-    questions: [
-      'Welche F\u00e4higkeit oder Gabe besitzt er?',
-      'Was hebt ihn von anderen ab?',
-      'Was f\u00fcr ein Wesen verbirgt sich in ihm?'
-    ]
-  },
-  {
-    eyebrow: 'Phase 4 von 4 \u00b7 Letzte Phase',
-    title: 'Antrieb & Verwundbarkeit',
-    narrative: 'In dieser letzten Phase geht es um das, was deinen Helden antreibt \u2014 und jene Wunden und Sehns\u00fcchte, die ihn menschlich machen.',
-    questions: [
-      'Was ist sein tiefstes Ziel?',
-      'Wovor hat er Angst oder Scheu?',
-      'Wo liegt seine verwundbare Seite?'
-    ]
-  }
-];
-
 function showPhaseIntro(phaseIndex, callback) {
-  const intro = PHASE_INTROS[phaseIndex];
-  $('pi-eyebrow').textContent = intro.eyebrow;
-  $('pi-title').textContent = intro.title;
+  const intro = STRINGS.phases[phaseIndex];
+  $('pi-eyebrow').textContent   = intro.eyebrow;
+  $('pi-title').textContent     = intro.title;
   $('pi-narrative').textContent = intro.narrative;
   const ql = $('pi-questions');
   ql.innerHTML = '';
@@ -337,12 +338,11 @@ function loadPhase() {
 function updatePhaseUI() {
   const phase = PHASES[state.phaseIndex];
   $('phase-eyebrow').textContent = phase.eyebrow;
-  $('phase-title').textContent = phase.title;
-  $('card-counter').textContent =
-    `Karte ${state.cardIndex + 1} von ${state.shuffledCards.length}`;
+  $('phase-title').textContent   = phase.title;
+  $('card-counter').textContent  = STRINGS.swipe.cardCounter(state.cardIndex + 1, state.shuffledCards.length);
   $$('#phase-progress .phase-dot').forEach((dot, i) => {
     dot.classList.remove('active', 'done');
-    if (i < state.phaseIndex) dot.classList.add('done');
+    if (i < state.phaseIndex)      dot.classList.add('done');
     else if (i === state.phaseIndex) dot.classList.add('active');
   });
   $('btn-undo').disabled = !canUndo();
@@ -373,8 +373,8 @@ function renderCard() {
     cardEl.className = 'card' + (i === 0 ? ' front' : ` behind behind-${i}`);
     cardEl.style.zIndex = String(10 - i);
     cardEl.innerHTML = `
-      <div class="card-decision-overlay yes">Passt</div>
-      <div class="card-decision-overlay no">Nicht</div>
+      <div class="card-decision-overlay yes">${escapeHtml(STRINGS.swipe.decisionYes)}</div>
+      <div class="card-decision-overlay no">${escapeHtml(STRINGS.swipe.decisionNo)}</div>
       <div class="card-glyph">~</div>
       <div class="card-title">${escapeHtml(card.title)}</div>
       <div class="card-divider"></div>
@@ -400,7 +400,7 @@ function adaptiveResort() {
       phasePref[tb] = (phasePref[tb] || 0) + w;
     }));
   if (Object.keys(phasePref).length === 0) return;
-  const seen = state.shuffledCards.slice(0, state.cardIndex);
+  const seen      = state.shuffledCards.slice(0, state.cardIndex);
   const remaining = state.shuffledCards.slice(state.cardIndex);
   const score = (card) => Object.entries(card.affinities || {})
     .reduce((sum, [tb, w]) => sum + (phasePref[tb] || 0) * w, 0);
@@ -435,9 +435,6 @@ function attachSwipe(cardEl) {
   const onDown = (e) => {
     if (cardEl.classList.contains('abandoned')) return;
     if (activePointerId !== null) return;
-    // Fix #25: classList.remove statt style.animation='' — nur so wird die
-    // CSS-Klassen-Animation wirklich abgebrochen (style.animation='' entfernt
-    // nur den Inline-Override, die Klassen-Animation läuft sonst weiter).
     cardEl.classList.remove('card-hint');
     activePointerId = e.pointerId;
     try { cardEl.setPointerCapture(e.pointerId); } catch (_) {}
@@ -451,7 +448,7 @@ function attachSwipe(cardEl) {
     if (!dragging || e.pointerId !== activePointerId) return;
     if (e.cancelable) e.preventDefault();
     const now = performance.now();
-    const dt = now - lastTime;
+    const dt  = now - lastTime;
     if (dt > 0) {
       const instantV = (e.clientX - lastX) / dt;
       velocityX = velocityX * 0.5 + instantV * 0.5;
@@ -471,8 +468,8 @@ function attachSwipe(cardEl) {
     try { cardEl.releasePointerCapture(e.pointerId); } catch (_) {}
     const isYes = dx >  CFG.SWIPE_DISTANCE || (velocityX >  CFG.SWIPE_VELOCITY && dx >  4);
     const isNo  = dx < -CFG.SWIPE_DISTANCE || (velocityX < -CFG.SWIPE_VELOCITY && dx < -4);
-    if (isYes) flyOut(cardEl, 'yes');
-    else if (isNo) flyOut(cardEl, 'no');
+    if (isYes)      flyOut(cardEl, 'yes');
+    else if (isNo)  flyOut(cardEl, 'no');
     else {
       cardEl.style.transform = 'translate3d(0, 0, 0) rotate(0deg)';
       yesEl.style.opacity = '0';
@@ -481,15 +478,12 @@ function attachSwipe(cardEl) {
   };
   cardEl.addEventListener('pointerdown', onDown);
   cardEl.addEventListener('pointermove', onMove, { passive: false });
-  cardEl.addEventListener('pointerup', onUp);
+  cardEl.addEventListener('pointerup',   onUp);
   cardEl.addEventListener('pointercancel', onUp);
 }
 
 function flyOut(cardEl, direction) {
   if (cardEl.classList.contains('abandoned')) return;
-  // Fix #25: Hint-Animation abbrechen bevor die Fly-out-Klasse gesetzt wird.
-  // CSS-Animationen haben höhere Cascade-Priorität als !important-Transitions —
-  // die Karte würde sonst nicht korrekt wegfliegen.
   cardEl.classList.remove('card-hint');
   cardEl.classList.add('abandoned', direction === 'yes' ? 'gone-right' : 'gone-left');
   try { if (navigator.vibrate) navigator.vibrate(CFG.HAPTIC_MS); } catch (_) {}
@@ -527,7 +521,7 @@ function undoLast() {
 
 function pickBestFrom(list, exclude) {
   const cands = list.filter(tb => !(exclude || []).includes(tb));
-  const pool = cands.length ? cands : list;
+  const pool  = cands.length ? cands : list;
   return pool.reduce((best, tb) =>
     (state.affinityScores[tb] || 0) > (state.affinityScores[best] || -Infinity) ? tb : best,
     pool[0]
@@ -546,26 +540,22 @@ function pickQuestWithExpansionPreference(pool) {
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
-// Refactor: settings wird jetzt einmal in generateProposal geladen und
-// als Parameter weitergereicht statt 4x in generateTheme aufgerufen zu werden
 function generateTheme(themebookName, settings) {
-  const tb = THEMEBOOKS[themebookName];
+  const tb          = THEMEBOOKS[themebookName];
   const titleTag    = pickWithExpansionPreference(tb.titleTagSuggestions, 1)[0];
   const powerTags   = pickWithExpansionPreference(tb.powerTagPool, 2);
   const weaknessTag = pickWithExpansionPreference(tb.weaknessTagPool, 1)[0];
   const quest       = pickQuestWithExpansionPreference(tb.questPool);
-
-  let resolvedType = tb.type;
+  let resolvedType  = tb.type;
   if (tb.type === 'Variable Might') {
     resolvedType = (settings.variableMight[themebookName] || {}).level || 'Origin';
   }
-
   return { type: resolvedType, themebook: themebookName, titleTag, powerTags, weaknessTag, quest };
 }
 
 function generateProposal(mode, baseProposal) {
   mode = mode || 'initial';
-  const s = loadSettings();   // Refactor: einmal laden, an generateTheme weiterreichen
+  const s = loadSettings();
   const enabledLevels = ['Origin','Adventure','Greatness'].filter(l => s.mightLevels[l]);
   if (!enabledLevels.length) enabledLevels.push('Origin');
   const enabledVM = ['Companion','Magic','Possessions'].filter(k => s.variableMight[k].enabled);
@@ -590,7 +580,7 @@ function generateProposal(mode, baseProposal) {
 function finishSwiping() {
   document.body.classList.remove('swipe-active');
   state.busy = true;
-  showLoading('Helden weben...');
+  showLoading(STRINGS.loading.generating);
   setTimeout(() => {
     state.proposals = [generateProposal('initial')];
     state.proposalIndex = 0;
@@ -608,27 +598,24 @@ function finishSwiping() {
 function generateAlternative() {
   if (state.busy) return;
   if (state.proposals.length >= CFG.MAX_PROPOSALS) return;
-  const idx = state.proposals.length;
+  const idx  = state.proposals.length;
   const mode = idx === 1 ? 'tags-only' : idx === 2 ? 'new-themebooks' : 'fresh';
   state.busy = true;
   $('btn-alternative').disabled = true;
-  showLoading('Anderen Helden weben...');
+  showLoading(STRINGS.loading.alternative);
   setTimeout(() => {
     state.proposals.push(generateProposal(mode, state.proposals[0]));
     state.proposalIndex = state.proposals.length - 1;
     state.themeCarouselIndex = 0;
-    state.edits = {};   // Element-Edits beim komplett neuen Vorschlag zurücksetzen
-    state.busy = false;
+    state.edits = {};
+    state.busy  = false;
     renderResult();
     hideLoading();
   }, CFG.ALT_LOADING_DELAY_MS);
 }
 
 /* =====================================================
-   ERGEBNISSEITE — ELEMENT-EDITS  (#17)
-   ———————————————————————————————
-   Modell: state.edits["t{i}-{k}"] = { alts: [...], index: 0 }
-   index 0 = Original, index 1..n = Alternativen
+   ERGEBNISSEITE — ELEMENT-EDITS
 ===================================================== */
 
 function editKey(ti, k) { return `t${ti}-${k}`; }
@@ -640,7 +627,6 @@ function getCurrentVal(ti, k, fallback) {
   return e.alts[e.index - 1];
 }
 
-// Gibt das Theme mit allen aktuell aktiven Edits zurück (für Display + PDF)
 function getDisplayTheme(ti) {
   const base = state.proposals[state.proposalIndex].themes[ti];
   const te   = getEdit(ti, 'theme');
@@ -649,8 +635,8 @@ function getDisplayTheme(ti) {
     type:        tb.type,
     themebook:   tb.themebook,
     titleTag:    getCurrentVal(ti, 'title',    tb.titleTag),
-    powerTags:  [getCurrentVal(ti, 'pow0',    tb.powerTags[0]),
-                 getCurrentVal(ti, 'pow1',    tb.powerTags[1])],
+    powerTags:  [getCurrentVal(ti, 'pow0',     tb.powerTags[0]),
+                 getCurrentVal(ti, 'pow1',     tb.powerTags[1])],
     weaknessTag: getCurrentVal(ti, 'weakness', tb.weaknessTag),
     quest:       getCurrentVal(ti, 'quest',    tb.quest)
   };
@@ -662,7 +648,7 @@ function addAlt(ti, k, val) {
   const e = state.edits[key];
   if (e.alts.length >= CFG.MAX_ELEMENT_ALTS) return;
   e.alts.push(val);
-  e.index = e.alts.length;  // neue Alternative sofort anzeigen
+  e.index = e.alts.length;
 }
 
 function clearThemeElementEdits(ti) {
@@ -686,11 +672,11 @@ function handleReroll(ti, k) {
   const tb = THEMEBOOKS[dt.themebook];
   const s  = loadSettings();
   let newVal;
-  if      (k === 'theme')              { newVal = generateTheme(dt.themebook, s); clearThemeElementEdits(ti); }
-  else if (k === 'title')              { newVal = pickWithExpansionPreference(tb.titleTagSuggestions, 1)[0]; }
+  if      (k === 'theme')                { newVal = generateTheme(dt.themebook, s); clearThemeElementEdits(ti); }
+  else if (k === 'title')                { newVal = pickWithExpansionPreference(tb.titleTagSuggestions, 1)[0]; }
   else if (k === 'pow0' || k === 'pow1') { newVal = pickWithExpansionPreference(tb.powerTagPool, 1)[0]; }
-  else if (k === 'weakness')           { newVal = pickWithExpansionPreference(tb.weaknessTagPool, 1)[0]; }
-  else if (k === 'quest')              { newVal = pickQuestWithExpansionPreference(tb.questPool); }
+  else if (k === 'weakness')             { newVal = pickWithExpansionPreference(tb.weaknessTagPool, 1)[0]; }
+  else if (k === 'quest')                { newVal = pickQuestWithExpansionPreference(tb.questPool); }
   if (newVal !== undefined) { addAlt(ti, k, newVal); rerenderThemeCard(ti); }
 }
 
@@ -703,7 +689,7 @@ function handleNavigate(ti, k, dir) {
 
 function rerenderThemeCard(ti) {
   const track = $('theme-track');
-  const old = track.children[ti];
+  const old   = track.children[ti];
   if (old) track.replaceChild(buildThemeCard(ti), old);
 }
 
@@ -713,29 +699,28 @@ function rerenderThemeCard(ti) {
 
 function expandedMark(entry) {
   return entry && entry.expanded
-    ? '<span class="expanded-marker" title="Erweiterung" aria-label="Erweiterung">\u2726</span>'
+    ? `<span class="expanded-marker" title="${STRINGS.expanded.title}" aria-label="${STRINGS.expanded.ariaLabel}">${STRINGS.expanded.symbol}</span>`
     : '';
 }
 
-// Baut das Edit-Control-HTML für ein Element (ti = Theme-Index, k = Element-Key)
 function buildEditCtrl(ti, k) {
   const e     = getEdit(ti, k);
   const total = 1 + (e ? e.alts.length : 0);
   const idx   = e ? e.index : 0;
   const maxed = e ? e.alts.length >= CFG.MAX_ELEMENT_ALTS : false;
   const nav   = total > 1 ? `
-    <button class="tc-nav-btn" data-dir="-1" ${idx === 0 ? 'disabled' : ''}>‹</button>
-    <span class="tc-nav-pos">${idx + 1} / ${total}</span>
-    <button class="tc-nav-btn" data-dir="1" ${idx >= total - 1 ? 'disabled' : ''}>›</button>` : '';
+    <button class="tc-nav-btn" data-dir="-1" ${idx === 0 ? 'disabled' : ''}>&lsaquo;</button>
+    <span class="tc-nav-pos">${idx + 1}&#160;/&#160;${total}</span>
+    <button class="tc-nav-btn" data-dir="1" ${idx >= total - 1 ? 'disabled' : ''}>&rsaquo;</button>` : '';
   return `<div class="tc-edit-ctrl" data-ti="${ti}" data-k="${k}">
     ${nav}
-    <button class="tc-reroll-btn" title="Neu würfeln"${maxed ? ' disabled' : ''}>↺</button>
+    <button class="tc-reroll-btn" title="${escapeHtml(STRINGS.result.rerollTitle)}"${maxed ? ' disabled' : ''}>&#8634;</button>
   </div>`;
 }
 
 function buildThemeCard(ti) {
   const dt = getDisplayTheme(ti);
-  const mc = dt.type === 'Origin' ? 'tc-origin'
+  const mc = dt.type === 'Origin'    ? 'tc-origin'
            : dt.type === 'Adventure' ? 'tc-adventure'
            : dt.type === 'Greatness' ? 'tc-greatness' : 'tc-origin';
   const card = document.createElement('div');
@@ -768,7 +753,7 @@ function buildThemeCard(ti) {
     </div>
     <div class="tc-editable-row">
       <div class="tc-quest-section">
-        <div class="tc-quest-label">Quest</div>
+        <div class="tc-quest-label">${escapeHtml(STRINGS.result.questLabel)}</div>
         <div class="tc-quest-title">&bdquo;${escapeHtml(dt.quest.title)}&ldquo;${expandedMark(dt.quest)}</div>
         <div class="tc-quest-desc">${escapeHtml(dt.quest.description)}</div>
       </div>
@@ -779,9 +764,9 @@ function buildThemeCard(ti) {
 }
 
 function renderResult() {
-  const track = $('theme-track');
+  const track      = $('theme-track');
   const pagination = $('theme-pagination');
-  track.innerHTML = '';
+  track.innerHTML      = '';
   pagination.innerHTML = '';
   const n = state.proposals[state.proposalIndex].themes.length;
   for (let i = 0; i < n; i++) {
@@ -791,14 +776,13 @@ function renderResult() {
     dot.addEventListener('click', () => scrollToTheme(i));
     pagination.appendChild(dot);
   }
-  // Event-Delegation für alle Reroll/Nav-Buttons innerhalb der Karten
-  track.onclick = handleThemeCardAction;
+  track.onclick  = handleThemeCardAction;
   track.onscroll = onTrackScroll;
-  const btnAlt = $('btn-alternative');
+  const btnAlt   = $('btn-alternative');
   const exhausted = state.proposals.length >= CFG.MAX_PROPOSALS;
-  btnAlt.disabled = exhausted || state.busy;
+  btnAlt.disabled    = exhausted || state.busy;
   btnAlt.style.opacity = exhausted ? '0.4' : '1';
-  btnAlt.textContent = exhausted ? 'Max. Versuche erreicht' : 'Alle Themes neu w\u00fcrfeln';
+  btnAlt.textContent   = exhausted ? STRINGS.result.btnAlternativeMaxed : STRINGS.result.btnAlternative;
   scrollToTheme(0, false);
 }
 
@@ -816,11 +800,7 @@ function onTrackScroll() {
 function scrollToTheme(i, smooth) {
   smooth = smooth !== false;
   const track = $('theme-track');
-  // Guard gegen infinite rAF-Loop wenn clientWidth nie > 0 wird
-  if (!track.clientWidth) {
-    requestAnimationFrame(() => scrollToTheme(i, smooth));
-    return;
-  }
+  if (!track.clientWidth) { requestAnimationFrame(() => scrollToTheme(i, smooth)); return; }
   track.scrollTo({ left: i * track.clientWidth, behavior: smooth ? 'smooth' : 'auto' });
   state.themeCarouselIndex = i;
   updateThemeDots();
@@ -847,13 +827,13 @@ const PDF_COLORS = {
 };
 
 function pdfHeader(doc) {
-  const { pageW, marginX, marginY } = PDF_LAYOUT;  // Refactor: pageH entfernt (unbenutzt)
+  const { pageW, marginX, marginY } = PDF_LAYOUT;
   doc.setFillColor(...PDF_COLORS.paper);
   doc.rect(0, 0, pageW, PDF_LAYOUT.pageH, 'F');
   doc.setTextColor(...PDF_COLORS.ink);
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(22);
-  doc.text('LEGEND IN THE MIST \u00b7 HERO CARD', marginX, marginY + 6);
+  doc.text(STRINGS.pdf.header, marginX, marginY + 6);
   doc.setDrawColor(...PDF_COLORS.gold);
   doc.setLineWidth(0.4);
   doc.line(marginX, marginY + 9, pageW - marginX, marginY + 9);
@@ -869,7 +849,7 @@ function pdfSectionLabel(doc, label, x, y) {
 
 function pdfTagText(entry) {
   const t = capitalizeFirst(entry.text);
-  return entry.expanded ? `${t} \u2736` : t;
+  return entry.expanded ? `${t} ${STRINGS.expanded.symbol}` : t;
 }
 
 function pdfThemeBlock(doc, theme, x, y, cardW, cardH) {
@@ -887,7 +867,7 @@ function pdfThemeBlock(doc, theme, x, y, cardW, cardH) {
   const titleLines = doc.splitTextToSize(pdfTagText(theme.titleTag), cardW - 6);
   doc.text(titleLines, x + cardW / 2, y + 22, { align: 'center' });
   let cy = y + 22 + titleLines.length * 5 + 4;
-  cy = pdfSectionLabel(doc, 'POWER TAGS', x, cy);
+  cy = pdfSectionLabel(doc, STRINGS.pdf.powerTags, x, cy);
   doc.setFont('times', 'normal'); doc.setFontSize(10); doc.setTextColor(...PDF_COLORS.ink);
   theme.powerTags.forEach(tag => {
     const lines = doc.splitTextToSize(`\u25e6 ${pdfTagText(tag)}`, cardW - 8);
@@ -895,16 +875,14 @@ function pdfThemeBlock(doc, theme, x, y, cardW, cardH) {
     cy += lines.length * 4.5;
   });
   cy += 3;
-  cy = pdfSectionLabel(doc, 'WEAKNESS TAG', x, cy);
+  cy = pdfSectionLabel(doc, STRINGS.pdf.weaknessTag, x, cy);
   doc.setFont('times', 'italic'); doc.setFontSize(10); doc.setTextColor(...PDF_COLORS.accent);
   const wLines = doc.splitTextToSize(pdfTagText(theme.weaknessTag), cardW - 8);
   doc.text(wLines, x + 4, cy);
   cy += wLines.length * 4.5 + 4;
-  cy = pdfSectionLabel(doc, 'QUEST', x, cy);
+  cy = pdfSectionLabel(doc, STRINGS.pdf.quest, x, cy);
   doc.setFont('times', 'italic'); doc.setFontSize(10); doc.setTextColor(...PDF_COLORS.ink);
-  const questTitleText = theme.quest.expanded
-    ? `\u201e${capitalizeFirst(theme.quest.title)}\u201c \u2736`
-    : `\u201e${capitalizeFirst(theme.quest.title)}\u201c`;
+  const questTitleText = `\u201e${capitalizeFirst(theme.quest.title)}\u201c${theme.quest.expanded ? ' ' + STRINGS.expanded.symbol : ''}`;
   const qLines = doc.splitTextToSize(questTitleText, cardW - 8);
   doc.text(qLines, x + 4, cy);
   cy += qLines.length * 4.5 + 1;
@@ -916,12 +894,12 @@ function pdfThemeBlock(doc, theme, x, y, cardW, cardH) {
 function pdfFooter(doc) {
   const { pageW, pageH, marginX } = PDF_LAYOUT;
   doc.setFont('helvetica', 'normal'); doc.setFontSize(7); doc.setTextColor(...PDF_COLORS.inkSoft);
-  doc.text('Mistheld \u00b7 LitM Heldengenerator \u00b7 \u2736 markiert erweiterte Inhalte', pageW - marginX, pageH - 4, { align: 'right' });
+  doc.text(STRINGS.pdf.footer, pageW - marginX, pageH - 4, { align: 'right' });
 }
 
 async function generatePDF() {
   if (!window.jspdf || !window.jspdf.jsPDF) {
-    alert('PDF-Bibliothek konnte nicht geladen werden.'); return;
+    alert(STRINGS.pdf.errLoad); return;
   }
   const proposal = state.proposals[state.proposalIndex];
   if (!proposal) return;
@@ -933,15 +911,14 @@ async function generatePDF() {
     const cardW = (pageW - 2 * marginX - 3 * gap) / 4;
     const cardY = marginY + 16;
     const cardH = pageH - cardY - marginY;
-    // #17: getDisplayTheme(i) statt proposal.themes[i] — beinhaltet alle Edits
     proposal.themes.forEach((_, i) => {
       pdfThemeBlock(doc, getDisplayTheme(i), marginX + i * (cardW + gap), cardY, cardW, cardH);
     });
     pdfFooter(doc);
-    doc.save('mistheld-character.pdf');
+    doc.save(STRINGS.pdf.filename);
   } catch (err) {
     console.error('PDF-Fehler:', err);
-    alert('PDF konnte nicht erstellt werden.');
+    alert(STRINGS.pdf.errCreate);
   }
 }
 
@@ -968,11 +945,11 @@ function updateSettingsUI() {
   const mightCbs = [$('toggle-origin'), $('toggle-adventure'), $('toggle-greatness')];
   const checkedCount = mightCbs.filter(c => c.checked).length;
   mightCbs.forEach(cb => { cb.disabled = (checkedCount === 1 && cb.checked); });
-  [['toggle-companion','select-companion-level'],
-   ['toggle-magic','select-magic-level'],
-   ['toggle-possessions','select-possessions-level']].forEach(([tid, sid]) => {
+  [['toggle-companion',   'select-companion-level'],
+   ['toggle-magic',       'select-magic-level'],
+   ['toggle-possessions', 'select-possessions-level']].forEach(([tid, sid]) => {
     const enabled = $(tid).checked;
-    $(sid).disabled = !enabled;
+    $(sid).disabled    = !enabled;
     $(sid).style.opacity = enabled ? '1' : '0.4';
   });
 }
@@ -996,17 +973,20 @@ function saveSettingsFromUI() {
    EVENT BINDINGS
 ===================================================== */
 
+initStrings();
+initAudio();
+
 $('btn-start').addEventListener('click', startSwipe);
-$('btn-yes').addEventListener('click', () => programmaticDecide('yes'));
-$('btn-no').addEventListener('click', () => programmaticDecide('no'));
-$('btn-undo').addEventListener('click', undoLast);
-$('btn-accept').addEventListener('click', generatePDF);
+$('btn-yes').addEventListener('click',   () => programmaticDecide('yes'));
+$('btn-no').addEventListener('click',    () => programmaticDecide('no'));
+$('btn-undo').addEventListener('click',  undoLast);
+$('btn-accept').addEventListener('click',      generatePDF);
 $('btn-alternative').addEventListener('click', generateAlternative);
 $('btn-restart').addEventListener('click', () => {
   document.body.classList.remove('swipe-active');
   show('screen-welcome');
 });
-$('btn-settings').addEventListener('click', openSettings);
+$('btn-settings').addEventListener('click',      openSettings);
 $('btn-settings-back').addEventListener('click', () => {
   saveSettingsFromUI();
   show('screen-welcome');
@@ -1019,7 +999,7 @@ $('btn-settings-back').addEventListener('click', () => {
 
 document.addEventListener('keydown', (e) => {
   if (!$('screen-swipe').classList.contains('active')) return;
-  if (e.key === 'ArrowRight') { e.preventDefault(); programmaticDecide('yes'); }
+  if      (e.key === 'ArrowRight') { e.preventDefault(); programmaticDecide('yes'); }
   else if (e.key === 'ArrowLeft')  { e.preventDefault(); programmaticDecide('no'); }
   else if (e.key === 'Backspace')  { e.preventDefault(); undoLast(); }
 });
