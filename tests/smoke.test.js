@@ -1,14 +1,16 @@
 import { test, expect } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
+  // Alle externen Ressourcen blockieren damit Tests nicht von CDN/Netzwerk abhaengen
   await page.route('**/*.mp3', route => route.abort());
   await page.route('**/fonts.googleapis.com/**', route => route.abort());
   await page.route('**/fonts.gstatic.com/**', route => route.abort());
+  await page.route('**/cdnjs.cloudflare.com/**', route => route.abort());
 });
 
 // =============================================================
 // SCREEN VISIBILITY
-// Diese Tests hätten den display:flex Spezifitäts-Bug direkt gefangen.
+// Diese Tests haetten den display:flex Spezifitaets-Bug gefangen.
 // =============================================================
 
 test('Startseite: Nur Welcome-Screen sichtbar', async ({ page }) => {
@@ -30,7 +32,7 @@ test('Startseite: Gear-Icon und Mute-Button sichtbar', async ({ page }) => {
 // SCREEN TRANSITIONS
 // =============================================================
 
-test('Einstellungen öffnen und schließen', async ({ page }) => {
+test('Einstellungen oeffnen und schliessen', async ({ page }) => {
   await page.goto('/');
   await page.locator('#btn-settings').click();
   await expect(page.locator('#screen-settings')).toBeVisible();
@@ -77,11 +79,18 @@ test('Keine JS-Fehler beim Seitenaufruf', async ({ page }) => {
   const errors = [];
   page.on('pageerror', err => errors.push(err.message));
   await page.goto('/');
-  await page.waitForLoadState('networkidle').catch(() => {});
+  // domcontentloaded statt networkidle: stabiler in CI, kein Warten auf externe CDNs
+  await page.waitForLoadState('domcontentloaded');
   expect(errors).toHaveLength(0);
 });
 
-test('THEMEBOOKS geladen (20 Einträge)', async ({ page }) => {
+test('STRINGS geladen (inline in index.html)', async ({ page }) => {
+  await page.goto('/');
+  const ok = await page.evaluate(() => typeof STRINGS === 'object' && typeof STRINGS.welcome === 'object');
+  expect(ok).toBe(true);
+});
+
+test('THEMEBOOKS geladen (20 Eintraege)', async ({ page }) => {
   await page.goto('/');
   const count = await page.evaluate(() => Object.keys(THEMEBOOKS).length);
   expect(count).toBe(20);
@@ -113,7 +122,6 @@ test('Letzter Toggle nicht deaktivierbar (min. 1 Might-Stufe)', async ({ page })
 
 test('#17: Ergebnisseite zeigt Reroll-Buttons nach Generierung', async ({ page }) => {
   await page.goto('/');
-  // finishSwiping direkt aufrufen um Ergebnisseite zu laden
   await page.evaluate(() => {
     state.proposals = [generateProposal('initial')];
     state.proposalIndex = 0;
@@ -122,10 +130,8 @@ test('#17: Ergebnisseite zeigt Reroll-Buttons nach Generierung', async ({ page }
     renderResult();
   });
   await expect(page.locator('#screen-result')).toBeVisible();
-  // Reroll-Buttons müssen vorhanden sein
   const rerollBtns = page.locator('.tc-reroll-btn');
   await expect(rerollBtns.first()).toBeVisible();
-  // Mindestens 6 Reroll-Buttons pro Karte (theme + title + pow0 + pow1 + weakness + quest)
   const count = await rerollBtns.count();
   expect(count).toBeGreaterThanOrEqual(6);
 });
@@ -139,9 +145,7 @@ test('#17: Reroll eines einzelnen Tags erzeugt Navigation', async ({ page }) => 
     show('screen-result');
     renderResult();
   });
-  // Klick auf ersten nicht-Theme Reroll-Button (title tag)
   const titleReroll = page.locator('.tc-editable-row').first().locator('.tc-reroll-btn');
   await titleReroll.click();
-  // Navigation soll erscheinen
   await expect(page.locator('.tc-nav-pos').first()).toBeVisible();
 });
