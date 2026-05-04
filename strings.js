@@ -17,7 +17,7 @@ const STRINGS = {
     sub:      'Mit ein paar Swipes erschaffst du deinen nächsten Helden.',
     howTitle: "So funktioniert's",
     howItems: [
-      'Du erhältst eine Auswahl von Karten mit verschiedenen Inspirationen für deinen neuen Helden.',
+      'Du erhältst eine Auswahl verschiedener Inspirationen für deinen neuen Helden.',
       'Wische nach rechts, wenn die Karte zu deinem nächsten Helden passen könnte.',
       'Wische nach links, wenn sie eher nicht passt.',
       'Am Ende erhältst du verschiedene Vorschläge für deinen Helden.',
