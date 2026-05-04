@@ -53,11 +53,11 @@ const STRINGS = {
     ariaOpen: 'Einstellungen',
     mightGroup: {
       title: 'Might-Stufen',
-      sub:   'Welche Might-Stufe sollen für deinen Helden entstehen können?',
+      sub:   'Welche Might-Stufen sollen für deinen Helden entstehen können?',
     },
     vmGroup: {
       title: 'Theme-Typen mit veränderlichen Might-Stufen',
-      sub:   'Welche Might-Stufe sollen diese Theme-Typen erhalten können?',
+      sub:   'Welche Might-Stufen sollen diese Theme-Typen erhalten können?',
     },
     mightRows: {
       Origin:    { label: 'Ursprung',   hint: 'Allgemein · alltäglich' },
