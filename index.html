@@ -57,7 +57,6 @@ h1 { font-size: 2.4rem; line-height: 1.1; }
 h2 { font-size: 1.7rem; line-height: 1.2; }
 h3 { font-size: 1.25rem; line-height: 1.3; }
 
-/* FIXED BUTTONS */
 .mute-btn, .settings-btn {
   position: fixed;
   top: max(12px, env(safe-area-inset-top, 12px));
@@ -81,7 +80,6 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 .mute-btn.muted .icon-on { display: none; }
 .mute-btn.muted .icon-off { display: block; color: var(--accent); }
 
-/* WELCOME */
 #screen-welcome { justify-content: center; text-align: center; padding: 40px 28px; position: relative; overflow: hidden; }
 #screen-welcome > *:not(.mist-container) { position: relative; z-index: 1; }
 .welcome-mark { font-family: var(--serif); font-style: italic; font-size: 1rem; color: var(--accent); margin-bottom: 8px; letter-spacing: 0.12em; text-transform: uppercase; }
@@ -97,7 +95,6 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 .welcome-instructions li { padding: 6px 0; display: flex; gap: 12px; align-items: flex-start; }
 .welcome-instructions li::before { content: '\25c6'; color: var(--gold); font-size: 0.7rem; margin-top: 6px; flex-shrink: 0; }
 
-/* Mist-Animation */
 .mist-container { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
 .mist-wisp { position: absolute; border-radius: 50%; animation: mist-float linear infinite; }
 .mist-1 { width: 220px; height: 80px; left: -5%; bottom: 22%; background: radial-gradient(ellipse at center, rgba(169,134,70,0.10) 0%, transparent 70%); animation-duration: 20s; animation-delay: 0s; }
@@ -113,7 +110,6 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
   100% { transform: translate(-15px, -130px) scale(0.9); opacity: 0; }
 }
 
-/* BUTTONS */
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--sans); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.02em; padding: 14px 28px; border: none; border-radius: 2px; cursor: pointer; transition: all 0.2s ease; min-height: 48px; user-select: none; }
 .btn-primary { background: var(--ink); color: var(--bg); }
 .btn-primary:hover { background: var(--accent); }
@@ -124,7 +120,6 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 .btn-ghost:hover { color: var(--accent); }
 .btn-block { width: 100%; }
 
-/* SWIPE SCREEN */
 #screen-swipe { padding: 16px 20px 12px; touch-action: none; overflow: hidden; position: relative; }
 .swipe-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; gap: 12px; padding-right: 56px; flex-shrink: 0; }
 .phase-label { display: flex; flex-direction: column; gap: 2px; }
@@ -135,9 +130,7 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 .phase-dot.done { background: var(--gold); }
 .phase-dot.active { background: var(--accent); }
 .card-counter { text-align: center; font-size: 0.8rem; color: var(--ink-soft); margin-bottom: 8px; letter-spacing: 0.05em; flex-shrink: 0; }
-
 .card-stage { position: relative; flex: 1; min-height: 320px; margin: 0 auto; width: 100%; max-width: 360px; display: flex; align-items: center; justify-content: center; touch-action: none; }
-
 .card { position: absolute; width: 100%; height: 100%; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow); padding: 28px 24px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; cursor: grab; user-select: none; -webkit-user-select: none; touch-action: none; will-change: transform, opacity; transform: translate3d(0,0,0); transition: transform 0.4s cubic-bezier(0.18,0.89,0.32,1.18), opacity 0.3s ease-out; }
 .card.dragging { transition: none; cursor: grabbing; }
 .card.behind { pointer-events: none; }
@@ -147,7 +140,6 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 .card.gone-left  { transform: translate3d(-130%, 30px, 0) rotate(-22deg) !important; opacity: 0; transition: transform 0.9s cubic-bezier(0.4,0,0.5,1), opacity 0.65s ease-out; }
 .card.gone-right { transform: translate3d( 130%, 30px, 0) rotate( 22deg) !important; opacity: 0; transition: transform 0.9s cubic-bezier(0.4,0,0.5,1), opacity 0.65s ease-out; }
 .card.abandoned { pointer-events: none; }
-
 @keyframes hint-swipe {
   0%   { transform: translate3d(0, 0, 0) rotate(0deg); }
   18%  { transform: translate3d(-28px, 0, 0) rotate(-4deg); }
@@ -157,7 +149,6 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
   100% { transform: translate3d(0, 0, 0) rotate(0deg); }
 }
 .card-hint { animation: hint-swipe 1.5s ease-in-out 0.9s 1 forwards; }
-
 .card-glyph { font-size: 2.2rem; color: var(--gold); margin-bottom: 10px; font-family: var(--serif); font-style: italic; position: relative; }
 .card-glyph::before, .card-glyph::after { content: ''; display: inline-block; width: 24px; height: 1px; background: var(--gold); vertical-align: middle; margin: 0 12px; opacity: 0.6; }
 .card-title { font-family: var(--serif); font-size: 1.85rem; font-weight: 600; font-style: italic; line-height: 1.2; margin-bottom: 0; color: var(--ink); max-width: 280px; }
@@ -166,7 +157,6 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 .card-decision-overlay { position: absolute; top: 16px; font-family: var(--serif); font-size: 2rem; font-style: italic; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 8px 16px; border: 3px solid; border-radius: 4px; opacity: 0; pointer-events: none; transition: opacity 0.05s linear; }
 .card-decision-overlay.yes { right: 18px; color: var(--green); border-color: var(--green); transform: rotate(-12deg); }
 .card-decision-overlay.no  { left:  18px; color: var(--accent); border-color: var(--accent); transform: rotate(12deg); }
-
 .swipe-controls { display: flex; justify-content: center; align-items: center; gap: 14px; padding: 10px 0 6px; flex-shrink: 0; }
 .swipe-btn { width: 64px; height: 64px; border-radius: 50%; border: 2px solid; background: var(--paper); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.15s ease; box-shadow: 0 2px 8px rgba(60,40,10,0.12); }
 .swipe-btn:active { transform: scale(0.88); }
@@ -179,8 +169,6 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 .swipe-btn-undo:disabled { opacity: 0.3; cursor: not-allowed; }
 .swipe-btn svg { width: 28px; height: 28px; }
 .swipe-btn-undo svg { width: 20px; height: 20px; }
-
-/* Phase-Intro-Overlay */
 .phase-intro-overlay { position: absolute; inset: 0; background: rgba(244, 234, 213, 0.97); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); display: none; flex-direction: column; align-items: center; justify-content: center; z-index: 40; cursor: pointer; padding: 24px 28px; text-align: center; }
 .phase-intro-overlay.active { display: flex; animation: fadeIn 0.4s ease; }
 .phase-intro-inner { max-width: 300px; }
@@ -194,7 +182,6 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 .phase-intro-start { font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.14em; color: var(--ink-soft); text-transform: uppercase; animation: pulse-hint 2.2s ease-in-out infinite; }
 @keyframes pulse-hint { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.8; } }
 
-/* RESULT SCREEN */
 #screen-result { padding: 56px 14px 14px; height: 100vh; height: 100dvh; overflow: hidden; }
 .theme-carousel { position: relative; flex: 1; min-height: 0; display: flex; flex-direction: column; }
 .theme-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none; gap: 10px; padding: 4px; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; flex: 1; min-height: 0; }
@@ -235,10 +222,7 @@ h3 { font-size: 1.25rem; line-height: 1.3; }
 .result-actions .btn-secondary:hover { color: var(--ink); border-color: var(--ink-soft); background: var(--paper); }
 .result-actions .btn-ghost { color: var(--ink-soft); font-size: 0.78rem; min-height: 30px; padding: 4px 12px; opacity: 0.75; }
 .result-actions .btn-ghost:hover { opacity: 1; color: var(--accent); }
-
-/* SETTINGS
-   BUG-SCHUTZ: Kein display:flex hier!
-   ID-Selektor (0,1,0,0) wuerde .screen{display:none} (0,0,1,0) ueberschreiben. */
+/* SETTINGS: Kein display:flex! ID-Selektor wuerde .screen{display:none} ueberschreiben */
 #screen-settings { padding: 12px 18px 14px; overflow: hidden; }
 .settings-header { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; flex-shrink: 0; padding-top: max(0px, env(safe-area-inset-top, 0px)); }
 .settings-back-btn { width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line); background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--ink-soft); flex-shrink: 0; transition: all 0.15s ease; }
@@ -264,14 +248,11 @@ input[type=checkbox]:disabled + .toggle-visual { opacity: 0.38; cursor: not-allo
 .settings-vm-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 6px; }
 .settings-select { font-family: var(--sans); font-size: 0.9rem; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 2px; padding: 6px 10px; width: 100%; cursor: pointer; -webkit-appearance: auto; transition: opacity 0.2s; }
 .settings-select:disabled { opacity: 0.38; cursor: not-allowed; }
-
-/* LOADING */
 .loading-overlay { position: fixed; inset: 0; background: rgba(244, 234, 213, 0.92); display: none; align-items: center; justify-content: center; z-index: 100; flex-direction: column; gap: 18px; backdrop-filter: blur(2px); }
 .loading-overlay.active { display: flex; }
 .loading-spinner { width: 32px; height: 32px; border: 2px solid var(--line); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.9s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 .loading-text { font-family: var(--serif); font-style: italic; color: var(--ink-soft); }
-
 @media (max-height: 740px) {
   .card-stage { min-height: 280px; }
   .welcome-title { font-size: 2.4rem; }
@@ -289,47 +270,23 @@ input[type=checkbox]:disabled + .toggle-visual { opacity: 0.38; cursor: not-allo
 <audio id="bg-audio" loop preload="auto" src="./Fog%20Shrine%20Dusk.mp3"></audio>
 
 <button class="mute-btn" id="btn-mute" type="button">
-  <svg class="icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-    <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
-    <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
-  </svg>
-  <svg class="icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-    <line x1="23" y1="9" x2="17" y2="15"/>
-    <line x1="17" y1="9" x2="23" y2="15"/>
-  </svg>
+  <svg class="icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+  <svg class="icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
 </button>
-
 <button class="settings-btn" id="btn-settings" type="button">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="12" r="3"/>
-    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-  </svg>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
 </button>
 
 <div class="app">
-
-<!-- WELCOME -->
 <section id="screen-welcome" class="screen active">
-  <div class="mist-container" aria-hidden="true">
-    <div class="mist-wisp mist-1"></div>
-    <div class="mist-wisp mist-2"></div>
-    <div class="mist-wisp mist-3"></div>
-    <div class="mist-wisp mist-4"></div>
-    <div class="mist-wisp mist-5"></div>
-  </div>
+  <div class="mist-container" aria-hidden="true"><div class="mist-wisp mist-1"></div><div class="mist-wisp mist-2"></div><div class="mist-wisp mist-3"></div><div class="mist-wisp mist-4"></div><div class="mist-wisp mist-5"></div></div>
   <div class="welcome-mark"></div>
   <h1 class="welcome-title"></h1>
   <p class="welcome-sub"></p>
-  <div class="welcome-instructions">
-    <h3></h3>
-    <ul></ul>
-  </div>
+  <div class="welcome-instructions"><h3></h3><ul></ul></div>
   <button class="btn btn-primary" id="btn-start"></button>
 </section>
 
-<!-- SWIPE -->
 <section id="screen-swipe" class="screen">
   <div id="phase-intro-overlay" class="phase-intro-overlay">
     <div class="phase-intro-inner">
@@ -342,16 +299,8 @@ input[type=checkbox]:disabled + .toggle-visual { opacity: 0.38; cursor: not-allo
     </div>
   </div>
   <div class="swipe-header">
-    <div class="phase-label">
-      <span class="phase-eyebrow" id="phase-eyebrow"></span>
-      <span class="phase-title" id="phase-title"></span>
-    </div>
-    <div class="phase-progress" id="phase-progress">
-      <div class="phase-dot active"></div>
-      <div class="phase-dot"></div>
-      <div class="phase-dot"></div>
-      <div class="phase-dot"></div>
-    </div>
+    <div class="phase-label"><span class="phase-eyebrow" id="phase-eyebrow"></span><span class="phase-title" id="phase-title"></span></div>
+    <div class="phase-progress" id="phase-progress"><div class="phase-dot active"></div><div class="phase-dot"></div><div class="phase-dot"></div><div class="phase-dot"></div></div>
   </div>
   <div class="card-counter" id="card-counter"></div>
   <div class="card-stage" id="card-stage"></div>
@@ -362,12 +311,8 @@ input[type=checkbox]:disabled + .toggle-visual { opacity: 0.38; cursor: not-allo
   </div>
 </section>
 
-<!-- RESULT -->
 <section id="screen-result" class="screen">
-  <div class="theme-carousel">
-    <div class="theme-track" id="theme-track"></div>
-    <div class="theme-pagination" id="theme-pagination"></div>
-  </div>
+  <div class="theme-carousel"><div class="theme-track" id="theme-track"></div><div class="theme-pagination" id="theme-pagination"></div></div>
   <div class="result-actions">
     <button class="btn btn-primary btn-block" id="btn-accept"></button>
     <button class="btn btn-secondary btn-block" id="btn-alternative"></button>
@@ -375,75 +320,214 @@ input[type=checkbox]:disabled + .toggle-visual { opacity: 0.38; cursor: not-allo
   </div>
 </section>
 
-<!-- SETTINGS -->
 <section id="screen-settings" class="screen">
   <div class="settings-header">
-    <button class="settings-back-btn" id="btn-settings-back">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-    </button>
+    <button class="settings-back-btn" id="btn-settings-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
     <h2></h2>
   </div>
   <div class="settings-group">
     <div class="settings-group-title" id="settings-might-title"></div>
     <div class="settings-group-sub" id="settings-might-sub"></div>
-    <div class="settings-row">
-      <div class="settings-row-info">
-        <span class="settings-row-label" data-might-label="Origin"></span>
-        <span class="settings-row-hint"  data-might-hint="Origin"></span>
-      </div>
-      <div class="toggle-wrap"><input type="checkbox" id="toggle-origin" checked><label class="toggle-visual" for="toggle-origin"></label></div>
-    </div>
-    <div class="settings-row">
-      <div class="settings-row-info">
-        <span class="settings-row-label" data-might-label="Adventure"></span>
-        <span class="settings-row-hint"  data-might-hint="Adventure"></span>
-      </div>
-      <div class="toggle-wrap"><input type="checkbox" id="toggle-adventure"><label class="toggle-visual" for="toggle-adventure"></label></div>
-    </div>
-    <div class="settings-row">
-      <div class="settings-row-info">
-        <span class="settings-row-label" data-might-label="Greatness"></span>
-        <span class="settings-row-hint"  data-might-hint="Greatness"></span>
-      </div>
-      <div class="toggle-wrap"><input type="checkbox" id="toggle-greatness"><label class="toggle-visual" for="toggle-greatness"></label></div>
-    </div>
+    <div class="settings-row"><div class="settings-row-info"><span class="settings-row-label" data-might-label="Origin"></span><span class="settings-row-hint" data-might-hint="Origin"></span></div><div class="toggle-wrap"><input type="checkbox" id="toggle-origin" checked><label class="toggle-visual" for="toggle-origin"></label></div></div>
+    <div class="settings-row"><div class="settings-row-info"><span class="settings-row-label" data-might-label="Adventure"></span><span class="settings-row-hint" data-might-hint="Adventure"></span></div><div class="toggle-wrap"><input type="checkbox" id="toggle-adventure"><label class="toggle-visual" for="toggle-adventure"></label></div></div>
+    <div class="settings-row"><div class="settings-row-info"><span class="settings-row-label" data-might-label="Greatness"></span><span class="settings-row-hint" data-might-hint="Greatness"></span></div><div class="toggle-wrap"><input type="checkbox" id="toggle-greatness"><label class="toggle-visual" for="toggle-greatness"></label></div></div>
   </div>
   <div class="settings-group">
     <div class="settings-group-title" id="settings-vm-title"></div>
     <div class="settings-group-sub" id="settings-vm-sub"></div>
-    <div class="settings-vm-item">
-      <div class="settings-vm-top">
-        <span class="settings-row-label" data-vm-label="Companion"></span>
-        <div class="toggle-wrap"><input type="checkbox" id="toggle-companion" checked><label class="toggle-visual" for="toggle-companion"></label></div>
-      </div>
-      <select id="select-companion-level" class="settings-select"></select>
-    </div>
-    <div class="settings-vm-item">
-      <div class="settings-vm-top">
-        <span class="settings-row-label" data-vm-label="Magic"></span>
-        <div class="toggle-wrap"><input type="checkbox" id="toggle-magic" checked><label class="toggle-visual" for="toggle-magic"></label></div>
-      </div>
-      <select id="select-magic-level" class="settings-select"></select>
-    </div>
-    <div class="settings-vm-item">
-      <div class="settings-vm-top">
-        <span class="settings-row-label" data-vm-label="Possessions"></span>
-        <div class="toggle-wrap"><input type="checkbox" id="toggle-possessions" checked><label class="toggle-visual" for="toggle-possessions"></label></div>
-      </div>
-      <select id="select-possessions-level" class="settings-select"></select>
-    </div>
+    <div class="settings-vm-item"><div class="settings-vm-top"><span class="settings-row-label" data-vm-label="Companion"></span><div class="toggle-wrap"><input type="checkbox" id="toggle-companion" checked><label class="toggle-visual" for="toggle-companion"></label></div></div><select id="select-companion-level" class="settings-select"></select></div>
+    <div class="settings-vm-item"><div class="settings-vm-top"><span class="settings-row-label" data-vm-label="Magic"></span><div class="toggle-wrap"><input type="checkbox" id="toggle-magic" checked><label class="toggle-visual" for="toggle-magic"></label></div></div><select id="select-magic-level" class="settings-select"></select></div>
+    <div class="settings-vm-item"><div class="settings-vm-top"><span class="settings-row-label" data-vm-label="Possessions"></span><div class="toggle-wrap"><input type="checkbox" id="toggle-possessions" checked><label class="toggle-visual" for="toggle-possessions"></label></div></div><select id="select-possessions-level" class="settings-select"></select></div>
   </div>
 </section>
-
 </div>
 
-<div class="loading-overlay" id="loading">
-  <div class="loading-spinner"></div>
-  <div class="loading-text" id="loading-text"></div>
-</div>
+<div class="loading-overlay" id="loading"><div class="loading-spinner"></div><div class="loading-text" id="loading-text"></div></div>
 
-<script src="./strings.js"></script>
 <script src="./data.js"></script>
+
+<!-- =======================================================
+     ALLE TEXTE DER APP — HIER BEARBEITEN
+     Ändere beliebige Texte direkt in diesem Block.
+     Keine andere Datei muss angefasst werden.
+     Nach dem Commit erscheinen die Änderungen sofort.
+======================================================= -->
+<script>
+const STRINGS = {
+
+  // ── Seitentitel
+  pageTitle: 'Mistheld – LitM Heldengenerator',
+
+  // ── Startseite
+  welcome: {
+    mark:     'Legend in the Mist',
+    title:    'Heldengenerator',
+    sub:      'Mit ein paar Swipes erschaffst du deinen nächsten Helden.',
+    howTitle: "So funktioniert's",
+    howItems: [
+      'Du erhältst eine Auswahl verschiedener Inspirationen für deinen neuen Helden.',
+      'Wische nach rechts, wenn die Karte zu deinem nächsten Helden passen könnte.',
+      'Wische nach links, wenn sie eher nicht passt.',
+      'Am Ende erhältst du verschiedene Vorschläge für deinen Helden.',
+    ],
+    btnStart: "Los geht's",
+  },
+
+  // ── Swipe-Screen
+  swipe: {
+    decisionYes:   'Passt',
+    decisionNo:    'Nicht',
+    phaseIntroTap: 'Tippe, um zu beginnen',
+    cardCounter:   (cur, tot) => `Karte ${cur} von ${tot}`,
+    ariaYes:       'Passt',
+    ariaNo:        'Passt nicht',
+    ariaUndo:      'Letzte Karte zurück',
+  },
+
+  // ── Ergebnisseite
+  result: {
+    btnAccept:           'Held übernehmen & PDF',
+    btnAlternative:      'Alle Themes neu würfeln',
+    btnAlternativeMaxed: 'Max. Versuche erreicht',
+    btnRestart:          'Nochmal swipen',
+    questLabel:          'Quest',
+    rerollTitle:         'Neu würfeln',
+  },
+
+  // ── Einstellungen
+  settings: {
+    heading:  'Einstellungen',
+    ariaBack: 'Zurück',
+    ariaOpen: 'Einstellungen',
+    mightGroup: {
+      title: 'Might-Stufen',
+      sub:   'Welche Might-Stufen sollen für deinen Helden entstehen können?',
+    },
+    vmGroup: {
+      title: 'Theme-Typen mit veränderlichen Might-Stufen',
+      sub:   'Welche Might-Stufen sollen diese Theme-Typen erhalten können?',
+    },
+    mightRows: {
+      Origin:    { label: 'Ursprung',   hint: 'Allgemein · alltäglich' },
+      Adventure: { label: 'Abenteuer',  hint: 'Besonders · heldenhaft' },
+      Greatness: { label: 'Allmacht',   hint: 'Legendär · übernatürlich' },
+    },
+    vmLabels: {
+      Companion:   'Begleiter',
+      Magic:       'Magie',
+      Possessions: 'Besitz',
+    },
+  },
+
+  // ── Lade-Overlay
+  loading: {
+    default:     'Einen Moment...',
+    generating:  'Helden weben...',
+    alternative: 'Anderen Helden weben...',
+  },
+
+  // ── Audio
+  audio: {
+    ariaOn:  'Musik stumm schalten',
+    ariaOff: 'Musik anschalten',
+  },
+
+  // ── Might-Stufen (Anzeigenamen in Karten, Einstellungen und PDF)
+  might: {
+    Origin:    'Ursprung',
+    Adventure: 'Abenteuer',
+    Greatness: 'Allmacht',
+  },
+
+  // ── Themebook-Namen
+  themebooks: {
+    'Circumstance':       'Umstände',
+    'Devotion':           'Hingabe',
+    'Past':               'Vergangenheit',
+    'People':             'Volk',
+    'Personality':        'Persönlichkeit',
+    'Skill or Trade':     'Können & Beruf',
+    'Trait':              'Begabung',
+    'Duty':               'Pflicht',
+    'Influence':          'Einfluss',
+    'Knowledge':          'Wissen',
+    'Prodigious Ability': 'Außergewöhnliche Fähigkeit',
+    'Relic':              'Relikt',
+    'Uncanny Being':      'Seltsames Wesen',
+    'Destiny':            'Bestimmung',
+    'Dominion':           'Herrschaft',
+    'Mastery':            'Meisterschaft',
+    'Monstrosity':        'Ungeheuer',
+    'Companion':          'Begleiter',
+    'Magic':              'Magie',
+    'Possessions':        'Besitz',
+  },
+
+  // ── Phasen-Intros
+  phases: [
+    {
+      eyebrow:   'Phase 1 von 4',
+      title:     'Stimmung & Welt',
+      narrative: 'Die Welt, die deinen Helden umgibt, spricht noch bevor er sich bewegt. Lass dich von Bildern und Atmosphären leiten.',
+      questions: [
+        'Welche Atmosphäre passt zu deinem Helden?',
+        'In welcher Art von Welt bewegt er sich?',
+        'Welche Orte und Stimmungen fühlen sich vertraut an?',
+      ],
+    },
+    {
+      eyebrow:   'Phase 2 von 4',
+      title:     'Herkunft & Hintergrund',
+      narrative: 'Die Welt hat Form gewonnen. Nun tauchen wir tiefer: Woher kommt dein Held? Was hat ihn geprägt, bevor die Geschichte ihn fand?',
+      questions: [
+        'Woher stammt dein Held wirklich?',
+        'Welches Erlebnis hat ihn geformt?',
+        'Was trägt er aus seiner Vergangenheit noch mit sich?',
+      ],
+    },
+    {
+      eyebrow:   'Phase 3 von 4',
+      title:     'Können & Wesen',
+      narrative: 'Herkunft und Geschichte haben Gestalt angenommen. Jetzt erkunden wir, was deinen Helden in dieser Welt einzigartig macht.',
+      questions: [
+        'Welche Fähigkeit oder Gabe besitzt er?',
+        'Was hebt ihn von anderen ab?',
+        'Was für ein Wesen verbirgt sich in ihm?',
+      ],
+    },
+    {
+      eyebrow:   'Phase 4 von 4 · Letzte Phase',
+      title:     'Antrieb & Verwundbarkeit',
+      narrative: 'In dieser letzten Phase geht es um das, was deinen Helden antreibt — und jene Wunden und Sehnsüchte, die ihn menschlich machen.',
+      questions: [
+        'Was ist sein tiefstes Ziel?',
+        'Wovor hat er Angst oder Scheu?',
+        'Wo liegt seine verwundbare Seite?',
+      ],
+    },
+  ],
+
+  // ── Erweiterungs-Marker
+  expanded: {
+    symbol:    '\u2726',
+    title:     'Erweiterung',
+    ariaLabel: 'Erweiterung',
+  },
+
+  // ── PDF
+  pdf: {
+    header:      'LEGEND IN THE MIST \u00b7 HERO CARD',
+    powerTags:   'POWER TAGS',
+    weaknessTag: 'WEAKNESS TAG',
+    quest:       'QUEST',
+    footer:      'Mistheld \u00b7 LitM Heldengenerator \u00b7 \u2736 markiert erweiterte Inhalte',
+    filename:    'mistheld-character.pdf',
+    errLoad:     'PDF-Bibliothek konnte nicht geladen werden.',
+    errCreate:   'PDF konnte nicht erstellt werden.',
+  },
+};
+</script>
+
 <script src="./app.js"></script>
 </body>
 </html>
