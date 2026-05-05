@@ -1,14 +1,12 @@
 # Mistheld
 
-Ein Heldengenerator für **Legend in the Mist** – auf Deutsch, mobile first, mit Swipe-Mechanik.
+Ein Heldengenerator auf Deutsch, mobile first, mit Swipe-Mechanik.
 
 🌐 **Live:** https://schwitzermodus.github.io/mistheld/
 
 ## Was das ist
 
-Mistheld ist ein MVP. Der Generator führt dich in vier Phasen durch einen Stapel Karten – Stimmung, Herkunft, Können, Antrieb. Du wischst nach rechts, wenn etwas zu deinem Helden passt, und nach links, wenn nicht. Am Ende generiert Mistheld einen vollständigen LitM-Helden mit vier Themes, Title Tag, drei Power Tags, Weakness Tag und Quest pro Theme. Du kannst bis zu vier Vorschläge anfordern (je weiter, desto stärker variiert) und den finalen Helden als PDF im Querformat herunterladen.
-
-Die App nutzt ausschließlich Inhalte aus dem offiziellen LitM Core Book Vol. 1 (20 Themebooks aus den Kategorien Origin, Adventure, Greatness, Variable Might).
+Mistheld ist ein MVP. Der Generator führt dich in vier Phasen durch einen Stapel Karten – Stimmung, Herkunft, Können, Antrieb. Du wischst nach rechts, wenn etwas zu deinem Helden passt, und nach links, wenn nicht. Am Ende generiert Mistheld einen vollständigen Helden mit vier Themes, Power Tags, Weakness Tag und Quest pro Theme. 
 
 ## Technik
 
