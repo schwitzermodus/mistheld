@@ -10,16 +10,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
-:root {
-  --bg:#f4ead5; --bg-2:#ece0c4; --paper:#faf3df;
-  --ink:#2a2419; --ink-soft:#5b5240;
-  --accent:#8b3a2b; --gold:#a98646; --green:#5b6b3a;
-  --line:rgba(42,36,25,0.18); --line-soft:rgba(42,36,25,0.10);
+:root{
+  --bg:#f4ead5;--bg-2:#ece0c4;--paper:#faf3df;
+  --ink:#2a2419;--ink-soft:#5b5240;
+  --accent:#8b3a2b;--gold:#a98646;--green:#5b6b3a;
+  --line:rgba(42,36,25,0.18);--line-soft:rgba(42,36,25,0.10);
   --shadow:0 10px 30px rgba(60,40,10,0.15),0 2px 6px rgba(60,40,10,0.08);
   --shadow-soft:0 4px 12px rgba(60,40,10,0.10);
   --serif:'Cormorant Garamond','Garamond','Georgia',serif;
   --sans:'Inter',system-ui,-apple-system,sans-serif;
-  --might-origin:#3d5c2a; --might-adventure:#8b3a2b; --might-greatness:#2d4a6e;
+  --might-origin:#3d5c2a;--might-adventure:#8b3a2b;--might-greatness:#2d4a6e;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;overflow-x:hidden;overscroll-behavior:none}
@@ -57,12 +57,17 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .welcome-instructions li{padding:6px 0;display:flex;gap:12px;align-items:flex-start}
 .welcome-instructions li::before{content:'\25c6';color:var(--gold);font-size:0.7rem;margin-top:6px;flex-shrink:0}
 .mist-container{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.mist-ground{position:absolute;bottom:0;left:-5%;width:110%;height:200px;background:linear-gradient(to top,rgba(244,234,213,0.55) 0%,rgba(169,134,70,0.06) 40%,transparent 100%);z-index:0;animation:mist-ground-breathe 12s ease-in-out infinite}
+@keyframes mist-ground-breathe{0%,100%{opacity:0.7;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.1)}}
 .mist-wisp{position:absolute;border-radius:50%;animation:mist-float linear infinite}
 .mist-1{width:220px;height:80px;left:-5%;bottom:22%;background:radial-gradient(ellipse at center,rgba(169,134,70,0.10) 0%,transparent 70%);animation-duration:20s}
 .mist-2{width:300px;height:100px;left:22%;bottom:6%;background:radial-gradient(ellipse at center,rgba(169,134,70,0.08) 0%,transparent 70%);animation-duration:26s;animation-delay:-9s}
 .mist-3{width:180px;height:65px;left:58%;bottom:38%;background:radial-gradient(ellipse at center,rgba(139,58,43,0.07) 0%,transparent 70%);animation-duration:18s;animation-delay:-5s}
 .mist-4{width:250px;height:88px;left:8%;bottom:52%;background:radial-gradient(ellipse at center,rgba(169,134,70,0.06) 0%,transparent 70%);animation-duration:24s;animation-delay:-13s}
 .mist-5{width:160px;height:55px;left:70%;bottom:12%;background:radial-gradient(ellipse at center,rgba(169,134,70,0.07) 0%,transparent 70%);animation-duration:22s;animation-delay:-7s}
+.mist-6{width:280px;height:95px;left:5%;bottom:18%;background:radial-gradient(ellipse at center,rgba(169,134,70,0.09) 0%,transparent 70%);animation-duration:32s;animation-delay:-18s}
+.mist-7{width:200px;height:72px;left:42%;bottom:42%;background:radial-gradient(ellipse at center,rgba(139,58,43,0.06) 0%,transparent 70%);animation-duration:24s;animation-delay:-4s}
+.mist-8{width:240px;height:82px;left:72%;bottom:30%;background:radial-gradient(ellipse at center,rgba(169,134,70,0.08) 0%,transparent 70%);animation-duration:28s;animation-delay:-15s}
 @keyframes mist-float{0%{transform:translate(0,0) scale(1);opacity:0}8%{opacity:1}50%{transform:translate(25px,-70px) scale(1.1);opacity:0.6}92%{opacity:0.1}100%{transform:translate(-15px,-130px) scale(0.9);opacity:0}}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--sans);font-weight:600;font-size:0.95rem;letter-spacing:0.02em;padding:14px 28px;border:none;border-radius:2px;cursor:pointer;transition:all 0.2s ease;min-height:48px;user-select:none}
 .btn-primary{background:var(--ink);color:var(--bg)}
@@ -123,13 +128,7 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .phase-intro-questions li::before{content:'\25c6';color:var(--gold);font-size:0.55rem;margin-top:8px;flex-shrink:0}
 .phase-intro-start{font-family:var(--sans);font-size:0.72rem;letter-spacing:0.14em;color:var(--ink-soft);text-transform:uppercase;animation:pulse-hint 2.2s ease-in-out infinite}
 @keyframes pulse-hint{0%,100%{opacity:0.3}50%{opacity:0.8}}
-
-/* ===========================================
-   ERGEBNIS-SCREEN (neu: Swipe-Pages + Edit Sheet)
-   BUG-SCHUTZ: Kein display:flex hier!
-   ID-Selektor (0,1,0,0) > Klassen-Selektor (0,0,1,0)
-   => .screen{display:none} wuerde ueberschrieben.
-=========================================== */
+/* ERGEBNIS-SCREEN: Kein display:flex! */
 #screen-result{padding:0;overflow:hidden}
 #result-dots{display:flex;justify-content:center;gap:8px;padding:14px 0 8px;flex-shrink:0}
 .result-dot{width:7px;height:7px;border-radius:50%;border:none;background:var(--line);cursor:pointer;padding:0;transition:all 0.2s}
@@ -211,9 +210,7 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .es-full-reroll{display:block;width:100%;padding:13px;border-radius:6px;border:1px solid var(--accent);background:transparent;color:var(--accent);font-family:var(--sans);font-size:0.88rem;cursor:pointer;transition:all 0.15s}
 .es-full-reroll:active{background:var(--accent);color:var(--paper)}
 .expanded-marker{display:inline-block;margin-left:5px;font-size:0.68em;color:var(--gold);vertical-align:middle;opacity:0.8;font-style:normal;font-weight:normal;line-height:1}
-
-/* SETTINGS
-   BUG-SCHUTZ: Kein display:flex hier! */
+/* SETTINGS: Kein display:flex! */
 #screen-settings{padding:12px 18px 14px;overflow:hidden}
 .settings-header{display:flex;align-items:center;gap:14px;margin-bottom:14px;flex-shrink:0;padding-top:max(0px,env(safe-area-inset-top,0px))}
 .settings-back-btn{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink-soft);flex-shrink:0;transition:all 0.15s}
@@ -245,14 +242,9 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
 @keyframes spin{to{transform:rotate(360deg)}}
 .loading-text{font-family:var(--serif);font-style:italic;color:var(--ink-soft)}
 @media(max-height:740px){
-  .card-stage{min-height:280px}
-  .card-title{font-size:1.65rem}
-  .card-text{font-size:1.1rem}
-  .phase-intro-title{font-size:1.75rem}
-  .phase-intro-narrative{font-size:1rem}
-  .phase-intro-questions li{font-size:0.9rem}
-  .hero-name{font-size:2rem}
-  .rtp-title-tag{font-size:1.5rem}
+  .card-stage{min-height:280px}.card-title{font-size:1.65rem}.card-text{font-size:1.1rem}
+  .phase-intro-title{font-size:1.75rem}.phase-intro-narrative{font-size:1rem}
+  .phase-intro-questions li{font-size:0.9rem}.hero-name{font-size:2rem}.rtp-title-tag{font-size:1.5rem}
 }
 </style>
 </head>
@@ -266,16 +258,20 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
 </button>
 <div class="app">
-<!-- WELCOME -->
 <section id="screen-welcome" class="screen active">
-  <div class="mist-container" aria-hidden="true"><div class="mist-wisp mist-1"></div><div class="mist-wisp mist-2"></div><div class="mist-wisp mist-3"></div><div class="mist-wisp mist-4"></div><div class="mist-wisp mist-5"></div></div>
+  <div class="mist-container" aria-hidden="true">
+    <div class="mist-ground"></div>
+    <div class="mist-wisp mist-1"></div><div class="mist-wisp mist-2"></div>
+    <div class="mist-wisp mist-3"></div><div class="mist-wisp mist-4"></div>
+    <div class="mist-wisp mist-5"></div><div class="mist-wisp mist-6"></div>
+    <div class="mist-wisp mist-7"></div><div class="mist-wisp mist-8"></div>
+  </div>
   <div class="welcome-mark"></div>
   <h1 class="welcome-title"></h1>
   <p class="welcome-sub"></p>
   <div class="welcome-instructions"><h3></h3><ul></ul></div>
   <button class="btn btn-primary" id="btn-start"></button>
 </section>
-<!-- SWIPE -->
 <section id="screen-swipe" class="screen">
   <div id="phase-intro-overlay" class="phase-intro-overlay">
     <div class="phase-intro-inner">
@@ -299,7 +295,6 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
     <button class="swipe-btn swipe-btn-yes" id="btn-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button>
   </div>
 </section>
-<!-- RESULT (neu: Swipe-Pages + Edit Sheet) -->
 <section id="screen-result" class="screen">
   <div id="result-dots"></div>
   <div id="result-pages"></div>
@@ -309,13 +304,9 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
     <button id="result-nav-next" type="button">&rsaquo;</button>
   </div>
   <div id="edit-sheet-overlay">
-    <div id="edit-sheet">
-      <div class="edit-sheet-handle"></div>
-      <div id="edit-sheet-body"></div>
-    </div>
+    <div id="edit-sheet"><div class="edit-sheet-handle"></div><div id="edit-sheet-body"></div></div>
   </div>
 </section>
-<!-- SETTINGS -->
 <section id="screen-settings" class="screen">
   <div class="settings-header">
     <button class="settings-back-btn" id="btn-settings-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
@@ -341,14 +332,12 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
 
 <script src="./data.js"></script>
 
-<!-- =======================================================
-     ALLE TEXTE — HIER BEARBEITEN
-======================================================= -->
+<!-- ALLE TEXTE -- HIER BEARBEITEN -->
 <script>
-const STRINGS = {
-  pageTitle:'Mistheld – LitM Heldengenerator',
+const STRINGS={
+  pageTitle:'Mistheld – Heldengenerator',
   welcome:{
-    mark:'Legend in the Mist',title:'Heldengenerator',
+    mark:'Legenden des Nebels',title:'Heldengenerator',
     sub:'Mit ein paar Swipes erschaffst du deinen nächsten Helden.',
     howTitle:"So funktioniert's",
     howItems:[
@@ -373,22 +362,14 @@ const STRINGS = {
     questLabel:'Quest',rerollTitle:'Neu würfeln',
   },
   hero:{
-    eyebrow:'Dein Held',
-    saveEyebrow:'Bereit!',
+    eyebrow:'Dein Held',saveEyebrow:'Bereit!',
     themeNr:(n,t)=>`Theme ${n} von ${t}`,
-    weaknessPrefix:'✕',
-    editTheme:'Bearbeiten',
-    rerollFirstName:'↺ Vorname',
-    rerollEpithet:'↺ Beiname',
-    rerollTitle:'↺ Titel',
-    rerollDescription:'↺ Beschreibung',
-    rerollShort:'Neu',
-    fullReroll:'↺ Ganzes Theme neu würfeln',
-    labelTitleTag:'Titelschlagwort',
-    labelPower1:'Power Tag 1',
-    labelPower2:'Power Tag 2',
-    labelWeakness:'Schwäche',
-    labelQuest:'Quest',
+    weaknessPrefix:'✕',editTheme:'Bearbeiten',
+    rerollFirstName:'↺ Vorname',rerollEpithet:'↺ Beiname',
+    rerollTitle:'↺ Titel',rerollDescription:'↺ Beschreibung',
+    rerollShort:'Neu',fullReroll:'↺ Ganzes Theme neu würfeln',
+    labelTitleTag:'Titelschlagwort',labelPower1:'Power Tag 1',
+    labelPower2:'Power Tag 2',labelWeakness:'Schwäche',labelQuest:'Quest',
   },
   settings:{
     heading:'Einstellungen',ariaBack:'Zurück',ariaOpen:'Einstellungen',
@@ -429,9 +410,9 @@ const STRINGS = {
   ],
   expanded:{symbol:'\u2726',title:'Erweiterung',ariaLabel:'Erweiterung'},
   pdf:{
-    header:'LEGEND IN THE MIST \u00b7 HERO CARD',
+    header:'MISTHELD \u00b7 HELDENBLATT',
     powerTags:'POWER TAGS',weaknessTag:'WEAKNESS TAG',quest:'QUEST',
-    footer:'Mistheld \u00b7 LitM Heldengenerator \u00b7 \u2736 markiert erweiterte Inhalte',
+    footer:'Mistheld \u00b7 Heldengenerator \u00b7 \u2736 markiert erweiterte Inhalte',
     filename:'mistheld-character.pdf',
     errLoad:'PDF-Bibliothek konnte nicht geladen werden.',
     errCreate:'PDF konnte nicht erstellt werden.',
@@ -439,10 +420,7 @@ const STRINGS = {
 };
 </script>
 
-<!-- =======================================================
-     HELD-KATALOG — HIER BEARBEITEN
-     Namen, Beinamen, Titel und Beschreibungen.
-======================================================= -->
+<!-- HELD-KATALOG -- HIER BEARBEITEN -->
 <script>
 const HERO_FIRSTNAMES=[
   'Aldric','Astrid','Bran','Brunhild','Calder','Cressida','Dunstan','Edric',
@@ -462,26 +440,16 @@ const HERO_EPITHETS=[
   'Sturmherz','der Wanderer','Schattenpfad','die Hehlerin','Gluthaupt'
 ];
 const HERO_TITLES=[
-  'Die schweigende Wächterin',
-  'Der letzte Hüter des alten Weges',
-  'Eine Verlorene auf der Suche nach Heimkehr',
-  'Das Kind zweier Welten',
-  'Ein Wanderer ohne Wiederkehr',
-  'Die Trägerin alter Schuld',
-  'Ein Zeuge vergessener Zeiten',
-  'Die zwischen den Welten steht',
-  'Ein Suchender nach dem, was war',
-  'Die Stimme derer, die schweigen müssen',
-  'Ein Schatten in der Dämmerung',
-  'Der Hüter eines verborgenen Geheimnisses',
-  'Ein Herz, das niemals Frieden fand',
-  'Die Hüterin eines alten Versprechens',
-  'Ein Geist in lebender Gestalt',
-  'Die Überlebende einer vergessenen Katastrophe',
-  'Ein Kämpfer, der den Krieg hinter sich ließ',
-  'Die Trägerin zweier Namen',
-  'Ein Wandler zwischen Licht und Schatten',
-  'Die Letzte ihrer Art'
+  'Die schweigende Wächterin','Der letzte Hüter des alten Weges',
+  'Eine Verlorene auf der Suche nach Heimkehr','Das Kind zweier Welten',
+  'Ein Wanderer ohne Wiederkehr','Die Trägerin alter Schuld',
+  'Ein Zeuge vergessener Zeiten','Die zwischen den Welten steht',
+  'Ein Suchender nach dem, was war','Die Stimme derer, die schweigen müssen',
+  'Ein Schatten in der Dämmerung','Der Hüter eines verborgenen Geheimnisses',
+  'Ein Herz, das niemals Frieden fand','Die Hüterin eines alten Versprechens',
+  'Ein Geist in lebender Gestalt','Die Überlebende einer vergessenen Katastrophe',
+  'Ein Kämpfer, der den Krieg hinter sich ließ','Die Trägerin zweier Namen',
+  'Ein Wandler zwischen Licht und Schatten','Die Letzte ihrer Art'
 ];
 const HERO_DESCRIPTIONS=[
   'Wer sie einmal angesehen hat, vergisst diesen Blick nicht. Sie spricht wenig — aber wenn sie es tut, hören selbst die Alten zu.',
