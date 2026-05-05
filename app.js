@@ -60,9 +60,10 @@ const state = {
   hookCounts: {},
   proposals: [],
   proposalIndex: 0,
-  themeCarouselIndex: 0,
   busy: false,
-  edits: {}
+  edits: {},
+  hero: null,
+  resultPage: 0
 };
 
 /* =====================================================
@@ -120,26 +121,18 @@ function pickWithExpansionPreference(arr, n) {
   return out;
 }
 
-/* =====================================================
-   ANZEIGEÜBERSETZUNGEN — jetzt aus strings.js
-===================================================== */
-
-function displayMight(level)       { return STRINGS.might[level]      || level; }
-function displayThemebook(name)    { return STRINGS.themebooks[name]  || name;  }
+function displayMight(level)    { return STRINGS.might[level]     || level; }
+function displayThemebook(name) { return STRINGS.themebooks[name] || name;  }
 
 /* =====================================================
    STRINGS INITIALISIERUNG
-   Füllt alle statischen HTML-Texte aus strings.js.
 ===================================================== */
 
 function initStrings() {
-  // Seitentitel
   document.title = STRINGS.pageTitle;
-
-  // Startseite
-  document.querySelector('.welcome-mark').textContent      = STRINGS.welcome.mark;
-  document.querySelector('.welcome-title').textContent     = STRINGS.welcome.title;
-  document.querySelector('.welcome-sub').textContent       = STRINGS.welcome.sub;
+  document.querySelector('.welcome-mark').textContent            = STRINGS.welcome.mark;
+  document.querySelector('.welcome-title').textContent           = STRINGS.welcome.title;
+  document.querySelector('.welcome-sub').textContent             = STRINGS.welcome.sub;
   document.querySelector('.welcome-instructions h3').textContent = STRINGS.welcome.howTitle;
   const ul = document.querySelector('.welcome-instructions ul');
   ul.innerHTML = '';
@@ -148,43 +141,28 @@ function initStrings() {
     li.textContent = text;
     ul.appendChild(li);
   });
-  $('btn-start').textContent = STRINGS.welcome.btnStart;
-
-  // Swipe-Screen
+  if ($('btn-start')) $('btn-start').textContent = STRINGS.welcome.btnStart;
   document.querySelector('.phase-intro-start').textContent = STRINGS.swipe.phaseIntroTap;
-  $('btn-no').setAttribute('aria-label',   STRINGS.swipe.ariaNo);
-  $('btn-undo').setAttribute('aria-label', STRINGS.swipe.ariaUndo);
-  $('btn-yes').setAttribute('aria-label',  STRINGS.swipe.ariaYes);
-
-  // Ergebnisseite
-  $('btn-accept').textContent      = STRINGS.result.btnAccept;
-  $('btn-alternative').textContent = STRINGS.result.btnAlternative;
-  $('btn-restart').textContent     = STRINGS.result.btnRestart;
-
-  // Settings-Screen
-  document.querySelector('#screen-settings h2').textContent                  = STRINGS.settings.heading;
-  $('btn-settings-back').setAttribute('aria-label', STRINGS.settings.ariaBack);
-  $('btn-settings').setAttribute('aria-label',      STRINGS.settings.ariaOpen);
-  $('settings-might-title').textContent = STRINGS.settings.mightGroup.title;
-  $('settings-might-sub').textContent   = STRINGS.settings.mightGroup.sub;
-  $('settings-vm-title').textContent    = STRINGS.settings.vmGroup.title;
-  $('settings-vm-sub').textContent      = STRINGS.settings.vmGroup.sub;
-
-  // Might-Zeilen: Labels + Hints
+  if ($('btn-no'))   $('btn-no').setAttribute('aria-label',   STRINGS.swipe.ariaNo);
+  if ($('btn-undo')) $('btn-undo').setAttribute('aria-label', STRINGS.swipe.ariaUndo);
+  if ($('btn-yes'))  $('btn-yes').setAttribute('aria-label',  STRINGS.swipe.ariaYes);
+  document.querySelector('#screen-settings h2').textContent = STRINGS.settings.heading;
+  if ($('btn-settings-back')) $('btn-settings-back').setAttribute('aria-label', STRINGS.settings.ariaBack);
+  if ($('btn-settings'))      $('btn-settings').setAttribute('aria-label',      STRINGS.settings.ariaOpen);
+  if ($('settings-might-title')) $('settings-might-title').textContent = STRINGS.settings.mightGroup.title;
+  if ($('settings-might-sub'))   $('settings-might-sub').textContent   = STRINGS.settings.mightGroup.sub;
+  if ($('settings-vm-title'))    $('settings-vm-title').textContent    = STRINGS.settings.vmGroup.title;
+  if ($('settings-vm-sub'))      $('settings-vm-sub').textContent      = STRINGS.settings.vmGroup.sub;
   Object.entries(STRINGS.settings.mightRows).forEach(([key, row]) => {
     const labelEl = document.querySelector(`[data-might-label="${key}"]`);
     const hintEl  = document.querySelector(`[data-might-hint="${key}"]`);
     if (labelEl) labelEl.textContent = row.label;
     if (hintEl)  hintEl.textContent  = row.hint;
   });
-
-  // VM-Labels
   Object.entries(STRINGS.settings.vmLabels).forEach(([key, label]) => {
     const el = document.querySelector(`[data-vm-label="${key}"]`);
     if (el) el.textContent = label;
   });
-
-  // Select-Optionen aus STRINGS.might generieren (alle 3 Selects)
   ['select-companion-level', 'select-magic-level', 'select-possessions-level'].forEach(id => {
     const sel = $(id);
     if (!sel) return;
@@ -198,9 +176,7 @@ function initStrings() {
     });
     sel.value = current;
   });
-
-  // Lade-Text (Default)
-  $('loading-text').textContent = STRINGS.loading.default;
+  if ($('loading-text')) $('loading-text').textContent = STRINGS.loading.default;
 }
 
 /* =====================================================
@@ -224,7 +200,7 @@ function hideLoading() { $('loading').classList.remove('active'); }
    AUDIO
 ===================================================== */
 
-const audio = $('bg-audio');
+const audio   = $('bg-audio');
 const muteBtn = $('btn-mute');
 
 function isMuted() {
@@ -233,20 +209,17 @@ function isMuted() {
 function setMutedPersisted(m) {
   try { localStorage.setItem(CFG.MUTED_KEY, m ? '1' : '0'); } catch (_) {}
 }
-
 function updateMuteUI() {
   muteBtn.classList.toggle('muted', audio.muted);
   muteBtn.setAttribute('aria-label', audio.muted ? STRINGS.audio.ariaOff : STRINGS.audio.ariaOn);
 }
-
 function tryPlay() {
   const p = audio.play();
   if (p && typeof p.catch === 'function') p.catch(() => {});
 }
-
 function initAudio() {
   audio.volume = CFG.AUDIO_VOLUME;
-  audio.muted = isMuted();
+  audio.muted  = isMuted();
   updateMuteUI();
   tryPlay();
   const kickstart = () => tryPlay();
@@ -258,7 +231,6 @@ function initAudio() {
     if (!document.hidden && !audio.muted && audio.paused) tryPlay();
   });
 }
-
 muteBtn.addEventListener('click', (e) => {
   e.stopPropagation();
   audio.muted = !audio.muted;
@@ -314,15 +286,17 @@ function showPhaseIntro(phaseIndex, callback) {
 ===================================================== */
 
 function startSwipe() {
-  state.phaseIndex = 0;
-  state.cardIndex = 0;
-  state.swipes = [];
+  state.phaseIndex    = 0;
+  state.cardIndex     = 0;
+  state.swipes        = [];
   state.affinityScores = {};
-  state.hookCounts = {};
-  state.proposals = [];
+  state.hookCounts    = {};
+  state.proposals     = [];
   state.proposalIndex = 0;
-  state.edits = {};
-  state.busy = false;
+  state.edits         = {};
+  state.hero          = null;
+  state.resultPage    = 0;
+  state.busy          = false;
   document.body.classList.add('swipe-active');
   show('screen-swipe');
   showPhaseIntro(0, loadPhase);
@@ -331,7 +305,7 @@ function startSwipe() {
 function loadPhase() {
   const phase = PHASES[state.phaseIndex];
   state.shuffledCards = shuffleArray(phase.cards.slice());
-  state.cardIndex = 0;
+  state.cardIndex     = 0;
   renderCard();
 }
 
@@ -342,7 +316,7 @@ function updatePhaseUI() {
   $('card-counter').textContent  = STRINGS.swipe.cardCounter(state.cardIndex + 1, state.shuffledCards.length);
   $$('#phase-progress .phase-dot').forEach((dot, i) => {
     dot.classList.remove('active', 'done');
-    if (i < state.phaseIndex)      dot.classList.add('done');
+    if (i < state.phaseIndex)        dot.classList.add('done');
     else if (i === state.phaseIndex) dot.classList.add('active');
   });
   $('btn-undo').disabled = !canUndo();
@@ -366,11 +340,11 @@ function renderCard() {
     return;
   }
   for (let i = CFG.STACK_DEPTH - 1; i >= 0; i--) {
-    const idx = state.cardIndex + i;
+    const idx    = state.cardIndex + i;
     if (idx >= state.shuffledCards.length) continue;
-    const card = state.shuffledCards[idx];
+    const card   = state.shuffledCards[idx];
     const cardEl = document.createElement('div');
-    cardEl.className = 'card' + (i === 0 ? ' front' : ` behind behind-${i}`);
+    cardEl.className  = 'card' + (i === 0 ? ' front' : ` behind behind-${i}`);
     cardEl.style.zIndex = String(10 - i);
     cardEl.innerHTML = `
       <div class="card-decision-overlay yes">${escapeHtml(STRINGS.swipe.decisionYes)}</div>
@@ -382,9 +356,8 @@ function renderCard() {
     `;
     if (i === 0) {
       attachSwipe(cardEl);
-      if (state.phaseIndex === 0 && state.cardIndex === 0 && state.swipes.length === 0) {
+      if (state.phaseIndex === 0 && state.cardIndex === 0 && state.swipes.length === 0)
         cardEl.classList.add('card-hint');
-      }
     }
     stage.appendChild(cardEl);
   }
@@ -402,7 +375,7 @@ function adaptiveResort() {
   if (Object.keys(phasePref).length === 0) return;
   const seen      = state.shuffledCards.slice(0, state.cardIndex);
   const remaining = state.shuffledCards.slice(state.cardIndex);
-  const score = (card) => Object.entries(card.affinities || {})
+  const score     = (card) => Object.entries(card.affinities || {})
     .reduce((sum, [tb, w]) => sum + (phasePref[tb] || 0) * w, 0);
   remaining.sort((a, b) => score(b) - score(a));
   state.shuffledCards = [...seen, ...remaining];
@@ -413,10 +386,8 @@ function adaptiveResort() {
 ===================================================== */
 
 function attachSwipe(cardEl) {
-  let startX = 0, dx = 0;
-  let dragging = false;
-  let lastX = 0, lastTime = 0;
-  let velocityX = 0;
+  let startX = 0, dx = 0, dragging = false;
+  let lastX = 0, lastTime = 0, velocityX = 0;
   let activePointerId = null;
   const yesEl = cardEl.querySelector('.yes');
   const noEl  = cardEl.querySelector('.no');
@@ -449,36 +420,29 @@ function attachSwipe(cardEl) {
     if (e.cancelable) e.preventDefault();
     const now = performance.now();
     const dt  = now - lastTime;
-    if (dt > 0) {
-      const instantV = (e.clientX - lastX) / dt;
-      velocityX = velocityX * 0.5 + instantV * 0.5;
-    }
-    lastX = e.clientX;
-    lastTime = now;
+    if (dt > 0) velocityX = velocityX * 0.5 + ((e.clientX - lastX) / dt) * 0.5;
+    lastX = e.clientX; lastTime = now;
     dx = e.clientX - startX;
-    const rotate = Math.max(-18, Math.min(18, dx * 0.06));
-    cardEl.style.transform = `translate3d(${dx}px, 0, 0) rotate(${rotate}deg)`;
+    cardEl.style.transform = `translate3d(${dx}px,0,0) rotate(${Math.max(-18, Math.min(18, dx * 0.06))}deg)`;
     updateOverlay();
   };
   const onUp = (e) => {
     if (!dragging || e.pointerId !== activePointerId) return;
-    dragging = false;
-    activePointerId = null;
+    dragging = false; activePointerId = null;
     cardEl.classList.remove('dragging');
     try { cardEl.releasePointerCapture(e.pointerId); } catch (_) {}
     const isYes = dx >  CFG.SWIPE_DISTANCE || (velocityX >  CFG.SWIPE_VELOCITY && dx >  4);
     const isNo  = dx < -CFG.SWIPE_DISTANCE || (velocityX < -CFG.SWIPE_VELOCITY && dx < -4);
-    if (isYes)      flyOut(cardEl, 'yes');
-    else if (isNo)  flyOut(cardEl, 'no');
+    if (isYes)     flyOut(cardEl, 'yes');
+    else if (isNo) flyOut(cardEl, 'no');
     else {
-      cardEl.style.transform = 'translate3d(0, 0, 0) rotate(0deg)';
-      yesEl.style.opacity = '0';
-      noEl.style.opacity  = '0';
+      cardEl.style.transform = 'translate3d(0,0,0) rotate(0deg)';
+      yesEl.style.opacity = '0'; noEl.style.opacity = '0';
     }
   };
-  cardEl.addEventListener('pointerdown', onDown);
-  cardEl.addEventListener('pointermove', onMove, { passive: false });
-  cardEl.addEventListener('pointerup',   onUp);
+  cardEl.addEventListener('pointerdown',   onDown);
+  cardEl.addEventListener('pointermove',   onMove, { passive: false });
+  cardEl.addEventListener('pointerup',     onUp);
   cardEl.addEventListener('pointercancel', onUp);
 }
 
@@ -524,8 +488,7 @@ function pickBestFrom(list, exclude) {
   const pool  = cands.length ? cands : list;
   return pool.reduce((best, tb) =>
     (state.affinityScores[tb] || 0) > (state.affinityScores[best] || -Infinity) ? tb : best,
-    pool[0]
-  );
+    pool[0]);
 }
 
 function pickRandomFrom(list) {
@@ -534,9 +497,8 @@ function pickRandomFrom(list) {
 
 function pickQuestWithExpansionPreference(pool) {
   const expanded = pool.filter(q => q.expanded);
-  if (expanded.length > 0 && Math.random() < CFG.EXPANDED_PREFERENCE) {
+  if (expanded.length > 0 && Math.random() < CFG.EXPANDED_PREFERENCE)
     return expanded[Math.floor(Math.random() * expanded.length)];
-  }
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
@@ -547,9 +509,8 @@ function generateTheme(themebookName, settings) {
   const weaknessTag = pickWithExpansionPreference(tb.weaknessTagPool, 1)[0];
   const quest       = pickQuestWithExpansionPreference(tb.questPool);
   let resolvedType  = tb.type;
-  if (tb.type === 'Variable Might') {
+  if (tb.type === 'Variable Might')
     resolvedType = (settings.variableMight[themebookName] || {}).level || 'Origin';
-  }
   return { type: resolvedType, themebook: themebookName, titleTag, powerTags, weaknessTag, quest };
 }
 
@@ -559,11 +520,9 @@ function generateProposal(mode, baseProposal) {
   const enabledLevels = ['Origin','Adventure','Greatness'].filter(l => s.mightLevels[l]);
   if (!enabledLevels.length) enabledLevels.push('Origin');
   const enabledVM = ['Companion','Magic','Possessions'].filter(k => s.variableMight[k].enabled);
-
   const standardSlots = [0,1,2].map(i => enabledLevels[i % enabledLevels.length]);
-  const allSlots = enabledVM.length ? [...standardSlots, 'Variable Might'] :
-    [...standardSlots, enabledLevels[standardSlots.length % enabledLevels.length]];
-
+  const allSlots = enabledVM.length ? [...standardSlots, 'Variable Might']
+    : [...standardSlots, enabledLevels[standardSlots.length % enabledLevels.length]];
   const themebooks = allSlots.map((slotType, i) => {
     const list = slotType === 'Variable Might'
       ? (enabledVM.length ? enabledVM : ['Companion'])
@@ -573,7 +532,6 @@ function generateProposal(mode, baseProposal) {
     if (mode === 'new-themebooks') return pickBestFrom(list, [baseProposal.themes[i].themebook]);
     return pickRandomFrom(list);
   });
-
   return { mode, themes: themebooks.map(tb => generateTheme(tb, s)) };
 }
 
@@ -582,13 +540,15 @@ function finishSwiping() {
   state.busy = true;
   showLoading(STRINGS.loading.generating);
   setTimeout(() => {
-    state.proposals = [generateProposal('initial')];
+    state.proposals     = [generateProposal('initial')];
     state.proposalIndex = 0;
-    state.themeCarouselIndex = 0;
-    state.edits = {};
+    state.edits         = {};
+    state.hero          = generateHero();
+    state.resultPage    = 0;
     show('screen-result');
     requestAnimationFrame(() => {
-      renderResult();
+      renderCurrentResultPage();
+      attachResultPageSwipe();
       hideLoading();
       state.busy = false;
     });
@@ -601,21 +561,47 @@ function generateAlternative() {
   const idx  = state.proposals.length;
   const mode = idx === 1 ? 'tags-only' : idx === 2 ? 'new-themebooks' : 'fresh';
   state.busy = true;
-  $('btn-alternative').disabled = true;
   showLoading(STRINGS.loading.alternative);
   setTimeout(() => {
     state.proposals.push(generateProposal(mode, state.proposals[0]));
     state.proposalIndex = state.proposals.length - 1;
-    state.themeCarouselIndex = 0;
-    state.edits = {};
-    state.busy  = false;
-    renderResult();
+    state.edits      = {};
+    state.resultPage = 1;
+    state.busy       = false;
+    renderCurrentResultPage();
     hideLoading();
   }, CFG.ALT_LOADING_DELAY_MS);
 }
 
 /* =====================================================
-   ERGEBNISSEITE — ELEMENT-EDITS
+   HELD-GENERATOR
+===================================================== */
+
+function generateHero() {
+  return {
+    firstName:   pickRandomFrom(HERO_FIRSTNAMES),
+    epithet:     pickRandomFrom(HERO_EPITHETS),
+    title:       pickRandomFrom(HERO_TITLES),
+    description: pickRandomFrom(HERO_DESCRIPTIONS)
+  };
+}
+
+function rerollHeroPart(part) {
+  const pools = {
+    firstName:   HERO_FIRSTNAMES,
+    epithet:     HERO_EPITHETS,
+    title:       HERO_TITLES,
+    description: HERO_DESCRIPTIONS
+  };
+  let newVal, attempts = 0;
+  do { newVal = pickRandomFrom(pools[part]); attempts++; }
+  while (newVal === state.hero[part] && attempts < 5);
+  state.hero[part] = newVal;
+  renderHeroPage();
+}
+
+/* =====================================================
+   ERGEBNISSEITE — ELEMENT-EDITS (Themes)
 ===================================================== */
 
 function editKey(ti, k) { return `t${ti}-${k}`; }
@@ -647,24 +633,11 @@ function addAlt(ti, k, val) {
   if (!state.edits[key]) state.edits[key] = { alts: [], index: 0 };
   const e = state.edits[key];
   if (e.alts.length >= CFG.MAX_ELEMENT_ALTS) return;
-  e.alts.push(val);
-  e.index = e.alts.length;
+  e.alts.push(val); e.index = e.alts.length;
 }
 
 function clearThemeElementEdits(ti) {
   ['title','pow0','pow1','weakness','quest'].forEach(k => delete state.edits[editKey(ti, k)]);
-}
-
-function handleThemeCardAction(e) {
-  const rerollBtn = e.target.closest('.tc-reroll-btn');
-  const navBtn    = e.target.closest('.tc-nav-btn');
-  if (!rerollBtn && !navBtn) return;
-  const ctrl = (rerollBtn || navBtn).closest('.tc-edit-ctrl');
-  if (!ctrl) return;
-  const ti = parseInt(ctrl.dataset.ti);
-  const k  = ctrl.dataset.k;
-  if (rerollBtn && !rerollBtn.disabled) handleReroll(ti, k);
-  if (navBtn    && !navBtn.disabled)    handleNavigate(ti, k, parseInt(navBtn.dataset.dir));
 }
 
 function handleReroll(ti, k) {
@@ -677,139 +650,231 @@ function handleReroll(ti, k) {
   else if (k === 'pow0' || k === 'pow1') { newVal = pickWithExpansionPreference(tb.powerTagPool, 1)[0]; }
   else if (k === 'weakness')             { newVal = pickWithExpansionPreference(tb.weaknessTagPool, 1)[0]; }
   else if (k === 'quest')                { newVal = pickQuestWithExpansionPreference(tb.questPool); }
-  if (newVal !== undefined) { addAlt(ti, k, newVal); rerenderThemeCard(ti); }
+  if (newVal !== undefined) addAlt(ti, k, newVal);
 }
 
 function handleNavigate(ti, k, dir) {
   const e = getEdit(ti, k);
   if (!e) return;
   e.index = Math.max(0, Math.min(e.alts.length, e.index + dir));
-  rerenderThemeCard(ti);
-}
-
-function rerenderThemeCard(ti) {
-  const track = $('theme-track');
-  const old   = track.children[ti];
-  if (old) track.replaceChild(buildThemeCard(ti), old);
 }
 
 /* =====================================================
-   RESULT RENDER
+   ERGEBNIS-SCREEN — SEITENNAVIGATION
+===================================================== */
+
+function totalResultPages() {
+  if (!state.proposals.length) return 1;
+  return 1 + state.proposals[state.proposalIndex].themes.length + 1;
+}
+
+function navigateResult(dir) {
+  const newPage = state.resultPage + dir;
+  if (newPage < 0 || newPage >= totalResultPages()) return;
+  state.resultPage = newPage;
+  renderCurrentResultPage();
+}
+
+function renderCurrentResultPage() {
+  const page = state.resultPage;
+  const n    = state.proposals[state.proposalIndex].themes.length;
+  if (page === 0)     renderHeroPage();
+  else if (page <= n) renderThemePage(page - 1);
+  else                renderSavePage();
+  updateResultNav();
+}
+
+function updateResultNav() {
+  const total   = totalResultPages();
+  const current = state.resultPage;
+  const dotsEl  = $('result-dots');
+  dotsEl.innerHTML = '';
+  for (let i = 0; i < total; i++) {
+    const dot = document.createElement('button');
+    dot.type      = 'button';
+    dot.className = 'result-dot' + (i === current ? ' active' : '');
+    const idx = i;
+    dot.addEventListener('click', () => { state.resultPage = idx; renderCurrentResultPage(); });
+    dotsEl.appendChild(dot);
+  }
+  const prevBtn = $('result-nav-prev');
+  const nextBtn = $('result-nav-next');
+  prevBtn.disabled = current === 0;
+  nextBtn.disabled = current === total - 1;
+  const isPreSave = current === total - 2;
+  nextBtn.textContent = isPreSave ? 'Fertig \u2192' : '\u203a';
+  nextBtn.classList.toggle('result-nav-finish', isPreSave);
+}
+
+function attachResultPageSwipe() {
+  const pages = $('result-pages');
+  let startX = 0, startY = 0, tracking = false;
+  pages.addEventListener('pointerdown', (e) => { startX = e.clientX; startY = e.clientY; tracking = true; }, { passive: true });
+  pages.addEventListener('pointerup', (e) => {
+    if (!tracking) return; tracking = false;
+    if ($('edit-sheet-overlay').classList.contains('active')) return;
+    const dx = e.clientX - startX, dy = e.clientY - startY;
+    if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.5) navigateResult(dx < 0 ? 1 : -1);
+  }, { passive: true });
+  pages.addEventListener('pointercancel', () => { tracking = false; }, { passive: true });
+}
+
+/* =====================================================
+   SEITE 0: HELD-ÜBERSICHT
+===================================================== */
+
+function renderHeroPage() {
+  const h = state.hero;
+  $('result-pages').innerHTML = `
+    <div class="result-page result-hero-page">
+      <div class="hero-eyebrow">${escapeHtml(STRINGS.hero.eyebrow)}</div>
+      <div class="hero-name">${escapeHtml(h.firstName)} ${escapeHtml(h.epithet)}</div>
+      <div class="hero-divider"></div>
+      <div class="hero-title">${escapeHtml(h.title)}</div>
+      <div class="hero-description">${escapeHtml(h.description)}</div>
+      <div class="hero-reroll-grid">
+        <button class="hero-reroll-btn" data-part="firstName">${escapeHtml(STRINGS.hero.rerollFirstName)}</button>
+        <button class="hero-reroll-btn" data-part="epithet">${escapeHtml(STRINGS.hero.rerollEpithet)}</button>
+        <button class="hero-reroll-btn" data-part="title">${escapeHtml(STRINGS.hero.rerollTitle)}</button>
+        <button class="hero-reroll-btn" data-part="description">${escapeHtml(STRINGS.hero.rerollDescription)}</button>
+      </div>
+    </div>`;
+  $('result-pages').querySelectorAll('.hero-reroll-btn').forEach(btn => {
+    btn.addEventListener('click', () => rerollHeroPart(btn.dataset.part));
+  });
+}
+
+/* =====================================================
+   SEITEN 1-n: THEMES (Lese-Ansicht)
 ===================================================== */
 
 function expandedMark(entry) {
-  return entry && entry.expanded
+  if (!entry || typeof entry === 'string') return '';
+  return entry.expanded
     ? `<span class="expanded-marker" title="${STRINGS.expanded.title}" aria-label="${STRINGS.expanded.ariaLabel}">${STRINGS.expanded.symbol}</span>`
     : '';
 }
 
-function buildEditCtrl(ti, k) {
-  const e     = getEdit(ti, k);
-  const total = 1 + (e ? e.alts.length : 0);
-  const idx   = e ? e.index : 0;
-  const maxed = e ? e.alts.length >= CFG.MAX_ELEMENT_ALTS : false;
-  const nav   = total > 1 ? `
-    <button class="tc-nav-btn" data-dir="-1" ${idx === 0 ? 'disabled' : ''}>&lsaquo;</button>
-    <span class="tc-nav-pos">${idx + 1}&#160;/&#160;${total}</span>
-    <button class="tc-nav-btn" data-dir="1" ${idx >= total - 1 ? 'disabled' : ''}>&rsaquo;</button>` : '';
-  return `<div class="tc-edit-ctrl" data-ti="${ti}" data-k="${k}">
-    ${nav}
-    <button class="tc-reroll-btn" title="${escapeHtml(STRINGS.result.rerollTitle)}"${maxed ? ' disabled' : ''}>&#8634;</button>
-  </div>`;
-}
-
-function buildThemeCard(ti) {
+function renderThemePage(ti) {
   const dt = getDisplayTheme(ti);
-  const mc = dt.type === 'Origin'    ? 'tc-origin'
-           : dt.type === 'Adventure' ? 'tc-adventure'
-           : dt.type === 'Greatness' ? 'tc-greatness' : 'tc-origin';
-  const card = document.createElement('div');
-  card.className = 'theme-card ' + mc;
-
-  const powerRows = [
-    `<div class="tc-editable-row">
-       <div class="tc-power-title">${displayTag(dt.titleTag.text)}${expandedMark(dt.titleTag)}</div>
-       ${buildEditCtrl(ti, 'title')}
-     </div>`,
-    ...dt.powerTags.map((t, pi) => `
-      <div class="tc-editable-row">
-        <div class="tc-power-tag">${displayTag(t.text)}${expandedMark(t)}</div>
-        ${buildEditCtrl(ti, 'pow' + pi)}
-      </div>`)
-  ].join('');
-
-  card.innerHTML = `
-    <div class="tc-header">
-      <div>
-        <div class="tc-type">${escapeHtml(displayThemebook(dt.themebook))}</div>
-        <div class="tc-might">${escapeHtml(displayMight(dt.type))}</div>
+  const mc = dt.type === 'Origin' ? 'tc-origin' : dt.type === 'Adventure' ? 'tc-adventure' : 'tc-greatness';
+  const n  = state.proposals[state.proposalIndex].themes.length;
+  $('result-pages').innerHTML = `
+    <div class="result-page result-theme-page">
+      <div class="rtp-header ${mc}">
+        <div>
+          <div class="rtp-themebook">${escapeHtml(displayThemebook(dt.themebook))}</div>
+          <span class="rtp-might-badge">${escapeHtml(displayMight(dt.type))}</span>
+        </div>
+        <span class="rtp-theme-nr">${escapeHtml(STRINGS.hero.themeNr(ti + 1, n))}</span>
       </div>
-      ${buildEditCtrl(ti, 'theme')}
-    </div>
-    ${powerRows}
-    <div class="tc-editable-row">
-      <div class="tc-weakness">${displayTag(dt.weaknessTag.text)}${expandedMark(dt.weaknessTag)}</div>
-      ${buildEditCtrl(ti, 'weakness')}
-    </div>
-    <div class="tc-editable-row">
-      <div class="tc-quest-section">
-        <div class="tc-quest-label">${escapeHtml(STRINGS.result.questLabel)}</div>
-        <div class="tc-quest-title">&bdquo;${escapeHtml(dt.quest.title)}&ldquo;${expandedMark(dt.quest)}</div>
-        <div class="tc-quest-desc">${escapeHtml(dt.quest.description)}</div>
+      <div class="rtp-content">
+        <div class="rtp-title-tag">${displayTag(dt.titleTag.text)}${expandedMark(dt.titleTag)}</div>
+        <div class="rtp-power-tags">
+          <div class="rtp-power-tag">${displayTag(dt.powerTags[0].text)}${expandedMark(dt.powerTags[0])}</div>
+          <div class="rtp-power-tag">${displayTag(dt.powerTags[1].text)}${expandedMark(dt.powerTags[1])}</div>
+        </div>
+        <div class="rtp-weakness-tag">${escapeHtml(STRINGS.hero.weaknessPrefix)} ${displayTag(dt.weaknessTag.text)}${expandedMark(dt.weaknessTag)}</div>
+        <div class="rtp-quest">
+          <div class="rtp-quest-label">${escapeHtml(STRINGS.result.questLabel)}</div>
+          <div class="rtp-quest-title">&bdquo;${escapeHtml(dt.quest.title)}&ldquo;${expandedMark(dt.quest)}</div>
+          <div class="rtp-quest-desc">${escapeHtml(dt.quest.description)}</div>
+        </div>
       </div>
-      ${buildEditCtrl(ti, 'quest')}
+      <div class="rtp-footer">
+        <button class="rtp-edit-btn" id="rtp-edit-btn">${escapeHtml(STRINGS.hero.editTheme)}</button>
+      </div>
     </div>`;
-
-  return card;
+  $('rtp-edit-btn').addEventListener('click', () => openEditSheet(ti));
 }
 
-function renderResult() {
-  const track      = $('theme-track');
-  const pagination = $('theme-pagination');
-  track.innerHTML      = '';
-  pagination.innerHTML = '';
-  const n = state.proposals[state.proposalIndex].themes.length;
-  for (let i = 0; i < n; i++) {
-    track.appendChild(buildThemeCard(i));
-    const dot = document.createElement('div');
-    dot.className = 'theme-page-dot' + (i === 0 ? ' active' : '');
-    dot.addEventListener('click', () => scrollToTheme(i));
-    pagination.appendChild(dot);
-  }
-  track.onclick  = handleThemeCardAction;
-  track.onscroll = onTrackScroll;
-  const btnAlt   = $('btn-alternative');
+/* =====================================================
+   LETZTE SEITE: SPEICHERN
+===================================================== */
+
+function renderSavePage() {
+  const h        = state.hero;
+  const proposal = state.proposals[state.proposalIndex];
   const exhausted = state.proposals.length >= CFG.MAX_PROPOSALS;
-  btnAlt.disabled    = exhausted || state.busy;
-  btnAlt.style.opacity = exhausted ? '0.4' : '1';
-  btnAlt.textContent   = exhausted ? STRINGS.result.btnAlternativeMaxed : STRINGS.result.btnAlternative;
-  scrollToTheme(0, false);
+  const themePills = proposal.themes.map((_, ti) => {
+    const dt = getDisplayTheme(ti);
+    const mc = dt.type === 'Origin' ? 'pill-origin' : dt.type === 'Adventure' ? 'pill-adventure' : 'pill-greatness';
+    return `<span class="save-theme-pill ${mc}">${escapeHtml(displayThemebook(dt.themebook))}</span>`;
+  }).join('');
+  $('result-pages').innerHTML = `
+    <div class="result-page result-save-page">
+      <div class="save-eyebrow">${escapeHtml(STRINGS.hero.saveEyebrow)}</div>
+      <div class="save-hero-name">${escapeHtml(h.firstName)} ${escapeHtml(h.epithet)}</div>
+      <div class="save-themes">${themePills}</div>
+      <div class="save-actions">
+        <button class="save-btn-primary" id="save-pdf">${escapeHtml(STRINGS.result.btnAccept)}</button>
+        <button class="save-btn-secondary${exhausted ? ' exhausted' : ''}" id="save-alt"${exhausted ? ' disabled' : ''}>
+          ${escapeHtml(exhausted ? STRINGS.result.btnAlternativeMaxed : STRINGS.result.btnAlternative)}
+        </button>
+        <button class="save-btn-ghost" id="save-restart">${escapeHtml(STRINGS.result.btnRestart)}</button>
+      </div>
+    </div>`;
+  $('save-pdf').addEventListener('click', generatePDF);
+  $('save-alt').addEventListener('click', () => { if (!exhausted) generateAlternative(); });
+  $('save-restart').addEventListener('click', () => { document.body.classList.remove('swipe-active'); show('screen-welcome'); });
 }
 
-function onTrackScroll() {
-  const track = $('theme-track');
-  const w = track.clientWidth;
-  if (!w) return;
-  const idx = Math.round(track.scrollLeft / w);
-  if (idx !== state.themeCarouselIndex) {
-    state.themeCarouselIndex = idx;
-    updateThemeDots();
-  }
-}
+/* =====================================================
+   EDIT SHEET
+===================================================== */
 
-function scrollToTheme(i, smooth) {
-  smooth = smooth !== false;
-  const track = $('theme-track');
-  if (!track.clientWidth) { requestAnimationFrame(() => scrollToTheme(i, smooth)); return; }
-  track.scrollTo({ left: i * track.clientWidth, behavior: smooth ? 'smooth' : 'auto' });
-  state.themeCarouselIndex = i;
-  updateThemeDots();
-}
-
-function updateThemeDots() {
-  $$('#theme-pagination .theme-page-dot').forEach((d, i) => {
-    d.classList.toggle('active', i === state.themeCarouselIndex);
+function openEditSheet(ti) {
+  const dt        = getDisplayTheme(ti);
+  const sheetBody = $('edit-sheet-body');
+  const row = (k, label, entry) => {
+    const isQuest = k === 'quest';
+    const rawText = isQuest ? entry.title : entry.text;
+    const isWeak  = k === 'weakness';
+    const e       = getEdit(ti, k);
+    const total   = 1 + (e ? e.alts.length : 0);
+    const idx     = e ? e.index : 0;
+    const maxed   = e ? e.alts.length >= CFG.MAX_ELEMENT_ALTS : false;
+    const navHtml = total > 1 ? `
+      <div class="es-nav">
+        <button type="button" class="es-nav-btn" data-ti="${ti}" data-k="${k}" data-dir="-1"${idx === 0 ? ' disabled' : ''}>&lsaquo;</button>
+        <span class="es-nav-pos">${idx + 1}\u00a0/\u00a0${total}</span>
+        <button type="button" class="es-nav-btn" data-ti="${ti}" data-k="${k}" data-dir="1"${idx >= total - 1 ? ' disabled' : ''}>&rsaquo;</button>
+      </div>` : '';
+    return `
+      <div class="es-row">
+        <div class="es-row-content">
+          <div class="es-label">${escapeHtml(label)}</div>
+          <div class="es-value${isWeak ? ' es-weak' : ''}">${displayTag(rawText)}${expandedMark(entry)}</div>
+          ${navHtml}
+        </div>
+        <button type="button" class="es-reroll-btn" data-ti="${ti}" data-k="${k}"${maxed ? ' disabled' : ''}>&circlearrowleft; ${escapeHtml(STRINGS.hero.rerollShort)}</button>
+      </div>`;
+  };
+  sheetBody.innerHTML = `
+    <div class="es-header">
+      <div class="es-themebook">${escapeHtml(displayThemebook(dt.themebook))}</div>
+      <div class="es-might">${escapeHtml(displayMight(dt.type))}</div>
+    </div>
+    ${row('title',    STRINGS.hero.labelTitleTag,  dt.titleTag)}
+    ${row('pow0',     STRINGS.hero.labelPower1,     dt.powerTags[0])}
+    ${row('pow1',     STRINGS.hero.labelPower2,     dt.powerTags[1])}
+    ${row('weakness', STRINGS.hero.labelWeakness,   dt.weaknessTag)}
+    ${row('quest',    STRINGS.hero.labelQuest,      dt.quest)}
+    <div class="es-footer">
+      <button type="button" class="es-full-reroll" id="es-full-reroll" data-ti="${ti}">${escapeHtml(STRINGS.hero.fullReroll)}</button>
+    </div>`;
+  sheetBody.querySelectorAll('.es-reroll-btn').forEach(btn => {
+    btn.addEventListener('click', () => { handleReroll(parseInt(btn.dataset.ti), btn.dataset.k); openEditSheet(ti); renderThemePage(ti); });
   });
+  sheetBody.querySelectorAll('.es-nav-btn').forEach(btn => {
+    btn.addEventListener('click', () => { handleNavigate(parseInt(btn.dataset.ti), btn.dataset.k, parseInt(btn.dataset.dir)); openEditSheet(ti); renderThemePage(ti); });
+  });
+  $('es-full-reroll').addEventListener('click', () => { handleReroll(parseInt($('es-full-reroll').dataset.ti), 'theme'); openEditSheet(ti); renderThemePage(ti); });
+  $('edit-sheet-overlay').classList.add('active');
+}
+
+function closeEditSheet() {
+  $('edit-sheet-overlay').classList.remove('active');
 }
 
 /* =====================================================
@@ -818,12 +883,8 @@ function updateThemeDots() {
 
 const PDF_LAYOUT = { pageW: 297, pageH: 210, marginX: 12, marginY: 12, gap: 4 };
 const PDF_COLORS = {
-  paper:   [250, 243, 223],
-  ink:     [42, 36, 25],
-  inkSoft: [91, 82, 64],
-  accent:  [139, 58, 43],
-  gold:    [169, 134, 70],
-  band:    [236, 224, 196]
+  paper: [250,243,223], ink: [42,36,25], inkSoft: [91,82,64],
+  accent: [139,58,43], gold: [169,134,70], band: [236,224,196]
 };
 
 function pdfHeader(doc) {
@@ -833,16 +894,20 @@ function pdfHeader(doc) {
   doc.setTextColor(...PDF_COLORS.ink);
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(22);
-  doc.text(STRINGS.pdf.header, marginX, marginY + 6);
+  const heroName   = state.hero ? `${state.hero.firstName} ${state.hero.epithet}` : '';
+  const headerText = heroName ? `${STRINGS.pdf.header} \u00b7 ${heroName}` : STRINGS.pdf.header;
+  doc.text(headerText, marginX, marginY + 6);
   doc.setDrawColor(...PDF_COLORS.gold);
   doc.setLineWidth(0.4);
   doc.line(marginX, marginY + 9, pageW - marginX, marginY + 9);
+  if (state.hero && state.hero.title) {
+    doc.setFont('helvetica', 'italic'); doc.setFontSize(9); doc.setTextColor(...PDF_COLORS.inkSoft);
+    doc.text(state.hero.title, marginX, marginY + 14);
+  }
 }
 
 function pdfSectionLabel(doc, label, x, y) {
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(7);
-  doc.setTextColor(...PDF_COLORS.accent);
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(7); doc.setTextColor(...PDF_COLORS.accent);
   doc.text(label, x + 4, y);
   return y + 4;
 }
@@ -853,8 +918,7 @@ function pdfTagText(entry) {
 }
 
 function pdfThemeBlock(doc, theme, x, y, cardW, cardH) {
-  doc.setDrawColor(...PDF_COLORS.ink);
-  doc.setLineWidth(0.3);
+  doc.setDrawColor(...PDF_COLORS.ink); doc.setLineWidth(0.3);
   doc.rect(x, y, cardW, cardH);
   doc.setFillColor(...PDF_COLORS.band);
   doc.rect(x, y, cardW, 16, 'F');
@@ -871,24 +935,19 @@ function pdfThemeBlock(doc, theme, x, y, cardW, cardH) {
   doc.setFont('times', 'normal'); doc.setFontSize(10); doc.setTextColor(...PDF_COLORS.ink);
   theme.powerTags.forEach(tag => {
     const lines = doc.splitTextToSize(`\u25e6 ${pdfTagText(tag)}`, cardW - 8);
-    doc.text(lines, x + 4, cy);
-    cy += lines.length * 4.5;
+    doc.text(lines, x + 4, cy); cy += lines.length * 4.5;
   });
   cy += 3;
   cy = pdfSectionLabel(doc, STRINGS.pdf.weaknessTag, x, cy);
   doc.setFont('times', 'italic'); doc.setFontSize(10); doc.setTextColor(...PDF_COLORS.accent);
   const wLines = doc.splitTextToSize(pdfTagText(theme.weaknessTag), cardW - 8);
-  doc.text(wLines, x + 4, cy);
-  cy += wLines.length * 4.5 + 4;
+  doc.text(wLines, x + 4, cy); cy += wLines.length * 4.5 + 4;
   cy = pdfSectionLabel(doc, STRINGS.pdf.quest, x, cy);
   doc.setFont('times', 'italic'); doc.setFontSize(10); doc.setTextColor(...PDF_COLORS.ink);
-  const questTitleText = `\u201e${capitalizeFirst(theme.quest.title)}\u201c${theme.quest.expanded ? ' ' + STRINGS.expanded.symbol : ''}`;
-  const qLines = doc.splitTextToSize(questTitleText, cardW - 8);
-  doc.text(qLines, x + 4, cy);
-  cy += qLines.length * 4.5 + 1;
+  const qLines = doc.splitTextToSize(`\u201e${capitalizeFirst(theme.quest.title)}\u201c${theme.quest.expanded ? ' ' + STRINGS.expanded.symbol : ''}`, cardW - 8);
+  doc.text(qLines, x + 4, cy); cy += qLines.length * 4.5 + 1;
   doc.setFont('times', 'italic'); doc.setFontSize(8.5); doc.setTextColor(...PDF_COLORS.inkSoft);
-  const dLines = doc.splitTextToSize(theme.quest.description, cardW - 8);
-  doc.text(dLines, x + 4, cy);
+  doc.text(doc.splitTextToSize(theme.quest.description, cardW - 8), x + 4, cy);
 }
 
 function pdfFooter(doc) {
@@ -898,9 +957,7 @@ function pdfFooter(doc) {
 }
 
 async function generatePDF() {
-  if (!window.jspdf || !window.jspdf.jsPDF) {
-    alert(STRINGS.pdf.errLoad); return;
-  }
+  if (!window.jspdf || !window.jspdf.jsPDF) { alert(STRINGS.pdf.errLoad); return; }
   const proposal = state.proposals[state.proposalIndex];
   if (!proposal) return;
   try {
@@ -908,18 +965,16 @@ async function generatePDF() {
     const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
     const { pageW, pageH, marginX, marginY, gap } = PDF_LAYOUT;
     pdfHeader(doc);
+    const cardY = marginY + (state.hero && state.hero.title ? 20 : 16);
     const cardW = (pageW - 2 * marginX - 3 * gap) / 4;
-    const cardY = marginY + 16;
     const cardH = pageH - cardY - marginY;
-    proposal.themes.forEach((_, i) => {
-      pdfThemeBlock(doc, getDisplayTheme(i), marginX + i * (cardW + gap), cardY, cardW, cardH);
-    });
+    proposal.themes.forEach((_, i) => pdfThemeBlock(doc, getDisplayTheme(i), marginX + i * (cardW + gap), cardY, cardW, cardH));
     pdfFooter(doc);
-    doc.save(STRINGS.pdf.filename);
-  } catch (err) {
-    console.error('PDF-Fehler:', err);
-    alert(STRINGS.pdf.errCreate);
-  }
+    const filename = state.hero
+      ? `mistheld-${state.hero.firstName.toLowerCase()}-${state.hero.epithet.toLowerCase().replace(/\s/g, '-')}.pdf`
+      : STRINGS.pdf.filename;
+    doc.save(filename);
+  } catch (err) { console.error('PDF-Fehler:', err); alert(STRINGS.pdf.errCreate); }
 }
 
 /* =====================================================
@@ -942,14 +997,14 @@ function openSettings() {
 }
 
 function updateSettingsUI() {
-  const mightCbs = [$('toggle-origin'), $('toggle-adventure'), $('toggle-greatness')];
+  const mightCbs     = [$('toggle-origin'), $('toggle-adventure'), $('toggle-greatness')];
   const checkedCount = mightCbs.filter(c => c.checked).length;
   mightCbs.forEach(cb => { cb.disabled = (checkedCount === 1 && cb.checked); });
-  [['toggle-companion',   'select-companion-level'],
-   ['toggle-magic',       'select-magic-level'],
-   ['toggle-possessions', 'select-possessions-level']].forEach(([tid, sid]) => {
+  [['toggle-companion','select-companion-level'],
+   ['toggle-magic','select-magic-level'],
+   ['toggle-possessions','select-possessions-level']].forEach(([tid, sid]) => {
     const enabled = $(tid).checked;
-    $(sid).disabled    = !enabled;
+    $(sid).disabled = !enabled;
     $(sid).style.opacity = enabled ? '1' : '0.4';
   });
 }
@@ -980,26 +1035,26 @@ $('btn-start').addEventListener('click', startSwipe);
 $('btn-yes').addEventListener('click',   () => programmaticDecide('yes'));
 $('btn-no').addEventListener('click',    () => programmaticDecide('no'));
 $('btn-undo').addEventListener('click',  undoLast);
-$('btn-accept').addEventListener('click',      generatePDF);
-$('btn-alternative').addEventListener('click', generateAlternative);
-$('btn-restart').addEventListener('click', () => {
-  document.body.classList.remove('swipe-active');
-  show('screen-welcome');
-});
 $('btn-settings').addEventListener('click',      openSettings);
-$('btn-settings-back').addEventListener('click', () => {
-  saveSettingsFromUI();
-  show('screen-welcome');
+$('btn-settings-back').addEventListener('click', () => { saveSettingsFromUI(); show('screen-welcome'); });
+$('result-nav-prev').addEventListener('click', () => navigateResult(-1));
+$('result-nav-next').addEventListener('click', () => navigateResult(1));
+$('edit-sheet-overlay').addEventListener('click', (e) => {
+  if (e.target === $('edit-sheet-overlay')) closeEditSheet();
 });
-
 ['toggle-origin','toggle-adventure','toggle-greatness',
  'toggle-companion','toggle-magic','toggle-possessions'].forEach(id => {
   $(id).addEventListener('change', updateSettingsUI);
 });
-
 document.addEventListener('keydown', (e) => {
-  if (!$('screen-swipe').classList.contains('active')) return;
-  if      (e.key === 'ArrowRight') { e.preventDefault(); programmaticDecide('yes'); }
-  else if (e.key === 'ArrowLeft')  { e.preventDefault(); programmaticDecide('no'); }
-  else if (e.key === 'Backspace')  { e.preventDefault(); undoLast(); }
+  if ($('screen-swipe').classList.contains('active')) {
+    if      (e.key === 'ArrowRight') { e.preventDefault(); programmaticDecide('yes'); }
+    else if (e.key === 'ArrowLeft')  { e.preventDefault(); programmaticDecide('no'); }
+    else if (e.key === 'Backspace')  { e.preventDefault(); undoLast(); }
+  }
+  if ($('screen-result').classList.contains('active')) {
+    if      (e.key === 'ArrowRight') { e.preventDefault(); navigateResult(1); }
+    else if (e.key === 'ArrowLeft')  { e.preventDefault(); navigateResult(-1); }
+    else if (e.key === 'Escape')     { closeEditSheet(); }
+  }
 });
