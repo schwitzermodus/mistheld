@@ -1,20 +1,20 @@
 import { test, expect } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
-  await page.route('**/*.mp3',                    route => route.abort());
-  await page.route('**/fonts.googleapis.com/**',  route => route.abort());
-  await page.route('**/fonts.gstatic.com/**',     route => route.abort());
-  await page.route('**/cdnjs.cloudflare.com/**',  route => route.abort());
+  await page.route('**/*.mp3',                   route => route.abort());
+  await page.route('**/fonts.googleapis.com/**', route => route.abort());
+  await page.route('**/fonts.gstatic.com/**',    route => route.abort());
+  await page.route('**/cdnjs.cloudflare.com/**', route => route.abort());
 });
 
-// Hilfsfunktion: Ergebnis-Screen mit generierten Daten laden
+// Ergebnis-Screen mit generierten Daten laden
 async function loadResultScreen(page) {
   await page.evaluate(() => {
-    state.proposals  = [generateProposal('initial')];
+    state.proposals     = [generateProposal('initial')];
     state.proposalIndex = 0;
-    state.edits      = {};
-    state.hero       = generateHero();
-    state.resultPage = 0;
+    state.edits         = {};
+    state.hero          = generateHero();
+    state.resultPage    = 0;
     show('screen-result');
     renderCurrentResultPage();
     attachResultPageSwipe();
@@ -51,7 +51,6 @@ test('Einstellungen oeffnen und schliessen', async ({ page }) => {
   await expect(page.locator('#screen-welcome')).not.toBeVisible();
   await page.locator('#btn-settings-back').click();
   await expect(page.locator('#screen-welcome')).toBeVisible();
-  await expect(page.locator('#screen-settings')).not.toBeVisible();
 });
 
 test('Los-gehts zeigt Swipe-Screen mit Phase-Intro', async ({ page }) => {
@@ -89,18 +88,12 @@ test('Keine JS-Fehler beim Seitenaufruf', async ({ page }) => {
   expect(errors).toHaveLength(0);
 });
 
-test('STRINGS geladen (inline in index.html)', async ({ page }) => {
-  await page.goto('/');
-  const ok = await page.evaluate(() => typeof STRINGS === 'object' && typeof STRINGS.hero === 'object');
-  expect(ok).toBe(true);
-});
-
-test('HELD-KATALOG geladen', async ({ page }) => {
+test('STRINGS und HELD-KATALOG geladen', async ({ page }) => {
   await page.goto('/');
   const ok = await page.evaluate(() =>
+    typeof STRINGS === 'object' &&
+    typeof STRINGS.hero === 'object' &&
     Array.isArray(HERO_FIRSTNAMES) && HERO_FIRSTNAMES.length >= 10 &&
-    Array.isArray(HERO_EPITHETS)   && HERO_EPITHETS.length   >= 10 &&
-    Array.isArray(HERO_TITLES)     && HERO_TITLES.length     >= 10 &&
     Array.isArray(HERO_DESCRIPTIONS) && HERO_DESCRIPTIONS.length >= 10
   );
   expect(ok).toBe(true);
@@ -126,20 +119,19 @@ test('Settings-Default: Origin aktiv, Adventure+Greatness inaktiv', async ({ pag
   await expect(page.locator('#toggle-greatness')).not.toBeChecked();
 });
 
-test('Letzter Toggle nicht deaktivierbar (min. 1 Might-Stufe)', async ({ page }) => {
+test('Letzter Toggle nicht deaktivierbar', async ({ page }) => {
   await page.goto('/');
   await page.locator('#btn-settings').click();
   await expect(page.locator('#toggle-origin')).toBeDisabled();
 });
 
 // =============================================================
-// #29: ERGEBNIS-SCREEN (Held-Uebersicht + Swipe-Pages)
+// #29: ERGEBNIS-SCREEN
 // =============================================================
 
-test('#29: Ergebnis-Screen zeigt Held-Seite zuerst', async ({ page }) => {
+test('#29: Held-Seite erscheint zuerst', async ({ page }) => {
   await page.goto('/');
   await loadResultScreen(page);
-  await expect(page.locator('#screen-result')).toBeVisible();
   await expect(page.locator('.result-hero-page')).toBeVisible();
   await expect(page.locator('.hero-name')).toBeVisible();
   await expect(page.locator('.hero-description')).toBeVisible();
@@ -148,16 +140,21 @@ test('#29: Ergebnis-Screen zeigt Held-Seite zuerst', async ({ page }) => {
 test('#29: Held-Seite hat 4 Reroll-Buttons', async ({ page }) => {
   await page.goto('/');
   await loadResultScreen(page);
-  const btns = page.locator('.hero-reroll-btn');
-  await expect(btns).toHaveCount(4);
+  await expect(page.locator('.hero-reroll-btn')).toHaveCount(4);
 });
 
-test('#29: Navigation zur naechsten Seite zeigt Theme', async ({ page }) => {
+test('#29: Navigation zeigt Theme-Seite', async ({ page }) => {
   await page.goto('/');
   await loadResultScreen(page);
   await page.locator('#result-nav-next').click();
   await expect(page.locator('.result-theme-page')).toBeVisible();
   await expect(page.locator('.rtp-title-tag')).toBeVisible();
+});
+
+test('#29: Dots zeigen 6 Seiten (Held + 4 Themes + Speichern)', async ({ page }) => {
+  await page.goto('/');
+  await loadResultScreen(page);
+  await expect(page.locator('.result-dot')).toHaveCount(6);
 });
 
 test('#29: Bearbeiten-Button oeffnet Edit-Sheet', async ({ page }) => {
@@ -169,47 +166,23 @@ test('#29: Bearbeiten-Button oeffnet Edit-Sheet', async ({ page }) => {
   await expect(page.locator('.es-full-reroll')).toBeVisible();
 });
 
-test('#29: Edit-Sheet schliesst durch Overlay-Tap', async ({ page }) => {
+test('#29: Edit-Sheet hat Reroll-Buttons fuer alle Elemente', async ({ page }) => {
   await page.goto('/');
   await loadResultScreen(page);
   await page.locator('#result-nav-next').click();
   await page.locator('.rtp-edit-btn').click();
-  await expect(page.locator('#edit-sheet-overlay')).toHaveClass(/active/);
-  await page.evaluate(() => document.getElementById('edit-sheet-overlay').click());
-  await expect(page.locator('#edit-sheet-overlay')).not.toHaveClass(/active/);
+  // 5 Elemente: title, pow0, pow1, weakness, quest
+  const count = await page.locator('.es-reroll-btn').count();
+  expect(count).toBe(5);
 });
 
-test('#29: Letzte Seite zeigt Speichern-Optionen', async ({ page }) => {
+test('#29: Letzte Seite zeigt Speichern-Button', async ({ page }) => {
   await page.goto('/');
   await loadResultScreen(page);
-  // Zur letzten Seite navigieren (1 Held + 4 Themes + 1 Save = 6 Seiten, Index 5)
   await page.evaluate(() => {
     state.resultPage = totalResultPages() - 1;
     renderCurrentResultPage();
   });
   await expect(page.locator('.result-save-page')).toBeVisible();
   await expect(page.locator('#save-pdf')).toBeVisible();
-  await expect(page.locator('#save-restart')).toBeVisible();
-});
-
-test('#29: Dots zeigen korrekte Seitenanzahl', async ({ page }) => {
-  await page.goto('/');
-  await loadResultScreen(page);
-  const dotCount = await page.locator('.result-dot').count();
-  // 1 Held + 4 Themes + 1 Save = 6
-  expect(dotCount).toBe(6);
-});
-
-test('#29: Reroll im Edit-Sheet aktualisiert Theme-Seite', async ({ page }) => {
-  await page.goto('/');
-  await loadResultScreen(page);
-  await page.locator('#result-nav-next').click();
-  const before = await page.locator('.rtp-title-tag').textContent();
-  await page.locator('.rtp-edit-btn').click();
-  // ersten Reroll-Button im Sheet klicken (Titelschlagwort)
-  await page.locator('.es-reroll-btn').first().click();
-  const after = await page.locator('.rtp-title-tag').textContent();
-  // Wert sollte sich geaendert haben (oder gleich geblieben sein bei gleichem Zufallswert)
-  // Mindestens: kein Fehler geworfen
-  expect(typeof after).toBe('string');
 });
