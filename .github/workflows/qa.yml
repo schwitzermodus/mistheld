@@ -26,6 +26,14 @@ jobs:
       - name: JS-Syntaxpruefung
         run: node --check app.js data.js strings.js
 
+      - name: Playwright-Browser-Cache laden
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            playwright-chromium-${{ runner.os }}-
+
       - name: Playwright installieren
         run: npx playwright install --with-deps chromium
 
