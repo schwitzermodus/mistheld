@@ -57,12 +57,13 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .welcome-instructions ul{list-style:none;font-size:0.95rem;color:var(--ink-soft)}
 .welcome-instructions li{padding:6px 0;display:flex;gap:12px;align-items:flex-start}
 .welcome-instructions li::before{content:'\25c6';color:var(--gold);font-size:0.7rem;margin-top:6px;flex-shrink:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--sans);font-weight:600;font-size:0.95rem;letter-spacing:0.02em;padding:14px 28px;border:none;border-radius:2px;cursor:pointer;transition:all 0.2s ease;min-height:48px;user-select:none}
+.btn-primary{background:var(--ink);color:var(--bg)}
+.btn-primary:hover{background:var(--accent)}
+.btn-primary:active{transform:scale(0.98)}
 /* NEBEL */
 .mist-container{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
-.mist-ground{position:absolute;bottom:0;left:-5%;width:110%;height:220px;
-  background:linear-gradient(to top,rgba(200,170,110,0.50) 0%,rgba(169,134,70,0.14) 45%,transparent 100%);
-  -webkit-animation:mist-ground-breathe 10s ease-in-out infinite;
-  animation:mist-ground-breathe 10s ease-in-out infinite}
+.mist-ground{position:absolute;bottom:0;left:-5%;width:110%;height:220px;background:linear-gradient(to top,rgba(200,170,110,0.50) 0%,rgba(169,134,70,0.14) 45%,transparent 100%);-webkit-animation:mist-ground-breathe 10s ease-in-out infinite;animation:mist-ground-breathe 10s ease-in-out infinite}
 @-webkit-keyframes mist-ground-breathe{0%,100%{opacity:0.65;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.1)}}
 @keyframes mist-ground-breathe{0%,100%{opacity:0.65;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.1)}}
 .mist-wisp{position:absolute;border-radius:50%}
@@ -76,15 +77,11 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .mist-8{width:260px;height:88px;left:70%;bottom:28%;background:radial-gradient(ellipse at center,rgba(169,134,70,0.27) 0%,transparent 70%);-webkit-animation:mist-float 28s -15s linear infinite;animation:mist-float 28s -15s linear infinite}
 @-webkit-keyframes mist-float{0%{transform:translate(0,0) scale(1);opacity:0}8%{opacity:1}50%{transform:translate(22px,-65px) scale(1.12);opacity:0.85}92%{opacity:0.15}100%{transform:translate(-12px,-120px) scale(0.9);opacity:0}}
 @keyframes mist-float{0%{transform:translate(0,0) scale(1);opacity:0}8%{opacity:1}50%{transform:translate(22px,-65px) scale(1.12);opacity:0.85}92%{opacity:0.15}100%{transform:translate(-12px,-120px) scale(0.9);opacity:0}}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--sans);font-weight:600;font-size:0.95rem;letter-spacing:0.02em;padding:14px 28px;border:none;border-radius:2px;cursor:pointer;transition:all 0.2s ease;min-height:48px;user-select:none}
-.btn-primary{background:var(--ink);color:var(--bg)}
-.btn-primary:hover{background:var(--accent)}
-.btn-primary:active{transform:scale(0.98)}
-/* SWIPE — kein Phase-Header, kein Phase-Intro */
+/* SWIPE */
 #screen-swipe{padding:16px 20px 12px;touch-action:none;overflow:hidden;position:relative}
-.card-counter{text-align:center;font-size:0.85rem;color:var(--ink-soft);margin-bottom:10px;letter-spacing:0.06em;flex-shrink:0;font-family:var(--sans)}
-.card-stage{position:relative;flex:1;min-height:320px;margin:0 auto;width:100%;max-width:360px;display:flex;align-items:center;justify-content:center;touch-action:none}
-.card{position:absolute;width:100%;height:100%;background:var(--paper);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);padding:28px 24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;cursor:grab;user-select:none;-webkit-user-select:none;touch-action:none;will-change:transform,opacity;transform:translate3d(0,0,0);transition:transform 0.4s cubic-bezier(0.18,0.89,0.32,1.18),opacity 0.3s ease-out}
+.card-counter{text-align:center;font-size:0.85rem;color:var(--ink-soft);margin-bottom:10px;letter-spacing:0.06em;flex-shrink:0}
+.card-stage{position:relative;flex:1;min-height:0;margin:0 auto;width:100%;max-width:360px;display:flex;align-items:center;justify-content:center;touch-action:none}
+.card{position:absolute;width:100%;height:100%;background:var(--paper);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);padding:22px 24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;cursor:grab;user-select:none;-webkit-user-select:none;touch-action:none;will-change:transform,opacity;transform:translate3d(0,0,0);transition:transform 0.4s cubic-bezier(0.18,0.89,0.32,1.18),opacity 0.3s ease-out}
 .card.dragging{transition:none;cursor:grabbing}
 .card.behind{pointer-events:none}
 .card.behind-1{transform:translate3d(0,10px,0) scale(0.96);opacity:0.95}
@@ -93,13 +90,20 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .card.gone-left{transform:translate3d(-130%,30px,0) rotate(-22deg) !important;opacity:0;transition:transform 0.9s cubic-bezier(0.4,0,0.5,1),opacity 0.65s ease-out}
 .card.gone-right{transform:translate3d(130%,30px,0) rotate(22deg) !important;opacity:0;transition:transform 0.9s cubic-bezier(0.4,0,0.5,1),opacity 0.65s ease-out}
 .card.abandoned{pointer-events:none}
-@keyframes hint-swipe{0%{transform:translate3d(0,0,0) rotate(0deg)}18%{transform:translate3d(-28px,0,0) rotate(-4deg)}36%{transform:translate3d(0,0,0) rotate(0deg)}56%{transform:translate3d(32px,0,0) rotate(4deg)}74%{transform:translate3d(0,0,0) rotate(0deg)}100%{transform:translate3d(0,0,0) rotate(0deg)}}
+@keyframes hint-swipe{0%{transform:translate3d(0,0,0)}18%{transform:translate3d(-28px,0,0) rotate(-4deg)}36%{transform:translate3d(0,0,0)}56%{transform:translate3d(32px,0,0) rotate(4deg)}74%,100%{transform:translate3d(0,0,0)}}
 .card-hint{animation:hint-swipe 1.5s ease-in-out 0.9s 1 forwards}
-.card-glyph{font-size:2.2rem;color:var(--gold);margin-bottom:10px;font-family:var(--serif);font-style:italic;position:relative}
-.card-glyph::before,.card-glyph::after{content:'';display:inline-block;width:24px;height:1px;background:var(--gold);vertical-align:middle;margin:0 12px;opacity:0.6}
-.card-title{font-family:var(--serif);font-size:1.85rem;font-weight:600;font-style:italic;line-height:1.2;color:var(--ink);max-width:280px}
-.card-divider{width:36px;height:1px;background:var(--gold);margin:10px auto;opacity:0.65;flex-shrink:0}
-.card-text{font-family:var(--serif);font-size:1.18rem;line-height:1.5;color:var(--ink);max-width:260px}
+/* #42: Theme-Type Tags auf Swipe-Karten */
+.card-themes{display:flex;gap:5px;flex-wrap:wrap;justify-content:center;margin-bottom:10px}
+.card-theme-tag{font-size:0.6rem;text-transform:uppercase;letter-spacing:0.09em;padding:2px 7px;border-radius:3px;font-family:var(--sans);font-weight:500}
+.card-theme-tag.tc-origin{background:rgba(61,92,42,0.1);color:var(--might-origin)}
+.card-theme-tag.tc-adventure{background:rgba(139,58,43,0.1);color:var(--might-adventure)}
+.card-theme-tag.tc-greatness{background:rgba(45,74,110,0.1);color:var(--might-greatness)}
+.card-theme-tag.tc-variable{background:rgba(169,134,70,0.12);color:var(--gold)}
+.card-glyph{font-size:1.8rem;color:var(--gold);margin-bottom:8px;font-family:var(--serif);font-style:italic;position:relative}
+.card-glyph::before,.card-glyph::after{content:'';display:inline-block;width:20px;height:1px;background:var(--gold);vertical-align:middle;margin:0 10px;opacity:0.6}
+.card-title{font-family:var(--serif);font-size:1.7rem;font-weight:600;font-style:italic;line-height:1.2;color:var(--ink);max-width:280px}
+.card-divider{width:36px;height:1px;background:var(--gold);margin:8px auto;opacity:0.65;flex-shrink:0}
+.card-text{font-family:var(--serif);font-size:1.1rem;line-height:1.5;color:var(--ink);max-width:260px}
 .card-decision-overlay{position:absolute;top:16px;font-family:var(--serif);font-size:2rem;font-style:italic;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:8px 16px;border:3px solid;border-radius:4px;opacity:0;pointer-events:none;transition:opacity 0.05s linear}
 .card-decision-overlay.yes{right:18px;color:var(--green);border-color:var(--green);transform:rotate(-12deg)}
 .card-decision-overlay.no{left:18px;color:var(--accent);border-color:var(--accent);transform:rotate(12deg)}
@@ -115,30 +119,57 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .swipe-btn-undo:disabled{opacity:0.3;cursor:not-allowed}
 .swipe-btn svg{width:28px;height:28px}
 .swipe-btn-undo svg{width:20px;height:20px}
-/* ERGEBNIS: Kein display-Property! */
+/* =====================================================
+   ERGEBNIS-SCREEN (#38: feste Kartengröße, Carousel)
+   BUG-SCHUTZ: Kein display-Property!
+===================================================== */
 #screen-result{padding:16px 20px 8px;overflow:hidden}
-#result-stage{position:relative;flex:1;min-height:0;display:flex;align-items:flex-start;justify-content:center;overflow:hidden}
+#result-stage{
+  position:relative;
+  flex:1;
+  min-height:0;
+  overflow:hidden
+}
 #result-dots{display:flex;justify-content:center;gap:8px;padding:10px 0 4px;flex-shrink:0}
 .result-dot{width:7px;height:7px;border-radius:50%;border:none;background:var(--line);cursor:pointer;padding:0;transition:all 0.2s}
 .result-dot.active{background:var(--accent);transform:scale(1.35)}
-.result-card{width:100%;max-width:360px;background:var(--paper);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);overflow-y:auto;-webkit-overflow-scrolling:touch;max-height:100%;position:relative}
-.rc-pencil-btn{position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--bg);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink-soft);transition:all 0.15s;z-index:2}
-.rc-pencil-btn:active{transform:scale(0.9);background:var(--bg-2)}
-.rc-pencil-btn svg{width:14px;height:14px}
-.rc-label{font-size:0.62rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--ink-soft);margin-bottom:4px;font-family:var(--sans)}
-.rc-divider{height:1px;background:var(--line-soft);margin:0}
-.rc-section{padding:10px 16px}
+/* Karte füllt Stage komplett aus — gleiche Größe wie Swipe-Karten */
+.result-card{
+  position:absolute;
+  inset:0;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:8px;
+  box-shadow:var(--shadow);
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch
+}
+/* #39: Feder-Icon */
+.rc-edit-btn{
+  position:absolute;top:10px;right:10px;
+  width:34px;height:34px;border-radius:50%;
+  border:1px solid var(--line);background:var(--bg);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;color:var(--gold);transition:all 0.15s;z-index:2
+}
+.rc-edit-btn:active{transform:scale(0.9);background:var(--bg-2)}
+.rc-edit-btn svg{width:15px;height:15px}
+.rc-label{font-size:0.62rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--ink-soft);margin-bottom:5px;font-family:var(--sans);text-align:center}
+.rc-divider{height:1px;background:var(--line-soft)}
+.rc-section{padding:10px 16px;text-align:center}
+/* HELD-KARTE */
 .rc-hero{padding:0}
-.rc-hero-eyebrow{font-size:0.62rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--accent);font-weight:600;padding:14px 16px 0;font-family:var(--sans)}
-.rc-hero-name{font-family:var(--serif);font-size:2rem;font-weight:600;font-style:italic;color:var(--ink);line-height:1.15}
-.rc-hero-title{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink-soft);line-height:1.4}
-.rc-hero-description{font-family:var(--serif);font-size:1.05rem;line-height:1.6;color:var(--ink)}
+.rc-hero-eyebrow{font-size:0.62rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--accent);font-weight:600;padding:14px 16px 0;font-family:var(--sans);text-align:center}
+.rc-hero-name{font-family:var(--serif);font-size:1.9rem;font-weight:600;font-style:italic;color:var(--ink);line-height:1.15;text-align:center}
+.rc-hero-title{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink-soft);line-height:1.4;text-align:center}
+.rc-hero-description{font-family:var(--serif);font-size:1.0rem;line-height:1.6;color:var(--ink);text-align:center}
+/* THEME-KARTE (#40: zentriert, neu strukturiert) */
 .rc-theme{padding:0;border-left-width:4px}
 .rc-theme.tc-origin{border-left-color:var(--might-origin)}
 .rc-theme.tc-adventure{border-left-color:var(--might-adventure)}
 .rc-theme.tc-greatness{border-left-color:var(--might-greatness)}
-.rc-theme-header{padding:12px 48px 12px 14px;border-bottom:1px solid var(--line-soft)}
-.rc-theme-name{font-family:var(--serif);font-size:1.55rem;font-weight:600;line-height:1.15;margin-bottom:4px}
+.rc-theme-header{padding:14px 48px 12px 14px;border-bottom:1px solid var(--line-soft);text-align:center}
+.rc-theme-name{font-family:var(--serif);font-size:1.6rem;font-weight:600;line-height:1.15;margin-bottom:5px}
 .tc-origin .rc-theme-name{color:var(--might-origin)}
 .tc-adventure .rc-theme-name{color:var(--might-adventure)}
 .tc-greatness .rc-theme-name{color:var(--might-greatness)}
@@ -146,27 +177,38 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .tc-origin .rc-might-badge{background:rgba(61,92,42,0.1);color:var(--might-origin)}
 .tc-adventure .rc-might-badge{background:rgba(139,58,43,0.1);color:var(--might-adventure)}
 .tc-greatness .rc-might-badge{background:rgba(45,74,110,0.1);color:var(--might-greatness)}
-.rc-theme-section{padding:8px 14px;border-bottom:1px solid var(--line-soft)}
+.rc-theme-section{padding:8px 14px;border-bottom:1px solid var(--line-soft);text-align:center}
 .rc-theme-section:last-child{border-bottom:none;padding-bottom:14px}
-.rc-title-tag{font-family:var(--serif);font-size:1.65rem;font-style:italic;font-weight:700;line-height:1.2;color:var(--ink);background:rgba(169,134,70,0.13);border-left:3px solid var(--gold);padding:8px 12px;margin-top:5px}
-.rc-power-tag{font-family:var(--serif);font-size:1.05rem;line-height:1.3;color:var(--ink);background:rgba(169,134,70,0.07);border-left:2px solid rgba(169,134,70,0.35);padding:5px 10px;margin-top:4px}
-.rc-weakness-tag{font-family:var(--serif);font-style:italic;font-size:1.05rem;line-height:1.3;color:#7a3010;background:rgba(170,80,20,0.08);border-left:2px solid rgba(170,80,20,0.35);padding:5px 10px;margin-top:5px}
-.rc-quest-title{font-family:var(--serif);font-style:italic;font-weight:600;font-size:1.05rem;color:var(--ink);line-height:1.3;margin-top:5px;margin-bottom:4px}
-.rc-quest-desc{font-family:var(--serif);font-style:italic;font-size:0.92rem;color:var(--ink-soft);line-height:1.5}
-.rc-save{padding:28px 20px;text-align:center;display:flex;flex-direction:column;align-items:center}
-.save-eyebrow{font-size:0.62rem;letter-spacing:0.18em;color:var(--accent);font-weight:600;text-transform:uppercase;margin-bottom:10px}
-.save-hero-name{font-family:var(--serif);font-size:1.9rem;font-weight:600;font-style:italic;color:var(--ink);margin-bottom:18px;line-height:1.2}
-.save-themes{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:24px}
-.save-theme-pill{font-size:0.75rem;padding:4px 11px;border-radius:20px;border:1px solid}
-.pill-origin{border-color:rgba(61,92,42,0.3);color:var(--might-origin)}
-.pill-adventure{border-color:rgba(139,58,43,0.3);color:var(--might-adventure)}
-.pill-greatness{border-color:rgba(45,74,110,0.3);color:var(--might-greatness)}
-.save-actions{width:100%;max-width:300px;display:flex;flex-direction:column;gap:8px}
+/* Titelschlagwort — größtes Element im Power-Tags-Block */
+.rc-title-tag{font-family:var(--serif);font-size:1.55rem;font-style:italic;font-weight:700;line-height:1.2;color:var(--ink);background:rgba(169,134,70,0.13);border-left:3px solid var(--gold);padding:8px 14px;margin-top:5px;text-align:center}
+.rc-power-tag{font-family:var(--serif);font-size:1.0rem;line-height:1.3;color:var(--ink);background:rgba(169,134,70,0.07);border-left:2px solid rgba(169,134,70,0.35);padding:5px 12px;margin-top:4px;text-align:center}
+.rc-weakness-tag{font-family:var(--serif);font-style:italic;font-size:1.0rem;line-height:1.3;color:#7a3010;background:rgba(170,80,20,0.08);border-left:2px solid rgba(170,80,20,0.35);padding:5px 12px;margin-top:5px;text-align:center}
+/* Quest — größere Schrift (#40) */
+.rc-quest-title{font-family:var(--serif);font-style:italic;font-weight:600;font-size:1.15rem;color:var(--ink);line-height:1.35;margin-top:6px;margin-bottom:5px;text-align:center}
+.rc-quest-desc{font-family:var(--serif);font-style:italic;font-size:1.0rem;color:var(--ink-soft);line-height:1.5;text-align:center}
+/* ÜBERSICHTS-KARTE (#41) */
+.rc-save{padding:18px 16px 20px;text-align:center;overflow-y:auto}
+.save-overview-title{font-family:var(--serif);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--accent);font-weight:600;margin-bottom:8px}
+.save-hero-name{font-family:var(--serif);font-size:1.8rem;font-weight:600;font-style:italic;color:var(--ink);line-height:1.2;margin-bottom:4px}
+.save-hero-title{font-family:var(--serif);font-style:italic;font-size:0.95rem;color:var(--ink-soft);margin-bottom:14px;line-height:1.4}
+.overview-tiles{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:16px}
+.ot-tile{border-radius:6px;padding:9px;background:var(--paper);border:1px solid var(--line-soft);border-left-width:3px;text-align:left}
+.ot-tile.tc-origin{border-left-color:var(--might-origin)}
+.ot-tile.tc-adventure{border-left-color:var(--might-adventure)}
+.ot-tile.tc-greatness{border-left-color:var(--might-greatness)}
+.ot-type{font-family:var(--serif);font-size:0.85rem;font-weight:600;margin-bottom:5px;line-height:1.2}
+.ot-tile.tc-origin .ot-type{color:var(--might-origin)}
+.ot-tile.tc-adventure .ot-type{color:var(--might-adventure)}
+.ot-tile.tc-greatness .ot-type{color:var(--might-greatness)}
+.ot-tags{margin-bottom:5px}
+.ot-power{font-family:var(--serif);font-size:0.78rem;color:var(--gold);display:block;line-height:1.3}
+.ot-weakness{font-family:var(--serif);font-style:italic;font-size:0.78rem;color:#7a3010;display:block;line-height:1.3}
+.ot-quest{font-family:var(--serif);font-style:italic;font-size:0.74rem;color:var(--ink-soft);line-height:1.3}
+.save-actions{display:flex;flex-direction:column;gap:8px}
 .save-btn-primary{width:100%;padding:14px;border-radius:4px;border:none;background:var(--ink);color:var(--paper);font-family:var(--sans);font-size:0.95rem;font-weight:600;cursor:pointer;transition:background 0.2s}
 .save-btn-primary:active{background:var(--accent)}
-.save-btn-secondary{width:100%;padding:12px;border-radius:4px;border:1px solid var(--line);background:transparent;color:var(--ink);font-family:var(--sans);font-size:0.88rem;cursor:pointer}
-.save-btn-secondary.exhausted{opacity:0.4;cursor:not-allowed}
 .save-btn-ghost{width:100%;padding:8px;border:none;background:transparent;color:var(--ink-soft);font-family:var(--sans);font-size:0.82rem;cursor:pointer}
+/* EDIT SHEET */
 #edit-sheet-overlay{position:fixed;inset:0;background:rgba(42,36,25,0.52);display:none;flex-direction:column;justify-content:flex-end;z-index:80}
 #edit-sheet-overlay.active{display:flex;animation:fadeIn 0.25s ease}
 #edit-sheet{background:var(--paper);border-radius:18px 18px 0 0;max-height:88vh;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:max(16px,env(safe-area-inset-bottom,16px))}
@@ -220,10 +262,7 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
 .loading-spinner{width:32px;height:32px;border:2px solid var(--line);border-top-color:var(--accent);border-radius:50%;animation:spin 0.9s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .loading-text{font-family:var(--serif);font-style:italic;color:var(--ink-soft)}
-@media(max-height:740px){
-  .card-stage{min-height:280px}.card-title{font-size:1.65rem}.card-text{font-size:1.1rem}
-  .rc-hero-name{font-size:1.65rem}.rc-title-tag{font-size:1.4rem}
-}
+@media(max-height:740px){.card-title{font-size:1.5rem}.rc-title-tag{font-size:1.3rem}.rc-theme-name{font-size:1.35rem}}
 </style>
 </head>
 <body>
@@ -250,7 +289,6 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
   <div class="welcome-instructions"><h3></h3><ul></ul></div>
   <button class="btn btn-primary" id="btn-start"></button>
 </section>
-<!-- SWIPE: kein Phase-Intro, kein Phase-Header -->
 <section id="screen-swipe" class="screen">
   <div class="card-counter" id="card-counter"></div>
   <div class="card-stage" id="card-stage"></div>
@@ -293,7 +331,6 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
 <script src="./data.js"></script>
 <script src="./phases_patch.js"></script>
 
-<!-- ALLE TEXTE -->
 <script>
 var STRINGS={
   pageTitle:'Mistheld – Heldengenerator',
@@ -314,9 +351,7 @@ var STRINGS={
     ariaYes:'Passt',ariaNo:'Passt nicht',ariaUndo:'Letzte Karte zurück',
   },
   result:{
-    btnAccept:'Held speichern & PDF',
-    btnAlternative:'Alle Themes neu würfeln',
-    btnAlternativeMaxed:'Alle Varianten gesehen',
+    btnAccept:'Speichern',
     btnRestart:'Nochmal swipen',
     questLabel:'Quest',
   },
@@ -328,12 +363,11 @@ var STRINGS={
     labelDescription:'Beschreibung',
     labelFirstName:'Vorname',
     labelEpithet:'Beiname',
-    labelThemeType:'Theme-Typ',
     labelTitleTag:'Titelschlagwort',
     labelPowerTags:'Power Tags',
     labelPower1:'Power Tag 1',
     labelPower2:'Power Tag 2',
-    labelWeakness:'Schwäche',
+    labelWeakness:'Weakness Tag',
     labelQuest:'Quest',
     editTheme:'Bearbeiten',
     rerollShort:'Neu',
@@ -373,69 +407,11 @@ var STRINGS={
 };
 </script>
 
-<!-- HELD-KATALOG -->
 <script>
-var HERO_FIRSTNAMES=[
-  'Aldric','Astrid','Bran','Brunhild','Calder','Cressida','Dunstan','Edric',
-  'Elara','Freyja','Gareth','Hadwin','Halvard','Hedwig','Ingrid','Isolde',
-  'Jareth','Kira','Lachlan','Leofric','Mathilda','Merewyn','Morrigan','Niamh',
-  'Nils','Orla','Oswin','Phelan','Rhiannon','Rowena','Sable','Sigrid',
-  'Sigurd','Sigrún','Tamsin','Thalia','Torsten','Ulf','Vesna','Wulfric'
-];
-var HERO_EPITHETS=[
-  'Waldtochter','der Graue','die Stille','Rabenauge','Silberzunge',
-  'vom Schwarzstein','die Stumme','Eisenfaust','Nebelkind','Morgenrot',
-  'der Blinde','Schattenläufer','Steinherz','Wolfsbruder','die Vergessene',
-  'Mondblut','Aschenpfad','der Verwunschene','Flüsterin','Graumantel',
-  'Dunkelherz','der Gestrandete','Kupferklinge','der Letzte','Mondwanderin',
-  'Tiefblick','Zwielicht','die Rastlose','Eisgang','Abendrot',
-  'der Einsame','Nachtfalke','Silberpfeil','der Verbannte','Windtochter',
-  'Sturmherz','der Wanderer','Schattenpfad','die Hehlerin','Gluthaupt'
-];
-var HERO_TITLES=[
-  'Die schweigende Wächterin','Der letzte Hüter des alten Weges',
-  'Eine Verlorene auf der Suche nach Heimkehr','Das Kind zweier Welten',
-  'Ein Wanderer ohne Wiederkehr','Die Trägerin alter Schuld',
-  'Ein Zeuge vergessener Zeiten','Die zwischen den Welten steht',
-  'Ein Suchender nach dem, was war','Die Stimme derer, die schweigen müssen',
-  'Ein Schatten in der Dämmerung','Der Hüter eines verborgenen Geheimnisses',
-  'Ein Herz, das niemals Frieden fand','Die Hüterin eines alten Versprechens',
-  'Ein Geist in lebender Gestalt','Die Überlebende einer vergessenen Katastrophe',
-  'Ein Kämpfer, der den Krieg hinter sich ließ','Die Trägerin zweier Namen',
-  'Ein Wandler zwischen Licht und Schatten','Die Letzte ihrer Art'
-];
-var HERO_DESCRIPTIONS=[
-  'Wer sie einmal angesehen hat, vergisst diesen Blick nicht. Sie spricht wenig — aber wenn sie es tut, hören selbst die Alten zu.',
-  'Er hat mehr Abschied erlebt als die meisten in einem ganzen Leben. Irgendwann hört man auf, sich zu wundern, warum er keine Bindungen mehr eingeht.',
-  'Auf den ersten Blick wirkt sie wie eine von vielen. Wer länger hinschaut, bemerkt, wie ihre Augen den Raum lesen — als suche sie immer einen Ausweg.',
-  'Die Narben auf seinen Händen erzählen eine Geschichte, die er selbst nicht mehr vollständig kennt. Er lebt mit dem, was übrig geblieben ist.',
-  'Sie ist nicht grausam. Aber die Grenze zwischen ihr und dem, was sie tut, ist dünner, als es von außen aussieht. Wer sie kennt, weiß das.',
-  'Er sagt, er kommt aus dem Norden. Was genau das bedeutet, lässt er offen — wer nachbohrt, bereut es meistens.',
-  'Manche Menschen sind von der Welt abgerieben, bis nur das Wesentliche übrig bleibt. Sie ist so jemand.',
-  'Das Lachen kommt ihr leicht, aber es erreicht nie ganz die Augen. Die sie wirklich kennen, wissen, was dahintersteckt.',
-  'Er hatte einmal einen anderen Namen. Was ihn dazu gebracht hat, diesen hinter sich zu lassen, erzählt er nicht. Manche Dinge trägt man besser allein.',
-  'Sie ist schnell vertraut mit fremden Orten — als wäre sie geübt darin, sich anzupassen, weil sie keine andere Wahl hatte.',
-  'Wer mit ihm reist, schläft besser. Er selbst kaum. Das Dunkel kennt ihn beim Namen.',
-  'Die Leute in ihrem Dorf respektieren sie. Lieben tun sie die wenigsten. Das ist ihr recht.',
-  'Er ist kein böser Mensch — nur jemand, dem zu viele schlechte Dinge passiert sind, bis er aufgehört hat, zwischen gut und notwendig zu unterscheiden.',
-  'Auf sie zu warten lohnt sich. Sie kommt immer — nur selten dann, wenn man es erwartet.',
-  'Es gibt Menschen, denen man ansieht, dass sie früher jemand anderen kannten. Jemanden, der einfacher war. Sie ist einer davon.',
-  'Seine Hände sind ruhig, sein Urteil auch. Beides hat ihn schon aus Situationen herausgebracht, aus denen andere nicht zurückgekommen wären.',
-  'Sie erinnert sich an alles. Das klingt wie eine Gabe. Es ist keine.',
-  'Er hat gelernt, die Stille zu mögen — nicht weil er sie sucht, sondern weil sie ihn meistens findet.',
-  'Manche halten sie für kalt. Sie ist es nicht — sie ist nur sehr darauf bedacht, wem sie welche Wärme schenkt.',
-  'Irgendwo zwischen dem, was er war, und dem, was er geworden ist, liegt eine Geschichte. Er erzählt sie nicht.',
-  'Sie hat das Glück, das man nicht kaufen kann — und das Pech, das einem nie ganz löslässt. Beides trägt sie mit Würde.',
-  'Man fragt sich manchmal, was ihn antreibt. Die Antwort: er selbst weiß es nicht mehr genau.',
-  'Ihre Stimme ist ruhig, selbst wenn sie Dinge sagt, die andere erschrecken. Das ist das Erschreckendste daran.',
-  'Er ist jemand, der zuhört, bevor er spricht. In der Welt, in der er lebt, ist das eine Seltenheit — manchmal auch ein Vorteil.',
-  'Sie vertraut nicht leichtfertig. Dieses Vertrauen kostet etwas — und die meisten können sich den Preis nicht leisten.',
-  'Die Art, wie er die Welt betrachtet, erinnert an einen, der zu viel davon gesehen hat. Nicht verbittert — nur ehrlich.',
-  'Sie hat nicht viele Freunde. Die sie hat, würden für sie durch Feuer gehen. Das ist keine Übertreibung.',
-  'Er trägt seinen Namen wie ein Versprechen — eines, das er sich selbst gegeben hat. Ob er es halten kann, weiß er noch nicht.',
-  'Manchmal fragt man sich, ob sie Angst kennt. Sie tut es. Sie hat nur gelernt, ihr die Hand zu schütteln statt wegzulaufen.',
-  'Er ist in vielen Welten zu Hause, aber in keiner wirklich angekommen. Das macht ihn zu jemandem, dem man vertrauen kann — und dem man manchmal hinterherschaut.'
-];
+var HERO_FIRSTNAMES=['Aldric','Astrid','Bran','Brunhild','Calder','Cressida','Dunstan','Edric','Elara','Freyja','Gareth','Hadwin','Halvard','Hedwig','Ingrid','Isolde','Jareth','Kira','Lachlan','Leofric','Mathilda','Merewyn','Morrigan','Niamh','Nils','Orla','Oswin','Phelan','Rhiannon','Rowena','Sable','Sigrid','Sigurd','Sigrún','Tamsin','Thalia','Torsten','Ulf','Vesna','Wulfric'];
+var HERO_EPITHETS=['Waldtochter','der Graue','die Stille','Rabenauge','Silberzunge','vom Schwarzstein','die Stumme','Eisenfaust','Nebelkind','Morgenrot','der Blinde','Schattenläufer','Steinherz','Wolfsbruder','die Vergessene','Mondblut','Aschenpfad','der Verwunschene','Flüsterin','Graumantel','Dunkelherz','der Gestrandete','Kupferklinge','der Letzte','Mondwanderin','Tiefblick','Zwielicht','die Rastlose','Eisgang','Abendrot','der Einsame','Nachtfalke','Silberpfeil','der Verbannte','Windtochter','Sturmherz','der Wanderer','Schattenpfad','die Hehlerin','Gluthaupt'];
+var HERO_TITLES=['Die schweigende Wächterin','Der letzte Hüter des alten Weges','Eine Verlorene auf der Suche nach Heimkehr','Das Kind zweier Welten','Ein Wanderer ohne Wiederkehr','Die Trägerin alter Schuld','Ein Zeuge vergessener Zeiten','Die zwischen den Welten steht','Ein Suchender nach dem, was war','Die Stimme derer, die schweigen müssen','Ein Schatten in der Dämmerung','Der Hüter eines verborgenen Geheimnisses','Ein Herz, das niemals Frieden fand','Die Hüterin eines alten Versprechens','Ein Geist in lebender Gestalt','Die Überlebende einer vergessenen Katastrophe','Ein Kämpfer, der den Krieg hinter sich ließ','Die Trägerin zweier Namen','Ein Wandler zwischen Licht und Schatten','Die Letzte ihrer Art'];
+var HERO_DESCRIPTIONS=['Wer sie einmal angesehen hat, vergisst diesen Blick nicht. Sie spricht wenig — aber wenn sie es tut, hören selbst die Alten zu.','Er hat mehr Abschied erlebt als die meisten in einem ganzen Leben. Irgendwann hört man auf, sich zu wundern, warum er keine Bindungen mehr eingeht.','Auf den ersten Blick wirkt sie wie eine von vielen. Wer länger hinschaut, bemerkt, wie ihre Augen den Raum lesen — als suche sie immer einen Ausweg.','Die Narben auf seinen Händen erzählen eine Geschichte, die er selbst nicht mehr vollständig kennt. Er lebt mit dem, was übrig geblieben ist.','Sie ist nicht grausam. Aber die Grenze zwischen ihr und dem, was sie tut, ist dünner, als es von außen aussieht. Wer sie kennt, weiß das.','Er sagt, er kommt aus dem Norden. Was genau das bedeutet, lässt er offen — wer nachbohrt, bereut es meistens.','Manche Menschen sind von der Welt abgerieben, bis nur das Wesentliche übrig bleibt. Sie ist so jemand.','Das Lachen kommt ihr leicht, aber es erreicht nie ganz die Augen. Die sie wirklich kennen, wissen, was dahintersteckt.','Er hatte einmal einen anderen Namen. Was ihn dazu gebracht hat, diesen hinter sich zu lassen, erzählt er nicht. Manche Dinge trägt man besser allein.','Sie ist schnell vertraut mit fremden Orten — als wäre sie geübt darin, sich anzupassen, weil sie keine andere Wahl hatte.','Wer mit ihm reist, schläft besser. Er selbst kaum. Das Dunkel kennt ihn beim Namen.','Die Leute in ihrem Dorf respektieren sie. Lieben tun sie die wenigsten. Das ist ihr recht.','Er ist kein böser Mensch — nur jemand, dem zu viele schlechte Dinge passiert sind, bis er aufgehört hat, zwischen gut und notwendig zu unterscheiden.','Auf sie zu warten lohnt sich. Sie kommt immer — nur selten dann, wenn man es erwartet.','Es gibt Menschen, denen man ansieht, dass sie früher jemand anderen kannten. Jemanden, der einfacher war. Sie ist einer davon.','Seine Hände sind ruhig, sein Urteil auch. Beides hat ihn schon aus Situationen herausgebracht, aus denen andere nicht zurückgekommen wären.','Sie erinnert sich an alles. Das klingt wie eine Gabe. Es ist keine.','Er hat gelernt, die Stille zu mögen — nicht weil er sie sucht, sondern weil sie ihn meistens findet.','Manche halten sie für kalt. Sie ist es nicht — sie ist nur sehr darauf bedacht, wem sie welche Wärme schenkt.','Irgendwo zwischen dem, was er war, und dem, was er geworden ist, liegt eine Geschichte. Er erzählt sie nicht.','Sie hat das Glück, das man nicht kaufen kann — und das Pech, das einem nie ganz löslässt. Beides trägt sie mit Würde.','Man fragt sich manchmal, was ihn antreibt. Die Antwort: er selbst weiß es nicht mehr genau.','Ihre Stimme ist ruhig, selbst wenn sie Dinge sagt, die andere erschrecken. Das ist das Erschreckendste daran.','Er ist jemand, der zuhört, bevor er spricht. In der Welt, in der er lebt, ist das eine Seltenheit — manchmal auch ein Vorteil.','Sie vertraut nicht leichtfertig. Dieses Vertrauen kostet etwas — und die meisten können sich den Preis nicht leisten.','Die Art, wie er die Welt betrachtet, erinnert an einen, der zu viel davon gesehen hat. Nicht verbittert — nur ehrlich.','Sie hat nicht viele Freunde. Die sie hat, würden für sie durch Feuer gehen. Das ist keine Übertreibung.','Er trägt seinen Namen wie ein Versprechen — eines, das er sich selbst gegeben hat. Ob er es halten kann, weiß er noch nicht.','Manchmal fragt man sich, ob sie Angst kennt. Sie tut es. Sie hat nur gelernt, ihr die Hand zu schütteln statt wegzulaufen.','Er ist in vielen Welten zu Hause, aber in keiner wirklich angekommen. Das macht ihn zu jemandem, dem man vertrauen kann — und dem man manchmal hinterherschaut.'];
 </script>
 
 <script src="./app.js"></script>

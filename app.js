@@ -18,6 +18,20 @@ var DEFAULT_SETTINGS = {
   }
 };
 
+// Zuordnung Theme Type → Might-Tier (für Farben auf Swipe-Karten)
+var TYPE_TIER = {
+  'Circumstance':'Origin','Devotion':'Origin','Past':'Origin','People':'Origin',
+  'Personality':'Origin','Skill or Trade':'Origin','Trait':'Origin',
+  'Duty':'Adventure','Influence':'Adventure','Knowledge':'Adventure',
+  'Prodigious Ability':'Adventure','Relic':'Adventure','Uncanny Being':'Adventure',
+  'Destiny':'Greatness','Dominion':'Greatness','Mastery':'Greatness','Monstrosity':'Greatness',
+  'Companion':'Variable','Magic':'Variable','Possessions':'Variable'
+};
+function tierClass(tb) {
+  var t = TYPE_TIER[tb]||""; 
+  return t==='Origin'?'tc-origin':t==='Adventure'?'tc-adventure':t==='Greatness'?'tc-greatness':'tc-variable';
+}
+
 function loadSettings() {
   try {
     var raw = localStorage.getItem(CFG.SETTINGS_KEY);
@@ -39,6 +53,7 @@ var state = {
   cardIndex:0, shuffledCards:[], swipes:[], affinityScores:{}, hookCounts:{},
   proposals:[], proposalIndex:0, busy:false, edits:{}, hero:null, resultPage:0
 };
+var RESULT_ANIMATING = false;
 
 var $ = function(id){ return document.getElementById(id); };
 var $$ = function(sel){ return document.querySelectorAll(sel); };
@@ -110,9 +125,16 @@ function initStrings() {
   if($('loading-text')) $('loading-text').textContent = STRINGS.loading.default;
 }
 
-function show(screenId) {
+// #37 fix: Animation beim Zurück-Navigieren unterbinden
+function show(screenId, suppressAnim) {
   $$('.screen').forEach(function(s){s.classList.remove('active');});
-  $(screenId).classList.add('active');
+  var el = $(screenId);
+  if (suppressAnim) {
+    el.style.animation = 'none';
+    el.getBoundingClientRect(); // reflow
+    el.style.animation = '';
+  }
+  el.classList.add('active');
   var sb=$('btn-settings');
   if(sb) sb.style.display=screenId==='screen-welcome'?'':'none';
 }
@@ -144,12 +166,11 @@ function applyScore(card,dir,sign) {
 }
 
 /* =====================================================
-   SWIPE — einzelner Stapel, keine Phasen
+   SWIPE
 ===================================================== */
 function startSwipe() {
   state.cardIndex=0; state.swipes=[]; state.affinityScores={}; state.hookCounts={};
   state.proposals=[]; state.proposalIndex=0; state.edits={}; state.hero=null; state.resultPage=0; state.busy=false;
-  // Alle Karten aus Phase 0 (einzige Phase) laden und mischen
   state.shuffledCards = shuffleArray(PHASES[0].cards.slice());
   document.body.classList.add('swipe-active');
   show('screen-swipe');
@@ -159,14 +180,9 @@ function startSwipe() {
 function renderCard() {
   var stage=$('card-stage');
   stage.querySelectorAll('.card:not(.abandoned)').forEach(function(c){c.remove();});
-  if(state.cardIndex>=state.shuffledCards.length) {
-    finishSwiping();
-    return;
-  }
-  // Kartenzähler aktualisieren
+  if(state.cardIndex>=state.shuffledCards.length) { finishSwiping(); return; }
   $('card-counter').textContent = STRINGS.swipe.cardCounter(state.cardIndex+1, state.shuffledCards.length);
   $('btn-undo').disabled = !canUndo();
-
   for(var i=CFG.STACK_DEPTH-1;i>=0;i--) {
     var idx=state.cardIndex+i;
     if(idx>=state.shuffledCards.length) continue;
@@ -174,9 +190,18 @@ function renderCard() {
     var el=document.createElement('div');
     el.className='card'+(i===0?' front':' behind behind-'+i);
     el.style.zIndex=String(10-i);
+    // #42: Theme-Type Tags oben auf der Karte
+    var themeTags = '';
+    if (i === 0 && card.affinities) {
+      var sorted = Object.entries(card.affinities).sort(function(a,b){return b[1]-a[1];}).slice(0,3);
+      themeTags = '<div class="card-themes">' + sorted.map(function(kv){
+        return '<span class="card-theme-tag '+tierClass(kv[0])+'">'+escapeHtml(displayThemebook(kv[0]))+'</span>';
+      }).join('') + '</div>';
+    }
     el.innerHTML=
       '<div class="card-decision-overlay yes">'+escapeHtml(STRINGS.swipe.decisionYes)+'</div>'+
       '<div class="card-decision-overlay no">'+escapeHtml(STRINGS.swipe.decisionNo)+'</div>'+
+      themeTags+
       '<div class="card-glyph">~</div>'+
       '<div class="card-title">'+escapeHtml(card.title)+'</div>'+
       '<div class="card-divider"></div>'+
@@ -304,17 +329,6 @@ function finishSwiping() {
     });
   }, CFG.LOADING_DELAY_MS);
 }
-function generateAlternative() {
-  if(state.busy||state.proposals.length>=CFG.MAX_PROPOSALS) return;
-  var idx=state.proposals.length;
-  var mode=idx===1?'tags-only':idx===2?'new-themebooks':'fresh';
-  state.busy=true; showLoading(STRINGS.loading.alternative);
-  setTimeout(function(){
-    state.proposals.push(generateProposal(mode,state.proposals[0]));
-    state.proposalIndex=state.proposals.length-1; state.edits={}; state.resultPage=1;
-    state.busy=false; renderCurrentResultPage(); hideLoading();
-  }, CFG.ALT_LOADING_DELAY_MS);
-}
 
 /* HELD-GENERATOR */
 function generateHero() {
@@ -371,33 +385,76 @@ function handleNavigate(ti,k,dir) {
   e.index=Math.max(0,Math.min(e.alts.length,e.index+dir));
 }
 
-/* ERGEBNIS-SCREEN */
+/* =====================================================
+   ERGEBNIS-SCREEN (#38: Carousel-Animation)
+===================================================== */
 function totalResultPages() {
   if(!state.proposals.length) return 1;
   return 1 + state.proposals[state.proposalIndex].themes.length + 1;
 }
-function navigateResult(dir) {
-  var np=state.resultPage+dir;
-  if(np<0||np>=totalResultPages()) return;
-  state.resultPage=np; renderCurrentResultPage();
-}
-function renderCurrentResultPage() {
+
+// Baut Karten-Element ohne es einzufügen
+function buildPageCard() {
   var p=state.resultPage, n=state.proposals[state.proposalIndex].themes.length;
-  if(p===0)    renderHeroPage();
-  else if(p<=n) renderThemePage(p-1);
-  else          renderSavePage();
+  if(p===0)    return buildHeroCard();
+  else if(p<=n) return buildThemeCard(p-1);
+  else          return buildSaveCard();
+}
+
+// Navigation mit Slide-Animation (#38)
+function navigateResult(dir) {
+  if (RESULT_ANIMATING) return;
+  var np = state.resultPage + dir;
+  if (np < 0 || np >= totalResultPages()) return;
+  state.resultPage = np;
+  var stage = $('result-stage');
+  var oldCard = stage.querySelector('.result-card');
+  var newCard = buildPageCard();
+  updateResultNav();
+  if (oldCard) {
+    RESULT_ANIMATING = true;
+    newCard.style.transform = dir > 0 ? 'translateX(100%)' : 'translateX(-100%)';
+    newCard.style.transition = 'none';
+    oldCard.style.transition = 'none';
+    stage.appendChild(newCard);
+    newCard.getBoundingClientRect(); // reflow
+    var easing = 'transform 0.28s cubic-bezier(0.25,0.46,0.45,0.94)';
+    newCard.style.transition = easing;
+    oldCard.style.transition = easing;
+    newCard.style.transform = 'translateX(0)';
+    oldCard.style.transform = dir > 0 ? 'translateX(-100%)' : 'translateX(100%)';
+    var toRemove = oldCard;
+    toRemove.addEventListener('transitionend', function() {
+      if (toRemove.parentNode) toRemove.parentNode.removeChild(toRemove);
+      RESULT_ANIMATING = false;
+    }, {once: true});
+  } else {
+    stage.innerHTML = '';
+    stage.appendChild(newCard);
+  }
+}
+
+// Direkte Darstellung ohne Animation (für Dots, Init)
+function renderCurrentResultPage() {
+  var stage = $('result-stage');
+  stage.innerHTML = '';
+  stage.appendChild(buildPageCard());
   updateResultNav();
 }
+
 function updateResultNav() {
   var total=totalResultPages(), cur=state.resultPage;
   var dotsEl=$('result-dots'); dotsEl.innerHTML='';
   for(var i=0;i<total;i++) {
     var d=document.createElement('button');
     d.type='button'; d.className='result-dot'+(i===cur?' active':'');
-    (function(idx){d.addEventListener('click',function(){state.resultPage=idx;renderCurrentResultPage();});})(i);
+    (function(idx){d.addEventListener('click',function(){
+      if (!RESULT_ANIMATING) { state.resultPage=idx; renderCurrentResultPage(); }
+    });})(i);
     dotsEl.appendChild(d);
   }
 }
+
 function attachResultPageSwipe() {
   var stage=$('result-stage');
   var sx=0,sy=0,tracking=false;
@@ -411,15 +468,20 @@ function attachResultPageSwipe() {
   stage.addEventListener('pointercancel',function(){tracking=false;},{passive:true});
 }
 
-var PENCIL_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>';
+/* =====================================================
+   #39: Feder-Icon statt Stift
+===================================================== */
+var FEATHER_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><line x1="17.5" y1="15" x2="9" y2="15"/></svg>';
 
-function renderHeroPage() {
+/* =====================================================
+   SEITE 0: HELD-KARTE
+===================================================== */
+function buildHeroCard() {
   var h=state.hero;
-  var stage=$('result-stage'); stage.innerHTML='';
   var card=document.createElement('div');
   card.className='result-card rc-hero';
   card.innerHTML=
-    '<button class="rc-pencil-btn" id="rc-hero-edit" type="button">'+PENCIL_SVG+'</button>'+
+    '<button class="rc-edit-btn" id="rc-hero-edit" type="button">'+FEATHER_SVG+'</button>'+
     '<div class="rc-hero-eyebrow">'+escapeHtml(STRINGS.hero.eyebrow)+'</div>'+
     '<div class="rc-section">'+
       '<div class="rc-label">'+escapeHtml(STRINGS.hero.labelName)+'</div>'+
@@ -435,35 +497,36 @@ function renderHeroPage() {
       '<div class="rc-label">'+escapeHtml(STRINGS.hero.labelDescription)+'</div>'+
       '<div class="rc-hero-description">'+escapeHtml(h.description)+'</div>'+
     '</div>';
-  stage.appendChild(card);
   card.querySelector('#rc-hero-edit').addEventListener('click', openHeroEditSheet);
+  return card;
 }
 
-function renderThemePage(ti) {
+/* =====================================================
+   SEITEN 1-n: THEME-KARTE (#40: zentriert, Struktur)
+===================================================== */
+function buildThemeCard(ti) {
   var dt=getDisplayTheme(ti);
   var mc=dt.type==='Origin'?'tc-origin':dt.type==='Adventure'?'tc-adventure':'tc-greatness';
-  var stage=$('result-stage'); stage.innerHTML='';
   var card=document.createElement('div');
   card.className='result-card rc-theme '+mc;
+  // #40: Themebook-Name oben, kein "Theme-Typ"-Label
+  // Power Tags Block: Titelschlagwort + 2 Power Tags zusammen
+  // "Weakness Tag" statt "Schwäche"
   card.innerHTML=
-    '<button class="rc-pencil-btn" id="rtp-edit-btn" type="button">'+PENCIL_SVG+'</button>'+
+    '<button class="rc-edit-btn" id="rtp-edit-btn" type="button">'+FEATHER_SVG+'</button>'+
     '<div class="rc-theme-header">'+
-      '<div class="rc-label">'+escapeHtml(STRINGS.hero.labelThemeType)+'</div>'+
       '<div class="rc-theme-name">'+escapeHtml(displayThemebook(dt.themebook))+'</div>'+
       '<span class="rc-might-badge">'+escapeHtml(displayMight(dt.type))+'</span>'+
     '</div>'+
     '<div class="rc-divider"></div>'+
     '<div class="rc-theme-section">'+
-      '<div class="rc-label">'+escapeHtml(STRINGS.hero.labelTitleTag)+'</div>'+
+      '<div class="rc-label">Power Tags</div>'+
       '<div class="rc-title-tag">'+displayTag(dt.titleTag.text)+'</div>'+
-    '</div>'+
-    '<div class="rc-theme-section">'+
-      '<div class="rc-label">'+escapeHtml(STRINGS.hero.labelPowerTags)+'</div>'+
       '<div class="rc-power-tag">'+displayTag(dt.powerTags[0].text)+'</div>'+
       '<div class="rc-power-tag">'+displayTag(dt.powerTags[1].text)+'</div>'+
     '</div>'+
     '<div class="rc-theme-section">'+
-      '<div class="rc-label">'+escapeHtml(STRINGS.hero.labelWeakness)+'</div>'+
+      '<div class="rc-label">Weakness Tag</div>'+
       '<div class="rc-weakness-tag">'+displayTag(dt.weaknessTag.text)+'</div>'+
     '</div>'+
     '<div class="rc-theme-section">'+
@@ -471,36 +534,49 @@ function renderThemePage(ti) {
       '<div class="rc-quest-title">„'+escapeHtml(dt.quest.title)+'“</div>'+
       '<div class="rc-quest-desc">'+escapeHtml(dt.quest.description)+'</div>'+
     '</div>';
-  stage.appendChild(card);
   card.querySelector('#rtp-edit-btn').addEventListener('click', function(){ openEditSheet(ti); });
+  return card;
 }
 
-function renderSavePage() {
+/* =====================================================
+   LETZTE SEITE: ÜBERSICHT (#41)
+===================================================== */
+function buildSaveCard() {
   var h=state.hero, prop=state.proposals[state.proposalIndex];
-  var ex=state.proposals.length>=CFG.MAX_PROPOSALS;
-  var pills=prop.themes.map(function(_,ti){
+  // #41: 4 kompakte Theme-Kacheln
+  var tiles = prop.themes.map(function(_,ti){
     var dt=getDisplayTheme(ti);
-    var mc=dt.type==='Origin'?'pill-origin':dt.type==='Adventure'?'pill-adventure':'pill-greatness';
-    return '<span class="save-theme-pill '+mc+'">'+escapeHtml(displayThemebook(dt.themebook))+'</span>';
+    var mc=dt.type==='Origin'?'tc-origin':dt.type==='Adventure'?'tc-adventure':'tc-greatness';
+    return '<div class="ot-tile '+mc+'">'+
+      '<div class="ot-type">'+escapeHtml(displayThemebook(dt.themebook))+'</div>'+
+      '<div class="ot-tags">'+
+        '<span class="ot-power">'+displayTag(dt.titleTag.text)+'</span>'+
+        '<span class="ot-power">'+displayTag(dt.powerTags[0].text)+'</span>'+
+        '<span class="ot-power">'+displayTag(dt.powerTags[1].text)+'</span>'+
+        '<span class="ot-weakness">'+displayTag(dt.weaknessTag.text)+'</span>'+
+      '</div>'+
+      '<div class="ot-quest">„'+escapeHtml(dt.quest.title)+'“</div>'+
+    '</div>';
   }).join('');
-  var stage=$('result-stage'); stage.innerHTML='';
   var card=document.createElement('div');
   card.className='result-card rc-save';
   card.innerHTML=
-    '<div class="save-eyebrow">'+escapeHtml(STRINGS.hero.saveEyebrow)+'</div>'+
+    '<div class="save-overview-title">Übersicht</div>'+
     '<div class="save-hero-name">'+escapeHtml(h.firstName)+' '+escapeHtml(h.epithet)+'</div>'+
-    '<div class="save-themes">'+pills+'</div>'+
+    '<div class="save-hero-title">'+escapeHtml(h.title)+'</div>'+
+    '<div class="overview-tiles">'+tiles+'</div>'+
     '<div class="save-actions">'+
       '<button class="save-btn-primary" id="save-pdf">'+escapeHtml(STRINGS.result.btnAccept)+'</button>'+
-      '<button class="save-btn-secondary'+(ex?' exhausted':'')+'" id="save-alt"'+(ex?' disabled':'')+'>'+escapeHtml(ex?STRINGS.result.btnAlternativeMaxed:STRINGS.result.btnAlternative)+'</button>'+
       '<button class="save-btn-ghost" id="save-restart">'+escapeHtml(STRINGS.result.btnRestart)+'</button>'+
     '</div>';
-  stage.appendChild(card);
   card.querySelector('#save-pdf').addEventListener('click', generatePDF);
-  card.querySelector('#save-alt').addEventListener('click', function(){ if(!ex) generateAlternative(); });
-  card.querySelector('#save-restart').addEventListener('click', function(){ document.body.classList.remove('swipe-active'); show('screen-welcome'); });
+  card.querySelector('#save-restart').addEventListener('click', function(){ document.body.classList.remove('swipe-active'); show('screen-welcome', true); });
+  return card;
 }
 
+/* =====================================================
+   EDIT SHEETS
+===================================================== */
 function openHeroEditSheet() {
   var h=state.hero, body=$('edit-sheet-body');
   function row(part,label,val){
@@ -509,8 +585,7 @@ function openHeroEditSheet() {
         '<div class="es-label">'+escapeHtml(label)+'</div>'+
         '<div class="es-value">'+escapeHtml(val)+'</div>'+
       '</div>'+
-      '<button type="button" class="es-reroll-btn" data-part="'+part+'">↺ '+escapeHtml(STRINGS.hero.rerollShort)+'</button>'+
-    '</div>';
+      '<button type="button" class="es-reroll-btn" data-part="'+part+'">↺ '+escapeHtml(STRINGS.hero.rerollShort)+'</button></div>';
   }
   body.innerHTML=
     '<div class="es-header"><div class="es-themebook">'+escapeHtml(STRINGS.hero.eyebrow)+'</div></div>'+
@@ -520,7 +595,9 @@ function openHeroEditSheet() {
     row('description',STRINGS.hero.labelDescription,h.description.substring(0,55)+'…');
   body.querySelectorAll('.es-reroll-btn').forEach(function(btn){
     btn.addEventListener('click',function(){
-      rerollHeroPart(btn.dataset.part); openHeroEditSheet(); renderHeroPage(); updateResultNav();
+      rerollHeroPart(btn.dataset.part); openHeroEditSheet();
+      var stage=$('result-stage'); stage.innerHTML=''; stage.appendChild(buildHeroCard());
+      updateResultNav();
     });
   });
   $('edit-sheet-overlay').classList.add('active');
@@ -556,13 +633,28 @@ function openEditSheet(ti) {
     row('quest',    STRINGS.hero.labelQuest,      dt.quest)+
     '<div class="es-footer"><button type="button" class="es-full-reroll" id="es-full-reroll" data-ti="'+ti+'">'+escapeHtml(STRINGS.hero.fullReroll)+'</button></div>';
   body.querySelectorAll('.es-reroll-btn').forEach(function(btn){
-    btn.addEventListener('click',function(){ handleReroll(parseInt(btn.dataset.ti),btn.dataset.k); openEditSheet(ti); renderThemePage(ti); updateResultNav(); });
+    btn.addEventListener('click',function(){
+      handleReroll(parseInt(btn.dataset.ti),btn.dataset.k);
+      openEditSheet(ti);
+      var stage=$('result-stage'); stage.innerHTML=''; stage.appendChild(buildThemeCard(ti));
+      updateResultNav();
+    });
   });
   body.querySelectorAll('.es-nav-btn').forEach(function(btn){
-    btn.addEventListener('click',function(){ handleNavigate(parseInt(btn.dataset.ti),btn.dataset.k,parseInt(btn.dataset.dir)); openEditSheet(ti); renderThemePage(ti); updateResultNav(); });
+    btn.addEventListener('click',function(){
+      handleNavigate(parseInt(btn.dataset.ti),btn.dataset.k,parseInt(btn.dataset.dir));
+      openEditSheet(ti);
+      var stage=$('result-stage'); stage.innerHTML=''; stage.appendChild(buildThemeCard(ti));
+      updateResultNav();
+    });
   });
   var fr=$('es-full-reroll');
-  fr.addEventListener('click',function(){ handleReroll(parseInt(fr.dataset.ti),'theme'); openEditSheet(ti); renderThemePage(ti); updateResultNav(); });
+  fr.addEventListener('click',function(){
+    handleReroll(parseInt(fr.dataset.ti),'theme');
+    openEditSheet(ti);
+    var stage=$('result-stage'); stage.innerHTML=''; stage.appendChild(buildThemeCard(ti));
+    updateResultNav();
+  });
   $('edit-sheet-overlay').classList.add('active');
 }
 function closeEditSheet() { $('edit-sheet-overlay').classList.remove('active'); }
@@ -599,13 +691,13 @@ function pdfThemeBlock(doc,theme,x,y,cW,cH) {
   doc.setFont('times','italic'); doc.setFontSize(13); doc.setTextColor.apply(doc,C.ink);
   var tl=doc.splitTextToSize(pdfTagText(theme.titleTag),cW-6);
   doc.text(tl,x+cW/2,y+22,{align:'center'}); var cy=y+22+tl.length*5+4;
-  cy=pdfSectionLabel(doc,STRINGS.pdf.powerTags,x,cy);
+  cy=pdfSectionLabel(doc,'POWER TAGS',x,cy);
   doc.setFont('times','normal'); doc.setFontSize(10); doc.setTextColor.apply(doc,C.ink);
   theme.powerTags.forEach(function(t){var ls=doc.splitTextToSize('\u25e6 '+pdfTagText(t),cW-8);doc.text(ls,x+4,cy);cy+=ls.length*4.5;});
-  cy+=3; cy=pdfSectionLabel(doc,STRINGS.pdf.weaknessTag,x,cy);
+  cy+=3; cy=pdfSectionLabel(doc,'WEAKNESS TAG',x,cy);
   doc.setFont('times','italic'); doc.setFontSize(10); doc.setTextColor.apply(doc,C.accent);
   var wl=doc.splitTextToSize(pdfTagText(theme.weaknessTag),cW-8); doc.text(wl,x+4,cy); cy+=wl.length*4.5+4;
-  cy=pdfSectionLabel(doc,STRINGS.pdf.quest,x,cy);
+  cy=pdfSectionLabel(doc,'QUEST',x,cy);
   doc.setFont('times','italic'); doc.setFontSize(10); doc.setTextColor.apply(doc,C.ink);
   var ql=doc.splitTextToSize('\u201e'+capitalizeFirst(theme.quest.title)+'\u201c',cW-8); doc.text(ql,x+4,cy); cy+=ql.length*4.5+1;
   doc.setFont('times','italic'); doc.setFontSize(8.5); doc.setTextColor.apply(doc,C.inkSoft);
@@ -673,7 +765,8 @@ $('btn-yes').addEventListener('click',  function(){programmaticDecide('yes');});
 $('btn-no').addEventListener('click',   function(){programmaticDecide('no');});
 $('btn-undo').addEventListener('click', undoLast);
 $('btn-settings').addEventListener('click',      openSettings);
-$('btn-settings-back').addEventListener('click', function(){saveSettingsFromUI();show('screen-welcome');});
+// #37 fix: Animation beim Zurück-Navigieren unterbinden
+$('btn-settings-back').addEventListener('click', function(){saveSettingsFromUI();show('screen-welcome',true);});
 $('edit-sheet-overlay').addEventListener('click', function(e){if(e.target===$('edit-sheet-overlay')) closeEditSheet();});
 ['toggle-origin','toggle-adventure','toggle-greatness','toggle-companion','toggle-magic','toggle-possessions'].forEach(function(id){
   $(id).addEventListener('change',updateSettingsUI);
