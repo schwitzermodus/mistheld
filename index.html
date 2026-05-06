@@ -80,18 +80,9 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .btn-primary{background:var(--ink);color:var(--bg)}
 .btn-primary:hover{background:var(--accent)}
 .btn-primary:active{transform:scale(0.98)}
-.btn-block{width:100%}
-/* SWIPE */
+/* SWIPE — kein Phase-Header, kein Phase-Intro */
 #screen-swipe{padding:16px 20px 12px;touch-action:none;overflow:hidden;position:relative}
-.swipe-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:12px;padding-right:56px;flex-shrink:0}
-.phase-label{display:flex;flex-direction:column;gap:2px}
-.phase-eyebrow{font-size:0.65rem;letter-spacing:0.18em;color:var(--accent);font-weight:600;text-transform:uppercase}
-.phase-title{font-family:var(--serif);font-size:1.25rem;font-weight:500;color:var(--ink)}
-.phase-progress{display:flex;gap:4px;align-items:center}
-.phase-dot{width:22px;height:4px;background:var(--line);border-radius:0;transition:background 0.3s}
-.phase-dot.done{background:var(--gold)}
-.phase-dot.active{background:var(--accent)}
-.card-counter{text-align:center;font-size:0.8rem;color:var(--ink-soft);margin-bottom:8px;letter-spacing:0.05em;flex-shrink:0}
+.card-counter{text-align:center;font-size:0.85rem;color:var(--ink-soft);margin-bottom:10px;letter-spacing:0.06em;flex-shrink:0;font-family:var(--sans)}
 .card-stage{position:relative;flex:1;min-height:320px;margin:0 auto;width:100%;max-width:360px;display:flex;align-items:center;justify-content:center;touch-action:none}
 .card{position:absolute;width:100%;height:100%;background:var(--paper);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);padding:28px 24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;cursor:grab;user-select:none;-webkit-user-select:none;touch-action:none;will-change:transform,opacity;transform:translate3d(0,0,0);transition:transform 0.4s cubic-bezier(0.18,0.89,0.32,1.18),opacity 0.3s ease-out}
 .card.dragging{transition:none;cursor:grabbing}
@@ -124,222 +115,45 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .swipe-btn-undo:disabled{opacity:0.3;cursor:not-allowed}
 .swipe-btn svg{width:28px;height:28px}
 .swipe-btn-undo svg{width:20px;height:20px}
-.phase-intro-overlay{position:absolute;inset:0;background:rgba(244,234,213,0.97);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);display:none;flex-direction:column;align-items:center;justify-content:center;z-index:40;cursor:pointer;padding:24px 28px;text-align:center}
-.phase-intro-overlay.active{display:flex;animation:fadeIn 0.4s ease}
-.phase-intro-inner{max-width:300px}
-.phase-intro-eyebrow{font-family:var(--sans);font-size:0.7rem;letter-spacing:0.18em;color:var(--accent);font-weight:600;text-transform:uppercase;margin-bottom:10px}
-.phase-intro-title{font-family:var(--serif);font-size:2.2rem;font-weight:600;font-style:italic;color:var(--ink);margin-bottom:6px;line-height:1.15}
-.phase-intro-line{width:40px;height:1px;background:var(--gold);margin:0 auto 14px;opacity:0.7}
-.phase-intro-narrative{font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--ink);line-height:1.55;margin-bottom:16px}
-.phase-intro-questions{list-style:none;text-align:left;margin-bottom:22px}
-.phase-intro-questions li{font-family:var(--serif);font-size:1rem;color:var(--ink);padding:4px 0;display:flex;gap:8px;align-items:flex-start}
-.phase-intro-questions li::before{content:'\25c6';color:var(--gold);font-size:0.55rem;margin-top:8px;flex-shrink:0}
-.phase-intro-start{font-family:var(--sans);font-size:0.72rem;letter-spacing:0.14em;color:var(--ink-soft);text-transform:uppercase;animation:pulse-hint 2.2s ease-in-out infinite}
-@keyframes pulse-hint{0%,100%{opacity:0.3}50%{opacity:0.8}}
-
-/* =====================================================
-   ERGEBNIS-SCREEN: Karten-basiert (wie Swipe-Karten)
-   BUG-SCHUTZ: Kein display-Property auf ID-Selektor!
-===================================================== */
+/* ERGEBNIS: Kein display-Property! */
 #screen-result{padding:16px 20px 8px;overflow:hidden}
-
-/* Karten-Bühne (wie card-stage im Swipe-Screen) */
-#result-stage{
-  position:relative;
-  flex:1;
-  min-height:0;
-  display:flex;
-  align-items:flex-start;
-  justify-content:center;
-  overflow:hidden
-}
-
-/* Dots-Navigation unten */
-#result-dots{
-  display:flex;
-  justify-content:center;
-  gap:8px;
-  padding:10px 0 4px;
-  flex-shrink:0
-}
+#result-stage{position:relative;flex:1;min-height:0;display:flex;align-items:flex-start;justify-content:center;overflow:hidden}
+#result-dots{display:flex;justify-content:center;gap:8px;padding:10px 0 4px;flex-shrink:0}
 .result-dot{width:7px;height:7px;border-radius:50%;border:none;background:var(--line);cursor:pointer;padding:0;transition:all 0.2s}
 .result-dot.active{background:var(--accent);transform:scale(1.35)}
-
-/* ===== RESULT CARD Basis ===== */
-.result-card{
-  width:100%;
-  max-width:360px;
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:8px;
-  box-shadow:var(--shadow);
-  overflow-y:auto;
-  -webkit-overflow-scrolling:touch;
-  max-height:100%;
-  position:relative
-}
-
-/* Stift-Icon (Bearbeitungs-Button) */
-.rc-pencil-btn{
-  position:absolute;
-  top:10px;right:10px;
-  width:34px;height:34px;
-  border-radius:50%;
-  border:1px solid var(--line);
-  background:var(--bg);
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;
-  color:var(--ink-soft);
-  transition:all 0.15s;
-  z-index:2
-}
+.result-card{width:100%;max-width:360px;background:var(--paper);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);overflow-y:auto;-webkit-overflow-scrolling:touch;max-height:100%;position:relative}
+.rc-pencil-btn{position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--bg);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink-soft);transition:all 0.15s;z-index:2}
 .rc-pencil-btn:active{transform:scale(0.9);background:var(--bg-2)}
 .rc-pencil-btn svg{width:14px;height:14px}
-
-/* Geteilte Elemente */
-.rc-label{
-  font-size:0.62rem;
-  text-transform:uppercase;
-  letter-spacing:0.14em;
-  color:var(--ink-soft);
-  margin-bottom:4px;
-  font-family:var(--sans)
-}
+.rc-label{font-size:0.62rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--ink-soft);margin-bottom:4px;font-family:var(--sans)}
 .rc-divider{height:1px;background:var(--line-soft);margin:0}
 .rc-section{padding:10px 16px}
-
-/* ===== HELD-KARTE ===== */
 .rc-hero{padding:0}
-.rc-hero-eyebrow{
-  font-size:0.62rem;
-  text-transform:uppercase;
-  letter-spacing:0.18em;
-  color:var(--accent);
-  font-weight:600;
-  padding:14px 16px 0;
-  font-family:var(--sans)
-}
-.rc-hero-name{
-  font-family:var(--serif);
-  font-size:2rem;
-  font-weight:600;
-  font-style:italic;
-  color:var(--ink);
-  line-height:1.15
-}
-.rc-hero-title{
-  font-family:var(--serif);
-  font-style:italic;
-  font-size:1.05rem;
-  color:var(--ink-soft);
-  line-height:1.4
-}
-.rc-hero-description{
-  font-family:var(--serif);
-  font-size:1.05rem;
-  line-height:1.6;
-  color:var(--ink)
-}
-
-/* ===== THEME-KARTE ===== */
+.rc-hero-eyebrow{font-size:0.62rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--accent);font-weight:600;padding:14px 16px 0;font-family:var(--sans)}
+.rc-hero-name{font-family:var(--serif);font-size:2rem;font-weight:600;font-style:italic;color:var(--ink);line-height:1.15}
+.rc-hero-title{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink-soft);line-height:1.4}
+.rc-hero-description{font-family:var(--serif);font-size:1.05rem;line-height:1.6;color:var(--ink)}
 .rc-theme{padding:0;border-left-width:4px}
 .rc-theme.tc-origin{border-left-color:var(--might-origin)}
 .rc-theme.tc-adventure{border-left-color:var(--might-adventure)}
 .rc-theme.tc-greatness{border-left-color:var(--might-greatness)}
-
-.rc-theme-header{
-  padding:12px 48px 12px 14px;
-  border-bottom:1px solid var(--line-soft)
-}
-.rc-theme-name{
-  font-family:var(--serif);
-  font-size:1.55rem;
-  font-weight:600;
-  line-height:1.15;
-  margin-bottom:4px
-}
+.rc-theme-header{padding:12px 48px 12px 14px;border-bottom:1px solid var(--line-soft)}
+.rc-theme-name{font-family:var(--serif);font-size:1.55rem;font-weight:600;line-height:1.15;margin-bottom:4px}
 .tc-origin .rc-theme-name{color:var(--might-origin)}
 .tc-adventure .rc-theme-name{color:var(--might-adventure)}
 .tc-greatness .rc-theme-name{color:var(--might-greatness)}
-
-.rc-might-badge{
-  font-size:0.62rem;
-  text-transform:uppercase;
-  letter-spacing:0.14em;
-  padding:2px 8px;
-  border-radius:3px;
-  display:inline-block
-}
+.rc-might-badge{font-size:0.62rem;text-transform:uppercase;letter-spacing:0.14em;padding:2px 8px;border-radius:3px;display:inline-block}
 .tc-origin .rc-might-badge{background:rgba(61,92,42,0.1);color:var(--might-origin)}
 .tc-adventure .rc-might-badge{background:rgba(139,58,43,0.1);color:var(--might-adventure)}
 .tc-greatness .rc-might-badge{background:rgba(45,74,110,0.1);color:var(--might-greatness)}
-
 .rc-theme-section{padding:8px 14px;border-bottom:1px solid var(--line-soft)}
 .rc-theme-section:last-child{border-bottom:none;padding-bottom:14px}
-
-/* Titelschlagwort — wichtigstes Element, groß & hervorgehoben */
-.rc-title-tag{
-  font-family:var(--serif);
-  font-size:1.65rem;
-  font-style:italic;
-  font-weight:700;
-  line-height:1.2;
-  color:var(--ink);
-  background:rgba(169,134,70,0.13);
-  border-left:3px solid var(--gold);
-  padding:8px 12px;
-  margin-top:5px
-}
-/* Power Tags — kleiner, unter dem Titelschlagwort */
-.rc-power-tag{
-  font-family:var(--serif);
-  font-size:1.05rem;
-  line-height:1.3;
-  color:var(--ink);
-  background:rgba(169,134,70,0.07);
-  border-left:2px solid rgba(169,134,70,0.35);
-  padding:5px 10px;
-  margin-top:4px
-}
-/* Schwäche — dunkelorange, kein X */
-.rc-weakness-tag{
-  font-family:var(--serif);
-  font-style:italic;
-  font-size:1.05rem;
-  line-height:1.3;
-  color:#7a3010;
-  background:rgba(170,80,20,0.08);
-  border-left:2px solid rgba(170,80,20,0.35);
-  padding:5px 10px;
-  margin-top:5px
-}
-/* Quest */
-.rc-quest-title{
-  font-family:var(--serif);
-  font-style:italic;
-  font-weight:600;
-  font-size:1.05rem;
-  color:var(--ink);
-  line-height:1.3;
-  margin-top:5px;
-  margin-bottom:4px
-}
-.rc-quest-desc{
-  font-family:var(--serif);
-  font-style:italic;
-  font-size:0.92rem;
-  color:var(--ink-soft);
-  line-height:1.5
-}
-
-/* ===== SPEICHERN-KARTE ===== */
-.rc-save{
-  padding:28px 20px;
-  text-align:center;
-  display:flex;
-  flex-direction:column;
-  align-items:center
-}
+.rc-title-tag{font-family:var(--serif);font-size:1.65rem;font-style:italic;font-weight:700;line-height:1.2;color:var(--ink);background:rgba(169,134,70,0.13);border-left:3px solid var(--gold);padding:8px 12px;margin-top:5px}
+.rc-power-tag{font-family:var(--serif);font-size:1.05rem;line-height:1.3;color:var(--ink);background:rgba(169,134,70,0.07);border-left:2px solid rgba(169,134,70,0.35);padding:5px 10px;margin-top:4px}
+.rc-weakness-tag{font-family:var(--serif);font-style:italic;font-size:1.05rem;line-height:1.3;color:#7a3010;background:rgba(170,80,20,0.08);border-left:2px solid rgba(170,80,20,0.35);padding:5px 10px;margin-top:5px}
+.rc-quest-title{font-family:var(--serif);font-style:italic;font-weight:600;font-size:1.05rem;color:var(--ink);line-height:1.3;margin-top:5px;margin-bottom:4px}
+.rc-quest-desc{font-family:var(--serif);font-style:italic;font-size:0.92rem;color:var(--ink-soft);line-height:1.5}
+.rc-save{padding:28px 20px;text-align:center;display:flex;flex-direction:column;align-items:center}
 .save-eyebrow{font-size:0.62rem;letter-spacing:0.18em;color:var(--accent);font-weight:600;text-transform:uppercase;margin-bottom:10px}
 .save-hero-name{font-family:var(--serif);font-size:1.9rem;font-weight:600;font-style:italic;color:var(--ink);margin-bottom:18px;line-height:1.2}
 .save-themes{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:24px}
@@ -353,8 +167,6 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .save-btn-secondary{width:100%;padding:12px;border-radius:4px;border:1px solid var(--line);background:transparent;color:var(--ink);font-family:var(--sans);font-size:0.88rem;cursor:pointer}
 .save-btn-secondary.exhausted{opacity:0.4;cursor:not-allowed}
 .save-btn-ghost{width:100%;padding:8px;border:none;background:transparent;color:var(--ink-soft);font-family:var(--sans);font-size:0.82rem;cursor:pointer}
-
-/* ===== EDIT SHEET ===== */
 #edit-sheet-overlay{position:fixed;inset:0;background:rgba(42,36,25,0.52);display:none;flex-direction:column;justify-content:flex-end;z-index:80}
 #edit-sheet-overlay.active{display:flex;animation:fadeIn 0.25s ease}
 #edit-sheet{background:var(--paper);border-radius:18px 18px 0 0;max-height:88vh;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:max(16px,env(safe-area-inset-bottom,16px))}
@@ -377,8 +189,7 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .es-footer{padding:12px 20px 4px}
 .es-full-reroll{display:block;width:100%;padding:13px;border-radius:6px;border:1px solid var(--accent);background:transparent;color:var(--accent);font-family:var(--sans);font-size:0.88rem;cursor:pointer;transition:all 0.15s}
 .es-full-reroll:active{background:var(--accent);color:var(--paper)}
-
-/* SETTINGS: Kein display-Property! */
+/* SETTINGS: kein display-Property! */
 #screen-settings{padding:12px 18px 14px;overflow:hidden}
 .settings-header{display:flex;align-items:center;gap:14px;margin-bottom:14px;flex-shrink:0;padding-top:max(0px,env(safe-area-inset-top,0px))}
 .settings-back-btn{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink-soft);flex-shrink:0;transition:all 0.15s}
@@ -411,7 +222,6 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
 .loading-text{font-family:var(--serif);font-style:italic;color:var(--ink-soft)}
 @media(max-height:740px){
   .card-stage{min-height:280px}.card-title{font-size:1.65rem}.card-text{font-size:1.1rem}
-  .phase-intro-title{font-size:1.75rem}.phase-intro-narrative{font-size:1rem}
   .rc-hero-name{font-size:1.65rem}.rc-title-tag{font-size:1.4rem}
 }
 </style>
@@ -440,21 +250,8 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
   <div class="welcome-instructions"><h3></h3><ul></ul></div>
   <button class="btn btn-primary" id="btn-start"></button>
 </section>
+<!-- SWIPE: kein Phase-Intro, kein Phase-Header -->
 <section id="screen-swipe" class="screen">
-  <div id="phase-intro-overlay" class="phase-intro-overlay">
-    <div class="phase-intro-inner">
-      <div class="phase-intro-eyebrow" id="pi-eyebrow"></div>
-      <h2 class="phase-intro-title" id="pi-title"></h2>
-      <div class="phase-intro-line"></div>
-      <p class="phase-intro-narrative" id="pi-narrative"></p>
-      <ul class="phase-intro-questions" id="pi-questions"></ul>
-      <div class="phase-intro-start"></div>
-    </div>
-  </div>
-  <div class="swipe-header">
-    <div class="phase-label"><span class="phase-eyebrow" id="phase-eyebrow"></span><span class="phase-title" id="phase-title"></span></div>
-    <div class="phase-progress" id="phase-progress"><div class="phase-dot active"></div><div class="phase-dot"></div><div class="phase-dot"></div><div class="phase-dot"></div></div>
-  </div>
   <div class="card-counter" id="card-counter"></div>
   <div class="card-stage" id="card-stage"></div>
   <div class="swipe-controls">
@@ -463,7 +260,6 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
     <button class="swipe-btn swipe-btn-yes" id="btn-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button>
   </div>
 </section>
-<!-- ERGEBNIS: Karten-basiert, Dots unten, kein Nav-Button -->
 <section id="screen-result" class="screen">
   <div id="result-stage"></div>
   <div id="result-dots"></div>
@@ -497,26 +293,24 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
 <script src="./data.js"></script>
 <script src="./phases_patch.js"></script>
 
-<!-- ALLE TEXTE -- HIER BEARBEITEN -->
+<!-- ALLE TEXTE -->
 <script>
-const STRINGS={
+var STRINGS={
   pageTitle:'Mistheld – Heldengenerator',
   welcome:{
     mark:'Legenden des Nebels',title:'Heldengenerator',
     sub:'Mit ein paar Swipes erschaffst du deinen nächsten Helden.',
     howTitle:"So funktioniert's",
     howItems:[
-      'Du erhältst eine Auswahl verschiedener Inspirationen für deinen neuen Helden.',
-      'Wische nach rechts, wenn die Karte zu deinem nächsten Helden passen könnte.',
-      'Wische nach links, wenn sie eher nicht passt.',
-      'Am Ende erhältst du verschiedene Vorschläge für deinen Helden.',
+      'Du siehst Bilder und Situationen. Wische nach rechts wenn sie zu deinem Helden passen könnten.',
+      'Wische nach links wenn sie eher nicht passen.',
+      'Am Ende erhältst du Vorschläge für deinen Helden.',
     ],
     btnStart:"Los geht's",
   },
   swipe:{
     decisionYes:'Passt',decisionNo:'Nicht',
-    phaseIntroTap:'Tippe, um zu beginnen',
-    cardCounter:(cur,tot)=>`Karte ${cur} von ${tot}`,
+    cardCounter:function(cur,tot){return 'Karte '+cur+' von '+tot;},
     ariaYes:'Passt',ariaNo:'Passt nicht',ariaUndo:'Letzte Karte zurück',
   },
   result:{
@@ -568,20 +362,6 @@ const STRINGS={
     'Mastery':'Meisterschaft','Monstrosity':'Monstrosität',
     'Companion':'Begleiter','Magic':'Magie','Possessions':'Besitz',
   },
-  phases:[
-    {eyebrow:'Phase 1 von 4',title:'Stimmung & Welt',
-     narrative:'Die Welt, die deinen Helden umgibt, spricht noch bevor er sich bewegt. Lass dich von Bildern und Atmosphären leiten.',
-     questions:['Welche Atmosphäre passt zu deinem Helden?','In welcher Art von Welt bewegt er sich?','Welche Orte und Stimmungen fühlen sich vertraut an?']},
-    {eyebrow:'Phase 2 von 4',title:'Herkunft & Hintergrund',
-     narrative:'Die Welt hat Form gewonnen. Nun tauchen wir tiefer: Woher kommt dein Held? Was hat ihn geprägt, bevor die Geschichte ihn fand?',
-     questions:['Woher stammt dein Held wirklich?','Welches Erlebnis hat ihn geformt?','Was trägt er aus seiner Vergangenheit noch mit sich?']},
-    {eyebrow:'Phase 3 von 4',title:'Können & Wesen',
-     narrative:'Herkunft und Geschichte haben Gestalt angenommen. Jetzt erkunden wir, was deinen Helden in dieser Welt einzigartig macht.',
-     questions:['Welche Fähigkeit oder Gabe besitzt er?','Was hebt ihn von anderen ab?','Was für ein Wesen verbirgt sich in ihm?']},
-    {eyebrow:'Phase 4 von 4 · Letzte Phase',title:'Antrieb & Verwundbarkeit',
-     narrative:'In dieser letzten Phase geht es um das, was deinen Helden antreibt — und jene Wunden und Sehnsüchte, die ihn menschlich machen.',
-     questions:['Was ist sein tiefstes Ziel?','Wovor hat er Angst oder Scheu?','Wo liegt seine verwundbare Seite?']},
-  ],
   pdf:{
     header:'MISTHELD · HELDENBLATT',
     powerTags:'POWER TAGS',weaknessTag:'WEAKNESS TAG',quest:'QUEST',
@@ -593,16 +373,16 @@ const STRINGS={
 };
 </script>
 
-<!-- HELD-KATALOG -- HIER BEARBEITEN -->
+<!-- HELD-KATALOG -->
 <script>
-const HERO_FIRSTNAMES=[
+var HERO_FIRSTNAMES=[
   'Aldric','Astrid','Bran','Brunhild','Calder','Cressida','Dunstan','Edric',
   'Elara','Freyja','Gareth','Hadwin','Halvard','Hedwig','Ingrid','Isolde',
   'Jareth','Kira','Lachlan','Leofric','Mathilda','Merewyn','Morrigan','Niamh',
   'Nils','Orla','Oswin','Phelan','Rhiannon','Rowena','Sable','Sigrid',
   'Sigurd','Sigrún','Tamsin','Thalia','Torsten','Ulf','Vesna','Wulfric'
 ];
-const HERO_EPITHETS=[
+var HERO_EPITHETS=[
   'Waldtochter','der Graue','die Stille','Rabenauge','Silberzunge',
   'vom Schwarzstein','die Stumme','Eisenfaust','Nebelkind','Morgenrot',
   'der Blinde','Schattenläufer','Steinherz','Wolfsbruder','die Vergessene',
@@ -612,7 +392,7 @@ const HERO_EPITHETS=[
   'der Einsame','Nachtfalke','Silberpfeil','der Verbannte','Windtochter',
   'Sturmherz','der Wanderer','Schattenpfad','die Hehlerin','Gluthaupt'
 ];
-const HERO_TITLES=[
+var HERO_TITLES=[
   'Die schweigende Wächterin','Der letzte Hüter des alten Weges',
   'Eine Verlorene auf der Suche nach Heimkehr','Das Kind zweier Welten',
   'Ein Wanderer ohne Wiederkehr','Die Trägerin alter Schuld',
@@ -624,7 +404,7 @@ const HERO_TITLES=[
   'Ein Kämpfer, der den Krieg hinter sich ließ','Die Trägerin zweier Namen',
   'Ein Wandler zwischen Licht und Schatten','Die Letzte ihrer Art'
 ];
-const HERO_DESCRIPTIONS=[
+var HERO_DESCRIPTIONS=[
   'Wer sie einmal angesehen hat, vergisst diesen Blick nicht. Sie spricht wenig — aber wenn sie es tut, hören selbst die Alten zu.',
   'Er hat mehr Abschied erlebt als die meisten in einem ganzen Leben. Irgendwann hört man auf, sich zu wundern, warum er keine Bindungen mehr eingeht.',
   'Auf den ersten Blick wirkt sie wie eine von vielen. Wer länger hinschaut, bemerkt, wie ihre Augen den Raum lesen — als suche sie immer einen Ausweg.',
