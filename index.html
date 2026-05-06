@@ -56,19 +56,95 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .welcome-instructions ul{list-style:none;font-size:0.95rem;color:var(--ink-soft)}
 .welcome-instructions li{padding:6px 0;display:flex;gap:12px;align-items:flex-start}
 .welcome-instructions li::before{content:'\25c6';color:var(--gold);font-size:0.7rem;margin-top:6px;flex-shrink:0}
+
+/* =====================================================
+   NEBEL-ANIMATION
+   FIX: Kein animation-Shorthand auf .mist-wisp!
+   animation ohne duration setzt duration:0s (Default)
+   => springt sofort zu opacity:0 => unsichtbar.
+   Jede .mist-X Klasse traegt die volle Shorthand
+   inkl. expliziter Duration. Webkit-Prefix fuer Safari.
+   Deckkraft: 0.25-0.35 (vorher 0.06-0.10 = unsichtbar)
+===================================================== */
 .mist-container{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
-.mist-ground{position:absolute;bottom:0;left:-5%;width:110%;height:200px;background:linear-gradient(to top,rgba(244,234,213,0.55) 0%,rgba(169,134,70,0.06) 40%,transparent 100%);z-index:0;animation:mist-ground-breathe 12s ease-in-out infinite}
-@keyframes mist-ground-breathe{0%,100%{opacity:0.7;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.1)}}
-.mist-wisp{position:absolute;border-radius:50%;animation:mist-float linear infinite}
-.mist-1{width:220px;height:80px;left:-5%;bottom:22%;background:radial-gradient(ellipse at center,rgba(169,134,70,0.10) 0%,transparent 70%);animation-duration:20s}
-.mist-2{width:300px;height:100px;left:22%;bottom:6%;background:radial-gradient(ellipse at center,rgba(169,134,70,0.08) 0%,transparent 70%);animation-duration:26s;animation-delay:-9s}
-.mist-3{width:180px;height:65px;left:58%;bottom:38%;background:radial-gradient(ellipse at center,rgba(139,58,43,0.07) 0%,transparent 70%);animation-duration:18s;animation-delay:-5s}
-.mist-4{width:250px;height:88px;left:8%;bottom:52%;background:radial-gradient(ellipse at center,rgba(169,134,70,0.06) 0%,transparent 70%);animation-duration:24s;animation-delay:-13s}
-.mist-5{width:160px;height:55px;left:70%;bottom:12%;background:radial-gradient(ellipse at center,rgba(169,134,70,0.07) 0%,transparent 70%);animation-duration:22s;animation-delay:-7s}
-.mist-6{width:280px;height:95px;left:5%;bottom:18%;background:radial-gradient(ellipse at center,rgba(169,134,70,0.09) 0%,transparent 70%);animation-duration:32s;animation-delay:-18s}
-.mist-7{width:200px;height:72px;left:42%;bottom:42%;background:radial-gradient(ellipse at center,rgba(139,58,43,0.06) 0%,transparent 70%);animation-duration:24s;animation-delay:-4s}
-.mist-8{width:240px;height:82px;left:72%;bottom:30%;background:radial-gradient(ellipse at center,rgba(169,134,70,0.08) 0%,transparent 70%);animation-duration:28s;animation-delay:-15s}
-@keyframes mist-float{0%{transform:translate(0,0) scale(1);opacity:0}8%{opacity:1}50%{transform:translate(25px,-70px) scale(1.1);opacity:0.6}92%{opacity:0.1}100%{transform:translate(-15px,-130px) scale(0.9);opacity:0}}
+.mist-ground{
+  position:absolute;bottom:0;left:-5%;width:110%;height:220px;
+  background:linear-gradient(to top,rgba(200,170,110,0.50) 0%,rgba(169,134,70,0.14) 45%,transparent 100%);
+  -webkit-animation:mist-ground-breathe 10s ease-in-out infinite;
+  animation:mist-ground-breathe 10s ease-in-out infinite
+}
+@-webkit-keyframes mist-ground-breathe{
+  0%,100%{opacity:0.65;-webkit-transform:scaleY(1);transform:scaleY(1)}
+  50%{opacity:1;-webkit-transform:scaleY(1.1);transform:scaleY(1.1)}
+}
+@keyframes mist-ground-breathe{
+  0%,100%{opacity:0.65;transform:scaleY(1)}
+  50%{opacity:1;transform:scaleY(1.1)}
+}
+.mist-wisp{position:absolute;border-radius:50%}
+.mist-1{
+  width:260px;height:90px;left:-5%;bottom:20%;
+  background:radial-gradient(ellipse at center,rgba(169,134,70,0.35) 0%,transparent 70%);
+  -webkit-animation:mist-float 20s linear infinite;
+  animation:mist-float 20s linear infinite
+}
+.mist-2{
+  width:340px;height:110px;left:20%;bottom:5%;
+  background:radial-gradient(ellipse at center,rgba(169,134,70,0.28) 0%,transparent 70%);
+  -webkit-animation:mist-float 26s -9s linear infinite;
+  animation:mist-float 26s -9s linear infinite
+}
+.mist-3{
+  width:200px;height:70px;left:56%;bottom:36%;
+  background:radial-gradient(ellipse at center,rgba(139,58,43,0.26) 0%,transparent 70%);
+  -webkit-animation:mist-float 18s -5s linear infinite;
+  animation:mist-float 18s -5s linear infinite
+}
+.mist-4{
+  width:280px;height:95px;left:6%;bottom:50%;
+  background:radial-gradient(ellipse at center,rgba(169,134,70,0.22) 0%,transparent 70%);
+  -webkit-animation:mist-float 24s -13s linear infinite;
+  animation:mist-float 24s -13s linear infinite
+}
+.mist-5{
+  width:180px;height:62px;left:68%;bottom:10%;
+  background:radial-gradient(ellipse at center,rgba(169,134,70,0.30) 0%,transparent 70%);
+  -webkit-animation:mist-float 22s -7s linear infinite;
+  animation:mist-float 22s -7s linear infinite
+}
+.mist-6{
+  width:310px;height:105px;left:3%;bottom:16%;
+  background:radial-gradient(ellipse at center,rgba(169,134,70,0.32) 0%,transparent 70%);
+  -webkit-animation:mist-float 32s -18s linear infinite;
+  animation:mist-float 32s -18s linear infinite
+}
+.mist-7{
+  width:220px;height:78px;left:40%;bottom:40%;
+  background:radial-gradient(ellipse at center,rgba(139,58,43,0.22) 0%,transparent 70%);
+  -webkit-animation:mist-float 24s -4s linear infinite;
+  animation:mist-float 24s -4s linear infinite
+}
+.mist-8{
+  width:260px;height:88px;left:70%;bottom:28%;
+  background:radial-gradient(ellipse at center,rgba(169,134,70,0.27) 0%,transparent 70%);
+  -webkit-animation:mist-float 28s -15s linear infinite;
+  animation:mist-float 28s -15s linear infinite
+}
+@-webkit-keyframes mist-float{
+  0%  {-webkit-transform:translate(0,0) scale(1);transform:translate(0,0) scale(1);opacity:0}
+  8%  {opacity:1}
+  50% {-webkit-transform:translate(22px,-65px) scale(1.12);transform:translate(22px,-65px) scale(1.12);opacity:0.85}
+  92% {opacity:0.15}
+  100%{-webkit-transform:translate(-12px,-120px) scale(0.9);transform:translate(-12px,-120px) scale(0.9);opacity:0}
+}
+@keyframes mist-float{
+  0%  {transform:translate(0,0) scale(1);opacity:0}
+  8%  {opacity:1}
+  50% {transform:translate(22px,-65px) scale(1.12);opacity:0.85}
+  92% {opacity:0.15}
+  100%{transform:translate(-12px,-120px) scale(0.9);opacity:0}
+}
+
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--sans);font-weight:600;font-size:0.95rem;letter-spacing:0.02em;padding:14px 28px;border:none;border-radius:2px;cursor:pointer;transition:all 0.2s ease;min-height:48px;user-select:none}
 .btn-primary{background:var(--ink);color:var(--bg)}
 .btn-primary:hover{background:var(--accent)}
@@ -261,10 +337,14 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
 <section id="screen-welcome" class="screen active">
   <div class="mist-container" aria-hidden="true">
     <div class="mist-ground"></div>
-    <div class="mist-wisp mist-1"></div><div class="mist-wisp mist-2"></div>
-    <div class="mist-wisp mist-3"></div><div class="mist-wisp mist-4"></div>
-    <div class="mist-wisp mist-5"></div><div class="mist-wisp mist-6"></div>
-    <div class="mist-wisp mist-7"></div><div class="mist-wisp mist-8"></div>
+    <div class="mist-wisp mist-1"></div>
+    <div class="mist-wisp mist-2"></div>
+    <div class="mist-wisp mist-3"></div>
+    <div class="mist-wisp mist-4"></div>
+    <div class="mist-wisp mist-5"></div>
+    <div class="mist-wisp mist-6"></div>
+    <div class="mist-wisp mist-7"></div>
+    <div class="mist-wisp mist-8"></div>
   </div>
   <div class="welcome-mark"></div>
   <h1 class="welcome-title"></h1>
