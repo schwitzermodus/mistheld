@@ -347,7 +347,7 @@ function rerollHeroPart(part) {
 /* =====================================================
    THEME-EDITS
 ===================================================== */
-function editKey(ti,k)    { return `t${ti}-${k}`; }
+function editKey(ti,k)    { return 't'+ti+'-'+k; }
 function getEdit(ti,k)    { return state.edits[editKey(ti,k)]; }
 function getCurrentVal(ti,k,fb) { const e=getEdit(ti,k); if(!e||e.index===0) return fb; return e.alts[e.index-1]; }
 function getDisplayTheme(ti) {
@@ -386,7 +386,7 @@ function handleNavigate(ti,k,dir) {
 }
 
 /* =====================================================
-   ERGEBNIS-SCREEN — NAVIGATION (Karten + Dots)
+   ERGEBNIS-SCREEN — NAVIGATION
 ===================================================== */
 function totalResultPages() {
   if(!state.proposals.length) return 1;
@@ -427,10 +427,7 @@ function attachResultPageSwipe() {
   stage.addEventListener('pointercancel',()=>{tracking=false;},{passive:true});
 }
 
-/* =====================================================
-   PENCIL SVG (geteilt)
-===================================================== */
-const PENCIL_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>`;
+const PENCIL_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>';
 
 /* =====================================================
    SEITE 0: HELD-KARTE
@@ -440,23 +437,23 @@ function renderHeroPage() {
   const stage=$('result-stage'); stage.innerHTML='';
   const card=document.createElement('div');
   card.className='result-card rc-hero';
-  card.innerHTML=`
-    <button class="rc-pencil-btn" id="rc-hero-edit" type="button">${PENCIL_SVG}</button>
-    <div class="rc-hero-eyebrow">${escapeHtml(STRINGS.hero.eyebrow)}</div>
-    <div class="rc-section">
-      <div class="rc-label">${escapeHtml(STRINGS.hero.labelName)}</div>
-      <div class="rc-hero-name">${escapeHtml(h.firstName)} ${escapeHtml(h.epithet)}</div>
-    </div>
-    <div class="rc-divider"></div>
-    <div class="rc-section">
-      <div class="rc-label">${escapeHtml(STRINGS.hero.labelTitle)}</div>
-      <div class="rc-hero-title">${escapeHtml(h.title)}</div>
-    </div>
-    <div class="rc-divider"></div>
-    <div class="rc-section">
-      <div class="rc-label">${escapeHtml(STRINGS.hero.labelDescription)}</div>
-      <div class="rc-hero-description">${escapeHtml(h.description)}</div>
-    </div>`;
+  card.innerHTML=
+    '<button class="rc-pencil-btn" id="rc-hero-edit" type="button">'+PENCIL_SVG+'</button>'+
+    '<div class="rc-hero-eyebrow">'+escapeHtml(STRINGS.hero.eyebrow)+'</div>'+
+    '<div class="rc-section">'+
+      '<div class="rc-label">'+escapeHtml(STRINGS.hero.labelName)+'</div>'+
+      '<div class="rc-hero-name">'+escapeHtml(h.firstName)+' '+escapeHtml(h.epithet)+'</div>'+
+    '</div>'+
+    '<div class="rc-divider"></div>'+
+    '<div class="rc-section">'+
+      '<div class="rc-label">'+escapeHtml(STRINGS.hero.labelTitle)+'</div>'+
+      '<div class="rc-hero-title">'+escapeHtml(h.title)+'</div>'+
+    '</div>'+
+    '<div class="rc-divider"></div>'+
+    '<div class="rc-section">'+
+      '<div class="rc-label">'+escapeHtml(STRINGS.hero.labelDescription)+'</div>'+
+      '<div class="rc-hero-description">'+escapeHtml(h.description)+'</div>'+
+    '</div>';
   stage.appendChild(card);
   card.querySelector('#rc-hero-edit').addEventListener('click', openHeroEditSheet);
 }
@@ -469,87 +466,88 @@ function renderThemePage(ti) {
   const mc=dt.type==='Origin'?'tc-origin':dt.type==='Adventure'?'tc-adventure':'tc-greatness';
   const stage=$('result-stage'); stage.innerHTML='';
   const card=document.createElement('div');
-  card.className=`result-card rc-theme ${mc}`;
-  card.innerHTML=`
-    <button class="rc-pencil-btn" id="rtp-edit-btn" type="button">${PENCIL_SVG}</button>
-    <div class="rc-theme-header">
-      <div class="rc-label">${escapeHtml(STRINGS.hero.labelThemeType)}</div>
-      <div class="rc-theme-name">${escapeHtml(displayThemebook(dt.themebook))}</div>
-      <span class="rc-might-badge">${escapeHtml(displayMight(dt.type))}</span>
-    </div>
-    <div class="rc-divider"></div>
-    <div class="rc-theme-section">
-      <div class="rc-label">${escapeHtml(STRINGS.hero.labelTitleTag)}</div>
-      <div class="rc-title-tag">${displayTag(dt.titleTag.text)}</div>
-    </div>
-    <div class="rc-theme-section">
-      <div class="rc-label">${escapeHtml(STRINGS.hero.labelPowerTags)}</div>
-      <div class="rc-power-tag">${displayTag(dt.powerTags[0].text)}</div>
-      <div class="rc-power-tag">${displayTag(dt.powerTags[1].text)}</div>
-    </div>
-    <div class="rc-theme-section">
-      <div class="rc-label">${escapeHtml(STRINGS.hero.labelWeakness)}</div>
-      <div class="rc-weakness-tag">${displayTag(dt.weaknessTag.text)}</div>
-    </div>
-    <div class="rc-theme-section">
-      <div class="rc-label">${escapeHtml(STRINGS.result.questLabel)}</div>
-      <div class="rc-quest-title">&bdquo;${escapeHtml(dt.quest.title)}&ldquo;</div>
-      <div class="rc-quest-desc">${escapeHtml(dt.quest.description)}</div>
-    </div>`;
+  card.className='result-card rc-theme '+mc;
+  card.innerHTML=
+    '<button class="rc-pencil-btn" id="rtp-edit-btn" type="button">'+PENCIL_SVG+'</button>'+
+    '<div class="rc-theme-header">'+
+      '<div class="rc-label">'+escapeHtml(STRINGS.hero.labelThemeType)+'</div>'+
+      '<div class="rc-theme-name">'+escapeHtml(displayThemebook(dt.themebook))+'</div>'+
+      '<span class="rc-might-badge">'+escapeHtml(displayMight(dt.type))+'</span>'+
+    '</div>'+
+    '<div class="rc-divider"></div>'+
+    '<div class="rc-theme-section">'+
+      '<div class="rc-label">'+escapeHtml(STRINGS.hero.labelTitleTag)+'</div>'+
+      '<div class="rc-title-tag">'+displayTag(dt.titleTag.text)+'</div>'+
+    '</div>'+
+    '<div class="rc-theme-section">'+
+      '<div class="rc-label">'+escapeHtml(STRINGS.hero.labelPowerTags)+'</div>'+
+      '<div class="rc-power-tag">'+displayTag(dt.powerTags[0].text)+'</div>'+
+      '<div class="rc-power-tag">'+displayTag(dt.powerTags[1].text)+'</div>'+
+    '</div>'+
+    '<div class="rc-theme-section">'+
+      '<div class="rc-label">'+escapeHtml(STRINGS.hero.labelWeakness)+'</div>'+
+      '<div class="rc-weakness-tag">'+displayTag(dt.weaknessTag.text)+'</div>'+
+    '</div>'+
+    '<div class="rc-theme-section">'+
+      '<div class="rc-label">'+escapeHtml(STRINGS.result.questLabel)+'</div>'+
+      '<div class="rc-quest-title">„'+escapeHtml(dt.quest.title)+'“</div>'+
+      '<div class="rc-quest-desc">'+escapeHtml(dt.quest.description)+'</div>'+
+    '</div>';
   stage.appendChild(card);
-  card.querySelector('#rtp-edit-btn').addEventListener('click', ()=>openEditSheet(ti));
+  card.querySelector('#rtp-edit-btn').addEventListener('click', function(){ openEditSheet(ti); });
 }
 
 /* =====================================================
    LETZTE SEITE: SPEICHERN-KARTE
 ===================================================== */
 function renderSavePage() {
-  const h=state.hero, prop=state.proposals[state.proposalIndex];
-  const ex=state.proposals.length>=CFG.MAX_PROPOSALS;
-  const pills=prop.themes.map((_,ti)=>{
-    const dt=getDisplayTheme(ti);
-    const mc=dt.type==='Origin'?'pill-origin':dt.type==='Adventure'?'pill-adventure':'pill-greatness';
-    return `<span class="save-theme-pill ${mc}">${escapeHtml(displayThemebook(dt.themebook))}</span>`;
+  var h=state.hero, prop=state.proposals[state.proposalIndex];
+  var ex=state.proposals.length>=CFG.MAX_PROPOSALS;
+  var pills=prop.themes.map(function(_,ti){
+    var dt=getDisplayTheme(ti);
+    var mc=dt.type==='Origin'?'pill-origin':dt.type==='Adventure'?'pill-adventure':'pill-greatness';
+    return '<span class="save-theme-pill '+mc+'">'+escapeHtml(displayThemebook(dt.themebook))+'</span>';
   }).join('');
-  const stage=$('result-stage'); stage.innerHTML='';
-  const card=document.createElement('div');
+  var stage=$('result-stage'); stage.innerHTML='';
+  var card=document.createElement('div');
   card.className='result-card rc-save';
-  card.innerHTML=`
-    <div class="save-eyebrow">${escapeHtml(STRINGS.hero.saveEyebrow)}</div>
-    <div class="save-hero-name">${escapeHtml(h.firstName)} ${escapeHtml(h.epithet)}</div>
-    <div class="save-themes">${pills}</div>
-    <div class="save-actions">
-      <button class="save-btn-primary" id="save-pdf">${escapeHtml(STRINGS.result.btnAccept)}</button>
-      <button class="save-btn-secondary${ex?' exhausted':''}" id="save-alt"${ex?' disabled':''}>${escapeHtml(ex?STRINGS.result.btnAlternativeMaxed:STRINGS.result.btnAlternative)}</button>
-      <button class="save-btn-ghost" id="save-restart">${escapeHtml(STRINGS.result.btnRestart)}</button>
-    </div>`;
+  card.innerHTML=
+    '<div class="save-eyebrow">'+escapeHtml(STRINGS.hero.saveEyebrow)+'</div>'+
+    '<div class="save-hero-name">'+escapeHtml(h.firstName)+' '+escapeHtml(h.epithet)+'</div>'+
+    '<div class="save-themes">'+pills+'</div>'+
+    '<div class="save-actions">'+
+      '<button class="save-btn-primary" id="save-pdf">'+escapeHtml(STRINGS.result.btnAccept)+'</button>'+
+      '<button class="save-btn-secondary'+(ex?' exhausted':'')+'" id="save-alt"'+(ex?' disabled':'')+'>'+escapeHtml(ex?STRINGS.result.btnAlternativeMaxed:STRINGS.result.btnAlternative)+'</button>'+
+      '<button class="save-btn-ghost" id="save-restart">'+escapeHtml(STRINGS.result.btnRestart)+'</button>'+
+    '</div>';
   stage.appendChild(card);
   card.querySelector('#save-pdf').addEventListener('click', generatePDF);
-  card.querySelector('#save-alt').addEventListener('click', ()=>{ if(!ex) generateAlternative(); });
-  card.querySelector('#save-restart').addEventListener('click', ()=>{ document.body.classList.remove('swipe-active'); show('screen-welcome'); });
+  card.querySelector('#save-alt').addEventListener('click', function(){ if(!ex) generateAlternative(); });
+  card.querySelector('#save-restart').addEventListener('click', function(){ document.body.classList.remove('swipe-active'); show('screen-welcome'); });
 }
 
 /* =====================================================
    HELD EDIT SHEET
 ===================================================== */
 function openHeroEditSheet() {
-  const h=state.hero, body=$('edit-sheet-body');
-  const row=(part,label,val)=>`
-    <div class="es-row">
-      <div class="es-row-content">
-        <div class="es-label">${escapeHtml(label)}</div>
-        <div class="es-value">${escapeHtml(val)}</div>
-      </div>
-      <button type="button" class="es-reroll-btn" data-part="${part}">↺ ${escapeHtml(STRINGS.hero.rerollShort)}</button>
-    </div>`;
-  body.innerHTML=`
-    <div class="es-header"><div class="es-themebook">${escapeHtml(STRINGS.hero.eyebrow)}</div></div>
-    ${row('firstName',  STRINGS.hero.labelFirstName,  h.firstName)}
-    ${row('epithet',    STRINGS.hero.labelEpithet,    h.epithet)}
-    ${row('title',      STRINGS.hero.labelTitle,      h.title)}
-    ${row('description',STRINGS.hero.labelDescription,h.description.substring(0,55)+'…')}`;
-  body.querySelectorAll('.es-reroll-btn').forEach(btn=>{
-    btn.addEventListener('click',()=>{
+  var h=state.hero, body=$('edit-sheet-body');
+  function row(part,label,val){
+    return '<div class="es-row">'+
+      '<div class="es-row-content">'+
+        '<div class="es-label">'+escapeHtml(label)+'</div>'+
+        '<div class="es-value">'+escapeHtml(val)+'</div>'+
+      '</div>'+
+      '<button type="button" class="es-reroll-btn" data-part="'+part+'">↺ '+escapeHtml(STRINGS.hero.rerollShort)+'</button>'+
+    '</div>';
+  }
+  body.innerHTML=
+    '<div class="es-header"><div class="es-themebook">'+escapeHtml(STRINGS.hero.eyebrow)+'</div></div>'+
+    row('firstName',  STRINGS.hero.labelFirstName,  h.firstName)+
+    row('epithet',    STRINGS.hero.labelEpithet,    h.epithet)+
+    row('title',      STRINGS.hero.labelTitle,      h.title)+
+    row('description',STRINGS.hero.labelDescription,h.description.substring(0,55)+'…');
+  body.querySelectorAll('.es-reroll-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){
       rerollHeroPart(btn.dataset.part);
       openHeroEditSheet();
       renderHeroPage();
@@ -563,48 +561,50 @@ function openHeroEditSheet() {
    THEME EDIT SHEET
 ===================================================== */
 function openEditSheet(ti) {
-  const dt=getDisplayTheme(ti), body=$('edit-sheet-body');
-  const row=(k,label,entry)=>{
-    const isQ=k==='quest', rawText=isQ?entry.title:entry.text;
-    const isW=k==='weakness';
-    const e=getEdit(ti,k), total=1+(e?e.alts.length:0), idx=e?e.index:0;
-    const maxed=e?e.alts.length>=CFG.MAX_ELEMENT_ALTS:false;
-    const nav=total>1?`
-      <div class="es-nav">
-        <button type="button" class="es-nav-btn" data-ti="${ti}" data-k="${k}" data-dir="-1"${idx===0?' disabled':''}>&lsaquo;</button>
-        <span class="es-nav-pos">${idx+1}\u00a0/\u00a0${total}</span>
-        <button type="button" class="es-nav-btn" data-ti="${ti}" data-k="${k}" data-dir="1"${idx>=total-1?' disabled':''}>&rsaquo;</button>
-      </div>`:'';
-    return `
-      <div class="es-row">
-        <div class="es-row-content">
-          <div class="es-label">${escapeHtml(label)}</div>
-          <div class="es-value${isW?' es-weak':''}">${displayTag(rawText)}</div>
-          ${nav}
-        </div>
-        <button type="button" class="es-reroll-btn" data-ti="${ti}" data-k="${k}"${maxed?' disabled':''}>↺ ${escapeHtml(STRINGS.hero.rerollShort)}</button>
-      </div>`;
-  };
-  body.innerHTML=`
-    <div class="es-header">
-      <div class="es-themebook">${escapeHtml(displayThemebook(dt.themebook))}</div>
-      <div class="es-might">${escapeHtml(displayMight(dt.type))}</div>
-    </div>
-    ${row('title',    STRINGS.hero.labelTitleTag,  dt.titleTag)}
-    ${row('pow0',     STRINGS.hero.labelPower1,     dt.powerTags[0])}
-    ${row('pow1',     STRINGS.hero.labelPower2,     dt.powerTags[1])}
-    ${row('weakness', STRINGS.hero.labelWeakness,   dt.weaknessTag)}
-    ${row('quest',    STRINGS.hero.labelQuest,      dt.quest)}
-    <div class="es-footer">
-      <button type="button" class="es-full-reroll" id="es-full-reroll" data-ti="${ti}">${escapeHtml(STRINGS.hero.fullReroll)}</button>
-    </div>`;
-  body.querySelectorAll('.es-reroll-btn').forEach(btn=>{
-    btn.addEventListener('click',()=>{ handleReroll(parseInt(btn.dataset.ti),btn.dataset.k); openEditSheet(ti); renderThemePage(ti); updateResultNav(); });
+  var dt=getDisplayTheme(ti), body=$('edit-sheet-body');
+  function row(k,label,entry){
+    var isQ=k==='quest', rawText=isQ?entry.title:entry.text;
+    var isW=k==='weakness';
+    var e=getEdit(ti,k), total=1+(e?e.alts.length:0), idx=e?e.index:0;
+    var maxed=e?e.alts.length>=CFG.MAX_ELEMENT_ALTS:false;
+    var nav=total>1?
+      '<div class="es-nav">'+
+        '<button type="button" class="es-nav-btn" data-ti="'+ti+'" data-k="'+k+'" data-dir="-1"'+(idx===0?' disabled':'')+'>&#8249;</button>'+
+        '<span class="es-nav-pos">'+(idx+1)+' / '+total+'</span>'+
+        '<button type="button" class="es-nav-btn" data-ti="'+ti+'" data-k="'+k+'" data-dir="1"'+(idx>=total-1?' disabled':'')+'>&#8250;</button>'+
+      '</div>':'';
+    return '<div class="es-row">'+
+      '<div class="es-row-content">'+
+        '<div class="es-label">'+escapeHtml(label)+'</div>'+
+        '<div class="es-value'+(isW?' es-weak':'')+'">'+displayTag(rawText)+'</div>'+
+        nav+
+      '</div>'+
+      '<button type="button" class="es-reroll-btn" data-ti="'+ti+'" data-k="'+k+'"'+(maxed?' disabled':'')+'>'+
+        '↺ '+escapeHtml(STRINGS.hero.rerollShort)+
+      '</button>'+
+    '</div>';
+  }
+  body.innerHTML=
+    '<div class="es-header">'+
+      '<div class="es-themebook">'+escapeHtml(displayThemebook(dt.themebook))+'</div>'+
+      '<div class="es-might">'+escapeHtml(displayMight(dt.type))+'</div>'+
+    '</div>'+
+    row('title',    STRINGS.hero.labelTitleTag,  dt.titleTag)+
+    row('pow0',     STRINGS.hero.labelPower1,     dt.powerTags[0])+
+    row('pow1',     STRINGS.hero.labelPower2,     dt.powerTags[1])+
+    row('weakness', STRINGS.hero.labelWeakness,   dt.weaknessTag)+
+    row('quest',    STRINGS.hero.labelQuest,      dt.quest)+
+    '<div class="es-footer">'+
+      '<button type="button" class="es-full-reroll" id="es-full-reroll" data-ti="'+ti+'">'+escapeHtml(STRINGS.hero.fullReroll)+'</button>'+
+    '</div>';
+  body.querySelectorAll('.es-reroll-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){ handleReroll(parseInt(btn.dataset.ti),btn.dataset.k); openEditSheet(ti); renderThemePage(ti); updateResultNav(); });
   });
-  body.querySelectorAll('.es-nav-btn').forEach(btn=>{
-    btn.addEventListener('click',()=>{ handleNavigate(parseInt(btn.dataset.ti),btn.dataset.k,parseInt(btn.dataset.dir)); openEditSheet(ti); renderThemePage(ti); updateResultNav(); });
+  body.querySelectorAll('.es-nav-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){ handleNavigate(parseInt(btn.dataset.ti),btn.dataset.k,parseInt(btn.dataset.dir)); openEditSheet(ti); renderThemePage(ti); updateResultNav(); });
   });
-  $('es-full-reroll').addEventListener('click',()=>{ handleReroll(parseInt($('es-full-reroll').dataset.ti),'theme'); openEditSheet(ti); renderThemePage(ti); updateResultNav(); });
+  var fr=$('es-full-reroll');
+  fr.addEventListener('click',function(){ handleReroll(parseInt(fr.dataset.ti),'theme'); openEditSheet(ti); renderThemePage(ti); updateResultNav(); });
   $('edit-sheet-overlay').classList.add('active');
 }
 function closeEditSheet() { $('edit-sheet-overlay').classList.remove('active'); }
@@ -612,66 +612,68 @@ function closeEditSheet() { $('edit-sheet-overlay').classList.remove('active'); 
 /* =====================================================
    PDF
 ===================================================== */
-const PDF_LAYOUT={pageW:297,pageH:210,marginX:12,marginY:12,gap:4};
-const PDF_COLORS={paper:[250,243,223],ink:[42,36,25],inkSoft:[91,82,64],accent:[139,58,43],gold:[169,134,70],band:[236,224,196]};
+var PDF_LAYOUT={pageW:297,pageH:210,marginX:12,marginY:12,gap:4};
+var PDF_COLORS={paper:[250,243,223],ink:[42,36,25],inkSoft:[91,82,64],accent:[139,58,43],gold:[169,134,70],band:[236,224,196]};
 function pdfHeader(doc) {
-  const {pageW,marginX,marginY}=PDF_LAYOUT;
-  doc.setFillColor(...PDF_COLORS.paper); doc.rect(0,0,pageW,PDF_LAYOUT.pageH,'F');
-  doc.setTextColor(...PDF_COLORS.ink); doc.setFont('helvetica','bold'); doc.setFontSize(22);
-  const hn=state.hero?`${state.hero.firstName} ${state.hero.epithet}`:'`;
-  doc.text(hn?`${STRINGS.pdf.header} \u00b7 ${hn}`:STRINGS.pdf.header, marginX, marginY+6);
-  doc.setDrawColor(...PDF_COLORS.gold); doc.setLineWidth(0.4);
-  doc.line(marginX,marginY+9,pageW-marginX,marginY+9);
-  if(state.hero&&state.hero.title) {
-    doc.setFont('helvetica','italic'); doc.setFontSize(9); doc.setTextColor(...PDF_COLORS.inkSoft);
-    doc.text(state.hero.title, marginX, marginY+14);
+  var L=PDF_LAYOUT, C=PDF_COLORS;
+  doc.setFillColor.apply(doc,C.paper); doc.rect(0,0,L.pageW,L.pageH,'F');
+  doc.setTextColor.apply(doc,C.ink); doc.setFont('helvetica','bold'); doc.setFontSize(22);
+  var hn=state.hero?(state.hero.firstName+' '+state.hero.epithet):'';
+  var hdr=hn?(STRINGS.pdf.header+' \u00b7 '+hn):STRINGS.pdf.header;
+  doc.text(hdr, L.marginX, L.marginY+6);
+  doc.setDrawColor.apply(doc,C.gold); doc.setLineWidth(0.4);
+  doc.line(L.marginX,L.marginY+9,L.pageW-L.marginX,L.marginY+9);
+  if(state.hero&&state.hero.title){
+    doc.setFont('helvetica','italic'); doc.setFontSize(9); doc.setTextColor.apply(doc,C.inkSoft);
+    doc.text(state.hero.title, L.marginX, L.marginY+14);
   }
 }
 function pdfSectionLabel(doc,label,x,y) {
-  doc.setFont('helvetica','bold'); doc.setFontSize(7); doc.setTextColor(...PDF_COLORS.accent);
+  doc.setFont('helvetica','bold'); doc.setFontSize(7); doc.setTextColor.apply(doc,PDF_COLORS.accent);
   doc.text(label,x+4,y); return y+4;
 }
 function pdfTagText(e) { return capitalizeFirst(e.text); }
 function pdfThemeBlock(doc,theme,x,y,cW,cH) {
-  doc.setDrawColor(...PDF_COLORS.ink); doc.setLineWidth(0.3); doc.rect(x,y,cW,cH);
-  doc.setFillColor(...PDF_COLORS.band); doc.rect(x,y,cW,16,'F'); doc.line(x,y+16,x+cW,y+16);
-  doc.setFont('helvetica','bold'); doc.setFontSize(7); doc.setTextColor(...PDF_COLORS.accent);
+  var C=PDF_COLORS;
+  doc.setDrawColor.apply(doc,C.ink); doc.setLineWidth(0.3); doc.rect(x,y,cW,cH);
+  doc.setFillColor.apply(doc,C.band); doc.rect(x,y,cW,16,'F'); doc.line(x,y+16,x+cW,y+16);
+  doc.setFont('helvetica','bold'); doc.setFontSize(7); doc.setTextColor.apply(doc,C.accent);
   doc.text(displayMight(theme.type).toUpperCase(),x+cW/2,y+6,{align:'center'});
-  doc.setFont('helvetica','italic'); doc.setFontSize(8); doc.setTextColor(...PDF_COLORS.inkSoft);
+  doc.setFont('helvetica','italic'); doc.setFontSize(8); doc.setTextColor.apply(doc,C.inkSoft);
   doc.text(displayThemebook(theme.themebook),x+cW/2,y+11,{align:'center'});
-  doc.setFont('times','italic'); doc.setFontSize(13); doc.setTextColor(...PDF_COLORS.ink);
-  const tl=doc.splitTextToSize(pdfTagText(theme.titleTag),cW-6);
-  doc.text(tl,x+cW/2,y+22,{align:'center'}); let cy=y+22+tl.length*5+4;
+  doc.setFont('times','italic'); doc.setFontSize(13); doc.setTextColor.apply(doc,C.ink);
+  var tl=doc.splitTextToSize(pdfTagText(theme.titleTag),cW-6);
+  doc.text(tl,x+cW/2,y+22,{align:'center'}); var cy=y+22+tl.length*5+4;
   cy=pdfSectionLabel(doc,STRINGS.pdf.powerTags,x,cy);
-  doc.setFont('times','normal'); doc.setFontSize(10); doc.setTextColor(...PDF_COLORS.ink);
-  theme.powerTags.forEach(t=>{ const ls=doc.splitTextToSize(`\u25e6 ${pdfTagText(t)}`,cW-8); doc.text(ls,x+4,cy); cy+=ls.length*4.5; });
+  doc.setFont('times','normal'); doc.setFontSize(10); doc.setTextColor.apply(doc,C.ink);
+  theme.powerTags.forEach(function(t){ var ls=doc.splitTextToSize('\u25e6 '+pdfTagText(t),cW-8); doc.text(ls,x+4,cy); cy+=ls.length*4.5; });
   cy+=3; cy=pdfSectionLabel(doc,STRINGS.pdf.weaknessTag,x,cy);
-  doc.setFont('times','italic'); doc.setFontSize(10); doc.setTextColor(...PDF_COLORS.accent);
-  const wl=doc.splitTextToSize(pdfTagText(theme.weaknessTag),cW-8); doc.text(wl,x+4,cy); cy+=wl.length*4.5+4;
+  doc.setFont('times','italic'); doc.setFontSize(10); doc.setTextColor.apply(doc,C.accent);
+  var wl=doc.splitTextToSize(pdfTagText(theme.weaknessTag),cW-8); doc.text(wl,x+4,cy); cy+=wl.length*4.5+4;
   cy=pdfSectionLabel(doc,STRINGS.pdf.quest,x,cy);
-  doc.setFont('times','italic'); doc.setFontSize(10); doc.setTextColor(...PDF_COLORS.ink);
-  const ql=doc.splitTextToSize(`\u201e${capitalizeFirst(theme.quest.title)}\u201c`,cW-8); doc.text(ql,x+4,cy); cy+=ql.length*4.5+1;
-  doc.setFont('times','italic'); doc.setFontSize(8.5); doc.setTextColor(...PDF_COLORS.inkSoft);
+  doc.setFont('times','italic'); doc.setFontSize(10); doc.setTextColor.apply(doc,C.ink);
+  var ql=doc.splitTextToSize('\u201e'+capitalizeFirst(theme.quest.title)+'\u201c',cW-8); doc.text(ql,x+4,cy); cy+=ql.length*4.5+1;
+  doc.setFont('times','italic'); doc.setFontSize(8.5); doc.setTextColor.apply(doc,C.inkSoft);
   doc.text(doc.splitTextToSize(theme.quest.description,cW-8),x+4,cy);
 }
 function pdfFooter(doc) {
-  const {pageW,pageH,marginX}=PDF_LAYOUT;
-  doc.setFont('helvetica','normal'); doc.setFontSize(7); doc.setTextColor(...PDF_COLORS.inkSoft);
-  doc.text(STRINGS.pdf.footer,pageW-marginX,pageH-4,{align:'right'});
+  var L=PDF_LAYOUT;
+  doc.setFont('helvetica','normal'); doc.setFontSize(7); doc.setTextColor.apply(doc,PDF_COLORS.inkSoft);
+  doc.text(STRINGS.pdf.footer,L.pageW-L.marginX,L.pageH-4,{align:'right'});
 }
 async function generatePDF() {
   if(!window.jspdf||!window.jspdf.jsPDF){alert(STRINGS.pdf.errLoad);return;}
-  const prop=state.proposals[state.proposalIndex]; if(!prop) return;
+  var prop=state.proposals[state.proposalIndex]; if(!prop) return;
   try {
-    const {jsPDF}=window.jspdf;
-    const doc=new jsPDF({orientation:'landscape',unit:'mm',format:'a4'});
-    const {pageW,pageH,marginX,marginY,gap}=PDF_LAYOUT;
+    var jsPDF=window.jspdf.jsPDF;
+    var doc=new jsPDF({orientation:'landscape',unit:'mm',format:'a4'});
+    var L=PDF_LAYOUT;
     pdfHeader(doc);
-    const cardY=marginY+(state.hero&&state.hero.title?20:16);
-    const cW=(pageW-2*marginX-3*gap)/4, cH=pageH-cardY-marginY;
-    prop.themes.forEach((_,i)=>pdfThemeBlock(doc,getDisplayTheme(i),marginX+i*(cW+gap),cardY,cW,cH));
+    var cardY=L.marginY+(state.hero&&state.hero.title?20:16);
+    var cW=(L.pageW-2*L.marginX-3*L.gap)/4, cH=L.pageH-cardY-L.marginY;
+    prop.themes.forEach(function(_,i){ pdfThemeBlock(doc,getDisplayTheme(i),L.marginX+i*(cW+L.gap),cardY,cW,cH); });
     pdfFooter(doc);
-    const fn=state.hero?`mistheld-${state.hero.firstName.toLowerCase()}-${state.hero.epithet.toLowerCase().replace(/\s/g,'-')}.pdf`:STRINGS.pdf.filename;
+    var fn=state.hero?('mistheld-'+state.hero.firstName.toLowerCase()+'-'+state.hero.epithet.toLowerCase().replace(/\s/g,'-')+'.pdf'):STRINGS.pdf.filename;
     doc.save(fn);
   } catch(err){console.error('PDF-Fehler:',err);alert(STRINGS.pdf.errCreate);}
 }
@@ -680,7 +682,7 @@ async function generatePDF() {
    SETTINGS
 ===================================================== */
 function openSettings() {
-  const s=loadSettings();
+  var s=loadSettings();
   $('toggle-origin').checked      =s.mightLevels.Origin;
   $('toggle-adventure').checked   =s.mightLevels.Adventure;
   $('toggle-greatness').checked   =s.mightLevels.Greatness;
@@ -693,11 +695,11 @@ function openSettings() {
   updateSettingsUI(); show('screen-settings');
 }
 function updateSettingsUI() {
-  const cbs=[$('toggle-origin'),$('toggle-adventure'),$('toggle-greatness')];
-  const cc=cbs.filter(c=>c.checked).length;
-  cbs.forEach(c=>{c.disabled=(cc===1&&c.checked);});
-  [['toggle-companion','select-companion-level'],['toggle-magic','select-magic-level'],['toggle-possessions','select-possessions-level']].forEach(([tid,sid])=>{
-    const en=$(tid).checked; $(sid).disabled=!en; $(sid).style.opacity=en?'1':'0.4';
+  var cbs=[$('toggle-origin'),$('toggle-adventure'),$('toggle-greatness')];
+  var cc=cbs.filter(function(c){return c.checked;}).length;
+  cbs.forEach(function(c){c.disabled=(cc===1&&c.checked);});
+  [['toggle-companion','select-companion-level'],['toggle-magic','select-magic-level'],['toggle-possessions','select-possessions-level']].forEach(function(pair){
+    var en=$(pair[0]).checked; $(pair[1]).disabled=!en; $(pair[1]).style.opacity=en?'1':'0.4';
   });
 }
 function saveSettingsFromUI() {
@@ -717,16 +719,16 @@ function saveSettingsFromUI() {
 initStrings(); initAudio();
 
 $('btn-start').addEventListener('click', startSwipe);
-$('btn-yes').addEventListener('click',  ()=>programmaticDecide('yes'));
-$('btn-no').addEventListener('click',   ()=>programmaticDecide('no'));
+$('btn-yes').addEventListener('click',  function(){programmaticDecide('yes');});
+$('btn-no').addEventListener('click',   function(){programmaticDecide('no');});
 $('btn-undo').addEventListener('click', undoLast);
 $('btn-settings').addEventListener('click',      openSettings);
-$('btn-settings-back').addEventListener('click', ()=>{saveSettingsFromUI();show('screen-welcome');});
-$('edit-sheet-overlay').addEventListener('click', e=>{if(e.target===$('edit-sheet-overlay')) closeEditSheet();});
-['toggle-origin','toggle-adventure','toggle-greatness','toggle-companion','toggle-magic','toggle-possessions'].forEach(id=>{
+$('btn-settings-back').addEventListener('click', function(){saveSettingsFromUI();show('screen-welcome');});
+$('edit-sheet-overlay').addEventListener('click', function(e){if(e.target===$('edit-sheet-overlay')) closeEditSheet();});
+['toggle-origin','toggle-adventure','toggle-greatness','toggle-companion','toggle-magic','toggle-possessions'].forEach(function(id){
   $(id).addEventListener('change',updateSettingsUI);
 });
-document.addEventListener('keydown', e=>{
+document.addEventListener('keydown', function(e){
   if($('screen-swipe').classList.contains('active')) {
     if(e.key==='ArrowRight'){e.preventDefault();programmaticDecide('yes');}
     else if(e.key==='ArrowLeft'){e.preventDefault();programmaticDecide('no');}
