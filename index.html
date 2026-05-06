@@ -78,7 +78,7 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 @-webkit-keyframes mist-float{0%{transform:translate(0,0) scale(1);opacity:0}8%{opacity:1}50%{transform:translate(22px,-65px) scale(1.12);opacity:0.85}92%{opacity:0.15}100%{transform:translate(-12px,-120px) scale(0.9);opacity:0}}
 @keyframes mist-float{0%{transform:translate(0,0) scale(1);opacity:0}8%{opacity:1}50%{transform:translate(22px,-65px) scale(1.12);opacity:0.85}92%{opacity:0.15}100%{transform:translate(-12px,-120px) scale(0.9);opacity:0}}
 /* SWIPE */
-#screen-swipe{padding:16px 20px 12px;touch-action:none;overflow:hidden;position:relative}
+#screen-swipe{padding:56px 20px 12px;touch-action:none;overflow:hidden;position:relative}
 .card-counter{text-align:center;font-size:0.85rem;color:var(--ink-soft);margin-bottom:10px;letter-spacing:0.06em;flex-shrink:0}
 .card-stage{position:relative;flex:1;min-height:0;margin:0 auto;width:100%;max-width:360px;display:flex;align-items:center;justify-content:center;touch-action:none}
 .card{position:absolute;width:100%;height:100%;background:var(--paper);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);padding:22px 24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;cursor:grab;user-select:none;-webkit-user-select:none;touch-action:none;will-change:transform,opacity;transform:translate3d(0,0,0);transition:transform 0.4s cubic-bezier(0.18,0.89,0.32,1.18),opacity 0.3s ease-out}
@@ -123,7 +123,7 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
    ERGEBNIS-SCREEN (#38: feste Kartengröße, Carousel)
    BUG-SCHUTZ: Kein display-Property!
 ===================================================== */
-#screen-result{padding:16px 20px 8px;overflow:hidden}
+#screen-result{padding:56px 20px 96px;overflow:hidden}
 #result-stage{
   position:relative;
   flex:1;
@@ -168,7 +168,7 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .rc-theme.tc-origin{border-left-color:var(--might-origin)}
 .rc-theme.tc-adventure{border-left-color:var(--might-adventure)}
 .rc-theme.tc-greatness{border-left-color:var(--might-greatness)}
-.rc-theme-header{padding:14px 48px 12px 14px;border-bottom:1px solid var(--line-soft);text-align:center}
+.rc-theme-header{padding:14px 48px 12px 48px;border-bottom:1px solid var(--line-soft);text-align:center}
 .rc-theme-name{font-family:var(--serif);font-size:1.6rem;font-weight:600;line-height:1.15;margin-bottom:5px}
 .tc-origin .rc-theme-name{color:var(--might-origin)}
 .tc-adventure .rc-theme-name{color:var(--might-adventure)}
@@ -192,16 +192,17 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .save-hero-name{font-family:var(--serif);font-size:1.8rem;font-weight:600;font-style:italic;color:var(--ink);line-height:1.2;margin-bottom:4px}
 .save-hero-title{font-family:var(--serif);font-style:italic;font-size:0.95rem;color:var(--ink-soft);margin-bottom:14px;line-height:1.4}
 .overview-tiles{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:16px}
-.ot-tile{border-radius:6px;padding:9px;background:var(--paper);border:1px solid var(--line-soft);border-left-width:3px;text-align:left}
+.ot-tile{border-radius:6px;padding:9px;background:var(--paper);border:1px solid var(--line-soft);border-left-width:3px;text-align:center}
 .ot-tile.tc-origin{border-left-color:var(--might-origin)}
 .ot-tile.tc-adventure{border-left-color:var(--might-adventure)}
 .ot-tile.tc-greatness{border-left-color:var(--might-greatness)}
-.ot-type{font-family:var(--serif);font-size:0.85rem;font-weight:600;margin-bottom:5px;line-height:1.2}
+.ot-type{font-family:var(--serif);font-size:0.72rem;font-weight:600;margin-bottom:5px;line-height:1.2}
 .ot-tile.tc-origin .ot-type{color:var(--might-origin)}
 .ot-tile.tc-adventure .ot-type{color:var(--might-adventure)}
 .ot-tile.tc-greatness .ot-type{color:var(--might-greatness)}
 .ot-tags{margin-bottom:5px}
 .ot-power{font-family:var(--serif);font-size:0.78rem;color:var(--gold);display:block;line-height:1.3}
+.ot-title{font-family:var(--serif);font-size:0.92rem;font-weight:600;color:var(--gold);display:block;line-height:1.3;margin-bottom:2px}
 .ot-weakness{font-family:var(--serif);font-style:italic;font-size:0.78rem;color:#7a3010;display:block;line-height:1.3}
 .ot-quest{font-family:var(--serif);font-style:italic;font-size:0.74rem;color:var(--ink-soft);line-height:1.3}
 .save-actions{display:flex;flex-direction:column;gap:8px}
