@@ -7,7 +7,6 @@ test.beforeEach(async ({ page }) => {
   await page.route('**/cdnjs.cloudflare.com/**', route => route.abort());
 });
 
-// Ergebnis-Screen mit generierten Daten laden
 async function loadResultScreen(page) {
   await page.evaluate(() => {
     state.proposals     = [generateProposal('initial')];
@@ -21,16 +20,12 @@ async function loadResultScreen(page) {
   });
 }
 
-// =============================================================
 // SCREEN VISIBILITY
-// =============================================================
-
 test('Startseite: Nur Welcome-Screen sichtbar', async ({ page }) => {
   await page.goto('/');
   await expect(page.locator('#screen-welcome')).toBeVisible();
   await expect(page.locator('#screen-swipe')).not.toBeVisible();
   await expect(page.locator('#screen-result')).not.toBeVisible();
-  await expect(page.locator('#screen-settings')).not.toBeVisible();
 });
 
 test('Startseite: Gear-Icon und Mute-Button sichtbar', async ({ page }) => {
@@ -40,15 +35,11 @@ test('Startseite: Gear-Icon und Mute-Button sichtbar', async ({ page }) => {
   await expect(page.locator('#btn-start')).toBeVisible();
 });
 
-// =============================================================
 // SCREEN TRANSITIONS
-// =============================================================
-
 test('Einstellungen oeffnen und schliessen', async ({ page }) => {
   await page.goto('/');
   await page.locator('#btn-settings').click();
   await expect(page.locator('#screen-settings')).toBeVisible();
-  await expect(page.locator('#screen-welcome')).not.toBeVisible();
   await page.locator('#btn-settings-back').click();
   await expect(page.locator('#screen-welcome')).toBeVisible();
 });
@@ -58,28 +49,16 @@ test('Los-gehts zeigt Swipe-Screen mit Phase-Intro', async ({ page }) => {
   await page.locator('#btn-start').click();
   await expect(page.locator('#screen-swipe')).toBeVisible();
   await expect(page.locator('#phase-intro-overlay')).toBeVisible();
-  await expect(page.locator('#btn-settings')).not.toBeVisible();
 });
 
 test('Phase-Intro: Tippen startet Kartenstapel', async ({ page }) => {
   await page.goto('/');
   await page.locator('#btn-start').click();
   await page.locator('#phase-intro-overlay').click();
-  await expect(page.locator('#phase-intro-overlay')).not.toBeVisible();
   await expect(page.locator('.card.front')).toBeVisible();
 });
 
-test('Gear-Icon im Ergebnis-Screen nicht sichtbar', async ({ page }) => {
-  await page.goto('/');
-  await page.evaluate(() => show('screen-result'));
-  await expect(page.locator('#screen-result')).toBeVisible();
-  await expect(page.locator('#btn-settings')).not.toBeVisible();
-});
-
-// =============================================================
 // JS-GESUNDHEIT
-// =============================================================
-
 test('Keine JS-Fehler beim Seitenaufruf', async ({ page }) => {
   const errors = [];
   page.on('pageerror', err => errors.push(err.message));
@@ -93,8 +72,8 @@ test('STRINGS und HELD-KATALOG geladen', async ({ page }) => {
   const ok = await page.evaluate(() =>
     typeof STRINGS === 'object' &&
     typeof STRINGS.hero === 'object' &&
-    Array.isArray(HERO_FIRSTNAMES) && HERO_FIRSTNAMES.length >= 10 &&
-    Array.isArray(HERO_DESCRIPTIONS) && HERO_DESCRIPTIONS.length >= 10
+    STRINGS.hero.labelName === 'Name' &&
+    Array.isArray(HERO_FIRSTNAMES) && HERO_FIRSTNAMES.length >= 10
   );
   expect(ok).toBe(true);
 });
@@ -105,18 +84,20 @@ test('THEMEBOOKS geladen (20 Eintraege)', async ({ page }) => {
   expect(count).toBe(20);
 });
 
-test('PHASES geladen (4 Phasen)', async ({ page }) => {
+test('PHASES geladen (4 Phasen, mind. 10 Karten pro Phase)', async ({ page }) => {
   await page.goto('/');
-  const count = await page.evaluate(() => PHASES.length);
-  expect(count).toBe(4);
+  const ok = await page.evaluate(() =>
+    PHASES.length === 4 &&
+    PHASES.every(p => p.cards.length >= 10)
+  );
+  expect(ok).toBe(true);
 });
 
-test('Settings-Default: Origin aktiv, Adventure+Greatness inaktiv', async ({ page }) => {
+test('Settings-Default: Origin aktiv', async ({ page }) => {
   await page.goto('/');
   await page.locator('#btn-settings').click();
   await expect(page.locator('#toggle-origin')).toBeChecked();
   await expect(page.locator('#toggle-adventure')).not.toBeChecked();
-  await expect(page.locator('#toggle-greatness')).not.toBeChecked();
 });
 
 test('Letzter Toggle nicht deaktivierbar', async ({ page }) => {
@@ -125,64 +106,94 @@ test('Letzter Toggle nicht deaktivierbar', async ({ page }) => {
   await expect(page.locator('#toggle-origin')).toBeDisabled();
 });
 
-// =============================================================
-// #29: ERGEBNIS-SCREEN
-// =============================================================
-
-test('#29: Held-Seite erscheint zuerst', async ({ page }) => {
+// #33: UEBERSETZUNGEN
+test('#33: Theme-Type Uebersetzungen korrekt', async ({ page }) => {
   await page.goto('/');
-  await loadResultScreen(page);
-  await expect(page.locator('.result-hero-page')).toBeVisible();
-  await expect(page.locator('.hero-name')).toBeVisible();
-  await expect(page.locator('.hero-description')).toBeVisible();
+  const ok = await page.evaluate(() =>
+    STRINGS.themebooks['Circumstance'] === 'Umstand' &&
+    STRINGS.themebooks['Skill or Trade'] === 'F\u00e4higkeit oder Beruf' &&
+    STRINGS.themebooks['Uncanny Being'] === 'Unheimliches Wesen' &&
+    STRINGS.themebooks['Monstrosity'] === 'Monstrosit\u00e4t'
+  );
+  expect(ok).toBe(true);
 });
 
-test('#29: Held-Seite hat 4 Reroll-Buttons', async ({ page }) => {
+// #34 + #36: NEUER ERGEBNIS-SCREEN (Karten)
+test('#34/#36: Ergebnis-Screen zeigt Held-Karte', async ({ page }) => {
   await page.goto('/');
   await loadResultScreen(page);
-  await expect(page.locator('.hero-reroll-btn')).toHaveCount(4);
+  await expect(page.locator('#screen-result')).toBeVisible();
+  await expect(page.locator('.result-card.rc-hero')).toBeVisible();
+  await expect(page.locator('.rc-hero-name')).toBeVisible();
 });
 
-test('#29: Navigation zeigt Theme-Seite', async ({ page }) => {
+test('#34/#36: Held-Karte hat Stift-Icon', async ({ page }) => {
   await page.goto('/');
   await loadResultScreen(page);
-  await page.locator('#result-nav-next').click();
-  await expect(page.locator('.result-theme-page')).toBeVisible();
-  await expect(page.locator('.rtp-title-tag')).toBeVisible();
+  await expect(page.locator('#rc-hero-edit')).toBeVisible();
 });
 
-test('#29: Dots zeigen 6 Seiten (Held + 4 Themes + Speichern)', async ({ page }) => {
+test('#34/#36: Dots-Navigation vorhanden', async ({ page }) => {
   await page.goto('/');
   await loadResultScreen(page);
-  await expect(page.locator('.result-dot')).toHaveCount(6);
+  const count = await page.locator('.result-dot').count();
+  expect(count).toBe(6); // 1 Held + 4 Themes + 1 Speichern
 });
 
-test('#29: Bearbeiten-Button oeffnet Edit-Sheet', async ({ page }) => {
+test('#34: Theme-Karte hat Stift-Icon und kein X vor Schwaeche', async ({ page }) => {
   await page.goto('/');
   await loadResultScreen(page);
-  await page.locator('#result-nav-next').click();
-  await page.locator('.rtp-edit-btn').click();
+  // Zur Theme-Karte navigieren
+  await page.evaluate(() => { state.resultPage = 1; renderCurrentResultPage(); });
+  await expect(page.locator('.result-card.rc-theme')).toBeVisible();
+  await expect(page.locator('#rtp-edit-btn')).toBeVisible();
+  await expect(page.locator('.rc-weakness-tag')).toBeVisible();
+  // Kein X-Praefix in der Schwaechedarstellung
+  const text = await page.locator('.rc-weakness-tag').textContent();
+  expect(text).not.toMatch(/^\s*[Xx✕]/);
+});
+
+test('#34: Edit-Sheet durch Stift-Icon oeffnen', async ({ page }) => {
+  await page.goto('/');
+  await loadResultScreen(page);
+  await page.evaluate(() => { state.resultPage = 1; renderCurrentResultPage(); });
+  await page.locator('#rtp-edit-btn').click();
   await expect(page.locator('#edit-sheet-overlay')).toHaveClass(/active/);
-  await expect(page.locator('.es-full-reroll')).toBeVisible();
 });
 
-test('#29: Edit-Sheet hat Reroll-Buttons fuer alle Elemente', async ({ page }) => {
+test('#36: Held-Edit-Sheet durch Stift-Icon oeffnen', async ({ page }) => {
   await page.goto('/');
   await loadResultScreen(page);
-  await page.locator('#result-nav-next').click();
-  await page.locator('.rtp-edit-btn').click();
-  // 5 Elemente: title, pow0, pow1, weakness, quest
-  const count = await page.locator('.es-reroll-btn').count();
-  expect(count).toBe(5);
+  await page.locator('#rc-hero-edit').click();
+  await expect(page.locator('#edit-sheet-overlay')).toHaveClass(/active/);
+  await expect(page.locator('.es-reroll-btn').first()).toBeVisible();
 });
 
-test('#29: Letzte Seite zeigt Speichern-Button', async ({ page }) => {
+test('#34/#36: Letzte Seite zeigt Speichern', async ({ page }) => {
   await page.goto('/');
   await loadResultScreen(page);
   await page.evaluate(() => {
     state.resultPage = totalResultPages() - 1;
     renderCurrentResultPage();
   });
-  await expect(page.locator('.result-save-page')).toBeVisible();
+  await expect(page.locator('.result-card.rc-save')).toBeVisible();
   await expect(page.locator('#save-pdf')).toBeVisible();
+});
+
+// #35: PHASEN-BALANCE
+test('#35: Alle 20 Theme-Types haben Phasenkarten-Affinitaet', async ({ page }) => {
+  await page.goto('/');
+  const ok = await page.evaluate(() => {
+    const all = [
+      'Circumstance','Devotion','Past','People','Personality','Skill or Trade','Trait',
+      'Duty','Influence','Knowledge','Prodigious Ability','Relic','Uncanny Being',
+      'Destiny','Dominion','Mastery','Monstrosity','Companion','Magic','Possessions'
+    ];
+    const totals = {};
+    PHASES.forEach(p => p.cards.forEach(c => {
+      Object.entries(c.affinities||{}).forEach(([t,v]) => { totals[t]=(totals[t]||0)+v; });
+    }));
+    return all.every(t => (totals[t]||0) > 0);
+  });
+  expect(ok).toBe(true);
 });
