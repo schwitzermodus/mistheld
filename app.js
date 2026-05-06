@@ -190,7 +190,7 @@ function renderCard() {
     var el=document.createElement('div');
     el.className='card'+(i===0?' front':' behind behind-'+i);
     el.style.zIndex=String(10-i);
-    // #42: Theme-Type Tags oben auf der Karte
+    // #42: Theme-Type Tags UNTEN auf der Karte
     var themeTags = '';
     if (i === 0 && card.affinities) {
       var sorted = Object.entries(card.affinities).sort(function(a,b){return b[1]-a[1];}).slice(0,3);
@@ -201,11 +201,11 @@ function renderCard() {
     el.innerHTML=
       '<div class="card-decision-overlay yes">'+escapeHtml(STRINGS.swipe.decisionYes)+'</div>'+
       '<div class="card-decision-overlay no">'+escapeHtml(STRINGS.swipe.decisionNo)+'</div>'+
-      themeTags+
       '<div class="card-glyph">~</div>'+
       '<div class="card-title">'+escapeHtml(card.title)+'</div>'+
       '<div class="card-divider"></div>'+
-      '<div class="card-text">'+escapeHtml(card.text)+'</div>';
+      '<div class="card-text">'+escapeHtml(card.text)+'</div>'+
+      themeTags;
     if(i===0) { attachSwipe(el); if(state.cardIndex===0&&!state.swipes.length) el.classList.add('card-hint'); }
     stage.appendChild(el);
   }
@@ -550,7 +550,7 @@ function buildSaveCard() {
     return '<div class="ot-tile '+mc+'">'+
       '<div class="ot-type">'+escapeHtml(displayThemebook(dt.themebook))+'</div>'+
       '<div class="ot-tags">'+
-        '<span class="ot-power">'+displayTag(dt.titleTag.text)+'</span>'+
+        '<span class="ot-title">'+displayTag(dt.titleTag.text)+'</span>'+
         '<span class="ot-power">'+displayTag(dt.powerTags[0].text)+'</span>'+
         '<span class="ot-power">'+displayTag(dt.powerTags[1].text)+'</span>'+
         '<span class="ot-weakness">'+displayTag(dt.weaknessTag.text)+'</span>'+
@@ -612,7 +612,7 @@ function openEditSheet(ti) {
     var nav=total>1?
       '<div class="es-nav">'+
         '<button type="button" class="es-nav-btn" data-ti="'+ti+'" data-k="'+k+'" data-dir="-1"'+(idx===0?' disabled':'')+'>&#8249;</button>'+
-        '<span class="es-nav-pos">'+(idx+1)+' / '+total+'</span>'+
+        '<span class="es-nav-pos">'+(idx+1)+' / '+total+'</span>'+
         '<button type="button" class="es-nav-btn" data-ti="'+ti+'" data-k="'+k+'" data-dir="1"'+(idx>=total-1?' disabled':'')+'>&#8250;</button>'+
       '</div>':'';
     return '<div class="es-row">'+
