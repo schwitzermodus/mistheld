@@ -239,13 +239,18 @@ function renderCard() {
     var el=document.createElement('div');
     el.className='card'+(i===0?' front':' behind behind-'+i);
     el.style.zIndex=String(10-i);
-    // #42: Theme-Type Tags UNTEN auf der Karte
+    // #42 + #44: Theme-Type Tags UNTEN auf der Karte, deaktivierte Theme Types ausblenden
     var themeTags = '';
     if (i === 0 && card.affinities) {
-      var sorted = Object.entries(card.affinities).sort(function(a,b){return b[1]-a[1];}).slice(0,3);
-      themeTags = '<div class="card-themes">' + sorted.map(function(kv){
-        return '<span class="card-theme-tag '+tierClass(kv[0])+'">'+escapeHtml(displayThemebook(kv[0]))+'</span>';
-      }).join('') + '</div>';
+      var _settings = loadSettings();
+      var sorted = Object.entries(card.affinities)
+        .filter(function(kv){ return isThemeTypeEnabled(kv[0], _settings); })
+        .sort(function(a,b){return b[1]-a[1];}).slice(0,3);
+      if (sorted.length > 0) {
+        themeTags = '<div class="card-themes">' + sorted.map(function(kv){
+          return '<span class="card-theme-tag '+tierClass(kv[0])+'">'+escapeHtml(displayThemebook(kv[0]))+'</span>';
+        }).join('') + '</div>';
+      }
     }
     el.innerHTML=
       '<div class="card-decision-overlay yes">'+escapeHtml(STRINGS.swipe.decisionYes)+'</div>'+
