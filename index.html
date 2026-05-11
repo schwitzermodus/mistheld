@@ -48,15 +48,19 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .welcome-mark{font-family:var(--serif);font-style:italic;font-size:1rem;color:var(--accent);margin-bottom:8px;letter-spacing:0.12em;text-transform:uppercase}
 .welcome-title{font-size:3rem;font-weight:500;font-style:italic;margin:6px 0 8px;color:var(--ink);position:relative;display:inline-block}
 .welcome-title::after{content:'';position:absolute;left:50%;bottom:-8px;width:60px;height:1px;background:var(--gold);transform:translateX(-50%)}
-.welcome-sub{font-family:var(--serif);font-size:1.2rem;color:var(--ink-soft);margin:22px auto 28px;max-width:320px;line-height:1.4}
-.welcome-instructions{background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:22px 20px;margin:0 auto 32px;max-width:360px;text-align:left;box-shadow:var(--shadow-soft);position:relative}
-.welcome-instructions::before,.welcome-instructions::after{content:'';position:absolute;width:14px;height:14px;border:1px solid var(--gold)}
-.welcome-instructions::before{top:6px;left:6px;border-right:0;border-bottom:0}
-.welcome-instructions::after{bottom:6px;right:6px;border-left:0;border-top:0}
-.welcome-instructions h3{font-size:1.1rem;margin-bottom:12px;text-align:center}
-.welcome-instructions ul{list-style:none;font-size:0.95rem;color:var(--ink-soft)}
-.welcome-instructions li{padding:6px 0;display:flex;gap:12px;align-items:flex-start}
-.welcome-instructions li::before{content:'\25c6';color:var(--gold);font-size:0.7rem;margin-top:6px;flex-shrink:0}
+.welcome-preview{margin:26px auto 22px;width:240px;height:296px;position:relative;perspective:1000px}
+.wp-card{position:absolute;inset:0;background:var(--paper);border:1px solid var(--line);border-left:4px solid;border-radius:8px;box-shadow:var(--shadow);padding:16px 14px 14px;display:flex;flex-direction:column;align-items:center;text-align:center;transition:opacity 0.5s ease,transform 0.5s ease}
+.wp-card.tc-origin{border-left-color:var(--might-origin)}
+.wp-card.tc-adventure{border-left-color:var(--might-adventure)}
+.wp-card.tc-greatness{border-left-color:var(--might-greatness)}
+.wp-type{font-family:var(--serif);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.16em;font-weight:600;margin-bottom:10px;line-height:1.2}
+.tc-origin .wp-type{color:var(--might-origin)}
+.tc-adventure .wp-type{color:var(--might-adventure)}
+.tc-greatness .wp-type{color:var(--might-greatness)}
+.wp-title-tag{font-family:var(--serif);font-size:1.35rem;font-style:italic;font-weight:700;line-height:1.2;color:var(--ink);background:rgba(169,134,70,0.13);border-left:3px solid var(--gold);padding:6px 10px;margin-bottom:5px;width:100%;text-align:center}
+.wp-power-tag{font-family:var(--serif);font-size:0.92rem;line-height:1.3;color:var(--ink);background:rgba(169,134,70,0.07);border-left:2px solid rgba(169,134,70,0.35);padding:4px 10px;margin-bottom:4px;width:100%;text-align:center}
+.wp-weakness-tag{font-family:var(--serif);font-style:italic;font-size:0.92rem;line-height:1.3;color:#7a3010;background:rgba(170,80,20,0.08);border-left:2px solid rgba(170,80,20,0.35);padding:4px 10px;margin-top:5px;width:100%;text-align:center}
+.wp-quest{font-family:var(--serif);font-style:italic;font-weight:600;font-size:1.0rem;color:var(--ink);margin-top:auto;padding-top:10px;line-height:1.35;text-align:center}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--sans);font-weight:600;font-size:0.95rem;letter-spacing:0.02em;padding:14px 28px;border:none;border-radius:2px;cursor:pointer;transition:all 0.2s ease;min-height:48px;user-select:none}
 .btn-primary{background:var(--ink);color:var(--bg)}
 .btn-primary:hover{background:var(--accent)}
@@ -286,8 +290,7 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
   </div>
   <div class="welcome-mark"></div>
   <h1 class="welcome-title"></h1>
-  <p class="welcome-sub"></p>
-  <div class="welcome-instructions"><h3></h3><ul></ul></div>
+  <div class="welcome-preview" id="welcome-preview"></div>
   <button class="btn btn-primary" id="btn-start"></button>
 </section>
 <section id="screen-swipe" class="screen">
