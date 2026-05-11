@@ -88,13 +88,8 @@ function displayThemebook(n){ return STRINGS.themebooks[n] || n; }
 
 function initStrings() {
   document.title = STRINGS.pageTitle;
-  document.querySelector('.welcome-mark').textContent            = STRINGS.welcome.mark;
-  document.querySelector('.welcome-title').textContent           = STRINGS.welcome.title;
-  document.querySelector('.welcome-sub').textContent             = STRINGS.welcome.sub;
-  document.querySelector('.welcome-instructions h3').textContent = STRINGS.welcome.howTitle;
-  var ul = document.querySelector('.welcome-instructions ul');
-  ul.innerHTML='';
-  STRINGS.welcome.howItems.forEach(function(t){var li=document.createElement('li');li.textContent=t;ul.appendChild(li);});
+  document.querySelector('.welcome-mark').textContent  = STRINGS.welcome.mark;
+  document.querySelector('.welcome-title').textContent = STRINGS.welcome.title;
   if($('btn-start')) $('btn-start').textContent = STRINGS.welcome.btnStart;
   if($('btn-no'))   $('btn-no').setAttribute('aria-label',   STRINGS.swipe.ariaNo);
   if($('btn-undo')) $('btn-undo').setAttribute('aria-label', STRINGS.swipe.ariaUndo);
@@ -758,8 +753,84 @@ function saveSettingsFromUI() {
   });
 }
 
+/* =====================================================
+   WELCOME-PREVIEW: rotierende Theme-Karte
+===================================================== */
+var PREVIEW_TIERS = ['Origin','Adventure','Greatness'];
+var PREVIEW_TIER_THEMEBOOKS = null;
+var previewTierIdx = 0;
+var previewLastBook = {Origin:'',Adventure:'',Greatness:''};
+var previewTimer = null;
+
+function initPreviewThemebooks() {
+  if(PREVIEW_TIER_THEMEBOOKS) return;
+  PREVIEW_TIER_THEMEBOOKS = {Origin:[],Adventure:[],Greatness:[]};
+  Object.keys(TYPE_TIER).forEach(function(tb){
+    var tier = TYPE_TIER[tb];
+    if(tier!=='Variable') PREVIEW_TIER_THEMEBOOKS[tier].push(tb);
+  });
+}
+
+function generatePreviewTheme() {
+  var tier = PREVIEW_TIERS[previewTierIdx % PREVIEW_TIERS.length];
+  previewTierIdx++;
+  var books = PREVIEW_TIER_THEMEBOOKS[tier];
+  // gleichen Themebook zweimal hintereinander vermeiden
+  var tb, attempts=0;
+  do { tb = books[Math.floor(Math.random()*books.length)]; attempts++; }
+  while(tb===previewLastBook[tier] && attempts<5 && books.length>1);
+  previewLastBook[tier] = tb;
+  return generateTheme(tb, loadSettings());
+}
+
+function buildWelcomePreviewCard(theme) {
+  var mc = theme.type==='Origin'?'tc-origin':theme.type==='Adventure'?'tc-adventure':'tc-greatness';
+  return '<div class="wp-card '+mc+'">'+
+    '<div class="wp-type">'+escapeHtml(displayThemebook(theme.themebook))+'</div>'+
+    '<div class="wp-title-tag">'+displayTag(theme.titleTag.text)+'</div>'+
+    '<div class="wp-power-tag">'+displayTag(theme.powerTags[0].text)+'</div>'+
+    '<div class="wp-power-tag">'+displayTag(theme.powerTags[1].text)+'</div>'+
+    '<div class="wp-weakness-tag">'+displayTag(theme.weaknessTag.text)+'</div>'+
+    '<div class="wp-quest">\u201e'+escapeHtml(theme.quest.title)+'\u201c</div>'+
+  '</div>';
+}
+
+function showNextPreviewCard() {
+  var container = $('welcome-preview');
+  if(!container) return;
+  var t = generatePreviewTheme();
+  var html = buildWelcomePreviewCard(t);
+  var old = container.firstElementChild;
+  if(!old) {
+    container.innerHTML = html;
+    return;
+  }
+  // Crossfade: alte Karte fadet aus, neue fadet ein
+  old.style.opacity = '0';
+  setTimeout(function(){
+    container.innerHTML = html;
+    var nc = container.firstElementChild;
+    if(!nc) return;
+    nc.style.opacity = '0';
+    nc.getBoundingClientRect(); // reflow
+    nc.style.opacity = '1';
+  }, 500);
+}
+
+function initWelcomePreview() {
+  initPreviewThemebooks();
+  showNextPreviewCard();
+  if(previewTimer) clearInterval(previewTimer);
+  previewTimer = setInterval(function(){
+    // Nur weiter rotieren wenn Welcome-Screen aktiv (spart Ressourcen)
+    if($('screen-welcome') && $('screen-welcome').classList.contains('active')) {
+      showNextPreviewCard();
+    }
+  }, 5000);
+}
+
 /* EVENT BINDINGS */
-initStrings(); initAudio();
+initStrings(); initAudio(); initWelcomePreview();
 $('btn-start').addEventListener('click', startSwipe);
 $('btn-yes').addEventListener('click',  function(){programmaticDecide('yes');});
 $('btn-no').addEventListener('click',   function(){programmaticDecide('no');});
