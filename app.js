@@ -6,16 +6,33 @@ var CFG = Object.freeze({
   STACK_DEPTH: 3, SWIPE_DISTANCE: 80, SWIPE_VELOCITY: 0.3,
   FLY_DURATION_MS: 900, LOADING_DELAY_MS: 700, ALT_LOADING_DELAY_MS: 450,
   MAX_PROPOSALS: 4, MAX_ELEMENT_ALTS: 3, HAPTIC_MS: 6, AUDIO_VOLUME: 0.4,
-  MUTED_KEY: 'mistheld:muted', SETTINGS_KEY: 'mistheld:settings', EXPANDED_PREFERENCE: 0.7
+  MUTED_KEY: 'mistheld:muted', SETTINGS_KEY: 'mistheld:settings', EXPANDED_PREFERENCE: 0.7,
+  MIN_SWIPES_FOR_SKIP: 10
 });
 
+// #44: Default-Stufe pro Theme Type laut Quellbuch
+var DEFAULT_THEME_TIER = {
+  'Circumstance':'Origin','Devotion':'Origin','Past':'Origin','People':'Origin',
+  'Personality':'Origin','Skill or Trade':'Origin','Trait':'Origin',
+  'Duty':'Adventure','Influence':'Adventure','Knowledge':'Adventure',
+  'Prodigious Ability':'Adventure','Relic':'Adventure','Uncanny Being':'Adventure',
+  'Destiny':'Greatness','Dominion':'Greatness','Mastery':'Greatness','Monstrosity':'Greatness',
+  'Companion':'Origin','Magic':'Origin','Possessions':'Origin'
+};
+// Theme Types mit variabler Might-Stufe (auch im Standard-Modus veraenderbar)
+var VARIABLE_THEME_TYPES = ['Companion','Magic','Possessions'];
+
+function buildDefaultThemeTypes() {
+  var out = {};
+  Object.keys(DEFAULT_THEME_TIER).forEach(function(tb){
+    out[tb] = { enabled: true, level: DEFAULT_THEME_TIER[tb] };
+  });
+  return out;
+}
+
 var DEFAULT_SETTINGS = {
-  mightLevels: { Origin: true, Adventure: false, Greatness: false },
-  variableMight: {
-    Companion:   { enabled: true, level: 'Origin' },
-    Magic:       { enabled: true, level: 'Origin' },
-    Possessions: { enabled: true, level: 'Origin' }
-  }
+  standard: true,
+  themeTypes: buildDefaultThemeTypes()
 };
 
 // Zuordnung Theme Type → Might-Tier (für Farben auf Swipe-Karten)
@@ -35,19 +52,38 @@ function tierClass(tb) {
 function loadSettings() {
   try {
     var raw = localStorage.getItem(CFG.SETTINGS_KEY);
-    if (!raw) return JSON.parse(JSON.stringify(DEFAULT_SETTINGS));
+    var defaults = { standard: true, themeTypes: buildDefaultThemeTypes() };
+    if (!raw) return defaults;
     var p = JSON.parse(raw);
-    return {
-      mightLevels: Object.assign({}, DEFAULT_SETTINGS.mightLevels, p.mightLevels || {}),
-      variableMight: {
-        Companion:   Object.assign({}, DEFAULT_SETTINGS.variableMight.Companion,   (p.variableMight||{}).Companion   ||{}),
-        Magic:       Object.assign({}, DEFAULT_SETTINGS.variableMight.Magic,       (p.variableMight||{}).Magic       ||{}),
-        Possessions: Object.assign({}, DEFAULT_SETTINGS.variableMight.Possessions, (p.variableMight||{}).Possessions ||{})
-      }
-    };
-  } catch(_) { return JSON.parse(JSON.stringify(DEFAULT_SETTINGS)); }
+    var tt = buildDefaultThemeTypes();
+    if (p.themeTypes) {
+      Object.keys(tt).forEach(function(tb){
+        if (p.themeTypes[tb]) {
+          if (typeof p.themeTypes[tb].enabled === 'boolean') tt[tb].enabled = p.themeTypes[tb].enabled;
+          if (typeof p.themeTypes[tb].level === 'string')   tt[tb].level   = p.themeTypes[tb].level;
+        }
+      });
+    }
+    return { standard: p.standard !== false, themeTypes: tt };
+  } catch(_) { return { standard: true, themeTypes: buildDefaultThemeTypes() }; }
 }
 function saveSettings(s) { try { localStorage.setItem(CFG.SETTINGS_KEY, JSON.stringify(s)); } catch(_){} }
+
+// #44: Effektive Might-Stufe — im Standard-Modus sind regulaere Theme Types fixiert
+function effectiveLevel(tb, settings) {
+  if (settings.standard && VARIABLE_THEME_TYPES.indexOf(tb) === -1) {
+    return DEFAULT_THEME_TIER[tb];
+  }
+  return (settings.themeTypes[tb] || {}).level || DEFAULT_THEME_TIER[tb];
+}
+function isThemeTypeEnabled(tb, settings) {
+  return (settings.themeTypes[tb] || {}).enabled !== false;
+}
+function getEnabledThemeTypes(settings) {
+  return Object.keys(DEFAULT_THEME_TIER).filter(function(tb){
+    return isThemeTypeEnabled(tb, settings);
+  });
+}
 
 var state = {
   cardIndex:0, shuffledCards:[], swipes:[], affinityScores:{}, hookCounts:{},
@@ -94,29 +130,16 @@ function initStrings() {
   if($('btn-no'))   $('btn-no').setAttribute('aria-label',   STRINGS.swipe.ariaNo);
   if($('btn-undo')) $('btn-undo').setAttribute('aria-label', STRINGS.swipe.ariaUndo);
   if($('btn-yes'))  $('btn-yes').setAttribute('aria-label',  STRINGS.swipe.ariaYes);
+  if($('btn-skip')) $('btn-skip').setAttribute('aria-label', STRINGS.swipe.ariaSkip);
   document.querySelector('#screen-settings h2').textContent = STRINGS.settings.heading;
   if($('btn-settings-back')) $('btn-settings-back').setAttribute('aria-label', STRINGS.settings.ariaBack);
   if($('btn-settings'))      $('btn-settings').setAttribute('aria-label',      STRINGS.settings.ariaOpen);
-  if($('settings-might-title')) $('settings-might-title').textContent = STRINGS.settings.mightGroup.title;
-  if($('settings-might-sub'))   $('settings-might-sub').textContent   = STRINGS.settings.mightGroup.sub;
-  if($('settings-vm-title'))    $('settings-vm-title').textContent    = STRINGS.settings.vmGroup.title;
-  if($('settings-vm-sub'))      $('settings-vm-sub').textContent      = STRINGS.settings.vmGroup.sub;
-  Object.entries(STRINGS.settings.mightRows).forEach(function(kv){
-    var k=kv[0],r=kv[1];
-    var le=document.querySelector('[data-might-label="'+k+'"]');
-    var he=document.querySelector('[data-might-hint="'+k+'"]');
-    if(le) le.textContent=r.label; if(he) he.textContent=r.hint;
-  });
-  Object.entries(STRINGS.settings.vmLabels).forEach(function(kv){
-    var el=document.querySelector('[data-vm-label="'+kv[0]+'"]');
-    if(el) el.textContent=kv[1];
-  });
-  ['select-companion-level','select-magic-level','select-possessions-level'].forEach(function(id){
-    var sel=$(id); if(!sel) return;
-    var cur=sel.value||'Origin'; sel.innerHTML='';
-    Object.entries(STRINGS.might).forEach(function(kv){var o=document.createElement('option');o.value=kv[0];o.textContent=kv[1];sel.appendChild(o);});
-    sel.value=cur;
-  });
+  // #44: Neue Settings-Strings
+  if($('settings-standard-label')) $('settings-standard-label').textContent = STRINGS.settings.standardLabel;
+  if($('settings-standard-hint'))  $('settings-standard-hint').textContent  = STRINGS.settings.standardHint;
+  if($('settings-tt-title'))       $('settings-tt-title').textContent       = STRINGS.settings.ttGroupTitle;
+  if($('settings-tt-sub'))         $('settings-tt-sub').textContent         = STRINGS.settings.ttGroupSub;
+  // #44: alte select-Felder entfernt (durch Chip-Buttons in buildSettingsUI ersetzt)
   if($('loading-text')) $('loading-text').textContent = STRINGS.loading.default;
 }
 
@@ -163,10 +186,35 @@ function applyScore(card,dir,sign) {
 /* =====================================================
    SWIPE
 ===================================================== */
+// #47: Diversifizierende Sortierung — erste N Karten decken moeglichst viele Theme-Types ab
+function diversifyFirstN(cards, n) {
+  var pool = shuffleArray(cards.slice());
+  var picked = [], typeCount = {};
+  while (picked.length < n && pool.length > 0) {
+    var bestIdx = 0, bestScore = Infinity;
+    for (var i = 0; i < pool.length; i++) {
+      var types = Object.keys(pool[i].affinities || {});
+      if (types.length === 0) continue;
+      var maxC = 0;
+      for (var j = 0; j < types.length; j++) {
+        var c = typeCount[types[j]] || 0;
+        if (c > maxC) maxC = c;
+      }
+      if (maxC < bestScore) { bestScore = maxC; bestIdx = i; }
+    }
+    var card = pool.splice(bestIdx, 1)[0];
+    Object.keys(card.affinities || {}).forEach(function(t){
+      typeCount[t] = (typeCount[t] || 0) + 1;
+    });
+    picked.push(card);
+  }
+  return picked.concat(pool);
+}
+
 function startSwipe() {
   state.cardIndex=0; state.swipes=[]; state.affinityScores={}; state.hookCounts={};
   state.proposals=[]; state.proposalIndex=0; state.edits={}; state.hero=null; state.resultPage=0; state.busy=false;
-  state.shuffledCards = shuffleArray(PHASES[0].cards.slice());
+  state.shuffledCards = diversifyFirstN(PHASES[0].cards, CFG.MIN_SWIPES_FOR_SKIP);
   document.body.classList.add('swipe-active');
   show('screen-swipe');
   renderCard();
@@ -178,6 +226,12 @@ function renderCard() {
   if(state.cardIndex>=state.shuffledCards.length) { finishSwiping(); return; }
   $('card-counter').textContent = STRINGS.swipe.cardCounter(state.cardIndex+1, state.shuffledCards.length);
   $('btn-undo').disabled = !canUndo();
+  // #47: Skip-Button erst nach Mindestanzahl Swipes
+  var skipBtn = $('btn-skip');
+  if (skipBtn) {
+    var done = state.cardIndex;
+    skipBtn.style.display = done >= CFG.MIN_SWIPES_FOR_SKIP ? '' : 'none';
+  }
   for(var i=CFG.STACK_DEPTH-1;i>=0;i--) {
     var idx=state.cardIndex+i;
     if(idx>=state.shuffledCards.length) continue;
@@ -271,6 +325,17 @@ function undoLast() {
   var l=state.swipes.pop(); applyScore(l.card,l.dir,-1); state.cardIndex=Math.max(0,state.cardIndex-1); renderCard();
 }
 
+// #47: Swipe-Prozess fruehzeitig beenden
+function skipRemainingSwipes() {
+  if (state.cardIndex < CFG.MIN_SWIPES_FOR_SKIP) return;
+  // Setze cardIndex auf Ende, damit finishSwiping() triggert
+  state.cardIndex = state.shuffledCards.length;
+  // Ausstehende Karte ggf. entfernen
+  var stage = $('card-stage');
+  stage.querySelectorAll('.card:not(.abandoned)').forEach(function(c){c.remove();});
+  finishSwiping();
+}
+
 function pickBestFrom(list, exclude) {
   var cands=list.filter(function(tb){return !(exclude||[]).includes(tb);});
   var pool=cands.length?cands:list;
@@ -284,31 +349,57 @@ function pickQuestWithExp(pool) {
   if(ex.length>0&&Math.random()<CFG.EXPANDED_PREFERENCE) return ex[Math.floor(Math.random()*ex.length)];
   return pool[Math.floor(Math.random()*pool.length)];
 }
+// #44: Tag-Pools fuer Stufen-Abweichungen
+var TIER_DEVIATION_TAGS = {
+  Origin:    ['unauffällig','alltäglich','schlicht','gewohnt','unscheinbar','leise','vertraut','bescheiden'],
+  Adventure: ['geübt','gewichtig','bemerkenswert','geprägt','gestählt','erfahren','geachtet','geschult'],
+  Greatness: ['legendär','uralt','unwirklich','mächtig','verflucht','gesegnet','strahlend','furchteinflößend']
+};
+function generateTierDeviationTag(level) {
+  var pool = TIER_DEVIATION_TAGS[level] || TIER_DEVIATION_TAGS.Origin;
+  return { text: pool[Math.floor(Math.random()*pool.length)], expanded: false };
+}
+
 function generateTheme(name, settings) {
   var tb=THEMEBOOKS[name];
   var titleTag=pickWithExpansionPreference(tb.titleTagSuggestions,1)[0];
   var powerTags=pickWithExpansionPreference(tb.powerTagPool,2);
   var weaknessTag=pickWithExpansionPreference(tb.weaknessTagPool,1)[0];
   var quest=pickQuestWithExp(tb.questPool);
-  var type=tb.type;
-  if(tb.type==='Variable Might') type=(settings.variableMight[name]||{}).level||'Origin';
-  return {type:type,themebook:name,titleTag:titleTag,powerTags:powerTags,weaknessTag:weaknessTag,quest:quest};
+  var type=effectiveLevel(name, settings);
+  // #44: Wenn die Might-Stufe von der Quellbuch-Default abweicht → zusaetzlichen Stufen-Tag
+  var tierTag = null;
+  if (type !== DEFAULT_THEME_TIER[name]) {
+    tierTag = generateTierDeviationTag(type);
+  }
+  return {type:type,themebook:name,titleTag:titleTag,powerTags:powerTags,weaknessTag:weaknessTag,quest:quest,tierTag:tierTag};
 }
+// #44: Proposal-Generation aus aktivierten Theme Types
 function generateProposal(mode, base) {
   mode=mode||'initial';
   var s=loadSettings();
-  var el=['Origin','Adventure','Greatness'].filter(function(l){return s.mightLevels[l];});
-  if(!el.length) el.push('Origin');
-  var evm=['Companion','Magic','Possessions'].filter(function(k){return s.variableMight[k].enabled;});
-  var std=[0,1,2].map(function(i){return el[i%el.length];});
-  var all=evm.length?std.concat(['Variable Might']):std.concat([el[std.length%el.length]]);
-  var tbs=all.map(function(st,i){
-    var list=st==='Variable Might'?(evm.length?evm:['Companion']):TYPE_TO_THEMEBOOKS[st];
-    if(mode==='initial')        return pickBestFrom(list);
-    if(mode==='tags-only')      return base.themes[i].themebook;
-    if(mode==='new-themebooks') return pickBestFrom(list,[base.themes[i].themebook]);
-    return pickRandomFrom(list);
-  });
+  var enabled = getEnabledThemeTypes(s);
+  if (enabled.length === 0) enabled = ['People','Skill or Trade','Trait','Personality']; // Fallback
+  var n = 4;
+  var used = [];
+  var tbs = [];
+  for (var i = 0; i < n; i++) {
+    var avail = enabled.filter(function(tb){ return used.indexOf(tb) === -1; });
+    if (avail.length === 0) avail = enabled.slice();
+    var pick;
+    if (mode === 'tags-only' && base && base.themes[i]) {
+      pick = base.themes[i].themebook;
+    } else if (mode === 'new-themebooks' && base && base.themes[i]) {
+      var without = avail.filter(function(tb){ return tb !== base.themes[i].themebook; });
+      pick = pickBestFrom(without.length ? without : avail);
+    } else if (mode === 'initial') {
+      pick = pickBestFrom(avail);
+    } else {
+      pick = pickRandomFrom(avail);
+    }
+    used.push(pick);
+    tbs.push(pick);
+  }
   return {mode:mode,themes:tbs.map(function(tb){return generateTheme(tb,s);})};
 }
 
@@ -354,7 +445,8 @@ function getDisplayTheme(ti) {
     titleTag:   getCurrentVal(ti,'title',   tb.titleTag),
     powerTags: [getCurrentVal(ti,'pow0',    tb.powerTags[0]), getCurrentVal(ti,'pow1',tb.powerTags[1])],
     weaknessTag:getCurrentVal(ti,'weakness',tb.weaknessTag),
-    quest:      getCurrentVal(ti,'quest',   tb.quest)
+    quest:      getCurrentVal(ti,'quest',   tb.quest),
+    tierTag:    tb.tierTag || null
   };
 }
 function addAlt(ti,k,v) {
@@ -519,6 +611,7 @@ function buildThemeCard(ti) {
       '<div class="rc-title-tag">'+displayTag(dt.titleTag.text)+'</div>'+
       '<div class="rc-power-tag">'+displayTag(dt.powerTags[0].text)+'</div>'+
       '<div class="rc-power-tag">'+displayTag(dt.powerTags[1].text)+'</div>'+
+      (dt.tierTag ? '<div class="rc-tier-tag">'+displayTag(dt.tierTag.text)+'</div>' : '')+
     '</div>'+
     '<div class="rc-theme-section">'+
       '<div class="rc-label">Weakness Tag</div>'+
@@ -548,6 +641,7 @@ function buildSaveCard() {
         '<span class="ot-title">'+displayTag(dt.titleTag.text)+'</span>'+
         '<span class="ot-power">'+displayTag(dt.powerTags[0].text)+'</span>'+
         '<span class="ot-power">'+displayTag(dt.powerTags[1].text)+'</span>'+
+        (dt.tierTag ? '<span class="ot-tier">'+displayTag(dt.tierTag.text)+'</span>' : '')+
         '<span class="ot-weakness">'+displayTag(dt.weaknessTag.text)+'</span>'+
       '</div>'+
       '<div class="ot-quest">„'+escapeHtml(dt.quest.title)+'“</div>'+
@@ -689,6 +783,11 @@ function pdfThemeBlock(doc,theme,x,y,cW,cH) {
   cy=pdfSectionLabel(doc,'POWER TAGS',x,cy);
   doc.setFont('times','normal'); doc.setFontSize(10); doc.setTextColor.apply(doc,C.ink);
   theme.powerTags.forEach(function(t){var ls=doc.splitTextToSize('\u25e6 '+pdfTagText(t),cW-8);doc.text(ls,x+4,cy);cy+=ls.length*4.5;});
+  if (theme.tierTag) {
+    doc.setFont('times','italic'); doc.setFontSize(10); doc.setTextColor.apply(doc,C.gold);
+    var tlt=doc.splitTextToSize('\u25e6 '+pdfTagText(theme.tierTag),cW-8); doc.text(tlt,x+4,cy); cy+=tlt.length*4.5;
+    doc.setTextColor.apply(doc,C.ink);
+  }
   cy+=3; cy=pdfSectionLabel(doc,'WEAKNESS TAG',x,cy);
   doc.setFont('times','italic'); doc.setFontSize(10); doc.setTextColor.apply(doc,C.accent);
   var wl=doc.splitTextToSize(pdfTagText(theme.weaknessTag),cW-8); doc.text(wl,x+4,cy); cy+=wl.length*4.5+4;
@@ -720,37 +819,86 @@ async function generatePDF() {
   } catch(err){console.error('PDF-Fehler:',err);alert(STRINGS.pdf.errCreate);}
 }
 
-/* SETTINGS */
+/* =====================================================
+   SETTINGS (#44: ueberarbeitet — alle 20 Theme Types, Standard-Toggle)
+===================================================== */
+var SETTINGS_THEME_TYPE_ORDER = [
+  // Origin-Default
+  'Circumstance','Devotion','Past','People','Personality','Skill or Trade','Trait',
+  // Adventure-Default
+  'Duty','Influence','Knowledge','Prodigious Ability','Relic','Uncanny Being',
+  // Greatness-Default
+  'Destiny','Dominion','Mastery','Monstrosity',
+  // Variable
+  'Companion','Magic','Possessions'
+];
+
+function buildSettingsUI() {
+  var s = loadSettings();
+  var list = $('settings-themetypes-list');
+  if (!list) return;
+  list.innerHTML = '';
+  var levels = ['Origin','Adventure','Greatness'];
+  SETTINGS_THEME_TYPE_ORDER.forEach(function(tb){
+    var entry = s.themeTypes[tb] || { enabled: true, level: DEFAULT_THEME_TIER[tb] };
+    var isVariable = VARIABLE_THEME_TYPES.indexOf(tb) !== -1;
+    var lockedByStandard = s.standard && !isVariable;
+    var effLevel = lockedByStandard ? DEFAULT_THEME_TIER[tb] : entry.level;
+    var row = document.createElement('div');
+    row.className = 'settings-tt-row' + (entry.enabled ? '' : ' disabled') + (isVariable ? ' variable' : '');
+    var levelChips = levels.map(function(lv){
+      var sel = effLevel === lv;
+      var dis = lockedByStandard || !entry.enabled;
+      return '<button type="button" class="tt-level-chip tc-' + lv.toLowerCase() + (sel ? ' selected' : '') + '"' +
+             ' data-tt="' + tb + '" data-level="' + lv + '"' + (dis ? ' disabled' : '') + '>' +
+             escapeHtml(displayMight(lv)) + '</button>';
+    }).join('');
+    row.innerHTML =
+      '<div class="tt-row-head">' +
+        '<div class="tt-name">' + escapeHtml(displayThemebook(tb)) + '</div>' +
+        '<div class="toggle-wrap"><input type="checkbox" id="tt-toggle-' + tb.replace(/\s/g,'_') + '" data-tt="' + tb + '"' + (entry.enabled ? ' checked' : '') + '><label class="toggle-visual" for="tt-toggle-' + tb.replace(/\s/g,'_') + '"></label></div>' +
+      '</div>' +
+      '<div class="tt-level-chips">' + levelChips + '</div>';
+    list.appendChild(row);
+  });
+  // Event-Bindings
+  list.querySelectorAll('input[type=checkbox][data-tt]').forEach(function(cb){
+    cb.addEventListener('change', function(){
+      var st = loadSettings();
+      var tb = cb.dataset.tt;
+      if (!st.themeTypes[tb]) st.themeTypes[tb] = { enabled: true, level: DEFAULT_THEME_TIER[tb] };
+      st.themeTypes[tb].enabled = cb.checked;
+      // Mindestens 1 aktivierter Theme Type muss bleiben
+      var anyEnabled = Object.keys(st.themeTypes).some(function(k){ return st.themeTypes[k].enabled; });
+      if (!anyEnabled) { st.themeTypes[tb].enabled = true; }
+      saveSettings(st);
+      buildSettingsUI();
+    });
+  });
+  list.querySelectorAll('.tt-level-chip').forEach(function(chip){
+    chip.addEventListener('click', function(){
+      if (chip.disabled) return;
+      var st = loadSettings();
+      var tb = chip.dataset.tt;
+      if (!st.themeTypes[tb]) st.themeTypes[tb] = { enabled: true, level: DEFAULT_THEME_TIER[tb] };
+      st.themeTypes[tb].level = chip.dataset.level;
+      saveSettings(st);
+      buildSettingsUI();
+    });
+  });
+}
+
 function openSettings() {
-  var s=loadSettings();
-  $('toggle-origin').checked      =s.mightLevels.Origin;
-  $('toggle-adventure').checked   =s.mightLevels.Adventure;
-  $('toggle-greatness').checked   =s.mightLevels.Greatness;
-  $('toggle-companion').checked   =s.variableMight.Companion.enabled;
-  $('toggle-magic').checked       =s.variableMight.Magic.enabled;
-  $('toggle-possessions').checked =s.variableMight.Possessions.enabled;
-  $('select-companion-level').value   =s.variableMight.Companion.level;
-  $('select-magic-level').value       =s.variableMight.Magic.level;
-  $('select-possessions-level').value =s.variableMight.Possessions.level;
-  updateSettingsUI(); show('screen-settings');
+  var s = loadSettings();
+  $('toggle-standard').checked = s.standard;
+  buildSettingsUI();
+  show('screen-settings');
 }
-function updateSettingsUI() {
-  var cbs=[$('toggle-origin'),$('toggle-adventure'),$('toggle-greatness')];
-  var cc=cbs.filter(function(c){return c.checked;}).length;
-  cbs.forEach(function(c){c.disabled=(cc===1&&c.checked);});
-  [['toggle-companion','select-companion-level'],['toggle-magic','select-magic-level'],['toggle-possessions','select-possessions-level']].forEach(function(p){
-    var en=$(p[0]).checked; $(p[1]).disabled=!en; $(p[1]).style.opacity=en?'1':'0.4';
-  });
-}
+function updateSettingsUI() { buildSettingsUI(); }
 function saveSettingsFromUI() {
-  saveSettings({
-    mightLevels:{Origin:$('toggle-origin').checked,Adventure:$('toggle-adventure').checked,Greatness:$('toggle-greatness').checked},
-    variableMight:{
-      Companion:  {enabled:$('toggle-companion').checked,  level:$('select-companion-level').value},
-      Magic:      {enabled:$('toggle-magic').checked,      level:$('select-magic-level').value},
-      Possessions:{enabled:$('toggle-possessions').checked,level:$('select-possessions-level').value}
-    }
-  });
+  var st = loadSettings();
+  st.standard = $('toggle-standard').checked;
+  saveSettings(st);
 }
 
 /* =====================================================
@@ -772,15 +920,19 @@ function initPreviewThemebooks() {
 }
 
 function generatePreviewTheme() {
+  var s = loadSettings();
+  var enabled = getEnabledThemeTypes(s);
+  if (enabled.length === 0) enabled = ['People','Trait','Mastery'];
+  // Bevorzugt jede Stufe einmal rotieren — aber nur unter aktivierten Theme Types
   var tier = PREVIEW_TIERS[previewTierIdx % PREVIEW_TIERS.length];
   previewTierIdx++;
-  var books = PREVIEW_TIER_THEMEBOOKS[tier];
-  // gleichen Themebook zweimal hintereinander vermeiden
-  var tb, attempts=0;
-  do { tb = books[Math.floor(Math.random()*books.length)]; attempts++; }
-  while(tb===previewLastBook[tier] && attempts<5 && books.length>1);
+  var booksAtTier = enabled.filter(function(tb){ return effectiveLevel(tb, s) === tier; });
+  if (booksAtTier.length === 0) booksAtTier = enabled;
+  var tb, attempts = 0;
+  do { tb = booksAtTier[Math.floor(Math.random()*booksAtTier.length)]; attempts++; }
+  while (tb === previewLastBook[tier] && attempts < 5 && booksAtTier.length > 1);
   previewLastBook[tier] = tb;
-  return generateTheme(tb, loadSettings());
+  return generateTheme(tb, s);
 }
 
 function buildWelcomePreviewCard(theme) {
@@ -835,13 +987,20 @@ $('btn-start').addEventListener('click', startSwipe);
 $('btn-yes').addEventListener('click',  function(){programmaticDecide('yes');});
 $('btn-no').addEventListener('click',   function(){programmaticDecide('no');});
 $('btn-undo').addEventListener('click', undoLast);
+$('btn-skip').addEventListener('click',    skipRemainingSwipes);
 $('btn-settings').addEventListener('click',      openSettings);
 // #37 fix: Animation beim Zurück-Navigieren unterbinden
 $('btn-settings-back').addEventListener('click', function(){saveSettingsFromUI();show('screen-welcome',true);});
 $('edit-sheet-overlay').addEventListener('click', function(e){if(e.target===$('edit-sheet-overlay')) closeEditSheet();});
-['toggle-origin','toggle-adventure','toggle-greatness','toggle-companion','toggle-magic','toggle-possessions'].forEach(function(id){
-  $(id).addEventListener('change',updateSettingsUI);
-});
+// #44: Standard-Toggle als einziger globaler Settings-Schalter, Rest wird in buildSettingsUI gebunden
+if ($('toggle-standard')) {
+  $('toggle-standard').addEventListener('change', function(){
+    var st = loadSettings();
+    st.standard = $('toggle-standard').checked;
+    saveSettings(st);
+    buildSettingsUI();
+  });
+}
 document.addEventListener('keydown', function(e){
   if($('screen-swipe').classList.contains('active')) {
     if(e.key==='ArrowRight'){e.preventDefault();programmaticDecide('yes');}
