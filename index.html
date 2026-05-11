@@ -108,6 +108,10 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .swipe-btn-undo:disabled{opacity:0.3;cursor:not-allowed}
 .swipe-btn svg{width:28px;height:28px}
 .swipe-btn-undo svg{width:20px;height:20px}
+/* #47: Skip-Button (erscheint nach 10 Swipes) */
+.swipe-btn-skip{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:rgba(250,243,223,0.9);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink-soft);transition:all 0.15s ease}
+.swipe-btn-skip:active{transform:scale(0.88);background:var(--bg-2)}
+.swipe-btn-skip svg{width:20px;height:20px}
 /* =====================================================
    ERGEBNIS-SCREEN (#38: feste Kartengröße, Carousel)
    BUG-SCHUTZ: Kein display-Property!
@@ -172,6 +176,8 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .rc-title-tag{font-family:var(--serif);font-size:1.55rem;font-style:italic;font-weight:700;line-height:1.2;color:var(--ink);background:rgba(169,134,70,0.13);border-left:3px solid var(--gold);padding:8px 14px;margin-top:5px;text-align:center}
 .rc-power-tag{font-family:var(--serif);font-size:1.0rem;line-height:1.3;color:var(--ink);background:rgba(169,134,70,0.07);border-left:2px solid rgba(169,134,70,0.35);padding:5px 12px;margin-top:4px;text-align:center}
 .rc-weakness-tag{font-family:var(--serif);font-style:italic;font-size:1.0rem;line-height:1.3;color:#7a3010;background:rgba(170,80,20,0.08);border-left:2px solid rgba(170,80,20,0.35);padding:5px 12px;margin-top:5px;text-align:center}
+/* #44: Tier-Tag (nur sichtbar bei Stufen-Abweichung) */
+.rc-tier-tag{font-family:var(--serif);font-style:italic;font-size:1.0rem;line-height:1.3;color:var(--gold);background:rgba(169,134,70,0.10);border-left:2px solid var(--gold);padding:5px 12px;margin-top:4px;text-align:center;font-weight:600}
 /* Quest — größere Schrift (#40) */
 .rc-quest-title{font-family:var(--serif);font-style:italic;font-weight:600;font-size:1.15rem;color:var(--ink);line-height:1.35;margin-top:6px;margin-bottom:5px;text-align:center}
 .rc-quest-desc{font-family:var(--serif);font-style:italic;font-size:1.0rem;color:var(--ink-soft);line-height:1.5;text-align:center}
@@ -192,6 +198,7 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .ot-tags{margin-bottom:5px}
 .ot-power{font-family:var(--serif);font-size:0.78rem;color:var(--gold);display:block;line-height:1.3}
 .ot-title{font-family:var(--serif);font-size:0.92rem;font-weight:600;color:var(--gold);display:block;line-height:1.3;margin-bottom:2px}
+.ot-tier{font-family:var(--serif);font-style:italic;font-size:0.78rem;color:var(--gold);display:block;line-height:1.3;font-weight:600}
 .ot-weakness{font-family:var(--serif);font-style:italic;font-size:0.78rem;color:#7a3010;display:block;line-height:1.3}
 .ot-quest{font-family:var(--serif);font-style:italic;font-size:0.74rem;color:var(--ink-soft);line-height:1.3}
 .save-actions{display:flex;flex-direction:column;gap:8px}
@@ -247,6 +254,22 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
 .settings-vm-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px}
 .settings-select{font-family:var(--sans);font-size:0.9rem;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:2px;padding:6px 10px;width:100%;cursor:pointer;-webkit-appearance:auto;transition:opacity 0.2s}
 .settings-select:disabled{opacity:0.38;cursor:not-allowed}
+/* #44: Neue Settings — scrollbare Liste, Theme-Type Rows, Chip-Auswahl */
+.settings-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;min-height:0;padding-bottom:24px}
+.settings-tt-row{padding:9px 4px;border-top:1px solid var(--line-soft);transition:opacity 0.15s}
+.settings-tt-row:first-child{border-top:none}
+.settings-tt-row.disabled{opacity:0.42}
+.settings-tt-row.variable .tt-name::after{content:' ·';color:var(--gold);margin-left:2px}
+.settings-tt-row.variable .tt-name::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--gold);margin-right:6px;vertical-align:middle;opacity:0.8}
+.tt-row-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px}
+.tt-name{font-family:var(--serif);font-size:1.04rem;color:var(--ink);line-height:1.2;flex:1}
+.tt-level-chips{display:flex;gap:6px}
+.tt-level-chip{flex:1;padding:5px 8px;border-radius:4px;border:1px solid var(--line);background:transparent;font-family:var(--sans);font-size:0.78rem;color:var(--ink-soft);cursor:pointer;transition:all 0.12s;text-align:center}
+.tt-level-chip:active:not(:disabled){transform:scale(0.96)}
+.tt-level-chip:disabled{cursor:not-allowed;opacity:0.55}
+.tt-level-chip.tc-origin.selected{background:rgba(61,92,42,0.14);border-color:var(--might-origin);color:var(--might-origin);font-weight:600}
+.tt-level-chip.tc-adventure.selected{background:rgba(139,58,43,0.14);border-color:var(--might-adventure);color:var(--might-adventure);font-weight:600}
+.tt-level-chip.tc-greatness.selected{background:rgba(45,74,110,0.14);border-color:var(--might-greatness);color:var(--might-greatness);font-weight:600}
 .loading-overlay{position:fixed;inset:0;background:rgba(244,234,213,0.92);display:none;align-items:center;justify-content:center;z-index:100;flex-direction:column;gap:18px;backdrop-filter:blur(2px)}
 .loading-overlay.active{display:flex}
 .loading-spinner{width:32px;height:32px;border:2px solid var(--line);border-top-color:var(--accent);border-radius:50%;animation:spin 0.9s linear infinite}
@@ -281,6 +304,7 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
     <button class="swipe-btn swipe-btn-no" id="btn-no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
     <button class="swipe-btn-undo" id="btn-undo" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 00-15-6.7L3 13"/></svg></button>
     <button class="swipe-btn swipe-btn-yes" id="btn-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button>
+    <button class="swipe-btn-skip" id="btn-skip" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg></button>
   </div>
 </section>
 <section id="screen-result" class="screen">
@@ -295,19 +319,21 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
     <button class="settings-back-btn" id="btn-settings-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
     <h2></h2>
   </div>
-  <div class="settings-group">
-    <div class="settings-group-title" id="settings-might-title"></div>
-    <div class="settings-group-sub" id="settings-might-sub"></div>
-    <div class="settings-row"><div class="settings-row-info"><span class="settings-row-label" data-might-label="Origin"></span><span class="settings-row-hint" data-might-hint="Origin"></span></div><div class="toggle-wrap"><input type="checkbox" id="toggle-origin" checked><label class="toggle-visual" for="toggle-origin"></label></div></div>
-    <div class="settings-row"><div class="settings-row-info"><span class="settings-row-label" data-might-label="Adventure"></span><span class="settings-row-hint" data-might-hint="Adventure"></span></div><div class="toggle-wrap"><input type="checkbox" id="toggle-adventure"><label class="toggle-visual" for="toggle-adventure"></label></div></div>
-    <div class="settings-row"><div class="settings-row-info"><span class="settings-row-label" data-might-label="Greatness"></span><span class="settings-row-hint" data-might-hint="Greatness"></span></div><div class="toggle-wrap"><input type="checkbox" id="toggle-greatness"><label class="toggle-visual" for="toggle-greatness"></label></div></div>
-  </div>
-  <div class="settings-group">
-    <div class="settings-group-title" id="settings-vm-title"></div>
-    <div class="settings-group-sub" id="settings-vm-sub"></div>
-    <div class="settings-vm-item"><div class="settings-vm-top"><span class="settings-row-label" data-vm-label="Companion"></span><div class="toggle-wrap"><input type="checkbox" id="toggle-companion" checked><label class="toggle-visual" for="toggle-companion"></label></div></div><select id="select-companion-level" class="settings-select"></select></div>
-    <div class="settings-vm-item"><div class="settings-vm-top"><span class="settings-row-label" data-vm-label="Magic"></span><div class="toggle-wrap"><input type="checkbox" id="toggle-magic" checked><label class="toggle-visual" for="toggle-magic"></label></div></div><select id="select-magic-level" class="settings-select"></select></div>
-    <div class="settings-vm-item"><div class="settings-vm-top"><span class="settings-row-label" data-vm-label="Possessions"></span><div class="toggle-wrap"><input type="checkbox" id="toggle-possessions" checked><label class="toggle-visual" for="toggle-possessions"></label></div></div><select id="select-possessions-level" class="settings-select"></select></div>
+  <div class="settings-scroll">
+    <div class="settings-group" id="settings-standard-group">
+      <div class="settings-row">
+        <div class="settings-row-info">
+          <span class="settings-row-label" id="settings-standard-label"></span>
+          <span class="settings-row-hint" id="settings-standard-hint"></span>
+        </div>
+        <div class="toggle-wrap"><input type="checkbox" id="toggle-standard" checked><label class="toggle-visual" for="toggle-standard"></label></div>
+      </div>
+    </div>
+    <div class="settings-group">
+      <div class="settings-group-title" id="settings-tt-title"></div>
+      <div class="settings-group-sub" id="settings-tt-sub"></div>
+      <div id="settings-themetypes-list"></div>
+    </div>
   </div>
 </section>
 </div>
@@ -333,7 +359,7 @@ var STRINGS={
   swipe:{
     decisionYes:'Passt',decisionNo:'Nicht',
     cardCounter:function(cur,tot){return 'Karte '+cur+' von '+tot;},
-    ariaYes:'Passt',ariaNo:'Passt nicht',ariaUndo:'Letzte Karte zurück',
+    ariaYes:'Passt',ariaNo:'Passt nicht',ariaUndo:'Letzte Karte zurück',ariaSkip:'Restliche Karten überspringen',
   },
   result:{
     btnAccept:'Speichern',
@@ -360,14 +386,10 @@ var STRINGS={
   },
   settings:{
     heading:'Einstellungen',ariaBack:'Zurück',ariaOpen:'Einstellungen',
-    mightGroup:{title:'Might-Stufen',sub:'Welche Might-Stufen sollen für deinen Helden entstehen können?'},
-    vmGroup:{title:'Theme-Typen mit veränderlichen Might-Stufen',sub:'Welche Might-Stufe sollen diese Theme-Typen erhalten können?'},
-    mightRows:{
-      Origin:{label:'Ursprung',hint:'Allgemein · alltäglich'},
-      Adventure:{label:'Abenteuer',hint:'Besonders · heldenhaft'},
-      Greatness:{label:'Allmacht',hint:'Legendär · übernatürlich'},
-    },
-    vmLabels:{Companion:'Begleiter',Magic:'Magie',Possessions:'Besitz'},
+    standardLabel:'Standard',
+    standardHint:'Reguläre Theme-Typen behalten ihre Quellbuch-Stufe. Begleiter, Magie und Besitz bleiben frei wählbar.',
+    ttGroupTitle:'Theme-Typen',
+    ttGroupSub:'Wähle aktive Theme-Typen und ihre Might-Stufe.',
   },
   loading:{default:'Einen Moment...',generating:'Helden weben...',alternative:'Anderen Helden weben...'},
   audio:{ariaOn:'Musik stumm schalten',ariaOff:'Musik anschalten'},
