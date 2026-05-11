@@ -44,17 +44,10 @@ test('Einstellungen oeffnen und schliessen', async ({ page }) => {
   await expect(page.locator('#screen-welcome')).toBeVisible();
 });
 
-test('Los-gehts zeigt Swipe-Screen mit Phase-Intro', async ({ page }) => {
+test('Los-gehts zeigt Swipe-Screen direkt mit Kartenstapel', async ({ page }) => {
   await page.goto('/');
   await page.locator('#btn-start').click();
   await expect(page.locator('#screen-swipe')).toBeVisible();
-  await expect(page.locator('#phase-intro-overlay')).toBeVisible();
-});
-
-test('Phase-Intro: Tippen startet Kartenstapel', async ({ page }) => {
-  await page.goto('/');
-  await page.locator('#btn-start').click();
-  await page.locator('#phase-intro-overlay').click();
   await expect(page.locator('.card.front')).toBeVisible();
 });
 
@@ -84,26 +77,26 @@ test('THEMEBOOKS geladen (20 Eintraege)', async ({ page }) => {
   expect(count).toBe(20);
 });
 
-test('PHASES geladen (4 Phasen, mind. 10 Karten pro Phase)', async ({ page }) => {
+test('PHASES geladen (ein Stapel mit 40 Karten)', async ({ page }) => {
   await page.goto('/');
   const ok = await page.evaluate(() =>
-    PHASES.length === 4 &&
-    PHASES.every(p => p.cards.length >= 10)
+    PHASES.length === 1 &&
+    PHASES[0].cards.length >= 30
   );
   expect(ok).toBe(true);
 });
 
-test('Settings-Default: Origin aktiv', async ({ page }) => {
+test('Settings-Default: Standard-Toggle aktiv', async ({ page }) => {
   await page.goto('/');
   await page.locator('#btn-settings').click();
-  await expect(page.locator('#toggle-origin')).toBeChecked();
-  await expect(page.locator('#toggle-adventure')).not.toBeChecked();
+  await expect(page.locator('#toggle-standard')).toBeChecked();
 });
 
-test('Letzter Toggle nicht deaktivierbar', async ({ page }) => {
+test('Settings: 20 Theme-Type Zeilen vorhanden', async ({ page }) => {
   await page.goto('/');
   await page.locator('#btn-settings').click();
-  await expect(page.locator('#toggle-origin')).toBeDisabled();
+  const count = await page.locator('.settings-tt-row').count();
+  expect(count).toBe(20);
 });
 
 // #33: UEBERSETZUNGEN
