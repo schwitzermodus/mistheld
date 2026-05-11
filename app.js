@@ -826,7 +826,7 @@ function initWelcomePreview() {
     if($('screen-welcome') && $('screen-welcome').classList.contains('active')) {
       showNextPreviewCard();
     }
-  }, 2500);
+  }, 3500);
 }
 
 /* EVENT BINDINGS */
