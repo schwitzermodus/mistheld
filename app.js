@@ -1032,6 +1032,15 @@ if ($('toggle-standard')) {
     buildSettingsUI();
   });
 }
+// Zoom-Verhinderung: Pinch-Zoom auf iOS Safari (ignoriert user-scalable=no seit iOS 10)
+document.addEventListener('gesturestart',  function(e){ e.preventDefault(); }, { passive: false });
+document.addEventListener('gesturechange', function(e){ e.preventDefault(); }, { passive: false });
+document.addEventListener('gestureend',    function(e){ e.preventDefault(); }, { passive: false });
+// Fallback fuer iOS-Versionen ohne gesture*-Events: Multi-Touch-touchmove blockieren
+document.addEventListener('touchmove', function(e){
+  if (e.touches.length > 1) e.preventDefault();
+}, { passive: false });
+
 document.addEventListener('keydown', function(e){
   if($('screen-swipe').classList.contains('active')) {
     if(e.key==='ArrowRight'){e.preventDefault();programmaticDecide('yes');}
