@@ -2,6 +2,19 @@
    Mistheld · App-Logik
 ===================================================== */
 
+// Refactor: zentrale Konstanten — keine Magic Strings im Code
+var SCREENS = Object.freeze({
+  WELCOME: 'screen-welcome',
+  SWIPE:   'screen-swipe',
+  RESULT:  'screen-result',
+  SETTINGS:'screen-settings'
+});
+// Refactor: Lookup statt Ternaer-Kette (war 3x identisch dupliziert)
+var LEVEL_CSS_CLASS = Object.freeze({
+  Origin: 'tc-origin', Adventure: 'tc-adventure', Greatness: 'tc-greatness'
+});
+function levelCssClass(level) { return LEVEL_CSS_CLASS[level] || 'tc-origin'; }
+
 var CFG = Object.freeze({
   STACK_DEPTH: 3, SWIPE_DISTANCE: 80, SWIPE_VELOCITY: 0.3,
   FLY_DURATION_MS: 900, LOADING_DELAY_MS: 700, ALT_LOADING_DELAY_MS: 450,
@@ -35,7 +48,10 @@ var DEFAULT_SETTINGS = {
   themeTypes: buildDefaultThemeTypes()
 };
 
-// Zuordnung Theme Type → Might-Tier (für Farben auf Swipe-Karten)
+// Zuordnung Theme Type → visuelle Tier-Kategorie fuer Swipe-Karten-Tags.
+// Hier explizit 'Variable' fuer Companion/Magic/Possessions, damit die Tags in Gold
+// erscheinen (tc-variable) und nicht in einer der drei Standardfarben.
+// Fuer die *echte* fachliche Default-Stufe siehe DEFAULT_THEME_TIER oben.
 var TYPE_TIER = {
   'Circumstance':'Origin','Devotion':'Origin','Past':'Origin','People':'Origin',
   'Personality':'Origin','Skill or Trade':'Origin','Trait':'Origin',
@@ -154,7 +170,7 @@ function show(screenId, suppressAnim) {
   }
   el.classList.add('active');
   var sb=$('btn-settings');
-  if(sb) sb.style.display=screenId==='screen-welcome'?'':'none';
+  if(sb) sb.style.display=screenId===SCREENS.WELCOME?'':'none';
 }
 function showLoading(t) { $('loading-text').textContent=t||STRINGS.loading.default; $('loading').classList.add('active'); }
 function hideLoading()  { $('loading').classList.remove('active'); }
@@ -216,7 +232,7 @@ function startSwipe() {
   state.proposals=[]; state.proposalIndex=0; state.edits={}; state.hero=null; state.resultPage=0; state.busy=false;
   state.shuffledCards = diversifyFirstN(PHASES[0].cards, CFG.MIN_SWIPES_FOR_SKIP);
   document.body.classList.add('swipe-active');
-  show('screen-swipe');
+  show(SCREENS.SWIPE);
   renderCard();
 }
 
@@ -414,7 +430,7 @@ function finishSwiping() {
   setTimeout(function(){
     state.proposals=[generateProposal('initial')]; state.proposalIndex=0; state.edits={};
     state.hero=generateHero(); state.resultPage=0;
-    show('screen-result');
+    show(SCREENS.RESULT);
     requestAnimationFrame(function(){
       renderCurrentResultPage(); attachResultPageSwipe(); hideLoading(); state.busy=false;
     });
@@ -534,6 +550,15 @@ function renderCurrentResultPage() {
   updateResultNav();
 }
 
+// Refactor: ersetzt das 4x duplizierte Pattern aus den Edit-Sheets,
+// das eine einzelne Result-Karte austauscht (Held/Theme) und die Dots aktualisiert.
+function rerenderResultCard(cardBuilder) {
+  var stage = $('result-stage');
+  stage.innerHTML = '';
+  stage.appendChild(cardBuilder());
+  updateResultNav();
+}
+
 function updateResultNav() {
   var total=totalResultPages(), cur=state.resultPage;
   var dotsEl=$('result-dots'); dotsEl.innerHTML='';
@@ -598,7 +623,7 @@ function buildHeroCard() {
 ===================================================== */
 function buildThemeCard(ti) {
   var dt=getDisplayTheme(ti);
-  var mc=dt.type==='Origin'?'tc-origin':dt.type==='Adventure'?'tc-adventure':'tc-greatness';
+  var mc=levelCssClass(dt.type);
   var card=document.createElement('div');
   card.className='result-card rc-theme '+mc;
   // #40: Themebook-Name oben, kein "Theme-Typ"-Label
@@ -639,7 +664,7 @@ function buildSaveCard() {
   // #41: 4 kompakte Theme-Kacheln
   var tiles = prop.themes.map(function(_,ti){
     var dt=getDisplayTheme(ti);
-    var mc=dt.type==='Origin'?'tc-origin':dt.type==='Adventure'?'tc-adventure':'tc-greatness';
+    var mc=levelCssClass(dt.type);
     return '<div class="ot-tile '+mc+'">'+
       '<div class="ot-type">'+escapeHtml(displayThemebook(dt.themebook))+'</div>'+
       '<div class="ot-tags">'+
@@ -664,7 +689,7 @@ function buildSaveCard() {
       '<button class="save-btn-ghost" id="save-restart">'+escapeHtml(STRINGS.result.btnRestart)+'</button>'+
     '</div>';
   card.querySelector('#save-pdf').addEventListener('click', generatePDF);
-  card.querySelector('#save-restart').addEventListener('click', function(){ document.body.classList.remove('swipe-active'); show('screen-welcome', true); });
+  card.querySelector('#save-restart').addEventListener('click', function(){ document.body.classList.remove('swipe-active'); show(SCREENS.WELCOME, true); });
   return card;
 }
 
@@ -690,8 +715,7 @@ function openHeroEditSheet() {
   body.querySelectorAll('.es-reroll-btn').forEach(function(btn){
     btn.addEventListener('click',function(){
       rerollHeroPart(btn.dataset.part); openHeroEditSheet();
-      var stage=$('result-stage'); stage.innerHTML=''; stage.appendChild(buildHeroCard());
-      updateResultNav();
+      rerenderResultCard(buildHeroCard);
     });
   });
   $('edit-sheet-overlay').classList.add('active');
@@ -730,24 +754,21 @@ function openEditSheet(ti) {
     btn.addEventListener('click',function(){
       handleReroll(parseInt(btn.dataset.ti),btn.dataset.k);
       openEditSheet(ti);
-      var stage=$('result-stage'); stage.innerHTML=''; stage.appendChild(buildThemeCard(ti));
-      updateResultNav();
+      rerenderResultCard(function(){ return buildThemeCard(ti); });
     });
   });
   body.querySelectorAll('.es-nav-btn').forEach(function(btn){
     btn.addEventListener('click',function(){
       handleNavigate(parseInt(btn.dataset.ti),btn.dataset.k,parseInt(btn.dataset.dir));
       openEditSheet(ti);
-      var stage=$('result-stage'); stage.innerHTML=''; stage.appendChild(buildThemeCard(ti));
-      updateResultNav();
+      rerenderResultCard(function(){ return buildThemeCard(ti); });
     });
   });
   var fr=$('es-full-reroll');
   fr.addEventListener('click',function(){
     handleReroll(parseInt(fr.dataset.ti),'theme');
     openEditSheet(ti);
-    var stage=$('result-stage'); stage.innerHTML=''; stage.appendChild(buildThemeCard(ti));
-    updateResultNav();
+    rerenderResultCard(function(){ return buildThemeCard(ti); });
   });
   $('edit-sheet-overlay').classList.add('active');
 }
@@ -827,16 +848,15 @@ async function generatePDF() {
 /* =====================================================
    SETTINGS (#44: ueberarbeitet — alle 20 Theme Types, Standard-Toggle)
 ===================================================== */
-var SETTINGS_THEME_TYPE_ORDER = [
-  // Origin-Default
-  'Circumstance','Devotion','Past','People','Personality','Skill or Trade','Trait',
-  // Adventure-Default
-  'Duty','Influence','Knowledge','Prodigious Ability','Relic','Uncanny Being',
-  // Greatness-Default
-  'Destiny','Dominion','Mastery','Monstrosity',
-  // Variable
-  'Companion','Magic','Possessions'
-];
+// Refactor: Reihenfolge aus DEFAULT_THEME_TIER ableiten (Origin → Adventure → Greatness,
+// danach die drei variablen Theme Types ans Ende). Vermeidet eine zweite hardcoded Liste.
+var SETTINGS_THEME_TYPE_ORDER = (function(){
+  var order = { Origin:1, Adventure:2, Greatness:3 };
+  var regulars = Object.keys(DEFAULT_THEME_TIER)
+    .filter(function(tb){ return VARIABLE_THEME_TYPES.indexOf(tb) === -1; })
+    .sort(function(a,b){ return order[DEFAULT_THEME_TIER[a]] - order[DEFAULT_THEME_TIER[b]]; });
+  return regulars.concat(VARIABLE_THEME_TYPES);
+})();
 
 function buildSettingsUI() {
   var s = loadSettings();
@@ -854,14 +874,20 @@ function buildSettingsUI() {
     var levelChips = levels.map(function(lv){
       var sel = effLevel === lv;
       var dis = lockedByStandard || !entry.enabled;
+      // a11y: aria-pressed signalisiert den Selektionsstatus an Screenreader
       return '<button type="button" class="tt-level-chip tc-' + lv.toLowerCase() + (sel ? ' selected' : '') + '"' +
-             ' data-tt="' + tb + '" data-level="' + lv + '"' + (dis ? ' disabled' : '') + '>' +
+             ' data-tt="' + tb + '" data-level="' + lv + '"' +
+             ' aria-pressed="' + (sel ? 'true' : 'false') + '"' +
+             (dis ? ' disabled' : '') + '>' +
              escapeHtml(displayMight(lv)) + '</button>';
     }).join('');
+    // a11y: aria-label macht den Toggle ohne sichtbares <label> screenreader-tauglich
+    var ttSafeId = tb.replace(/\s/g,'_');
+    var toggleAria = ' aria-label="' + escapeHtml(displayThemebook(tb)) + ' aktivieren"';
     row.innerHTML =
       '<div class="tt-row-head">' +
         '<div class="tt-name">' + escapeHtml(displayThemebook(tb)) + '</div>' +
-        '<div class="toggle-wrap"><input type="checkbox" id="tt-toggle-' + tb.replace(/\s/g,'_') + '" data-tt="' + tb + '"' + (entry.enabled ? ' checked' : '') + '><label class="toggle-visual" for="tt-toggle-' + tb.replace(/\s/g,'_') + '"></label></div>' +
+        '<div class="toggle-wrap"><input type="checkbox" id="tt-toggle-' + ttSafeId + '" data-tt="' + tb + '"' + toggleAria + (entry.enabled ? ' checked' : '') + '><label class="toggle-visual" for="tt-toggle-' + ttSafeId + '"></label></div>' +
       '</div>' +
       '<div class="tt-level-chips">' + levelChips + '</div>';
     list.appendChild(row);
@@ -897,7 +923,7 @@ function openSettings() {
   var s = loadSettings();
   $('toggle-standard').checked = s.standard;
   buildSettingsUI();
-  show('screen-settings');
+  show(SCREENS.SETTINGS);
 }
 function updateSettingsUI() { buildSettingsUI(); }
 function saveSettingsFromUI() {
@@ -941,7 +967,7 @@ function generatePreviewTheme() {
 }
 
 function buildWelcomePreviewCard(theme) {
-  var mc = theme.type==='Origin'?'tc-origin':theme.type==='Adventure'?'tc-adventure':'tc-greatness';
+  var mc = levelCssClass(theme.type);
   return '<div class="wp-card '+mc+'">'+
     '<div class="wp-type">'+escapeHtml(displayThemebook(theme.themebook))+'</div>'+
     '<div class="wp-title-tag">'+displayTag(theme.titleTag.text)+'</div>'+
@@ -995,7 +1021,7 @@ $('btn-undo').addEventListener('click', undoLast);
 $('btn-skip').addEventListener('click',    skipRemainingSwipes);
 $('btn-settings').addEventListener('click',      openSettings);
 // #37 fix: Animation beim Zurück-Navigieren unterbinden
-$('btn-settings-back').addEventListener('click', function(){saveSettingsFromUI();show('screen-welcome',true);});
+$('btn-settings-back').addEventListener('click', function(){saveSettingsFromUI();show(SCREENS.WELCOME, true);});
 $('edit-sheet-overlay').addEventListener('click', function(e){if(e.target===$('edit-sheet-overlay')) closeEditSheet();});
 // #44: Standard-Toggle als einziger globaler Settings-Schalter, Rest wird in buildSettingsUI gebunden
 if ($('toggle-standard')) {
