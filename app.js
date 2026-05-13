@@ -974,6 +974,7 @@ function buildWelcomePreviewCard(theme) {
     '<div class="wp-power-tag">'+displayTag(theme.powerTags[0].text)+'</div>'+
     '<div class="wp-power-tag">'+displayTag(theme.powerTags[1].text)+'</div>'+
     '<div class="wp-weakness-tag">'+displayTag(theme.weaknessTag.text)+'</div>'+
+    '<div class="wp-quest-label">'+escapeHtml(STRINGS.result.questLabel)+'</div>'+
     '<div class="wp-quest">\u201e'+escapeHtml(theme.quest.title)+'\u201c</div>'+
   '</div>';
 }
