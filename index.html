@@ -22,14 +22,14 @@
   --might-origin:#3d5c2a;--might-adventure:#8b3a2b;--might-greatness:#2d4a6e;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html,body{height:100%;overflow-x:hidden;overscroll-behavior:none}
+html,body{height:100%;overflow:hidden;overscroll-behavior:none}
 body{font-family:var(--sans);color:var(--ink);background:var(--bg);
   background-image:radial-gradient(ellipse at top left,rgba(169,134,70,0.08) 0%,transparent 50%),radial-gradient(ellipse at bottom right,rgba(139,58,43,0.06) 0%,transparent 50%);
   min-height:100vh;min-height:100dvh;font-size:16px;line-height:1.5;
   -webkit-font-smoothing:antialiased;-webkit-user-select:none;user-select:none}
 body.swipe-active{overflow:hidden;position:fixed;inset:0;width:100%;height:100%;touch-action:none}
 .app{max-width:480px;margin:0 auto;min-height:100vh;min-height:100dvh;position:relative;display:flex;flex-direction:column}
-.screen{flex:1;display:none;flex-direction:column;padding:20px;animation:fadeIn 0.35s ease}
+.screen{flex:1;min-height:0;display:none;flex-direction:column;padding:20px;animation:fadeIn 0.35s ease}
 .screen.active{display:flex}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 h1,h2,h3,h4{font-family:var(--serif);font-weight:600;letter-spacing:0.01em;color:var(--ink)}
