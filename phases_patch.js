@@ -42,12 +42,12 @@
     { title: 'Ich will herausfinden, was ich wirklich bin', text: 'Es gibt eine Antwort. Ich hoffe, ich kann mit ihr leben.', affinities: { 'Past': 2, 'Uncanny Being': 1, 'Destiny': 2 } },
     { title: 'Ich vertraue niemandem mehr', text: 'Einmal war einmal zu oft.', affinities: { 'Personality': 2, 'Past': 1, 'Influence': 1 } },
     { title: 'Mein Stolz ist mein größtes Problem', text: 'Ich weiß es. Und tue trotzdem nichts dagegen.', affinities: { 'Personality': 2, 'Mastery': 1, 'Circumstance': 1 } },
-    { title: 'Ich habe einen Schwur zu erfüllen', text: 'Worte, die ich nicht zurüknehmen kann. Ich will es auch nicht.', affinities: { 'Devotion': 2, 'Duty': 3 } },
+    { title: 'Ich habe einen Schwur zu erfüllen', text: 'Worte, die ich nicht zurücknehmen kann. Ich will es auch nicht.', affinities: { 'Devotion': 2, 'Duty': 3 } },
     { title: 'Ich will gegen ein Unrecht kämpfen', text: 'Solange es steht, schlafe ich nicht ruhig.', affinities: { 'Duty': 2, 'Devotion': 2, 'Influence': 1 } },
     { title: 'Ich habe eine Schuld zu begleichen', text: 'Sie steht in mir wie ein Stein. Eines Tages werfe ich ihn.', affinities: { 'Past': 2, 'Duty': 1, 'People': 1 } },
     { title: 'Ich will bewahren, was mir wirklich wichtig ist', text: 'Nicht alles wird ersetzt. Manches ist unwiederbringlich.', affinities: { 'Possessions': 2, 'Companion': 2, 'People': 1 } },
     { title: 'Ich will das Beste von mir zeigen', text: 'Einmal. Für die richtigen Menschen. Zur richtigen Zeit.', affinities: { 'Prodigious Ability': 2, 'Mastery': 2, 'Personality': 1 } },
-    { title: 'Ich will das zurükerobern, was mir gehört', text: 'Das Recht ist klar. Nur die Welt ist blind dafür.', affinities: { 'Dominion': 2, 'Monstrosity': 1, 'Duty': 1 } }
+    { title: 'Ich will das zurückerobern, was mir gehört', text: 'Das Recht ist klar. Nur die Welt ist blind dafür.', affinities: { 'Dominion': 2, 'Monstrosity': 1, 'Duty': 1 } }
   ];
   // Einzelne Phase mit allen Karten
   PHASES.splice(0, PHASES.length, {
