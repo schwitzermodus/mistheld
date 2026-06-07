@@ -45,6 +45,7 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 /* WELCOME */
 #screen-welcome{justify-content:flex-start;text-align:center;padding:60px 28px 40px;position:relative;overflow:hidden}
 .welcome-head{flex-shrink:0}
+.app-version{position:absolute;left:max(12px,env(safe-area-inset-left,12px));bottom:max(10px,env(safe-area-inset-bottom,10px));font-family:var(--sans);font-size:0.68rem;letter-spacing:0.04em;color:var(--ink-soft);opacity:0.55;user-select:none;pointer-events:none}
 .welcome-mark{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--accent);margin-bottom:8px;letter-spacing:0.12em;text-transform:uppercase}
 .welcome-title{font-size:3.2rem;font-weight:500;font-style:italic;margin:6px 0 0;color:var(--ink);position:relative;display:inline-block}
 .welcome-title::after{content:'';position:absolute;left:50%;bottom:-8px;width:60px;height:1px;background:var(--gold);transform:translateX(-50%)}
@@ -297,6 +298,7 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
   </div>
   <div class="welcome-preview" id="welcome-preview"></div>
   <button class="btn btn-primary" id="btn-start"></button>
+  <div class="app-version">v0.1.0 · 2026-06-07</div>
 </section>
 <section id="screen-swipe" class="screen">
   <div class="card-counter" id="card-counter"></div>
