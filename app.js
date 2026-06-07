@@ -808,10 +808,10 @@ function pdfThemeBlock(doc,theme,x,y,cW,cH) {
   doc.text(tl,x+cW/2,y+22,{align:'center'}); var cy=y+22+tl.length*5+4;
   cy=pdfSectionLabel(doc,'POWER TAGS',x,cy);
   doc.setFont('times','normal'); doc.setFontSize(10); doc.setTextColor.apply(doc,C.ink);
-  theme.powerTags.forEach(function(t){var ls=doc.splitTextToSize('\u25e6 '+pdfTagText(t),cW-8);doc.text(ls,x+4,cy);cy+=ls.length*4.5;});
+  theme.powerTags.forEach(function(t){var ls=doc.splitTextToSize('\u2022 '+pdfTagText(t),cW-8);doc.text(ls,x+4,cy);cy+=ls.length*4.5;});
   if (theme.tierTag) {
     doc.setFont('times','italic'); doc.setFontSize(10); doc.setTextColor.apply(doc,C.gold);
-    var tlt=doc.splitTextToSize('\u25e6 '+pdfTagText(theme.tierTag),cW-8); doc.text(tlt,x+4,cy); cy+=tlt.length*4.5;
+    var tlt=doc.splitTextToSize('\u2022 '+pdfTagText(theme.tierTag),cW-8); doc.text(tlt,x+4,cy); cy+=tlt.length*4.5;
     doc.setTextColor.apply(doc,C.ink);
   }
   cy+=3; cy=pdfSectionLabel(doc,'WEAKNESS TAG',x,cy);
