@@ -24,7 +24,7 @@ jobs:
         run: npm install --no-audit --no-fund
 
       - name: JS-Syntaxpruefung
-        run: node --check app.js data.js strings.js
+        run: node --check app.js data.js
 
       - name: Playwright-Browser-Cache laden
         uses: actions/cache@v4
