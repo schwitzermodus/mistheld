@@ -1,0 +1,3 @@
+# Git-Hooks müssen im Working Tree LF behalten, sonst bricht die Shebang-Zeile
+# unter Git for Windows (autocrlf) mit "bad interpreter".
+.githooks/** text eol=lf

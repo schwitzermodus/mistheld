@@ -14,6 +14,22 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Versionsbump prüfen (kein Deploy ohne neue Version)
+        run: |
+          if git rev-parse HEAD^ >/dev/null 2>&1; then
+            prev=$(git show HEAD^:index.html | sed -n 's/.*class="app-version">\([^<]*\).*/\1/p' | head -n1)
+            cur=$(sed -n 's/.*class="app-version">\([^<]*\).*/\1/p' index.html | head -n1)
+            echo "Version vorher: '$prev' | jetzt: '$cur'"
+            if [ "$prev" = "$cur" ]; then
+              echo "::error::App-Version wurde nicht erhöht ('$cur'). Kein Deploy ohne neue Version — bitte index.html bumpen (der pre-commit Hook macht das automatisch)."
+              exit 1
+            fi
+          else
+            echo "Kein Vorgänger-Commit — Versionsprüfung übersprungen."
+          fi
 
       - name: Node.js setup
         uses: actions/setup-node@v4
