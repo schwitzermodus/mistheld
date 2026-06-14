@@ -265,7 +265,7 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
 .preset-seg-btn.active{background:var(--paper);color:var(--ink);box-shadow:0 1px 3px rgba(60,40,10,0.15)}
 .preset-seg-btn:active{transform:scale(0.97)}
 /* fixe Hinweis-Hoehe → oberer Kasten bleibt bei allen Presets gleich gross (kein Springen) */
-.settings-preset-hint{min-height:3.4em;margin-bottom:0;display:flex;align-items:center}
+.settings-preset-hint{min-height:4.5rem;margin-bottom:0;display:flex;align-items:center}
 .settings-tt-quick{display:flex;gap:6px;margin-bottom:4px}
 .tt-quick-btn{flex:1;border:1px solid var(--line);background:transparent;font-family:var(--sans);font-size:0.76rem;color:var(--ink-soft);padding:7px 4px;border-radius:6px;cursor:pointer;transition:all 0.12s}
 .tt-quick-btn:active{transform:scale(0.97)}
@@ -326,7 +326,7 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
   </div>
   <div class="welcome-preview" id="welcome-preview"></div>
   <button class="btn btn-primary" id="btn-start"></button>
-  <div class="app-version">v2026-06-14.2</div>
+  <div class="app-version">v2026-06-14.3</div>
 </section>
 <section id="screen-swipe" class="screen">
   <div class="card-counter" id="card-counter"></div>
@@ -424,7 +424,7 @@ var STRINGS={
     presetIntro:'Wähle ein Profil als Ausgangspunkt – es legt fest, welche Theme-Typen dein Held bekommen kann:',
     presets:{ beginner:'Einsteiger', standard:'Standard', custom:'Individuell' },
     presetHints:{
-      beginner:'Für den Einstieg: nur Ursprung-Typen, Might-Stufe fixiert. Begleiter, Magie und Besitz sind optional (Stufe Ursprung). Mächtigere Themen findest du unter „Standard“.',
+      beginner:'Für den Einstieg: nur Ursprung-Typen (Might fixiert). Begleiter, Magie und Besitz sind optional. Mehr Auswahl unter „Standard“.',
       standard:'Buch-Standard: alle Theme-Typen auf ihrer Quellbuch-Stufe. Begleiter, Magie und Besitz darfst du in der Stufe frei wählen.',
       custom:'Volle Kontrolle: jeden Theme-Typ ein- oder ausschalten und jede Might-Stufe frei wählen.',
     },
