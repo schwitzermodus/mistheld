@@ -189,7 +189,7 @@ function initStrings() {
   if($('btn-settings-back')) $('btn-settings-back').setAttribute('aria-label', STRINGS.settings.ariaBack);
   if($('btn-settings'))      $('btn-settings').setAttribute('aria-label',      STRINGS.settings.ariaOpen);
   // Settings-Redesign: Preset-Segmente, Schnellaktionen, Titel
-  if($('settings-preset-title')) $('settings-preset-title').textContent = STRINGS.settings.presetTitle;
+  if($('settings-preset-intro')) $('settings-preset-intro').textContent = STRINGS.settings.presetIntro;
   var _seg = $('settings-preset-seg');
   if(_seg) _seg.querySelectorAll('.preset-seg-btn').forEach(function(b){ b.textContent = STRINGS.settings.presets[b.dataset.preset]; });
   var _quick = $('settings-tt-quick');
@@ -899,6 +899,10 @@ var SETTINGS_GROUPS = (function(){
   return groups;
 })();
 
+// Einklapp-Zustand der Sektionen (Default: ausgeklappt). Modul-Variable, damit
+// der Zustand das vollstaendige Re-Rendern in buildSettingsUI ueberlebt.
+var SETTINGS_SECTION_COLLAPSED = {};
+
 function buildSettingsUI() {
   var s = loadSettings();
 
@@ -915,65 +919,74 @@ function buildSettingsUI() {
 
   var list = $('settings-themetypes-list');
   if (!list) return;
-  list.innerHTML = '';
   var levels = ['Origin','Adventure','Greatness'];
   var enabledCount = 0;
+  var html = '';
 
   SETTINGS_GROUPS.forEach(function(group){
     var visible = group.types.filter(function(tb){ return isThemeTypeAvailable(tb, s); });
     if (visible.length === 0) return;
     var isVarGroup = group.tier === 'Variable';
+    var tierCls = isVarGroup ? 'variable' : group.tier.toLowerCase();
+    var collapsed = !!SETTINGS_SECTION_COLLAPSED[group.tier];
+    var titleText = STRINGS.settings.ttSectionPrefix +
+      (isVarGroup ? STRINGS.settings.ttVariableGroup : displayMight(group.tier));
 
-    var title = document.createElement('div');
-    title.className = 'tt-group-title ' + (isVarGroup ? 'tc-variable' : 'tc-' + group.tier.toLowerCase());
-    title.innerHTML = '<span class="tt-group-dot"></span>' +
-      escapeHtml(isVarGroup ? STRINGS.settings.ttVariableGroup : displayMight(group.tier));
-    list.appendChild(title);
-
+    var rows = '';
     visible.forEach(function(tb){
       var entry = s.themeTypes[tb] || { enabled: true, level: DEFAULT_THEME_TIER[tb] };
       if (entry.enabled) enabledCount++;
-      var isVar = isVariableType(tb);
       var editable = isMightEditable(tb, s);
       var effLevel = effectiveLevel(tb, s);
       var ttSafeId = tb.replace(/\s/g,'_');
       var toggleAria = ' aria-label="' + escapeHtml(displayThemebook(tb)) + ' aktivieren"';
 
-      var mightHtml;
-      if (editable) {
-        mightHtml = '<div class="tt-level-chips">' + levels.map(function(lv){
-          var sel = effLevel === lv;
-          var dis = !entry.enabled;
-          // a11y: aria-pressed signalisiert den Selektionsstatus an Screenreader
-          return '<button type="button" class="tt-level-chip tc-' + lv.toLowerCase() + (sel ? ' selected' : '') + '"' +
-                 ' data-tt="' + tb + '" data-level="' + lv + '"' +
-                 ' aria-pressed="' + (sel ? 'true' : 'false') + '"' +
-                 (dis ? ' disabled' : '') + '>' +
-                 escapeHtml(displayMight(lv)) + '</button>';
-        }).join('') + '</div>';
-      } else {
-        // fixierte Stufe: statisches Badge statt klickbarer Chips
-        mightHtml = '<div class="tt-static-might tc-' + effLevel.toLowerCase() + '">' +
-                    escapeHtml(displayMight(effLevel)) + '</div>';
-      }
+      // Chips IMMER anzeigen; nicht waehlbare (fixierte Stufe oder Typ aus) ausgegraut
+      var chips = levels.map(function(lv){
+        var sel = effLevel === lv;
+        var dis = !(editable && entry.enabled);
+        return '<button type="button" class="tt-level-chip tc-' + lv.toLowerCase() + (sel ? ' selected' : '') + '"' +
+               ' data-tt="' + tb + '" data-level="' + lv + '"' +
+               ' aria-pressed="' + (sel ? 'true' : 'false') + '"' +
+               (dis ? ' disabled' : '') + '>' +
+               escapeHtml(displayMight(lv)) + '</button>';
+      }).join('');
 
-      var row = document.createElement('div');
-      row.className = 'settings-tt-row' + (entry.enabled ? '' : ' disabled') + (isVar ? ' variable' : '');
-      row.innerHTML =
-        '<div class="tt-row-head">' +
-          '<div class="tt-name">' + escapeHtml(displayThemebook(tb)) + '</div>' +
-          '<div class="toggle-wrap"><input type="checkbox" id="tt-toggle-' + ttSafeId + '" data-tt="' + tb + '"' + toggleAria + (entry.enabled ? ' checked' : '') + '><label class="toggle-visual" for="tt-toggle-' + ttSafeId + '"></label></div>' +
-        '</div>' + mightHtml;
-      list.appendChild(row);
+      rows +=
+        '<div class="tt-row' + (entry.enabled ? '' : ' disabled') + '">' +
+          '<div class="tt-row-top">' +
+            '<input type="checkbox" class="tt-check-input" id="tt-toggle-' + ttSafeId + '" data-tt="' + tb + '"' + toggleAria + (entry.enabled ? ' checked' : '') + '>' +
+            '<label class="tt-row-label" for="tt-toggle-' + ttSafeId + '"><span class="tt-check-box" aria-hidden="true"></span><span class="tt-name">' + escapeHtml(displayThemebook(tb)) + '</span></label>' +
+          '</div>' +
+          '<div class="tt-level-chips">' + chips + '</div>' +
+        '</div>';
     });
+
+    html +=
+      '<div class="tt-section">' +
+        '<button type="button" class="tt-section-head' + (collapsed ? ' collapsed' : '') + '" data-tier="' + group.tier + '" aria-expanded="' + (!collapsed) + '">' +
+          '<span class="tt-section-title tc-' + tierCls + '">' + escapeHtml(titleText) + '</span>' +
+          '<span class="tt-chevron" aria-hidden="true"></span>' +
+        '</button>' +
+        '<div class="tt-section-body' + (collapsed ? ' collapsed' : '') + '">' + rows + '</div>' +
+      '</div>';
   });
+
+  list.innerHTML = html;
 
   if ($('settings-consequence')) {
     $('settings-consequence').innerHTML =
       STRINGS.settings.consequence(enabledCount, Object.keys(DEFAULT_THEME_TIER).length);
   }
 
-  // Event-Bindings (Toggles + Chips werden bei jedem Render neu erzeugt)
+  // Event-Bindings (alles wird bei jedem Render neu erzeugt)
+  list.querySelectorAll('.tt-section-head').forEach(function(h){
+    h.addEventListener('click', function(){
+      var t = h.dataset.tier;
+      SETTINGS_SECTION_COLLAPSED[t] = !SETTINGS_SECTION_COLLAPSED[t];
+      buildSettingsUI();
+    });
+  });
   list.querySelectorAll('input[type=checkbox][data-tt]').forEach(function(cb){
     cb.addEventListener('change', function(){
       var st = loadSettings();

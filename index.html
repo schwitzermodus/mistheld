@@ -258,38 +258,47 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
 .settings-select:disabled{opacity:0.38;cursor:not-allowed}
 /* #44: Neue Settings — scrollbare Liste, Theme-Type Rows, Chip-Auswahl */
 .settings-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;min-height:0;padding-bottom:24px}
-.settings-tt-row{padding:9px 4px;border-top:1px solid var(--line-soft);transition:opacity 0.15s}
-.settings-tt-row:first-child{border-top:none}
-.settings-tt-row.disabled{opacity:0.42}
-.settings-tt-row.variable .tt-name::after{content:' ·';color:var(--gold);margin-left:2px}
-.settings-tt-row.variable .tt-name::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--gold);margin-right:6px;vertical-align:middle;opacity:0.8}
-.tt-row-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px}
-.tt-name{font-family:var(--serif);font-size:1.04rem;color:var(--ink);line-height:1.2;flex:1}
-.tt-level-chips{display:flex;gap:6px}
-.tt-level-chip{flex:1;padding:5px 8px;border-radius:4px;border:1px solid var(--line);background:transparent;font-family:var(--sans);font-size:0.78rem;color:var(--ink-soft);cursor:pointer;transition:all 0.12s;text-align:center}
-.tt-level-chip:active:not(:disabled){transform:scale(0.96)}
-.tt-level-chip:disabled{cursor:not-allowed;opacity:0.55}
-.tt-level-chip.tc-origin.selected{background:rgba(61,92,42,0.14);border-color:var(--might-origin);color:var(--might-origin);font-weight:600}
-.tt-level-chip.tc-adventure.selected{background:rgba(139,58,43,0.14);border-color:var(--might-adventure);color:var(--might-adventure);font-weight:600}
-.tt-level-chip.tc-greatness.selected{background:rgba(45,74,110,0.14);border-color:var(--might-greatness);color:var(--might-greatness);font-weight:600}
-/* Settings-Redesign: Preset-Segmente, Schnellaktionen, Gruppentitel, statisches Might-Badge, Konsequenz */
+/* Settings-Redesign v2: harmonisierte Presets, Auswahl-Karten, einklappbare Sektionen */
+.settings-preset-intro{font-size:0.84rem;color:var(--ink);line-height:1.45;margin-bottom:10px}
 .settings-preset-seg{display:flex;gap:6px;background:var(--bg-2);border:1px solid var(--line);border-radius:8px;padding:4px;margin-bottom:8px}
 .preset-seg-btn{flex:1;border:none;background:transparent;font-family:var(--sans);font-size:0.82rem;font-weight:600;color:var(--ink-soft);padding:9px 4px;border-radius:6px;cursor:pointer;transition:all 0.15s}
 .preset-seg-btn.active{background:var(--paper);color:var(--ink);box-shadow:0 1px 3px rgba(60,40,10,0.15)}
 .preset-seg-btn:active{transform:scale(0.97)}
+/* fixe Hinweis-Hoehe → oberer Kasten bleibt bei allen Presets gleich gross (kein Springen) */
+.settings-preset-hint{min-height:3.4em;margin-bottom:0;display:flex;align-items:center}
 .settings-tt-quick{display:flex;gap:6px;margin-bottom:4px}
 .tt-quick-btn{flex:1;border:1px solid var(--line);background:transparent;font-family:var(--sans);font-size:0.76rem;color:var(--ink-soft);padding:7px 4px;border-radius:6px;cursor:pointer;transition:all 0.12s}
 .tt-quick-btn:active{transform:scale(0.97)}
-.tt-group-title{font-family:var(--serif);font-size:0.98rem;font-weight:600;margin:15px 2px 2px;display:flex;align-items:center;gap:7px}
-.tt-group-dot{width:7px;height:7px;border-radius:50%;background:currentColor;flex-shrink:0}
-.tt-group-title.tc-origin{color:var(--might-origin)}
-.tt-group-title.tc-adventure{color:var(--might-adventure)}
-.tt-group-title.tc-greatness{color:var(--might-greatness)}
-.tt-group-title.tc-variable{color:var(--gold)}
-.tt-static-might{display:inline-block;font-size:0.76rem;font-weight:600;padding:4px 11px;border-radius:4px;border:1px solid}
-.tt-static-might.tc-origin{color:var(--might-origin);background:rgba(61,92,42,0.10);border-color:var(--might-origin)}
-.tt-static-might.tc-adventure{color:var(--might-adventure);background:rgba(139,58,43,0.10);border-color:var(--might-adventure)}
-.tt-static-might.tc-greatness{color:var(--might-greatness);background:rgba(45,74,110,0.10);border-color:var(--might-greatness)}
+/* einklappbare Theme-Type-Sektionen */
+.tt-section{margin-top:12px}
+.tt-section-head{width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;background:transparent;border:none;border-bottom:1px solid var(--line);padding:6px 2px;cursor:pointer;font-family:var(--serif);font-weight:600;text-align:left}
+.tt-section-title{font-size:1.0rem}
+.tt-section-title.tc-origin{color:var(--might-origin)}
+.tt-section-title.tc-adventure{color:var(--might-adventure)}
+.tt-section-title.tc-greatness{color:var(--might-greatness)}
+.tt-section-title.tc-variable{color:var(--gold)}
+.tt-chevron{width:8px;height:8px;border-right:2px solid var(--ink-soft);border-bottom:2px solid var(--ink-soft);transform:rotate(45deg);transition:transform 0.18s;flex-shrink:0;margin-right:5px}
+.tt-section-head.collapsed .tt-chevron{transform:rotate(-45deg)}
+.tt-section-body{padding-top:4px}
+.tt-section-body.collapsed{display:none}
+/* Auswahl-Karte pro Theme Type (statt iOS-Toggle: anklickbare Karte mit Häkchen) */
+.tt-row{padding:8px 11px;margin:7px 0;border:1px solid var(--line-soft);border-radius:7px;background:var(--paper);transition:opacity 0.15s}
+.tt-row.disabled{opacity:0.5}
+.tt-row-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.tt-check-input{position:absolute;opacity:0;width:0;height:0}
+.tt-row-label{display:flex;align-items:center;gap:10px;flex:1;cursor:pointer}
+.tt-check-box{width:21px;height:21px;border-radius:5px;border:1.5px solid var(--line);flex-shrink:0;position:relative;transition:all 0.15s}
+.tt-check-input:checked+.tt-row-label .tt-check-box{background:var(--green);border-color:var(--green)}
+.tt-check-input:checked+.tt-row-label .tt-check-box::after{content:'';position:absolute;left:6px;top:2px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.tt-check-input:focus-visible+.tt-row-label .tt-check-box{box-shadow:0 0 0 3px rgba(91,107,58,0.3)}
+.tt-name{font-family:var(--serif);font-size:1.05rem;color:var(--ink);line-height:1.2}
+.tt-level-chips{display:flex;gap:6px}
+.tt-level-chip{flex:1;padding:5px 8px;border-radius:4px;border:1px solid var(--line);background:transparent;font-family:var(--sans);font-size:0.76rem;color:var(--ink-soft);cursor:pointer;transition:all 0.12s;text-align:center}
+.tt-level-chip:active:not(:disabled){transform:scale(0.96)}
+.tt-level-chip:disabled{cursor:default;opacity:0.4}
+.tt-level-chip.tc-origin.selected{background:rgba(61,92,42,0.14);border-color:var(--might-origin);color:var(--might-origin);font-weight:600}
+.tt-level-chip.tc-adventure.selected{background:rgba(139,58,43,0.14);border-color:var(--might-adventure);color:var(--might-adventure);font-weight:600}
+.tt-level-chip.tc-greatness.selected{background:rgba(45,74,110,0.14);border-color:var(--might-greatness);color:var(--might-greatness);font-weight:600}
 .settings-consequence{margin-top:14px;padding:10px 12px;background:var(--paper);border:1px solid var(--line-soft);border-radius:6px;font-size:0.82rem;color:var(--ink-soft);text-align:center}
 .loading-overlay{position:fixed;inset:0;background:rgba(244,234,213,0.92);display:none;align-items:center;justify-content:center;z-index:100;flex-direction:column;gap:18px;backdrop-filter:blur(2px)}
 .loading-overlay.active{display:flex}
@@ -317,7 +326,7 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
   </div>
   <div class="welcome-preview" id="welcome-preview"></div>
   <button class="btn btn-primary" id="btn-start"></button>
-  <div class="app-version">v2026-06-14.1</div>
+  <div class="app-version">v2026-06-14.2</div>
 </section>
 <section id="screen-swipe" class="screen">
   <div class="card-counter" id="card-counter"></div>
@@ -343,13 +352,13 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
   </div>
   <div class="settings-scroll">
     <div class="settings-group">
-      <div class="settings-group-title" id="settings-preset-title"></div>
+      <div class="settings-preset-intro" id="settings-preset-intro"></div>
       <div class="settings-preset-seg" id="settings-preset-seg" role="group">
         <button type="button" class="preset-seg-btn" data-preset="beginner" aria-pressed="false"></button>
         <button type="button" class="preset-seg-btn" data-preset="standard" aria-pressed="false"></button>
         <button type="button" class="preset-seg-btn" data-preset="custom" aria-pressed="false"></button>
       </div>
-      <div class="settings-group-sub" id="settings-preset-hint"></div>
+      <div class="settings-group-sub settings-preset-hint" id="settings-preset-hint"></div>
     </div>
     <div class="settings-group">
       <div class="settings-tt-quick" id="settings-tt-quick">
@@ -412,14 +421,15 @@ var STRINGS={
   },
   settings:{
     heading:'Einstellungen',ariaBack:'Zurück',ariaOpen:'Einstellungen',
-    presetTitle:'Profil',
+    presetIntro:'Wähle ein Profil als Ausgangspunkt – es legt fest, welche Theme-Typen dein Held bekommen kann:',
     presets:{ beginner:'Einsteiger', standard:'Standard', custom:'Individuell' },
     presetHints:{
       beginner:'Für den Einstieg: nur Ursprung-Typen, Might-Stufe fixiert. Begleiter, Magie und Besitz sind optional (Stufe Ursprung). Mächtigere Themen findest du unter „Standard“.',
       standard:'Buch-Standard: alle Theme-Typen auf ihrer Quellbuch-Stufe. Begleiter, Magie und Besitz darfst du in der Stufe frei wählen.',
       custom:'Volle Kontrolle: jeden Theme-Typ ein- oder ausschalten und jede Might-Stufe frei wählen.',
     },
-    ttVariableGroup:'Variable Might',
+    ttSectionPrefix:'Theme Type ',
+    ttVariableGroup:'Variable Might-Stufe',
     quick:{ 'all-on':'Alle an', 'all-off':'Alle aus', 'reset':'Zurücksetzen' },
     consequence:function(n,total){ return 'Aktuell können <b>'+n+'</b> von '+total+' Theme-Typen entstehen.'; },
   },
