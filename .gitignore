@@ -1,0 +1,13 @@
+# Abhängigkeiten / Build-Artefakte
+node_modules/
+package-lock.json
+
+# Test-Output (Playwright)
+test-results/
+playwright-report/
+
+# Lokale Quellbücher (urheberrechtlich geschützt — NICHT committen)
+docs/
+
+# Editor-/Tooling-Konfiguration
+.claude/

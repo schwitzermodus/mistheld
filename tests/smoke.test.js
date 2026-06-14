@@ -86,17 +86,19 @@ test('PHASES geladen (ein Stapel mit 40 Karten)', async ({ page }) => {
   expect(ok).toBe(true);
 });
 
-test('Settings-Default: Standard-Toggle aktiv', async ({ page }) => {
+test('Settings-Default: Preset Einsteiger aktiv', async ({ page }) => {
   await page.goto('/');
   await page.locator('#btn-settings').click();
-  await expect(page.locator('#toggle-standard')).toBeChecked();
+  await expect(page.locator('.preset-seg-btn[data-preset="beginner"]')).toHaveClass(/active/);
+  // Einsteiger zeigt nur Ursprung (7) + Variable (3) = 10 Theme-Type-Zeilen
+  await expect(page.locator('.settings-tt-row')).toHaveCount(10);
 });
 
-test('Settings: 20 Theme-Type Zeilen vorhanden', async ({ page }) => {
+test('Settings: Individuell zeigt alle 20 Theme-Type Zeilen', async ({ page }) => {
   await page.goto('/');
   await page.locator('#btn-settings').click();
-  const count = await page.locator('.settings-tt-row').count();
-  expect(count).toBe(20);
+  await page.locator('.preset-seg-btn[data-preset="custom"]').click();
+  await expect(page.locator('.settings-tt-row')).toHaveCount(20);
 });
 
 // #33: UEBERSETZUNGEN

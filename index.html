@@ -272,6 +272,25 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
 .tt-level-chip.tc-origin.selected{background:rgba(61,92,42,0.14);border-color:var(--might-origin);color:var(--might-origin);font-weight:600}
 .tt-level-chip.tc-adventure.selected{background:rgba(139,58,43,0.14);border-color:var(--might-adventure);color:var(--might-adventure);font-weight:600}
 .tt-level-chip.tc-greatness.selected{background:rgba(45,74,110,0.14);border-color:var(--might-greatness);color:var(--might-greatness);font-weight:600}
+/* Settings-Redesign: Preset-Segmente, Schnellaktionen, Gruppentitel, statisches Might-Badge, Konsequenz */
+.settings-preset-seg{display:flex;gap:6px;background:var(--bg-2);border:1px solid var(--line);border-radius:8px;padding:4px;margin-bottom:8px}
+.preset-seg-btn{flex:1;border:none;background:transparent;font-family:var(--sans);font-size:0.82rem;font-weight:600;color:var(--ink-soft);padding:9px 4px;border-radius:6px;cursor:pointer;transition:all 0.15s}
+.preset-seg-btn.active{background:var(--paper);color:var(--ink);box-shadow:0 1px 3px rgba(60,40,10,0.15)}
+.preset-seg-btn:active{transform:scale(0.97)}
+.settings-tt-quick{display:flex;gap:6px;margin-bottom:4px}
+.tt-quick-btn{flex:1;border:1px solid var(--line);background:transparent;font-family:var(--sans);font-size:0.76rem;color:var(--ink-soft);padding:7px 4px;border-radius:6px;cursor:pointer;transition:all 0.12s}
+.tt-quick-btn:active{transform:scale(0.97)}
+.tt-group-title{font-family:var(--serif);font-size:0.98rem;font-weight:600;margin:15px 2px 2px;display:flex;align-items:center;gap:7px}
+.tt-group-dot{width:7px;height:7px;border-radius:50%;background:currentColor;flex-shrink:0}
+.tt-group-title.tc-origin{color:var(--might-origin)}
+.tt-group-title.tc-adventure{color:var(--might-adventure)}
+.tt-group-title.tc-greatness{color:var(--might-greatness)}
+.tt-group-title.tc-variable{color:var(--gold)}
+.tt-static-might{display:inline-block;font-size:0.76rem;font-weight:600;padding:4px 11px;border-radius:4px;border:1px solid}
+.tt-static-might.tc-origin{color:var(--might-origin);background:rgba(61,92,42,0.10);border-color:var(--might-origin)}
+.tt-static-might.tc-adventure{color:var(--might-adventure);background:rgba(139,58,43,0.10);border-color:var(--might-adventure)}
+.tt-static-might.tc-greatness{color:var(--might-greatness);background:rgba(45,74,110,0.10);border-color:var(--might-greatness)}
+.settings-consequence{margin-top:14px;padding:10px 12px;background:var(--paper);border:1px solid var(--line-soft);border-radius:6px;font-size:0.82rem;color:var(--ink-soft);text-align:center}
 .loading-overlay{position:fixed;inset:0;background:rgba(244,234,213,0.92);display:none;align-items:center;justify-content:center;z-index:100;flex-direction:column;gap:18px;backdrop-filter:blur(2px)}
 .loading-overlay.active{display:flex}
 .loading-spinner{width:32px;height:32px;border:2px solid var(--line);border-top-color:var(--accent);border-radius:50%;animation:spin 0.9s linear infinite}
@@ -323,19 +342,23 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
     <h2></h2>
   </div>
   <div class="settings-scroll">
-    <div class="settings-group" id="settings-standard-group">
-      <div class="settings-row">
-        <div class="settings-row-info">
-          <span class="settings-row-label" id="settings-standard-label"></span>
-          <span class="settings-row-hint" id="settings-standard-hint"></span>
-        </div>
-        <div class="toggle-wrap"><input type="checkbox" id="toggle-standard" checked><label class="toggle-visual" for="toggle-standard"></label></div>
+    <div class="settings-group">
+      <div class="settings-group-title" id="settings-preset-title"></div>
+      <div class="settings-preset-seg" id="settings-preset-seg" role="group">
+        <button type="button" class="preset-seg-btn" data-preset="beginner" aria-pressed="false"></button>
+        <button type="button" class="preset-seg-btn" data-preset="standard" aria-pressed="false"></button>
+        <button type="button" class="preset-seg-btn" data-preset="custom" aria-pressed="false"></button>
       </div>
+      <div class="settings-group-sub" id="settings-preset-hint"></div>
     </div>
     <div class="settings-group">
-      <div class="settings-group-title" id="settings-tt-title"></div>
-      <div class="settings-group-sub" id="settings-tt-sub"></div>
+      <div class="settings-tt-quick" id="settings-tt-quick">
+        <button type="button" class="tt-quick-btn" data-act="all-on"></button>
+        <button type="button" class="tt-quick-btn" data-act="all-off"></button>
+        <button type="button" class="tt-quick-btn" data-act="reset"></button>
+      </div>
       <div id="settings-themetypes-list"></div>
+      <div class="settings-consequence" id="settings-consequence"></div>
     </div>
   </div>
 </section>
@@ -389,10 +412,16 @@ var STRINGS={
   },
   settings:{
     heading:'Einstellungen',ariaBack:'Zurück',ariaOpen:'Einstellungen',
-    standardLabel:'Standard',
-    standardHint:'Reguläre Theme-Typen behalten ihre Quellbuch-Stufe. Begleiter, Magie und Besitz bleiben frei wählbar.',
-    ttGroupTitle:'Theme-Typen',
-    ttGroupSub:'Wähle aktive Theme-Typen und ihre Might-Stufe.',
+    presetTitle:'Profil',
+    presets:{ beginner:'Einsteiger', standard:'Standard', custom:'Individuell' },
+    presetHints:{
+      beginner:'Für den Einstieg: nur Ursprung-Typen, Might-Stufe fixiert. Begleiter, Magie und Besitz sind optional (Stufe Ursprung). Mächtigere Themen findest du unter „Standard“.',
+      standard:'Buch-Standard: alle Theme-Typen auf ihrer Quellbuch-Stufe. Begleiter, Magie und Besitz darfst du in der Stufe frei wählen.',
+      custom:'Volle Kontrolle: jeden Theme-Typ ein- oder ausschalten und jede Might-Stufe frei wählen.',
+    },
+    ttVariableGroup:'Variable Might',
+    quick:{ 'all-on':'Alle an', 'all-off':'Alle aus', 'reset':'Zurücksetzen' },
+    consequence:function(n,total){ return 'Aktuell können <b>'+n+'</b> von '+total+' Theme-Typen entstehen.'; },
   },
   loading:{default:'Einen Moment...',generating:'Helden weben...',alternative:'Anderen Helden weben...'},
   audio:{ariaOn:'Musik stumm schalten',ariaOff:'Musik anschalten'},

@@ -35,17 +35,47 @@ var DEFAULT_THEME_TIER = {
 // Theme Types mit variabler Might-Stufe (auch im Standard-Modus veraenderbar)
 var VARIABLE_THEME_TYPES = ['Companion','Magic','Possessions'];
 
-function buildDefaultThemeTypes() {
+function isVariableType(tb) { return VARIABLE_THEME_TYPES.indexOf(tb) !== -1; }
+
+// Settings-Redesign: drei Presets statt eines Standard-Toggles.
+//   beginner = nur Ursprung-Typen verfuegbar, Might fixiert; Variable optional (Ursprung)
+//   standard = alle Typen auf Buch-Stufe; nur Variable in der Stufe frei
+//   custom   = alle Typen, jede Might-Stufe frei
+var PRESETS = Object.freeze(['beginner','standard','custom']);
+
+// In welchem Preset ist ein Theme Type ueberhaupt verfuegbar?
+// (beginner: nur Tier 'Origin' — das umfasst die Variablen, die in DEFAULT_THEME_TIER auf Origin stehen)
+function isThemeTypeAvailable(tb, settings) {
+  if (settings.preset === 'beginner') return DEFAULT_THEME_TIER[tb] === 'Origin';
+  return true;
+}
+// Darf die Might-Stufe in diesem Preset veraendert werden?
+function isMightEditable(tb, settings) {
+  if (settings.preset === 'custom')   return true;
+  if (settings.preset === 'standard') return isVariableType(tb);
+  return false; // beginner: alles fixiert
+}
+
+// Aktiv-Zustaende + Stufen passend zum Preset (Default beim Wechsel/Zuruecksetzen)
+function presetThemeTypes(preset) {
   var out = {};
   Object.keys(DEFAULT_THEME_TIER).forEach(function(tb){
-    out[tb] = { enabled: true, level: DEFAULT_THEME_TIER[tb] };
+    var lvl = isVariableType(tb) ? 'Origin' : DEFAULT_THEME_TIER[tb];
+    var enabled;
+    if (preset === 'beginner') {
+      // nur regulaere Ursprung-Typen an; Variable optional (per Default aus)
+      enabled = (DEFAULT_THEME_TIER[tb] === 'Origin') && !isVariableType(tb);
+    } else {
+      enabled = true; // standard & custom: alles an
+    }
+    out[tb] = { enabled: enabled, level: lvl };
   });
   return out;
 }
 
 var DEFAULT_SETTINGS = {
-  standard: true,
-  themeTypes: buildDefaultThemeTypes()
+  preset: 'beginner',
+  themeTypes: presetThemeTypes('beginner')
 };
 
 // Zuordnung Theme Type → visuelle Tier-Kategorie fuer Swipe-Karten-Tags.
@@ -65,34 +95,42 @@ function tierClass(tb) {
   return t==='Origin'?'tc-origin':t==='Adventure'?'tc-adventure':t==='Greatness'?'tc-greatness':'tc-variable';
 }
 
+// Altes Format ({standard:true/false}) auf das neue Preset-Modell abbilden
+function migratePreset(p) {
+  if (p && PRESETS.indexOf(p.preset) !== -1) return p.preset;
+  if (p && typeof p.standard === 'boolean') return p.standard ? 'standard' : 'custom';
+  return 'beginner';
+}
+
 function loadSettings() {
   try {
     var raw = localStorage.getItem(CFG.SETTINGS_KEY);
-    var defaults = { standard: true, themeTypes: buildDefaultThemeTypes() };
-    if (!raw) return defaults;
+    if (!raw) return { preset: 'beginner', themeTypes: presetThemeTypes('beginner') };
     var p = JSON.parse(raw);
-    var tt = buildDefaultThemeTypes();
+    var preset = migratePreset(p);
+    var tt = presetThemeTypes(preset);
     if (p.themeTypes) {
       Object.keys(tt).forEach(function(tb){
         if (p.themeTypes[tb]) {
           if (typeof p.themeTypes[tb].enabled === 'boolean') tt[tb].enabled = p.themeTypes[tb].enabled;
-          if (typeof p.themeTypes[tb].level === 'string')   tt[tb].level   = p.themeTypes[tb].level;
+          if (typeof p.themeTypes[tb].level === 'string')    tt[tb].level   = p.themeTypes[tb].level;
         }
       });
     }
-    return { standard: p.standard !== false, themeTypes: tt };
-  } catch(_) { return { standard: true, themeTypes: buildDefaultThemeTypes() }; }
+    return { preset: preset, themeTypes: tt };
+  } catch(_) { return { preset: 'beginner', themeTypes: presetThemeTypes('beginner') }; }
 }
 function saveSettings(s) { try { localStorage.setItem(CFG.SETTINGS_KEY, JSON.stringify(s)); } catch(_){} }
 
-// #44: Effektive Might-Stufe — im Standard-Modus sind regulaere Theme Types fixiert
+// Effektive Might-Stufe — wo nicht editierbar, gilt die fixierte Buch-Stufe (Variable: Ursprung)
 function effectiveLevel(tb, settings) {
-  if (settings.standard && VARIABLE_THEME_TYPES.indexOf(tb) === -1) {
-    return DEFAULT_THEME_TIER[tb];
+  if (!isMightEditable(tb, settings)) {
+    return isVariableType(tb) ? 'Origin' : DEFAULT_THEME_TIER[tb];
   }
   return (settings.themeTypes[tb] || {}).level || DEFAULT_THEME_TIER[tb];
 }
 function isThemeTypeEnabled(tb, settings) {
+  if (!isThemeTypeAvailable(tb, settings)) return false;
   return (settings.themeTypes[tb] || {}).enabled !== false;
 }
 function getEnabledThemeTypes(settings) {
@@ -150,12 +188,12 @@ function initStrings() {
   document.querySelector('#screen-settings h2').textContent = STRINGS.settings.heading;
   if($('btn-settings-back')) $('btn-settings-back').setAttribute('aria-label', STRINGS.settings.ariaBack);
   if($('btn-settings'))      $('btn-settings').setAttribute('aria-label',      STRINGS.settings.ariaOpen);
-  // #44: Neue Settings-Strings
-  if($('settings-standard-label')) $('settings-standard-label').textContent = STRINGS.settings.standardLabel;
-  if($('settings-standard-hint'))  $('settings-standard-hint').textContent  = STRINGS.settings.standardHint;
-  if($('settings-tt-title'))       $('settings-tt-title').textContent       = STRINGS.settings.ttGroupTitle;
-  if($('settings-tt-sub'))         $('settings-tt-sub').textContent         = STRINGS.settings.ttGroupSub;
-  // #44: alte select-Felder entfernt (durch Chip-Buttons in buildSettingsUI ersetzt)
+  // Settings-Redesign: Preset-Segmente, Schnellaktionen, Titel
+  if($('settings-preset-title')) $('settings-preset-title').textContent = STRINGS.settings.presetTitle;
+  var _seg = $('settings-preset-seg');
+  if(_seg) _seg.querySelectorAll('.preset-seg-btn').forEach(function(b){ b.textContent = STRINGS.settings.presets[b.dataset.preset]; });
+  var _quick = $('settings-tt-quick');
+  if(_quick) _quick.querySelectorAll('.tt-quick-btn').forEach(function(b){ b.textContent = STRINGS.settings.quick[b.dataset.act]; });
   if($('loading-text')) $('loading-text').textContent = STRINGS.loading.default;
 }
 
@@ -846,62 +884,104 @@ async function generatePDF() {
 }
 
 /* =====================================================
-   SETTINGS (#44: ueberarbeitet — alle 20 Theme Types, Standard-Toggle)
+   SETTINGS (Redesign: Presets Einsteiger / Standard / Individuell)
 ===================================================== */
-// Refactor: Reihenfolge aus DEFAULT_THEME_TIER ableiten (Origin → Adventure → Greatness,
-// danach die drei variablen Theme Types ans Ende). Vermeidet eine zweite hardcoded Liste.
-var SETTINGS_THEME_TYPE_ORDER = (function(){
-  var order = { Origin:1, Adventure:2, Greatness:3 };
-  var regulars = Object.keys(DEFAULT_THEME_TIER)
-    .filter(function(tb){ return VARIABLE_THEME_TYPES.indexOf(tb) === -1; })
-    .sort(function(a,b){ return order[DEFAULT_THEME_TIER[a]] - order[DEFAULT_THEME_TIER[b]]; });
-  return regulars.concat(VARIABLE_THEME_TYPES);
+// Theme Types nach Tier gruppiert (Reihenfolge aus DEFAULT_THEME_TIER abgeleitet),
+// die drei variablen Typen bilden eine eigene Gruppe am Ende.
+var SETTINGS_GROUPS = (function(){
+  var tiers = ['Origin','Adventure','Greatness'];
+  var byTier = {}; var groups = tiers.map(function(t){ var g={ tier:t, types:[] }; byTier[t]=g; return g; });
+  Object.keys(DEFAULT_THEME_TIER).forEach(function(tb){
+    if (isVariableType(tb)) return;
+    byTier[DEFAULT_THEME_TIER[tb]].types.push(tb);
+  });
+  groups.push({ tier: 'Variable', types: VARIABLE_THEME_TYPES.slice() });
+  return groups;
 })();
 
 function buildSettingsUI() {
   var s = loadSettings();
+
+  // Preset-Segmente + Hinweis
+  var seg = $('settings-preset-seg');
+  if (seg) {
+    seg.querySelectorAll('.preset-seg-btn').forEach(function(b){
+      var on = b.dataset.preset === s.preset;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+  }
+  if ($('settings-preset-hint')) $('settings-preset-hint').textContent = STRINGS.settings.presetHints[s.preset];
+
   var list = $('settings-themetypes-list');
   if (!list) return;
   list.innerHTML = '';
   var levels = ['Origin','Adventure','Greatness'];
-  SETTINGS_THEME_TYPE_ORDER.forEach(function(tb){
-    var entry = s.themeTypes[tb] || { enabled: true, level: DEFAULT_THEME_TIER[tb] };
-    var isVariable = VARIABLE_THEME_TYPES.indexOf(tb) !== -1;
-    var lockedByStandard = s.standard && !isVariable;
-    var effLevel = lockedByStandard ? DEFAULT_THEME_TIER[tb] : entry.level;
-    var row = document.createElement('div');
-    row.className = 'settings-tt-row' + (entry.enabled ? '' : ' disabled') + (isVariable ? ' variable' : '');
-    var levelChips = levels.map(function(lv){
-      var sel = effLevel === lv;
-      var dis = lockedByStandard || !entry.enabled;
-      // a11y: aria-pressed signalisiert den Selektionsstatus an Screenreader
-      return '<button type="button" class="tt-level-chip tc-' + lv.toLowerCase() + (sel ? ' selected' : '') + '"' +
-             ' data-tt="' + tb + '" data-level="' + lv + '"' +
-             ' aria-pressed="' + (sel ? 'true' : 'false') + '"' +
-             (dis ? ' disabled' : '') + '>' +
-             escapeHtml(displayMight(lv)) + '</button>';
-    }).join('');
-    // a11y: aria-label macht den Toggle ohne sichtbares <label> screenreader-tauglich
-    var ttSafeId = tb.replace(/\s/g,'_');
-    var toggleAria = ' aria-label="' + escapeHtml(displayThemebook(tb)) + ' aktivieren"';
-    row.innerHTML =
-      '<div class="tt-row-head">' +
-        '<div class="tt-name">' + escapeHtml(displayThemebook(tb)) + '</div>' +
-        '<div class="toggle-wrap"><input type="checkbox" id="tt-toggle-' + ttSafeId + '" data-tt="' + tb + '"' + toggleAria + (entry.enabled ? ' checked' : '') + '><label class="toggle-visual" for="tt-toggle-' + ttSafeId + '"></label></div>' +
-      '</div>' +
-      '<div class="tt-level-chips">' + levelChips + '</div>';
-    list.appendChild(row);
+  var enabledCount = 0;
+
+  SETTINGS_GROUPS.forEach(function(group){
+    var visible = group.types.filter(function(tb){ return isThemeTypeAvailable(tb, s); });
+    if (visible.length === 0) return;
+    var isVarGroup = group.tier === 'Variable';
+
+    var title = document.createElement('div');
+    title.className = 'tt-group-title ' + (isVarGroup ? 'tc-variable' : 'tc-' + group.tier.toLowerCase());
+    title.innerHTML = '<span class="tt-group-dot"></span>' +
+      escapeHtml(isVarGroup ? STRINGS.settings.ttVariableGroup : displayMight(group.tier));
+    list.appendChild(title);
+
+    visible.forEach(function(tb){
+      var entry = s.themeTypes[tb] || { enabled: true, level: DEFAULT_THEME_TIER[tb] };
+      if (entry.enabled) enabledCount++;
+      var isVar = isVariableType(tb);
+      var editable = isMightEditable(tb, s);
+      var effLevel = effectiveLevel(tb, s);
+      var ttSafeId = tb.replace(/\s/g,'_');
+      var toggleAria = ' aria-label="' + escapeHtml(displayThemebook(tb)) + ' aktivieren"';
+
+      var mightHtml;
+      if (editable) {
+        mightHtml = '<div class="tt-level-chips">' + levels.map(function(lv){
+          var sel = effLevel === lv;
+          var dis = !entry.enabled;
+          // a11y: aria-pressed signalisiert den Selektionsstatus an Screenreader
+          return '<button type="button" class="tt-level-chip tc-' + lv.toLowerCase() + (sel ? ' selected' : '') + '"' +
+                 ' data-tt="' + tb + '" data-level="' + lv + '"' +
+                 ' aria-pressed="' + (sel ? 'true' : 'false') + '"' +
+                 (dis ? ' disabled' : '') + '>' +
+                 escapeHtml(displayMight(lv)) + '</button>';
+        }).join('') + '</div>';
+      } else {
+        // fixierte Stufe: statisches Badge statt klickbarer Chips
+        mightHtml = '<div class="tt-static-might tc-' + effLevel.toLowerCase() + '">' +
+                    escapeHtml(displayMight(effLevel)) + '</div>';
+      }
+
+      var row = document.createElement('div');
+      row.className = 'settings-tt-row' + (entry.enabled ? '' : ' disabled') + (isVar ? ' variable' : '');
+      row.innerHTML =
+        '<div class="tt-row-head">' +
+          '<div class="tt-name">' + escapeHtml(displayThemebook(tb)) + '</div>' +
+          '<div class="toggle-wrap"><input type="checkbox" id="tt-toggle-' + ttSafeId + '" data-tt="' + tb + '"' + toggleAria + (entry.enabled ? ' checked' : '') + '><label class="toggle-visual" for="tt-toggle-' + ttSafeId + '"></label></div>' +
+        '</div>' + mightHtml;
+      list.appendChild(row);
+    });
   });
-  // Event-Bindings
+
+  if ($('settings-consequence')) {
+    $('settings-consequence').innerHTML =
+      STRINGS.settings.consequence(enabledCount, Object.keys(DEFAULT_THEME_TIER).length);
+  }
+
+  // Event-Bindings (Toggles + Chips werden bei jedem Render neu erzeugt)
   list.querySelectorAll('input[type=checkbox][data-tt]').forEach(function(cb){
     cb.addEventListener('change', function(){
       var st = loadSettings();
       var tb = cb.dataset.tt;
       if (!st.themeTypes[tb]) st.themeTypes[tb] = { enabled: true, level: DEFAULT_THEME_TIER[tb] };
       st.themeTypes[tb].enabled = cb.checked;
-      // Mindestens 1 aktivierter Theme Type muss bleiben
-      var anyEnabled = Object.keys(st.themeTypes).some(function(k){ return st.themeTypes[k].enabled; });
-      if (!anyEnabled) { st.themeTypes[tb].enabled = true; }
+      // Mindestens 1 verfuegbarer Theme Type muss aktiv bleiben
+      if (getEnabledThemeTypes(st).length === 0) { st.themeTypes[tb].enabled = true; }
       saveSettings(st);
       buildSettingsUI();
     });
@@ -911,6 +991,7 @@ function buildSettingsUI() {
       if (chip.disabled) return;
       var st = loadSettings();
       var tb = chip.dataset.tt;
+      if (!isMightEditable(tb, st)) return;
       if (!st.themeTypes[tb]) st.themeTypes[tb] = { enabled: true, level: DEFAULT_THEME_TIER[tb] };
       st.themeTypes[tb].level = chip.dataset.level;
       saveSettings(st);
@@ -919,18 +1000,39 @@ function buildSettingsUI() {
   });
 }
 
+// Preset wechseln: Aktiv-Zustaende + Stufen auf den Preset-Default zuruecksetzen
+function setPreset(preset) {
+  if (PRESETS.indexOf(preset) === -1) return;
+  var st = loadSettings();
+  st.preset = preset;
+  st.themeTypes = presetThemeTypes(preset);
+  saveSettings(st);
+  buildSettingsUI();
+}
+
+// Schnellaktionen (in allen Presets verfuegbar)
+function applyQuickAction(act) {
+  var st = loadSettings();
+  var avail = Object.keys(DEFAULT_THEME_TIER).filter(function(tb){ return isThemeTypeAvailable(tb, st); });
+  if (act === 'reset') {
+    st.themeTypes = presetThemeTypes(st.preset);
+  } else if (act === 'all-on') {
+    avail.forEach(function(tb){ st.themeTypes[tb].enabled = true; });
+  } else if (act === 'all-off') {
+    // mind. 1 muss aktiv bleiben → ersten verfuegbaren Typ anlassen
+    avail.forEach(function(tb, i){ st.themeTypes[tb].enabled = (i === 0); });
+  }
+  saveSettings(st);
+  buildSettingsUI();
+}
+
 function openSettings() {
-  var s = loadSettings();
-  $('toggle-standard').checked = s.standard;
   buildSettingsUI();
   show(SCREENS.SETTINGS);
 }
 function updateSettingsUI() { buildSettingsUI(); }
-function saveSettingsFromUI() {
-  var st = loadSettings();
-  st.standard = $('toggle-standard').checked;
-  saveSettings(st);
-}
+// Settings werden bei jeder Aenderung sofort persistiert; nichts weiter zu tun.
+function saveSettingsFromUI() {}
 
 /* =====================================================
    WELCOME-PREVIEW: rotierende Theme-Karte
@@ -1024,13 +1126,16 @@ $('btn-settings').addEventListener('click',      openSettings);
 // #37 fix: Animation beim Zurück-Navigieren unterbinden
 $('btn-settings-back').addEventListener('click', function(){saveSettingsFromUI();show(SCREENS.WELCOME, true);});
 $('edit-sheet-overlay').addEventListener('click', function(e){if(e.target===$('edit-sheet-overlay')) closeEditSheet();});
-// #44: Standard-Toggle als einziger globaler Settings-Schalter, Rest wird in buildSettingsUI gebunden
-if ($('toggle-standard')) {
-  $('toggle-standard').addEventListener('change', function(){
-    var st = loadSettings();
-    st.standard = $('toggle-standard').checked;
-    saveSettings(st);
-    buildSettingsUI();
+// Settings-Redesign: Preset-Segmente + Schnellaktionen sind statisches Markup → einmalig binden.
+// (Toggles & Level-Chips werden bei jedem Render in buildSettingsUI neu gebunden.)
+if ($('settings-preset-seg')) {
+  $('settings-preset-seg').querySelectorAll('.preset-seg-btn').forEach(function(b){
+    b.addEventListener('click', function(){ setPreset(b.dataset.preset); });
+  });
+}
+if ($('settings-tt-quick')) {
+  $('settings-tt-quick').querySelectorAll('.tt-quick-btn').forEach(function(b){
+    b.addEventListener('click', function(){ applyQuickAction(b.dataset.act); });
   });
 }
 // Zoom-Verhinderung: Pinch-Zoom auf iOS Safari (ignoriert user-scalable=no seit iOS 10)
