@@ -43,9 +43,22 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .mute-btn.muted .icon-on{display:none}
 .mute-btn.muted .icon-off{display:block;color:var(--accent)}
 /* WELCOME */
-#screen-welcome{justify-content:flex-start;text-align:center;padding:60px 28px 40px;position:relative;overflow:hidden}
+#screen-welcome{justify-content:flex-start;text-align:center;padding:60px 28px 40px;position:relative;overflow:hidden;background:linear-gradient(180deg,#ecd7a6 0%,#e3d2ac 16%,#d0d2c2 38%,#b3bcb0 56%,#92a08b 72%,#6a7a4f 88%,#516037 100%)}
 .welcome-head{flex-shrink:0}
-.app-version{position:absolute;left:max(12px,env(safe-area-inset-left,12px));bottom:max(10px,env(safe-area-inset-bottom,10px));font-family:var(--sans);font-size:0.68rem;letter-spacing:0.04em;color:var(--ink-soft);opacity:0.55;user-select:none;pointer-events:none}
+/* Startseite: nebelige Tiefe (Wald -> Gebirge -> Himmel) + sanfte Nebel-Animation */
+.welcome-bg{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.welcome-head,.welcome-preview,#btn-start{position:relative;z-index:1}
+.wb-mountains{position:absolute;left:0;right:0;bottom:24%;width:100%;height:200px;opacity:0.42}
+.wb-mist{position:absolute;left:-25%;right:-25%;height:130px;background:radial-gradient(ellipse 50% 60% at 50% 50%,rgba(238,233,216,0.7),transparent 70%);filter:blur(7px)}
+.wb-mist-1{top:40%;animation:wbDrift1 46s ease-in-out infinite alternate}
+.wb-mist-2{top:57%;opacity:0.7;animation:wbDrift2 64s ease-in-out infinite alternate}
+@keyframes wbDrift1{from{transform:translateX(-7%)}to{transform:translateX(9%)}}
+@keyframes wbDrift2{from{transform:translateX(8%)}to{transform:translateX(-9%)}}
+@media(prefers-reduced-motion:reduce){.wb-mist-1,.wb-mist-2{animation:none}}
+.wb-grain{position:absolute;inset:0;opacity:0.06;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100' height='100' filter='url(%23n)'/></svg>")}
+.welcome-title{text-shadow:0 1px 16px rgba(244,234,213,0.7)}
+#btn-start{box-shadow:0 6px 18px rgba(40,30,15,0.32)}
+.app-version{position:absolute;left:max(12px,env(safe-area-inset-left,12px));bottom:max(10px,env(safe-area-inset-bottom,10px));font-family:var(--sans);font-size:0.68rem;letter-spacing:0.04em;color:#f0e6cf;opacity:0.8;text-shadow:0 1px 4px rgba(40,30,15,0.45);z-index:1;user-select:none;pointer-events:none}
 .welcome-mark{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--accent);margin-bottom:8px;letter-spacing:0.12em;text-transform:uppercase}
 .welcome-title{font-size:3.2rem;font-weight:500;font-style:italic;margin:6px 0 0;color:var(--ink);position:relative;display:inline-block}
 .welcome-title::after{content:'';position:absolute;left:50%;bottom:-8px;width:60px;height:1px;background:var(--gold);transform:translateX(-50%)}
@@ -271,13 +284,19 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
 </button>
 <div class="app">
 <section id="screen-welcome" class="screen active">
+  <div class="welcome-bg" aria-hidden="true">
+    <svg class="wb-mountains" viewBox="0 0 400 200" preserveAspectRatio="xMidYMax slice"><path d="M0,200 L0,118 L70,64 L140,108 L210,52 L290,104 L350,58 L400,92 L400,200 Z" fill="#7c8a8c"/><path d="M0,200 L0,150 L80,104 L170,150 L250,112 L330,150 L400,120 L400,200 Z" fill="#9aa69f"/></svg>
+    <div class="wb-mist wb-mist-1"></div>
+    <div class="wb-mist wb-mist-2"></div>
+    <div class="wb-grain"></div>
+  </div>
   <div class="welcome-head">
     <div class="welcome-mark"></div>
     <h1 class="welcome-title"></h1>
   </div>
   <div class="welcome-preview" id="welcome-preview"></div>
   <button class="btn btn-primary" id="btn-start"></button>
-  <div class="app-version">v2026-06-16.4</div>
+  <div class="app-version">v2026-06-16.5</div>
 </section>
 <section id="screen-swipe" class="screen">
   <div class="card-counter" id="card-counter"></div>
