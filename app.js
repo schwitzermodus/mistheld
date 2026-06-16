@@ -235,6 +235,8 @@ muteBtn.addEventListener('click',function(e){
 function applyScore(card,dir,sign) {
   var f=(dir==='yes'?1:-0.2)*sign;
   Object.entries(card.affinities||{}).forEach(function(kv){ state.affinityScores[kv[0]]=(state.affinityScores[kv[0]]||0)+f*kv[1]; });
+  // Swipe-Bias: Hooks der Karte mitzaehlen (steuert spaeter Tag-/Held-Auswahl)
+  (card.hooks||[]).forEach(function(h){ state.hookCounts[h]=(state.hookCounts[h]||0)+f; });
 }
 
 /* =====================================================
@@ -408,6 +410,51 @@ function pickQuestWithExp(pool) {
   if(ex.length>0&&Math.random()<CFG.EXPANDED_PREFERENCE) return ex[Math.floor(Math.random()*ex.length)];
   return pool[Math.floor(Math.random()*pool.length)];
 }
+
+/* =====================================================
+   SWIPE-BIAS: Hooks eines Tags/Quests gegen die geswipten hookCounts gewichten.
+   Nur positive hookCounts zaehlen (gemochte Themen ziehen an; gemiedene 0).
+===================================================== */
+function tagHooks(e){ return (e && typeof e==='object' && Array.isArray(e.hooks)) ? e.hooks : []; }
+function hookScore(e){
+  var hs=tagHooks(e), sc=0;
+  for(var i=0;i<hs.length;i++){ sc += Math.max(0, state.hookCounts[hs[i]]||0); }
+  return sc;
+}
+function weightedPickIndex(weights){
+  var total=weights.reduce(function(a,b){return a+b;},0);
+  if(total<=0) return Math.floor(Math.random()*weights.length);
+  var r=Math.random()*total;
+  for(var i=0;i<weights.length;i++){ r-=weights[i]; if(r<=0) return i; }
+  return weights.length-1;
+}
+// Tag-Auswahl: ohne Hook-Signal exakt wie bisher (Expanded-Preference), sonst hook-gewichtet
+function pickWithSwipeBias(arr, n){
+  var hasSignal = arr.some(function(e){ return hookScore(e) > 0; });
+  if(!hasSignal) return pickWithExpansionPreference(arr, n);
+  var pool=arr.slice(), out=[], target=Math.min(n,pool.length);
+  while(out.length<target && pool.length>0){
+    var weights=pool.map(function(e){ return 1 + 2.5*hookScore(e) + (isExpanded(e)?0.6:0); });
+    var idx=weightedPickIndex(weights);
+    var e=pool.splice(idx,1)[0];
+    out.push({text:tagText(e), expanded:isExpanded(e)});
+  }
+  return out;
+}
+// Quest-Auswahl analog (Quests sind Objekte {title,description,expanded?,hooks?})
+function pickQuestWithBias(pool){
+  var hasSignal = pool.some(function(q){ return hookScore(q) > 0; });
+  if(!hasSignal) return pickQuestWithExp(pool);
+  var weights=pool.map(function(q){ return 1 + 2.5*hookScore(q) + (q.expanded?0.6:0); });
+  return pool[weightedPickIndex(weights)];
+}
+// Einzelnes Element hook-gewichtet ziehen (String-Pool oder {text,hooks}-Pool, z. B. Held-Pools)
+function pickOneWithBias(arr){
+  var hasSignal = arr.some(function(e){ return hookScore(e) > 0; });
+  if(!hasSignal) return arr[Math.floor(Math.random()*arr.length)];
+  var weights=arr.map(function(e){ return 1 + 2.5*hookScore(e); });
+  return arr[weightedPickIndex(weights)];
+}
 // #44: Tag-Pools fuer Stufen-Abweichungen
 var TIER_DEVIATION_TAGS = {
   Origin:    ['unauffällig','alltäglich','schlicht','gewohnt','unscheinbar','leise','vertraut','bescheiden'],
@@ -421,10 +468,10 @@ function generateTierDeviationTag(level) {
 
 function generateTheme(name, settings) {
   var tb=THEMEBOOKS[name];
-  var titleTag=pickWithExpansionPreference(tb.titleTagSuggestions,1)[0];
-  var powerTags=pickWithExpansionPreference(tb.powerTagPool,2);
-  var weaknessTag=pickWithExpansionPreference(tb.weaknessTagPool,1)[0];
-  var quest=pickQuestWithExp(tb.questPool);
+  var titleTag=pickWithSwipeBias(tb.titleTagSuggestions,1)[0];
+  var powerTags=pickWithSwipeBias(tb.powerTagPool,2);
+  var weaknessTag=pickWithSwipeBias(tb.weaknessTagPool,1)[0];
+  var quest=pickQuestWithBias(tb.questPool);
   var type=effectiveLevel(name, settings);
   // #44: Wenn die Might-Stufe von der Quellbuch-Default abweicht → zusaetzlichen Stufen-Tag
   var tierTag = null;
@@ -476,18 +523,27 @@ function finishSwiping() {
 }
 
 /* HELD-GENERATOR */
+// Held-Pool nach Index hook-gewichtet ziehen (hooksByIndex parallel zum Pool-Array)
+function pickHeroEntry(arr, hooksByIndex){
+  var score=function(i){ var hs=(hooksByIndex&&hooksByIndex[i])||[], s=0; for(var j=0;j<hs.length;j++) s+=Math.max(0,state.hookCounts[hs[j]]||0); return s; };
+  var hasSignal=false; for(var i=0;i<arr.length;i++){ if(score(i)>0){ hasSignal=true; break; } }
+  if(!hasSignal) return arr[Math.floor(Math.random()*arr.length)];
+  var weights=arr.map(function(_,i){ return 1 + 2.5*score(i); });
+  return arr[weightedPickIndex(weights)];
+}
 function generateHero() {
   return {
     firstName:   pickRandomFrom(HERO_FIRSTNAMES),
     epithet:     pickRandomFrom(HERO_EPITHETS),
-    title:       pickRandomFrom(HERO_TITLES),
-    description: pickRandomFrom(HERO_DESCRIPTIONS)
+    title:       pickHeroEntry(HERO_TITLES, HERO_TITLE_HOOKS),
+    description: pickHeroEntry(HERO_DESCRIPTIONS, HERO_DESC_HOOKS)
   };
 }
 function rerollHeroPart(part) {
   var pools={firstName:HERO_FIRSTNAMES,epithet:HERO_EPITHETS,title:HERO_TITLES,description:HERO_DESCRIPTIONS};
+  var hookMaps={title:HERO_TITLE_HOOKS, description:HERO_DESC_HOOKS};
   var v, a=0;
-  do { v=pickRandomFrom(pools[part]); a++; } while(v===state.hero[part]&&a<5);
+  do { v = hookMaps[part] ? pickHeroEntry(pools[part], hookMaps[part]) : pickRandomFrom(pools[part]); a++; } while(v===state.hero[part]&&a<5);
   state.hero[part]=v;
 }
 
@@ -520,10 +576,10 @@ function handleReroll(ti,k) {
   var dt=getDisplayTheme(ti), tb=THEMEBOOKS[dt.themebook], s=loadSettings();
   var v;
   if      (k==='theme')            { v=generateTheme(dt.themebook,s); clearThemeEdits(ti); }
-  else if (k==='title')            { v=pickWithExpansionPreference(tb.titleTagSuggestions,1)[0]; }
-  else if (k==='pow0'||k==='pow1') { v=pickWithExpansionPreference(tb.powerTagPool,1)[0]; }
-  else if (k==='weakness')         { v=pickWithExpansionPreference(tb.weaknessTagPool,1)[0]; }
-  else if (k==='quest')            { v=pickQuestWithExp(tb.questPool); }
+  else if (k==='title')            { v=pickWithSwipeBias(tb.titleTagSuggestions,1)[0]; }
+  else if (k==='pow0'||k==='pow1') { v=pickWithSwipeBias(tb.powerTagPool,1)[0]; }
+  else if (k==='weakness')         { v=pickWithSwipeBias(tb.weaknessTagPool,1)[0]; }
+  else if (k==='quest')            { v=pickQuestWithBias(tb.questPool); }
   if(v!==undefined) addAlt(ti,k,v);
 }
 function handleNavigate(ti,k,dir) {
@@ -631,13 +687,24 @@ var FEATHER_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" st
 /* =====================================================
    SEITE 0: HELD-KARTE
 ===================================================== */
+// Top-Hooks aus den Swipes (positiv, absteigend) als lesbare Labels — fuer das Swipe-Band
+function topSwipeHooks(n){
+  return Object.keys(state.hookCounts||{})
+    .filter(function(h){ return (state.hookCounts[h]||0) > 0; })
+    .sort(function(a,b){ return state.hookCounts[b]-state.hookCounts[a]; })
+    .slice(0,n)
+    .map(function(h){ return (STRINGS.result.hookLabels && STRINGS.result.hookLabels[h]) || h; });
+}
 function buildHeroCard() {
   var h=state.hero;
   var card=document.createElement('div');
   card.className='result-card rc-hero';
+  var hooks=topSwipeHooks(2);
+  var basisHtml = hooks.length ? '<div class="rc-swipe-basis">'+escapeHtml(STRINGS.result.swipeBasis)+': '+escapeHtml(hooks.join(' · '))+'</div>' : '';
   card.innerHTML=
     '<button class="rc-edit-btn" id="rc-hero-edit" type="button">'+FEATHER_SVG+'</button>'+
     '<div class="rc-hero-eyebrow">'+escapeHtml(STRINGS.hero.eyebrow)+'</div>'+
+    basisHtml+
     '<div class="rc-section">'+
       '<div class="rc-label">'+escapeHtml(STRINGS.hero.labelName)+'</div>'+
       '<div class="rc-hero-name">'+escapeHtml(h.firstName)+' '+escapeHtml(h.epithet)+'</div>'+
@@ -662,13 +729,15 @@ function buildHeroCard() {
 function buildThemeCard(ti) {
   var dt=getDisplayTheme(ti);
   var mc=levelCssClass(dt.type);
+  var total=state.proposals[state.proposalIndex].themes.length;
   var card=document.createElement('div');
   card.className='result-card rc-theme '+mc;
   // #40: Themebook-Name oben, kein "Theme-Typ"-Label
-  // Power Tags Block: Titelschlagwort + 2 Power Tags zusammen
+  // Power Tags Block: Titel-Tag (= Power Tag mit Titelrolle) + weitere Power Tags
   // "Weakness Tag" statt "Schwäche"
   card.innerHTML=
     '<button class="rc-edit-btn" id="rtp-edit-btn" type="button">'+FEATHER_SVG+'</button>'+
+    '<div class="rc-theme-progress">'+escapeHtml(STRINGS.result.themeProgress(ti+1,total))+'</div>'+
     '<div class="rc-theme-header">'+
       '<div class="rc-theme-name">'+escapeHtml(displayThemebook(dt.themebook))+'</div>'+
       '<span class="rc-might-badge">'+escapeHtml(displayMight(dt.type))+'</span>'+
