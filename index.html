@@ -20,7 +20,9 @@
   --serif:'Cormorant Garamond','Garamond','Georgia',serif;
   /* Eine Schrift überall (Wunsch): --sans zeigt jetzt ebenfalls auf die Serife */
   --sans:'Cormorant Garamond','Garamond','Georgia',serif;
-  --might-origin:#3d5c2a;--might-adventure:#8b3a2b;--might-greatness:#2d4a6e;
+  --might-origin:#3d5c2a;--might-adventure:#8b3a2b;--might-greatness:#42525a;
+  /* LitM-Akzente verankert: Nebel-Schiefer + goldene Stunde */
+  --mist:#6e8088;--gold-glow:#d9b878;
   /* Fester Typo-Maßstab — nur diese Größen verwenden (mobil-lesbare Minima) */
   --fs-xl:2.6rem;--fs-display:1.9rem;--fs-title:1.3rem;--fs-body-lg:1.12rem;--fs-body:1rem;--fs-label:0.82rem;--fs-micro:0.72rem;
 }
@@ -104,7 +106,7 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .card-theme-tag{font-size:0.6rem;text-transform:uppercase;letter-spacing:0.09em;padding:2px 7px;border-radius:3px;font-family:var(--sans);font-weight:500}
 .card-theme-tag.tc-origin{background:rgba(61,92,42,0.1);color:var(--might-origin)}
 .card-theme-tag.tc-adventure{background:rgba(139,58,43,0.1);color:var(--might-adventure)}
-.card-theme-tag.tc-greatness{background:rgba(45,74,110,0.1);color:var(--might-greatness)}
+.card-theme-tag.tc-greatness{background:rgba(66,82,90,0.12);color:var(--might-greatness)}
 .card-theme-tag.tc-variable{background:rgba(169,134,70,0.12);color:var(--gold)}
 .card-glyph{font-size:1.8rem;color:var(--gold);margin-bottom:8px;font-family:var(--serif);font-style:italic;position:relative}
 .card-glyph::before,.card-glyph::after{content:'';display:inline-block;width:20px;height:1px;background:var(--gold);vertical-align:middle;margin:0 10px;opacity:0.6}
@@ -265,7 +267,7 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
 .tt-level-chip:disabled{cursor:default;opacity:0.4}
 .tt-level-chip.tc-origin.selected{background:rgba(61,92,42,0.14);border-color:var(--might-origin);color:var(--might-origin);font-weight:600}
 .tt-level-chip.tc-adventure.selected{background:rgba(139,58,43,0.14);border-color:var(--might-adventure);color:var(--might-adventure);font-weight:600}
-.tt-level-chip.tc-greatness.selected{background:rgba(45,74,110,0.14);border-color:var(--might-greatness);color:var(--might-greatness);font-weight:600}
+.tt-level-chip.tc-greatness.selected{background:rgba(66,82,90,0.16);border-color:var(--might-greatness);color:var(--might-greatness);font-weight:600}
 .settings-consequence{margin-top:14px;padding:10px 12px;background:var(--paper);border:1px solid var(--line-soft);border-radius:6px;font-size:0.82rem;color:var(--ink-soft);text-align:center}
 .loading-overlay{position:fixed;inset:0;background:rgba(244,234,213,0.92);display:none;align-items:center;justify-content:center;z-index:100;flex-direction:column;gap:18px;backdrop-filter:blur(2px)}
 .loading-overlay.active{display:flex}
@@ -299,7 +301,7 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
   </div>
   <div class="welcome-preview" id="welcome-preview"></div>
   <button class="btn btn-primary" id="btn-start"></button>
-  <div class="app-version">v2026-06-16.7</div>
+  <div class="app-version">v2026-06-16.8</div>
 </section>
 <section id="screen-swipe" class="screen">
   <div class="card-counter" id="card-counter"></div>
