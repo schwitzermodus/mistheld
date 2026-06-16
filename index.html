@@ -118,16 +118,46 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
    ERGEBNIS-SCREEN (#38: feste Kartengröße, Carousel)
    BUG-SCHUTZ: Kein display-Property!
 ===================================================== */
-#screen-result{padding:56px 20px 96px;overflow:hidden}
-#result-stage{
-  position:relative;
-  flex:1;
-  min-height:0;
-  overflow:hidden
-}
-#result-dots{display:flex;justify-content:center;gap:8px;padding:10px 0 4px;flex-shrink:0}
-.result-dot{width:7px;height:7px;border-radius:50%;border:none;background:var(--line);cursor:pointer;padding:0;transition:all 0.2s}
-.result-dot.active{background:var(--accent);transform:scale(1.35)}
+#screen-result{padding:0;overflow:hidden}
+/* Heldenblatt: scrollbares Charakterblatt + fixierte Aktionsleiste */
+.hb-scroll{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:calc(50px + env(safe-area-inset-top,0px)) 0 18px}
+.hb-actions{display:flex;gap:8px;padding:10px 14px;border-top:1px solid var(--line);background:var(--bg-2);flex-shrink:0;padding-bottom:max(10px,env(safe-area-inset-bottom,10px))}
+.hb-action-primary{flex:1;border:none;background:var(--ink);color:var(--bg);font-family:var(--sans);font-weight:600;font-size:0.86rem;padding:13px;border-radius:4px;cursor:pointer}
+.hb-action-primary:active{transform:scale(0.98)}
+.hb-action-ghost{flex-shrink:0;border:1px solid var(--line);background:transparent;color:var(--ink-soft);font-family:var(--sans);font-weight:600;font-size:0.86rem;padding:13px 16px;border-radius:4px;cursor:pointer}
+.hb-edit{position:absolute;right:12px;top:12px;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:rgba(250,243,223,0.6);color:var(--ink-soft);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2;padding:0}
+.hb-edit svg{width:15px;height:15px}
+.hb-edit:active{transform:scale(0.9)}
+.hb-hero{position:relative;text-align:center;padding:6px 52px 16px;border-bottom:1px solid var(--line-soft)}
+.hb-hero-eyebrow{font-family:var(--sans);font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);font-weight:600}
+.hb-hero-name{font-family:var(--serif);font-size:2rem;font-weight:600;font-style:italic;line-height:1.1;margin:4px 0 2px}
+.hb-hero-title{font-family:var(--serif);font-size:1.05rem;color:var(--accent);font-style:italic}
+.hb-hero-desc{font-size:0.84rem;color:var(--ink-soft);line-height:1.4;margin-top:8px}
+.hb-basis{font-family:var(--sans);font-size:0.66rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-top:10px}
+.hb-seclabel{font-family:var(--sans);font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin:0 0 6px}
+.hb-themes-label{padding:0 18px;margin:16px 0 2px}
+.hb-module{position:relative;padding:14px 52px 14px 18px;border-bottom:1px solid var(--line-soft)}
+.hb-story-text{font-family:var(--serif);font-size:1.05rem;line-height:1.5;color:var(--ink)}
+.hb-theme{position:relative;margin:8px 14px;border:1px solid var(--line);border-left:4px solid var(--line);border-radius:8px;background:var(--paper);box-shadow:var(--shadow-soft);overflow:hidden}
+.hb-theme.tc-origin{border-left-color:var(--might-origin)}
+.hb-theme.tc-adventure{border-left-color:var(--might-adventure)}
+.hb-theme.tc-greatness{border-left-color:var(--might-greatness)}
+.hb-theme-head{padding:12px 44px 12px 14px;cursor:pointer}
+.hb-theme-meta{font-family:var(--sans);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;display:flex;align-items:center;gap:6px}
+.hb-chev{width:7px;height:7px;border-right:2px solid var(--ink-soft);border-bottom:2px solid var(--ink-soft);transform:rotate(45deg);transition:transform 0.18s;display:inline-block;margin-left:2px}
+.hb-theme.collapsed .hb-chev{transform:rotate(-45deg)}
+.hb-titletag{font-family:var(--serif);font-size:1.3rem;font-weight:700;font-style:italic;line-height:1.15;color:var(--ink);background:rgba(169,134,70,0.13);border-left:3px solid var(--gold);padding:6px 10px;margin-top:6px}
+.hb-titletag-note{font-family:var(--sans);font-size:0.56rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-top:3px}
+.hb-theme-body{padding:4px 14px 14px}
+.hb-powertag{font-family:var(--serif);font-size:1.02rem;line-height:1.3;color:var(--ink);background:rgba(169,134,70,0.07);border-left:2px solid rgba(169,134,70,0.35);padding:6px 10px;margin-top:5px}
+.hb-tiertag{font-style:italic;color:var(--gold)}
+.hb-weakness{font-family:var(--serif);font-style:italic;font-size:1.02rem;line-height:1.3;color:#7a3010;background:rgba(170,80,20,0.08);border-left:2px solid rgba(170,80,20,0.35);padding:6px 10px;margin-top:8px}
+.hb-quest-label{font-family:var(--sans);font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-top:12px}
+.hb-quest-title{font-family:var(--serif);font-style:italic;font-weight:600;font-size:1.1rem;margin-top:2px}
+.hb-quest-desc{font-size:0.82rem;color:var(--ink-soft);line-height:1.4;margin-top:3px}
+.hb-backpack-ph{margin:14px 14px 6px;border:1px dashed var(--line);border-radius:8px;padding:14px;text-align:center;opacity:0.75}
+.hb-bp-title{font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--ink-soft)}
+.hb-bp-sub{font-family:var(--sans);font-size:0.72rem;color:var(--ink-soft);margin-top:2px}
 /* Karte füllt Stage komplett aus — gleiche Größe wie Swipe-Karten */
 .result-card{
   position:absolute;
@@ -329,7 +359,7 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
   </div>
   <div class="welcome-preview" id="welcome-preview"></div>
   <button class="btn btn-primary" id="btn-start"></button>
-  <div class="app-version">v2026-06-16.2</div>
+  <div class="app-version">v2026-06-16.3</div>
 </section>
 <section id="screen-swipe" class="screen">
   <div class="card-counter" id="card-counter"></div>
@@ -342,8 +372,11 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
   </div>
 </section>
 <section id="screen-result" class="screen">
-  <div id="result-stage"></div>
-  <div id="result-dots"></div>
+  <div class="hb-scroll" id="hb-scroll"></div>
+  <div class="hb-actions">
+    <button class="hb-action-primary" id="hb-save" type="button"></button>
+    <button class="hb-action-ghost" id="hb-restart" type="button"></button>
+  </div>
   <div id="edit-sheet-overlay">
     <div id="edit-sheet"><div class="edit-sheet-handle"></div><div id="edit-sheet-body"></div></div>
   </div>
@@ -400,9 +433,14 @@ var STRINGS={
     ariaYes:'Passt',ariaNo:'Passt nicht',ariaUndo:'Letzte Karte zurück',ariaSkip:'Restliche Karten überspringen',
   },
   result:{
-    btnAccept:'Speichern',
-    btnRestart:'Nochmal swipen',
+    btnAccept:'Speichern (PDF)',
+    btnRestart:'Neu beginnen',
     questLabel:'Quest',
+    storyLabel:'Geschichte',
+    themesLabel:'Themes',
+    titleTagNote:'Titel · zugleich Power Tag',
+    backpackLabel:'Backpack',
+    backpackSoon:'Folgt später · auch die Fellowship-Karte',
     swipeBasis:'Aus deinen Swipes',
     themeProgress:function(cur,tot){ return 'Theme '+cur+' von '+tot; },
     // Hook-Schlagwort → lesbares Label für das „Aus deinen Swipes"-Band

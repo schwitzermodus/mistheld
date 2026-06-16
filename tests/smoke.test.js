@@ -13,10 +13,9 @@ async function loadResultScreen(page) {
     state.proposalIndex = 0;
     state.edits         = {};
     state.hero          = generateHero();
-    state.resultPage    = 0;
+    state.hero.story    = composeHeroStory();
     show('screen-result');
-    renderCurrentResultPage();
-    attachResultPageSwipe();
+    renderHeldenblatt();
   });
 }
 
@@ -113,66 +112,58 @@ test('#33: Theme-Type Uebersetzungen korrekt', async ({ page }) => {
   expect(ok).toBe(true);
 });
 
-// #34 + #36: NEUER ERGEBNIS-SCREEN (Karten)
-test('#34/#36: Ergebnis-Screen zeigt Held-Karte', async ({ page }) => {
+// ERGEBNIS-BEREICH: Heldenblatt (scrollbare Charakterblatt-Seite)
+test('Heldenblatt zeigt Held-Kopf mit Name', async ({ page }) => {
   await page.goto('/');
   await loadResultScreen(page);
   await expect(page.locator('#screen-result')).toBeVisible();
-  await expect(page.locator('.result-card.rc-hero')).toBeVisible();
-  await expect(page.locator('.rc-hero-name')).toBeVisible();
+  await expect(page.locator('.hb-hero')).toBeVisible();
+  await expect(page.locator('.hb-hero-name')).toBeVisible();
 });
 
-test('#34/#36: Held-Karte hat Stift-Icon', async ({ page }) => {
+test('Heldenblatt: Held-Kopf hat Bearbeiten-Feder', async ({ page }) => {
   await page.goto('/');
   await loadResultScreen(page);
-  await expect(page.locator('#rc-hero-edit')).toBeVisible();
+  await expect(page.locator('.hb-edit[data-edit="hero"]')).toBeVisible();
 });
 
-test('#34/#36: Dots-Navigation vorhanden', async ({ page }) => {
+test('Heldenblatt zeigt Geschichte und vier Themes', async ({ page }) => {
   await page.goto('/');
   await loadResultScreen(page);
-  const count = await page.locator('.result-dot').count();
-  expect(count).toBe(6); // 1 Held + 4 Themes + 1 Speichern
+  await expect(page.locator('.hb-story-text')).toBeVisible();
+  await expect(page.locator('.hb-theme')).toHaveCount(4);
 });
 
-test('#34: Theme-Karte hat Stift-Icon und kein X vor Schwaeche', async ({ page }) => {
+test('Heldenblatt: Theme hat Feder, Titel-Tag und Weakness ohne X', async ({ page }) => {
   await page.goto('/');
   await loadResultScreen(page);
-  // Zur Theme-Karte navigieren
-  await page.evaluate(() => { state.resultPage = 1; renderCurrentResultPage(); });
-  await expect(page.locator('.result-card.rc-theme')).toBeVisible();
-  await expect(page.locator('#rtp-edit-btn')).toBeVisible();
-  await expect(page.locator('.rc-weakness-tag')).toBeVisible();
-  // Kein X-Praefix in der Schwaechedarstellung
-  const text = await page.locator('.rc-weakness-tag').textContent();
+  await expect(page.locator('.hb-edit[data-edit="theme"]')).toHaveCount(4);
+  await expect(page.locator('.hb-titletag').first()).toBeVisible();
+  await expect(page.locator('.hb-weakness').first()).toBeVisible();
+  const text = await page.locator('.hb-weakness').first().textContent();
   expect(text).not.toMatch(/^\s*[Xx✕]/);
 });
 
-test('#34: Edit-Sheet durch Stift-Icon oeffnen', async ({ page }) => {
+test('Heldenblatt: Theme-Feder oeffnet Edit-Sheet', async ({ page }) => {
   await page.goto('/');
   await loadResultScreen(page);
-  await page.evaluate(() => { state.resultPage = 1; renderCurrentResultPage(); });
-  await page.locator('#rtp-edit-btn').click();
+  await page.locator('.hb-edit[data-edit="theme"]').first().click();
   await expect(page.locator('#edit-sheet-overlay')).toHaveClass(/active/);
 });
 
-test('#36: Held-Edit-Sheet durch Stift-Icon oeffnen', async ({ page }) => {
+test('Heldenblatt: Held-Feder oeffnet Edit-Sheet', async ({ page }) => {
   await page.goto('/');
   await loadResultScreen(page);
-  await page.locator('#rc-hero-edit').click();
+  await page.locator('.hb-edit[data-edit="hero"]').click();
   await expect(page.locator('#edit-sheet-overlay')).toHaveClass(/active/);
   await expect(page.locator('.es-reroll-btn').first()).toBeVisible();
 });
 
-test('#34/#36: Letzte Seite zeigt Speichern', async ({ page }) => {
+test('Heldenblatt: Aktionsleiste mit Speichern + Neu', async ({ page }) => {
   await page.goto('/');
   await loadResultScreen(page);
-  await page.evaluate(() => {
-    state.resultPage = totalResultPages() - 1;
-    renderCurrentResultPage();
-  });
-  await expect(page.locator('.result-card.rc-save')).toBeVisible();
-  await expect(page.locator('#save-pdf')).toBeVisible();
+  await expect(page.locator('#hb-save')).toBeVisible();
+  await expect(page.locator('#hb-restart')).toBeVisible();
 });
 
 // #35: PHASEN-BALANCE

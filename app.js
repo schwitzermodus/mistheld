@@ -168,7 +168,7 @@ function pickWithExpansionPreference(arr, n) {
     if(ei.length>0&&Math.random()<CFG.EXPANDED_PREFERENCE) idx=ei[Math.floor(Math.random()*ei.length)];
     else idx=Math.floor(Math.random()*pool.length);
     var e=pool.splice(idx,1)[0];
-    out.push({text:tagText(e), expanded:isExpanded(e)});
+    out.push({text:tagText(e), expanded:isExpanded(e), hooks:tagHooks(e)});
   }
   return out;
 }
@@ -195,6 +195,8 @@ function initStrings() {
   var _quick = $('settings-tt-quick');
   if(_quick) _quick.querySelectorAll('.tt-quick-btn').forEach(function(b){ b.textContent = STRINGS.settings.quick[b.dataset.act]; });
   if($('loading-text')) $('loading-text').textContent = STRINGS.loading.default;
+  if($('hb-save'))    $('hb-save').textContent    = STRINGS.result.btnAccept;
+  if($('hb-restart')) $('hb-restart').textContent = STRINGS.result.btnRestart;
 }
 
 // #37 fix: Animation beim Zurück-Navigieren unterbinden
@@ -437,7 +439,7 @@ function pickWithSwipeBias(arr, n){
     var weights=pool.map(function(e){ return 1 + 2.5*hookScore(e) + (isExpanded(e)?0.6:0); });
     var idx=weightedPickIndex(weights);
     var e=pool.splice(idx,1)[0];
-    out.push({text:tagText(e), expanded:isExpanded(e)});
+    out.push({text:tagText(e), expanded:isExpanded(e), hooks:tagHooks(e)});
   }
   return out;
 }
@@ -514,10 +516,10 @@ function finishSwiping() {
   state.busy=true; showLoading(STRINGS.loading.generating);
   setTimeout(function(){
     state.proposals=[generateProposal('initial')]; state.proposalIndex=0; state.edits={};
-    state.hero=generateHero(); state.resultPage=0;
+    state.hero=generateHero(); state.hero.story=composeHeroStory(); HB_COLLAPSED={};
     show(SCREENS.RESULT);
     requestAnimationFrame(function(){
-      renderCurrentResultPage(); attachResultPageSwipe(); hideLoading(); state.busy=false;
+      renderHeldenblatt(); hideLoading(); state.busy=false;
     });
   }, CFG.LOADING_DELAY_MS);
 }
@@ -588,8 +590,133 @@ function handleNavigate(ti,k,dir) {
 }
 
 /* =====================================================
-   ERGEBNIS-SCREEN (#38: Carousel-Animation)
+   ERGEBNIS-BEREICH: Heldenblatt (eine scrollbare Charakterblatt-Seite)
 ===================================================== */
+var HB_COLLAPSED = {}; // ti -> true wenn Theme eingeklappt (Default: ausgeklappt)
+
+// Story-Bausteine: clientseitig montiert, hook-getaggt. Bewusst pronomen-arm
+// gehalten (kein er/sie auf den Helden), damit die Montage grammatisch trägt.
+var STORY_FRAGMENTS = {
+  adel:        ['Edles Blut öffnet Türen — und macht zugleich zur Zielscheibe.'],
+  'außenseiter':['Dazugehören war nie einfach; manche Wege geht man besser allein.'],
+  geheimnis:   ['Geheimnisse folgen wie Schatten, die sich nicht abschütteln lassen.'],
+  magie:       ['Etwas Übernatürliches liegt in der Luft, wohin der Weg auch führt.'],
+  wissen:      ['Wissen, das andere meiden, wiegt schwer auf den Schultern.'],
+  handwerk:    ['Geschickte Hände finden überall Arbeit — und stillen Respekt.'],
+  glaube:      ['Ein Schwur wurde geleistet, und solche Schwüre brechen nicht leicht.'],
+  kampf:       ['Der Krieg ist vorbei, doch im Inneren endet er nie ganz.'],
+  natur:       ['Die Wildnis ist näher und vertrauter als jede Stadtmauer.'],
+  stadt:       ['In den Gassen kennt man jeden Namen und jede offene Schuld.'],
+  verlust:     ['Der Verlust sitzt tief; manche Wunden vernarben nie ganz.'],
+  macht:       ['Macht ruft nach mehr Macht — und zieht ebenso viele Neider an.'],
+  fahrend:     ['Kein Ort hält lange; die offene Straße ruft immer wieder.'],
+  schicksal:   ['Ein altes Schicksal wartet — ob gewollt oder nicht.']
+};
+var STORY_CLOSINGS = [
+  'Wie diese Geschichte endet? Sie hat gerade erst begonnen.',
+  'Erzählt ist diese Geschichte damit noch lange nicht.',
+  'Was bleibt, ist ein Name, den man sich merken wird.'
+];
+// Top-Hooks aus den vier Themes (gewichtet) als Story-Grundlage
+function storyHooksFromThemes(n){
+  var counts={};
+  state.proposals[state.proposalIndex].themes.forEach(function(_,ti){
+    var dt=getDisplayTheme(ti);
+    [dt.titleTag, dt.powerTags[0], dt.powerTags[1]].forEach(function(t){
+      (((t&&t.hooks))||[]).forEach(function(h){ counts[h]=(counts[h]||0)+1; });
+    });
+  });
+  return Object.keys(counts).sort(function(a,b){return counts[b]-counts[a];}).slice(0,n);
+}
+function composeHeroStory(){
+  var h=state.hero, t0=getDisplayTheme(0);
+  var parts=[ h.firstName+' '+h.epithet+' — '+capitalizeFirst(t0.titleTag.text)+'.' ];
+  storyHooksFromThemes(2).forEach(function(hk){
+    var pool=STORY_FRAGMENTS[hk];
+    if(pool&&pool.length) parts.push(pool[Math.floor(Math.random()*pool.length)]);
+  });
+  parts.push(STORY_CLOSINGS[Math.floor(Math.random()*STORY_CLOSINGS.length)]);
+  return parts.join(' ');
+}
+
+// --- Sektions-Bausteine (modular; Backpack/Fellowship lassen sich hier einschieben) ---
+function hbHeroSection(){
+  var h=state.hero, hooks=topSwipeHooks(2);
+  var basis=hooks.length?'<div class="hb-basis">'+escapeHtml(STRINGS.result.swipeBasis)+': '+escapeHtml(hooks.join(' · '))+'</div>':'';
+  return '<div class="hb-hero">'+
+    '<button class="hb-edit" data-edit="hero" type="button" aria-label="Held bearbeiten">'+FEATHER_SVG+'</button>'+
+    '<div class="hb-hero-eyebrow">'+escapeHtml(STRINGS.hero.eyebrow)+'</div>'+
+    '<div class="hb-hero-name">'+escapeHtml(h.firstName)+' '+escapeHtml(h.epithet)+'</div>'+
+    (h.title?'<div class="hb-hero-title">'+escapeHtml(h.title)+'</div>':'')+
+    '<div class="hb-hero-desc">'+escapeHtml(h.description)+'</div>'+
+    basis+
+  '</div>';
+}
+function hbStorySection(){
+  return '<div class="hb-module hb-story">'+
+    '<button class="hb-edit" data-edit="story" type="button" aria-label="Geschichte neu würfeln">'+FEATHER_SVG+'</button>'+
+    '<div class="hb-seclabel">'+escapeHtml(STRINGS.result.storyLabel)+'</div>'+
+    '<div class="hb-story-text">'+escapeHtml(state.hero.story||'')+'</div>'+
+  '</div>';
+}
+function hbThemeSection(ti){
+  var dt=getDisplayTheme(ti), mc=levelCssClass(dt.type), collapsed=!!HB_COLLAPSED[ti];
+  var body = collapsed ? '' :
+    '<div class="hb-theme-body">'+
+      '<div class="hb-powertag">'+displayTag(dt.powerTags[0].text)+'</div>'+
+      '<div class="hb-powertag">'+displayTag(dt.powerTags[1].text)+'</div>'+
+      (dt.tierTag?'<div class="hb-powertag hb-tiertag">'+displayTag(dt.tierTag.text)+'</div>':'')+
+      '<div class="hb-weakness">'+displayTag(dt.weaknessTag.text)+'</div>'+
+      '<div class="hb-quest-label">'+escapeHtml(STRINGS.result.questLabel)+'</div>'+
+      '<div class="hb-quest-title">„'+escapeHtml(dt.quest.title)+'“</div>'+
+      '<div class="hb-quest-desc">'+escapeHtml(dt.quest.description)+'</div>'+
+    '</div>';
+  return '<div class="hb-theme '+mc+(collapsed?' collapsed':'')+'">'+
+    '<button class="hb-edit" data-edit="theme" data-ti="'+ti+'" type="button" aria-label="Theme bearbeiten">'+FEATHER_SVG+'</button>'+
+    '<div class="hb-theme-head" data-toggle="'+ti+'">'+
+      '<div class="hb-theme-meta">'+escapeHtml(displayThemebook(dt.themebook))+' · '+escapeHtml(displayMight(dt.type))+'<span class="hb-chev"></span></div>'+
+      '<div class="hb-titletag">'+displayTag(dt.titleTag.text)+'</div>'+
+      '<div class="hb-titletag-note">'+escapeHtml(STRINGS.result.titleTagNote)+'</div>'+
+    '</div>'+ body +
+  '</div>';
+}
+function hbBackpackPlaceholder(){
+  return '<div class="hb-backpack-ph">'+
+    '<div class="hb-bp-title">'+escapeHtml(STRINGS.result.backpackLabel)+'</div>'+
+    '<div class="hb-bp-sub">'+escapeHtml(STRINGS.result.backpackSoon)+'</div>'+
+  '</div>';
+}
+function renderHeldenblatt(){
+  var scroll=$('hb-scroll'); if(!scroll) return;
+  var st=scroll.scrollTop; // Scroll-Position über Re-Render erhalten
+  var n=state.proposals[state.proposalIndex].themes.length;
+  var html=hbHeroSection()+hbStorySection()+'<div class="hb-seclabel hb-themes-label">'+escapeHtml(STRINGS.result.themesLabel)+'</div>';
+  for(var i=0;i<n;i++) html+=hbThemeSection(i);
+  html+=hbBackpackPlaceholder();
+  scroll.innerHTML=html;
+  scroll.scrollTop=st;
+  bindHeldenblatt(scroll);
+}
+function bindHeldenblatt(scroll){
+  scroll.querySelectorAll('.hb-edit').forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      e.stopPropagation();
+      var k=btn.dataset.edit;
+      if(k==='hero') openHeroEditSheet();
+      else if(k==='story'){ state.hero.story=composeHeroStory(); renderHeldenblatt(); }
+      else if(k==='theme') openEditSheet(parseInt(btn.dataset.ti));
+    });
+  });
+  scroll.querySelectorAll('.hb-theme-head').forEach(function(head){
+    head.addEventListener('click', function(){
+      var ti=parseInt(head.dataset.toggle);
+      HB_COLLAPSED[ti]=!HB_COLLAPSED[ti];
+      renderHeldenblatt();
+    });
+  });
+}
+
+/* (Karussell — veraltet, wird nicht mehr aufgerufen; Aufräumen folgt) */
 function totalResultPages() {
   if(!state.proposals.length) return 1;
   return 1 + state.proposals[state.proposalIndex].themes.length + 1;
@@ -822,7 +949,7 @@ function openHeroEditSheet() {
   body.querySelectorAll('.es-reroll-btn').forEach(function(btn){
     btn.addEventListener('click',function(){
       rerollHeroPart(btn.dataset.part); openHeroEditSheet();
-      rerenderResultCard(buildHeroCard);
+      renderHeldenblatt();
     });
   });
   $('edit-sheet-overlay').classList.add('active');
@@ -861,14 +988,14 @@ function openEditSheet(ti) {
     btn.addEventListener('click',function(){
       handleReroll(parseInt(btn.dataset.ti),btn.dataset.k);
       openEditSheet(ti);
-      rerenderResultCard(function(){ return buildThemeCard(ti); });
+      renderHeldenblatt();
     });
   });
   body.querySelectorAll('.es-nav-btn').forEach(function(btn){
     btn.addEventListener('click',function(){
       handleNavigate(parseInt(btn.dataset.ti),btn.dataset.k,parseInt(btn.dataset.dir));
       openEditSheet(ti);
-      rerenderResultCard(function(){ return buildThemeCard(ti); });
+      renderHeldenblatt();
     });
   });
   var fr=$('es-full-reroll');
@@ -1207,6 +1334,9 @@ $('btn-skip').addEventListener('click',    skipRemainingSwipes);
 $('btn-settings').addEventListener('click',      openSettings);
 // #37 fix: Animation beim Zurück-Navigieren unterbinden
 $('btn-settings-back').addEventListener('click', function(){saveSettingsFromUI();show(SCREENS.WELCOME, true);});
+// Heldenblatt-Aktionsleiste: Speichern (PDF) + Neu beginnen (zurück zur Startseite)
+if($('hb-save'))    $('hb-save').addEventListener('click', generatePDF);
+if($('hb-restart')) $('hb-restart').addEventListener('click', function(){ document.body.classList.remove('swipe-active'); show(SCREENS.WELCOME, true); });
 $('edit-sheet-overlay').addEventListener('click', function(e){if(e.target===$('edit-sheet-overlay')) closeEditSheet();});
 // Settings-Redesign: Preset-Segmente + Schnellaktionen sind statisches Markup → einmalig binden.
 // (Toggles & Level-Chips werden bei jedem Render in buildSettingsUI neu gebunden.)
