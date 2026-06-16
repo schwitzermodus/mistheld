@@ -685,11 +685,12 @@ function hbBackpackPlaceholder(){
     '<div class="hb-bp-sub">'+escapeHtml(STRINGS.result.backpackSoon)+'</div>'+
   '</div>';
 }
+function hbDivider(){ return '<div class="hb-divider" aria-hidden="true"><span class="hb-divider-mark">❖</span></div>'; }
 function renderHeldenblatt(){
   var scroll=$('hb-scroll'); if(!scroll) return;
   var st=scroll.scrollTop; // Scroll-Position über Re-Render erhalten
   var n=state.proposals[state.proposalIndex].themes.length;
-  var html=hbHeroSection()+hbStorySection()+'<div class="hb-seclabel hb-themes-label">'+escapeHtml(STRINGS.result.themesLabel)+'</div>';
+  var html=hbHeroSection()+hbDivider()+hbStorySection()+hbDivider()+'<div class="hb-seclabel hb-themes-label">'+escapeHtml(STRINGS.result.themesLabel)+'</div>';
   for(var i=0;i<n;i++) html+=hbThemeSection(i);
   html+=hbBackpackPlaceholder();
   scroll.innerHTML=html;
