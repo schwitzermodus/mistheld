@@ -141,9 +141,8 @@ function getEnabledThemeTypes(settings) {
 
 var state = {
   cardIndex:0, shuffledCards:[], swipes:[], affinityScores:{}, hookCounts:{},
-  proposals:[], proposalIndex:0, busy:false, edits:{}, hero:null, resultPage:0
+  proposals:[], proposalIndex:0, busy:false, edits:{}, hero:null
 };
-var RESULT_ANIMATING = false;
 
 var $ = function(id){ return document.getElementById(id); };
 var $$ = function(sel){ return document.querySelectorAll(sel); };
@@ -271,7 +270,7 @@ function diversifyFirstN(cards, n) {
 
 function startSwipe() {
   state.cardIndex=0; state.swipes=[]; state.affinityScores={}; state.hookCounts={};
-  state.proposals=[]; state.proposalIndex=0; state.edits={}; state.hero=null; state.resultPage=0; state.busy=false;
+  state.proposals=[]; state.proposalIndex=0; state.edits={}; state.hero=null; state.busy=false;
   state.shuffledCards = diversifyFirstN(PHASES[0].cards, CFG.MIN_SWIPES_FOR_SKIP);
   document.body.classList.add('swipe-active');
   show(SCREENS.SWIPE);
@@ -716,104 +715,11 @@ function bindHeldenblatt(scroll){
   });
 }
 
-/* (Karussell — veraltet, wird nicht mehr aufgerufen; Aufräumen folgt) */
-function totalResultPages() {
-  if(!state.proposals.length) return 1;
-  return 1 + state.proposals[state.proposalIndex].themes.length + 1;
-}
-
-// Baut Karten-Element ohne es einzufügen
-function buildPageCard() {
-  var p=state.resultPage, n=state.proposals[state.proposalIndex].themes.length;
-  if(p===0)    return buildHeroCard();
-  else if(p<=n) return buildThemeCard(p-1);
-  else          return buildSaveCard();
-}
-
-// Navigation mit Slide-Animation (#38)
-function navigateResult(dir) {
-  if (RESULT_ANIMATING) return;
-  var np = state.resultPage + dir;
-  if (np < 0 || np >= totalResultPages()) return;
-  state.resultPage = np;
-  var stage = $('result-stage');
-  var oldCard = stage.querySelector('.result-card');
-  var newCard = buildPageCard();
-  updateResultNav();
-  if (oldCard) {
-    RESULT_ANIMATING = true;
-    newCard.style.transform = dir > 0 ? 'translateX(100%)' : 'translateX(-100%)';
-    newCard.style.transition = 'none';
-    oldCard.style.transition = 'none';
-    stage.appendChild(newCard);
-    newCard.getBoundingClientRect(); // reflow
-    var easing = 'transform 0.28s cubic-bezier(0.25,0.46,0.45,0.94)';
-    newCard.style.transition = easing;
-    oldCard.style.transition = easing;
-    newCard.style.transform = 'translateX(0)';
-    oldCard.style.transform = dir > 0 ? 'translateX(-100%)' : 'translateX(100%)';
-    var toRemove = oldCard;
-    toRemove.addEventListener('transitionend', function() {
-      if (toRemove.parentNode) toRemove.parentNode.removeChild(toRemove);
-      RESULT_ANIMATING = false;
-    }, {once: true});
-  } else {
-    stage.innerHTML = '';
-    stage.appendChild(newCard);
-  }
-}
-
-// Direkte Darstellung ohne Animation (für Dots, Init)
-function renderCurrentResultPage() {
-  var stage = $('result-stage');
-  stage.innerHTML = '';
-  stage.appendChild(buildPageCard());
-  updateResultNav();
-}
-
-// Refactor: ersetzt das 4x duplizierte Pattern aus den Edit-Sheets,
-// das eine einzelne Result-Karte austauscht (Held/Theme) und die Dots aktualisiert.
-function rerenderResultCard(cardBuilder) {
-  var stage = $('result-stage');
-  stage.innerHTML = '';
-  stage.appendChild(cardBuilder());
-  updateResultNav();
-}
-
-function updateResultNav() {
-  var total=totalResultPages(), cur=state.resultPage;
-  var dotsEl=$('result-dots'); dotsEl.innerHTML='';
-  for(var i=0;i<total;i++) {
-    var d=document.createElement('button');
-    d.type='button'; d.className='result-dot'+(i===cur?' active':'');
-    (function(idx){d.addEventListener('click',function(){
-      if (!RESULT_ANIMATING) { state.resultPage=idx; renderCurrentResultPage(); }
-    });})(i);
-    dotsEl.appendChild(d);
-  }
-}
-
-function attachResultPageSwipe() {
-  var stage=$('result-stage');
-  var sx=0,sy=0,tracking=false;
-  stage.addEventListener('pointerdown',function(e){sx=e.clientX;sy=e.clientY;tracking=true;},{passive:true});
-  stage.addEventListener('pointerup',function(e){
-    if(!tracking) return; tracking=false;
-    if($('edit-sheet-overlay').classList.contains('active')) return;
-    var dx=e.clientX-sx,dy=e.clientY-sy;
-    if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.5) navigateResult(dx<0?1:-1);
-  },{passive:true});
-  stage.addEventListener('pointercancel',function(){tracking=false;},{passive:true});
-}
-
 /* =====================================================
-   #39: Feder-Icon statt Stift
+   Feder-Icon (Bearbeiten)
 ===================================================== */
-var FEATHER_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><line x1="17.5" y1="15" x2="9" y2="15"/></svg>';
+var FEATHER_SVG ='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><line x1="17.5" y1="15" x2="9" y2="15"/></svg>';
 
-/* =====================================================
-   SEITE 0: HELD-KARTE
-===================================================== */
 // Top-Hooks aus den Swipes (positiv, absteigend) als lesbare Labels — fuer das Swipe-Band
 function topSwipeHooks(n){
   return Object.keys(state.hookCounts||{})
@@ -822,111 +728,6 @@ function topSwipeHooks(n){
     .slice(0,n)
     .map(function(h){ return (STRINGS.result.hookLabels && STRINGS.result.hookLabels[h]) || h; });
 }
-function buildHeroCard() {
-  var h=state.hero;
-  var card=document.createElement('div');
-  card.className='result-card rc-hero';
-  var hooks=topSwipeHooks(2);
-  var basisHtml = hooks.length ? '<div class="rc-swipe-basis">'+escapeHtml(STRINGS.result.swipeBasis)+': '+escapeHtml(hooks.join(' · '))+'</div>' : '';
-  card.innerHTML=
-    '<button class="rc-edit-btn" id="rc-hero-edit" type="button">'+FEATHER_SVG+'</button>'+
-    '<div class="rc-hero-eyebrow">'+escapeHtml(STRINGS.hero.eyebrow)+'</div>'+
-    basisHtml+
-    '<div class="rc-section">'+
-      '<div class="rc-label">'+escapeHtml(STRINGS.hero.labelName)+'</div>'+
-      '<div class="rc-hero-name">'+escapeHtml(h.firstName)+' '+escapeHtml(h.epithet)+'</div>'+
-    '</div>'+
-    '<div class="rc-divider"></div>'+
-    '<div class="rc-section">'+
-      '<div class="rc-label">'+escapeHtml(STRINGS.hero.labelTitle)+'</div>'+
-      '<div class="rc-hero-title">'+escapeHtml(h.title)+'</div>'+
-    '</div>'+
-    '<div class="rc-divider"></div>'+
-    '<div class="rc-section">'+
-      '<div class="rc-label">'+escapeHtml(STRINGS.hero.labelDescription)+'</div>'+
-      '<div class="rc-hero-description">'+escapeHtml(h.description)+'</div>'+
-    '</div>';
-  card.querySelector('#rc-hero-edit').addEventListener('click', openHeroEditSheet);
-  return card;
-}
-
-/* =====================================================
-   SEITEN 1-n: THEME-KARTE (#40: zentriert, Struktur)
-===================================================== */
-function buildThemeCard(ti) {
-  var dt=getDisplayTheme(ti);
-  var mc=levelCssClass(dt.type);
-  var total=state.proposals[state.proposalIndex].themes.length;
-  var card=document.createElement('div');
-  card.className='result-card rc-theme '+mc;
-  // #40: Themebook-Name oben, kein "Theme-Typ"-Label
-  // Power Tags Block: Titel-Tag (= Power Tag mit Titelrolle) + weitere Power Tags
-  // "Weakness Tag" statt "Schwäche"
-  card.innerHTML=
-    '<button class="rc-edit-btn" id="rtp-edit-btn" type="button">'+FEATHER_SVG+'</button>'+
-    '<div class="rc-theme-progress">'+escapeHtml(STRINGS.result.themeProgress(ti+1,total))+'</div>'+
-    '<div class="rc-theme-header">'+
-      '<div class="rc-theme-name">'+escapeHtml(displayThemebook(dt.themebook))+'</div>'+
-      '<span class="rc-might-badge">'+escapeHtml(displayMight(dt.type))+'</span>'+
-    '</div>'+
-    '<div class="rc-divider"></div>'+
-    '<div class="rc-theme-section">'+
-      '<div class="rc-label">Power Tags</div>'+
-      '<div class="rc-title-tag">'+displayTag(dt.titleTag.text)+'</div>'+
-      '<div class="rc-power-tag">'+displayTag(dt.powerTags[0].text)+'</div>'+
-      '<div class="rc-power-tag">'+displayTag(dt.powerTags[1].text)+'</div>'+
-      (dt.tierTag ? '<div class="rc-tier-tag">'+displayTag(dt.tierTag.text)+'</div>' : '')+
-    '</div>'+
-    '<div class="rc-theme-section">'+
-      '<div class="rc-label">Weakness Tag</div>'+
-      '<div class="rc-weakness-tag">'+displayTag(dt.weaknessTag.text)+'</div>'+
-    '</div>'+
-    '<div class="rc-theme-section">'+
-      '<div class="rc-label">'+escapeHtml(STRINGS.result.questLabel)+'</div>'+
-      '<div class="rc-quest-title">„'+escapeHtml(dt.quest.title)+'“</div>'+
-      '<div class="rc-quest-desc">'+escapeHtml(dt.quest.description)+'</div>'+
-    '</div>';
-  card.querySelector('#rtp-edit-btn').addEventListener('click', function(){ openEditSheet(ti); });
-  return card;
-}
-
-/* =====================================================
-   LETZTE SEITE: ÜBERSICHT (#41)
-===================================================== */
-function buildSaveCard() {
-  var h=state.hero, prop=state.proposals[state.proposalIndex];
-  // #41: 4 kompakte Theme-Kacheln
-  var tiles = prop.themes.map(function(_,ti){
-    var dt=getDisplayTheme(ti);
-    var mc=levelCssClass(dt.type);
-    return '<div class="ot-tile '+mc+'">'+
-      '<div class="ot-type">'+escapeHtml(displayThemebook(dt.themebook))+'</div>'+
-      '<div class="ot-tags">'+
-        '<span class="ot-title">'+displayTag(dt.titleTag.text)+'</span>'+
-        '<span class="ot-power">'+displayTag(dt.powerTags[0].text)+'</span>'+
-        '<span class="ot-power">'+displayTag(dt.powerTags[1].text)+'</span>'+
-        (dt.tierTag ? '<span class="ot-tier">'+displayTag(dt.tierTag.text)+'</span>' : '')+
-        '<span class="ot-weakness">'+displayTag(dt.weaknessTag.text)+'</span>'+
-      '</div>'+
-      '<div class="ot-quest">„'+escapeHtml(dt.quest.title)+'“</div>'+
-    '</div>';
-  }).join('');
-  var card=document.createElement('div');
-  card.className='result-card rc-save';
-  card.innerHTML=
-    '<div class="save-overview-title">Übersicht</div>'+
-    '<div class="save-hero-name">'+escapeHtml(h.firstName)+' '+escapeHtml(h.epithet)+'</div>'+
-    '<div class="save-hero-title">'+escapeHtml(h.title)+'</div>'+
-    '<div class="overview-tiles">'+tiles+'</div>'+
-    '<div class="save-actions">'+
-      '<button class="save-btn-primary" id="save-pdf">'+escapeHtml(STRINGS.result.btnAccept)+'</button>'+
-      '<button class="save-btn-ghost" id="save-restart">'+escapeHtml(STRINGS.result.btnRestart)+'</button>'+
-    '</div>';
-  card.querySelector('#save-pdf').addEventListener('click', generatePDF);
-  card.querySelector('#save-restart').addEventListener('click', function(){ document.body.classList.remove('swipe-active'); show(SCREENS.WELCOME, true); });
-  return card;
-}
-
 /* =====================================================
    EDIT SHEETS
 ===================================================== */

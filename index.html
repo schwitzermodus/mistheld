@@ -158,85 +158,6 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .hb-backpack-ph{margin:14px 14px 6px;border:1px dashed var(--line);border-radius:8px;padding:14px;text-align:center;opacity:0.75}
 .hb-bp-title{font-family:var(--serif);font-size:1.1rem;font-weight:600;color:var(--ink-soft)}
 .hb-bp-sub{font-family:var(--sans);font-size:0.72rem;color:var(--ink-soft);margin-top:2px}
-/* Karte füllt Stage komplett aus — gleiche Größe wie Swipe-Karten */
-.result-card{
-  position:absolute;
-  inset:0;
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:8px;
-  box-shadow:var(--shadow);
-  overflow-y:auto;
-  -webkit-overflow-scrolling:touch
-}
-/* #39: Feder-Icon */
-.rc-edit-btn{
-  position:absolute;top:10px;right:10px;
-  width:34px;height:34px;border-radius:50%;
-  border:1px solid var(--line);background:var(--bg);
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;color:var(--gold);transition:all 0.15s;z-index:2
-}
-.rc-edit-btn:active{transform:scale(0.9);background:var(--bg-2)}
-.rc-edit-btn svg{width:15px;height:15px}
-.rc-label{font-size:0.62rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--ink-soft);margin-bottom:5px;font-family:var(--sans);text-align:center}
-.rc-divider{height:1px;background:var(--line-soft)}
-.rc-section{padding:10px 16px;text-align:center}
-/* HELD-KARTE */
-.rc-hero{padding:0}
-.rc-hero-eyebrow{font-size:0.62rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--accent);font-weight:600;padding:14px 16px 0;font-family:var(--sans);text-align:center}
-.rc-hero-name{font-family:var(--serif);font-size:1.9rem;font-weight:600;font-style:italic;color:var(--ink);line-height:1.15;text-align:center}
-.rc-hero-title{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink-soft);line-height:1.4;text-align:center}
-.rc-hero-description{font-family:var(--serif);font-size:1.0rem;line-height:1.6;color:var(--ink);text-align:center}
-/* THEME-KARTE (#40: zentriert, neu strukturiert) */
-.rc-theme{padding:0;border-left-width:4px}
-.rc-theme.tc-origin{border-left-color:var(--might-origin)}
-.rc-theme.tc-adventure{border-left-color:var(--might-adventure)}
-.rc-theme.tc-greatness{border-left-color:var(--might-greatness)}
-.rc-theme-header{padding:14px 48px 12px 48px;border-bottom:1px solid var(--line-soft);text-align:center}
-.rc-theme-name{font-family:var(--serif);font-size:1.6rem;font-weight:600;line-height:1.15;margin-bottom:5px}
-.tc-origin .rc-theme-name{color:var(--might-origin)}
-.tc-adventure .rc-theme-name{color:var(--might-adventure)}
-.tc-greatness .rc-theme-name{color:var(--might-greatness)}
-.rc-might-badge{font-size:0.62rem;text-transform:uppercase;letter-spacing:0.14em;padding:2px 8px;border-radius:3px;display:inline-block}
-.tc-origin .rc-might-badge{background:rgba(61,92,42,0.1);color:var(--might-origin)}
-.tc-adventure .rc-might-badge{background:rgba(139,58,43,0.1);color:var(--might-adventure)}
-.tc-greatness .rc-might-badge{background:rgba(45,74,110,0.1);color:var(--might-greatness)}
-.rc-theme-section{padding:8px 14px;border-bottom:1px solid var(--line-soft);text-align:center}
-.rc-theme-section:last-child{border-bottom:none;padding-bottom:14px}
-/* Titelschlagwort — größtes Element im Power-Tags-Block */
-.rc-title-tag{font-family:var(--serif);font-size:1.55rem;font-style:italic;font-weight:700;line-height:1.2;color:var(--ink);background:rgba(169,134,70,0.13);border-left:3px solid var(--gold);padding:8px 14px;margin-top:5px;text-align:center}
-.rc-power-tag{font-family:var(--serif);font-size:1.0rem;line-height:1.3;color:var(--ink);background:rgba(169,134,70,0.07);border-left:2px solid rgba(169,134,70,0.35);padding:5px 12px;margin-top:4px;text-align:center}
-.rc-weakness-tag{font-family:var(--serif);font-style:italic;font-size:1.0rem;line-height:1.3;color:#7a3010;background:rgba(170,80,20,0.08);border-left:2px solid rgba(170,80,20,0.35);padding:5px 12px;margin-top:5px;text-align:center}
-/* #44: Tier-Tag (nur sichtbar bei Stufen-Abweichung) */
-.rc-tier-tag{font-family:var(--serif);font-style:italic;font-size:1.0rem;line-height:1.3;color:var(--gold);background:rgba(169,134,70,0.10);border-left:2px solid var(--gold);padding:5px 12px;margin-top:4px;text-align:center;font-weight:600}
-/* Quest — größere Schrift (#40) */
-.rc-quest-title{font-family:var(--serif);font-style:italic;font-weight:600;font-size:1.15rem;color:var(--ink);line-height:1.35;margin-top:6px;margin-bottom:5px;text-align:center}
-.rc-quest-desc{font-family:var(--serif);font-style:italic;font-size:1.0rem;color:var(--ink-soft);line-height:1.5;text-align:center}
-/* ÜBERSICHTS-KARTE (#41) */
-.rc-save{padding:18px 16px 20px;text-align:center;overflow-y:auto}
-.save-overview-title{font-family:var(--serif);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--accent);font-weight:600;margin-bottom:8px}
-.save-hero-name{font-family:var(--serif);font-size:1.8rem;font-weight:600;font-style:italic;color:var(--ink);line-height:1.2;margin-bottom:4px}
-.save-hero-title{font-family:var(--serif);font-style:italic;font-size:0.95rem;color:var(--ink-soft);margin-bottom:14px;line-height:1.4}
-.overview-tiles{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:16px}
-.ot-tile{border-radius:6px;padding:9px;background:var(--paper);border:1px solid var(--line-soft);border-left-width:3px;text-align:center}
-.ot-tile.tc-origin{border-left-color:var(--might-origin)}
-.ot-tile.tc-adventure{border-left-color:var(--might-adventure)}
-.ot-tile.tc-greatness{border-left-color:var(--might-greatness)}
-.ot-type{font-family:var(--serif);font-size:0.72rem;font-weight:600;margin-bottom:5px;line-height:1.2}
-.ot-tile.tc-origin .ot-type{color:var(--might-origin)}
-.ot-tile.tc-adventure .ot-type{color:var(--might-adventure)}
-.ot-tile.tc-greatness .ot-type{color:var(--might-greatness)}
-.ot-tags{margin-bottom:5px}
-.ot-power{font-family:var(--serif);font-size:0.78rem;color:var(--gold);display:block;line-height:1.3}
-.ot-title{font-family:var(--serif);font-size:0.92rem;font-weight:600;color:var(--gold);display:block;line-height:1.3;margin-bottom:2px}
-.ot-tier{font-family:var(--serif);font-style:italic;font-size:0.78rem;color:var(--gold);display:block;line-height:1.3;font-weight:600}
-.ot-weakness{font-family:var(--serif);font-style:italic;font-size:0.78rem;color:#7a3010;display:block;line-height:1.3}
-.ot-quest{font-family:var(--serif);font-style:italic;font-size:0.74rem;color:var(--ink-soft);line-height:1.3}
-.save-actions{display:flex;flex-direction:column;gap:8px}
-.save-btn-primary{width:100%;padding:14px;border-radius:4px;border:none;background:var(--ink);color:var(--paper);font-family:var(--sans);font-size:0.95rem;font-weight:600;cursor:pointer;transition:background 0.2s}
-.save-btn-primary:active{background:var(--accent)}
-.save-btn-ghost{width:100%;padding:8px;border:none;background:transparent;color:var(--ink-soft);font-family:var(--sans);font-size:0.82rem;cursor:pointer}
 /* EDIT SHEET */
 #edit-sheet-overlay{position:fixed;inset:0;background:rgba(42,36,25,0.52);display:none;flex-direction:column;justify-content:flex-end;z-index:80}
 #edit-sheet-overlay.active{display:flex;animation:fadeIn 0.25s ease}
@@ -330,15 +251,12 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
 .tt-level-chip.tc-adventure.selected{background:rgba(139,58,43,0.14);border-color:var(--might-adventure);color:var(--might-adventure);font-weight:600}
 .tt-level-chip.tc-greatness.selected{background:rgba(45,74,110,0.14);border-color:var(--might-greatness);color:var(--might-greatness);font-weight:600}
 .settings-consequence{margin-top:14px;padding:10px 12px;background:var(--paper);border:1px solid var(--line-soft);border-radius:6px;font-size:0.82rem;color:var(--ink-soft);text-align:center}
-/* Ergebnis-Bereich: Swipe-Band auf der Held-Karte + Theme-Fortschritt */
-.rc-swipe-basis{font-family:var(--sans);font-size:0.7rem;letter-spacing:0.06em;color:var(--gold);text-transform:uppercase;text-align:center;margin-bottom:12px;font-weight:600}
-.rc-theme-progress{font-family:var(--sans);font-size:0.68rem;letter-spacing:0.08em;color:var(--ink-soft);text-transform:uppercase;text-align:center;margin-bottom:8px;opacity:0.75}
 .loading-overlay{position:fixed;inset:0;background:rgba(244,234,213,0.92);display:none;align-items:center;justify-content:center;z-index:100;flex-direction:column;gap:18px;backdrop-filter:blur(2px)}
 .loading-overlay.active{display:flex}
 .loading-spinner{width:32px;height:32px;border:2px solid var(--line);border-top-color:var(--accent);border-radius:50%;animation:spin 0.9s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .loading-text{font-family:var(--serif);font-style:italic;color:var(--ink-soft)}
-@media(max-height:740px){.card-title{font-size:1.5rem}.rc-title-tag{font-size:1.3rem}.rc-theme-name{font-size:1.35rem}.welcome-preview{height:380px;margin-top:28px}.welcome-title{font-size:2.7rem}.welcome-mark{font-size:1.05rem}.wp-title-tag{font-size:1.4rem}.wp-power-tag,.wp-weakness-tag{font-size:0.95rem}.wp-quest{font-size:1.0rem}#screen-welcome{padding:48px 28px 32px}#btn-start{margin-top:24px}}
+@media(max-height:740px){.card-title{font-size:1.5rem}.hb-titletag{font-size:1.15rem}.welcome-preview{height:380px;margin-top:28px}.welcome-title{font-size:2.7rem}.welcome-mark{font-size:1.05rem}.wp-title-tag{font-size:1.4rem}.wp-power-tag,.wp-weakness-tag{font-size:0.95rem}.wp-quest{font-size:1.0rem}#screen-welcome{padding:48px 28px 32px}#btn-start{margin-top:24px}}
 @media(max-height:640px){.welcome-preview{height:330px;margin-top:18px}.welcome-title{font-size:2.4rem}.welcome-mark{font-size:0.95rem}.wp-title-tag{font-size:1.25rem}.wp-power-tag,.wp-weakness-tag{font-size:0.9rem;padding:4px 10px}.wp-quest{font-size:0.95rem}.wp-quest-label{font-size:0.6rem;padding-top:8px}#screen-welcome{padding:36px 24px 28px}#btn-start{margin-top:18px}}
 </style>
 </head>
@@ -359,7 +277,7 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
   </div>
   <div class="welcome-preview" id="welcome-preview"></div>
   <button class="btn btn-primary" id="btn-start"></button>
-  <div class="app-version">v2026-06-16.3</div>
+  <div class="app-version">v2026-06-16.4</div>
 </section>
 <section id="screen-swipe" class="screen">
   <div class="card-counter" id="card-counter"></div>
