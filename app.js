@@ -210,6 +210,9 @@ function show(screenId, suppressAnim) {
   el.classList.add('active');
   var sb=$('btn-settings');
   if(sb) sb.style.display=screenId===SCREENS.WELCOME?'':'none';
+  // Mute-Button auf der Ergebnisseite ausblenden (kein oberer Balken, der den Bogen abschneidet)
+  var mb=$('btn-mute');
+  if(mb) mb.style.display=screenId===SCREENS.RESULT?'none':'';
 }
 function showLoading(t) { $('loading-text').textContent=t||STRINGS.loading.default; $('loading').classList.add('active'); }
 function hideLoading()  { $('loading').classList.remove('active'); }
@@ -658,8 +661,8 @@ function hbStorySection(){
 }
 function hbThemeSection(ti){
   var dt=getDisplayTheme(ti), mc=levelCssClass(dt.type), collapsed=!!HB_COLLAPSED[ti];
-  var body = collapsed ? '' :
-    '<div class="hb-theme-body">'+
+  var rest = collapsed ? '' :
+    '<div class="hb-theme-rest">'+
       '<div class="hb-powertag">'+displayTag(dt.powerTags[0].text)+'</div>'+
       '<div class="hb-powertag">'+displayTag(dt.powerTags[1].text)+'</div>'+
       (dt.tierTag?'<div class="hb-powertag hb-tiertag">'+displayTag(dt.tierTag.text)+'</div>':'')+
@@ -667,14 +670,14 @@ function hbThemeSection(ti){
       '<div class="hb-quest-label">'+escapeHtml(STRINGS.result.questLabel)+'</div>'+
       '<div class="hb-quest-title">„'+escapeHtml(dt.quest.title)+'“</div>'+
       '<div class="hb-quest-desc">'+escapeHtml(dt.quest.description)+'</div>'+
+      '<div class="hb-theme-type">'+escapeHtml(STRINGS.result.themeTypeLabel)+': '+escapeHtml(displayThemebook(dt.themebook))+'</div>'+
     '</div>';
   return '<div class="hb-theme '+mc+(collapsed?' collapsed':'')+'">'+
     '<button class="hb-edit" data-edit="theme" data-ti="'+ti+'" type="button" aria-label="Theme bearbeiten">'+FEATHER_SVG+'</button>'+
     '<div class="hb-theme-head" data-toggle="'+ti+'">'+
       '<div class="hb-might">'+escapeHtml(displayMight(dt.type))+'<span class="hb-chev"></span></div>'+
-      '<div class="hb-theme-type">'+escapeHtml(displayThemebook(dt.themebook))+'</div>'+
       '<div class="hb-titletag">'+displayTag(dt.titleTag.text)+'</div>'+
-    '</div>'+ body +
+    '</div>'+ rest +
   '</div>';
 }
 function hbPlaceholder(label){
