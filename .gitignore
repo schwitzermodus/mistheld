@@ -11,3 +11,4 @@ docs/
 
 # Editor-/Tooling-Konfiguration
 .claude/
+.mh_tagdata.json
