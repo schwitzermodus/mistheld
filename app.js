@@ -640,15 +640,13 @@ function composeHeroStory(){
 
 // --- Sektions-Bausteine (modular; Backpack/Fellowship lassen sich hier einschieben) ---
 function hbHeroSection(){
-  var h=state.hero, hooks=topSwipeHooks(2);
-  var basis=hooks.length?'<div class="hb-basis">'+escapeHtml(STRINGS.result.swipeBasis)+': '+escapeHtml(hooks.join(' · '))+'</div>':'';
+  var h=state.hero;
   return '<div class="hb-hero">'+
     '<button class="hb-edit" data-edit="hero" type="button" aria-label="Held bearbeiten">'+FEATHER_SVG+'</button>'+
     '<div class="hb-hero-eyebrow">'+escapeHtml(STRINGS.hero.eyebrow)+'</div>'+
     '<div class="hb-hero-name">'+escapeHtml(h.firstName)+' '+escapeHtml(h.epithet)+'</div>'+
     (h.title?'<div class="hb-hero-title">'+escapeHtml(h.title)+'</div>':'')+
     '<div class="hb-hero-desc">'+escapeHtml(h.description)+'</div>'+
-    basis+
   '</div>';
 }
 function hbStorySection(){
@@ -673,16 +671,16 @@ function hbThemeSection(ti){
   return '<div class="hb-theme '+mc+(collapsed?' collapsed':'')+'">'+
     '<button class="hb-edit" data-edit="theme" data-ti="'+ti+'" type="button" aria-label="Theme bearbeiten">'+FEATHER_SVG+'</button>'+
     '<div class="hb-theme-head" data-toggle="'+ti+'">'+
-      '<div class="hb-theme-meta">'+escapeHtml(displayThemebook(dt.themebook))+' · '+escapeHtml(displayMight(dt.type))+'<span class="hb-chev"></span></div>'+
+      '<div class="hb-might">'+escapeHtml(displayMight(dt.type))+'<span class="hb-chev"></span></div>'+
+      '<div class="hb-theme-type">'+escapeHtml(displayThemebook(dt.themebook))+'</div>'+
       '<div class="hb-titletag">'+displayTag(dt.titleTag.text)+'</div>'+
-      '<div class="hb-titletag-note">'+escapeHtml(STRINGS.result.titleTagNote)+'</div>'+
     '</div>'+ body +
   '</div>';
 }
-function hbBackpackPlaceholder(){
-  return '<div class="hb-backpack-ph">'+
-    '<div class="hb-bp-title">'+escapeHtml(STRINGS.result.backpackLabel)+'</div>'+
-    '<div class="hb-bp-sub">'+escapeHtml(STRINGS.result.backpackSoon)+'</div>'+
+function hbPlaceholder(label){
+  return '<div class="hb-ph">'+
+    '<div class="hb-ph-title">'+escapeHtml(label)+'</div>'+
+    '<div class="hb-ph-sub">'+escapeHtml(STRINGS.result.placeholderSoon)+'</div>'+
   '</div>';
 }
 function hbDivider(){ return '<div class="hb-divider" aria-hidden="true"><span class="hb-divider-mark">❖</span></div>'; }
@@ -692,7 +690,7 @@ function renderHeldenblatt(){
   var n=state.proposals[state.proposalIndex].themes.length;
   var inner=hbHeroSection()+hbDivider()+hbStorySection()+hbDivider()+'<div class="hb-seclabel hb-themes-label">'+escapeHtml(STRINGS.result.themesLabel)+'</div>';
   for(var i=0;i<n;i++) inner+=hbThemeSection(i);
-  inner+=hbBackpackPlaceholder();
+  inner+=hbPlaceholder(STRINGS.result.backpackLabel)+hbPlaceholder(STRINGS.result.fellowshipLabel);
   // Alles vom Held-Kopf bis Backpack als ein zusammenhängender Heldenbogen
   scroll.innerHTML='<div class="hb-sheet">'+inner+'<div class="hb-sheet-grain" aria-hidden="true"></div></div>';
   scroll.scrollTop=st;
@@ -722,14 +720,6 @@ function bindHeldenblatt(scroll){
 ===================================================== */
 var FEATHER_SVG ='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><line x1="17.5" y1="15" x2="9" y2="15"/></svg>';
 
-// Top-Hooks aus den Swipes (positiv, absteigend) als lesbare Labels — fuer das Swipe-Band
-function topSwipeHooks(n){
-  return Object.keys(state.hookCounts||{})
-    .filter(function(h){ return (state.hookCounts[h]||0) > 0; })
-    .sort(function(a,b){ return state.hookCounts[b]-state.hookCounts[a]; })
-    .slice(0,n)
-    .map(function(h){ return (STRINGS.result.hookLabels && STRINGS.result.hookLabels[h]) || h; });
-}
 /* =====================================================
    EDIT SHEETS
 ===================================================== */
@@ -805,7 +795,7 @@ function openEditSheet(ti) {
   fr.addEventListener('click',function(){
     handleReroll(parseInt(fr.dataset.ti),'theme');
     openEditSheet(ti);
-    rerenderResultCard(function(){ return buildThemeCard(ti); });
+    renderHeldenblatt();
   });
   $('edit-sheet-overlay').classList.add('active');
 }
@@ -1169,8 +1159,6 @@ document.addEventListener('keydown', function(e){
     else if(e.key==='Backspace'){e.preventDefault();undoLast();}
   }
   if($('screen-result').classList.contains('active')) {
-    if(e.key==='ArrowRight'){e.preventDefault();navigateResult(1);}
-    else if(e.key==='ArrowLeft'){e.preventDefault();navigateResult(-1);}
-    else if(e.key==='Escape'){closeEditSheet();}
+    if(e.key==='Escape'){closeEditSheet();}
   }
 });
