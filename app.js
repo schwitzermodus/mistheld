@@ -690,10 +690,11 @@ function renderHeldenblatt(){
   var scroll=$('hb-scroll'); if(!scroll) return;
   var st=scroll.scrollTop; // Scroll-Position über Re-Render erhalten
   var n=state.proposals[state.proposalIndex].themes.length;
-  var html=hbHeroSection()+hbDivider()+hbStorySection()+hbDivider()+'<div class="hb-seclabel hb-themes-label">'+escapeHtml(STRINGS.result.themesLabel)+'</div>';
-  for(var i=0;i<n;i++) html+=hbThemeSection(i);
-  html+=hbBackpackPlaceholder();
-  scroll.innerHTML=html;
+  var inner=hbHeroSection()+hbDivider()+hbStorySection()+hbDivider()+'<div class="hb-seclabel hb-themes-label">'+escapeHtml(STRINGS.result.themesLabel)+'</div>';
+  for(var i=0;i<n;i++) inner+=hbThemeSection(i);
+  inner+=hbBackpackPlaceholder();
+  // Alles vom Held-Kopf bis Backpack als ein zusammenhängender Heldenbogen
+  scroll.innerHTML='<div class="hb-sheet">'+inner+'<div class="hb-sheet-grain" aria-hidden="true"></div></div>';
   scroll.scrollTop=st;
   bindHeldenblatt(scroll);
 }
