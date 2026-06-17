@@ -459,6 +459,14 @@ function pickOneWithBias(arr){
   var weights=arr.map(function(e){ return 1 + 2.5*hookScore(e); });
   return arr[weightedPickIndex(weights)];
 }
+// Titel-Bündel hook-gewichtet ziehen (gibt das ganze Bündel inkl. powerTags/weaknessTags/quests zurück).
+// Der Titel ist der Anker — alle Tags/Quests werden danach aus DIESEM Bündel gezogen.
+function pickTitleWithBias(titles){
+  var hasSignal = titles.some(function(t){ return hookScore(t) > 0; });
+  if(!hasSignal) return titles[Math.floor(Math.random()*titles.length)];
+  var weights=titles.map(function(t){ return 1 + 2.5*hookScore(t); });
+  return titles[weightedPickIndex(weights)];
+}
 // #44: Tag-Pools fuer Stufen-Abweichungen
 var TIER_DEVIATION_TAGS = {
   Origin:    ['unauffällig','alltäglich','schlicht','gewohnt','unscheinbar','leise','vertraut','bescheiden'],
@@ -472,17 +480,19 @@ function generateTierDeviationTag(level) {
 
 function generateTheme(name, settings) {
   var tb=THEMEBOOKS[name];
-  var titleTag=pickWithSwipeBias(tb.titleTagSuggestions,1)[0];
-  var powerTags=pickWithSwipeBias(tb.powerTagPool,2);
-  var weaknessTag=pickWithSwipeBias(tb.weaknessTagPool,1)[0];
-  var quest=pickQuestWithBias(tb.questPool);
+  var entry=pickTitleWithBias(tb.titles);              // Titel-Bündel (Anker)
+  var titleTag={text:entry.text, expanded:false, hooks:tagHooks(entry)};
+  var powerTags=pickWithSwipeBias(entry.powerTags,2);  // aus DEM Bündel
+  var weaknessTag=pickWithSwipeBias(entry.weaknessTags,1)[0];
+  var quest=pickQuestWithBias(entry.quests);
   var type=effectiveLevel(name, settings);
   // #44: Wenn die Might-Stufe von der Quellbuch-Default abweicht → zusaetzlichen Stufen-Tag
   var tierTag = null;
   if (type !== DEFAULT_THEME_TIER[name]) {
     tierTag = generateTierDeviationTag(type);
   }
-  return {type:type,themebook:name,titleTag:titleTag,powerTags:powerTags,weaknessTag:weaknessTag,quest:quest,tierTag:tierTag};
+  // _titleEntry merken: Einzel-Re-Rolls von Power/Weakness/Quest ziehen aus diesem Bündel
+  return {type:type,themebook:name,titleTag:titleTag,powerTags:powerTags,weaknessTag:weaknessTag,quest:quest,tierTag:tierTag,_titleEntry:entry};
 }
 // #44: Proposal-Generation aus aktivierten Theme Types
 function generateProposal(mode, base) {
@@ -576,14 +586,26 @@ function addAlt(ti,k,v) {
   e.alts.push(v); e.index=e.alts.length;
 }
 function clearThemeEdits(ti) { ['title','pow0','pow1','weakness','quest'].forEach(function(k){delete state.edits[editKey(ti,k)];}); }
+// Aktuell zugrundeliegendes Theme-Objekt (Basis oder Theme-Alt) — trägt _titleEntry für Bündel-Re-Rolls.
+function getBaseTheme(ti){
+  var base=state.proposals[state.proposalIndex].themes[ti];
+  var te=getEdit(ti,'theme');
+  return (te&&te.index>0)?te.alts[te.index-1]:base;
+}
 function handleReroll(ti,k) {
-  var dt=getDisplayTheme(ti), tb=THEMEBOOKS[dt.themebook], s=loadSettings();
+  var s=loadSettings();
+  // Titel ist der Anker: Titel neu = ganzes Konzept neu (Titel + Power/Weakness + Quest).
+  if (k==='theme' || k==='title') {
+    var nv=generateTheme(getBaseTheme(ti).themebook,s);
+    clearThemeEdits(ti);
+    addAlt(ti,'theme',nv);
+    return;
+  }
+  var entry=getBaseTheme(ti)._titleEntry;
   var v;
-  if      (k==='theme')            { v=generateTheme(dt.themebook,s); clearThemeEdits(ti); }
-  else if (k==='title')            { v=pickWithSwipeBias(tb.titleTagSuggestions,1)[0]; }
-  else if (k==='pow0'||k==='pow1') { v=pickWithSwipeBias(tb.powerTagPool,1)[0]; }
-  else if (k==='weakness')         { v=pickWithSwipeBias(tb.weaknessTagPool,1)[0]; }
-  else if (k==='quest')            { v=pickQuestWithBias(tb.questPool); }
+  if      (k==='pow0'||k==='pow1') { v=pickWithSwipeBias(entry.powerTags,1)[0]; }
+  else if (k==='weakness')         { v=pickWithSwipeBias(entry.weaknessTags,1)[0]; }
+  else if (k==='quest')            { v=pickQuestWithBias(entry.quests); }
   if(v!==undefined) addAlt(ti,k,v);
 }
 function handleNavigate(ti,k,dir) {
@@ -774,7 +796,7 @@ function openEditSheet(ti) {
   body.innerHTML=
     '<div class="es-header"><div class="es-themebook">'+escapeHtml(displayThemebook(dt.themebook))+'</div>'+
     '<div class="es-might">'+escapeHtml(displayMight(dt.type))+'</div></div>'+
-    row('title',    STRINGS.hero.labelTitleTag,  dt.titleTag)+
+    row('theme',    STRINGS.hero.labelTitleTag,  dt.titleTag)+
     row('pow0',     STRINGS.hero.labelPower1,     dt.powerTags[0])+
     row('pow1',     STRINGS.hero.labelPower2,     dt.powerTags[1])+
     row('weakness', STRINGS.hero.labelWeakness,   dt.weaknessTag)+

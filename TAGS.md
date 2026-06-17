@@ -30,6 +30,14 @@ Alle Power Tags, **besonders der Titel**, passen zur Might-Stufe des Themes
 - Spezifische/direkte Tags (z. B. „Schlafzauber") vs. breite/indirekte (z. B. „reich").
 - Ein Theme sollte eine **Balance** aus spezifischen, breiten und „dazwischen"-Tags haben (so empfiehlt es das Core Book; breite Tags sind flexibler, kosten im Spiel aber oft eine Extra-Aktion).
 
+## Verankerung in der App (Titel als Anker)
+Die Daten sind **titel-verankert**: Jeder Titel ist ein Bündel aus 4–5 Power Tags,
+2–3 Weakness Tags und 2–3 Quests, die alle Aspekte **genau dieses Titels** sind.
+Beim Generieren zieht die App erst einen Titel und dann Power/Weakness/Quest
+**aus dessen Bündel** — Kohärenz zum Titel ist damit strukturell garantiert.
+Das mechanische Gate `tools/validate_tags.cjs` (pre-commit + CI) erzwingt die
+Phrasenregeln und die Bündel-Struktur. Quests sind **keine** Tags (Ich-Ziel-Satz erlaubt).
+
 ---
 Quelle/Abgleich: *Legend in the Mist* Core Book, S. 76–77 („Tags", „Hero Creation Checklist").
-Strukturell pro Theme in dieser App: Titel-Tag + 2 weitere Power Tags + 1 Weakness Tag.
+Strukturell pro generiertem Theme: Titel-Tag + 2 Power Tags + 1 Weakness Tag + 1 Quest (aus dem Titel-Bündel).
