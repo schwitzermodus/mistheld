@@ -4,6 +4,11 @@
 # Stellt sicher: kein Deploy ohne neue Version (Pages serviert von main).
 set -e
 
+# Tag-Definition (TAGS.md) durchsetzen — Commit abbrechen bei Verstoß.
+if [ -f "tools/validate_tags.cjs" ]; then
+  node tools/validate_tags.cjs
+fi
+
 f="index.html"
 [ -f "$f" ] || exit 0
 

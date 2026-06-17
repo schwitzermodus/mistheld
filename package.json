@@ -6,6 +6,7 @@
   "scripts": {
     "test": "playwright test",
     "test:syntax": "node --check app.js data.js",
+    "validate:tags": "node tools/validate_tags.cjs",
     "serve": "npx serve . -p 3000 --no-clipboard"
   },
   "devDependencies": {

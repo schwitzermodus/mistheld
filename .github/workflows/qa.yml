@@ -42,6 +42,9 @@ jobs:
       - name: JS-Syntaxpruefung
         run: node --check app.js data.js
 
+      - name: Tag-Definition prüfen (TAGS.md)
+        run: node tools/validate_tags.cjs
+
       - name: Playwright-Browser-Cache laden
         uses: actions/cache@v4
         with:
