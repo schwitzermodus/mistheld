@@ -266,8 +266,8 @@ const THEMEBOOKS = {
           { text: "Schwur über Vernunft", hooks: ["glaube","schicksal"] },
         ],
         quests: [
-          { title: "mein Gelübde halten", description: "Was ich versprochen habe, das tue ich, auch wenn die Welt sich gegen mich stellt.", hooks: ["glaube"] },
-          { title: "die Treue beweisen", description: "Ich zeige, dass ein gehaltener Schwur mehr wiegt als rohe Stärke.", hooks: ["glaube","macht"] },
+          { title: "Mein Gelübde halten", description: "Was ich versprochen habe, das tue ich, auch wenn die Welt sich gegen mich stellt.", hooks: ["glaube"] },
+          { title: "Die Treue beweisen", description: "Ich zeige, dass ein gehaltener Schwur mehr wiegt als rohe Stärke.", hooks: ["glaube","macht"] },
         ]
       },
       {
@@ -283,8 +283,8 @@ const THEMEBOOKS = {
           { text: "leidet an jedem Versagen", hooks: ["glaube","verlust"] },
         ],
         quests: [
-          { title: "die Ritterprobe bestehen", description: "Ich will mir und allen beweisen, dass ich des Schwertes würdig bin.", hooks: ["adel","kampf"] },
-          { title: "einen würdigen Herrn finden", description: "Ich suche jemanden, dessen Sache mein Gelübde verdient.", hooks: ["adel","glaube"] },
+          { title: "Die Ritterprobe bestehen", description: "Ich will mir und allen beweisen, dass ich des Schwertes würdig bin.", hooks: ["adel","kampf"] },
+          { title: "Einen würdigen Herrn finden", description: "Ich suche jemanden, dessen Sache mein Gelübde verdient.", hooks: ["adel","glaube"] },
         ]
       },
       {
@@ -300,8 +300,8 @@ const THEMEBOOKS = {
           { text: "trägt jede Not allein", hooks: ["glaube","verlust"] },
         ],
         quests: [
-          { title: "sie beschützen bis zuletzt", description: "Solange ich atme, geschieht meinen Leuten kein Leid.", hooks: ["glaube","kampf"] },
-          { title: "das Dorf wehrhaft machen", description: "Ich lehre die Schwachen, für sich selbst einzustehen.", hooks: ["glaube","handwerk"] },
+          { title: "Sie beschützen bis zuletzt", description: "Solange ich atme, geschieht meinen Leuten kein Leid.", hooks: ["glaube","kampf"] },
+          { title: "Das Dorf wehrhaft machen", description: "Ich lehre die Schwachen, für sich selbst einzustehen.", hooks: ["glaube","handwerk"] },
         ]
       },
       {
@@ -317,8 +317,8 @@ const THEMEBOOKS = {
           { text: "die Pflicht verschlingt die Zeit", hooks: ["glaube"] },
         ],
         quests: [
-          { title: "das Licht aufrechthalten", description: "Die Finsternis drückt von allen Seiten, doch ich weiche nicht zurück.", hooks: ["glaube"] },
-          { title: "einen Nachfolger finden", description: "Mein Dienst ist größer als ich und darf nicht mit mir enden.", hooks: ["glaube","schicksal"] },
+          { title: "Das Licht aufrechthalten", description: "Die Finsternis drückt von allen Seiten, doch ich weiche nicht zurück.", hooks: ["glaube"] },
+          { title: "Einen Nachfolger finden", description: "Mein Dienst ist größer als ich und darf nicht mit mir enden.", hooks: ["glaube","schicksal"] },
         ]
       },
       {
@@ -334,8 +334,8 @@ const THEMEBOOKS = {
           { text: "vergisst sich selbst", hooks: ["glaube","verlust"] },
         ],
         quests: [
-          { title: "keinen sterben lassen", description: "Solange Hände heilen können, gebe ich keinen Kranken auf.", hooks: ["glaube","handwerk"] },
-          { title: "die Seuche zurückdrängen", description: "Ich suche das Mittel gegen das Leiden, das mein Dorf befällt.", hooks: ["handwerk","wissen"] },
+          { title: "Keinen sterben lassen", description: "Solange Hände heilen können, gebe ich keinen Kranken auf.", hooks: ["glaube","handwerk"] },
+          { title: "Die Seuche zurückdrängen", description: "Ich suche das Mittel gegen das Leiden, das mein Dorf befällt.", hooks: ["handwerk","wissen"] },
         ]
       },
       {
@@ -351,8 +351,8 @@ const THEMEBOOKS = {
           { text: "alles für den einen Menschen", hooks: ["glaube","verlust"] },
         ],
         quests: [
-          { title: "den Menschen retten", description: "Ohne ihn wäre ich nicht, was ich bin, und nun ist es an mir.", hooks: ["glaube","verlust"] },
-          { title: "das Versprechen einlösen", description: "Ich tue, was ich ihm einst geschworen habe, koste es, was es wolle.", hooks: ["glaube"] },
+          { title: "Den Menschen retten", description: "Ohne ihn wäre ich nicht, was ich bin, und nun ist es an mir.", hooks: ["glaube","verlust"] },
+          { title: "Das Versprechen einlösen", description: "Ich tue, was ich ihm einst geschworen habe, koste es, was es wolle.", hooks: ["glaube"] },
         ]
       },
       {
@@ -368,8 +368,8 @@ const THEMEBOOKS = {
           { text: "ihr Glaube wird ausgenutzt", hooks: ["glaube","außenseiter"] },
         ],
         quests: [
-          { title: "das Heiligtum zurückbringen", description: "Ohne diesen Ort ist mein Volk gebrochen, und ich hole ihn zurück.", hooks: ["glaube","geheimnis"] },
-          { title: "das Geheimnis bewahren", description: "Was mir anvertraut ist, soll niemals in falsche Hände fallen.", hooks: ["glaube","geheimnis"] },
+          { title: "Das Heiligtum zurückbringen", description: "Ohne diesen Ort ist mein Volk gebrochen, und ich hole ihn zurück.", hooks: ["glaube","geheimnis"] },
+          { title: "Das Geheimnis bewahren", description: "Was mir anvertraut ist, soll niemals in falsche Hände fallen.", hooks: ["glaube","geheimnis"] },
         ]
       },
       {
@@ -385,8 +385,8 @@ const THEMEBOOKS = {
           { text: "die Pflicht verschlingt die Zeit", hooks: ["glaube"] },
         ],
         quests: [
-          { title: "dem Orden treu bleiben", description: "Was ich gelobte, halte ich, auch wenn der Orden selbst zweifelt.", hooks: ["glaube"] },
-          { title: "die wahre Lehre bewahren", description: "Ich sorge dafür, dass die alte Regel nicht verfälscht wird.", hooks: ["glaube","wissen"] },
+          { title: "Dem Orden treu bleiben", description: "Was ich gelobte, halte ich, auch wenn der Orden selbst zweifelt.", hooks: ["glaube"] },
+          { title: "Die wahre Lehre bewahren", description: "Ich sorge dafür, dass die alte Regel nicht verfälscht wird.", hooks: ["glaube","wissen"] },
         ]
       },
       {
@@ -402,8 +402,8 @@ const THEMEBOOKS = {
           { text: "trägt die Last allein", hooks: ["glaube","verlust"] },
         ],
         quests: [
-          { title: "die Wacht nicht verlassen", description: "Solange einer steht, fällt der Posten nicht, und dieser eine bin ich.", hooks: ["glaube","kampf"] },
-          { title: "einen Nachfolger einweisen", description: "Das, was ich hüte, kann nicht mit mir enden.", hooks: ["glaube","schicksal"] },
+          { title: "Die Wacht nicht verlassen", description: "Solange einer steht, fällt der Posten nicht, und dieser eine bin ich.", hooks: ["glaube","kampf"] },
+          { title: "Einen Nachfolger einweisen", description: "Das, was ich hüte, kann nicht mit mir enden.", hooks: ["glaube","schicksal"] },
         ]
       },
       {
@@ -419,8 +419,8 @@ const THEMEBOOKS = {
           { text: "misstraut jedem Fremden", hooks: ["glaube","außenseiter"] },
         ],
         quests: [
-          { title: "das Tor halten", description: "Was hereinwill, kommt nur an mir vorbei oder gar nicht.", hooks: ["glaube","kampf"] },
-          { title: "den Verräter im Inneren finden", description: "Jemand öffnet heimlich von innen, und ich werde wissen, wer.", hooks: ["glaube","geheimnis"] },
+          { title: "Das Tor halten", description: "Was hereinwill, kommt nur an mir vorbei oder gar nicht.", hooks: ["glaube","kampf"] },
+          { title: "Den Verräter im Inneren finden", description: "Jemand öffnet heimlich von innen, und ich werde wissen, wer.", hooks: ["glaube","geheimnis"] },
         ]
       },
       {
@@ -436,8 +436,8 @@ const THEMEBOOKS = {
           { text: "selbst gemieden", hooks: ["außenseiter","verlust"] },
         ],
         quests: [
-          { title: "den Übersehenen helfen", description: "Die Welt rauscht an den Schwachen vorbei, ich aber nicht.", hooks: ["glaube","außenseiter"] },
-          { title: "ihnen einen Platz schaffen", description: "Ich suche einen Ort, an dem die Verstoßenen sicher leben können.", hooks: ["glaube","außenseiter"] },
+          { title: "Den Übersehenen helfen", description: "Die Welt rauscht an den Schwachen vorbei, ich aber nicht.", hooks: ["glaube","außenseiter"] },
+          { title: "Ihnen einen Platz schaffen", description: "Ich suche einen Ort, an dem die Verstoßenen sicher leben können.", hooks: ["glaube","außenseiter"] },
         ]
       },
       {
@@ -453,8 +453,8 @@ const THEMEBOOKS = {
           { text: "kann keine Bitte abschlagen", hooks: ["glaube"] },
         ],
         quests: [
-          { title: "heilen ohne zu fragen", description: "Wer Hilfe braucht, bekommt sie von mir, ob arm oder reich.", hooks: ["glaube","handwerk"] },
-          { title: "das verlorene Rezept wiederfinden", description: "Ich suche die alte Kunst, die einst viele Leben rettete.", hooks: ["handwerk","wissen"] },
+          { title: "Heilen ohne zu fragen", description: "Wer Hilfe braucht, bekommt sie von mir, ob arm oder reich.", hooks: ["glaube","handwerk"] },
+          { title: "Das verlorene Rezept wiederfinden", description: "Ich suche die alte Kunst, die einst viele Leben rettete.", hooks: ["handwerk","wissen"] },
         ]
       },
     ]
@@ -465,207 +465,207 @@ const THEMEBOOKS = {
       {
         text: "verflucht", hooks: ["magie","schicksal"],
         powerTags: [
-          { text: "spürt einen fluch", hooks: ["magie","schicksal"] },
-          { text: "zeichen gegen unheil", hooks: ["magie","glaube"] },
-          { text: "warnende erinnerungen", hooks: ["schicksal","verlust"] },
-          { text: "trotzt dem schlimmsten", hooks: ["schicksal","verlust"] },
+          { text: "spürt einen Fluch", hooks: ["magie","schicksal"] },
+          { text: "Zeichen gegen Unheil", hooks: ["magie","glaube"] },
+          { text: "warnende Erinnerungen", hooks: ["schicksal","verlust"] },
+          { text: "trotzt dem Schlimmsten", hooks: ["schicksal","verlust"] },
         ],
         weaknessTags: [
-          { text: "das mal des fluches", hooks: ["magie","verlust"] },
-          { text: "wehrlos an bestimmten orten", hooks: ["schicksal","verlust"] },
-          { text: "wiederkehrende albträume", hooks: ["verlust","schicksal"] },
+          { text: "das Mal des Fluches", hooks: ["magie","verlust"] },
+          { text: "wehrlos an bestimmten Orten", hooks: ["schicksal","verlust"] },
+          { text: "wiederkehrende Albträume", hooks: ["verlust","schicksal"] },
         ],
         quests: [
-          { title: "den fluch brechen", description: "Etwas hängt an mir wie ein Schatten und ich werde nicht ruhen, bis ich es abschüttle.", hooks: ["magie","schicksal"] },
-          { title: "den ursprung finden", description: "Ich folge der Spur des Fluches zurück bis zu der Hand, die ihn wirkte.", hooks: ["schicksal","geheimnis"] },
+          { title: "Den Fluch brechen", description: "Etwas hängt an mir wie ein Schatten und ich werde nicht ruhen, bis ich es abschüttle.", hooks: ["magie","schicksal"] },
+          { title: "Den Ursprung finden", description: "Ich folge der Spur des Fluches zurück bis zu der Hand, die ihn wirkte.", hooks: ["schicksal","geheimnis"] },
         ]
       },
       {
-        text: "im krieg geschmiedet", hooks: ["kampf","verlust"],
+        text: "im Krieg geschmiedet", hooks: ["kampf","verlust"],
         powerTags: [
-          { text: "narbiger schwertarm", hooks: ["kampf","verlust"] },
-          { text: "kennt das schlachtfeld", hooks: ["kampf"] },
-          { text: "wittert eine falle", hooks: ["kampf","wissen"] },
-          { text: "blick fürs schlimmste", hooks: ["kampf","verlust"] },
-          { text: "abgehärtet vom schlimmsten", hooks: ["verlust","kampf"] },
+          { text: "narbiger Schwertarm", hooks: ["kampf","verlust"] },
+          { text: "kennt das Schlachtfeld", hooks: ["kampf"] },
+          { text: "wittert eine Falle", hooks: ["kampf","wissen"] },
+          { text: "Blick fürs Schlimmste", hooks: ["kampf","verlust"] },
+          { text: "abgehärtet vom Schlimmsten", hooks: ["verlust","kampf"] },
         ],
         weaknessTags: [
-          { text: "verfolgt von alten feinden", hooks: ["kampf","verlust"] },
-          { text: "schmerzende erinnerung", hooks: ["verlust"] },
+          { text: "verfolgt von alten Feinden", hooks: ["kampf","verlust"] },
+          { text: "schmerzende Erinnerung", hooks: ["verlust"] },
         ],
         quests: [
-          { title: "den krieg hinter sich lassen", description: "Ich suche einen Frieden, den die Schlacht mir nie gegeben hat.", hooks: ["kampf","verlust"] },
-          { title: "alte waffenbrüder finden", description: "Ich spüre die wenigen auf, die das Gemetzel mit mir überlebt haben.", hooks: ["kampf","verlust"] },
+          { title: "Den Krieg hinter sich lassen", description: "Ich suche einen Frieden, den die Schlacht mir nie gegeben hat.", hooks: ["kampf","verlust"] },
+          { title: "Alte Waffenbrüder finden", description: "Ich spüre die wenigen auf, die das Gemetzel mit mir überlebt haben.", hooks: ["kampf","verlust"] },
         ]
       },
       {
-        text: "letzter meines volkes", hooks: ["verlust","natur"],
+        text: "letzter meines Volkes", hooks: ["verlust","natur"],
         powerTags: [
-          { text: "spricht eine vergessene zunge", hooks: ["wissen","verlust"] },
-          { text: "kennt die namen der toten", hooks: ["verlust","geheimnis"] },
-          { text: "sprache der verlorenen", hooks: ["verlust","wissen"] },
-          { text: "einst gelernte liturgie", hooks: ["glaube","verlust"] },
+          { text: "spricht eine vergessene Zunge", hooks: ["wissen","verlust"] },
+          { text: "kennt die Namen der Toten", hooks: ["verlust","geheimnis"] },
+          { text: "Sprache der Verlorenen", hooks: ["verlust","wissen"] },
+          { text: "einst gelernte Liturgie", hooks: ["glaube","verlust"] },
         ],
         weaknessTags: [
-          { text: "lebt in der vergangenheit", hooks: ["verlust","schicksal"] },
-          { text: "traut nur vertrauten von einst", hooks: ["geheimnis","verlust"] },
+          { text: "lebt in der Vergangenheit", hooks: ["verlust","schicksal"] },
+          { text: "traut nur Vertrauten von einst", hooks: ["geheimnis","verlust"] },
         ],
         quests: [
-          { title: "das erbe bewahren", description: "Solange ich lebe, soll das Wissen meines Volkes nicht ganz verlöschen.", hooks: ["verlust","natur"] },
-          { title: "das werk vollenden", description: "Ich beende, was mein Volk nicht mehr enden konnte.", hooks: ["verlust","natur"] },
+          { title: "Das Erbe bewahren", description: "Solange ich lebe, soll das Wissen meines Volkes nicht ganz verlöschen.", hooks: ["verlust","natur"] },
+          { title: "Das Werk vollenden", description: "Ich beende, was mein Volk nicht mehr enden konnte.", hooks: ["verlust","natur"] },
         ]
       },
       {
-        text: "mystischer pilger", hooks: ["magie","fahrend"],
+        text: "mystischer Pilger", hooks: ["magie","fahrend"],
         powerTags: [
-          { text: "findet immer orientierung", hooks: ["fahrend","natur"] },
-          { text: "reist mit leichtem gepäck", hooks: ["fahrend","verlust"] },
-          { text: "kennt heilige wege", hooks: ["glaube","fahrend"] },
-          { text: "liest die zeichen", hooks: ["magie","schicksal"] },
+          { text: "findet immer Orientierung", hooks: ["fahrend","natur"] },
+          { text: "reist mit leichtem Gepäck", hooks: ["fahrend","verlust"] },
+          { text: "kennt heilige Wege", hooks: ["glaube","fahrend"] },
+          { text: "liest die Zeichen", hooks: ["magie","schicksal"] },
         ],
         weaknessTags: [
-          { text: "nirgends lange zu hause", hooks: ["fahrend","außenseiter"] },
-          { text: "als fremder beäugt", hooks: ["außenseiter","fahrend"] },
+          { text: "nirgends lange zu Hause", hooks: ["fahrend","außenseiter"] },
+          { text: "als Fremder beäugt", hooks: ["außenseiter","fahrend"] },
         ],
         quests: [
-          { title: "die pilgerfahrt vollenden", description: "Der Weg selbst ist meine Prüfung und erst am Ziel weiß ich, wer ich bin.", hooks: ["glaube","fahrend"] },
-          { title: "das verborgene heiligtum finden", description: "Ein Ort wartet auf mich, den niemand sonst zu suchen wagt.", hooks: ["magie","fahrend"] },
+          { title: "Die Pilgerfahrt vollenden", description: "Der Weg selbst ist meine Prüfung und erst am Ziel weiß ich, wer ich bin.", hooks: ["glaube","fahrend"] },
+          { title: "Das verborgene Heiligtum finden", description: "Ein Ort wartet auf mich, den niemand sonst zu suchen wagt.", hooks: ["magie","fahrend"] },
         ]
       },
       {
-        text: "aus den trümmern", hooks: ["verlust","fahrend"],
+        text: "aus den Trümmern", hooks: ["verlust","fahrend"],
         powerTags: [
-          { text: "hat die ruinen gesehen", hooks: ["verlust","natur"] },
+          { text: "hat die Ruinen gesehen", hooks: ["verlust","natur"] },
           { text: "durchgemacht und überlebt", hooks: ["verlust"] },
-          { text: "lernt aus jedem fehler", hooks: ["wissen","handwerk"] },
-          { text: "überlebt jede not", hooks: ["verlust","außenseiter"] },
+          { text: "lernt aus jedem Fehler", hooks: ["wissen","handwerk"] },
+          { text: "überlebt jede Not", hooks: ["verlust","außenseiter"] },
         ],
         weaknessTags: [
-          { text: "bleibende schuld", hooks: ["verlust","schicksal"] },
+          { text: "bleibende Schuld", hooks: ["verlust","schicksal"] },
           { text: "kann nicht loslassen", hooks: ["verlust"] },
         ],
         quests: [
-          { title: "neu aufbauen", description: "Aus den Trümmern lässt sich etwas machen, denn ich bin selbst aus Trümmern.", hooks: ["verlust","handwerk"] },
-          { title: "retten was bleibt", description: "Solange irgendwo ein Funken glimmt, gebe ich nicht auf.", hooks: ["verlust","natur"] },
+          { title: "Neu aufbauen", description: "Aus den Trümmern lässt sich etwas machen, denn ich bin selbst aus Trümmern.", hooks: ["verlust","handwerk"] },
+          { title: "Retten was bleibt", description: "Solange irgendwo ein Funken glimmt, gebe ich nicht auf.", hooks: ["verlust","natur"] },
         ]
       },
       {
-        text: "der heimkehrer", hooks: ["fahrend","verlust"],
+        text: "der Heimkehrer", hooks: ["fahrend","verlust"],
         powerTags: [
-          { text: "kennt den weg zurück", hooks: ["fahrend","verlust"] },
-          { text: "getragene reisetracht", hooks: ["fahrend","verlust"] },
-          { text: "altes andenken", hooks: ["verlust"] },
-          { text: "findet alte verbündete", hooks: ["fahrend","glaube"] },
+          { text: "kennt den Weg zurück", hooks: ["fahrend","verlust"] },
+          { text: "getragene Reisetracht", hooks: ["fahrend","verlust"] },
+          { text: "altes Andenken", hooks: ["verlust"] },
+          { text: "findet alte Verbündete", hooks: ["fahrend","glaube"] },
         ],
         weaknessTags: [
           { text: "daheim hat sich alles verändert", hooks: ["verlust","schicksal"] },
-          { text: "wird von alten bekannten erkannt", hooks: ["geheimnis","verlust"] },
+          { text: "wird von alten Bekannten erkannt", hooks: ["geheimnis","verlust"] },
         ],
         quests: [
-          { title: "nach hause finden", description: "Ich kehre an den Ort zurück, den ich einst verlassen musste.", hooks: ["fahrend","verlust"] },
-          { title: "das alte unrecht klären", description: "Was vor meiner Abreise geschah, lässt mir keine Ruhe.", hooks: ["verlust","geheimnis"] },
+          { title: "Nach Hause finden", description: "Ich kehre an den Ort zurück, den ich einst verlassen musste.", hooks: ["fahrend","verlust"] },
+          { title: "Das alte Unrecht klären", description: "Was vor meiner Abreise geschah, lässt mir keine Ruhe.", hooks: ["verlust","geheimnis"] },
         ]
       },
       {
-        text: "feuerüberlebende", hooks: ["verlust","schicksal"],
+        text: "Feuerüberlebende", hooks: ["verlust","schicksal"],
         powerTags: [
-          { text: "andenken eines toten", hooks: ["verlust"] },
-          { text: "eiserner wille", hooks: ["verlust"] },
-          { text: "eine lektion aus leid", hooks: ["verlust","wissen"] },
-          { text: "wacht beim leisesten geräusch", hooks: ["kampf","natur"] },
+          { text: "Andenken eines Toten", hooks: ["verlust"] },
+          { text: "eiserner Wille", hooks: ["verlust"] },
+          { text: "eine Lektion aus Leid", hooks: ["verlust","wissen"] },
+          { text: "wacht beim leisesten Geräusch", hooks: ["kampf","natur"] },
         ],
         weaknessTags: [
-          { text: "schmerzende erinnerung", hooks: ["verlust"] },
-          { text: "wehrlos vor flammen", hooks: ["schicksal","verlust"] },
+          { text: "schmerzende Erinnerung", hooks: ["verlust"] },
+          { text: "wehrlos vor Flammen", hooks: ["schicksal","verlust"] },
         ],
         quests: [
-          { title: "das vergangene zur ruhe bringen", description: "Die Geister der Brandnacht sollen endlich schweigen.", hooks: ["verlust","schicksal"] },
-          { title: "den brandstifter finden", description: "Ich will wissen, wessen Hand das Feuer legte.", hooks: ["verlust","geheimnis"] },
+          { title: "Das Vergangene zur Ruhe bringen", description: "Die Geister der Brandnacht sollen endlich schweigen.", hooks: ["verlust","schicksal"] },
+          { title: "Den Brandstifter finden", description: "Ich will wissen, wessen Hand das Feuer legte.", hooks: ["verlust","geheimnis"] },
         ]
       },
       {
-        text: "entflohener gefangener", hooks: ["außenseiter","verlust"],
+        text: "entflohener Gefangener", hooks: ["außenseiter","verlust"],
         powerTags: [
-          { text: "kennt den preis des aufgebens", hooks: ["verlust","wissen"] },
-          { text: "geht in der menge unter", hooks: ["außenseiter","geheimnis"] },
-          { text: "sieht durch lügen", hooks: ["geheimnis"] },
-          { text: "überlebt jede not", hooks: ["verlust","außenseiter"] },
+          { text: "kennt den Preis des Aufgebens", hooks: ["verlust","wissen"] },
+          { text: "geht in der Menge unter", hooks: ["außenseiter","geheimnis"] },
+          { text: "sieht durch Lügen", hooks: ["geheimnis"] },
+          { text: "überlebt jede Not", hooks: ["verlust","außenseiter"] },
         ],
         weaknessTags: [
-          { text: "verfolgt von alten feinden", hooks: ["kampf","verlust"] },
+          { text: "verfolgt von alten Feinden", hooks: ["kampf","verlust"] },
           { text: "traut niemandem ganz", hooks: ["außenseiter","verlust"] },
         ],
         quests: [
-          { title: "sich von den ketten befreien", description: "Solange ein Schatten an mir hängt, gehört mein Leben mir nicht ganz.", hooks: ["verlust","außenseiter"] },
-          { title: "mit den wärtern abrechnen", description: "Die, die mich gefangen hielten, sollen nicht ungestraft bleiben.", hooks: ["außenseiter","kampf"] },
+          { title: "Sich von den Ketten befreien", description: "Solange ein Schatten an mir hängt, gehört mein Leben mir nicht ganz.", hooks: ["verlust","außenseiter"] },
+          { title: "Mit den Wärtern abrechnen", description: "Die, die mich gefangen hielten, sollen nicht ungestraft bleiben.", hooks: ["außenseiter","kampf"] },
         ]
       },
       {
-        text: "kriegskind", hooks: ["kampf","verlust"],
+        text: "Kriegskind", hooks: ["kampf","verlust"],
         powerTags: [
-          { text: "abgehärtet vom schlimmsten", hooks: ["verlust"] },
-          { text: "blick fürs schlimmste", hooks: ["kampf","verlust"] },
-          { text: "trägt narben mit würde", hooks: ["verlust","kampf"] },
-          { text: "wittert eine falle", hooks: ["kampf","wissen"] },
+          { text: "abgehärtet vom Schlimmsten", hooks: ["verlust"] },
+          { text: "Blick fürs Schlimmste", hooks: ["kampf","verlust"] },
+          { text: "trägt Narben mit Würde", hooks: ["verlust","kampf"] },
+          { text: "wittert eine Falle", hooks: ["kampf","wissen"] },
         ],
         weaknessTags: [
-          { text: "wiederkehrende albträume", hooks: ["verlust"] },
-          { text: "kennt nur den krieg", hooks: ["kampf","außenseiter"] },
+          { text: "wiederkehrende Albträume", hooks: ["verlust"] },
+          { text: "kennt nur den Krieg", hooks: ["kampf","außenseiter"] },
         ],
         quests: [
-          { title: "einen ruhigen platz suchen", description: "Ich will einmal leben, ohne dass alles ein Schlachtfeld ist.", hooks: ["kampf","verlust"] },
-          { title: "die eltern wiederfinden", description: "Ich suche die Familie, die der Krieg mir nahm.", hooks: ["verlust","geheimnis"] },
+          { title: "Einen ruhigen Platz suchen", description: "Ich will einmal leben, ohne dass alles ein Schlachtfeld ist.", hooks: ["kampf","verlust"] },
+          { title: "Die Eltern wiederfinden", description: "Ich suche die Familie, die der Krieg mir nahm.", hooks: ["verlust","geheimnis"] },
         ]
       },
       {
-        text: "einzige mitwisserin", hooks: ["geheimnis","wissen"],
+        text: "einzige Mitwisserin", hooks: ["geheimnis","wissen"],
         powerTags: [
-          { text: "sieht durch lügen", hooks: ["geheimnis"] },
-          { text: "kennt die namen der toten", hooks: ["verlust","geheimnis"] },
-          { text: "eine lektion aus leid", hooks: ["verlust","wissen"] },
+          { text: "sieht durch Lügen", hooks: ["geheimnis"] },
+          { text: "kennt die Namen der Toten", hooks: ["verlust","geheimnis"] },
+          { text: "eine Lektion aus Leid", hooks: ["verlust","wissen"] },
           { text: "hört wo andere schweigen", hooks: ["geheimnis","wissen"] },
         ],
         weaknessTags: [
-          { text: "wird gejagt um ihr wissen", hooks: ["geheimnis","verlust"] },
-          { text: "traut nur vertrauten von einst", hooks: ["geheimnis","verlust"] },
+          { text: "wird gejagt um ihr Wissen", hooks: ["geheimnis","verlust"] },
+          { text: "traut nur Vertrauten von einst", hooks: ["geheimnis","verlust"] },
         ],
         quests: [
-          { title: "die wahrheit ans licht bringen", description: "Die Geschichte hat Risse, und ich kenne, was dahinter liegt.", hooks: ["geheimnis","wissen"] },
-          { title: "den verräter entlarven", description: "Jemand aus meinem Kreis hat mich verraten und ich will den Namen.", hooks: ["verlust","geheimnis"] },
+          { title: "Die Wahrheit ans Licht bringen", description: "Die Geschichte hat Risse, und ich kenne, was dahinter liegt.", hooks: ["geheimnis","wissen"] },
+          { title: "Den Verräter entlarven", description: "Jemand aus meinem Kreis hat mich verraten und ich will den Namen.", hooks: ["verlust","geheimnis"] },
         ]
       },
       {
-        text: "getriebene ohne heimat", hooks: ["fahrend","verlust"],
+        text: "getriebene ohne Heimat", hooks: ["fahrend","verlust"],
         powerTags: [
-          { text: "reist mit leichtem gepäck", hooks: ["fahrend","verlust"] },
-          { text: "findet immer orientierung", hooks: ["fahrend","natur"] },
-          { text: "findet überall unterschlupf", hooks: ["fahrend","außenseiter"] },
-          { text: "abgehärtet vom schlimmsten", hooks: ["verlust"] },
+          { text: "reist mit leichtem Gepäck", hooks: ["fahrend","verlust"] },
+          { text: "findet immer Orientierung", hooks: ["fahrend","natur"] },
+          { text: "findet überall Unterschlupf", hooks: ["fahrend","außenseiter"] },
+          { text: "abgehärtet vom Schlimmsten", hooks: ["verlust"] },
         ],
         weaknessTags: [
           { text: "nirgends willkommen", hooks: ["außenseiter","fahrend"] },
           { text: "kann nicht loslassen", hooks: ["verlust"] },
         ],
         quests: [
-          { title: "einen ort zum bleiben finden", description: "Irgendwo muss ein Platz sein, an dem ich endlich atmen darf.", hooks: ["fahrend","verlust"] },
-          { title: "dem getriebensein entkommen", description: "Ich will herausfinden, was mich rastlos durch die Lande treibt.", hooks: ["verlust","schicksal"] },
+          { title: "Einen Ort zum Bleiben finden", description: "Irgendwo muss ein Platz sein, an dem ich endlich atmen darf.", hooks: ["fahrend","verlust"] },
+          { title: "Dem Getriebensein entkommen", description: "Ich will herausfinden, was mich rastlos durch die Lande treibt.", hooks: ["verlust","schicksal"] },
         ]
       },
       {
         text: "wer alles zurückließ", hooks: ["verlust","außenseiter"],
         powerTags: [
-          { text: "lebt vom wenigen", hooks: ["außenseiter","verlust"] },
-          { text: "kennt den preis des aufgebens", hooks: ["verlust","wissen"] },
-          { text: "altes andenken", hooks: ["verlust"] },
+          { text: "lebt vom Wenigen", hooks: ["außenseiter","verlust"] },
+          { text: "kennt den Preis des Aufgebens", hooks: ["verlust","wissen"] },
+          { text: "altes Andenken", hooks: ["verlust"] },
           { text: "durchgemacht und überlebt", hooks: ["verlust"] },
         ],
         weaknessTags: [
-          { text: "bleibende schuld", hooks: ["verlust","schicksal"] },
-          { text: "lebt in der vergangenheit", hooks: ["verlust","schicksal"] },
+          { text: "bleibende Schuld", hooks: ["verlust","schicksal"] },
+          { text: "lebt in der Vergangenheit", hooks: ["verlust","schicksal"] },
         ],
         quests: [
-          { title: "dem zurückgelassenen vergeben", description: "Nicht weil sie es verdienen, sondern damit ich ohne die Last weiterkomme.", hooks: ["verlust","glaube"] },
-          { title: "das eine zurückholen", description: "Von allem, was ich aufgab, gibt es eines, das ich nicht verlieren will.", hooks: ["verlust","schicksal"] },
+          { title: "Dem Zurückgelassenen vergeben", description: "Nicht weil sie es verdienen, sondern damit ich ohne die Last weiterkomme.", hooks: ["verlust","glaube"] },
+          { title: "Das eine zurückholen", description: "Von allem, was ich aufgab, gibt es eines, das ich nicht verlieren will.", hooks: ["verlust","schicksal"] },
         ]
       },
     ]
@@ -674,207 +674,207 @@ const THEMEBOOKS = {
     type: "Origin",
     titles: [
       {
-        text: "sylvenelf", hooks: ["natur","schicksal"],
+        text: "Sylvenelf", hooks: ["natur","schicksal"],
         powerTags: [
-          { text: "kennt die sitten meines volkes", hooks: ["natur"] },
-          { text: "die sprache der ahnen", hooks: ["wissen","natur"] },
-          { text: "leiser schritt", hooks: ["natur"] },
-          { text: "sieht im dunkeln", hooks: ["natur","schicksal"] },
+          { text: "kennt die Sitten meines Volkes", hooks: ["natur"] },
+          { text: "die Sprache der Ahnen", hooks: ["wissen","natur"] },
+          { text: "leiser Schritt", hooks: ["natur"] },
+          { text: "sieht im Dunkeln", hooks: ["natur","schicksal"] },
         ],
         weaknessTags: [
-          { text: "misstrauisch gegen fremde", hooks: ["außenseiter","natur"] },
-          { text: "fremde sitten überfordern sie", hooks: ["außenseiter","natur"] },
+          { text: "misstrauisch gegen Fremde", hooks: ["außenseiter","natur"] },
+          { text: "fremde Sitten überfordern sie", hooks: ["außenseiter","natur"] },
         ],
         quests: [
-          { title: "ich erfülle eine prophezeiung meiner sippe", description: "Die Alten sahen mich in dem voraus, was kommen wird, und ich kann mich dem nicht entziehen.", hooks: ["schicksal","natur"] },
-          { title: "ich finde meinesgleichen", description: "Irgendwo dort draußen müssen andere sein, die wie ich sind.", hooks: ["außenseiter","natur"] },
+          { title: "Ich erfülle eine Prophezeiung meiner Sippe", description: "Die Alten sahen mich in dem voraus, was kommen wird, und ich kann mich dem nicht entziehen.", hooks: ["schicksal","natur"] },
+          { title: "Ich finde meinesgleichen", description: "Irgendwo dort draußen müssen andere sein, die wie ich sind.", hooks: ["außenseiter","natur"] },
         ]
       },
       {
-        text: "highlanderin", hooks: ["natur","kampf"],
+        text: "Highlanderin", hooks: ["natur","kampf"],
         powerTags: [
-          { text: "unerwartete stärke", hooks: ["kampf"] },
-          { text: "schwert meines volkes", hooks: ["kampf","natur"] },
-          { text: "heimischer boden gibt kraft", hooks: ["natur"] },
-          { text: "wettergegerbte haut", hooks: ["natur"] },
+          { text: "unerwartete Stärke", hooks: ["kampf"] },
+          { text: "Schwert meines Volkes", hooks: ["kampf","natur"] },
+          { text: "heimischer Boden gibt Kraft", hooks: ["natur"] },
+          { text: "wettergegerbte Haut", hooks: ["natur"] },
         ],
         weaknessTags: [
-          { text: "gemieden in dieser gegend", hooks: ["außenseiter"] },
+          { text: "gemieden in dieser Gegend", hooks: ["außenseiter"] },
           { text: "loyaler als vernünftig", hooks: ["glaube"] },
         ],
         quests: [
-          { title: "ich erhebe mein volk wieder zu würde", description: "Wir sind mehr als die Geschichten, die andere über uns erzählen.", hooks: ["natur","macht"] },
-          { title: "ich bringe frieden mit den alten feinden", description: "Der Krieg ist alt und keiner weiß mehr, warum er begann.", hooks: ["natur","kampf"] },
+          { title: "Ich erhebe mein Volk wieder zu Würde", description: "Wir sind mehr als die Geschichten, die andere über uns erzählen.", hooks: ["natur","macht"] },
+          { title: "Ich bringe Frieden mit den alten Feinden", description: "Der Krieg ist alt und keiner weiß mehr, warum er begann.", hooks: ["natur","kampf"] },
         ]
       },
       {
-        text: "battlerider", hooks: ["kampf"],
+        text: "Battlerider", hooks: ["kampf"],
         powerTags: [
-          { text: "bogen meines volkes", hooks: ["kampf","natur"] },
-          { text: "angeborene schnelligkeit", hooks: ["natur"] },
-          { text: "affinität zu tieren", hooks: ["natur"] },
-          { text: "sitzt fest im sattel", hooks: ["kampf","natur"] },
+          { text: "Bogen meines Volkes", hooks: ["kampf","natur"] },
+          { text: "angeborene Schnelligkeit", hooks: ["natur"] },
+          { text: "Affinität zu Tieren", hooks: ["natur"] },
+          { text: "sitzt fest im Sattel", hooks: ["kampf","natur"] },
         ],
         weaknessTags: [
-          { text: "aus dem element gerissen", hooks: ["fahrend","außenseiter"] },
+          { text: "aus dem Element gerissen", hooks: ["fahrend","außenseiter"] },
           { text: "loyaler als vernünftig", hooks: ["glaube"] },
         ],
         quests: [
-          { title: "ich beweise den wert meiner reiter", description: "Man hält uns für rohe Krieger, doch ich zeige, was wir wirklich sind.", hooks: ["außenseiter","kampf"] },
-          { title: "ich finde mein verlorenes ross wieder", description: "Ohne mein Tier bin ich nur ein halber Krieger.", hooks: ["kampf","natur"] },
+          { title: "Ich beweise den Wert meiner Reiter", description: "Man hält uns für rohe Krieger, doch ich zeige, was wir wirklich sind.", hooks: ["außenseiter","kampf"] },
+          { title: "Ich finde mein verlorenes Ross wieder", description: "Ohne mein Tier bin ich nur ein halber Krieger.", hooks: ["kampf","natur"] },
         ]
       },
       {
-        text: "hexenblut", hooks: ["magie","schicksal"],
+        text: "Hexenblut", hooks: ["magie","schicksal"],
         powerTags: [
-          { text: "wittert unrecht sofort", hooks: ["glaube","schicksal"] },
-          { text: "kennt verborgene heilpflanzen", hooks: ["natur","wissen"] },
-          { text: "altertümliches lied", hooks: ["natur","wissen"] },
-          { text: "trägt das wissen der alten", hooks: ["wissen","natur"] },
+          { text: "wittert Unrecht sofort", hooks: ["glaube","schicksal"] },
+          { text: "kennt verborgene Heilpflanzen", hooks: ["natur","wissen"] },
+          { text: "altertümliches Lied", hooks: ["natur","wissen"] },
+          { text: "trägt das Wissen der Alten", hooks: ["wissen","natur"] },
         ],
         weaknessTags: [
-          { text: "auffälliges merkmal", hooks: ["außenseiter","schicksal"] },
-          { text: "gemieden in dieser gegend", hooks: ["außenseiter"] },
+          { text: "auffälliges Merkmal", hooks: ["außenseiter","schicksal"] },
+          { text: "gemieden in dieser Gegend", hooks: ["außenseiter"] },
         ],
         quests: [
-          { title: "ich erforsche das erbe meines blutes", description: "Etwas Altes liegt in meinen Adern und ich muss wissen, woher es kommt.", hooks: ["magie","schicksal"] },
-          { title: "ich beweise dass mein volk mehr ist als sein ruf", description: "Die anderen erzählen alte und falsche Geschichten über uns.", hooks: ["außenseiter","natur"] },
+          { title: "Ich erforsche das Erbe meines Blutes", description: "Etwas Altes liegt in meinen Adern und ich muss wissen, woher es kommt.", hooks: ["magie","schicksal"] },
+          { title: "Ich beweise dass mein Volk mehr ist als sein Ruf", description: "Die anderen erzählen alte und falsche Geschichten über uns.", hooks: ["außenseiter","natur"] },
         ]
       },
       {
-        text: "karawanenvolk", hooks: ["fahrend"],
+        text: "Karawanenvolk", hooks: ["fahrend"],
         powerTags: [
-          { text: "tanz mit tiefer bedeutung", hooks: ["natur","glaube"] },
-          { text: "körpersprache nur für eingeweihte", hooks: ["geheimnis","außenseiter"] },
-          { text: "findet immer orientierung", hooks: ["fahrend","natur"] },
-          { text: "entfacht feuer überall", hooks: ["natur","handwerk"] },
+          { text: "Tanz mit tiefer Bedeutung", hooks: ["natur","glaube"] },
+          { text: "Körpersprache nur für Eingeweihte", hooks: ["geheimnis","außenseiter"] },
+          { text: "findet immer Orientierung", hooks: ["fahrend","natur"] },
+          { text: "entfacht Feuer überall", hooks: ["natur","handwerk"] },
         ],
         weaknessTags: [
-          { text: "gemieden in dieser gegend", hooks: ["außenseiter"] },
-          { text: "spricht mit fremdem akzent", hooks: ["außenseiter","fahrend"] },
+          { text: "gemieden in dieser Gegend", hooks: ["außenseiter"] },
+          { text: "spricht mit fremdem Akzent", hooks: ["außenseiter","fahrend"] },
         ],
         quests: [
-          { title: "ich bewahre die lieder meines volkes", description: "Wer keine Lieder mehr hat, hat kein Volk.", hooks: ["natur","wissen"] },
-          { title: "ich finde das verlorene herz meiner kultur", description: "Etwas wurde uns genommen, ein Ort, ein Ritual, ein Name.", hooks: ["natur","verlust"] },
+          { title: "Ich bewahre die Lieder meines Volkes", description: "Wer keine Lieder mehr hat, hat kein Volk.", hooks: ["natur","wissen"] },
+          { title: "Ich finde das verlorene Herz meiner Kultur", description: "Etwas wurde uns genommen, ein Ort, ein Ritual, ein Name.", hooks: ["natur","verlust"] },
         ]
       },
       {
-        text: "bibervolk", hooks: ["natur"],
+        text: "Bibervolk", hooks: ["natur"],
         powerTags: [
-          { text: "werkzeug aus der heimat", hooks: ["handwerk","natur"] },
+          { text: "Werkzeug aus der Heimat", hooks: ["handwerk","natur"] },
           { text: "taucht und schwimmt mühelos", hooks: ["natur"] },
-          { text: "baut dämme und unterschlüpfe", hooks: ["handwerk","natur"] },
-          { text: "kennt die zeichen des wetters", hooks: ["natur"] },
+          { text: "baut Dämme und Unterschlüpfe", hooks: ["handwerk","natur"] },
+          { text: "kennt die Zeichen des Wetters", hooks: ["natur"] },
         ],
         weaknessTags: [
-          { text: "auffälliges merkmal", hooks: ["außenseiter","schicksal"] },
-          { text: "misstrauisch gegen fremde", hooks: ["außenseiter","natur"] },
+          { text: "auffälliges Merkmal", hooks: ["außenseiter","schicksal"] },
+          { text: "misstrauisch gegen Fremde", hooks: ["außenseiter","natur"] },
         ],
         quests: [
-          { title: "ich schütze die wasser meiner heimat", description: "Flüsse und Teiche sind unser Leben und etwas bedroht sie.", hooks: ["natur"] },
-          { title: "ich finde meinesgleichen", description: "Irgendwo dort draußen müssen andere sein, die wie ich sind.", hooks: ["außenseiter","natur"] },
+          { title: "Ich schütze die Wasser meiner Heimat", description: "Flüsse und Teiche sind unser Leben und etwas bedroht sie.", hooks: ["natur"] },
+          { title: "Ich finde meinesgleichen", description: "Irgendwo dort draußen müssen andere sein, die wie ich sind.", hooks: ["außenseiter","natur"] },
         ]
       },
       {
-        text: "fjordgeborene", hooks: ["natur"],
+        text: "Fjordgeborene", hooks: ["natur"],
         powerTags: [
-          { text: "überlebt in unwirtlichen gebieten", hooks: ["natur","außenseiter"] },
-          { text: "wettergegerbte haut", hooks: ["natur"] },
-          { text: "kennt die zeichen des wetters", hooks: ["natur"] },
-          { text: "seefest und sicher zu schiff", hooks: ["natur","fahrend"] },
+          { text: "überlebt in unwirtlichen Gebieten", hooks: ["natur","außenseiter"] },
+          { text: "wettergegerbte Haut", hooks: ["natur"] },
+          { text: "kennt die Zeichen des Wetters", hooks: ["natur"] },
+          { text: "seefest und sicher zu Schiff", hooks: ["natur","fahrend"] },
         ],
         weaknessTags: [
-          { text: "aus dem element gerissen", hooks: ["fahrend","außenseiter"] },
-          { text: "blind für fremde bräuche", hooks: ["natur","außenseiter"] },
+          { text: "aus dem Element gerissen", hooks: ["fahrend","außenseiter"] },
+          { text: "blind für fremde Bräuche", hooks: ["natur","außenseiter"] },
         ],
         quests: [
-          { title: "ich kehre an die küste meiner ahnen zurück", description: "Das Salz im Wind ruft mich heim, koste es, was es wolle.", hooks: ["natur","verlust"] },
-          { title: "ich erhebe mein volk wieder zu würde", description: "Wir sind mehr als die Geschichten, die andere über uns erzählen.", hooks: ["natur","macht"] },
+          { title: "Ich kehre an die Küste meiner Ahnen zurück", description: "Das Salz im Wind ruft mich heim, koste es, was es wolle.", hooks: ["natur","verlust"] },
+          { title: "Ich erhebe mein Volk wieder zu Würde", description: "Wir sind mehr als die Geschichten, die andere über uns erzählen.", hooks: ["natur","macht"] },
         ]
       },
       {
-        text: "tochter der wanderer", hooks: ["fahrend"],
+        text: "Tochter der Wanderer", hooks: ["fahrend"],
         powerTags: [
-          { text: "findet immer orientierung", hooks: ["fahrend","natur"] },
-          { text: "seelenbewegender gesang", hooks: ["natur","schicksal"] },
-          { text: "erkennt gast und eindringling", hooks: ["natur","geheimnis"] },
-          { text: "findet überall unterschlupf", hooks: ["fahrend","stadt"] },
+          { text: "findet immer Orientierung", hooks: ["fahrend","natur"] },
+          { text: "seelenbewegender Gesang", hooks: ["natur","schicksal"] },
+          { text: "erkennt Gast und Eindringling", hooks: ["natur","geheimnis"] },
+          { text: "findet überall Unterschlupf", hooks: ["fahrend","stadt"] },
         ],
         weaknessTags: [
-          { text: "spricht mit fremdem akzent", hooks: ["außenseiter","fahrend"] },
-          { text: "gemieden in dieser gegend", hooks: ["außenseiter"] },
+          { text: "spricht mit fremdem Akzent", hooks: ["außenseiter","fahrend"] },
+          { text: "gemieden in dieser Gegend", hooks: ["außenseiter"] },
         ],
         quests: [
-          { title: "ich überbrücke die welten in denen ich lebe", description: "Ich bin weder ganz von hier noch ganz von dort.", hooks: ["außenseiter","schicksal"] },
-          { title: "ich bewahre die lieder meines volkes", description: "Wer keine Lieder mehr hat, hat kein Volk.", hooks: ["fahrend","wissen"] },
+          { title: "Ich überbrücke die Welten in denen ich lebe", description: "Ich bin weder ganz von hier noch ganz von dort.", hooks: ["außenseiter","schicksal"] },
+          { title: "Ich bewahre die Lieder meines Volkes", description: "Wer keine Lieder mehr hat, hat kein Volk.", hooks: ["fahrend","wissen"] },
         ]
       },
       {
-        text: "küstenkind", hooks: ["natur"],
+        text: "Küstenkind", hooks: ["natur"],
         powerTags: [
           { text: "taucht und schwimmt mühelos", hooks: ["natur"] },
-          { text: "kennt die zeichen des wetters", hooks: ["natur"] },
-          { text: "angeborener sinn für spuren", hooks: ["natur"] },
-          { text: "liest die gezeiten", hooks: ["natur","wissen"] },
+          { text: "kennt die Zeichen des Wetters", hooks: ["natur"] },
+          { text: "angeborener Sinn für Spuren", hooks: ["natur"] },
+          { text: "liest die Gezeiten", hooks: ["natur","wissen"] },
         ],
         weaknessTags: [
-          { text: "aus dem element gerissen", hooks: ["fahrend","außenseiter"] },
-          { text: "fremde sitten überfordern sie", hooks: ["außenseiter","natur"] },
+          { text: "aus dem Element gerissen", hooks: ["fahrend","außenseiter"] },
+          { text: "fremde Sitten überfordern sie", hooks: ["außenseiter","natur"] },
         ],
         quests: [
-          { title: "ich finde das verlorene herz meiner kultur", description: "Etwas wurde uns genommen, ein Ort, ein Ritual, ein Name.", hooks: ["natur","verlust"] },
-          { title: "ich schütze die küste vor dem was aus der see kommt", description: "Das Meer gibt und es nimmt, und ich stehe an seiner Schwelle.", hooks: ["natur"] },
+          { title: "Ich finde das verlorene Herz meiner Kultur", description: "Etwas wurde uns genommen, ein Ort, ein Ritual, ein Name.", hooks: ["natur","verlust"] },
+          { title: "Ich schütze die Küste vor dem was aus der See kommt", description: "Das Meer gibt und es nimmt, und ich stehe an seiner Schwelle.", hooks: ["natur"] },
         ]
       },
       {
-        text: "sumpfbewohner", hooks: ["natur"],
+        text: "Sumpfbewohner", hooks: ["natur"],
         powerTags: [
-          { text: "überlebt in unwirtlichen gebieten", hooks: ["natur","außenseiter"] },
-          { text: "kennt verborgene heilpflanzen", hooks: ["natur","wissen"] },
-          { text: "angeborener sinn für spuren", hooks: ["natur"] },
-          { text: "leiser schritt", hooks: ["natur"] },
+          { text: "überlebt in unwirtlichen Gebieten", hooks: ["natur","außenseiter"] },
+          { text: "kennt verborgene Heilpflanzen", hooks: ["natur","wissen"] },
+          { text: "angeborener Sinn für Spuren", hooks: ["natur"] },
+          { text: "leiser Schritt", hooks: ["natur"] },
         ],
         weaknessTags: [
-          { text: "gemieden in dieser gegend", hooks: ["außenseiter"] },
-          { text: "misstrauisch gegen fremde", hooks: ["außenseiter","natur"] },
+          { text: "gemieden in dieser Gegend", hooks: ["außenseiter"] },
+          { text: "misstrauisch gegen Fremde", hooks: ["außenseiter","natur"] },
         ],
         quests: [
-          { title: "ich bewahre die geheimnisse des moors", description: "Der Sumpf birgt altes Wissen, das nur wir noch kennen.", hooks: ["natur","geheimnis"] },
-          { title: "ich beweise dass mein volk mehr ist als sein ruf", description: "Die anderen erzählen alte und falsche Geschichten über uns.", hooks: ["außenseiter","natur"] },
+          { title: "Ich bewahre die Geheimnisse des Moors", description: "Der Sumpf birgt altes Wissen, das nur wir noch kennen.", hooks: ["natur","geheimnis"] },
+          { title: "Ich beweise dass mein Volk mehr ist als sein Ruf", description: "Die anderen erzählen alte und falsche Geschichten über uns.", hooks: ["außenseiter","natur"] },
         ]
       },
       {
-        text: "halbblut zwischen zwei welten", hooks: ["außenseiter","schicksal"],
+        text: "Halbblut zwischen zwei Welten", hooks: ["außenseiter","schicksal"],
         powerTags: [
-          { text: "kennt die sitten zweier völker", hooks: ["natur","außenseiter"] },
-          { text: "erkennt gast und eindringling", hooks: ["natur","geheimnis"] },
-          { text: "die sprache der ahnen", hooks: ["wissen","natur"] },
-          { text: "vermittelt zwischen fremden", hooks: ["stadt","außenseiter"] },
+          { text: "kennt die Sitten zweier Völker", hooks: ["natur","außenseiter"] },
+          { text: "erkennt Gast und Eindringling", hooks: ["natur","geheimnis"] },
+          { text: "die Sprache der Ahnen", hooks: ["wissen","natur"] },
+          { text: "vermittelt zwischen Fremden", hooks: ["stadt","außenseiter"] },
         ],
         weaknessTags: [
-          { text: "gemieden in dieser gegend", hooks: ["außenseiter"] },
-          { text: "auffälliges merkmal", hooks: ["außenseiter","schicksal"] },
+          { text: "gemieden in dieser Gegend", hooks: ["außenseiter"] },
+          { text: "auffälliges Merkmal", hooks: ["außenseiter","schicksal"] },
         ],
         quests: [
-          { title: "ich überbrücke die welten in denen ich lebe", description: "Ich bin weder ganz von hier noch ganz von dort.", hooks: ["außenseiter","schicksal"] },
-          { title: "ich finde meinesgleichen", description: "Irgendwo müssen andere sein, die zwischen den Welten stehen wie ich.", hooks: ["außenseiter","schicksal"] },
+          { title: "Ich überbrücke die Welten in denen ich lebe", description: "Ich bin weder ganz von hier noch ganz von dort.", hooks: ["außenseiter","schicksal"] },
+          { title: "Ich finde meinesgleichen", description: "Irgendwo müssen andere sein, die zwischen den Welten stehen wie ich.", hooks: ["außenseiter","schicksal"] },
         ]
       },
       {
-        text: "aus dem fernen osten", hooks: ["fahrend","geheimnis"],
+        text: "aus dem fernen Osten", hooks: ["fahrend","geheimnis"],
         powerTags: [
-          { text: "trägt das wissen der alten", hooks: ["wissen","natur"] },
-          { text: "körpersprache nur für eingeweihte", hooks: ["geheimnis","außenseiter"] },
-          { text: "altertümliches lied", hooks: ["natur","wissen"] },
-          { text: "kennt ferne sitten und wege", hooks: ["fahrend","wissen"] },
+          { text: "trägt das Wissen der Alten", hooks: ["wissen","natur"] },
+          { text: "Körpersprache nur für Eingeweihte", hooks: ["geheimnis","außenseiter"] },
+          { text: "altertümliches Lied", hooks: ["natur","wissen"] },
+          { text: "kennt ferne Sitten und Wege", hooks: ["fahrend","wissen"] },
         ],
         weaknessTags: [
-          { text: "spricht mit fremdem akzent", hooks: ["außenseiter","fahrend"] },
-          { text: "fremde sitten überfordern sie", hooks: ["außenseiter","natur"] },
+          { text: "spricht mit fremdem Akzent", hooks: ["außenseiter","fahrend"] },
+          { text: "fremde Sitten überfordern sie", hooks: ["außenseiter","natur"] },
         ],
         quests: [
-          { title: "ich finde den weg in die heimat zurück", description: "Ein langer Pfad liegt zwischen mir und dem Land, das mich kennt.", hooks: ["fahrend","verlust"] },
-          { title: "ich bringe das wissen meiner heimat in diese welt", description: "Was hier niemand kennt, könnte vieles verändern.", hooks: ["wissen","geheimnis"] },
+          { title: "Ich finde den Weg in die Heimat zurück", description: "Ein langer Pfad liegt zwischen mir und dem Land, das mich kennt.", hooks: ["fahrend","verlust"] },
+          { title: "Ich bringe das Wissen meiner Heimat in diese Welt", description: "Was hier niemand kennt, könnte vieles verändern.", hooks: ["wissen","geheimnis"] },
         ]
       },
     ]
@@ -895,8 +895,8 @@ const THEMEBOOKS = {
           { text: "nimmt sich alles zu Herzen", hooks: ["verlust","natur"] },
         ],
         quests: [
-          { title: "ein offenes ohr für die übersehenen", description: "Ich helfe denen, die sonst niemand sieht.", hooks: ["glaube","außenseiter"] },
-          { title: "güte zurückgeben", description: "Ich gebe das Gute, das mir getan wurde, weiter.", hooks: ["glaube","verlust"] },
+          { title: "Ein offenes Ohr für die Übersehenen", description: "Ich helfe denen, die sonst niemand sieht.", hooks: ["glaube","außenseiter"] },
+          { title: "Güte zurückgeben", description: "Ich gebe das Gute, das mir getan wurde, weiter.", hooks: ["glaube","verlust"] },
         ]
       },
       {
@@ -912,8 +912,8 @@ const THEMEBOOKS = {
           { text: "spricht zu viel", hooks: ["stadt"] },
         ],
         quests: [
-          { title: "menschen für eine sache gewinnen", description: "Ich ändere etwas in dieser Welt durch Worte, nicht durch Schwerter.", hooks: ["stadt","macht"] },
-          { title: "wahre freunde hinter den masken", description: "Ich finde die, die mir wirklich vertrauen.", hooks: ["glaube","stadt"] },
+          { title: "Menschen für eine Sache gewinnen", description: "Ich ändere etwas in dieser Welt durch Worte, nicht durch Schwerter.", hooks: ["stadt","macht"] },
+          { title: "Wahre Freunde hinter den Masken", description: "Ich finde die, die mir wirklich vertrauen.", hooks: ["glaube","stadt"] },
         ]
       },
       {
@@ -926,11 +926,11 @@ const THEMEBOOKS = {
         ],
         weaknessTags: [
           { text: "leicht zu provozieren", hooks: ["kampf"] },
-          { text: "verschreckt mit der schroffen art", hooks: ["außenseiter"] },
+          { text: "verschreckt mit der schroffen Art", hooks: ["außenseiter"] },
         ],
         quests: [
-          { title: "mir selbst nicht im weg stehen", description: "Ich lerne, auch für mich selbst da zu sein.", hooks: ["natur","verlust"] },
-          { title: "treu bleiben um jeden preis", description: "Ich bleibe mir treu, koste es, was es wolle.", hooks: ["glaube","außenseiter"] },
+          { title: "Mir selbst nicht im Weg stehen", description: "Ich lerne, auch für mich selbst da zu sein.", hooks: ["natur","verlust"] },
+          { title: "Treu bleiben um jeden Preis", description: "Ich bleibe mir treu, koste es, was es wolle.", hooks: ["glaube","außenseiter"] },
         ]
       },
       {
@@ -938,16 +938,16 @@ const THEMEBOOKS = {
         powerTags: [
           { text: "durchschaut eine Lüge", hooks: ["stadt","geheimnis"] },
           { text: "plaudert sich aus jeder Lage", hooks: ["stadt"] },
-          { text: "trägt jede maske glaubhaft", hooks: ["stadt","geheimnis"] },
+          { text: "trägt jede Maske glaubhaft", hooks: ["stadt","geheimnis"] },
           { text: "behält die Ruhe", hooks: ["natur"] },
         ],
         weaknessTags: [
           { text: "misstraut der eigenen Geschichte", hooks: ["geheimnis","verlust"] },
-          { text: "wird beim wort genommen", hooks: ["stadt","geheimnis"] },
+          { text: "wird beim Wort genommen", hooks: ["stadt","geheimnis"] },
         ],
         quests: [
-          { title: "das gesicht unter den masken", description: "Ich verstehe endlich, wer ich wirklich bin.", hooks: ["geheimnis","schicksal"] },
-          { title: "menschen finden die das echte sehen", description: "Ich finde die, die mir wirklich vertrauen.", hooks: ["glaube","stadt"] },
+          { title: "Das Gesicht unter den Masken", description: "Ich verstehe endlich, wer ich wirklich bin.", hooks: ["geheimnis","schicksal"] },
+          { title: "Menschen finden die das Echte sehen", description: "Ich finde die, die mir wirklich vertrauen.", hooks: ["glaube","stadt"] },
         ]
       },
       {
@@ -956,15 +956,15 @@ const THEMEBOOKS = {
           { text: "kennt die richtige Frage", hooks: ["wissen"] },
           { text: "fragt im richtigen Moment", hooks: ["wissen","stadt"] },
           { text: "keine Gerüchte entgehen mir", hooks: ["stadt","geheimnis"] },
-          { text: "merkt sich jede einzelheit", hooks: ["wissen"] },
+          { text: "merkt sich jede Einzelheit", hooks: ["wissen"] },
         ],
         weaknessTags: [
           { text: "verliert sich in Details", hooks: ["wissen","geheimnis"] },
-          { text: "steckt die nase in fremdes", hooks: ["geheimnis","außenseiter"] },
+          { text: "steckt die Nase in Fremdes", hooks: ["geheimnis","außenseiter"] },
         ],
         quests: [
-          { title: "der wahrheit auf den grund gehen", description: "Ich lasse keine Frage offen, bis ich die Antwort selbst gesehen habe.", hooks: ["wissen","geheimnis"] },
-          { title: "ein rätsel das mich nicht loslässt", description: "Ich folge einem Geheimnis, das niemand sonst lösen will.", hooks: ["geheimnis","schicksal"] },
+          { title: "Der Wahrheit auf den Grund gehen", description: "Ich lasse keine Frage offen, bis ich die Antwort selbst gesehen habe.", hooks: ["wissen","geheimnis"] },
+          { title: "Ein Rätsel das mich nicht loslässt", description: "Ich folge einem Geheimnis, das niemand sonst lösen will.", hooks: ["geheimnis","schicksal"] },
         ]
       },
       {
@@ -977,28 +977,28 @@ const THEMEBOOKS = {
         ],
         weaknessTags: [
           { text: "leidet unter Misstimmung", hooks: ["natur","glaube"] },
-          { text: "vergisst die eigenen sorgen", hooks: ["verlust","glaube"] },
+          { text: "vergisst die eigenen Sorgen", hooks: ["verlust","glaube"] },
         ],
         quests: [
-          { title: "licht in dunkle räume bringen", description: "Ich bringe Licht in dunkle Räume.", hooks: ["glaube","macht"] },
-          { title: "auch für mich selbst da sein", description: "Ich lerne, auch für mich selbst da zu sein.", hooks: ["natur","verlust"] },
+          { title: "Licht in dunkle Räume bringen", description: "Ich bringe Licht in dunkle Räume.", hooks: ["glaube","macht"] },
+          { title: "Auch für mich selbst da sein", description: "Ich lerne, auch für mich selbst da zu sein.", hooks: ["natur","verlust"] },
         ]
       },
       {
         text: "gefährlich gutgläubig", hooks: ["außenseiter","schicksal"],
         powerTags: [
-          { text: "sieht das gute im menschen", hooks: ["glaube"] },
+          { text: "sieht das Gute im Menschen", hooks: ["glaube"] },
           { text: "macht Mut zum Aufstehen", hooks: ["glaube","natur"] },
           { text: "trägt keinen Groll", hooks: ["glaube"] },
-          { text: "gewinnt schnell vertrauen", hooks: ["glaube","stadt"] },
+          { text: "gewinnt schnell Vertrauen", hooks: ["glaube","stadt"] },
         ],
         weaknessTags: [
           { text: "ausnutzbar", hooks: ["außenseiter"] },
-          { text: "läuft in offene fallen", hooks: ["außenseiter","schicksal"] },
+          { text: "läuft in offene Fallen", hooks: ["außenseiter","schicksal"] },
         ],
         quests: [
-          { title: "vertrauen ohne reue lernen", description: "Ich finde heraus, wem ich trauen darf, ohne misstrauisch zu werden.", hooks: ["außenseiter","schicksal"] },
-          { title: "an die güte glauben", description: "Ich beweise, dass mein Vertrauen die Welt besser macht.", hooks: ["glaube","außenseiter"] },
+          { title: "Vertrauen ohne Reue lernen", description: "Ich finde heraus, wem ich trauen darf, ohne misstrauisch zu werden.", hooks: ["außenseiter","schicksal"] },
+          { title: "An die Güte glauben", description: "Ich beweise, dass mein Vertrauen die Welt besser macht.", hooks: ["glaube","außenseiter"] },
         ]
       },
       {
@@ -1006,16 +1006,16 @@ const THEMEBOOKS = {
         powerTags: [
           { text: "behält die Ruhe", hooks: ["natur"] },
           { text: "stellt sich dem Konflikt", hooks: ["kampf","glaube"] },
-          { text: "ordnet das chaos", hooks: ["natur","macht"] },
-          { text: "gibt anderen halt", hooks: ["glaube","natur"] },
+          { text: "ordnet das Chaos", hooks: ["natur","macht"] },
+          { text: "gibt anderen Halt", hooks: ["glaube","natur"] },
         ],
         weaknessTags: [
           { text: "staut alles in sich auf", hooks: ["verlust","natur"] },
           { text: "wirkt unnahbar kühl", hooks: ["außenseiter","natur"] },
         ],
         quests: [
-          { title: "frieden stiften wo streit tobt", description: "Ich werde der ruhige Punkt, an dem sich die Aufgebrachten sammeln.", hooks: ["natur","macht"] },
-          { title: "den eigenen sturm beruhigen", description: "Ich lerne, auch für mich selbst da zu sein.", hooks: ["natur","verlust"] },
+          { title: "Frieden stiften wo Streit tobt", description: "Ich werde der ruhige Punkt, an dem sich die Aufgebrachten sammeln.", hooks: ["natur","macht"] },
+          { title: "Den eigenen Sturm beruhigen", description: "Ich lerne, auch für mich selbst da zu sein.", hooks: ["natur","verlust"] },
         ]
       },
       {
@@ -1028,11 +1028,11 @@ const THEMEBOOKS = {
         ],
         weaknessTags: [
           { text: "zu ehrlich", hooks: ["glaube"] },
-          { text: "macht sich feinde mit worten", hooks: ["außenseiter","kampf"] },
+          { text: "macht sich Feinde mit Worten", hooks: ["außenseiter","kampf"] },
         ],
         quests: [
-          { title: "wahrheit gegen mächtige aussprechen", description: "Ich sage das Unbequeme dort, wo es weh tut.", hooks: ["außenseiter","macht"] },
-          { title: "treu bleiben koste es was es wolle", description: "Ich bleibe mir treu, koste es, was es wolle.", hooks: ["glaube","außenseiter"] },
+          { title: "Wahrheit gegen Mächtige aussprechen", description: "Ich sage das Unbequeme dort, wo es weh tut.", hooks: ["außenseiter","macht"] },
+          { title: "Treu bleiben koste es was es wolle", description: "Ich bleibe mir treu, koste es, was es wolle.", hooks: ["glaube","außenseiter"] },
         ]
       },
       {
@@ -1044,46 +1044,46 @@ const THEMEBOOKS = {
           { text: "spielt den Narren", hooks: ["glaube"] },
         ],
         weaknessTags: [
-          { text: "macht alles ins lächerliche", hooks: ["außenseiter","stadt"] },
+          { text: "macht alles ins Lächerliche", hooks: ["außenseiter","stadt"] },
           { text: "sentimental im falschen Moment", hooks: ["verlust"] },
         ],
         quests: [
-          { title: "mit einem scherz die stimmung wenden", description: "Ich bringe Licht in dunkle Räume.", hooks: ["glaube","macht"] },
-          { title: "ernst genommen werden", description: "Ich beweise, dass hinter dem Lachen mehr steckt.", hooks: ["stadt","außenseiter"] },
+          { title: "Mit einem Scherz die Stimmung wenden", description: "Ich bringe Licht in dunkle Räume.", hooks: ["glaube","macht"] },
+          { title: "Ernst genommen werden", description: "Ich beweise, dass hinter dem Lachen mehr steckt.", hooks: ["stadt","außenseiter"] },
         ]
       },
       {
         text: "hält Geheimnisse wie Atemluft", hooks: ["geheimnis"],
         powerTags: [
-          { text: "verrät niemals ein wort", hooks: ["geheimnis","glaube"] },
+          { text: "verrät niemals ein Wort", hooks: ["geheimnis","glaube"] },
           { text: "keine Gerüchte entgehen mir", hooks: ["stadt","geheimnis"] },
           { text: "behält die Ruhe", hooks: ["natur"] },
           { text: "liest Räume sofort", hooks: ["stadt","wissen"] },
         ],
         weaknessTags: [
-          { text: "trägt zu viele lasten allein", hooks: ["geheimnis","verlust"] },
-          { text: "erpressbar durch das gewusste", hooks: ["geheimnis","macht"] },
+          { text: "trägt zu viele Lasten allein", hooks: ["geheimnis","verlust"] },
+          { text: "erpressbar durch das Gewusste", hooks: ["geheimnis","macht"] },
         ],
         quests: [
-          { title: "ein anvertrautes geheimnis schützen", description: "Ich bewahre, was mir jemand im Vertrauen gab, gegen jeden Druck.", hooks: ["geheimnis","glaube"] },
-          { title: "jemandem das ganze geheimnis sein", description: "Ich finde die, die mir wirklich vertrauen.", hooks: ["glaube","stadt"] },
+          { title: "Ein anvertrautes Geheimnis schützen", description: "Ich bewahre, was mir jemand im Vertrauen gab, gegen jeden Druck.", hooks: ["geheimnis","glaube"] },
+          { title: "Jemandem das ganze Geheimnis sein", description: "Ich finde die, die mir wirklich vertrauen.", hooks: ["glaube","stadt"] },
         ]
       },
       {
         text: "verhängnisvoll neugierig", hooks: ["wissen","geheimnis"],
         powerTags: [
           { text: "kennt die richtige Frage", hooks: ["wissen"] },
-          { text: "spürt dem verborgenen nach", hooks: ["geheimnis","wissen"] },
+          { text: "spürt dem Verborgenen nach", hooks: ["geheimnis","wissen"] },
           { text: "fragt im richtigen Moment", hooks: ["wissen","stadt"] },
           { text: "gibt nie vorzeitig auf", hooks: ["glaube","schicksal"] },
         ],
         weaknessTags: [
-          { text: "weckt schlafende hunde", hooks: ["geheimnis","schicksal"] },
+          { text: "weckt schlafende Hunde", hooks: ["geheimnis","schicksal"] },
           { text: "verliert sich in Details", hooks: ["wissen","geheimnis"] },
         ],
         quests: [
-          { title: "ein gefährliches geheimnis lüften", description: "Ich grabe an etwas, das besser begraben bliebe, bis ich die Wahrheit kenne.", hooks: ["geheimnis","schicksal"] },
-          { title: "die folgen meiner fragen tragen", description: "Ich stehe für das gerade, was meine Neugier ans Licht gebracht hat.", hooks: ["wissen","verlust"] },
+          { title: "Ein gefährliches Geheimnis lüften", description: "Ich grabe an etwas, das besser begraben bliebe, bis ich die Wahrheit kenne.", hooks: ["geheimnis","schicksal"] },
+          { title: "Die Folgen meiner Fragen tragen", description: "Ich stehe für das gerade, was meine Neugier ans Licht gebracht hat.", hooks: ["wissen","verlust"] },
         ]
       },
     ]
@@ -1302,112 +1302,112 @@ const THEMEBOOKS = {
     type: "Origin",
     titles: [
       {
-        text: "stark wie ein ochse", hooks: ["kampf","natur"],
+        text: "stark wie ein Ochse", hooks: ["kampf","natur"],
         powerTags: [
-          { text: "unbändige kraft", hooks: ["kampf","schicksal"] },
-          { text: "fester griff", hooks: ["kampf","natur"] },
-          { text: "trägt schwere lasten", hooks: ["natur","handwerk"] },
-          { text: "bricht durch hindernisse", hooks: ["kampf","natur"] },
+          { text: "unbändige Kraft", hooks: ["kampf","schicksal"] },
+          { text: "fester Griff", hooks: ["kampf","natur"] },
+          { text: "trägt schwere Lasten", hooks: ["natur","handwerk"] },
+          { text: "bricht durch Hindernisse", hooks: ["kampf","natur"] },
         ],
         weaknessTags: [
-          { text: "auffällig für feinde", hooks: ["schicksal","kampf"] },
+          { text: "auffällig für Feinde", hooks: ["schicksal","kampf"] },
           { text: "schwer und langsam", hooks: ["kampf","verlust"] },
         ],
         quests: [
-          { title: "ich beweise meine stärke", description: "Niemand soll glauben, dass rohe Kraft alles sei, was ich bin.", hooks: ["kampf","schicksal"] },
-          { title: "ich schütze die schwachen", description: "Meine Kraft ist mir gegeben, um sie für andere einzusetzen.", hooks: ["glaube","kampf"] },
+          { title: "Ich beweise meine Stärke", description: "Niemand soll glauben, dass rohe Kraft alles sei, was ich bin.", hooks: ["kampf","schicksal"] },
+          { title: "Ich schütze die Schwachen", description: "Meine Kraft ist mir gegeben, um sie für andere einzusetzen.", hooks: ["glaube","kampf"] },
         ]
       },
       {
-        text: "akrobatische beweglichkeit", hooks: ["handwerk","natur"],
+        text: "akrobatische Beweglichkeit", hooks: ["handwerk","natur"],
         powerTags: [
-          { text: "klettert wie eine katze", hooks: ["natur","handwerk"] },
+          { text: "klettert wie eine Katze", hooks: ["natur","handwerk"] },
           { text: "springt höher als andere", hooks: ["schicksal","natur"] },
-          { text: "leichter schritt", hooks: ["handwerk","geheimnis"] },
+          { text: "leichter Schritt", hooks: ["handwerk","geheimnis"] },
           { text: "fällt nie", hooks: ["handwerk","natur"] },
         ],
         weaknessTags: [
           { text: "erschöpft sich rasch", hooks: ["schicksal","verlust"] },
-          { text: "tollkühn ohne maß", hooks: ["schicksal","verlust"] },
+          { text: "tollkühn ohne Maß", hooks: ["schicksal","verlust"] },
         ],
         quests: [
-          { title: "ich meistere das unmögliche", description: "Es gibt einen Sprung, einen Weg, den noch niemand gewagt hat.", hooks: ["schicksal","handwerk"] },
-          { title: "ich finde den höchsten gipfel", description: "Was andere für unerreichbar halten, will ich erklimmen.", hooks: ["natur","fahrend"] },
+          { title: "Ich meistere das Unmögliche", description: "Es gibt einen Sprung, einen Weg, den noch niemand gewagt hat.", hooks: ["schicksal","handwerk"] },
+          { title: "Ich finde den höchsten Gipfel", description: "Was andere für unerreichbar halten, will ich erklimmen.", hooks: ["natur","fahrend"] },
         ]
       },
       {
         text: "unheimlich schön", hooks: ["schicksal","geheimnis"],
         powerTags: [
-          { text: "betörende schönheit", hooks: ["schicksal","geheimnis"] },
-          { text: "zieht blicke an", hooks: ["schicksal","adel"] },
-          { text: "unvergesslicher anblick", hooks: ["schicksal","stadt"] },
-          { text: "gewinnt sympathie sofort", hooks: ["stadt","schicksal"] },
+          { text: "betörende Schönheit", hooks: ["schicksal","geheimnis"] },
+          { text: "zieht Blicke an", hooks: ["schicksal","adel"] },
+          { text: "unvergesslicher Anblick", hooks: ["schicksal","stadt"] },
+          { text: "gewinnt Sympathie sofort", hooks: ["stadt","schicksal"] },
         ],
         weaknessTags: [
           { text: "wird beneidet", hooks: ["schicksal","stadt"] },
-          { text: "zieht unliebsame neugier an", hooks: ["schicksal","geheimnis"] },
+          { text: "zieht unliebsame Neugier an", hooks: ["schicksal","geheimnis"] },
         ],
         quests: [
-          { title: "ich werde nicht nur für mein gesicht gesehen", description: "Hinter der Schönheit steckt mehr, und das soll man erkennen.", hooks: ["schicksal","außenseiter"] },
-          { title: "ich enthülle das geheimnis meiner herkunft", description: "Etwas Fremdartiges liegt in meiner Schönheit, und ich will wissen warum.", hooks: ["geheimnis","schicksal"] },
+          { title: "Ich werde nicht nur für mein Gesicht gesehen", description: "Hinter der Schönheit steckt mehr, und das soll man erkennen.", hooks: ["schicksal","außenseiter"] },
+          { title: "Ich enthülle das Geheimnis meiner Herkunft", description: "Etwas Fremdartiges liegt in meiner Schönheit, und ich will wissen warum.", hooks: ["geheimnis","schicksal"] },
         ]
       },
       {
-        text: "wache beobachtungsgabe", hooks: ["schicksal","magie"],
+        text: "wache Beobachtungsgabe", hooks: ["schicksal","magie"],
         powerTags: [
           { text: "vorausschauend", hooks: ["schicksal","magie"] },
-          { text: "spürt nahende gefahr", hooks: ["magie","schicksal"] },
-          { text: "liest räume sofort", hooks: ["schicksal","stadt"] },
-          { text: "übersieht kein detail", hooks: ["wissen","schicksal"] },
+          { text: "spürt nahende Gefahr", hooks: ["magie","schicksal"] },
+          { text: "liest Räume sofort", hooks: ["schicksal","stadt"] },
+          { text: "übersieht kein Detail", hooks: ["wissen","schicksal"] },
         ],
         weaknessTags: [
-          { text: "verliert sich in details", hooks: ["wissen","geheimnis"] },
+          { text: "verliert sich in Details", hooks: ["wissen","geheimnis"] },
           { text: "sieht zu viel", hooks: ["schicksal","verlust"] },
         ],
         quests: [
-          { title: "ich deute die zeichen richtig", description: "Was ich sehe, will ich endlich auch verstehen, bevor es zu spät ist.", hooks: ["schicksal","wissen"] },
-          { title: "ich warne vor dem kommenden unheil", description: "Ich erkenne die Gefahr, die andere nicht sehen wollen.", hooks: ["magie","schicksal"] },
+          { title: "Ich deute die Zeichen richtig", description: "Was ich sehe, will ich endlich auch verstehen, bevor es zu spät ist.", hooks: ["schicksal","wissen"] },
+          { title: "Ich warne vor dem kommenden Unheil", description: "Ich erkenne die Gefahr, die andere nicht sehen wollen.", hooks: ["magie","schicksal"] },
         ]
       },
       {
-        text: "ausdauernder schwimmer", hooks: ["natur","schicksal"],
+        text: "ausdauernder Schwimmer", hooks: ["natur","schicksal"],
         powerTags: [
           { text: "taucht tief und lange", hooks: ["natur","schicksal"] },
-          { text: "trotzt jeder strömung", hooks: ["natur","kampf"] },
-          { text: "fühlt sich im wasser zuhause", hooks: ["natur","schicksal"] },
-          { text: "unermüdliche beine", hooks: ["schicksal","natur"] },
+          { text: "trotzt jeder Strömung", hooks: ["natur","kampf"] },
+          { text: "fühlt sich im Wasser zuhause", hooks: ["natur","schicksal"] },
+          { text: "unermüdliche Beine", hooks: ["schicksal","natur"] },
         ],
         weaknessTags: [
-          { text: "ruhelos an land", hooks: ["natur","außenseiter"] },
-          { text: "trotzt der gefahr zu lange", hooks: ["schicksal","verlust"] },
+          { text: "ruhelos an Land", hooks: ["natur","außenseiter"] },
+          { text: "trotzt der Gefahr zu lange", hooks: ["schicksal","verlust"] },
         ],
         quests: [
-          { title: "ich durchquere die tiefen gewässer", description: "Jenseits des sicheren Ufers wartet etwas, das nur ich erreichen kann.", hooks: ["natur","fahrend"] },
-          { title: "ich berge was im wasser verloren ging", description: "Auf dem Grund der Tiefe liegt, wonach ich tauchen muss.", hooks: ["natur","verlust"] },
+          { title: "Ich durchquere die tiefen Gewässer", description: "Jenseits des sicheren Ufers wartet etwas, das nur ich erreichen kann.", hooks: ["natur","fahrend"] },
+          { title: "Ich berge was im Wasser verloren ging", description: "Auf dem Grund der Tiefe liegt, wonach ich tauchen muss.", hooks: ["natur","verlust"] },
         ]
       },
       {
         text: "unerschütterlich", hooks: ["glaube","schicksal"],
         powerTags: [
           { text: "unermüdlich", hooks: ["schicksal","glaube"] },
-          { text: "unerschütterliche konzentration", hooks: ["handwerk","glaube"] },
-          { text: "behält die ruhe", hooks: ["natur","glaube"] },
+          { text: "unerschütterliche Konzentration", hooks: ["handwerk","glaube"] },
+          { text: "behält die Ruhe", hooks: ["natur","glaube"] },
           { text: "unerschütterlich heiter", hooks: ["schicksal","kampf"] },
         ],
         weaknessTags: [
-          { text: "kennt ihre grenzen nicht", hooks: ["schicksal","verlust"] },
-          { text: "starr im urteil", hooks: ["glaube","außenseiter"] },
+          { text: "kennt ihre Grenzen nicht", hooks: ["schicksal","verlust"] },
+          { text: "starr im Urteil", hooks: ["glaube","außenseiter"] },
         ],
         quests: [
-          { title: "ich halte stand wenn alle weichen", description: "Wenn alles zerbricht, will ich der sein, der bleibt.", hooks: ["glaube","kampf"] },
-          { title: "ich bewahre die ruhe im sturm", description: "Mitten im Chaos finde ich den festen Punkt, der andere trägt.", hooks: ["glaube","natur"] },
+          { title: "Ich halte stand wenn alle weichen", description: "Wenn alles zerbricht, will ich der sein, der bleibt.", hooks: ["glaube","kampf"] },
+          { title: "Ich bewahre die Ruhe im Sturm", description: "Mitten im Chaos finde ich den festen Punkt, der andere trägt.", hooks: ["glaube","natur"] },
         ]
       },
       {
         text: "leicht zu übersehen", hooks: ["geheimnis","schicksal"],
         powerTags: [
-          { text: "geht in der menge unter", hooks: ["außenseiter","geheimnis"] },
-          { text: "leise schritte", hooks: ["geheimnis","stadt"] },
+          { text: "geht in der Menge unter", hooks: ["außenseiter","geheimnis"] },
+          { text: "leise Schritte", hooks: ["geheimnis","stadt"] },
           { text: "unbemerkt zuhören", hooks: ["geheimnis","stadt"] },
           { text: "unauffällig", hooks: ["außenseiter","geheimnis"] },
         ],
@@ -1416,93 +1416,93 @@ const THEMEBOOKS = {
           { text: "selten ernst genommen", hooks: ["außenseiter","verlust"] },
         ],
         quests: [
-          { title: "ich erfahre was niemand sagen will", description: "Im Verborgenen höre ich, was vor anderen verschwiegen bleibt.", hooks: ["geheimnis","stadt"] },
-          { title: "ich werde endlich gesehen", description: "Einmal will ich nicht übersehen werden, sondern wirklich zählen.", hooks: ["außenseiter","schicksal"] },
+          { title: "Ich erfahre was niemand sagen will", description: "Im Verborgenen höre ich, was vor anderen verschwiegen bleibt.", hooks: ["geheimnis","stadt"] },
+          { title: "Ich werde endlich gesehen", description: "Einmal will ich nicht übersehen werden, sondern wirklich zählen.", hooks: ["außenseiter","schicksal"] },
         ]
       },
       {
-        text: "feines gehör", hooks: ["schicksal","geheimnis"],
+        text: "feines Gehör", hooks: ["schicksal","geheimnis"],
         powerTags: [
-          { text: "hört den leisesten laut", hooks: ["schicksal","natur"] },
-          { text: "lauscht durch wände", hooks: ["geheimnis","stadt"] },
-          { text: "erwacht beim leisesten geräusch", hooks: ["kampf","natur"] },
-          { text: "scharfe sinne", hooks: ["schicksal","natur"] },
+          { text: "hört den leisesten Laut", hooks: ["schicksal","natur"] },
+          { text: "lauscht durch Wände", hooks: ["geheimnis","stadt"] },
+          { text: "erwacht beim leisesten Geräusch", hooks: ["kampf","natur"] },
+          { text: "scharfe Sinne", hooks: ["schicksal","natur"] },
         ],
         weaknessTags: [
-          { text: "geplagt von lärm", hooks: ["schicksal","verlust"] },
-          { text: "abgelenkt durch geräusche", hooks: ["geheimnis","verlust"] },
+          { text: "geplagt von Lärm", hooks: ["schicksal","verlust"] },
+          { text: "abgelenkt durch Geräusche", hooks: ["geheimnis","verlust"] },
         ],
         quests: [
-          { title: "ich erlausche das verborgene wort", description: "Ein Geheimnis wird nur geflüstert, und ich will es hören.", hooks: ["geheimnis","schicksal"] },
-          { title: "ich folge dem klang in die ferne", description: "Ein Ruf, den nur ich vernehme, weist mir den Weg.", hooks: ["natur","fahrend"] },
+          { title: "Ich erlausche das verborgene Wort", description: "Ein Geheimnis wird nur geflüstert, und ich will es hören.", hooks: ["geheimnis","schicksal"] },
+          { title: "Ich folge dem Klang in die Ferne", description: "Ein Ruf, den nur ich vernehme, weist mir den Weg.", hooks: ["natur","fahrend"] },
         ]
       },
       {
-        text: "guter menschenkenner", hooks: ["schicksal","geheimnis"],
+        text: "guter Menschenkenner", hooks: ["schicksal","geheimnis"],
         powerTags: [
-          { text: "durchschaut eine lüge", hooks: ["stadt","geheimnis"] },
-          { text: "hört falschheit heraus", hooks: ["schicksal","stadt"] },
-          { text: "spürt stimmungen in räumen", hooks: ["schicksal","stadt"] },
-          { text: "erkennt verborgene not", hooks: ["glaube","wissen"] },
+          { text: "durchschaut eine Lüge", hooks: ["stadt","geheimnis"] },
+          { text: "hört Falschheit heraus", hooks: ["schicksal","stadt"] },
+          { text: "spürt Stimmungen in Räumen", hooks: ["schicksal","stadt"] },
+          { text: "erkennt verborgene Not", hooks: ["glaube","wissen"] },
         ],
         weaknessTags: [
           { text: "vertraut dem Urteil zu sehr", hooks: ["schicksal","verlust"] },
-          { text: "durchschaut auch freunde", hooks: ["geheimnis","verlust"] },
+          { text: "durchschaut auch Freunde", hooks: ["geheimnis","verlust"] },
         ],
         quests: [
-          { title: "ich entlarve den verräter", description: "Jemand in unserer Mitte lügt, und ich erkenne es an seinem Blick.", hooks: ["geheimnis","schicksal"] },
-          { title: "ich finde den wahren freund", description: "Unter all den Masken suche ich den einen, der ehrlich ist.", hooks: ["glaube","stadt"] },
+          { title: "Ich entlarve den Verräter", description: "Jemand in unserer Mitte lügt, und ich erkenne es an seinem Blick.", hooks: ["geheimnis","schicksal"] },
+          { title: "Ich finde den wahren Freund", description: "Unter all den Masken suche ich den einen, der ehrlich ist.", hooks: ["glaube","stadt"] },
         ]
       },
       {
-        text: "augen wie ein falke", hooks: ["natur","schicksal"],
+        text: "Augen wie ein Falke", hooks: ["natur","schicksal"],
         powerTags: [
-          { text: "sieht im halbdunkel", hooks: ["natur","geheimnis"] },
-          { text: "erkennt das ferne", hooks: ["natur","schicksal"] },
-          { text: "scharfer blick fürs detail", hooks: ["wissen","handwerk"] },
-          { text: "erspäht jede bewegung", hooks: ["kampf","natur"] },
+          { text: "sieht im Halbdunkel", hooks: ["natur","geheimnis"] },
+          { text: "erkennt das Ferne", hooks: ["natur","schicksal"] },
+          { text: "scharfer Blick fürs Detail", hooks: ["wissen","handwerk"] },
+          { text: "erspäht jede Bewegung", hooks: ["kampf","natur"] },
         ],
         weaknessTags: [
-          { text: "geblendet von hellem licht", hooks: ["schicksal","verlust"] },
-          { text: "vertraut nur dem auge", hooks: ["schicksal","außenseiter"] },
+          { text: "geblendet von hellem Licht", hooks: ["schicksal","verlust"] },
+          { text: "vertraut nur dem Auge", hooks: ["schicksal","außenseiter"] },
         ],
         quests: [
-          { title: "ich erspähe was verborgen bleibt", description: "Was sich vor anderen versteckt, kann sich vor mir nicht verbergen.", hooks: ["geheimnis","natur"] },
-          { title: "ich finde den fernen weg", description: "Vom höchsten Punkt aus erkenne ich den Pfad, den keiner kennt.", hooks: ["natur","fahrend"] },
+          { title: "Ich erspähe was verborgen bleibt", description: "Was sich vor anderen versteckt, kann sich vor mir nicht verbergen.", hooks: ["geheimnis","natur"] },
+          { title: "Ich finde den fernen Weg", description: "Vom höchsten Punkt aus erkenne ich den Pfad, den keiner kennt.", hooks: ["natur","fahrend"] },
         ]
       },
       {
-        text: "zäh wie leder", hooks: ["schicksal","kampf"],
+        text: "zäh wie Leder", hooks: ["schicksal","kampf"],
         powerTags: [
-          { text: "trotzt hitze und kälte", hooks: ["natur","schicksal"] },
+          { text: "trotzt Hitze und Kälte", hooks: ["natur","schicksal"] },
           { text: "heilt schnell", hooks: ["schicksal","magie"] },
-          { text: "steckt schläge weg", hooks: ["kampf","schicksal"] },
-          { text: "übersteht jede strapaze", hooks: ["schicksal","natur"] },
+          { text: "steckt Schläge weg", hooks: ["kampf","schicksal"] },
+          { text: "übersteht jede Strapaze", hooks: ["schicksal","natur"] },
         ],
         weaknessTags: [
-          { text: "ignoriert eigene wunden", hooks: ["schicksal","verlust"] },
+          { text: "ignoriert eigene Wunden", hooks: ["schicksal","verlust"] },
           { text: "mutet sich zu viel zu", hooks: ["schicksal","verlust"] },
         ],
         quests: [
-          { title: "ich überstehe die unwirtliche wildnis", description: "Wo andere zugrunde gehen, will ich beweisen, dass ich durchhalte.", hooks: ["natur","schicksal"] },
-          { title: "ich halte durch bis zuletzt", description: "Solange ich noch atme, gebe ich nicht auf.", hooks: ["kampf","glaube"] },
+          { title: "Ich überstehe die unwirtliche Wildnis", description: "Wo andere zugrunde gehen, will ich beweisen, dass ich durchhalte.", hooks: ["natur","schicksal"] },
+          { title: "Ich halte durch bis zuletzt", description: "Solange ich noch atme, gebe ich nicht auf.", hooks: ["kampf","glaube"] },
         ]
       },
       {
-        text: "durchdringende stimme", hooks: ["schicksal","macht"],
+        text: "durchdringende Stimme", hooks: ["schicksal","macht"],
         powerTags: [
-          { text: "übertönt jeden lärm", hooks: ["schicksal","macht"] },
-          { text: "bringt menschen zum schweigen", hooks: ["macht","stadt"] },
-          { text: "befehlston wirkt sofort", hooks: ["macht","kampf"] },
-          { text: "ergreifender gesang", hooks: ["schicksal","natur"] },
+          { text: "übertönt jeden Lärm", hooks: ["schicksal","macht"] },
+          { text: "bringt Menschen zum Schweigen", hooks: ["macht","stadt"] },
+          { text: "Befehlston wirkt sofort", hooks: ["macht","kampf"] },
+          { text: "ergreifender Gesang", hooks: ["schicksal","natur"] },
         ],
         weaknessTags: [
           { text: "kann sich nicht verstecken", hooks: ["schicksal","geheimnis"] },
           { text: "redet sich in Gefahr", hooks: ["macht","verlust"] },
         ],
         quests: [
-          { title: "ich gebe den stummen eine stimme", description: "Wer nicht gehört wird, soll durch mich gehört werden.", hooks: ["macht","glaube"] },
-          { title: "ich wende die menge mit worten", description: "Mit meiner Stimme allein will ich den Lauf der Dinge ändern.", hooks: ["macht","stadt"] },
+          { title: "Ich gebe den Stummen eine Stimme", description: "Wer nicht gehört wird, soll durch mich gehört werden.", hooks: ["macht","glaube"] },
+          { title: "Ich wende die Menge mit Worten", description: "Mit meiner Stimme allein will ich den Lauf der Dinge ändern.", hooks: ["macht","stadt"] },
         ]
       },
     ]
@@ -1511,219 +1511,219 @@ const THEMEBOOKS = {
     type: "Adventure",
     titles: [
       {
-        text: "licht gegen die finsternis", hooks: ["glaube","schicksal"],
+        text: "Licht gegen die Finsternis", hooks: ["glaube","schicksal"],
         powerTags: [
-          { text: "leuchtende rüstung", hooks: ["kampf","glaube"] },
-          { text: "gefürchteter gegner des bösen", hooks: ["kampf","schicksal"] },
-          { text: "zeichen gegen das böse", hooks: ["glaube","magie"] },
-          { text: "unbeirrbar im zweck", hooks: ["glaube"] },
-          { text: "spürt nahende finsternis", hooks: ["magie","schicksal"] },
+          { text: "leuchtende Rüstung", hooks: ["kampf","glaube"] },
+          { text: "gefürchteter Gegner des Bösen", hooks: ["kampf","schicksal"] },
+          { text: "Zeichen gegen das Böse", hooks: ["glaube","magie"] },
+          { text: "unbeirrbar im Zweck", hooks: ["glaube"] },
+          { text: "spürt nahende Finsternis", hooks: ["magie","schicksal"] },
         ],
         weaknessTags: [
-          { text: "auftrag über vernunft", hooks: ["glaube","schicksal"] },
-          { text: "verhasst bei dienern der nacht", hooks: ["kampf","verlust"] },
+          { text: "Auftrag über Vernunft", hooks: ["glaube","schicksal"] },
+          { text: "verhasst bei Dienern der Nacht", hooks: ["kampf","verlust"] },
         ],
         quests: [
-          { title: "ich treibe die finsternis zurück", description: "Wo sie sich breitmacht, stelle ich mich ihr und weiche keinen Schritt.", hooks: ["glaube","kampf"] },
-          { title: "ich finde die quelle des bösen", description: "Erst wenn ich den Ursprung der Finsternis kenne, kann ich sie wirklich bezwingen.", hooks: ["schicksal","geheimnis"] },
+          { title: "Ich treibe die Finsternis zurück", description: "Wo sie sich breitmacht, stelle ich mich ihr und weiche keinen Schritt.", hooks: ["glaube","kampf"] },
+          { title: "Ich finde die Quelle des Bösen", description: "Erst wenn ich den Ursprung der Finsternis kenne, kann ich sie wirklich bezwingen.", hooks: ["schicksal","geheimnis"] },
         ]
       },
       {
-        text: "söldner auf vertrag", hooks: ["glaube","handwerk"],
+        text: "Söldner auf Vertrag", hooks: ["glaube","handwerk"],
         powerTags: [
-          { text: "vertrag in der hand", hooks: ["handwerk","macht"] },
-          { text: "hält jede abmachung", hooks: ["handwerk","glaube"] },
-          { text: "unbestechlich durch gold", hooks: ["glaube","macht"] },
-          { text: "erfahrener klingenkämpfer", hooks: ["kampf","handwerk"] },
-          { text: "kennt den preis jeder klinge", hooks: ["handwerk","stadt"] },
+          { text: "Vertrag in der Hand", hooks: ["handwerk","macht"] },
+          { text: "hält jede Abmachung", hooks: ["handwerk","glaube"] },
+          { text: "unbestechlich durch Gold", hooks: ["glaube","macht"] },
+          { text: "erfahrener Klingenkämpfer", hooks: ["kampf","handwerk"] },
+          { text: "kennt den Preis jeder Klinge", hooks: ["handwerk","stadt"] },
         ],
         weaknessTags: [
-          { text: "dem höchsten gebot verpflichtet", hooks: ["macht","verlust"] },
-          { text: "kein freund ohne sold", hooks: ["außenseiter","verlust"] },
+          { text: "dem höchsten Gebot verpflichtet", hooks: ["macht","verlust"] },
+          { text: "kein Freund ohne Sold", hooks: ["außenseiter","verlust"] },
         ],
         quests: [
-          { title: "ich erfülle den vertrag bis zum letzten wort", description: "Was ich unterschrieben habe, führe ich aus, egal wie der Wind sich dreht.", hooks: ["handwerk","glaube"] },
-          { title: "ich finde einen herrn der mich verdient", description: "Ich suche nach einem Auftrag, für den meine Klinge mehr ist als bloßes Werkzeug.", hooks: ["glaube","kampf"] },
+          { title: "Ich erfülle den Vertrag bis zum letzten Wort", description: "Was ich unterschrieben habe, führe ich aus, egal wie der Wind sich dreht.", hooks: ["handwerk","glaube"] },
+          { title: "Ich finde einen Herrn der mich verdient", description: "Ich suche nach einem Auftrag, für den meine Klinge mehr ist als bloßes Werkzeug.", hooks: ["glaube","kampf"] },
         ]
       },
       {
-        text: "schwur dem lehnsherrn", hooks: ["glaube","adel"],
+        text: "Schwur dem Lehnsherrn", hooks: ["glaube","adel"],
         powerTags: [
-          { text: "banner meines lehnsherrn", hooks: ["adel","kampf"] },
-          { text: "mein eid macht mich stark", hooks: ["glaube"] },
-          { text: "trägt die autorität ihres hauses", hooks: ["adel","macht"] },
-          { text: "kann legitimität einfordern", hooks: ["macht","adel"] },
-          { text: "kraftvoller schwur", hooks: ["glaube","macht"] },
+          { text: "Banner meines Lehnsherrn", hooks: ["adel","kampf"] },
+          { text: "mein Eid macht mich stark", hooks: ["glaube"] },
+          { text: "trägt die Autorität ihres Hauses", hooks: ["adel","macht"] },
+          { text: "kann Legitimität einfordern", hooks: ["macht","adel"] },
+          { text: "kraftvoller Schwur", hooks: ["glaube","macht"] },
         ],
         weaknessTags: [
-          { text: "an befehle gebunden", hooks: ["glaube","macht"] },
-          { text: "kann befehlen nicht widersprechen", hooks: ["glaube","macht"] },
+          { text: "an Befehle gebunden", hooks: ["glaube","macht"] },
+          { text: "kann Befehlen nicht widersprechen", hooks: ["glaube","macht"] },
         ],
         quests: [
-          { title: "ich erfülle meinen schwur koste es was es wolle", description: "Was ich meinem Herrn versprochen habe, ist die Achse, um die mein Leben sich dreht.", hooks: ["glaube","schicksal"] },
-          { title: "ich prüfe ob mein herr meiner treue würdig ist", description: "Lange diente ich blind; jetzt will ich wissen, wem ich meinen Eid geschworen habe.", hooks: ["glaube","adel"] },
+          { title: "Ich erfülle meinen Schwur koste es was es wolle", description: "Was ich meinem Herrn versprochen habe, ist die Achse, um die mein Leben sich dreht.", hooks: ["glaube","schicksal"] },
+          { title: "Ich prüfe ob mein Herr meiner Treue würdig ist", description: "Lange diente ich blind; jetzt will ich wissen, wem ich meinen Eid geschworen habe.", hooks: ["glaube","adel"] },
         ]
       },
       {
-        text: "hüterin des landes", hooks: ["natur","glaube"],
+        text: "Hüterin des Landes", hooks: ["natur","glaube"],
         powerTags: [
-          { text: "kennt das ganze reich", hooks: ["wissen","fahrend"] },
-          { text: "handelt richtig ohne befehl", hooks: ["glaube","kampf"] },
-          { text: "kennt jeden pfad des landes", hooks: ["natur","wissen"] },
-          { text: "wacht über die schwachen", hooks: ["glaube","natur"] },
-          { text: "liest die zeichen des landes", hooks: ["natur","schicksal"] },
+          { text: "kennt das ganze Reich", hooks: ["wissen","fahrend"] },
+          { text: "handelt richtig ohne Befehl", hooks: ["glaube","kampf"] },
+          { text: "kennt jeden Pfad des Landes", hooks: ["natur","wissen"] },
+          { text: "wacht über die Schwachen", hooks: ["glaube","natur"] },
+          { text: "liest die Zeichen des Landes", hooks: ["natur","schicksal"] },
         ],
         weaknessTags: [
-          { text: "kann das land nicht verlassen", hooks: ["natur","schicksal"] },
-          { text: "fühlt schuld bei jeder verwüstung", hooks: ["glaube","verlust"] },
+          { text: "kann das Land nicht verlassen", hooks: ["natur","schicksal"] },
+          { text: "fühlt Schuld bei jeder Verwüstung", hooks: ["glaube","verlust"] },
         ],
         quests: [
-          { title: "ich beschütze das land dem ich diene", description: "Diese Erde und ihre Menschen sind mein Auftrag und mein Anker.", hooks: ["natur","glaube"] },
-          { title: "ich heile die wunden meines landes", description: "Wo Krieg und Raub Narben hinterließen, will ich das Land wieder ganz machen.", hooks: ["natur","verlust"] },
+          { title: "Ich beschütze das Land dem ich diene", description: "Diese Erde und ihre Menschen sind mein Auftrag und mein Anker.", hooks: ["natur","glaube"] },
+          { title: "Ich heile die Wunden meines Landes", description: "Wo Krieg und Raub Narben hinterließen, will ich das Land wieder ganz machen.", hooks: ["natur","verlust"] },
         ]
       },
       {
-        text: "rachezwang", hooks: ["verlust","kampf"],
+        text: "Rachezwang", hooks: ["verlust","kampf"],
         powerTags: [
-          { text: "unbeirrbar bis zur vergeltung", hooks: ["kampf","schicksal"] },
-          { text: "vergisst kein gesicht", hooks: ["verlust","wissen"] },
-          { text: "narbiger schwertarm", hooks: ["kampf","verlust"] },
-          { text: "kalter blick auf den feind", hooks: ["kampf","macht"] },
-          { text: "wittert eine falle", hooks: ["kampf","wissen"] },
+          { text: "unbeirrbar bis zur Vergeltung", hooks: ["kampf","schicksal"] },
+          { text: "vergisst kein Gesicht", hooks: ["verlust","wissen"] },
+          { text: "narbiger Schwertarm", hooks: ["kampf","verlust"] },
+          { text: "kalter Blick auf den Feind", hooks: ["kampf","macht"] },
+          { text: "wittert eine Falle", hooks: ["kampf","wissen"] },
         ],
         weaknessTags: [
-          { text: "die rache frisst alles andere", hooks: ["verlust","schicksal"] },
-          { text: "verhasst bei der gejagten sippe", hooks: ["kampf","verlust"] },
+          { text: "die Rache frisst alles andere", hooks: ["verlust","schicksal"] },
+          { text: "verhasst bei der gejagten Sippe", hooks: ["kampf","verlust"] },
         ],
         quests: [
-          { title: "ich räche das unrecht das mir geschah", description: "Erst wenn die Schuld beglichen ist, finde ich wieder Schlaf.", hooks: ["verlust","kampf"] },
-          { title: "ich entscheide ob die rache mich lohnt", description: "Wenn der letzte Feind fällt, muss ich wissen, ob noch etwas von mir übrig ist.", hooks: ["verlust","schicksal"] },
+          { title: "Ich räche das Unrecht das mir geschah", description: "Erst wenn die Schuld beglichen ist, finde ich wieder Schlaf.", hooks: ["verlust","kampf"] },
+          { title: "Ich entscheide ob die Rache mich lohnt", description: "Wenn der letzte Feind fällt, muss ich wissen, ob noch etwas von mir übrig ist.", hooks: ["verlust","schicksal"] },
         ]
       },
       {
-        text: "bote des königs", hooks: ["fahrend","macht"],
+        text: "Bote des Königs", hooks: ["fahrend","macht"],
         powerTags: [
-          { text: "recht auf freien durchgang", hooks: ["fahrend","macht"] },
-          { text: "recht auf kost und quartier", hooks: ["macht","fahrend"] },
-          { text: "kennt jede losung jeder wache", hooks: ["stadt","kampf"] },
-          { text: "findet immer den schnellsten weg", hooks: ["fahrend","wissen"] },
-          { text: "siegel des königs", hooks: ["adel","macht"] },
+          { text: "Recht auf freien Durchgang", hooks: ["fahrend","macht"] },
+          { text: "Recht auf Kost und Quartier", hooks: ["macht","fahrend"] },
+          { text: "kennt jede Losung jeder Wache", hooks: ["stadt","kampf"] },
+          { text: "findet immer den schnellsten Weg", hooks: ["fahrend","wissen"] },
+          { text: "Siegel des Königs", hooks: ["adel","macht"] },
         ],
         weaknessTags: [
-          { text: "ziel für feinde der krone", hooks: ["macht","kampf"] },
-          { text: "die botschaft duldet keinen aufschub", hooks: ["fahrend","schicksal"] },
+          { text: "Ziel für Feinde der Krone", hooks: ["macht","kampf"] },
+          { text: "die Botschaft duldet keinen Aufschub", hooks: ["fahrend","schicksal"] },
         ],
         quests: [
-          { title: "ich bringe die botschaft ans ziel", description: "Was mir die Krone anvertraut hat, gelangt durch jede Gefahr an seinen Ort.", hooks: ["fahrend","macht"] },
-          { title: "ich erfahre was ich wirklich trage", description: "Die versiegelte Botschaft wiegt schwer; ich will wissen, wofür ich mein Leben riskiere.", hooks: ["geheimnis","macht"] },
+          { title: "Ich bringe die Botschaft ans Ziel", description: "Was mir die Krone anvertraut hat, gelangt durch jede Gefahr an seinen Ort.", hooks: ["fahrend","macht"] },
+          { title: "Ich erfahre was ich wirklich trage", description: "Die versiegelte Botschaft wiegt schwer; ich will wissen, wofür ich mein Leben riskiere.", hooks: ["geheimnis","macht"] },
         ]
       },
       {
-        text: "schwertarm des ordens", hooks: ["kampf","glaube"],
+        text: "Schwertarm des Ordens", hooks: ["kampf","glaube"],
         powerTags: [
-          { text: "hält die stellung allein", hooks: ["kampf","glaube"] },
-          { text: "betet vor dem kampf", hooks: ["glaube","kampf"] },
-          { text: "anweisungen ausführen", hooks: ["glaube","kampf"] },
-          { text: "geweihte klinge des ordens", hooks: ["kampf","magie"] },
-          { text: "brüder im glauben zur seite", hooks: ["glaube","kampf"] },
+          { text: "hält die Stellung allein", hooks: ["kampf","glaube"] },
+          { text: "betet vor dem Kampf", hooks: ["glaube","kampf"] },
+          { text: "Anweisungen ausführen", hooks: ["glaube","kampf"] },
+          { text: "geweihte Klinge des Ordens", hooks: ["kampf","magie"] },
+          { text: "Brüder im Glauben zur Seite", hooks: ["glaube","kampf"] },
         ],
         weaknessTags: [
           { text: "der Orden vor dem Leben", hooks: ["glaube","schicksal"] },
-          { text: "fühlt schuld bei versagen", hooks: ["glaube","verlust"] },
+          { text: "fühlt Schuld bei Versagen", hooks: ["glaube","verlust"] },
         ],
         quests: [
-          { title: "ich diene dem orden mit klinge und glauben", description: "Mein Schwert und mein Eid gehören der heiligen Sache, der ich mich verschrieb.", hooks: ["kampf","glaube"] },
-          { title: "ich reinige den orden von innen", description: "Etwas ist faul in unseren Reihen; ich werde es ausmerzen, bevor es uns alle verdirbt.", hooks: ["glaube","geheimnis"] },
+          { title: "Ich diene dem Orden mit Klinge und Glauben", description: "Mein Schwert und mein Eid gehören der heiligen Sache, der ich mich verschrieb.", hooks: ["kampf","glaube"] },
+          { title: "Ich reinige den Orden von innen", description: "Etwas ist faul in unseren Reihen; ich werde es ausmerzen, bevor es uns alle verdirbt.", hooks: ["glaube","geheimnis"] },
         ]
       },
       {
-        text: "wächterin der grenzmark", hooks: ["kampf","natur"],
+        text: "Wächterin der Grenzmark", hooks: ["kampf","natur"],
         powerTags: [
-          { text: "kennt die wilde grenze", hooks: ["natur","wissen"] },
-          { text: "wacht beim leisesten geräusch", hooks: ["kampf","natur"] },
-          { text: "hält die stellung allein", hooks: ["kampf","glaube"] },
-          { text: "kennt die verbündeten der sache", hooks: ["stadt","kampf"] },
-          { text: "späht den feind frühzeitig", hooks: ["natur","kampf"] },
+          { text: "kennt die wilde Grenze", hooks: ["natur","wissen"] },
+          { text: "wacht beim leisesten Geräusch", hooks: ["kampf","natur"] },
+          { text: "hält die Stellung allein", hooks: ["kampf","glaube"] },
+          { text: "kennt die Verbündeten der Sache", hooks: ["stadt","kampf"] },
+          { text: "späht den Feind frühzeitig", hooks: ["natur","kampf"] },
         ],
         weaknessTags: [
-          { text: "darf den posten nie verlassen", hooks: ["glaube","kampf"] },
-          { text: "fern von jeder hilfe", hooks: ["natur","verlust"] },
+          { text: "darf den Posten nie verlassen", hooks: ["glaube","kampf"] },
+          { text: "fern von jeder Hilfe", hooks: ["natur","verlust"] },
         ],
         quests: [
-          { title: "ich halte die grenze gegen alles", description: "Was hinter der Mark lauert, kommt nicht an mir vorbei, solange ich stehe.", hooks: ["kampf","natur"] },
-          { title: "ich ergründe was jenseits der mark erwacht", description: "Etwas regt sich an der Grenze; ich muss wissen, was kommt, bevor es uns überrennt.", hooks: ["natur","geheimnis"] },
+          { title: "Ich halte die Grenze gegen alles", description: "Was hinter der Mark lauert, kommt nicht an mir vorbei, solange ich stehe.", hooks: ["kampf","natur"] },
+          { title: "Ich ergründe was jenseits der Mark erwacht", description: "Etwas regt sich an der Grenze; ich muss wissen, was kommt, bevor es uns überrennt.", hooks: ["natur","geheimnis"] },
         ]
       },
       {
-        text: "letzter zeuge eines vertrags", hooks: ["geheimnis","glaube"],
+        text: "letzter Zeuge eines Vertrags", hooks: ["geheimnis","glaube"],
         powerTags: [
-          { text: "kennt jede klausel auswendig", hooks: ["wissen","geheimnis"] },
-          { text: "kennt die grenzen ihres auftrags", hooks: ["wissen","glaube"] },
-          { text: "sieht durch lügen", hooks: ["geheimnis"] },
-          { text: "kennt den preis jeder stille", hooks: ["geheimnis"] },
-          { text: "bewahrt das versiegelte wort", hooks: ["geheimnis","glaube"] },
+          { text: "kennt jede Klausel auswendig", hooks: ["wissen","geheimnis"] },
+          { text: "kennt die Grenzen ihres Auftrags", hooks: ["wissen","glaube"] },
+          { text: "sieht durch Lügen", hooks: ["geheimnis"] },
+          { text: "kennt den Preis jeder Stille", hooks: ["geheimnis"] },
+          { text: "bewahrt das versiegelte Wort", hooks: ["geheimnis","glaube"] },
         ],
         weaknessTags: [
-          { text: "gejagt um des wissens willen", hooks: ["geheimnis","kampf"] },
-          { text: "kann das geheimnis nicht teilen", hooks: ["geheimnis","glaube"] },
+          { text: "gejagt um des Wissens willen", hooks: ["geheimnis","kampf"] },
+          { text: "kann das Geheimnis nicht teilen", hooks: ["geheimnis","glaube"] },
         ],
         quests: [
-          { title: "ich finde heraus ob der vertrag gerecht war", description: "Lange schwieg ich; nun trage ich die Antwort wie einen Stein und will sie kennen.", hooks: ["glaube","geheimnis"] },
-          { title: "ich bezeuge die wahrheit ehe sie mit mir stirbt", description: "Als Letzter weiß ich, was geschah, und das Wissen darf nicht verloren gehen.", hooks: ["geheimnis","verlust"] },
+          { title: "Ich finde heraus ob der Vertrag gerecht war", description: "Lange schwieg ich; nun trage ich die Antwort wie einen Stein und will sie kennen.", hooks: ["glaube","geheimnis"] },
+          { title: "Ich bezeuge die Wahrheit ehe sie mit mir stirbt", description: "Als Letzter weiß ich, was geschah, und das Wissen darf nicht verloren gehen.", hooks: ["geheimnis","verlust"] },
         ]
       },
       {
-        text: "schuldenbegleicherin", hooks: ["stadt","verlust"],
+        text: "Schuldenbegleicherin", hooks: ["stadt","verlust"],
         powerTags: [
-          { text: "kennt jedermanns schulden", hooks: ["geheimnis","macht"] },
-          { text: "gefälligkeiten einfordern", hooks: ["macht","stadt"] },
-          { text: "spürt jeden schuldner auf", hooks: ["stadt","wissen"] },
-          { text: "unnachgiebig im eintreiben", hooks: ["macht","kampf"] },
-          { text: "führt buch über jede gefälligkeit", hooks: ["handwerk","stadt"] },
+          { text: "kennt jedermanns Schulden", hooks: ["geheimnis","macht"] },
+          { text: "Gefälligkeiten einfordern", hooks: ["macht","stadt"] },
+          { text: "spürt jeden Schuldner auf", hooks: ["stadt","wissen"] },
+          { text: "unnachgiebig im Eintreiben", hooks: ["macht","kampf"] },
+          { text: "führt Buch über jede Gefälligkeit", hooks: ["handwerk","stadt"] },
         ],
         weaknessTags: [
-          { text: "verhasst bei den schuldnern", hooks: ["stadt","verlust"] },
-          { text: "eigene schulden holen sie ein", hooks: ["verlust","macht"] },
+          { text: "verhasst bei den Schuldnern", hooks: ["stadt","verlust"] },
+          { text: "eigene Schulden holen sie ein", hooks: ["verlust","macht"] },
         ],
         quests: [
-          { title: "ich treibe jede schuld ein", description: "Keine offene Rechnung bleibt ungesühnt, solange ich das Buch führe.", hooks: ["stadt","macht"] },
-          { title: "ich begleiche meine eigene letzte schuld", description: "Bevor ich über andere richte, muss ich frei sein von dem, was ich selbst schulde.", hooks: ["verlust","glaube"] },
+          { title: "Ich treibe jede Schuld ein", description: "Keine offene Rechnung bleibt ungesühnt, solange ich das Buch führe.", hooks: ["stadt","macht"] },
+          { title: "Ich begleiche meine eigene letzte Schuld", description: "Bevor ich über andere richte, muss ich frei sein von dem, was ich selbst schulde.", hooks: ["verlust","glaube"] },
         ]
       },
       {
-        text: "bezahlter verteidiger", hooks: ["kampf","handwerk"],
+        text: "bezahlter Verteidiger", hooks: ["kampf","handwerk"],
         powerTags: [
-          { text: "schutzschild für den auftraggeber", hooks: ["kampf","glaube"] },
-          { text: "instinktive reaktion auf gefahr", hooks: ["kampf","schicksal"] },
-          { text: "vertrag in der hand", hooks: ["handwerk","macht"] },
-          { text: "deckt jede schwachstelle ab", hooks: ["kampf","wissen"] },
-          { text: "nimmt wunden für andere", hooks: ["kampf","verlust"] },
+          { text: "Schutzschild für den Auftraggeber", hooks: ["kampf","glaube"] },
+          { text: "instinktive Reaktion auf Gefahr", hooks: ["kampf","schicksal"] },
+          { text: "Vertrag in der Hand", hooks: ["handwerk","macht"] },
+          { text: "deckt jede Schwachstelle ab", hooks: ["kampf","wissen"] },
+          { text: "nimmt Wunden für andere", hooks: ["kampf","verlust"] },
         ],
         weaknessTags: [
-          { text: "haftet für jedes versagen", hooks: ["handwerk","verlust"] },
+          { text: "haftet für jedes Versagen", hooks: ["handwerk","verlust"] },
           { text: "treu nur für Sold", hooks: ["macht","verlust"] },
         ],
         quests: [
-          { title: "ich halte meinen schützling am leben", description: "Wofür man mich bezahlt, das tue ich ganz: Niemand rührt den, den ich beschütze.", hooks: ["kampf","handwerk"] },
-          { title: "ich schütze einen den ich nicht aufgeben kann", description: "Aus Pflicht wurde mehr; jetzt verteidige ich ihn, auch wenn der Sold längst aus ist.", hooks: ["kampf","glaube"] },
+          { title: "Ich halte meinen Schützling am Leben", description: "Wofür man mich bezahlt, das tue ich ganz: Niemand rührt den, den ich beschütze.", hooks: ["kampf","handwerk"] },
+          { title: "Ich schütze einen den ich nicht aufgeben kann", description: "Aus Pflicht wurde mehr; jetzt verteidige ich ihn, auch wenn der Sold längst aus ist.", hooks: ["kampf","glaube"] },
         ]
       },
       {
-        text: "vollstreckerin des alten gesetzes", hooks: ["macht","glaube"],
+        text: "Vollstreckerin des alten Gesetzes", hooks: ["macht","glaube"],
         powerTags: [
-          { text: "kennt regeln und ausnahmen", hooks: ["wissen","macht"] },
-          { text: "setzt befehle ohne feinde durch", hooks: ["macht","stadt"] },
-          { text: "unbestechlich durch gold", hooks: ["glaube","macht"] },
-          { text: "autorität des alten gesetzes", hooks: ["macht","adel"] },
-          { text: "kennt jeden präzedenzfall", hooks: ["wissen","macht"] },
+          { text: "kennt Regeln und Ausnahmen", hooks: ["wissen","macht"] },
+          { text: "setzt Befehle ohne Feinde durch", hooks: ["macht","stadt"] },
+          { text: "unbestechlich durch Gold", hooks: ["glaube","macht"] },
+          { text: "Autorität des alten Gesetzes", hooks: ["macht","adel"] },
+          { text: "kennt jeden Präzedenzfall", hooks: ["wissen","macht"] },
         ],
         weaknessTags: [
-          { text: "das gesetz über die gnade", hooks: ["glaube","macht"] },
-          { text: "kann keinen auftrag aufgeben", hooks: ["glaube","schicksal"] },
+          { text: "das Gesetz über die Gnade", hooks: ["glaube","macht"] },
+          { text: "kann keinen Auftrag aufgeben", hooks: ["glaube","schicksal"] },
         ],
         quests: [
-          { title: "ich vollstrecke das gesetz ohne ansehen der person", description: "Vor dem alten Recht sind alle gleich, ob Bettler oder Fürst.", hooks: ["macht","glaube"] },
-          { title: "ich prüfe ob das alte gesetz noch gerecht ist", description: "Ich diente dem Buchstaben lange; nun frage ich, ob er noch dem Recht dient.", hooks: ["glaube","geheimnis"] },
+          { title: "Ich vollstrecke das Gesetz ohne Ansehen der Person", description: "Vor dem alten Recht sind alle gleich, ob Bettler oder Fürst.", hooks: ["macht","glaube"] },
+          { title: "Ich prüfe ob das alte Gesetz noch gerecht ist", description: "Ich diente dem Buchstaben lange; nun frage ich, ob er noch dem Recht dient.", hooks: ["glaube","geheimnis"] },
         ]
       },
     ]
@@ -1847,7 +1847,7 @@ const THEMEBOOKS = {
         ],
         quests: [
           { title: "Ich spanne mein Netz übers ganze Reich", description: "Von jeder Stadt soll ein Faden in meine Hand laufen.", hooks: ["stadt","macht"] },
-          { title: "Ich löse meine Abhängigkeiten", description: "Ich will nicht länger der letzte in einer Kette von Schulden sein.", hooks: ["macht","verlust"] },
+          { title: "Ich löse meine Abhängigkeiten", description: "Ich will nicht länger der Letzte in einer Kette von Schulden sein.", hooks: ["macht","verlust"] },
         ]
       },
       {
@@ -1953,8 +1953,8 @@ const THEMEBOOKS = {
           { text: "blind fürs Irdische", hooks: ["wissen","außenseiter"] },
         ],
         quests: [
-          { title: "die verheißene Konjunktion", description: "Eine seltene Sternstellung naht und ich muss erfahren was sie wirklich ankündigt.", hooks: ["wissen","schicksal","magie"] },
-          { title: "das gefälschte Horoskop", description: "Jemand verbreitet falsche Sterndeutungen und ich decke den Betrug auf.", hooks: ["wissen","macht"] },
+          { title: "Die verheißene Konjunktion", description: "Eine seltene Sternstellung naht und ich muss erfahren was sie wirklich ankündigt.", hooks: ["wissen","schicksal","magie"] },
+          { title: "Das gefälschte Horoskop", description: "Jemand verbreitet falsche Sterndeutungen und ich decke den Betrug auf.", hooks: ["wissen","macht"] },
         ]
       },
       {
@@ -1970,12 +1970,12 @@ const THEMEBOOKS = {
           { text: "traut keinem Licht", hooks: ["geheimnis","außenseiter"] },
         ],
         quests: [
-          { title: "die verschlossene Kammer", description: "Hinter einer letzten Tür liegt das Geheimnis dem ich mein ganzes Leben gewidmet habe.", hooks: ["geheimnis","wissen"] },
-          { title: "der enttarnte Mitwisser", description: "Jemand kennt mein Versteck und ich muss herausfinden wer mich verraten hat.", hooks: ["geheimnis","verlust"] },
+          { title: "Die verschlossene Kammer", description: "Hinter einer letzten Tür liegt das Geheimnis dem ich mein ganzes Leben gewidmet habe.", hooks: ["geheimnis","wissen"] },
+          { title: "Der enttarnte Mitwisser", description: "Jemand kennt mein Versteck und ich muss herausfinden wer mich verraten hat.", hooks: ["geheimnis","verlust"] },
         ]
       },
       {
-        text: "Weitgereister Landeskenner", hooks: ["wissen","fahrend"],
+        text: "weitgereister Landeskenner", hooks: ["wissen","fahrend"],
         powerTags: [
           { text: "kennt jedes Land", hooks: ["wissen","fahrend"] },
           { text: "kennt unverzeichnete Routen", hooks: ["wissen","fahrend"] },
@@ -1987,8 +1987,8 @@ const THEMEBOOKS = {
           { text: "fremd in jeder Heimat", hooks: ["außenseiter","verlust"] },
         ],
         quests: [
-          { title: "die letzte weiße Stelle", description: "Auf keiner Karte verzeichnet liegt ein Land das ich als Erster betreten will.", hooks: ["wissen","fahrend"] },
-          { title: "der verschollene Pass", description: "Ein uralter Handelsweg ist vergessen und ich will ihn wieder begehbar machen.", hooks: ["fahrend","wissen"] },
+          { title: "Die letzte weiße Stelle", description: "Auf keiner Karte verzeichnet liegt ein Land das ich als Erster betreten will.", hooks: ["wissen","fahrend"] },
+          { title: "Der verschollene Pass", description: "Ein uralter Handelsweg ist vergessen und ich will ihn wieder begehbar machen.", hooks: ["fahrend","wissen"] },
         ]
       },
       {
@@ -2004,8 +2004,8 @@ const THEMEBOOKS = {
           { text: "Wahrheit vor dem Wohl anderer", hooks: ["wissen","geheimnis"] },
         ],
         quests: [
-          { title: "das verbotene Folio", description: "Ein Band den niemand lesen darf ist gestohlen und ich muss ihn zurückholen.", hooks: ["wissen","geheimnis"] },
-          { title: "die Brandstifter der Wahrheit", description: "Mächtige wollen meine Sammlung vernichten und ich rette was zu retten ist.", hooks: ["wissen","macht","verlust"] },
+          { title: "Das verbotene Folio", description: "Ein Band den niemand lesen darf ist gestohlen und ich muss ihn zurückholen.", hooks: ["wissen","geheimnis"] },
+          { title: "Die Brandstifter der Wahrheit", description: "Mächtige wollen meine Sammlung vernichten und ich rette was zu retten ist.", hooks: ["wissen","macht","verlust"] },
         ]
       },
       {
@@ -2021,8 +2021,8 @@ const THEMEBOOKS = {
           { text: "lebt in vergangenen Zeiten", hooks: ["wissen","verlust"] },
         ],
         quests: [
-          { title: "die getilgte Dynastie", description: "Ein Herrschergeschlecht wurde aus der Geschichte gelöscht und ich stelle die Wahrheit wieder her.", hooks: ["wissen","adel","geheimnis"] },
-          { title: "das Erbe der Ruinen", description: "In den Trümmern eines alten Reichs suche ich den Schlüssel zu seinem Untergang.", hooks: ["wissen","verlust"] },
+          { title: "Die getilgte Dynastie", description: "Ein Herrschergeschlecht wurde aus der Geschichte gelöscht und ich stelle die Wahrheit wieder her.", hooks: ["wissen","adel","geheimnis"] },
+          { title: "Das Erbe der Ruinen", description: "In den Trümmern eines alten Reichs suche ich den Schlüssel zu seinem Untergang.", hooks: ["wissen","verlust"] },
         ]
       },
       {
@@ -2038,8 +2038,8 @@ const THEMEBOOKS = {
           { text: "nimmt jedes Wort wörtlich", hooks: ["wissen"] },
         ],
         quests: [
-          { title: "die unentzifferte Zunge", description: "Eine Sprache die keiner mehr versteht hält ein Versprechen und ich will sie entschlüsseln.", hooks: ["wissen","geheimnis"] },
-          { title: "das missverstandene Wort", description: "Ein Übersetzungsfehler droht einen Krieg auszulösen und nur ich kann ihn richtigstellen.", hooks: ["wissen","macht"] },
+          { title: "Die unentzifferte Zunge", description: "Eine Sprache die keiner mehr versteht hält ein Versprechen und ich will sie entschlüsseln.", hooks: ["wissen","geheimnis"] },
+          { title: "Das missverstandene Wort", description: "Ein Übersetzungsfehler droht einen Krieg auszulösen und nur ich kann ihn richtigstellen.", hooks: ["wissen","macht"] },
         ]
       },
       {
@@ -2055,8 +2055,8 @@ const THEMEBOOKS = {
           { text: "hilflos ohne ihre Karten", hooks: ["wissen","handwerk"] },
         ],
         quests: [
-          { title: "die Karte zum verlorenen Ort", description: "Fragmente einer alten Karte führen zu einem Ort den ich endlich vollständig verzeichnen will.", hooks: ["wissen","fahrend","geheimnis"] },
-          { title: "das fehlerhafte Reich", description: "Eine falsche Karte schickt Reisende in den Tod und ich muss sie berichtigen.", hooks: ["fahrend","verlust"] },
+          { title: "Die Karte zum verlorenen Ort", description: "Fragmente einer alten Karte führen zu einem Ort den ich endlich vollständig verzeichnen will.", hooks: ["wissen","fahrend","geheimnis"] },
+          { title: "Das fehlerhafte Reich", description: "Eine falsche Karte schickt Reisende in den Tod und ich muss sie berichtigen.", hooks: ["fahrend","verlust"] },
         ]
       },
       {
@@ -2072,8 +2072,8 @@ const THEMEBOOKS = {
           { text: "Studium zehrt am Körper", hooks: ["wissen","verlust"] },
         ],
         quests: [
-          { title: "die versiegelte Botschaft", description: "Eine verschlüsselte Schrift birgt eine Warnung und ich muss sie entziffern bevor es zu spät ist.", hooks: ["wissen","geheimnis"] },
-          { title: "der Schlüssel im Stein", description: "In uralten Gravuren liegt ein Code verborgen den vor mir niemand brechen konnte.", hooks: ["wissen","geheimnis","schicksal"] },
+          { title: "Die versiegelte Botschaft", description: "Eine verschlüsselte Schrift birgt eine Warnung und ich muss sie entziffern bevor es zu spät ist.", hooks: ["wissen","geheimnis"] },
+          { title: "Der Schlüssel im Stein", description: "In uralten Gravuren liegt ein Code verborgen den vor mir niemand brechen konnte.", hooks: ["wissen","geheimnis","schicksal"] },
         ]
       },
       {
@@ -2089,8 +2089,8 @@ const THEMEBOOKS = {
           { text: "gefährliches Wissen lockt Feinde", hooks: ["wissen","geheimnis"] },
         ],
         quests: [
-          { title: "das letzte Kapitel", description: "Mir fehlt der verbotene Schlussteil einer Lehre und ich riskiere alles um ihn zu finden.", hooks: ["wissen","geheimnis","magie"] },
-          { title: "der gefallene Meister", description: "Mein Lehrer verschwand an verbotenem Wissen und ich folge seiner Spur trotz der Gefahr.", hooks: ["wissen","verlust","geheimnis"] },
+          { title: "Das letzte Kapitel", description: "Mir fehlt der verbotene Schlussteil einer Lehre und ich riskiere alles um ihn zu finden.", hooks: ["wissen","geheimnis","magie"] },
+          { title: "Der gefallene Meister", description: "Mein Lehrer verschwand an verbotenem Wissen und ich folge seiner Spur trotz der Gefahr.", hooks: ["wissen","verlust","geheimnis"] },
         ]
       },
       {
@@ -2106,8 +2106,8 @@ const THEMEBOOKS = {
           { text: "wird für ihr Wissen benutzt", hooks: ["wissen","macht"] },
         ],
         quests: [
-          { title: "die geplünderte Sammlung", description: "Diebe haben aus meinem Archiv gestohlen und ich hole das Verlorene zurück.", hooks: ["wissen","geheimnis","verlust"] },
-          { title: "der würdige Erbe", description: "Ich darf nicht ewig wachen und suche jemanden der die Archive nach mir hütet.", hooks: ["wissen","glaube","schicksal"] },
+          { title: "Die geplünderte Sammlung", description: "Diebe haben aus meinem Archiv gestohlen und ich hole das Verlorene zurück.", hooks: ["wissen","geheimnis","verlust"] },
+          { title: "Der würdige Erbe", description: "Ich darf nicht ewig wachen und suche jemanden der die Archive nach mir hütet.", hooks: ["wissen","glaube","schicksal"] },
         ]
       },
       {
@@ -2123,8 +2123,8 @@ const THEMEBOOKS = {
           { text: "glaubt nur was sie beweist", hooks: ["wissen","außenseiter"] },
         ],
         quests: [
-          { title: "das ungeklärte Phänomen", description: "Ein Vorgang widerspricht allem was ich weiß und ich muss seine Ursache ergründen.", hooks: ["wissen","natur","geheimnis"] },
-          { title: "die unbekannte Bestie", description: "Ein Wesen das in keinem Buch steht bedroht das Land und ich erforsche seine Schwäche.", hooks: ["wissen","natur","kampf"] },
+          { title: "Das ungeklärte Phänomen", description: "Ein Vorgang widerspricht allem was ich weiß und ich muss seine Ursache ergründen.", hooks: ["wissen","natur","geheimnis"] },
+          { title: "Die unbekannte Bestie", description: "Ein Wesen das in keinem Buch steht bedroht das Land und ich erforsche seine Schwäche.", hooks: ["wissen","natur","kampf"] },
         ]
       },
       {
@@ -2140,8 +2140,8 @@ const THEMEBOOKS = {
           { text: "zu tief in den Riten", hooks: ["magie","verlust"] },
         ],
         quests: [
-          { title: "der wiedererwachte Kult", description: "Ein totgeglaubter Kult regt sich neu und ich muss seine Absichten entschlüsseln.", hooks: ["wissen","magie","geheimnis"] },
-          { title: "die wahre Gottheit", description: "Hinter den alten Riten liegt eine verborgene Wahrheit und ich enthülle wem sie wirklich galten.", hooks: ["wissen","glaube","geheimnis"] },
+          { title: "Der wiedererwachte Kult", description: "Ein totgeglaubter Kult regt sich neu und ich muss seine Absichten entschlüsseln.", hooks: ["wissen","magie","geheimnis"] },
+          { title: "Die wahre Gottheit", description: "Hinter den alten Riten liegt eine verborgene Wahrheit und ich enthülle wem sie wirklich galten.", hooks: ["wissen","glaube","geheimnis"] },
         ]
       },
     ]
@@ -2163,8 +2163,8 @@ const THEMEBOOKS = {
           { text: "braucht stets ein Publikum", hooks: ["verlust","außenseiter"] },
         ],
         quests: [
-          { title: "die verschollene Sage", description: "Ich finde die eine Geschichte, die niemand mehr zu erzählen wagt.", hooks: ["fahrend","geheimnis"] },
-          { title: "ein Lied das überdauert", description: "Ich erschaffe eine Erzählung, die mich um Generationen überlebt.", hooks: ["handwerk","schicksal"] },
+          { title: "Die verschollene Sage", description: "Ich finde die eine Geschichte, die niemand mehr zu erzählen wagt.", hooks: ["fahrend","geheimnis"] },
+          { title: "Ein Lied das überdauert", description: "Ich erschaffe eine Erzählung, die mich um Generationen überlebt.", hooks: ["handwerk","schicksal"] },
         ]
       },
       {
@@ -2181,8 +2181,8 @@ const THEMEBOOKS = {
           { text: "wählerisch bis zur Plage", hooks: ["handwerk","verlust"] },
         ],
         quests: [
-          { title: "das vollkommene Mahl", description: "Ich bereite das eine Festmahl zu, das alles enthält was ich kann.", hooks: ["handwerk"] },
-          { title: "die verlorene Rezeptur", description: "Ich spüre ein vergessenes Rezept der alten Meister auf.", hooks: ["handwerk","verlust"] },
+          { title: "Das vollkommene Mahl", description: "Ich bereite das eine Festmahl zu, das alles enthält was ich kann.", hooks: ["handwerk"] },
+          { title: "Die verlorene Rezeptur", description: "Ich spüre ein vergessenes Rezept der alten Meister auf.", hooks: ["handwerk","verlust"] },
         ]
       },
       {
@@ -2199,8 +2199,8 @@ const THEMEBOOKS = {
           { text: "verträgt keine Niederlage", hooks: ["handwerk"] },
         ],
         quests: [
-          { title: "der ebenbürtige Gegner", description: "Ich finde den einen Fechter, der mich endlich fordert.", hooks: ["handwerk","fahrend"] },
-          { title: "die verbotene Form", description: "Ich meistere die eine Technik, die alle anderen mieden.", hooks: ["kampf","geheimnis"] },
+          { title: "Der ebenbürtige Gegner", description: "Ich finde den einen Fechter, der mich endlich fordert.", hooks: ["handwerk","fahrend"] },
+          { title: "Die verbotene Form", description: "Ich meistere die eine Technik, die alle anderen mieden.", hooks: ["kampf","geheimnis"] },
         ]
       },
       {
@@ -2217,8 +2217,8 @@ const THEMEBOOKS = {
           { text: "wird für Unmögliches eingespannt", hooks: ["handwerk","macht"] },
         ],
         quests: [
-          { title: "die unheilbare Seuche", description: "Ich finde das Mittel gegen eine Krankheit die niemand bezwang.", hooks: ["handwerk","verlust"] },
-          { title: "ein Leben das zählt", description: "Ich rette den einen Menschen an dem heute Nacht alles hängt.", hooks: ["handwerk","glaube"] },
+          { title: "Die unheilbare Seuche", description: "Ich finde das Mittel gegen eine Krankheit die niemand bezwang.", hooks: ["handwerk","verlust"] },
+          { title: "Ein Leben das zählt", description: "Ich rette den einen Menschen an dem heute Nacht alles hängt.", hooks: ["handwerk","glaube"] },
         ]
       },
       {
@@ -2235,8 +2235,8 @@ const THEMEBOOKS = {
           { text: "hilflos im Nahkampf", hooks: ["kampf","verlust"] },
         ],
         quests: [
-          { title: "der unmögliche Schuss", description: "Ich treffe das eine Ziel das keiner für treffbar hält.", hooks: ["handwerk","schicksal"] },
-          { title: "der Wettstreit der Meister", description: "Ich bestehe den Bogenwettkampf gegen die Besten des Landes.", hooks: ["handwerk","kampf"] },
+          { title: "Der unmögliche Schuss", description: "Ich treffe das eine Ziel das keiner für treffbar hält.", hooks: ["handwerk","schicksal"] },
+          { title: "Der Wettstreit der Meister", description: "Ich bestehe den Bogenwettkampf gegen die Besten des Landes.", hooks: ["handwerk","kampf"] },
         ]
       },
       {
@@ -2253,8 +2253,8 @@ const THEMEBOOKS = {
           { text: "sieht überall nur Spiele", hooks: ["handwerk","außenseiter"] },
         ],
         quests: [
-          { title: "der ungeschlagene Großmeister", description: "Ich besiege den Spieler der seit Jahren nie verlor.", hooks: ["handwerk","macht"] },
-          { title: "die tödliche Partie", description: "Ich gewinne das eine Spiel bei dem es um mehr als Steine geht.", hooks: ["handwerk","schicksal"] },
+          { title: "Der ungeschlagene Großmeister", description: "Ich besiege den Spieler der seit Jahren nie verlor.", hooks: ["handwerk","macht"] },
+          { title: "Die tödliche Partie", description: "Ich gewinne das eine Spiel bei dem es um mehr als Steine geht.", hooks: ["handwerk","schicksal"] },
         ]
       },
       {
@@ -2271,8 +2271,8 @@ const THEMEBOOKS = {
           { text: "erschöpft im Alltag", hooks: ["verlust"] },
         ],
         quests: [
-          { title: "der Tanz der niemals war", description: "Ich erschaffe einen Tanz den die Welt noch nie gesehen hat.", hooks: ["handwerk","schicksal"] },
-          { title: "die große Bühne", description: "Ich tanze einmal vor dem Hof der über Ruhm entscheidet.", hooks: ["handwerk","adel"] },
+          { title: "Der Tanz der niemals war", description: "Ich erschaffe einen Tanz den die Welt noch nie gesehen hat.", hooks: ["handwerk","schicksal"] },
+          { title: "Die große Bühne", description: "Ich tanze einmal vor dem Hof der über Ruhm entscheidet.", hooks: ["handwerk","adel"] },
         ]
       },
       {
@@ -2289,8 +2289,8 @@ const THEMEBOOKS = {
           { text: "kann nicht widerstehen", hooks: ["handwerk","verlust"] },
         ],
         quests: [
-          { title: "der undurchdringliche Hort", description: "Ich stehle aus dem einen Tresor den keiner je knackte.", hooks: ["handwerk","geheimnis"] },
-          { title: "ein letzter Coup", description: "Ich vollbringe den Diebstahl der mich frei machen würde.", hooks: ["handwerk","verlust"] },
+          { title: "Der undurchdringliche Hort", description: "Ich stehle aus dem einen Tresor den keiner je knackte.", hooks: ["handwerk","geheimnis"] },
+          { title: "Ein letzter Coup", description: "Ich vollbringe den Diebstahl der mich frei machen würde.", hooks: ["handwerk","verlust"] },
         ]
       },
       {
@@ -2307,8 +2307,8 @@ const THEMEBOOKS = {
           { text: "verschuldet durch Großzügigkeit", hooks: ["fahrend","verlust"] },
         ],
         quests: [
-          { title: "das Lied der Helden", description: "Ich besinge eine Tat so dass sie zur Legende wird.", hooks: ["handwerk","schicksal"] },
-          { title: "das Ohr des Königs", description: "Ich spiele einmal am Hof der Lieder zu Geschichte macht.", hooks: ["handwerk","adel"] },
+          { title: "Das Lied der Helden", description: "Ich besinge eine Tat so dass sie zur Legende wird.", hooks: ["handwerk","schicksal"] },
+          { title: "Das Ohr des Königs", description: "Ich spiele einmal am Hof der Lieder zu Geschichte macht.", hooks: ["handwerk","adel"] },
         ]
       },
       {
@@ -2325,8 +2325,8 @@ const THEMEBOOKS = {
           { text: "tollkühn im Ritt", hooks: ["handwerk","natur"] },
         ],
         quests: [
-          { title: "das ungezähmte Ross", description: "Ich zähme das Pferd das noch keiner reiten konnte.", hooks: ["handwerk","natur"] },
-          { title: "das große Wettrennen", description: "Ich gewinne den Ritt den niemand für gewinnbar hält.", hooks: ["handwerk","schicksal"] },
+          { title: "Das ungezähmte Ross", description: "Ich zähme das Pferd das noch keiner reiten konnte.", hooks: ["handwerk","natur"] },
+          { title: "Das große Wettrennen", description: "Ich gewinne den Ritt den niemand für gewinnbar hält.", hooks: ["handwerk","schicksal"] },
         ]
       },
       {
@@ -2343,7 +2343,7 @@ const THEMEBOOKS = {
           { text: "glaubt der eigenen Rede", hooks: ["macht","schicksal"] },
         ],
         quests: [
-          { title: "die Stadt in Aufruhr", description: "Ich bewege mit einer einzigen Rede eine ganze Stadt.", hooks: ["handwerk","macht"] },
+          { title: "Die Stadt in Aufruhr", description: "Ich bewege mit einer einzigen Rede eine ganze Stadt.", hooks: ["handwerk","macht"] },
           { title: "Worte gegen Schwerter", description: "Ich wende eine Schlacht allein durch das was ich sage.", hooks: ["handwerk","kampf"] },
         ]
       },
@@ -2361,8 +2361,8 @@ const THEMEBOOKS = {
           { text: "wird der Falschheit verdächtigt", hooks: ["geheimnis","stadt"] },
         ],
         quests: [
-          { title: "das Spiel um alles", description: "Ich setze alles auf eine Partie gegen den besten Spieler.", hooks: ["handwerk","macht"] },
-          { title: "die Schuld vom Tisch", description: "Ich gewinne das eine Spiel das eine alte Schuld tilgt.", hooks: ["handwerk","verlust"] },
+          { title: "Das Spiel um alles", description: "Ich setze alles auf eine Partie gegen den besten Spieler.", hooks: ["handwerk","macht"] },
+          { title: "Die Schuld vom Tisch", description: "Ich gewinne das eine Spiel das eine alte Schuld tilgt.", hooks: ["handwerk","verlust"] },
         ]
       },
     ]
@@ -2383,8 +2383,8 @@ const THEMEBOOKS = {
           { text: "zu schwer für Feinheit", hooks: ["kampf","handwerk"] },
         ],
         quests: [
-          { title: "den wahren Gegner finden", description: "Ich suche den einen Feind, der diese Faust wirklich verdient.", hooks: ["kampf","schicksal"] },
-          { title: "die Wut bändigen", description: "Ich lerne zu schlagen, ohne dass die Faust mich beherrscht.", hooks: ["kampf","magie"] },
+          { title: "Den wahren Gegner finden", description: "Ich suche den einen Feind, der diese Faust wirklich verdient.", hooks: ["kampf","schicksal"] },
+          { title: "Die Wut bändigen", description: "Ich lerne zu schlagen, ohne dass die Faust mich beherrscht.", hooks: ["kampf","magie"] },
         ]
       },
       {
@@ -2400,8 +2400,8 @@ const THEMEBOOKS = {
           { text: "Magie fordert ihren Preis", hooks: ["magie","verlust"] },
         ],
         quests: [
-          { title: "das letzte Rezept finden", description: "Ich suche die verschollene Mischung für den seltensten Staub.", hooks: ["wissen","handwerk"] },
-          { title: "den Beutel niemals leeren", description: "Ich lerne, mit jeder Prise hauszuhalten als wäre es die letzte.", hooks: ["handwerk","verlust"] },
+          { title: "Das letzte Rezept finden", description: "Ich suche die verschollene Mischung für den seltensten Staub.", hooks: ["wissen","handwerk"] },
+          { title: "Den Beutel niemals leeren", description: "Ich lerne, mit jeder Prise hauszuhalten als wäre es die letzte.", hooks: ["handwerk","verlust"] },
         ]
       },
       {
@@ -2417,8 +2417,8 @@ const THEMEBOOKS = {
           { text: "andere wollen es", hooks: ["geheimnis","macht"] },
         ],
         quests: [
-          { title: "einen Geist bannen", description: "Ich suche das Mittel gegen den Geist der nicht weichen will.", hooks: ["magie","geheimnis"] },
-          { title: "den Kreis schließen", description: "Ich lerne jede Beschwörung sicher zu Ende zu führen.", hooks: ["magie","wissen"] },
+          { title: "Einen Geist bannen", description: "Ich suche das Mittel gegen den Geist der nicht weichen will.", hooks: ["magie","geheimnis"] },
+          { title: "Den Kreis schließen", description: "Ich lerne jede Beschwörung sicher zu Ende zu führen.", hooks: ["magie","wissen"] },
         ]
       },
       {
@@ -2434,8 +2434,8 @@ const THEMEBOOKS = {
           { text: "verändert mich subtil", hooks: ["magie","schicksal","verlust"] },
         ],
         quests: [
-          { title: "den Fluch der Klinge brechen", description: "Ich suche einen Weg die Klinge zu führen ohne ihr zu verfallen.", hooks: ["magie","schicksal"] },
-          { title: "das erste Opfer rächen", description: "Ich finde heraus wen diese Klinge zuerst verriet.", hooks: ["verlust","kampf"] },
+          { title: "Den Fluch der Klinge brechen", description: "Ich suche einen Weg die Klinge zu führen ohne ihr zu verfallen.", hooks: ["magie","schicksal"] },
+          { title: "Das erste Opfer rächen", description: "Ich finde heraus wen diese Klinge zuerst verriet.", hooks: ["verlust","kampf"] },
         ]
       },
       {
@@ -2451,8 +2451,8 @@ const THEMEBOOKS = {
           { text: "alte Zauber entgleiten", hooks: ["magie","verlust"] },
         ],
         quests: [
-          { title: "die alte Sprache lernen", description: "Ich entziffere die Runen die den Stab beherrschen.", hooks: ["wissen","magie"] },
-          { title: "den letzten Träger finden", description: "Ich suche den, der den Stab vor Zeitaltern führte.", hooks: ["wissen","geheimnis"] },
+          { title: "Die alte Sprache lernen", description: "Ich entziffere die Runen die den Stab beherrschen.", hooks: ["wissen","magie"] },
+          { title: "Den letzten Träger finden", description: "Ich suche den, der den Stab vor Zeitaltern führte.", hooks: ["wissen","geheimnis"] },
         ]
       },
       {
@@ -2468,8 +2468,8 @@ const THEMEBOOKS = {
           { text: "andere wollen es", hooks: ["geheimnis","macht"] },
         ],
         quests: [
-          { title: "das verlorene Reich erinnern", description: "Ich decke auf welches Volk diese Krone einst trug.", hooks: ["adel","verlust"] },
-          { title: "die rechtmäßige Erbin suchen", description: "Ich finde heraus wem die Krone wirklich gehört.", hooks: ["adel","geheimnis"] },
+          { title: "Das verlorene Reich erinnern", description: "Ich decke auf welches Volk diese Krone einst trug.", hooks: ["adel","verlust"] },
+          { title: "Die rechtmäßige Erbin suchen", description: "Ich finde heraus wem die Krone wirklich gehört.", hooks: ["adel","geheimnis"] },
         ]
       },
       {
@@ -2485,8 +2485,8 @@ const THEMEBOOKS = {
           { text: "andere wollen es", hooks: ["geheimnis","macht"] },
         ],
         quests: [
-          { title: "eine Lüge entlarven", description: "Ich nutze den Spiegel um einen mächtigen Betrug aufzudecken.", hooks: ["geheimnis","macht"] },
-          { title: "der eigenen Wahrheit standhalten", description: "Ich lerne zu ertragen was der Spiegel mir selbst zeigt.", hooks: ["geheimnis","verlust"] },
+          { title: "Eine Lüge entlarven", description: "Ich nutze den Spiegel um einen mächtigen Betrug aufzudecken.", hooks: ["geheimnis","macht"] },
+          { title: "Der eigenen Wahrheit standhalten", description: "Ich lerne zu ertragen was der Spiegel mir selbst zeigt.", hooks: ["geheimnis","verlust"] },
         ]
       },
       {
@@ -2502,8 +2502,8 @@ const THEMEBOOKS = {
           { text: "hat einen eigenen Willen", hooks: ["magie","schicksal"] },
         ],
         quests: [
-          { title: "die letzte Seite verhindern", description: "Ich suche einen Weg das vorhergesagte Ende abzuwenden.", hooks: ["schicksal","magie"] },
-          { title: "wissen wer das Buch schreibt", description: "Ich finde heraus welche Hand die Worte wirklich führt.", hooks: ["geheimnis","wissen"] },
+          { title: "Die letzte Seite verhindern", description: "Ich suche einen Weg das vorhergesagte Ende abzuwenden.", hooks: ["schicksal","magie"] },
+          { title: "Wissen wer das Buch schreibt", description: "Ich finde heraus welche Hand die Worte wirklich führt.", hooks: ["geheimnis","wissen"] },
         ]
       },
       {
@@ -2519,8 +2519,8 @@ const THEMEBOOKS = {
           { text: "Macht stellt Forderungen", hooks: ["macht","schicksal"] },
         ],
         quests: [
-          { title: "die gefallene Festung erinnern", description: "Ich enthülle warum die alte Festung wirklich fiel.", hooks: ["verlust","macht"] },
-          { title: "einen neuen Wall errichten", description: "Ich nutze den Stein um einen letzten Schutzort zu bauen.", hooks: ["natur","handwerk"] },
+          { title: "Die gefallene Festung erinnern", description: "Ich enthülle warum die alte Festung wirklich fiel.", hooks: ["verlust","macht"] },
+          { title: "Einen neuen Wall errichten", description: "Ich nutze den Stein um einen letzten Schutzort zu bauen.", hooks: ["natur","handwerk"] },
         ]
       },
       {
@@ -2536,8 +2536,8 @@ const THEMEBOOKS = {
           { text: "Last eines toten Throns", hooks: ["adel","verlust"] },
         ],
         quests: [
-          { title: "die letzte Linie finden", description: "Ich suche den letzten Erben des verschwundenen Königs.", hooks: ["adel","geheimnis"] },
-          { title: "das gebrochene Reich kitten", description: "Ich nutze die Kette um zerfallene Treue neu zu binden.", hooks: ["adel","macht"] },
+          { title: "Die letzte Linie finden", description: "Ich suche den letzten Erben des verschwundenen Königs.", hooks: ["adel","geheimnis"] },
+          { title: "Das gebrochene Reich kitten", description: "Ich nutze die Kette um zerfallene Treue neu zu binden.", hooks: ["adel","macht"] },
         ]
       },
       {
@@ -2553,8 +2553,8 @@ const THEMEBOOKS = {
           { text: "von Dieben begehrt", hooks: ["stadt","geheimnis"] },
         ],
         quests: [
-          { title: "das passende Schloss finden", description: "Ich suche die eine Tür für die dieser Schlüssel gemacht wurde.", hooks: ["geheimnis","schicksal"] },
-          { title: "hinter die letzte Tür sehen", description: "Ich öffne was niemand vor mir öffnen durfte.", hooks: ["geheimnis","verlust"] },
+          { title: "Das passende Schloss finden", description: "Ich suche die eine Tür für die dieser Schlüssel gemacht wurde.", hooks: ["geheimnis","schicksal"] },
+          { title: "Hinter die letzte Tür sehen", description: "Ich öffne was niemand vor mir öffnen durfte.", hooks: ["geheimnis","verlust"] },
         ]
       },
       {
@@ -2570,8 +2570,8 @@ const THEMEBOOKS = {
           { text: "verändert mich subtil", hooks: ["magie","schicksal","verlust"] },
         ],
         quests: [
-          { title: "eine verlorene Stimme freilassen", description: "Ich suche den Weg eine gefangene Seele gehen zu lassen.", hooks: ["verlust","magie"] },
-          { title: "das letzte Wort hören", description: "Ich finde heraus wessen Stimme zuletzt eingeschlossen wurde.", hooks: ["geheimnis","verlust"] },
+          { title: "Eine verlorene Stimme freilassen", description: "Ich suche den Weg eine gefangene Seele gehen zu lassen.", hooks: ["verlust","magie"] },
+          { title: "Das letzte Wort hören", description: "Ich finde heraus wessen Stimme zuletzt eingeschlossen wurde.", hooks: ["geheimnis","verlust"] },
         ]
       },
     ]
@@ -2593,8 +2593,8 @@ const THEMEBOOKS = {
           { text: "gemieden von Mensch und Tier", hooks: ["außenseiter","schicksal"] },
         ],
         quests: [
-          { title: "ich finde meinen letzten Atem", description: "Etwas hält mich an diese Welt, und ich werde herausfinden, was meinen Tod verhindert.", hooks: ["verlust","geheimnis"] },
-          { title: "ich finde Ruhe im Jenseits", description: "Ich gehöre nicht mehr hierher und suche den Weg, der mich endlich gehen lässt.", hooks: ["schicksal","verlust"] },
+          { title: "Ich finde meinen letzten Atem", description: "Etwas hält mich an diese Welt, und ich werde herausfinden, was meinen Tod verhindert.", hooks: ["verlust","geheimnis"] },
+          { title: "Ich finde Ruhe im Jenseits", description: "Ich gehöre nicht mehr hierher und suche den Weg, der mich endlich gehen lässt.", hooks: ["schicksal","verlust"] },
         ]
       },
       {
@@ -2611,12 +2611,12 @@ const THEMEBOOKS = {
           { text: "gehasst von beiden Welten", hooks: ["außenseiter","verlust"] },
         ],
         quests: [
-          { title: "ich entkomme meinem Erbe", description: "Das höllische Blut in mir fordert seinen Tribut, und ich kämpfe darum, ihm nicht zu verfallen.", hooks: ["schicksal","magie"] },
-          { title: "ich finde die, die mich erschufen", description: "Etwas Dunkles hat mich in die Welt gerufen, und ich werde ihm gegenübertreten.", hooks: ["geheimnis","verlust"] },
+          { title: "Ich entkomme meinem Erbe", description: "Das höllische Blut in mir fordert seinen Tribut, und ich kämpfe darum, ihm nicht zu verfallen.", hooks: ["schicksal","magie"] },
+          { title: "Ich finde die, die mich erschufen", description: "Etwas Dunkles hat mich in die Welt gerufen, und ich werde ihm gegenübertreten.", hooks: ["geheimnis","verlust"] },
         ]
       },
       {
-        text: "Kleiner Hob", hooks: ["schicksal","natur","geheimnis"],
+        text: "kleiner Hob", hooks: ["schicksal","natur","geheimnis"],
         powerTags: [
           { text: "bleibt unbemerkt nach Belieben", hooks: ["geheimnis","außenseiter"] },
           { text: "findet jeden verborgenen Winkel", hooks: ["natur","geheimnis"] },
@@ -2629,8 +2629,8 @@ const THEMEBOOKS = {
           { text: "leicht beleidigt und nachtragend", hooks: ["außenseiter","schicksal"] },
         ],
         quests: [
-          { title: "ich bewahre meinen Winkel", description: "Ein verborgener Ort gehört mir allein, und ich verteidige ihn gegen jeden Eindringling.", hooks: ["natur","geheimnis"] },
-          { title: "ich löse den alten Handel ein", description: "Vor langer Zeit schloss ich einen Pakt, und nun ist die Stunde gekommen, ihn zu erfüllen.", hooks: ["schicksal","glaube"] },
+          { title: "Ich bewahre meinen Winkel", description: "Ein verborgener Ort gehört mir allein, und ich verteidige ihn gegen jeden Eindringling.", hooks: ["natur","geheimnis"] },
+          { title: "Ich löse den alten Handel ein", description: "Vor langer Zeit schloss ich einen Pakt, und nun ist die Stunde gekommen, ihn zu erfüllen.", hooks: ["schicksal","glaube"] },
         ]
       },
       {
@@ -2647,8 +2647,8 @@ const THEMEBOOKS = {
           { text: "ein Makel verrät die Gestalt", hooks: ["geheimnis","schicksal"] },
         ],
         quests: [
-          { title: "ich finde mein wahres Gesicht", description: "Unter all den Masken weiß ich nicht mehr, wer ich bin, und ich suche danach.", hooks: ["verlust","geheimnis"] },
-          { title: "ich entlarve einen Betrüger", description: "Niemand erkennt eine Täuschung so schnell wie ich, und ich jage den, der falsches Spiel treibt.", hooks: ["geheimnis","schicksal"] },
+          { title: "Ich finde mein wahres Gesicht", description: "Unter all den Masken weiß ich nicht mehr, wer ich bin, und ich suche danach.", hooks: ["verlust","geheimnis"] },
+          { title: "Ich entlarve einen Betrüger", description: "Niemand erkennt eine Täuschung so schnell wie ich, und ich jage den, der falsches Spiel treibt.", hooks: ["geheimnis","schicksal"] },
         ]
       },
       {
@@ -2665,8 +2665,8 @@ const THEMEBOOKS = {
           { text: "kraftlos bei Neumond", hooks: ["schicksal","verlust"] },
         ],
         quests: [
-          { title: "ich zähme das Mondblut", description: "Der volle Mond entfesselt etwas in mir, und ich ringe darum, es zu beherrschen.", hooks: ["magie","schicksal"] },
-          { title: "ich ergründe meine Sterndeutung", description: "Der Himmel spricht zu mir in Zeichen, und ich will verstehen, was er mir kündet.", hooks: ["wissen","schicksal"] },
+          { title: "Ich zähme das Mondblut", description: "Der volle Mond entfesselt etwas in mir, und ich ringe darum, es zu beherrschen.", hooks: ["magie","schicksal"] },
+          { title: "Ich ergründe meine Sterndeutung", description: "Der Himmel spricht zu mir in Zeichen, und ich will verstehen, was er mir kündet.", hooks: ["wissen","schicksal"] },
         ]
       },
       {
@@ -2683,8 +2683,8 @@ const THEMEBOOKS = {
           { text: "geschwächt im hellen Licht", hooks: ["schicksal","verlust"] },
         ],
         quests: [
-          { title: "ich erkunde das Schattenreich", description: "Hinter den Schatten liegt eine andere Welt, und ich will ihre Tiefen kennen.", hooks: ["geheimnis","schicksal"] },
-          { title: "ich verberge eine dunkle Wahrheit", description: "Ein Geheimnis darf niemals ans Licht, und ich nutze die Schatten, um es zu hüten.", hooks: ["geheimnis","verlust"] },
+          { title: "Ich erkunde das Schattenreich", description: "Hinter den Schatten liegt eine andere Welt, und ich will ihre Tiefen kennen.", hooks: ["geheimnis","schicksal"] },
+          { title: "Ich verberge eine dunkle Wahrheit", description: "Ein Geheimnis darf niemals ans Licht, und ich nutze die Schatten, um es zu hüten.", hooks: ["geheimnis","verlust"] },
         ]
       },
       {
@@ -2701,8 +2701,8 @@ const THEMEBOOKS = {
           { text: "verirrt sich in fremden Träumen", hooks: ["magie","verlust"] },
         ],
         quests: [
-          { title: "ich deute meine Visionen", description: "Im Halbschlaf sehe ich, was kommen wird, und ich will lernen, die Bilder zu verstehen.", hooks: ["schicksal","geheimnis"] },
-          { title: "ich finde den Weg zurück", description: "Ich habe mich zwischen Traum und Wachen verloren und suche den Pfad ins eigene Leben.", hooks: ["verlust","schicksal"] },
+          { title: "Ich deute meine Visionen", description: "Im Halbschlaf sehe ich, was kommen wird, und ich will lernen, die Bilder zu verstehen.", hooks: ["schicksal","geheimnis"] },
+          { title: "Ich finde den Weg zurück", description: "Ich habe mich zwischen Traum und Wachen verloren und suche den Pfad ins eigene Leben.", hooks: ["verlust","schicksal"] },
         ]
       },
       {
@@ -2719,8 +2719,8 @@ const THEMEBOOKS = {
           { text: "hinterlässt verbrannte Spuren", hooks: ["schicksal","verlust"] },
         ],
         quests: [
-          { title: "ich suche die verlorene Heimat", description: "Feuer nahm mir alles, und ich wandere, bis ich einen Ort finde, der bleibt.", hooks: ["verlust","fahrend"] },
-          { title: "ich finde die Glut der Schuldigen", description: "Jemand legte das Feuer, das mein Leben verzehrte, und ich folge der Spur bis ans Ende.", hooks: ["verlust","schicksal"] },
+          { title: "Ich suche die verlorene Heimat", description: "Feuer nahm mir alles, und ich wandere, bis ich einen Ort finde, der bleibt.", hooks: ["verlust","fahrend"] },
+          { title: "Ich finde die Glut der Schuldigen", description: "Jemand legte das Feuer, das mein Leben verzehrte, und ich folge der Spur bis ans Ende.", hooks: ["verlust","schicksal"] },
         ]
       },
       {
@@ -2737,8 +2737,8 @@ const THEMEBOOKS = {
           { text: "ruhelos auf festem Land", hooks: ["natur","außenseiter"] },
         ],
         quests: [
-          { title: "ich kehre in die Tiefe heim", description: "Das Land hält mich gefangen, und ich sehne mich nach den Wassern, aus denen ich kam.", hooks: ["natur","schicksal"] },
-          { title: "ich befriede die zornigen Gewässer", description: "Etwas Altes regt sich in den Tiefen, und ich allein kann es besänftigen.", hooks: ["natur","magie"] },
+          { title: "Ich kehre in die Tiefe heim", description: "Das Land hält mich gefangen, und ich sehne mich nach den Wassern, aus denen ich kam.", hooks: ["natur","schicksal"] },
+          { title: "Ich befriede die zornigen Gewässer", description: "Etwas Altes regt sich in den Tiefen, und ich allein kann es besänftigen.", hooks: ["natur","magie"] },
         ]
       },
       {
@@ -2755,8 +2755,8 @@ const THEMEBOOKS = {
           { text: "schwindet im hellen Mittag", hooks: ["schicksal","verlust"] },
         ],
         quests: [
-          { title: "ich finde meinen Platz dazwischen", description: "Ich gehöre weder ins Licht noch in die Finsternis und suche eine Schwelle, auf der ich stehen kann.", hooks: ["außenseiter","schicksal"] },
-          { title: "ich hüte die Schwelle", description: "Im Zwielicht öffnen sich Wege, die niemand betreten sollte, und ich wache über sie.", hooks: ["geheimnis","schicksal"] },
+          { title: "Ich finde meinen Platz dazwischen", description: "Ich gehöre weder ins Licht noch in die Finsternis und suche eine Schwelle, auf der ich stehen kann.", hooks: ["außenseiter","schicksal"] },
+          { title: "Ich hüte die Schwelle", description: "Im Zwielicht öffnen sich Wege, die niemand betreten sollte, und ich wache über sie.", hooks: ["geheimnis","schicksal"] },
         ]
       },
       {
@@ -2773,8 +2773,8 @@ const THEMEBOOKS = {
           { text: "zieht Wesen von drüben an", hooks: ["schicksal","magie"] },
         ],
         quests: [
-          { title: "ich schließe den offenen Riss", description: "Durch mich kam etwas in die Welt, das nicht hierher gehört, und ich muss die Pforte versiegeln.", hooks: ["magie","schicksal"] },
-          { title: "ich ergründe die andere Seite", description: "Jenseits des Risses liegt ein Reich, dessen Geheimnisse mich rufen.", hooks: ["geheimnis","magie"] },
+          { title: "Ich schließe den offenen Riss", description: "Durch mich kam etwas in die Welt, das nicht hierher gehört, und ich muss die Pforte versiegeln.", hooks: ["magie","schicksal"] },
+          { title: "Ich ergründe die andere Seite", description: "Jenseits des Risses liegt ein Reich, dessen Geheimnisse mich rufen.", hooks: ["geheimnis","magie"] },
         ]
       },
       {
@@ -2791,8 +2791,8 @@ const THEMEBOOKS = {
           { text: "das Mal verrät ihr Wesen", hooks: ["außenseiter","schicksal"] },
         ],
         quests: [
-          { title: "ich bändige die Bestie in mir", description: "Wenn der Mond voll steht, droht das Tier mich zu verschlingen, und ich kämpfe um die Herrschaft.", hooks: ["schicksal","kampf"] },
-          { title: "ich finde das Rudel meiner Art", description: "Irgendwo leben andere, die dasselbe Mal tragen, und ich suche nach ihnen.", hooks: ["natur","außenseiter"] },
+          { title: "Ich bändige die Bestie in mir", description: "Wenn der Mond voll steht, droht das Tier mich zu verschlingen, und ich kämpfe um die Herrschaft.", hooks: ["schicksal","kampf"] },
+          { title: "Ich finde das Rudel meiner Art", description: "Irgendwo leben andere, die dasselbe Mal tragen, und ich suche nach ihnen.", hooks: ["natur","außenseiter"] },
         ]
       },
     ]
@@ -2801,231 +2801,231 @@ const THEMEBOOKS = {
     type: "Greatness",
     titles: [
       {
-        text: "erbin des throns", hooks: ["adel","macht","schicksal"],
+        text: "Erbin des Throns", hooks: ["adel","macht","schicksal"],
         powerTags: [
-          { text: "blutrecht der krone", hooks: ["adel","macht","schicksal"] },
-          { text: "die welt hört auf mich", hooks: ["schicksal","macht"] },
-          { text: "treue eines ganzen reiches", hooks: ["adel","macht"] },
-          { text: "ihr wort trägt gewicht", hooks: ["schicksal","macht"] },
-          { text: "geborene herrscherin", hooks: ["adel","macht","schicksal"] },
+          { text: "Blutrecht der Krone", hooks: ["adel","macht","schicksal"] },
+          { text: "die Welt hört auf mich", hooks: ["schicksal","macht"] },
+          { text: "Treue eines ganzen Reiches", hooks: ["adel","macht"] },
+          { text: "ihr Wort trägt Gewicht", hooks: ["schicksal","macht"] },
+          { text: "geborene Herrscherin", hooks: ["adel","macht","schicksal"] },
         ],
         weaknessTags: [
-          { text: "rivalen wollen den thron", hooks: ["adel","macht","kampf"] },
-          { text: "andere fordern meinen tod", hooks: ["schicksal","kampf"] },
-          { text: "last der krone", hooks: ["adel","verlust"] },
+          { text: "Rivalen wollen den Thron", hooks: ["adel","macht","kampf"] },
+          { text: "andere fordern meinen Tod", hooks: ["schicksal","kampf"] },
+          { text: "Last der Krone", hooks: ["adel","verlust"] },
         ],
         quests: [
-          { title: "ich erringe den thron, der mir gebührt", description: "Das Reich ist meines von Geburt an und ich werde es einfordern.", hooks: ["adel","macht","schicksal"] },
-          { title: "ich beweise mich als würdige herrscherin", description: "Eine Krone macht noch keine Königin und das werde ich der Welt zeigen.", hooks: ["adel","macht"] },
+          { title: "Ich erringe den Thron, der mir gebührt", description: "Das Reich ist meines von Geburt an und ich werde es einfordern.", hooks: ["adel","macht","schicksal"] },
+          { title: "Ich beweise mich als würdige Herrscherin", description: "Eine Krone macht noch keine Königin und das werde ich der Welt zeigen.", hooks: ["adel","macht"] },
         ]
       },
       {
-        text: "untergang der welt", hooks: ["schicksal","verlust"],
+        text: "Untergang der Welt", hooks: ["schicksal","verlust"],
         powerTags: [
-          { text: "vorbote des endes", hooks: ["schicksal","verlust"] },
-          { text: "überlebt das unmögliche", hooks: ["schicksal"] },
-          { text: "sieht das nahende unheil", hooks: ["schicksal","geheimnis"] },
-          { text: "unerschütterlicher mut", hooks: ["kampf","schicksal"] },
+          { text: "Vorbote des Endes", hooks: ["schicksal","verlust"] },
+          { text: "überlebt das Unmögliche", hooks: ["schicksal"] },
+          { text: "sieht das nahende Unheil", hooks: ["schicksal","geheimnis"] },
+          { text: "unerschütterlicher Mut", hooks: ["kampf","schicksal"] },
           { text: "steht immer wieder auf", hooks: ["schicksal","kampf"] },
         ],
         weaknessTags: [
-          { text: "die bestimmung fordert opfer", hooks: ["schicksal","verlust"] },
-          { text: "feinde wollen mich verhindern", hooks: ["schicksal","kampf"] },
-          { text: "vom ende gezeichnet", hooks: ["schicksal","verlust"] },
+          { text: "die Bestimmung fordert Opfer", hooks: ["schicksal","verlust"] },
+          { text: "Feinde wollen mich verhindern", hooks: ["schicksal","kampf"] },
+          { text: "vom Ende gezeichnet", hooks: ["schicksal","verlust"] },
         ],
         quests: [
-          { title: "ich rette die welt vor dem ende", description: "Andere wollen das Unheil nicht sehen doch ich stehe in seinem Weg.", hooks: ["schicksal","kampf"] },
-          { title: "ich verhindere den vorhergesagten untergang", description: "Das Schicksal läuft auf eine Katastrophe zu und ich werde es brechen.", hooks: ["schicksal","verlust"] },
+          { title: "Ich rette die Welt vor dem Ende", description: "Andere wollen das Unheil nicht sehen doch ich stehe in seinem Weg.", hooks: ["schicksal","kampf"] },
+          { title: "Ich verhindere den vorhergesagten Untergang", description: "Das Schicksal läuft auf eine Katastrophe zu und ich werde es brechen.", hooks: ["schicksal","verlust"] },
         ]
       },
       {
-        text: "sucher des erzählers", hooks: ["schicksal","geheimnis"],
+        text: "Sucher des Erzählers", hooks: ["schicksal","geheimnis"],
         powerTags: [
-          { text: "findet zeichen im zufall", hooks: ["schicksal","geheimnis"] },
-          { text: "zeichen weisen den weg", hooks: ["schicksal","geheimnis"] },
-          { text: "liest den faden der geschichte", hooks: ["schicksal","wissen"] },
-          { text: "verbotene türen öffnen sich", hooks: ["schicksal","geheimnis"] },
-          { text: "spürt verborgene wahrheit", hooks: ["geheimnis","wissen"] },
+          { text: "findet Zeichen im Zufall", hooks: ["schicksal","geheimnis"] },
+          { text: "Zeichen weisen den Weg", hooks: ["schicksal","geheimnis"] },
+          { text: "liest den Faden der Geschichte", hooks: ["schicksal","wissen"] },
+          { text: "verbotene Türen öffnen sich", hooks: ["schicksal","geheimnis"] },
+          { text: "spürt verborgene Wahrheit", hooks: ["geheimnis","wissen"] },
         ],
         weaknessTags: [
-          { text: "besessen von der suche", hooks: ["schicksal","geheimnis"] },
-          { text: "der pfad ist eng", hooks: ["schicksal"] },
-          { text: "zweifelt an der prophezeiung", hooks: ["schicksal","geheimnis"] },
+          { text: "besessen von der Suche", hooks: ["schicksal","geheimnis"] },
+          { text: "der Pfad ist eng", hooks: ["schicksal"] },
+          { text: "zweifelt an der Prophezeiung", hooks: ["schicksal","geheimnis"] },
         ],
         quests: [
-          { title: "ich entdecke wer mich auserwählt hat", description: "Hinter meiner Bestimmung steht jemand und ich werde ihn finden.", hooks: ["schicksal","geheimnis"] },
-          { title: "ich finde den erzähler hinter allem", description: "Eine Hand lenkt die Geschichte und ich will ihr ins Angesicht sehen.", hooks: ["schicksal","geheimnis"] },
+          { title: "Ich entdecke wer mich auserwählt hat", description: "Hinter meiner Bestimmung steht jemand und ich werde ihn finden.", hooks: ["schicksal","geheimnis"] },
+          { title: "Ich finde den Erzähler hinter allem", description: "Eine Hand lenkt die Geschichte und ich will ihr ins Angesicht sehen.", hooks: ["schicksal","geheimnis"] },
         ]
       },
       {
-        text: "auserwählter der götter", hooks: ["schicksal","glaube"],
+        text: "Auserwählter der Götter", hooks: ["schicksal","glaube"],
         powerTags: [
-          { text: "segen der götter", hooks: ["glaube","schicksal","magie"] },
-          { text: "wundersame rettung", hooks: ["schicksal","magie"] },
-          { text: "schicksal beschützt mich", hooks: ["schicksal"] },
-          { text: "verbündete erscheinen", hooks: ["schicksal"] },
-          { text: "trägt göttliche autorität", hooks: ["glaube","macht","schicksal"] },
+          { text: "Segen der Götter", hooks: ["glaube","schicksal","magie"] },
+          { text: "wundersame Rettung", hooks: ["schicksal","magie"] },
+          { text: "Schicksal beschützt mich", hooks: ["schicksal"] },
+          { text: "Verbündete erscheinen", hooks: ["schicksal"] },
+          { text: "trägt göttliche Autorität", hooks: ["glaube","macht","schicksal"] },
         ],
         weaknessTags: [
-          { text: "die götter fordern gehorsam", hooks: ["glaube","schicksal"] },
-          { text: "hochmut verfolgt mich", hooks: ["schicksal","verlust"] },
-          { text: "ketzer fordern meinen tod", hooks: ["glaube","kampf"] },
+          { text: "die Götter fordern Gehorsam", hooks: ["glaube","schicksal"] },
+          { text: "Hochmut verfolgt mich", hooks: ["schicksal","verlust"] },
+          { text: "Ketzer fordern meinen Tod", hooks: ["glaube","kampf"] },
         ],
         quests: [
-          { title: "ich erfülle den willen der götter", description: "Eine höhere Macht hat mich gewählt und ich folge ihrem Ruf.", hooks: ["schicksal","glaube"] },
-          { title: "ich entscheide ob ich das schicksal annehme", description: "Vielleicht bin ich die Auserwählte und vielleicht eine Lüge doch ich werde es wissen.", hooks: ["schicksal","glaube"] },
+          { title: "Ich erfülle den Willen der Götter", description: "Eine höhere Macht hat mich gewählt und ich folge ihrem Ruf.", hooks: ["schicksal","glaube"] },
+          { title: "Ich entscheide ob ich das Schicksal annehme", description: "Vielleicht bin ich die Auserwählte und vielleicht eine Lüge doch ich werde es wissen.", hooks: ["schicksal","glaube"] },
         ]
       },
       {
-        text: "das letzte licht", hooks: ["schicksal","glaube"],
+        text: "das letzte Licht", hooks: ["schicksal","glaube"],
         powerTags: [
-          { text: "leuchtet in der finsternis", hooks: ["glaube","schicksal","magie"] },
-          { text: "zieht die richtigen an", hooks: ["schicksal"] },
-          { text: "gibt allen hoffnung", hooks: ["glaube","schicksal"] },
-          { text: "verbündete erscheinen", hooks: ["schicksal"] },
-          { text: "hält die dunkelheit zurück", hooks: ["glaube","kampf","magie"] },
+          { text: "leuchtet in der Finsternis", hooks: ["glaube","schicksal","magie"] },
+          { text: "zieht die Richtigen an", hooks: ["schicksal"] },
+          { text: "gibt allen Hoffnung", hooks: ["glaube","schicksal"] },
+          { text: "Verbündete erscheinen", hooks: ["schicksal"] },
+          { text: "hält die Dunkelheit zurück", hooks: ["glaube","kampf","magie"] },
         ],
         weaknessTags: [
-          { text: "die finsternis jagt mich", hooks: ["schicksal","verlust","kampf"] },
+          { text: "die Finsternis jagt mich", hooks: ["schicksal","verlust","kampf"] },
           { text: "darf niemals erlöschen", hooks: ["glaube","schicksal"] },
-          { text: "trägt aller hoffnung last", hooks: ["glaube","verlust"] },
+          { text: "trägt aller Hoffnung Last", hooks: ["glaube","verlust"] },
         ],
         quests: [
-          { title: "ich halte das licht aufrecht", description: "Die Finsternis drückt von allen Seiten doch ich weiche nicht zurück.", hooks: ["glaube","schicksal"] },
-          { title: "ich vertreibe die kommende dunkelheit", description: "Ein Schatten verschlingt die Welt und ich bin das letzte Licht gegen ihn.", hooks: ["glaube","kampf"] },
+          { title: "Ich halte das Licht aufrecht", description: "Die Finsternis drückt von allen Seiten doch ich weiche nicht zurück.", hooks: ["glaube","schicksal"] },
+          { title: "Ich vertreibe die kommende Dunkelheit", description: "Ein Schatten verschlingt die Welt und ich bin das letzte Licht gegen ihn.", hooks: ["glaube","kampf"] },
         ]
       },
       {
-        text: "das kind der sterne", hooks: ["schicksal","magie"],
+        text: "das Kind der Sterne", hooks: ["schicksal","magie"],
         powerTags: [
-          { text: "die sterne stehen günstig", hooks: ["schicksal","magie"] },
-          { text: "glück folgt meinen schritten", hooks: ["schicksal"] },
-          { text: "vorhersehung leitet mich", hooks: ["schicksal","geheimnis"] },
-          { text: "die welt richtet sich aus", hooks: ["schicksal","magie"] },
-          { text: "liest den himmel", hooks: ["wissen","magie","schicksal"] },
+          { text: "die Sterne stehen günstig", hooks: ["schicksal","magie"] },
+          { text: "Glück folgt meinen Schritten", hooks: ["schicksal"] },
+          { text: "Vorhersehung leitet mich", hooks: ["schicksal","geheimnis"] },
+          { text: "die Welt richtet sich aus", hooks: ["schicksal","magie"] },
+          { text: "liest den Himmel", hooks: ["wissen","magie","schicksal"] },
         ],
         weaknessTags: [
-          { text: "an den sternenlauf gebunden", hooks: ["schicksal","magie"] },
-          { text: "keine freie wahl mehr", hooks: ["schicksal","verlust"] },
-          { text: "fremd unter menschen", hooks: ["außenseiter","schicksal"] },
+          { text: "an den Sternenlauf gebunden", hooks: ["schicksal","magie"] },
+          { text: "keine freie Wahl mehr", hooks: ["schicksal","verlust"] },
+          { text: "fremd unter Menschen", hooks: ["außenseiter","schicksal"] },
         ],
         quests: [
-          { title: "ich erfülle wozu ich geboren wurde", description: "Es ist alles in mir angelegt und ich höre auf mich zu wehren.", hooks: ["schicksal","magie"] },
-          { title: "ich beweise dass ich frei bin", description: "Sie sagen mein Pfad sei in den Sternen geschrieben doch ich setze jeden Schritt anders.", hooks: ["schicksal","außenseiter"] },
+          { title: "Ich erfülle wozu ich geboren wurde", description: "Es ist alles in mir angelegt und ich höre auf mich zu wehren.", hooks: ["schicksal","magie"] },
+          { title: "Ich beweise dass ich frei bin", description: "Sie sagen mein Pfad sei in den Sternen geschrieben doch ich setze jeden Schritt anders.", hooks: ["schicksal","außenseiter"] },
         ]
       },
       {
-        text: "trägerin des alten zeichens", hooks: ["schicksal","geheimnis"],
+        text: "Trägerin des alten Zeichens", hooks: ["schicksal","geheimnis"],
         powerTags: [
-          { text: "das mal weist mich aus", hooks: ["schicksal","geheimnis","magie"] },
-          { text: "verbotene türen öffnen sich", hooks: ["schicksal","geheimnis"] },
-          { text: "die alten erkennen mich", hooks: ["schicksal","wissen"] },
-          { text: "zeichen pulsiert bei gefahr", hooks: ["schicksal","magie"] },
+          { text: "das Mal weist mich aus", hooks: ["schicksal","geheimnis","magie"] },
+          { text: "verbotene Türen öffnen sich", hooks: ["schicksal","geheimnis"] },
+          { text: "die Alten erkennen mich", hooks: ["schicksal","wissen"] },
+          { text: "Zeichen pulsiert bei Gefahr", hooks: ["schicksal","magie"] },
           { text: "schwer zu widerstehen", hooks: ["schicksal","macht"] },
         ],
         weaknessTags: [
-          { text: "das mal zieht jäger an", hooks: ["schicksal","kampf","geheimnis"] },
+          { text: "das Mal zieht Jäger an", hooks: ["schicksal","kampf","geheimnis"] },
           { text: "kennt die Last nicht", hooks: ["schicksal","geheimnis"] },
           { text: "gezeichnet für immer", hooks: ["schicksal","verlust"] },
         ],
         quests: [
-          { title: "ich enträtsle das alte zeichen", description: "Das Mal auf mir trägt eine Bedeutung und ich muss sie kennen.", hooks: ["schicksal","geheimnis"] },
-          { title: "ich trage die bürde des zeichens", description: "Das Mal verlangt seinen Preis und ich finde einen Weg damit zu leben.", hooks: ["schicksal","verlust"] },
+          { title: "Ich enträtsle das alte Zeichen", description: "Das Mal auf mir trägt eine Bedeutung und ich muss sie kennen.", hooks: ["schicksal","geheimnis"] },
+          { title: "Ich trage die Bürde des Zeichens", description: "Das Mal verlangt seinen Preis und ich finde einen Weg damit zu leben.", hooks: ["schicksal","verlust"] },
         ]
       },
       {
-        text: "schließerin des risses", hooks: ["schicksal","magie"],
+        text: "Schließerin des Risses", hooks: ["schicksal","magie"],
         powerTags: [
-          { text: "bannt das eindringende", hooks: ["magie","kampf","schicksal"] },
-          { text: "wege öffnen sich", hooks: ["schicksal"] },
+          { text: "bannt das Eindringende", hooks: ["magie","kampf","schicksal"] },
+          { text: "Wege öffnen sich", hooks: ["schicksal"] },
           { text: "spürt den Riss der Welt", hooks: ["magie","geheimnis","schicksal"] },
-          { text: "die welt richtet sich aus", hooks: ["schicksal","magie"] },
-          { text: "hält die schwelle", hooks: ["magie","kampf"] },
+          { text: "die Welt richtet sich aus", hooks: ["schicksal","magie"] },
+          { text: "hält die Schwelle", hooks: ["magie","kampf"] },
         ],
         weaknessTags: [
-          { text: "der riss zehrt an mir", hooks: ["magie","verlust","schicksal"] },
-          { text: "die bestimmung fordert opfer", hooks: ["schicksal","verlust"] },
-          { text: "kreaturen jenseits jagen mich", hooks: ["magie","kampf"] },
+          { text: "der Riss zehrt an mir", hooks: ["magie","verlust","schicksal"] },
+          { text: "die Bestimmung fordert Opfer", hooks: ["schicksal","verlust"] },
+          { text: "Kreaturen jenseits jagen mich", hooks: ["magie","kampf"] },
         ],
         quests: [
-          { title: "ich schließe den riss endgültig", description: "Aus dem Spalt dringt Verderben und nur ich kann ihn versiegeln.", hooks: ["schicksal","magie"] },
-          { title: "ich finde wer den riss öffnete", description: "Der Spalt entstand nicht von selbst und ich werde die Hand dahinter aufspüren.", hooks: ["geheimnis","magie"] },
+          { title: "Ich schließe den Riss endgültig", description: "Aus dem Spalt dringt Verderben und nur ich kann ihn versiegeln.", hooks: ["schicksal","magie"] },
+          { title: "Ich finde wer den Riss öffnete", description: "Der Spalt entstand nicht von selbst und ich werde die Hand dahinter aufspüren.", hooks: ["geheimnis","magie"] },
         ]
       },
       {
-        text: "prophezeite der tiefe", hooks: ["schicksal","geheimnis"],
+        text: "Prophezeite der Tiefe", hooks: ["schicksal","geheimnis"],
         powerTags: [
-          { text: "träume offenbaren geheimnisse", hooks: ["schicksal","geheimnis"] },
+          { text: "Träume offenbaren Geheimnisse", hooks: ["schicksal","geheimnis"] },
           { text: "Stimmen der Tiefe leiten mich", hooks: ["geheimnis","magie","schicksal"] },
-          { text: "verborgene helfer", hooks: ["schicksal","geheimnis"] },
-          { text: "kennt die alten weissagungen", hooks: ["wissen","geheimnis","schicksal"] },
-          { text: "übersteht das verborgene grauen", hooks: ["schicksal","kampf"] },
+          { text: "verborgene Helfer", hooks: ["schicksal","geheimnis"] },
+          { text: "kennt die alten Weissagungen", hooks: ["wissen","geheimnis","schicksal"] },
+          { text: "übersteht das verborgene Grauen", hooks: ["schicksal","kampf"] },
         ],
         weaknessTags: [
-          { text: "die tiefe ruft nach mir", hooks: ["schicksal","geheimnis","verlust"] },
-          { text: "zweifelt an der prophezeiung", hooks: ["schicksal","geheimnis"] },
-          { text: "albträume rauben den schlaf", hooks: ["geheimnis","verlust"] },
+          { text: "die Tiefe ruft nach mir", hooks: ["schicksal","geheimnis","verlust"] },
+          { text: "zweifelt an der Prophezeiung", hooks: ["schicksal","geheimnis"] },
+          { text: "Albträume rauben den Schlaf", hooks: ["geheimnis","verlust"] },
         ],
         quests: [
-          { title: "ich ergründe die prophezeiung der tiefe", description: "Die Stimmen aus der Tiefe verkünden mein Schicksal und ich muss sie verstehen.", hooks: ["schicksal","geheimnis"] },
-          { title: "ich widerstehe dem ruf der tiefe", description: "Etwas Uraltes will mich für sich und ich werde ihm nicht gehören.", hooks: ["schicksal","verlust"] },
+          { title: "Ich ergründe die Prophezeiung der Tiefe", description: "Die Stimmen aus der Tiefe verkünden mein Schicksal und ich muss sie verstehen.", hooks: ["schicksal","geheimnis"] },
+          { title: "Ich widerstehe dem Ruf der Tiefe", description: "Etwas Uraltes will mich für sich und ich werde ihm nicht gehören.", hooks: ["schicksal","verlust"] },
         ]
       },
       {
-        text: "kind zweier zeitalter", hooks: ["schicksal","verlust"],
+        text: "Kind zweier Zeitalter", hooks: ["schicksal","verlust"],
         powerTags: [
-          { text: "wissen zweier welten", hooks: ["wissen","schicksal"] },
-          { text: "brücke zwischen alt und neu", hooks: ["schicksal","geheimnis"] },
-          { text: "bestimmung pulsiert in mir", hooks: ["schicksal"] },
-          { text: "übersteht den wandel der zeit", hooks: ["schicksal","verlust"] },
-          { text: "erinnert das vergangene zeitalter", hooks: ["wissen","verlust"] },
+          { text: "Wissen zweier Welten", hooks: ["wissen","schicksal"] },
+          { text: "Brücke zwischen alt und neu", hooks: ["schicksal","geheimnis"] },
+          { text: "Bestimmung pulsiert in mir", hooks: ["schicksal"] },
+          { text: "übersteht den Wandel der Zeit", hooks: ["schicksal","verlust"] },
+          { text: "erinnert das vergangene Zeitalter", hooks: ["wissen","verlust"] },
         ],
         weaknessTags: [
-          { text: "in keiner zeit zu hause", hooks: ["außenseiter","verlust","schicksal"] },
-          { text: "zerrissen zwischen den welten", hooks: ["schicksal","verlust"] },
-          { text: "von beiden seiten misstraut", hooks: ["außenseiter","geheimnis"] },
+          { text: "in keiner Zeit zu Hause", hooks: ["außenseiter","verlust","schicksal"] },
+          { text: "zerrissen zwischen den Welten", hooks: ["schicksal","verlust"] },
+          { text: "von beiden Seiten misstraut", hooks: ["außenseiter","geheimnis"] },
         ],
         quests: [
-          { title: "ich überbrücke die zwei zeitalter", description: "Ich gehöre weder ganz dem Alten noch dem Neuen und genau das wird gebraucht.", hooks: ["schicksal","verlust"] },
-          { title: "ich leite den wandel der zeitalter", description: "Eine Welt endet und eine beginnt und ich stehe an der Schwelle.", hooks: ["schicksal","macht"] },
+          { title: "Ich überbrücke die zwei Zeitalter", description: "Ich gehöre weder ganz dem Alten noch dem Neuen und genau das wird gebraucht.", hooks: ["schicksal","verlust"] },
+          { title: "Ich leite den Wandel der Zeitalter", description: "Eine Welt endet und eine beginnt und ich stehe an der Schwelle.", hooks: ["schicksal","macht"] },
         ]
       },
       {
-        text: "erfüllerin des vergessenen wortes", hooks: ["schicksal","geheimnis"],
+        text: "Erfüllerin des vergessenen Wortes", hooks: ["schicksal","geheimnis"],
         powerTags: [
-          { text: "spricht das vergessene wort", hooks: ["geheimnis","magie","schicksal"] },
-          { text: "verbotene türen öffnen sich", hooks: ["schicksal","geheimnis"] },
-          { text: "kennt die verlorene weissagung", hooks: ["wissen","geheimnis"] },
-          { text: "die welt richtet sich aus", hooks: ["schicksal","magie"] },
-          { text: "ihr wort trägt gewicht", hooks: ["schicksal","macht"] },
+          { text: "spricht das vergessene Wort", hooks: ["geheimnis","magie","schicksal"] },
+          { text: "verbotene Türen öffnen sich", hooks: ["schicksal","geheimnis"] },
+          { text: "kennt die verlorene Weissagung", hooks: ["wissen","geheimnis"] },
+          { text: "die Welt richtet sich aus", hooks: ["schicksal","magie"] },
+          { text: "ihr Wort trägt Gewicht", hooks: ["schicksal","macht"] },
         ],
         weaknessTags: [
-          { text: "das wort verlangt seinen preis", hooks: ["schicksal","magie","verlust"] },
+          { text: "das Wort verlangt seinen Preis", hooks: ["schicksal","magie","verlust"] },
           { text: "viele begehren das Wort", hooks: ["geheimnis","macht","kampf"] },
-          { text: "darf das wort nie missbrauchen", hooks: ["schicksal","glaube"] },
+          { text: "darf das Wort nie missbrauchen", hooks: ["schicksal","glaube"] },
         ],
         quests: [
-          { title: "ich finde das fehlende wort", description: "Was ich kenne ist nur ein Fragment und das Ganze verändert alles.", hooks: ["schicksal","geheimnis"] },
-          { title: "ich vollende das vergessene wort", description: "Eine uralte Verheißung wartet auf ihre Erfüllung durch meine Stimme.", hooks: ["schicksal","magie"] },
+          { title: "Ich finde das fehlende Wort", description: "Was ich kenne ist nur ein Fragment und das Ganze verändert alles.", hooks: ["schicksal","geheimnis"] },
+          { title: "Ich vollende das vergessene Wort", description: "Eine uralte Verheißung wartet auf ihre Erfüllung durch meine Stimme.", hooks: ["schicksal","magie"] },
         ]
       },
       {
-        text: "schlusspunkt der geschichte", hooks: ["schicksal"],
+        text: "Schlusspunkt der Geschichte", hooks: ["schicksal"],
         powerTags: [
-          { text: "bestimmung pulsiert in mir", hooks: ["schicksal"] },
-          { text: "mein antlitz erkennt jeder", hooks: ["schicksal","macht"] },
+          { text: "Bestimmung pulsiert in mir", hooks: ["schicksal"] },
+          { text: "mein Antlitz erkennt jeder", hooks: ["schicksal","macht"] },
           { text: "handelt instinktiv richtig", hooks: ["schicksal"] },
-          { text: "alle wege enden bei mir", hooks: ["schicksal","macht"] },
-          { text: "überlebt das unmögliche", hooks: ["schicksal"] },
+          { text: "alle Wege enden bei mir", hooks: ["schicksal","macht"] },
+          { text: "überlebt das Unmögliche", hooks: ["schicksal"] },
         ],
         weaknessTags: [
-          { text: "das ende lastet auf mir", hooks: ["schicksal","verlust"] },
-          { text: "keine freie wahl mehr", hooks: ["schicksal","verlust"] },
-          { text: "zieht ungesuchte feinde an", hooks: ["schicksal","kampf"] },
+          { text: "das Ende lastet auf mir", hooks: ["schicksal","verlust"] },
+          { text: "keine freie Wahl mehr", hooks: ["schicksal","verlust"] },
+          { text: "zieht ungesuchte Feinde an", hooks: ["schicksal","kampf"] },
         ],
         quests: [
-          { title: "ich bringe die geschichte zum abschluss", description: "Alles läuft auf mich zu und in mir findet es sein Ende.", hooks: ["schicksal"] },
-          { title: "ich bereite vor was nach mir kommt", description: "Wenn es vollbracht ist wird die Welt anders sein und jemand muss bereit sein.", hooks: ["schicksal","glaube"] },
+          { title: "Ich bringe die Geschichte zum Abschluss", description: "Alles läuft auf mich zu und in mir findet es sein Ende.", hooks: ["schicksal"] },
+          { title: "Ich bereite vor was nach mir kommt", description: "Wenn es vollbracht ist wird die Welt anders sein und jemand muss bereit sein.", hooks: ["schicksal","glaube"] },
         ]
       },
     ]
@@ -3034,219 +3034,219 @@ const THEMEBOOKS = {
     type: "Greatness",
     titles: [
       {
-        text: "herrin der mark", hooks: ["macht","natur","adel"],
+        text: "Herrin der Mark", hooks: ["macht","natur","adel"],
         powerTags: [
-          { text: "tribute aus dem land", hooks: ["macht","natur"] },
-          { text: "kennt jede grenze des reiches", hooks: ["macht","natur"] },
-          { text: "soldaten der mark", hooks: ["kampf","macht"] },
-          { text: "ein ergebenes volk", hooks: ["macht","glaube"] },
-          { text: "banner und wappen", hooks: ["adel","macht"] },
+          { text: "Tribute aus dem Land", hooks: ["macht","natur"] },
+          { text: "kennt jede Grenze des Reiches", hooks: ["macht","natur"] },
+          { text: "Soldaten der Mark", hooks: ["kampf","macht"] },
+          { text: "ein ergebenes Volk", hooks: ["macht","glaube"] },
+          { text: "Banner und Wappen", hooks: ["adel","macht"] },
         ],
         weaknessTags: [
-          { text: "zahlt persönlich fürs reich", hooks: ["macht","verlust"] },
-          { text: "jede schwäche wird ausgenutzt", hooks: ["macht","stadt"] },
+          { text: "zahlt persönlich fürs Reich", hooks: ["macht","verlust"] },
+          { text: "jede Schwäche wird ausgenutzt", hooks: ["macht","stadt"] },
         ],
         quests: [
-          { title: "ich vergrößere mein reich", description: "Was ich habe, ist nicht genug, mein Schatten soll länger werden.", hooks: ["macht","kampf"] },
-          { title: "ich beschütze mein land", description: "Diese Erde gehört zu mir, und wer sie bedroht, bedroht alles.", hooks: ["macht","natur","glaube"] },
+          { title: "Ich vergrößere mein Reich", description: "Was ich habe, ist nicht genug, mein Schatten soll länger werden.", hooks: ["macht","kampf"] },
+          { title: "Ich beschütze mein Land", description: "Diese Erde gehört zu mir, und wer sie bedroht, bedroht alles.", hooks: ["macht","natur","glaube"] },
         ]
       },
       {
-        text: "anführerin der gilde", hooks: ["macht","handwerk","stadt"],
+        text: "Anführerin der Gilde", hooks: ["macht","handwerk","stadt"],
         powerTags: [
-          { text: "gildensiegel", hooks: ["handwerk","macht"] },
-          { text: "eingespielte verwaltung", hooks: ["macht","handwerk"] },
-          { text: "steuereinnahmen", hooks: ["macht","stadt"] },
-          { text: "macht und bricht rufe", hooks: ["macht","stadt"] },
-          { text: "kennt jedermanns schulden", hooks: ["geheimnis","macht"] },
+          { text: "Gildensiegel", hooks: ["handwerk","macht"] },
+          { text: "eingespielte Verwaltung", hooks: ["macht","handwerk"] },
+          { text: "Steuereinnahmen", hooks: ["macht","stadt"] },
+          { text: "macht und bricht Rufe", hooks: ["macht","stadt"] },
+          { text: "kennt jedermanns Schulden", hooks: ["geheimnis","macht"] },
         ],
         weaknessTags: [
-          { text: "konkurrenz um die spitze", hooks: ["macht","stadt"] },
-          { text: "jedes bündnis hat seinen preis", hooks: ["macht","stadt"] },
+          { text: "Konkurrenz um die Spitze", hooks: ["macht","stadt"] },
+          { text: "jedes Bündnis hat seinen Preis", hooks: ["macht","stadt"] },
         ],
         quests: [
-          { title: "ich beherrsche den gesamten handel", description: "Keine Ware soll diese Stadt verlassen ohne mein Wissen.", hooks: ["macht","handwerk","stadt"] },
-          { title: "ich baue ein netzwerk das mich überdauert", description: "Was ich aufbaute, soll nicht mit mir enden.", hooks: ["macht","stadt"] },
+          { title: "Ich beherrsche den gesamten Handel", description: "Keine Ware soll diese Stadt verlassen ohne mein Wissen.", hooks: ["macht","handwerk","stadt"] },
+          { title: "Ich baue ein Netzwerk das mich überdauert", description: "Was ich aufbaute, soll nicht mit mir enden.", hooks: ["macht","stadt"] },
         ]
       },
       {
-        text: "lehnsherr von stein", hooks: ["adel","macht"],
+        text: "Lehnsherr von Stein", hooks: ["adel","macht"],
         powerTags: [
-          { text: "burg auf dem berg", hooks: ["adel","macht"] },
-          { text: "recht zu richten", hooks: ["macht","glaube"] },
-          { text: "räte und berater", hooks: ["macht","wissen"] },
-          { text: "kennt die adligen", hooks: ["adel","stadt"] },
-          { text: "ihr wort verurteilt", hooks: ["macht"] },
+          { text: "Burg auf dem Berg", hooks: ["adel","macht"] },
+          { text: "Recht zu richten", hooks: ["macht","glaube"] },
+          { text: "Räte und Berater", hooks: ["macht","wissen"] },
+          { text: "kennt die Adligen", hooks: ["adel","stadt"] },
+          { text: "ihr Wort verurteilt", hooks: ["macht"] },
         ],
         weaknessTags: [
-          { text: "der thron wird begehrt", hooks: ["macht","adel"] },
-          { text: "schulden gegenüber mächtigen", hooks: ["macht","verlust"] },
+          { text: "der Thron wird begehrt", hooks: ["macht","adel"] },
+          { text: "Schulden gegenüber Mächtigen", hooks: ["macht","verlust"] },
         ],
         quests: [
-          { title: "ich setze recht durch das mich selbst trifft", description: "Das Gesetz gilt für alle, oder für niemanden.", hooks: ["macht","glaube"] },
-          { title: "ich bin der gerechte herrscher", description: "Vor mir gab es Tyrannen, ich werde anders sein.", hooks: ["macht","glaube"] },
+          { title: "Ich setze Recht durch das mich selbst trifft", description: "Das Gesetz gilt für alle, oder für niemanden.", hooks: ["macht","glaube"] },
+          { title: "Ich bin der gerechte Herrscher", description: "Vor mir gab es Tyrannen, ich werde anders sein.", hooks: ["macht","glaube"] },
         ]
       },
       {
-        text: "königin des tales", hooks: ["macht","natur"],
+        text: "Königin des Tales", hooks: ["macht","natur"],
         powerTags: [
-          { text: "ein ergebenes volk", hooks: ["macht","glaube"] },
-          { text: "spricht für ein volk", hooks: ["macht","glaube"] },
-          { text: "tribute aus dem land", hooks: ["macht","natur"] },
-          { text: "wendet krisen ab", hooks: ["macht","schicksal"] },
-          { text: "kennt jede grenze ihres reiches", hooks: ["macht","natur"] },
+          { text: "ein ergebenes Volk", hooks: ["macht","glaube"] },
+          { text: "spricht für ein Volk", hooks: ["macht","glaube"] },
+          { text: "Tribute aus dem Land", hooks: ["macht","natur"] },
+          { text: "wendet Krisen ab", hooks: ["macht","schicksal"] },
+          { text: "kennt jede Grenze ihres Reiches", hooks: ["macht","natur"] },
         ],
         weaknessTags: [
-          { text: "einsam an der spitze", hooks: ["macht","verlust"] },
-          { text: "zahlt persönlich für ihr reich", hooks: ["macht","verlust"] },
+          { text: "einsam an der Spitze", hooks: ["macht","verlust"] },
+          { text: "zahlt persönlich für ihr Reich", hooks: ["macht","verlust"] },
         ],
         quests: [
-          { title: "ich schütze mein tal vor allen feinden", description: "Diese Erde gehört zu mir, und ich zu ihr.", hooks: ["macht","natur","glaube"] },
-          { title: "ich beende einen krieg um mein land", description: "Es muss enden, und jemand muss die Last des Friedens tragen.", hooks: ["kampf","macht"] },
+          { title: "Ich schütze mein Tal vor allen Feinden", description: "Diese Erde gehört zu mir, und ich zu ihr.", hooks: ["macht","natur","glaube"] },
+          { title: "Ich beende einen Krieg um mein Land", description: "Es muss enden, und jemand muss die Last des Friedens tragen.", hooks: ["kampf","macht"] },
         ]
       },
       {
-        text: "befehlshaber der wache", hooks: ["kampf","macht","stadt"],
+        text: "Befehlshaber der Wache", hooks: ["kampf","macht","stadt"],
         powerTags: [
-          { text: "regiert durch stärke", hooks: ["macht","kampf"] },
-          { text: "bewegt heere in tagen", hooks: ["kampf","macht"] },
-          { text: "recht auf krieg", hooks: ["macht","kampf"] },
-          { text: "kennt jede losung jeder wache", hooks: ["stadt","kampf"] },
-          { text: "soldaten meines reiches", hooks: ["kampf","macht"] },
+          { text: "regiert durch Stärke", hooks: ["macht","kampf"] },
+          { text: "bewegt Heere in Tagen", hooks: ["kampf","macht"] },
+          { text: "Recht auf Krieg", hooks: ["macht","kampf"] },
+          { text: "kennt jede Losung jeder Wache", hooks: ["stadt","kampf"] },
+          { text: "Soldaten meines Reiches", hooks: ["kampf","macht"] },
         ],
         weaknessTags: [
-          { text: "aufstand gärt", hooks: ["macht","außenseiter"] },
-          { text: "entscheidungen ohne gewissen", hooks: ["macht","verlust"] },
+          { text: "Aufstand gärt", hooks: ["macht","außenseiter"] },
+          { text: "Entscheidungen ohne Gewissen", hooks: ["macht","verlust"] },
         ],
         quests: [
-          { title: "ich halte die ordnung mit eiserner hand", description: "Niemand bricht das Gesetz dieser Stadt ungestraft.", hooks: ["macht","kampf","stadt"] },
-          { title: "ich beende einen krieg der das land zerstört", description: "Die Toten liegen auf beiden Seiten, es muss enden.", hooks: ["kampf","macht"] },
+          { title: "Ich halte die Ordnung mit eiserner Hand", description: "Niemand bricht das Gesetz dieser Stadt ungestraft.", hooks: ["macht","kampf","stadt"] },
+          { title: "Ich beende einen Krieg der das Land zerstört", description: "Die Toten liegen auf beiden Seiten, es muss enden.", hooks: ["kampf","macht"] },
         ]
       },
       {
-        text: "herrscherin des zwielichtreiches", hooks: ["macht","schicksal","geheimnis"],
+        text: "Herrscherin des Zwielichtreiches", hooks: ["macht","schicksal","geheimnis"],
         powerTags: [
-          { text: "beste spione weit und breit", hooks: ["geheimnis","stadt"] },
-          { text: "verborgene reserven", hooks: ["macht","geheimnis"] },
-          { text: "wendet krisen ab", hooks: ["macht","schicksal"] },
-          { text: "kennt jedes schweigen", hooks: ["geheimnis","macht"] },
-          { text: "zieht fäden im verborgenen", hooks: ["macht","geheimnis"] },
+          { text: "beste Spione weit und breit", hooks: ["geheimnis","stadt"] },
+          { text: "verborgene Reserven", hooks: ["macht","geheimnis"] },
+          { text: "wendet Krisen ab", hooks: ["macht","schicksal"] },
+          { text: "kennt jedes Schweigen", hooks: ["geheimnis","macht"] },
+          { text: "zieht Fäden im Verborgenen", hooks: ["macht","geheimnis"] },
         ],
         weaknessTags: [
-          { text: "verräter im inneren kreis", hooks: ["geheimnis","stadt"] },
-          { text: "unsichtbare feinde", hooks: ["geheimnis","macht"] },
+          { text: "Verräter im inneren Kreis", hooks: ["geheimnis","stadt"] },
+          { text: "unsichtbare Feinde", hooks: ["geheimnis","macht"] },
         ],
         quests: [
-          { title: "ich beherrsche die welt aus dem schatten", description: "Mein Wille geschieht, ohne dass ein Name ihn trägt.", hooks: ["macht","geheimnis"] },
-          { title: "ich finde heraus wer mich verraten hat", description: "Es war jemand, dem ich vertraute, und der Name muss ans Licht.", hooks: ["geheimnis","verlust"] },
+          { title: "Ich beherrsche die Welt aus dem Schatten", description: "Mein Wille geschieht, ohne dass ein Name ihn trägt.", hooks: ["macht","geheimnis"] },
+          { title: "Ich finde heraus wer mich verraten hat", description: "Es war jemand, dem ich vertraute, und der Name muss ans Licht.", hooks: ["geheimnis","verlust"] },
         ]
       },
       {
-        text: "erbin einer festung ohne land", hooks: ["adel","verlust","macht"],
+        text: "Erbin einer Festung ohne Land", hooks: ["adel","verlust","macht"],
         powerTags: [
-          { text: "banner und wappen", hooks: ["adel","macht"] },
+          { text: "Banner und Wappen", hooks: ["adel","macht"] },
           { text: "kann andere legitimieren", hooks: ["adel","macht"] },
-          { text: "eine handvoll treuer soldaten", hooks: ["kampf","macht"] },
-          { text: "uralte ansprüche", hooks: ["adel","verlust"] },
-          { text: "burg auf dem berg", hooks: ["adel","macht"] },
+          { text: "eine Handvoll treuer Soldaten", hooks: ["kampf","macht"] },
+          { text: "uralte Ansprüche", hooks: ["adel","verlust"] },
+          { text: "Burg auf dem Berg", hooks: ["adel","macht"] },
         ],
         weaknessTags: [
           { text: "ein Reich nur auf Papier", hooks: ["macht","verlust"] },
-          { text: "schulden gegenüber mächtigen", hooks: ["macht","verlust"] },
+          { text: "Schulden gegenüber Mächtigen", hooks: ["macht","verlust"] },
         ],
         quests: [
-          { title: "ich erobere mein erbe zurück", description: "Der Titel ist mein, jetzt muss es auch das Land sein.", hooks: ["adel","macht","verlust"] },
-          { title: "ich baue das reich neu auf", description: "Aus einer leeren Festung mache ich wieder eine Macht.", hooks: ["macht","schicksal"] },
+          { title: "Ich erobere mein Erbe zurück", description: "Der Titel ist mein, jetzt muss es auch das Land sein.", hooks: ["adel","macht","verlust"] },
+          { title: "Ich baue das Reich neu auf", description: "Aus einer leeren Festung mache ich wieder eine Macht.", hooks: ["macht","schicksal"] },
         ]
       },
       {
-        text: "anführerin des widerstands", hooks: ["außenseiter","kampf","macht"],
+        text: "Anführerin des Widerstands", hooks: ["außenseiter","kampf","macht"],
         powerTags: [
-          { text: "kann verbündete mobilisieren", hooks: ["macht"] },
-          { text: "spricht für ein unterdrücktes volk", hooks: ["macht","glaube"] },
-          { text: "boten in jede richtung", hooks: ["macht","fahrend"] },
-          { text: "regiert durch überzeugung", hooks: ["macht","glaube"] },
-          { text: "verborgene reserven", hooks: ["macht","geheimnis"] },
+          { text: "kann Verbündete mobilisieren", hooks: ["macht"] },
+          { text: "spricht für ein unterdrücktes Volk", hooks: ["macht","glaube"] },
+          { text: "Boten in jede Richtung", hooks: ["macht","fahrend"] },
+          { text: "regiert durch Überzeugung", hooks: ["macht","glaube"] },
+          { text: "verborgene Reserven", hooks: ["macht","geheimnis"] },
         ],
         weaknessTags: [
-          { text: "gejagt von der herrschenden macht", hooks: ["macht","außenseiter"] },
-          { text: "verräter im inneren kreis", hooks: ["geheimnis","stadt"] },
+          { text: "gejagt von der herrschenden Macht", hooks: ["macht","außenseiter"] },
+          { text: "Verräter im inneren Kreis", hooks: ["geheimnis","stadt"] },
         ],
         quests: [
-          { title: "ich stürze den tyrannen", description: "Solange er herrscht, ist niemand frei.", hooks: ["macht","kampf","außenseiter"] },
-          { title: "ich gebe dem volk seine stimme zurück", description: "Was man ihnen nahm, hole ich für sie zurück.", hooks: ["macht","glaube"] },
+          { title: "Ich stürze den Tyrannen", description: "Solange er herrscht, ist niemand frei.", hooks: ["macht","kampf","außenseiter"] },
+          { title: "Ich gebe dem Volk seine Stimme zurück", description: "Was man ihnen nahm, hole ich für sie zurück.", hooks: ["macht","glaube"] },
         ]
       },
       {
-        text: "regentin für ein kind", hooks: ["macht","adel","glaube"],
+        text: "Regentin für ein Kind", hooks: ["macht","adel","glaube"],
         powerTags: [
-          { text: "räte und berater", hooks: ["macht","wissen"] },
+          { text: "Räte und Berater", hooks: ["macht","wissen"] },
           { text: "kann andere legitimieren", hooks: ["adel","macht"] },
-          { text: "vertrauen der mächtigen", hooks: ["macht","adel"] },
-          { text: "beherrscht das gleichgewicht der mächte", hooks: ["macht","stadt"] },
-          { text: "ihr wort gilt am hof", hooks: ["macht","adel"] },
+          { text: "Vertrauen der Mächtigen", hooks: ["macht","adel"] },
+          { text: "beherrscht das Gleichgewicht der Mächte", hooks: ["macht","stadt"] },
+          { text: "ihr Wort gilt am Hof", hooks: ["macht","adel"] },
         ],
         weaknessTags: [
-          { text: "macht nur geliehen", hooks: ["macht","verlust"] },
-          { text: "der thron wird begehrt", hooks: ["macht","adel"] },
+          { text: "Macht nur geliehen", hooks: ["macht","verlust"] },
+          { text: "der Thron wird begehrt", hooks: ["macht","adel"] },
         ],
         quests: [
-          { title: "ich wahre den thron für das kind", description: "Bis es alt genug ist, halte ich die Wölfe fern.", hooks: ["macht","adel","glaube"] },
-          { title: "ich gebe die macht ab wenn es zeit ist", description: "Sie ist nicht meine, und ich werde sie zurückgeben.", hooks: ["macht","adel"] },
+          { title: "Ich wahre den Thron für das Kind", description: "Bis es alt genug ist, halte ich die Wölfe fern.", hooks: ["macht","adel","glaube"] },
+          { title: "Ich gebe die Macht ab wenn es Zeit ist", description: "Sie ist nicht meine, und ich werde sie zurückgeben.", hooks: ["macht","adel"] },
         ]
       },
       {
-        text: "herrscherin durch geburt und last", hooks: ["adel","schicksal","macht"],
+        text: "Herrscherin durch Geburt und Last", hooks: ["adel","schicksal","macht"],
         powerTags: [
-          { text: "ererbtes recht", hooks: ["adel","macht"] },
-          { text: "ein ergebenes volk", hooks: ["macht","glaube"] },
-          { text: "wendet krisen ab", hooks: ["macht","schicksal"] },
-          { text: "banner und wappen", hooks: ["adel","macht"] },
-          { text: "räte und berater", hooks: ["macht","wissen"] },
+          { text: "ererbtes Recht", hooks: ["adel","macht"] },
+          { text: "ein ergebenes Volk", hooks: ["macht","glaube"] },
+          { text: "wendet Krisen ab", hooks: ["macht","schicksal"] },
+          { text: "Banner und Wappen", hooks: ["adel","macht"] },
+          { text: "Räte und Berater", hooks: ["macht","wissen"] },
         ],
         weaknessTags: [
-          { text: "einsam an der spitze", hooks: ["macht","verlust"] },
-          { text: "kann die krone nicht ablegen", hooks: ["macht","schicksal"] },
+          { text: "einsam an der Spitze", hooks: ["macht","verlust"] },
+          { text: "kann die Krone nicht ablegen", hooks: ["macht","schicksal"] },
         ],
         quests: [
-          { title: "ich trage die bürde der krone", description: "Niemand fragte mich, doch das Reich ruht auf mir.", hooks: ["macht","schicksal","adel"] },
-          { title: "ich baue ein reich das mich überdauert", description: "Ich lege Grundsteine für die Herrschaft nach mir.", hooks: ["macht","schicksal"] },
+          { title: "Ich trage die Bürde der Krone", description: "Niemand fragte mich, doch das Reich ruht auf mir.", hooks: ["macht","schicksal","adel"] },
+          { title: "Ich baue ein Reich das mich überdauert", description: "Ich lege Grundsteine für die Herrschaft nach mir.", hooks: ["macht","schicksal"] },
         ]
       },
       {
-        text: "herrin der verbotenen stadt", hooks: ["macht","stadt","geheimnis"],
+        text: "Herrin der verbotenen Stadt", hooks: ["macht","stadt","geheimnis"],
         powerTags: [
-          { text: "zugang zu verschlossenen orten", hooks: ["geheimnis","macht"] },
-          { text: "beste spione weit und breit", hooks: ["geheimnis","stadt"] },
-          { text: "kennt das geheimnis aller", hooks: ["geheimnis","macht"] },
-          { text: "ihr wort verurteilt", hooks: ["macht"] },
-          { text: "verborgene reserven", hooks: ["macht","geheimnis"] },
+          { text: "Zugang zu verschlossenen Orten", hooks: ["geheimnis","macht"] },
+          { text: "beste Spione weit und breit", hooks: ["geheimnis","stadt"] },
+          { text: "kennt das Geheimnis aller", hooks: ["geheimnis","macht"] },
+          { text: "ihr Wort verurteilt", hooks: ["macht"] },
+          { text: "verborgene Reserven", hooks: ["macht","geheimnis"] },
         ],
         weaknessTags: [
-          { text: "jede schwäche wird ausgenutzt", hooks: ["macht","stadt"] },
-          { text: "alte intrigen holen sie ein", hooks: ["stadt","verlust"] },
+          { text: "jede Schwäche wird ausgenutzt", hooks: ["macht","stadt"] },
+          { text: "alte Intrigen holen sie ein", hooks: ["stadt","verlust"] },
         ],
         quests: [
-          { title: "ich halte das tor der stadt verschlossen", description: "Was hier liegt, darf die Welt niemals erreichen.", hooks: ["macht","stadt","geheimnis"] },
-          { title: "ich entlarve die wahren strippenzieher", description: "Hinter allem bewegen sich verborgene Hände, ich finde sie.", hooks: ["geheimnis","macht"] },
+          { title: "Ich halte das Tor der Stadt verschlossen", description: "Was hier liegt, darf die Welt niemals erreichen.", hooks: ["macht","stadt","geheimnis"] },
+          { title: "Ich entlarve die wahren Strippenzieher", description: "Hinter allem bewegen sich verborgene Hände, ich finde sie.", hooks: ["geheimnis","macht"] },
         ]
       },
       {
-        text: "gebieterin über leben und tod", hooks: ["macht","glaube","schicksal"],
+        text: "Gebieterin über Leben und Tod", hooks: ["macht","glaube","schicksal"],
         powerTags: [
-          { text: "recht zu richten", hooks: ["macht","glaube"] },
-          { text: "ihr wort verurteilt", hooks: ["macht"] },
-          { text: "ein ergebenes volk", hooks: ["macht","glaube"] },
-          { text: "regiert durch furcht und gnade", hooks: ["macht","schicksal"] },
-          { text: "räte und berater", hooks: ["macht","wissen"] },
+          { text: "Recht zu richten", hooks: ["macht","glaube"] },
+          { text: "ihr Wort verurteilt", hooks: ["macht"] },
+          { text: "ein ergebenes Volk", hooks: ["macht","glaube"] },
+          { text: "regiert durch Furcht und Gnade", hooks: ["macht","schicksal"] },
+          { text: "Räte und Berater", hooks: ["macht","wissen"] },
         ],
         weaknessTags: [
-          { text: "entscheidungen ohne gewissen", hooks: ["macht","verlust"] },
-          { text: "einsam an der spitze", hooks: ["macht","verlust"] },
+          { text: "Entscheidungen ohne Gewissen", hooks: ["macht","verlust"] },
+          { text: "einsam an der Spitze", hooks: ["macht","verlust"] },
         ],
         quests: [
-          { title: "ich spreche das letzte urteil", description: "Über Leben und Tod entscheide allein ich.", hooks: ["macht","glaube","schicksal"] },
-          { title: "ich gebe die macht ab bevor sie mich verdirbt", description: "Es ist Zeit, sie loszulassen, wenn es nicht schon zu spät ist.", hooks: ["macht","verlust"] },
+          { title: "Ich spreche das letzte Urteil", description: "Über Leben und Tod entscheide allein ich.", hooks: ["macht","glaube","schicksal"] },
+          { title: "Ich gebe die Macht ab bevor sie mich verdirbt", description: "Es ist Zeit, sie loszulassen, wenn es nicht schon zu spät ist.", hooks: ["macht","verlust"] },
         ]
       },
     ]
@@ -3269,8 +3269,8 @@ const THEMEBOOKS = {
           { text: "Ruhm zieht Feinde an", hooks: ["macht","verlust"] },
         ],
         quests: [
-          { title: "das Meisterwerk meines Lebens", description: "Eine einzige Klinge soll mich überdauern und meinen Namen für immer tragen.", hooks: ["handwerk","schicksal"] },
-          { title: "die letzte Schmiedetechnik", description: "Irgendwo wartet ein Verfahren, das ich noch nicht beherrsche, und ich werde es finden.", hooks: ["handwerk","wissen"] },
+          { title: "Das Meisterwerk meines Lebens", description: "Eine einzige Klinge soll mich überdauern und meinen Namen für immer tragen.", hooks: ["handwerk","schicksal"] },
+          { title: "Die letzte Schmiedetechnik", description: "Irgendwo wartet ein Verfahren, das ich noch nicht beherrsche, und ich werde es finden.", hooks: ["handwerk","wissen"] },
         ]
       },
       {
@@ -3288,7 +3288,7 @@ const THEMEBOOKS = {
           { text: "erträgt keine Niederlage", hooks: ["handwerk","kampf"] },
         ],
         quests: [
-          { title: "jemanden der mich übertrifft", description: "An der Spitze ist es einsam und erst ein ebenbürtiger Gegner macht mich wieder lebendig.", hooks: ["handwerk","kampf"] },
+          { title: "Jemanden der mich übertrifft", description: "An der Spitze ist es einsam und erst ein ebenbürtiger Gegner macht mich wieder lebendig.", hooks: ["handwerk","kampf"] },
           { title: "Kunst ohne Krieg", description: "Ich will beweisen, dass meine Klinge nicht zum Töten geschaffen wurde.", hooks: ["handwerk","glaube"] },
         ]
       },
@@ -3306,8 +3306,8 @@ const THEMEBOOKS = {
           { text: "unzumutbare Selbstansprüche", hooks: ["handwerk"] },
         ],
         quests: [
-          { title: "die Welt mit meiner Kunst verändern", description: "Mein Werk soll etwas öffnen, das zuvor verschlossen war.", hooks: ["handwerk","macht"] },
-          { title: "ein Erbe das mich überdauert", description: "Ich errichte etwas, das noch steht, wenn niemand mehr meinen Namen kennt.", hooks: ["handwerk","schicksal"] },
+          { title: "Die Welt mit meiner Kunst verändern", description: "Mein Werk soll etwas öffnen, das zuvor verschlossen war.", hooks: ["handwerk","macht"] },
+          { title: "Ein Erbe das mich überdauert", description: "Ich errichte etwas, das noch steht, wenn niemand mehr meinen Namen kennt.", hooks: ["handwerk","schicksal"] },
         ]
       },
       {
@@ -3324,8 +3324,8 @@ const THEMEBOOKS = {
           { text: "Ruhm zieht Feinde an", hooks: ["macht","verlust"] },
         ],
         quests: [
-          { title: "ein Lied das nie verstummt", description: "Ich will eine Weise schaffen, die noch Generationen nach mir gesungen wird.", hooks: ["handwerk","schicksal"] },
-          { title: "die Mächtigen mit Worten wenden", description: "Ich beweise, dass meine Stimme mehr bewegt als jedes Heer.", hooks: ["handwerk","macht"] },
+          { title: "Ein Lied das nie verstummt", description: "Ich will eine Weise schaffen, die noch Generationen nach mir gesungen wird.", hooks: ["handwerk","schicksal"] },
+          { title: "Die Mächtigen mit Worten wenden", description: "Ich beweise, dass meine Stimme mehr bewegt als jedes Heer.", hooks: ["handwerk","macht"] },
         ]
       },
       {
@@ -3344,7 +3344,7 @@ const THEMEBOOKS = {
         ],
         quests: [
           { title: "Kunst ohne Krieg", description: "Ich zeige, dass mein Wissen Leben rettet und nicht zum Schaden gedacht ist.", hooks: ["handwerk","glaube"] },
-          { title: "ein Leiden für immer besiegen", description: "Ich will die Krankheit auslöschen, an der zu viele gestorben sind.", hooks: ["handwerk","macht"] },
+          { title: "Ein Leiden für immer besiegen", description: "Ich will die Krankheit auslöschen, an der zu viele gestorben sind.", hooks: ["handwerk","macht"] },
         ]
       },
       {
@@ -3361,8 +3361,8 @@ const THEMEBOOKS = {
           { text: "gefürchtet wie gerühmt", hooks: ["magie","außenseiter"] },
         ],
         quests: [
-          { title: "die Welt mit meiner Kunst verändern", description: "Mein Werk soll etwas öffnen, das zuvor unmöglich schien.", hooks: ["handwerk","magie"] },
-          { title: "die Grenze des Erschaffbaren", description: "Ich will herausfinden, wo das Weben des Lebens an seine Schranke stößt.", hooks: ["handwerk","geheimnis"] },
+          { title: "Die Welt mit meiner Kunst verändern", description: "Mein Werk soll etwas öffnen, das zuvor unmöglich schien.", hooks: ["handwerk","magie"] },
+          { title: "Die Grenze des Erschaffbaren", description: "Ich will herausfinden, wo das Weben des Lebens an seine Schranke stößt.", hooks: ["handwerk","geheimnis"] },
         ]
       },
       {
@@ -3379,8 +3379,8 @@ const THEMEBOOKS = {
           { text: "letzte Hüterin des Wissens", hooks: ["verlust","geheimnis"] },
         ],
         quests: [
-          { title: "retten was von meiner Schule bleibt", description: "Ich bin die Letzte, die es noch weiß, und ich gebe es nicht dem Vergessen preis.", hooks: ["handwerk","verlust"] },
-          { title: "das Werk meines Lehrers vollenden", description: "Er starb mit halbfertiger Hand und ich bringe es zu Ende, als wären es seine.", hooks: ["handwerk","verlust"] },
+          { title: "Retten was von meiner Schule bleibt", description: "Ich bin die Letzte, die es noch weiß, und ich gebe es nicht dem Vergessen preis.", hooks: ["handwerk","verlust"] },
+          { title: "Das Werk meines Lehrers vollenden", description: "Er starb mit halbfertiger Hand und ich bringe es zu Ende, als wären es seine.", hooks: ["handwerk","verlust"] },
         ]
       },
       {
@@ -3398,7 +3398,7 @@ const THEMEBOOKS = {
           { text: "Ruhm zieht Feinde an", hooks: ["macht","verlust"] },
         ],
         quests: [
-          { title: "die letzte verbotene Technik", description: "Es gibt eine, die mir noch fehlt, und ich spüre, wo sie verborgen liegt.", hooks: ["handwerk","geheimnis"] },
+          { title: "Die letzte verbotene Technik", description: "Es gibt eine, die mir noch fehlt, und ich spüre, wo sie verborgen liegt.", hooks: ["handwerk","geheimnis"] },
           { title: "Kunst ohne Krieg", description: "Ich beweise, dass selbst die gefürchtete Kunst dem Guten dienen kann.", hooks: ["handwerk","glaube"] },
         ]
       },
@@ -3416,8 +3416,8 @@ const THEMEBOOKS = {
           { text: "erträgt kein Mittelmaß", hooks: ["handwerk"] },
         ],
         quests: [
-          { title: "meine Kunst weitergeben", description: "Was ich kann, ist zu kostbar, um mit mir zu sterben, und ich finde den Würdigen.", hooks: ["handwerk","wissen"] },
-          { title: "einen würdigen Erben finden", description: "Ich suche den einen Schüler, der das Erbe wirklich tragen kann.", hooks: ["handwerk","verlust"] },
+          { title: "Meine Kunst weitergeben", description: "Was ich kann, ist zu kostbar, um mit mir zu sterben, und ich finde den Würdigen.", hooks: ["handwerk","wissen"] },
+          { title: "Einen würdigen Erben finden", description: "Ich suche den einen Schüler, der das Erbe wirklich tragen kann.", hooks: ["handwerk","verlust"] },
         ]
       },
       {
@@ -3435,8 +3435,8 @@ const THEMEBOOKS = {
           { text: "Ruhm zieht Feinde an", hooks: ["macht","verlust"] },
         ],
         quests: [
-          { title: "dem Mythos gerecht werden", description: "Die Geschichten über mich sind groß und ich muss beweisen, dass ich sie verdiene.", hooks: ["handwerk","schicksal"] },
-          { title: "die Welt mit meiner Kunst verändern", description: "Mein Ruf soll mehr bewirken als Bewunderung, er soll etwas verschieben.", hooks: ["handwerk","macht"] },
+          { title: "Dem Mythos gerecht werden", description: "Die Geschichten über mich sind groß und ich muss beweisen, dass ich sie verdiene.", hooks: ["handwerk","schicksal"] },
+          { title: "Die Welt mit meiner Kunst verändern", description: "Mein Ruf soll mehr bewirken als Bewunderung, er soll etwas verschieben.", hooks: ["handwerk","macht"] },
         ]
       },
       {
@@ -3453,8 +3453,8 @@ const THEMEBOOKS = {
           { text: "niemand auf ihrer Ebene", hooks: ["verlust"] },
         ],
         quests: [
-          { title: "die letzte unkartierte Route", description: "Es gibt einen Weg, den noch keiner befuhr, und ich werde der Erste sein.", hooks: ["handwerk","fahrend"] },
-          { title: "meine Kunst weitergeben", description: "Ich will mein Wissen vom Kurs an die nächste Generation übergeben.", hooks: ["handwerk","wissen"] },
+          { title: "Die letzte unkartierte Route", description: "Es gibt einen Weg, den noch keiner befuhr, und ich werde der Erste sein.", hooks: ["handwerk","fahrend"] },
+          { title: "Meine Kunst weitergeben", description: "Ich will mein Wissen vom Kurs an die nächste Generation übergeben.", hooks: ["handwerk","wissen"] },
         ]
       },
       {
@@ -3472,8 +3472,8 @@ const THEMEBOOKS = {
           { text: "Rivalen um den Vorsitz", hooks: ["macht","stadt"] },
         ],
         quests: [
-          { title: "die Gilde vereinen", description: "Ich will alle Meister meines Fachs unter einem Banner zusammenführen.", hooks: ["handwerk","macht"] },
-          { title: "meine Kunst weitergeben", description: "Ich öffne die Gilde für Würdige und gebe mein Wissen ungeschmälert weiter.", hooks: ["handwerk","wissen"] },
+          { title: "Die Gilde vereinen", description: "Ich will alle Meister meines Fachs unter einem Banner zusammenführen.", hooks: ["handwerk","macht"] },
+          { title: "Meine Kunst weitergeben", description: "Ich öffne die Gilde für Würdige und gebe mein Wissen ungeschmälert weiter.", hooks: ["handwerk","wissen"] },
         ]
       },
     ]
@@ -3494,7 +3494,7 @@ const THEMEBOOKS = {
           { text: "begehrte Jagdtrophäe", hooks: ["kampf","außenseiter"] },
         ],
         quests: [
-          { title: "der letzte Drachentöter", description: "Ich finde den, der meinesgleichen ausrottet, bevor er mich findet.", hooks: ["kampf","verlust"] },
+          { title: "Der letzte Drachentöter", description: "Ich finde den, der meinesgleichen ausrottet, bevor er mich findet.", hooks: ["kampf","verlust"] },
           { title: "Hort über alles", description: "Ich verteidige meinen Schatz gegen jeden Dieb und jede Armee.", hooks: ["macht","natur"] },
         ]
       },
@@ -3529,7 +3529,7 @@ const THEMEBOOKS = {
         ],
         quests: [
           { title: "Herr des Sumpfes", description: "Ich treibe jeden Eindringling aus meinem nebligen Revier.", hooks: ["natur","kampf"] },
-          { title: "niemals enthauptet", description: "Ich finde heraus, wie man meinen letzten Kopf wirklich tötet, bevor sie es tun.", hooks: ["geheimnis","verlust"] },
+          { title: "Niemals enthauptet", description: "Ich finde heraus, wie man meinen letzten Kopf wirklich tötet, bevor sie es tun.", hooks: ["geheimnis","verlust"] },
         ]
       },
       {
@@ -3546,11 +3546,11 @@ const THEMEBOOKS = {
         ],
         quests: [
           { title: "Legende bleiben", description: "Ich bleibe ein Gerücht und zeige mich nie ganz dem Tageslicht.", hooks: ["geheimnis","natur"] },
-          { title: "der trockengelegte See", description: "Ich verhindere, dass Menschen mein Gewässer zerstören und mich entblößen.", hooks: ["natur","verlust"] },
+          { title: "Der trockengelegte See", description: "Ich verhindere, dass Menschen mein Gewässer zerstören und mich entblößen.", hooks: ["natur","verlust"] },
         ]
       },
       {
-        text: "der Wandelnde Wald", hooks: ["natur","schicksal","magie"],
+        text: "der wandelnde Wald", hooks: ["natur","schicksal","magie"],
         powerTags: [
           { text: "Sprache der Erde", hooks: ["magie","natur","geheimnis"] },
           { text: "Tiere dienen ihm", hooks: ["natur","macht"] },
@@ -3563,7 +3563,7 @@ const THEMEBOOKS = {
         ],
         quests: [
           { title: "Hüter des alten Hains", description: "Ich bewahre den letzten Urwald vor Axt und Brand.", hooks: ["natur","glaube"] },
-          { title: "wachsen ohne Ende", description: "Ich breite mein lebendiges Reich über das verödete Land aus.", hooks: ["natur","macht"] },
+          { title: "Wachsen ohne Ende", description: "Ich breite mein lebendiges Reich über das verödete Land aus.", hooks: ["natur","macht"] },
         ]
       },
       {
@@ -3579,8 +3579,8 @@ const THEMEBOOKS = {
           { text: "zu groß für die Menschenwelt", hooks: ["außenseiter","natur"] },
         ],
         quests: [
-          { title: "die geschändeten Gipfel", description: "Ich vertreibe die Bergleute, die mein uraltes Gestein aufbrechen.", hooks: ["natur","kampf"] },
-          { title: "ältestes Blut", description: "Ich suche nach Spuren der Urwesen, von denen ich abstamme.", hooks: ["schicksal","geheimnis"] },
+          { title: "Die geschändeten Gipfel", description: "Ich vertreibe die Bergleute, die mein uraltes Gestein aufbrechen.", hooks: ["natur","kampf"] },
+          { title: "Ältestes Blut", description: "Ich suche nach Spuren der Urwesen, von denen ich abstamme.", hooks: ["schicksal","geheimnis"] },
         ]
       },
       {
@@ -3596,8 +3596,8 @@ const THEMEBOOKS = {
           { text: "begehrte Jagdtrophäe", hooks: ["kampf","außenseiter"] },
         ],
         quests: [
-          { title: "ich finde meinesgleichen", description: "Ich suche, ob irgendwo noch ein anderer meiner Art überlebt hat.", hooks: ["außenseiter","verlust"] },
-          { title: "letztes Erbe", description: "Ich finde jemanden, dem ich das Vermächtnis meiner Art anvertrauen kann.", hooks: ["verlust","schicksal"] },
+          { title: "Ich finde meinesgleichen", description: "Ich suche, ob irgendwo noch ein anderer meiner Art überlebt hat.", hooks: ["außenseiter","verlust"] },
+          { title: "Letztes Erbe", description: "Ich finde jemanden, dem ich das Vermächtnis meiner Art anvertrauen kann.", hooks: ["verlust","schicksal"] },
         ]
       },
       {
@@ -3613,8 +3613,8 @@ const THEMEBOOKS = {
           { text: "an den alten Namen gebunden", hooks: ["magie","geheimnis"] },
         ],
         quests: [
-          { title: "verlorene Göttlichkeit", description: "Ich suche einen Weg, meine schwindende göttliche Macht zurückzugewinnen.", hooks: ["glaube","verlust"] },
-          { title: "letzte Anbeter", description: "Ich bewahre meinen letzten Kult vor dem Vergessen.", hooks: ["glaube","schicksal"] },
+          { title: "Verlorene Göttlichkeit", description: "Ich suche einen Weg, meine schwindende göttliche Macht zurückzugewinnen.", hooks: ["glaube","verlust"] },
+          { title: "Letzte Anbeter", description: "Ich bewahre meinen letzten Kult vor dem Vergessen.", hooks: ["glaube","schicksal"] },
         ]
       },
       {
@@ -3630,12 +3630,12 @@ const THEMEBOOKS = {
           { text: "verwundbar im Erwachen", hooks: ["kampf","geheimnis"] },
         ],
         quests: [
-          { title: "nicht geweckt werden", description: "Ich verhindere, dass Narren mich vor der Zeit aus dem Eis brechen.", hooks: ["geheimnis","schicksal"] },
-          { title: "die Stunde des Erwachens", description: "Ich erfahre, welches Zeichen mein endgültiges Erwachen verkündet.", hooks: ["schicksal","verlust"] },
+          { title: "Nicht geweckt werden", description: "Ich verhindere, dass Narren mich vor der Zeit aus dem Eis brechen.", hooks: ["geheimnis","schicksal"] },
+          { title: "Die Stunde des Erwachens", description: "Ich erfahre, welches Zeichen mein endgültiges Erwachen verkündet.", hooks: ["schicksal","verlust"] },
         ]
       },
       {
-        text: "Titan des Vergessenen Zeitalters", hooks: ["verlust","schicksal","wissen"],
+        text: "Titan des vergessenen Zeitalters", hooks: ["verlust","schicksal","wissen"],
         powerTags: [
           { text: "übermächtige Stärke", hooks: ["kampf","macht"] },
           { text: "der Zeit entrückt", hooks: ["schicksal","magie"] },
@@ -3647,8 +3647,8 @@ const THEMEBOOKS = {
           { text: "gebunden an alte Riten", hooks: ["glaube","schicksal"] },
         ],
         quests: [
-          { title: "untergegangene Welt", description: "Ich suche nach dem, was von meinem Zeitalter noch übrig ist.", hooks: ["verlust","wissen"] },
-          { title: "ich überdauere", description: "Ich harre aus, bis die Welt Wesen wie mich wieder braucht.", hooks: ["schicksal","glaube"] },
+          { title: "Untergegangene Welt", description: "Ich suche nach dem, was von meinem Zeitalter noch übrig ist.", hooks: ["verlust","wissen"] },
+          { title: "Ich überdauere", description: "Ich harre aus, bis die Welt Wesen wie mich wieder braucht.", hooks: ["schicksal","glaube"] },
         ]
       },
       {
@@ -3664,8 +3664,8 @@ const THEMEBOOKS = {
           { text: "muss jedem Pakt gehorchen", hooks: ["magie","schicksal"] },
         ],
         quests: [
-          { title: "ewige Wache", description: "Ich halte das Tor verschlossen, was auch immer hindurch will.", hooks: ["glaube","kampf"] },
-          { title: "von der Pflicht erlöst", description: "Ich suche einen Nachfolger, der meine endlose Wacht übernimmt.", hooks: ["glaube","verlust"] },
+          { title: "Ewige Wache", description: "Ich halte das Tor verschlossen, was auch immer hindurch will.", hooks: ["glaube","kampf"] },
+          { title: "Von der Pflicht erlöst", description: "Ich suche einen Nachfolger, der meine endlose Wacht übernimmt.", hooks: ["glaube","verlust"] },
         ]
       },
       {
@@ -3681,8 +3681,8 @@ const THEMEBOOKS = {
           { text: "löst überall Panik aus", hooks: ["außenseiter","schicksal"] },
         ],
         quests: [
-          { title: "den Hunger zähmen", description: "Ich finde einen Weg, meinen alles fressenden Trieb zu beherrschen.", hooks: ["natur","verlust"] },
-          { title: "unter Menschen wandeln", description: "Ich lebe verkleinert unter Sterblichen, ohne mein wahres Wesen zu verraten.", hooks: ["geheimnis","außenseiter"] },
+          { title: "Den Hunger zähmen", description: "Ich finde einen Weg, meinen alles fressenden Trieb zu beherrschen.", hooks: ["natur","verlust"] },
+          { title: "Unter Menschen wandeln", description: "Ich lebe verkleinert unter Sterblichen, ohne mein wahres Wesen zu verraten.", hooks: ["geheimnis","außenseiter"] },
         ]
       },
     ]
@@ -3705,7 +3705,7 @@ const THEMEBOOKS = {
         ],
         quests: [
           { title: "Auftrag zu zweit gemeistert", description: "Was wir uns vorgenommen haben, schaffen wir nur als Trupp gemeinsam.", hooks: ["glaube","fahrend"] },
-          { title: "die Bande zusammenhalten", description: "Ich sorge dafür, dass meine Schwertbande nicht auseinanderbricht.", hooks: ["kampf","verlust"] },
+          { title: "Die Bande zusammenhalten", description: "Ich sorge dafür, dass meine Schwertbande nicht auseinanderbricht.", hooks: ["kampf","verlust"] },
         ]
       },
       {
@@ -3721,8 +3721,8 @@ const THEMEBOOKS = {
           { text: "beschützt nur mich", hooks: ["glaube","natur"] },
         ],
         quests: [
-          { title: "meinen Hund beschützen", description: "Ohne diesen Gefährten an meiner Seite geht es für mich nicht weiter.", hooks: ["glaube","kampf"] },
-          { title: "die Witterung verfolgen", description: "Ich folge der Spur, die nur seine Nase aufnehmen kann.", hooks: ["natur","fahrend"] },
+          { title: "Meinen Hund beschützen", description: "Ohne diesen Gefährten an meiner Seite geht es für mich nicht weiter.", hooks: ["glaube","kampf"] },
+          { title: "Die Witterung verfolgen", description: "Ich folge der Spur, die nur seine Nase aufnehmen kann.", hooks: ["natur","fahrend"] },
         ]
       },
       {
@@ -3738,8 +3738,8 @@ const THEMEBOOKS = {
           { text: "schweigt im falschen Moment", hooks: ["geheimnis","verlust"] },
         ],
         quests: [
-          { title: "den Geist verstehen", description: "Ich will begreifen, warum dieser Geist über mich wacht.", hooks: ["geheimnis","schicksal"] },
-          { title: "seinen letzten Willen erfüllen", description: "Der Geist bleibt nur, bis eine alte Sache geklärt ist.", hooks: ["schicksal","verlust"] },
+          { title: "Den Geist verstehen", description: "Ich will begreifen, warum dieser Geist über mich wacht.", hooks: ["geheimnis","schicksal"] },
+          { title: "Seinen letzten Willen erfüllen", description: "Der Geist bleibt nur, bis eine alte Sache geklärt ist.", hooks: ["schicksal","verlust"] },
         ]
       },
       {
@@ -3755,8 +3755,8 @@ const THEMEBOOKS = {
           { text: "stiftet ständig Unfug", hooks: ["natur","außenseiter"] },
         ],
         quests: [
-          { title: "den Pixie zähmen", description: "Ich lerne, seine Streiche in nützliche Bahnen zu lenken.", hooks: ["magie","natur"] },
-          { title: "sein Versprechen einlösen", description: "Der Pixie schuldet mir einen Gefallen aus der Feenwelt.", hooks: ["magie","geheimnis"] },
+          { title: "Den Pixie zähmen", description: "Ich lerne, seine Streiche in nützliche Bahnen zu lenken.", hooks: ["magie","natur"] },
+          { title: "Sein Versprechen einlösen", description: "Der Pixie schuldet mir einen Gefallen aus der Feenwelt.", hooks: ["magie","geheimnis"] },
         ]
       },
       {
@@ -3772,8 +3772,8 @@ const THEMEBOOKS = {
           { text: "scheu vor Fremden", hooks: ["natur","außenseiter"] },
         ],
         quests: [
-          { title: "das Vermächtnis ehren", description: "Mit dem Falken halte ich die Erinnerung an meine Mutter wach.", hooks: ["verlust","glaube"] },
-          { title: "den Falken heimbringen", description: "Ich bringe ihn dorthin zurück, wo meine Mutter ihn einst hielt.", hooks: ["natur","verlust"] },
+          { title: "Das Vermächtnis ehren", description: "Mit dem Falken halte ich die Erinnerung an meine Mutter wach.", hooks: ["verlust","glaube"] },
+          { title: "Den Falken heimbringen", description: "Ich bringe ihn dorthin zurück, wo meine Mutter ihn einst hielt.", hooks: ["natur","verlust"] },
         ]
       },
       {
@@ -3789,8 +3789,8 @@ const THEMEBOOKS = {
           { text: "deutet den Pakt eigenwillig", hooks: ["geheimnis","schicksal"] },
         ],
         quests: [
-          { title: "den Pakt erfüllen", description: "Der Geist dient nur, solange ich meinen Teil der Abmachung halte.", hooks: ["magie","macht"] },
-          { title: "den wahren Namen finden", description: "Wer den Namen des Geistes kennt, gebietet wirklich über ihn.", hooks: ["geheimnis","wissen"] },
+          { title: "Den Pakt erfüllen", description: "Der Geist dient nur, solange ich meinen Teil der Abmachung halte.", hooks: ["magie","macht"] },
+          { title: "Den wahren Namen finden", description: "Wer den Namen des Geistes kennt, gebietet wirklich über ihn.", hooks: ["geheimnis","wissen"] },
         ]
       },
       {
@@ -3806,8 +3806,8 @@ const THEMEBOOKS = {
           { text: "alte Knochen", hooks: ["verlust","außenseiter"] },
         ],
         quests: [
-          { title: "den alten Freund würdigen", description: "Dieser zerlumpte Gefährte hat mehr Treue als jeder Edelmann.", hooks: ["außenseiter","glaube"] },
-          { title: "ein letztes Abenteuer", description: "Wir beide ziehen noch einmal hinaus, ehe seine Tage enden.", hooks: ["fahrend","verlust"] },
+          { title: "Den alten Freund würdigen", description: "Dieser zerlumpte Gefährte hat mehr Treue als jeder Edelmann.", hooks: ["außenseiter","glaube"] },
+          { title: "Ein letztes Abenteuer", description: "Wir beide ziehen noch einmal hinaus, ehe seine Tage enden.", hooks: ["fahrend","verlust"] },
         ]
       },
       {
@@ -3823,8 +3823,8 @@ const THEMEBOOKS = {
           { text: "missverstanden von anderen", hooks: ["außenseiter","geheimnis"] },
         ],
         quests: [
-          { title: "sein Schweigen ehren", description: "Der Wächter bewahrt ein Geheimnis, das nie über seine Lippen kommt.", hooks: ["geheimnis","glaube"] },
-          { title: "ihm eine Stimme geben", description: "Ich finde heraus, warum mein Wächter verstummt ist.", hooks: ["geheimnis","verlust"] },
+          { title: "Sein Schweigen ehren", description: "Der Wächter bewahrt ein Geheimnis, das nie über seine Lippen kommt.", hooks: ["geheimnis","glaube"] },
+          { title: "Ihm eine Stimme geben", description: "Ich finde heraus, warum mein Wächter verstummt ist.", hooks: ["geheimnis","verlust"] },
         ]
       },
       {
@@ -3840,8 +3840,8 @@ const THEMEBOOKS = {
           { text: "erträgt keine Fremden", hooks: ["außenseiter","magie"] },
         ],
         quests: [
-          { title: "das Haus bewahren", description: "Solange das Gemäuer steht, hat der Geist eine Heimat.", hooks: ["geheimnis","magie"] },
-          { title: "den Hausgeist erlösen", description: "Ich finde heraus, was ihn an diese Mauern fesselt.", hooks: ["geheimnis","verlust"] },
+          { title: "Das Haus bewahren", description: "Solange das Gemäuer steht, hat der Geist eine Heimat.", hooks: ["geheimnis","magie"] },
+          { title: "Den Hausgeist erlösen", description: "Ich finde heraus, was ihn an diese Mauern fesselt.", hooks: ["geheimnis","verlust"] },
         ]
       },
       {
@@ -3857,8 +3857,8 @@ const THEMEBOOKS = {
           { text: "verschwindet nach Lust", hooks: ["natur","verlust"] },
         ],
         quests: [
-          { title: "ihr Vertrauen verdienen", description: "Diese Katze bleibt nur, solange sie es selbst will.", hooks: ["natur","schicksal"] },
-          { title: "ihrem Instinkt folgen", description: "Wohin sie mich führt, dort liegt oft die Antwort.", hooks: ["schicksal","natur"] },
+          { title: "Ihr Vertrauen verdienen", description: "Diese Katze bleibt nur, solange sie es selbst will.", hooks: ["natur","schicksal"] },
+          { title: "Ihrem Instinkt folgen", description: "Wohin sie mich führt, dort liegt oft die Antwort.", hooks: ["schicksal","natur"] },
         ]
       },
       {
@@ -3874,8 +3874,8 @@ const THEMEBOOKS = {
           { text: "von alten Wunden gezeichnet", hooks: ["verlust","kampf"] },
         ],
         quests: [
-          { title: "die Bande anführen", description: "Diese Veteranen suchen einen Hauptmann, und ich will es werden.", hooks: ["kampf","macht"] },
-          { title: "einen letzten Feldzug beenden", description: "Der Krieg ließ ihren Auftrag unvollendet, und wir vollenden ihn.", hooks: ["kampf","verlust"] },
+          { title: "Die Bande anführen", description: "Diese Veteranen suchen einen Hauptmann, und ich will es werden.", hooks: ["kampf","macht"] },
+          { title: "Einen letzten Feldzug beenden", description: "Der Krieg ließ ihren Auftrag unvollendet, und wir vollenden ihn.", hooks: ["kampf","verlust"] },
         ]
       },
       {
@@ -3891,8 +3891,8 @@ const THEMEBOOKS = {
           { text: "entgleitet bei Schwäche", hooks: ["magie","verlust"] },
         ],
         quests: [
-          { title: "die Probe bestehen", description: "Der Elementargeist bleibt nur, wenn ich seiner würdig bin.", hooks: ["magie","schicksal"] },
-          { title: "den Pakt besiegeln", description: "Ich will den Geist dauerhaft an mich binden.", hooks: ["magie","macht"] },
+          { title: "Die Probe bestehen", description: "Der Elementargeist bleibt nur, wenn ich seiner würdig bin.", hooks: ["magie","schicksal"] },
+          { title: "Den Pakt besiegeln", description: "Ich will den Geist dauerhaft an mich binden.", hooks: ["magie","macht"] },
         ]
       },
     ]
@@ -3914,7 +3914,7 @@ const THEMEBOOKS = {
         ],
         quests: [
           { title: "Hüterin des alten Hains", description: "Ich beschütze den Wald, der mir meine Kraft gab, vor jeder Axt und jedem Feuer.", hooks: ["natur","magie"] },
-          { title: "kein Fluch sondern Gabe", description: "Ich beweise den Dörflern, dass meine Waldmagie sie nicht verflucht sondern bewahrt.", hooks: ["magie","außenseiter"] },
+          { title: "Kein Fluch sondern Gabe", description: "Ich beweise den Dörflern, dass meine Waldmagie sie nicht verflucht sondern bewahrt.", hooks: ["magie","außenseiter"] },
         ]
       },
       {
@@ -3930,7 +3930,7 @@ const THEMEBOOKS = {
           { text: "erschöpft durch Magie", hooks: ["magie","verlust"] },
         ],
         quests: [
-          { title: "den Sturm bändigen", description: "Ich lerne, das Unwetter zu lenken, bevor es mir entgleitet und Unschuldige trifft.", hooks: ["magie","natur"] },
+          { title: "Den Sturm bändigen", description: "Ich lerne, das Unwetter zu lenken, bevor es mir entgleitet und Unschuldige trifft.", hooks: ["magie","natur"] },
           { title: "Rache des Himmels", description: "Ich rufe das Wetter gegen jene herab, die mein Land verwüstet haben.", hooks: ["natur","kampf","verlust"] },
         ]
       },
@@ -3947,7 +3947,7 @@ const THEMEBOOKS = {
           { text: "kann keinen Leidenden abweisen", hooks: ["glaube","magie"] },
         ],
         quests: [
-          { title: "würdige Hände", description: "Ich nutze die mir geschenkte Heilkraft nur für jene, die ihrer wirklich würdig sind.", hooks: ["magie","glaube"] },
+          { title: "Würdige Hände", description: "Ich nutze die mir geschenkte Heilkraft nur für jene, die ihrer wirklich würdig sind.", hooks: ["magie","glaube"] },
           { title: "Gunst der Götter halten", description: "Ich bleibe der Gottheit treu, deren Segen mir das Heilen erst möglich macht.", hooks: ["glaube","magie"] },
         ]
       },
@@ -3964,8 +3964,8 @@ const THEMEBOOKS = {
           { text: "die Toten verlangen Antwort", hooks: ["magie","geheimnis","verlust"] },
         ],
         quests: [
-          { title: "ruhelose Seelen erlösen", description: "Ich helfe den gefangenen Geistern, endlich Frieden und ihren Weg zu finden.", hooks: ["geheimnis","magie","verlust"] },
-          { title: "den Schleier wahren", description: "Ich sorge dafür, dass die Grenze zwischen Lebenden und Toten geschlossen bleibt.", hooks: ["magie","geheimnis"] },
+          { title: "Ruhelose Seelen erlösen", description: "Ich helfe den gefangenen Geistern, endlich Frieden und ihren Weg zu finden.", hooks: ["geheimnis","magie","verlust"] },
+          { title: "Den Schleier wahren", description: "Ich sorge dafür, dass die Grenze zwischen Lebenden und Toten geschlossen bleibt.", hooks: ["magie","geheimnis"] },
         ]
       },
       {
@@ -3981,7 +3981,7 @@ const THEMEBOOKS = {
           { text: "unkontrollierbare Nebenwirkungen", hooks: ["magie","geheimnis"] },
         ],
         quests: [
-          { title: "das vollkommene Ritual", description: "Ich vollende den Zauber, an dem schon meine Lehrmeister gescheitert sind.", hooks: ["magie","handwerk"] },
+          { title: "Das vollkommene Ritual", description: "Ich vollende den Zauber, an dem schon meine Lehrmeister gescheitert sind.", hooks: ["magie","handwerk"] },
           { title: "Wissen weitergeben", description: "Ich finde eine Schülerin, der ich meine Ritualkunst anvertrauen kann.", hooks: ["magie","wissen","handwerk"] },
         ]
       },
@@ -3998,7 +3998,7 @@ const THEMEBOOKS = {
           { text: "der Körper zahlt den Preis", hooks: ["magie","verlust"] },
         ],
         quests: [
-          { title: "die wandelnde Formel", description: "Ich suche das Rezept, das gewöhnliche Stoffe in etwas Wunderbares verwandelt.", hooks: ["magie","wissen","handwerk"] },
+          { title: "Die wandelnde Formel", description: "Ich suche das Rezept, das gewöhnliche Stoffe in etwas Wunderbares verwandelt.", hooks: ["magie","wissen","handwerk"] },
           { title: "Gegengift für die Pest", description: "Ich braue das Mittel, das eine Krankheit stillen kann, die ganze Dörfer auslöscht.", hooks: ["magie","handwerk","natur"] },
         ]
       },
@@ -4015,8 +4015,8 @@ const THEMEBOOKS = {
           { text: "eine falsche Rune zerstört alles", hooks: ["magie","wissen"] },
         ],
         quests: [
-          { title: "die verlorene Rune", description: "Ich suche das eine Zeichen, dessen Macht seit Generationen vergessen ist.", hooks: ["magie","wissen","geheimnis"] },
-          { title: "unzerstörbarer Bann", description: "Ich ritze die Runen, die einen Ort für immer vor dem Bösen schützen.", hooks: ["magie","glaube"] },
+          { title: "Die verlorene Rune", description: "Ich suche das eine Zeichen, dessen Macht seit Generationen vergessen ist.", hooks: ["magie","wissen","geheimnis"] },
+          { title: "Unzerstörbarer Bann", description: "Ich ritze die Runen, die einen Ort für immer vor dem Bösen schützen.", hooks: ["magie","glaube"] },
         ]
       },
       {
@@ -4032,7 +4032,7 @@ const THEMEBOOKS = {
           { text: "verlangt einen Preis", hooks: ["magie","schicksal"] },
         ],
         quests: [
-          { title: "die versiegte Quelle", description: "Ich bringe das Wasser dorthin zurück, wo das Land verdorrt ist.", hooks: ["natur","magie"] },
+          { title: "Die versiegte Quelle", description: "Ich bringe das Wasser dorthin zurück, wo das Land verdorrt ist.", hooks: ["natur","magie"] },
           { title: "Pakt mit den Tiefen", description: "Ich erfülle das Versprechen, das ich den Wesen unter den Wellen gab.", hooks: ["magie","geheimnis","schicksal"] },
         ]
       },
@@ -4049,8 +4049,8 @@ const THEMEBOOKS = {
           { text: "zieht gefährliche Aufmerksamkeit", hooks: ["magie","schicksal"] },
         ],
         quests: [
-          { title: "der Traum hinter dem Traum", description: "Ich folge der Vision, die mich seit Jahren in jeder Nacht heimsucht.", hooks: ["magie","schicksal","geheimnis"] },
-          { title: "den Albträumen ein Ende", description: "Ich befreie einen Schläfer von dem Schrecken, der seine Nächte vergiftet.", hooks: ["magie","geheimnis"] },
+          { title: "Der Traum hinter dem Traum", description: "Ich folge der Vision, die mich seit Jahren in jeder Nacht heimsucht.", hooks: ["magie","schicksal","geheimnis"] },
+          { title: "Den Albträumen ein Ende", description: "Ich befreie einen Schläfer von dem Schrecken, der seine Nächte vergiftet.", hooks: ["magie","geheimnis"] },
         ]
       },
       {
@@ -4066,7 +4066,7 @@ const THEMEBOOKS = {
           { text: "verlangt einen Preis", hooks: ["magie","schicksal"] },
         ],
         quests: [
-          { title: "das versiegelte Tor", description: "Ich verschließe für immer den Übergang, den ich unbedacht geöffnet habe.", hooks: ["magie","geheimnis"] },
+          { title: "Das versiegelte Tor", description: "Ich verschließe für immer den Übergang, den ich unbedacht geöffnet habe.", hooks: ["magie","geheimnis"] },
           { title: "Weg zwischen den Welten", description: "Ich finde den Pfad, der in das Reich jenseits unseres führt.", hooks: ["magie","fahrend","geheimnis"] },
         ]
       },
@@ -4083,8 +4083,8 @@ const THEMEBOOKS = {
           { text: "erschöpft durch Magie", hooks: ["magie","verlust"] },
         ],
         quests: [
-          { title: "die gestörte Ordnung", description: "Ich finde die Wurzel des Ungleichgewichts, das die Welt aus dem Lot bringt.", hooks: ["magie","natur","schicksal"] },
-          { title: "weder Licht noch Schatten", description: "Ich wahre das Gleichgewicht, auch wenn beide Seiten mich dafür hassen.", hooks: ["magie","glaube","natur"] },
+          { title: "Die gestörte Ordnung", description: "Ich finde die Wurzel des Ungleichgewichts, das die Welt aus dem Lot bringt.", hooks: ["magie","natur","schicksal"] },
+          { title: "Weder Licht noch Schatten", description: "Ich wahre das Gleichgewicht, auch wenn beide Seiten mich dafür hassen.", hooks: ["magie","glaube","natur"] },
         ]
       },
       {
@@ -4100,8 +4100,8 @@ const THEMEBOOKS = {
           { text: "ein Wort zu viel", hooks: ["magie","schicksal"] },
         ],
         quests: [
-          { title: "die letzte verlorene Silbe", description: "Ich suche das fehlende Wort, das die uralte Sprache wieder vollständig macht.", hooks: ["magie","wissen","verlust"] },
-          { title: "zu gefährlich zu bewahren", description: "Ich tilge das Wissen, dessen Worte die Welt zerreißen könnten.", hooks: ["magie","wissen","geheimnis"] },
+          { title: "Die letzte verlorene Silbe", description: "Ich suche das fehlende Wort, das die uralte Sprache wieder vollständig macht.", hooks: ["magie","wissen","verlust"] },
+          { title: "Zu gefährlich zu bewahren", description: "Ich tilge das Wissen, dessen Worte die Welt zerreißen könnten.", hooks: ["magie","wissen","geheimnis"] },
         ]
       },
     ]
