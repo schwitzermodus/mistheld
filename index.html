@@ -151,9 +151,13 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .hb-divider::after{background:linear-gradient(90deg,rgba(169,134,70,0.55),transparent)}
 .hb-divider-mark{font-size:0.9rem;line-height:1}
 /* Aktionsleiste: beide Buttons gleichberechtigt */
-.hb-action-primary,.hb-action-ghost{flex:1;border:1px solid var(--line);background:var(--paper);color:var(--ink);font-family:var(--serif);font-weight:600;font-size:var(--fs-body-lg);letter-spacing:0.02em;padding:12px;border-radius:4px;cursor:pointer;text-align:center}
+.hb-action-primary,.hb-action-ghost{flex:1;min-width:0;border:1px solid var(--line);background:var(--paper);color:var(--ink);font-family:var(--serif);font-weight:600;font-size:var(--fs-body);letter-spacing:0.01em;padding:12px 8px;border-radius:4px;cursor:pointer;text-align:center;line-height:1.2}
 .hb-action-primary:active,.hb-action-ghost:active{transform:scale(0.98)}
-.hb-edit{position:absolute;right:12px;top:12px;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:rgba(250,243,223,0.6);color:var(--ink-soft);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2;padding:0}
+.hb-act-edit{display:none}
+#screen-result.hb-editing .hb-act-normal{display:none}
+#screen-result.hb-editing .hb-act-edit{display:block;flex:1}
+.hb-edit{position:absolute;right:12px;top:12px;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:rgba(250,243,223,0.85);color:var(--ink-soft);display:none;align-items:center;justify-content:center;cursor:pointer;z-index:3;padding:0;box-shadow:0 1px 3px rgba(42,36,25,0.25)}
+#screen-result.hb-editing .hb-edit{display:flex}
 .hb-edit svg{width:15px;height:15px}
 .hb-edit:active{transform:scale(0.9)}
 .hb-hero{position:relative;text-align:center;padding:6px 52px 12px}
@@ -166,31 +170,36 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 /* Geschichte mittig */
 .hb-module{position:relative;padding:8px 18px 10px;text-align:center}
 .hb-story-text{font-size:var(--fs-body-lg);line-height:1.55;color:var(--ink)}
-.hb-theme{position:relative;margin:10px 12px;border:1px solid var(--line-soft);border-left:4px solid var(--line);border-radius:6px;background:rgba(120,96,48,0.04);overflow:hidden}
-.hb-theme.tc-origin{border-left-color:var(--might-origin)}
-.hb-theme.tc-adventure{border-left-color:var(--might-adventure)}
-.hb-theme.tc-greatness{border-left-color:var(--might-greatness)}
-/* Kopf = Might + Titel; gleiche horizontale Einrückung (14px) wie der Rest -> gleiche Tag-Breiten */
-.hb-theme-head{padding:12px 14px 0;cursor:pointer;text-align:center}
-.hb-theme.collapsed .hb-theme-head{padding-bottom:12px}
-.hb-theme-rest{padding:0 14px 14px;text-align:center}
-/* Might-Stufe ganz oben, farblich mit dem Tier-Akzent verbunden (drittgrößte Schrift) */
-.hb-might{display:inline-flex;align-items:center;gap:6px;font-size:var(--fs-body);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;padding:3px 13px;border-radius:6px;line-height:1.25}
-.hb-theme.tc-origin .hb-might{color:var(--might-origin);background:rgba(61,92,42,0.12)}
-.hb-theme.tc-adventure .hb-might{color:var(--might-adventure);background:rgba(139,58,43,0.12)}
-.hb-theme.tc-greatness .hb-might{color:var(--might-greatness);background:rgba(66,82,90,0.14)}
-.hb-chev{width:6px;height:6px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);transition:transform 0.18s;display:inline-block;opacity:0.8}
+/* Theme-Karte: rundum in der Might-Farbe gerahmt */
+.hb-theme{position:relative;margin:10px 12px;border:2px solid var(--line);border-radius:8px;background:rgba(120,96,48,0.04);overflow:hidden}
+.hb-theme.tc-origin{border-color:var(--might-origin)}
+.hb-theme.tc-adventure{border-color:var(--might-adventure)}
+.hb-theme.tc-greatness{border-color:var(--might-greatness)}
+.hb-theme .hb-edit{top:6px;right:8px;width:28px;height:28px}
+/* Kopf-/Fußband in der Might-Farbe, heller Text (dezent, damit der Titel prominent bleibt) */
+.hb-band{padding:6px 13px}
+.hb-band,.hb-band *{color:#faf3df}
+.hb-theme.tc-origin .hb-band{background:var(--might-origin)}
+.hb-theme.tc-adventure .hb-band{background:var(--might-adventure)}
+.hb-theme.tc-greatness .hb-band{background:var(--might-greatness)}
+.hb-band-head{display:flex;align-items:center;justify-content:space-between;cursor:pointer;gap:8px}
+#screen-result.hb-editing .hb-band-head{padding-right:42px}
+.hb-band-type{font-size:var(--fs-label);text-transform:uppercase;letter-spacing:0.1em;font-weight:600}
+.hb-band-might{display:inline-flex;align-items:center;gap:6px;font-size:var(--fs-label);text-transform:uppercase;letter-spacing:0.06em;font-weight:700;white-space:nowrap}
+.hb-chev{width:6px;height:6px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);transition:transform 0.18s;display:inline-block;opacity:0.85}
 .hb-theme.collapsed .hb-chev{transform:rotate(-45deg)}
-/* Titel-Tag: identisches Power-Tag-Design (Rahmen/Abstand), nur größere Schrift (Stufe A) */
-.hb-titletag{font-size:var(--fs-title);font-weight:600;line-height:1.2;color:var(--ink);background:rgba(169,134,70,0.08);border-radius:4px;padding:7px 12px;margin-top:8px;text-align:center}
-.hb-powertag{font-size:var(--fs-body-lg);line-height:1.35;color:var(--ink);background:rgba(169,134,70,0.08);border-radius:4px;padding:7px 12px;margin-top:6px}
+/* Mitte: neutral, kein Farbakzent (Titel -> Weakness) */
+.hb-theme-mid{padding:13px 14px 14px;text-align:center}
+/* Titel-Tag: doppelt so groß wie die anderen Power Tags -> größtes Element der Karte */
+.hb-titletag{font-size:calc(var(--fs-body-lg) * 2);font-weight:700;line-height:1.15;color:var(--ink);background:rgba(169,134,70,0.10);border-radius:4px;padding:10px 12px;text-align:center}
+.hb-powertag{font-size:var(--fs-body-lg);line-height:1.35;color:var(--ink);background:rgba(169,134,70,0.08);border-radius:4px;padding:7px 12px;margin-top:8px}
 .hb-tiertag{font-style:italic;color:#8a6a2e}
-.hb-weakness{font-style:italic;font-size:var(--fs-body-lg);line-height:1.35;color:#7a3010;background:rgba(170,80,20,0.10);border-radius:4px;padding:7px 12px;margin-top:6px}
-/* Theme Type als Fußzeile ganz unten */
-.hb-theme-type{font-size:var(--fs-label);color:var(--ink-soft);margin-top:12px;padding-top:10px;border-top:1px solid var(--line-soft)}
-.hb-quest-label{font-size:var(--fs-label);letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-top:14px}
-.hb-quest-title{font-style:italic;font-weight:600;font-size:var(--fs-body);color:var(--ink);margin-top:3px;line-height:1.3}
-.hb-quest-desc{font-size:var(--fs-body);color:var(--ink);line-height:1.45;margin-top:4px}
+.hb-weakness{font-style:italic;font-size:var(--fs-body-lg);line-height:1.35;color:#7a3010;background:rgba(170,80,20,0.10);border-radius:4px;padding:7px 12px;margin-top:8px}
+/* Fußband: Quest, in der Might-Farbe */
+.hb-band-foot{text-align:center}
+.hb-band-foot .hb-quest-label{font-size:var(--fs-label);letter-spacing:0.14em;text-transform:uppercase;font-weight:600;opacity:0.8}
+.hb-band-foot .hb-quest-title{font-style:italic;font-weight:600;font-size:var(--fs-body);margin-top:3px;line-height:1.3}
+.hb-band-foot .hb-quest-desc{font-size:var(--fs-body);line-height:1.45;margin-top:4px;opacity:0.95}
 .hb-ph{margin:10px 12px 0;border:1px dashed var(--line);border-radius:8px;padding:14px;text-align:center;opacity:0.8}
 .hb-ph-title{font-size:var(--fs-title);font-weight:600;color:var(--ink-soft)}
 .hb-ph-sub{font-size:var(--fs-body);color:var(--ink-soft);margin-top:3px}
@@ -292,7 +301,7 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
 .loading-spinner{width:32px;height:32px;border:2px solid var(--line);border-top-color:var(--accent);border-radius:50%;animation:spin 0.9s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .loading-text{font-family:var(--serif);font-style:italic;color:var(--ink-soft)}
-@media(max-height:740px){.card-title{font-size:1.5rem}.hb-titletag{font-size:1.15rem}.welcome-preview{height:380px;margin-top:28px}.welcome-title{font-size:2.7rem}.welcome-mark{font-size:1.05rem}.wp-title-tag{font-size:1.4rem}.wp-power-tag,.wp-weakness-tag{font-size:0.95rem}.wp-quest{font-size:1.0rem}#screen-welcome{padding:48px 28px 32px}#btn-start{margin-top:24px}}
+@media(max-height:740px){.card-title{font-size:1.5rem}.welcome-preview{height:380px;margin-top:28px}.welcome-title{font-size:2.7rem}.welcome-mark{font-size:1.05rem}.wp-title-tag{font-size:1.4rem}.wp-power-tag,.wp-weakness-tag{font-size:0.95rem}.wp-quest{font-size:1.0rem}#screen-welcome{padding:48px 28px 32px}#btn-start{margin-top:24px}}
 @media(max-height:640px){.welcome-preview{height:330px;margin-top:18px}.welcome-title{font-size:2.4rem}.welcome-mark{font-size:0.95rem}.wp-title-tag{font-size:1.25rem}.wp-power-tag,.wp-weakness-tag{font-size:0.9rem;padding:4px 10px}.wp-quest{font-size:0.95rem}.wp-quest-label{font-size:0.74rem;padding-top:8px}#screen-welcome{padding:36px 24px 28px}#btn-start{margin-top:18px}}
 </style>
 </head>
@@ -319,7 +328,7 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
   </div>
   <div class="welcome-preview" id="welcome-preview"></div>
   <button class="btn btn-primary" id="btn-start"></button>
-  <div class="app-version">v2026-06-17.6</div>
+  <div class="app-version">v2026-06-18.1</div>
 </section>
 <section id="screen-swipe" class="screen">
   <div class="card-counter" id="card-counter"></div>
@@ -335,8 +344,10 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
   <div class="hb-grain" aria-hidden="true"></div>
   <div class="hb-scroll" id="hb-scroll"></div>
   <div class="hb-actions">
-    <button class="hb-action-primary" id="hb-save" type="button"></button>
-    <button class="hb-action-ghost" id="hb-restart" type="button"></button>
+    <button class="hb-action-ghost hb-act-normal" id="hb-edit" type="button"></button>
+    <button class="hb-action-primary hb-act-normal" id="hb-save" type="button"></button>
+    <button class="hb-action-ghost hb-act-normal" id="hb-restart" type="button"></button>
+    <button class="hb-action-primary hb-act-edit" id="hb-done" type="button"></button>
   </div>
   <div id="edit-sheet-overlay">
     <div id="edit-sheet"><div class="edit-sheet-handle"></div><div id="edit-sheet-body"></div></div>
@@ -396,6 +407,8 @@ var STRINGS={
   result:{
     btnAccept:'Speichern (PDF)',
     btnRestart:'Neu beginnen',
+    btnEdit:'Bearbeiten',
+    btnDone:'Fertig',
     questLabel:'Quest',
     storyLabel:'Geschichte',
     themesLabel:'Themes',

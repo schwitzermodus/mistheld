@@ -121,10 +121,19 @@ test('Heldenblatt zeigt Held-Kopf mit Name', async ({ page }) => {
   await expect(page.locator('.hb-hero-name')).toBeVisible();
 });
 
-test('Heldenblatt: Held-Kopf hat Bearbeiten-Feder', async ({ page }) => {
+test('Heldenblatt: Federn nur im Bearbeiten-Modus sichtbar', async ({ page }) => {
   await page.goto('/');
   await loadResultScreen(page);
+  // Normalmodus: keine Federn sichtbar
+  await expect(page.locator('.hb-edit[data-edit="hero"]')).toBeHidden();
+  // Bearbeiten-Modus an: Federn erscheinen, Aktionsleiste zeigt Fertig
+  await page.locator('#hb-edit').click();
   await expect(page.locator('.hb-edit[data-edit="hero"]')).toBeVisible();
+  await expect(page.locator('#hb-done')).toBeVisible();
+  await expect(page.locator('#hb-save')).toBeHidden();
+  // Fertig: zurück in den Normalmodus
+  await page.locator('#hb-done').click();
+  await expect(page.locator('.hb-edit[data-edit="hero"]')).toBeHidden();
 });
 
 test('Heldenblatt zeigt Geschichte und vier Themes', async ({ page }) => {
@@ -147,6 +156,7 @@ test('Heldenblatt: Theme hat Feder, Titel-Tag und Weakness ohne X', async ({ pag
 test('Heldenblatt: Theme-Feder oeffnet Edit-Sheet', async ({ page }) => {
   await page.goto('/');
   await loadResultScreen(page);
+  await page.locator('#hb-edit').click();
   await page.locator('.hb-edit[data-edit="theme"]').first().click();
   await expect(page.locator('#edit-sheet-overlay')).toHaveClass(/active/);
 });
@@ -154,16 +164,19 @@ test('Heldenblatt: Theme-Feder oeffnet Edit-Sheet', async ({ page }) => {
 test('Heldenblatt: Held-Feder oeffnet Edit-Sheet', async ({ page }) => {
   await page.goto('/');
   await loadResultScreen(page);
+  await page.locator('#hb-edit').click();
   await page.locator('.hb-edit[data-edit="hero"]').click();
   await expect(page.locator('#edit-sheet-overlay')).toHaveClass(/active/);
   await expect(page.locator('.es-reroll-btn').first()).toBeVisible();
 });
 
-test('Heldenblatt: Aktionsleiste mit Speichern + Neu', async ({ page }) => {
+test('Heldenblatt: Aktionsleiste mit Bearbeiten + Speichern + Neu', async ({ page }) => {
   await page.goto('/');
   await loadResultScreen(page);
+  await expect(page.locator('#hb-edit')).toBeVisible();
   await expect(page.locator('#hb-save')).toBeVisible();
   await expect(page.locator('#hb-restart')).toBeVisible();
+  await expect(page.locator('#hb-done')).toBeHidden();
 });
 
 // #35: PHASEN-BALANCE

@@ -196,6 +196,8 @@ function initStrings() {
   if($('loading-text')) $('loading-text').textContent = STRINGS.loading.default;
   if($('hb-save'))    $('hb-save').textContent    = STRINGS.result.btnAccept;
   if($('hb-restart')) $('hb-restart').textContent = STRINGS.result.btnRestart;
+  if($('hb-edit'))    $('hb-edit').textContent    = STRINGS.result.btnEdit;
+  if($('hb-done'))    $('hb-done').textContent    = STRINGS.result.btnDone;
 }
 
 // #37 fix: Animation beim Zurück-Navigieren unterbinden
@@ -528,7 +530,7 @@ function finishSwiping() {
   state.busy=true; showLoading(STRINGS.loading.generating);
   setTimeout(function(){
     state.proposals=[generateProposal('initial')]; state.proposalIndex=0; state.edits={};
-    state.hero=generateHero(); state.hero.story=composeHeroStory(); HB_COLLAPSED={};
+    state.hero=generateHero(); state.hero.story=composeHeroStory(); HB_COLLAPSED={}; setHbEditing(false);
     show(SCREENS.RESULT);
     requestAnimationFrame(function(){
       renderHeldenblatt(); hideLoading(); state.busy=false;
@@ -617,6 +619,11 @@ function handleNavigate(ti,k,dir) {
    ERGEBNIS-BEREICH: Heldenblatt (eine scrollbare Charakterblatt-Seite)
 ===================================================== */
 var HB_COLLAPSED = {}; // ti -> true wenn Theme eingeklappt (Default: ausgeklappt)
+// Bearbeiten-Modus: blendet die Edit-Federn ein und tauscht die Aktionsleiste (Fertig).
+function setHbEditing(on){
+  var sc=$('screen-result'); if(!sc) return;
+  sc.classList.toggle('hb-editing', !!on);
+}
 
 // Story-Bausteine: clientseitig montiert, hook-getaggt. Bewusst pronomen-arm
 // gehalten (kein er/sie auf den Helden), damit die Montage grammatisch trägt.
@@ -683,23 +690,31 @@ function hbStorySection(){
 }
 function hbThemeSection(ti){
   var dt=getDisplayTheme(ti), mc=levelCssClass(dt.type), collapsed=!!HB_COLLAPSED[ti];
-  var rest = collapsed ? '' :
-    '<div class="hb-theme-rest">'+
-      '<div class="hb-powertag">'+displayTag(dt.powerTags[0].text)+'</div>'+
-      '<div class="hb-powertag">'+displayTag(dt.powerTags[1].text)+'</div>'+
-      (dt.tierTag?'<div class="hb-powertag hb-tiertag">'+displayTag(dt.tierTag.text)+'</div>':'')+
-      '<div class="hb-weakness">'+displayTag(dt.weaknessTag.text)+'</div>'+
+  // Kopfband (Might-Farbe): Theme Type links, Might-Stufe rechts — dezent.
+  var headBand =
+    '<div class="hb-band hb-band-head" data-toggle="'+ti+'">'+
+      '<span class="hb-band-type">'+escapeHtml(displayThemebook(dt.themebook))+'</span>'+
+      '<span class="hb-band-might">'+escapeHtml(displayMight(dt.type))+'<span class="hb-chev"></span></span>'+
+    '</div>';
+  // Mitte (neutral): Titel-Tag (groß) + Power Tags + Weakness.
+  var mid = '<div class="hb-theme-mid">'+
+      '<div class="hb-titletag">'+displayTag(dt.titleTag.text)+'</div>'+
+      (collapsed ? '' :
+        '<div class="hb-powertag">'+displayTag(dt.powerTags[0].text)+'</div>'+
+        '<div class="hb-powertag">'+displayTag(dt.powerTags[1].text)+'</div>'+
+        (dt.tierTag?'<div class="hb-powertag hb-tiertag">'+displayTag(dt.tierTag.text)+'</div>':'')+
+        '<div class="hb-weakness">'+displayTag(dt.weaknessTag.text)+'</div>')+
+    '</div>';
+  // Fußband (Might-Farbe): Quest.
+  var footBand = collapsed ? '' :
+    '<div class="hb-band hb-band-foot">'+
       '<div class="hb-quest-label">'+escapeHtml(STRINGS.result.questLabel)+'</div>'+
       '<div class="hb-quest-title">„'+escapeHtml(dt.quest.title)+'“</div>'+
       '<div class="hb-quest-desc">'+escapeHtml(dt.quest.description)+'</div>'+
-      '<div class="hb-theme-type">'+escapeHtml(STRINGS.result.themeTypeLabel)+': '+escapeHtml(displayThemebook(dt.themebook))+'</div>'+
     '</div>';
   return '<div class="hb-theme '+mc+(collapsed?' collapsed':'')+'">'+
     '<button class="hb-edit" data-edit="theme" data-ti="'+ti+'" type="button" aria-label="Theme bearbeiten">'+FEATHER_SVG+'</button>'+
-    '<div class="hb-theme-head" data-toggle="'+ti+'">'+
-      '<div class="hb-might">'+escapeHtml(displayMight(dt.type))+'<span class="hb-chev"></span></div>'+
-      '<div class="hb-titletag">'+displayTag(dt.titleTag.text)+'</div>'+
-    '</div>'+ rest +
+    headBand + mid + footBand +
   '</div>';
 }
 function hbPlaceholder(label){
@@ -731,7 +746,7 @@ function bindHeldenblatt(scroll){
       else if(k==='theme') openEditSheet(parseInt(btn.dataset.ti));
     });
   });
-  scroll.querySelectorAll('.hb-theme-head').forEach(function(head){
+  scroll.querySelectorAll('.hb-band-head').forEach(function(head){
     head.addEventListener('click', function(){
       var ti=parseInt(head.dataset.toggle);
       HB_COLLAPSED[ti]=!HB_COLLAPSED[ti];
@@ -1152,9 +1167,11 @@ $('btn-skip').addEventListener('click',    skipRemainingSwipes);
 $('btn-settings').addEventListener('click',      openSettings);
 // #37 fix: Animation beim Zurück-Navigieren unterbinden
 $('btn-settings-back').addEventListener('click', function(){saveSettingsFromUI();show(SCREENS.WELCOME, true);});
-// Heldenblatt-Aktionsleiste: Speichern (PDF) + Neu beginnen (zurück zur Startseite)
+// Heldenblatt-Aktionsleiste: Bearbeiten + Speichern (PDF) + Neu beginnen (zurück zur Startseite)
 if($('hb-save'))    $('hb-save').addEventListener('click', generatePDF);
-if($('hb-restart')) $('hb-restart').addEventListener('click', function(){ document.body.classList.remove('swipe-active'); show(SCREENS.WELCOME, true); });
+if($('hb-restart')) $('hb-restart').addEventListener('click', function(){ setHbEditing(false); document.body.classList.remove('swipe-active'); show(SCREENS.WELCOME, true); });
+if($('hb-edit'))    $('hb-edit').addEventListener('click', function(){ setHbEditing(true); });
+if($('hb-done'))    $('hb-done').addEventListener('click', function(){ setHbEditing(false); });
 $('edit-sheet-overlay').addEventListener('click', function(e){if(e.target===$('edit-sheet-overlay')) closeEditSheet();});
 // Settings-Redesign: Preset-Segmente + Schnellaktionen sind statisches Markup → einmalig binden.
 // (Toggles & Level-Chips werden bei jedem Render in buildSettingsUI neu gebunden.)
