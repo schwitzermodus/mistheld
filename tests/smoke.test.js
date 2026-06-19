@@ -140,16 +140,17 @@ test('Heldenblatt zeigt Geschichte und vier Themes', async ({ page }) => {
   await page.goto('/');
   await loadResultScreen(page);
   await expect(page.locator('.hb-story-text')).toBeVisible();
-  await expect(page.locator('.hb-theme')).toHaveCount(4);
+  // Auf den Ergebnis-Bereich eingrenzen: die Startseiten-Vorschau nutzt dieselbe .hb-theme-Karte.
+  await expect(page.locator('#hb-scroll .hb-theme')).toHaveCount(4);
 });
 
 test('Heldenblatt: Theme hat Feder, Titel-Tag und Weakness ohne X', async ({ page }) => {
   await page.goto('/');
   await loadResultScreen(page);
-  await expect(page.locator('.hb-edit[data-edit="theme"]')).toHaveCount(4);
-  await expect(page.locator('.hb-titletag').first()).toBeVisible();
-  await expect(page.locator('.hb-weakness').first()).toBeVisible();
-  const text = await page.locator('.hb-weakness').first().textContent();
+  await expect(page.locator('#hb-scroll .hb-edit[data-edit="theme"]')).toHaveCount(4);
+  await expect(page.locator('#hb-scroll .hb-titletag').first()).toBeVisible();
+  await expect(page.locator('#hb-scroll .hb-weakness').first()).toBeVisible();
+  const text = await page.locator('#hb-scroll .hb-weakness').first().textContent();
   expect(text).not.toMatch(/^\s*[Xx✕]/);
 });
 

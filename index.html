@@ -50,7 +50,8 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .mute-btn.muted .icon-on{display:none}
 .mute-btn.muted .icon-off{display:block;color:var(--accent)}
 /* WELCOME */
-#screen-welcome{justify-content:flex-start;text-align:center;padding:60px 28px 40px;position:relative;overflow:hidden;background:linear-gradient(180deg,#ecd7a6 0%,#e3d2ac 16%,#d0d2c2 38%,#b3bcb0 56%,#92a08b 72%,#6a7a4f 88%,#516037 100%)}
+#screen-welcome{padding:0;position:relative;overflow:hidden;background:linear-gradient(180deg,#ecd7a6 0%,#e3d2ac 16%,#d0d2c2 38%,#b3bcb0 56%,#92a08b 72%,#6a7a4f 88%,#516037 100%)}
+.welcome-scroll{flex:1;min-height:0;width:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;text-align:center;padding:56px 24px 40px;position:relative;z-index:1}
 .welcome-head{flex-shrink:0}
 /* Startseite: nebelige Tiefe (Wald -> Gebirge -> Himmel) + sanfte Nebel-Animation */
 .welcome-bg{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
@@ -73,26 +74,9 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .welcome-mark{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--accent);margin-bottom:8px;letter-spacing:0.12em;text-transform:uppercase}
 .welcome-title{font-size:3.2rem;font-weight:500;font-style:italic;margin:6px 0 0;color:var(--ink);position:relative;display:inline-block}
 .welcome-divider{margin:14px auto 0;max-width:240px}
-.welcome-preview{margin:36px auto 0;width:min(340px,calc(100% - 8px));height:440px;position:relative;perspective:1000px}
-.wp-card{position:absolute;inset:0;background:var(--paper);border:2px solid var(--line);border-radius:8px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;transition:opacity 0.5s ease,transform 0.5s ease}
-.wp-card.tc-origin{border-color:var(--might-origin-soft)}
-.wp-card.tc-adventure{border-color:var(--might-adventure-soft)}
-.wp-card.tc-greatness{border-color:var(--might-greatness-soft)}
-.wp-band{padding:7px 14px}
-.wp-band,.wp-band *{color:#faf3df}
-.wp-card.tc-origin .wp-band{background:var(--might-origin-soft)}
-.wp-card.tc-adventure .wp-band{background:var(--might-adventure-soft)}
-.wp-card.tc-greatness .wp-band{background:var(--might-greatness-soft)}
-.wp-band-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.wp-band-type{font-family:var(--serif);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.09em;font-weight:600}
-.wp-band-might{font-family:var(--serif);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.05em;font-weight:700;white-space:nowrap}
-.wp-mid{flex:1;display:flex;flex-direction:column;justify-content:center;padding:14px;text-align:center}
-.wp-title-tag{font-family:var(--serif);font-size:1.7rem;font-weight:700;line-height:1.15;color:var(--ink);background:rgba(169,134,70,0.10);border-radius:4px;padding:9px 10px;text-align:center}
-.wp-power-tag{font-family:var(--serif);font-size:1.02rem;line-height:1.3;color:var(--ink);background:rgba(169,134,70,0.08);border-radius:4px;padding:6px 10px;margin-top:7px;text-align:center}
-.wp-weakness-tag{font-family:var(--serif);font-size:1.02rem;line-height:1.3;color:#7a3010;background:rgba(170,80,20,0.10);border-radius:4px;padding:6px 10px;margin-top:7px;text-align:center}
-.wp-band-foot{text-align:center}
-.wp-quest-label{font-family:var(--serif);font-size:var(--fs-label);text-transform:uppercase;letter-spacing:0.13em;font-weight:600;opacity:0.85;line-height:1.2}
-.wp-quest{font-family:var(--serif);font-style:italic;font-weight:600;font-size:1.2rem;line-height:1.25;margin-top:3px}
+/* Vorschau zeigt EXAKT die Ergebnis-Theme-Karte (.hb-theme) bei natürlicher Höhe */
+.welcome-preview{margin:30px auto 0;width:min(360px,calc(100% - 8px));position:relative}
+#welcome-preview .hb-theme{margin:0;transition:opacity 0.5s ease}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--sans);font-weight:600;font-size:0.95rem;letter-spacing:0.02em;padding:14px 28px;border:none;border-radius:2px;cursor:pointer;transition:all 0.2s ease;min-height:48px;user-select:none}
 #btn-start{align-self:center;padding:12px 32px;min-width:0;margin-top:32px}
 .btn-primary{background:var(--ink);color:var(--bg)}
@@ -311,8 +295,8 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
 .loading-spinner{width:32px;height:32px;border:2px solid var(--line);border-top-color:var(--accent);border-radius:50%;animation:spin 0.9s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .loading-text{font-family:var(--serif);font-style:italic;color:var(--ink-soft)}
-@media(max-height:740px){.card-title{font-size:1.5rem}.welcome-preview{height:380px;margin-top:28px}.welcome-title{font-size:2.7rem}.welcome-mark{font-size:1.05rem}.wp-title-tag{font-size:1.4rem}.wp-power-tag,.wp-weakness-tag{font-size:0.95rem}.wp-quest{font-size:1.0rem}#screen-welcome{padding:48px 28px 32px}#btn-start{margin-top:24px}}
-@media(max-height:640px){.welcome-preview{height:330px;margin-top:18px}.welcome-title{font-size:2.4rem}.welcome-mark{font-size:0.95rem}.wp-title-tag{font-size:1.25rem}.wp-power-tag,.wp-weakness-tag{font-size:0.9rem;padding:4px 10px}.wp-quest{font-size:0.95rem}.wp-quest-label{font-size:0.74rem;padding-top:8px}#screen-welcome{padding:36px 24px 28px}#btn-start{margin-top:18px}}
+@media(max-height:740px){.card-title{font-size:1.5rem}.welcome-preview{margin-top:28px}.welcome-title{font-size:2.7rem}.welcome-mark{font-size:1.05rem}.welcome-scroll{padding:48px 28px 32px}#btn-start{margin-top:24px}}
+@media(max-height:640px){.welcome-preview{margin-top:18px}.welcome-title{font-size:2.4rem}.welcome-mark{font-size:0.95rem}.welcome-scroll{padding:36px 24px 28px}#btn-start{margin-top:18px}}
 </style>
 </head>
 <body>
@@ -332,14 +316,16 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
     <div class="wb-mist wb-mist-2"></div>
     <div class="wb-grain"></div>
   </div>
-  <div class="welcome-head">
-    <div class="welcome-mark"></div>
-    <h1 class="welcome-title"></h1>
-    <div class="hb-divider welcome-divider" aria-hidden="true"><span class="hb-divider-mark">❖</span></div>
+  <div class="welcome-scroll">
+    <div class="welcome-head">
+      <div class="welcome-mark"></div>
+      <h1 class="welcome-title"></h1>
+      <div class="hb-divider welcome-divider" aria-hidden="true"><span class="hb-divider-mark">❖</span></div>
+    </div>
+    <div class="welcome-preview" id="welcome-preview"></div>
+    <button class="btn btn-primary" id="btn-start"></button>
   </div>
-  <div class="welcome-preview" id="welcome-preview"></div>
-  <button class="btn btn-primary" id="btn-start"></button>
-  <div class="app-version">v2026-06-19.4</div>
+  <div class="app-version">v2026-06-19.5</div>
 </section>
 <section id="screen-swipe" class="screen">
   <div class="scene-bg" aria-hidden="true">

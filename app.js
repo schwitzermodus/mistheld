@@ -1102,22 +1102,24 @@ function generatePreviewTheme() {
 }
 
 function buildWelcomePreviewCard(theme) {
-  var mc = levelCssClass(theme.type);
-  // Gleiches Design wie die Heldenblatt-Theme-Karte: Kopfband + neutrale Mitte + Fu\u00dfband.
-  return '<div class="wp-card '+mc+'">'+
-    '<div class="wp-band wp-band-head">'+
-      '<span class="wp-band-type">'+escapeHtml(displayThemebook(theme.themebook))+'</span>'+
-      '<span class="wp-band-might">'+escapeHtml(displayMight(theme.type))+'</span>'+
+  var dt = theme, mc = levelCssClass(dt.type);
+  // EXAKT die Heldenblatt-Theme-Karte (gleiche Klassen/Struktur/Inhalt) \u2014 ohne Edit-Feder.
+  return '<div class="hb-theme '+mc+'">'+
+    '<div class="hb-band hb-band-head">'+
+      '<span class="hb-band-type">'+escapeHtml(displayThemebook(dt.themebook))+'</span>'+
+      '<span class="hb-band-might">'+escapeHtml(displayMight(dt.type))+'</span>'+
     '</div>'+
-    '<div class="wp-mid">'+
-      '<div class="wp-title-tag">'+displayTag(theme.titleTag.text)+'</div>'+
-      '<div class="wp-power-tag">'+displayTag(theme.powerTags[0].text)+'</div>'+
-      '<div class="wp-power-tag">'+displayTag(theme.powerTags[1].text)+'</div>'+
-      '<div class="wp-weakness-tag">'+displayTag(theme.weaknessTag.text)+'</div>'+
+    '<div class="hb-theme-mid">'+
+      '<div class="hb-titletag">'+displayTag(dt.titleTag.text)+'</div>'+
+      '<div class="hb-powertag">'+displayTag(dt.powerTags[0].text)+'</div>'+
+      '<div class="hb-powertag">'+displayTag(dt.powerTags[1].text)+'</div>'+
+      (dt.tierTag?'<div class="hb-powertag hb-tiertag">'+displayTag(dt.tierTag.text)+'</div>':'')+
+      '<div class="hb-weakness">'+displayTag(dt.weaknessTag.text)+'</div>'+
     '</div>'+
-    '<div class="wp-band wp-band-foot">'+
-      '<div class="wp-quest-label">'+escapeHtml(STRINGS.result.questLabel)+'</div>'+
-      '<div class="wp-quest">\u201e'+escapeHtml(theme.quest.title)+'\u201c</div>'+
+    '<div class="hb-band hb-band-foot">'+
+      '<div class="hb-quest-label">'+escapeHtml(STRINGS.result.questLabel)+'</div>'+
+      '<div class="hb-quest-title">\u201e'+escapeHtml(dt.quest.title)+'\u201c</div>'+
+      '<div class="hb-quest-desc">'+escapeHtml(dt.quest.description)+'</div>'+
     '</div>'+
   '</div>';
 }
@@ -1149,8 +1151,11 @@ function initWelcomePreview() {
   showNextPreviewCard();
   if(previewTimer) clearInterval(previewTimer);
   previewTimer = setInterval(function(){
-    // Nur weiter rotieren wenn Welcome-Screen aktiv (spart Ressourcen)
-    if($('screen-welcome') && $('screen-welcome').classList.contains('active')) {
+    // Nur rotieren, wenn Welcome aktiv UND der Nutzer oben ist (sonst springt die
+    // hohe Karte beim Lesen/Scrollen weg).
+    var w = $('screen-welcome');
+    var sc = document.querySelector('.welcome-scroll');
+    if(w && w.classList.contains('active') && (!sc || sc.scrollTop < 8)) {
       showNextPreviewCard();
     }
   }, 3500);
