@@ -43,22 +43,41 @@ test('Einstellungen oeffnen und schliessen', async ({ page }) => {
   await expect(page.locator('#screen-welcome')).toBeVisible();
 });
 
-test('Los-gehts zeigt Swipe-Screen direkt mit Kartenstapel', async ({ page }) => {
+test('Los-gehts fuehrt zum Zwischenschritt, dann zum Swipe-Screen', async ({ page }) => {
   await page.goto('/');
   await page.locator('#btn-start').click();
+  // Zwischenschritt zuerst
+  await expect(page.locator('#screen-intro')).toBeVisible();
+  await expect(page.locator('#screen-swipe')).not.toBeVisible();
+  // Von dort in den Swipe-Bereich
+  await page.locator('#btn-intro-start').click();
   await expect(page.locator('#screen-swipe')).toBeVisible();
   await expect(page.locator('.card.front')).toBeVisible();
 });
 
-test('Swipe-Karte: Inspiration-Kopfband + konkrete Beispiele', async ({ page }) => {
+test('Zwischenschritt: drei Modus-Karten, eine aktiv, Klick wechselt', async ({ page }) => {
   await page.goto('/');
   await page.locator('#btn-start').click();
+  await expect(page.locator('#intro-modes .intro-mode')).toHaveCount(3);
+  // Genau eine ist aktiv (vorausgewaehlt nach gespeicherter Einstellung)
+  await expect(page.locator('#intro-modes .intro-mode.on')).toHaveCount(1);
+  // Klick auf Individuell macht diese aktiv
+  await page.locator('#intro-modes .intro-mode[data-preset="custom"]').click();
+  await expect(page.locator('#intro-modes .intro-mode[data-preset="custom"]')).toHaveClass(/on/);
+  await expect(page.locator('#intro-modes .intro-mode.on')).toHaveCount(1);
+});
+
+test('Swipe-Karte: Inspiration-Kopfband ohne Ornament, Beschreibung + Archetypen', async ({ page }) => {
+  await page.goto('/');
+  await page.locator('#btn-start').click();
+  await page.locator('#btn-intro-start').click();
   var front = page.locator('.card.front');
-  // Neues Design: golden-neutrales Kopfband mit "Inspiration"
+  // Golden-neutrales Kopfband mit "Inspiration", kein dekoratives ❖ mehr
   await expect(front.locator('.card-band .card-eyebrow')).toHaveText('Inspiration');
-  // Beispiel-Block mit mind. 2 konkreten Helden/Szenen
-  var exCount = await front.locator('.card-ex-item').count();
-  expect(exCount).toBeGreaterThanOrEqual(2);
+  await expect(front.locator('.card-band .card-mark')).toHaveCount(0);
+  // Beschreibung (Hintergrund-Puzzleteil) + kompakte Archetypen-Zeile
+  await expect(front.locator('.card-text')).toBeVisible();
+  await expect(front.locator('.card-archetypes')).toBeVisible();
   await expect(front.locator('.card-title')).toBeVisible();
 });
 

@@ -5,6 +5,7 @@
 // Refactor: zentrale Konstanten — keine Magic Strings im Code
 var SCREENS = Object.freeze({
   WELCOME: 'screen-welcome',
+  INTRO:   'screen-intro',
   SWIPE:   'screen-swipe',
   RESULT:  'screen-result',
   SETTINGS:'screen-settings'
@@ -141,7 +142,8 @@ function getEnabledThemeTypes(settings) {
 
 var state = {
   cardIndex:0, shuffledCards:[], swipes:[], affinityScores:{}, hookCounts:{},
-  proposals:[], proposalIndex:0, busy:false, edits:{}, hero:null
+  proposals:[], proposalIndex:0, busy:false, edits:{}, hero:null,
+  settingsReturn: SCREENS.WELCOME
 };
 
 var $ = function(id){ return document.getElementById(id); };
@@ -211,7 +213,8 @@ function show(screenId, suppressAnim) {
   }
   el.classList.add('active');
   var sb=$('btn-settings');
-  if(sb) sb.style.display=screenId===SCREENS.WELCOME?'':'none';
+  // Gear auf Startseite UND Zwischenschritt sichtbar (von dort sind Feineinstellungen erreichbar)
+  if(sb) sb.style.display=(screenId===SCREENS.WELCOME||screenId===SCREENS.INTRO)?'':'none';
   // Mute-Button auf der Ergebnisseite ausblenden (kein oberer Balken, der den Bogen abschneidet)
   var mb=$('btn-mute');
   if(mb) mb.style.display=screenId===SCREENS.RESULT?'none':'';
@@ -316,21 +319,19 @@ function renderCard() {
           }).join('') + '</div></div>';
       }
     }
-    // Beispiele: konkrete Helden/Szenen (nur Front-Karte, falls vorhanden)
-    var examplesHtml = '';
+    // Archetypen-Zeile: kompakte Helden-Beispiele (nur Front-Karte, falls vorhanden)
+    var archetypesHtml = '';
     if (i === 0 && card.examples && card.examples.length) {
-      examplesHtml = '<div class="card-ex">'+
-        '<div class="card-ex-label">'+escapeHtml(STRINGS.swipe.examplesLabel)+'</div>'+
-        '<div class="card-ex-list">' + card.examples.map(function(ex){
-          return '<div class="card-ex-item">'+escapeHtml(ex)+'</div>';
-        }).join('') + '</div></div>';
+      archetypesHtml = '<div class="card-archetypes">'+
+        '<span class="card-arch-label">'+escapeHtml(STRINGS.swipe.examplesLabel)+'</span> '+
+        card.examples.map(function(ex){ return escapeHtml(ex); }).join(' · ')+
+      '</div>';
     }
     el.innerHTML=
       '<div class="card-decision-overlay yes">'+escapeHtml(STRINGS.swipe.decisionYes)+'</div>'+
       '<div class="card-decision-overlay no">'+escapeHtml(STRINGS.swipe.decisionNo)+'</div>'+
       '<div class="card-band">'+
         '<span class="card-eyebrow">'+escapeHtml(STRINGS.swipe.inspirationLabel)+'</span>'+
-        '<span class="card-mark">❖</span>'+
       '</div>'+
       '<div class="card-body">'+
         '<div class="card-prompt">'+
@@ -338,7 +339,7 @@ function renderCard() {
           '<div class="card-divider" aria-hidden="true"><span class="card-divider-mark">❖</span></div>'+
           '<div class="card-text">'+escapeHtml(card.text)+'</div>'+
         '</div>'+
-        examplesHtml+
+        archetypesHtml+
       '</div>'+
       footBand;
     if(i===0) { attachSwipe(el); if(state.cardIndex===0&&!state.swipes.length) el.classList.add('card-hint'); }
@@ -1079,10 +1080,44 @@ function applyQuickAction(act) {
 }
 
 function openSettings() {
+  // Rücksprung-Ziel merken (Einstellungen sind von Startseite UND Zwischenschritt erreichbar)
+  var active = document.querySelector('.screen.active');
+  state.settingsReturn = (active && active.id) ? active.id : SCREENS.WELCOME;
   buildSettingsUI();
   show(SCREENS.SETTINGS);
 }
 function updateSettingsUI() { buildSettingsUI(); }
+
+/* =====================================================
+   ZWISCHENSCHRITT: Prinzip-Erklärung + Modus-Auswahl
+===================================================== */
+function renderIntro() {
+  if($('intro-title'))     $('intro-title').textContent     = STRINGS.intro.title;
+  if($('intro-text'))      $('intro-text').textContent      = STRINGS.intro.intro;
+  if($('intro-modelabel')) $('intro-modelabel').textContent = STRINGS.intro.modeLabel;
+  if($('intro-hint'))      $('intro-hint').textContent      = STRINGS.intro.settingsHint;
+  if($('btn-intro-start')) $('btn-intro-start').textContent = STRINGS.intro.cta;
+  var cur = loadSettings().preset;
+  var modes = $('intro-modes');
+  if(modes) {
+    modes.querySelectorAll('.intro-mode').forEach(function(b){
+      var p = b.dataset.preset, on = (p === cur);
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-checked', on ? 'true' : 'false');
+      var nameEl = b.querySelector('.intro-mode-name');
+      var descEl = b.querySelector('.intro-mode-desc');
+      if(nameEl) nameEl.textContent = STRINGS.settings.presets[p];
+      if(descEl) descEl.textContent = STRINGS.intro.modeDesc[p];
+    });
+  }
+}
+// Nur bei echtem Wechsel setPreset (das setzt Theme-Typen auf Preset-Default zurück);
+// derselbe Modus bewahrt etwaige Detaileinstellungen aus dem Einstellungen-Screen.
+function selectIntroMode(preset) {
+  if(PRESETS.indexOf(preset) === -1) return;
+  if(loadSettings().preset !== preset) setPreset(preset);
+  renderIntro();
+}
 // Settings werden bei jeder Aenderung sofort persistiert; nichts weiter zu tun.
 function saveSettingsFromUI() {}
 
@@ -1182,14 +1217,26 @@ function initWelcomePreview() {
 
 /* EVENT BINDINGS */
 initStrings(); initAudio(); initWelcomePreview();
-$('btn-start').addEventListener('click', startSwipe);
+// Startseite -> Zwischenschritt (Modus-Auswahl), erst dann Swipe
+$('btn-start').addEventListener('click', function(){ renderIntro(); show(SCREENS.INTRO); });
+if($('btn-intro-start')) $('btn-intro-start').addEventListener('click', startSwipe);
+if($('intro-modes')) {
+  $('intro-modes').querySelectorAll('.intro-mode').forEach(function(b){
+    b.addEventListener('click', function(){ selectIntroMode(b.dataset.preset); });
+  });
+}
 $('btn-yes').addEventListener('click',  function(){programmaticDecide('yes');});
 $('btn-no').addEventListener('click',   function(){programmaticDecide('no');});
 $('btn-undo').addEventListener('click', undoLast);
 $('btn-skip').addEventListener('click',    skipRemainingSwipes);
 $('btn-settings').addEventListener('click',      openSettings);
 // #37 fix: Animation beim Zurück-Navigieren unterbinden
-$('btn-settings-back').addEventListener('click', function(){saveSettingsFromUI();show(SCREENS.WELCOME, true);});
+$('btn-settings-back').addEventListener('click', function(){
+  saveSettingsFromUI();
+  var ret = state.settingsReturn || SCREENS.WELCOME;
+  if(ret === SCREENS.INTRO) renderIntro();
+  show(ret, true);
+});
 // Heldenblatt-Aktionsleiste: Bearbeiten + Speichern (PDF) + Neu beginnen (zurück zur Startseite)
 if($('hb-save'))    $('hb-save').addEventListener('click', generatePDF);
 if($('hb-restart')) $('hb-restart').addEventListener('click', function(){ setHbEditing(false); document.body.classList.remove('swipe-active'); show(SCREENS.WELCOME, true); });

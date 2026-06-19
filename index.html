@@ -87,6 +87,23 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .btn-primary{background:var(--ink);color:var(--bg)}
 .btn-primary:hover{background:var(--accent)}
 .btn-primary:active{transform:scale(0.98)}
+/* INTRO / Zwischenschritt: Prinzip-Erklärung + Modus-Auswahl */
+#screen-intro{padding:0;position:relative;overflow:hidden;background:linear-gradient(180deg,#ecd7a6 0%,#e3d2ac 16%,#d0d2c2 38%,#b3bcb0 56%,#92a08b 72%,#6a7a4f 88%,#516037 100%)}
+.intro-scroll{flex:1;min-height:0;width:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:calc(30px + env(safe-area-inset-top,0px)) 22px 24px;position:relative;z-index:1;display:flex;flex-direction:column;align-items:stretch;text-align:center}
+.intro-title{font-size:2.1rem;font-weight:500;font-style:italic;color:var(--ink);text-shadow:0 1px 12px rgba(244,234,213,0.6);margin-bottom:10px}
+.intro-panel{background:var(--paper);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow-soft);padding:14px 16px;font-size:var(--fs-body-lg);line-height:1.55;color:var(--ink);text-align:left}
+.intro-modelabel{font-size:var(--fs-label);text-transform:uppercase;letter-spacing:0.14em;color:#3a3326;font-weight:700;text-align:left;margin:16px 2px 8px}
+.intro-modes{display:flex;flex-direction:column;gap:9px}
+.intro-mode{display:flex;align-items:flex-start;gap:11px;border:1px solid var(--line);border-radius:9px;padding:12px 13px;background:#fbf6e8;cursor:pointer;text-align:left;font-family:var(--serif);transition:transform 0.12s,border-color 0.12s,background 0.12s}
+.intro-mode:active{transform:scale(0.99)}
+.intro-mode.on{border:2px solid var(--gold);background:rgba(169,134,70,0.10);padding:11px 12px}
+.intro-mode-rb{flex-shrink:0;width:18px;height:18px;border-radius:50%;border:2px solid var(--gold);margin-top:3px;position:relative}
+.intro-mode.on .intro-mode-rb::after{content:'';position:absolute;inset:3px;border-radius:50%;background:var(--gold)}
+.intro-mode-tx{display:flex;flex-direction:column;gap:2px}
+.intro-mode-name{font-weight:700;font-size:var(--fs-body-lg);color:var(--ink)}
+.intro-mode-desc{font-size:var(--fs-body);color:var(--ink-soft);line-height:1.35}
+.intro-hint{font-size:var(--fs-label);color:#3a3326;text-align:center;line-height:1.4;margin-top:14px;opacity:0.92}
+#btn-intro-start{align-self:center;margin-top:16px;padding:13px 36px;box-shadow:0 6px 18px rgba(40,30,15,0.32)}
 /* SWIPE */
 #screen-swipe{padding:56px 20px 12px;touch-action:none;overflow:hidden;position:relative}
 .card-counter{text-align:center;font-size:0.85rem;color:var(--ink-soft);margin-bottom:10px;letter-spacing:0.06em;flex-shrink:0}
@@ -105,29 +122,25 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 /* Kopfband: golden-neutral (Inspiration = unbestimmtes Potenzial, keine Might-Farbe) */
 .card-band{flex-shrink:0;padding:8px 15px;display:flex;align-items:center;justify-content:space-between;gap:8px;background:linear-gradient(90deg,#b89758,#a98646)}
 .card-band *{color:#fbf3df}
-.card-eyebrow{font-size:var(--fs-label);text-transform:uppercase;letter-spacing:0.14em;font-weight:600}
-.card-mark{font-size:1rem;opacity:0.92}
-/* Mitte: Pergament füllt die Höhe; Titel/Text oben zentriert, Beispiele unten verankert */
+.card-eyebrow{font-size:var(--fs-body);text-transform:uppercase;letter-spacing:0.14em;font-weight:600}
+/* Mitte: Pergament füllt die Höhe; Titel/Beschreibung oben zentriert, Archetypen unten verankert */
 .card-body{flex:1;min-height:0;display:flex;flex-direction:column;padding:16px 22px;overflow:hidden}
 .card-prompt{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
-.card-ex{flex-shrink:0;text-align:center}
 .card-title{font-family:var(--serif);font-size:var(--fs-display);font-weight:600;font-style:italic;line-height:1.2;color:var(--ink);max-width:290px}
 /* ❖-Trenner im Heldenblatt-Stil */
 .card-divider{display:flex;align-items:center;justify-content:center;gap:9px;color:var(--gold);width:100%;max-width:200px;margin:11px auto;flex-shrink:0}
 .card-divider::before,.card-divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(169,134,70,0.6))}
 .card-divider::after{background:linear-gradient(90deg,rgba(169,134,70,0.6),transparent)}
 .card-divider-mark{font-size:0.85rem;line-height:1}
-.card-text{font-family:var(--serif);font-size:var(--fs-body-lg);line-height:1.5;color:var(--ink-soft);max-width:270px}
-/* Beispiele: konkrete Helden/Szenen */
-.card-ex-label{font-size:var(--fs-micro);text-transform:uppercase;letter-spacing:0.13em;color:var(--ink-soft);font-weight:600;margin:16px 0 7px}
-.card-ex-list{display:flex;flex-direction:column;gap:5px}
-.card-ex-item{font-family:var(--serif);font-size:var(--fs-body-lg);font-style:italic;color:var(--ink);display:flex;align-items:baseline;gap:8px;justify-content:center;line-height:1.25}
-.card-ex-item::before{content:'\203a';color:var(--gold);font-style:normal;font-weight:700}
+.card-text{font-family:var(--serif);font-size:var(--fs-title);line-height:1.45;color:var(--ink-soft);max-width:280px}
+/* Archetypen: kompakte Helden-Beispiele in einer Zeile */
+.card-archetypes{flex-shrink:0;text-align:center;font-family:var(--serif);font-size:var(--fs-body);color:var(--ink);line-height:1.4;margin-top:16px;text-wrap:balance}
+.card-arch-label{color:var(--ink-soft);font-style:italic}
 /* Fußband: Theme-Typ-Hinweise (tier-farbige Chips) */
 .card-foot{flex-shrink:0;padding:9px 14px 11px;background:rgba(120,96,48,0.08);border-top:1px solid var(--line-soft)}
-.card-foot-label{font-size:var(--fs-micro);text-transform:uppercase;letter-spacing:0.13em;color:var(--ink-soft);font-weight:600;text-align:center;margin-bottom:6px}
+.card-foot-label{font-size:var(--fs-label);text-transform:uppercase;letter-spacing:0.13em;color:var(--ink-soft);font-weight:600;text-align:center;margin-bottom:6px}
 .card-themes{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
-.card-theme-tag{font-size:var(--fs-label);font-family:var(--serif);font-weight:600;letter-spacing:0.02em;padding:3px 11px;border-radius:20px}
+.card-theme-tag{font-size:var(--fs-body);font-family:var(--serif);font-weight:600;letter-spacing:0.02em;padding:3px 11px;border-radius:20px}
 .card-theme-tag.tc-origin{background:rgba(98,114,78,0.16);color:var(--might-origin);border:1px solid rgba(98,114,78,0.4)}
 .card-theme-tag.tc-adventure{background:rgba(145,94,79,0.16);color:var(--might-adventure);border:1px solid rgba(145,94,79,0.4)}
 .card-theme-tag.tc-greatness{background:rgba(101,108,107,0.18);color:#3f4b53;border:1px solid rgba(101,108,107,0.45)}
@@ -347,7 +360,36 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
     <div class="welcome-preview" id="welcome-preview"></div>
     <button class="btn btn-primary" id="btn-start"></button>
   </div>
-  <div class="app-version">v2026-06-19.7</div>
+  <div class="app-version">v2026-06-19.8</div>
+</section>
+<section id="screen-intro" class="screen">
+  <div class="scene-bg" aria-hidden="true">
+    <svg class="wb-mountains" viewBox="0 0 400 200" preserveAspectRatio="xMidYMax slice"><path d="M0,200 L0,118 L70,64 L140,108 L210,52 L290,104 L350,58 L400,92 L400,200 Z" fill="#7c8a8c"/><path d="M0,200 L0,150 L80,104 L170,150 L250,112 L330,150 L400,120 L400,200 Z" fill="#9aa69f"/></svg>
+    <div class="wb-mist wb-mist-1"></div>
+    <div class="wb-mist wb-mist-2"></div>
+    <div class="wb-grain"></div>
+  </div>
+  <div class="intro-scroll">
+    <h1 class="intro-title" id="intro-title"></h1>
+    <div class="intro-panel" id="intro-text"></div>
+    <div class="intro-modelabel" id="intro-modelabel"></div>
+    <div class="intro-modes" id="intro-modes" role="radiogroup">
+      <button type="button" class="intro-mode" data-preset="beginner" role="radio" aria-checked="false">
+        <span class="intro-mode-rb" aria-hidden="true"></span>
+        <span class="intro-mode-tx"><span class="intro-mode-name"></span><span class="intro-mode-desc"></span></span>
+      </button>
+      <button type="button" class="intro-mode" data-preset="standard" role="radio" aria-checked="false">
+        <span class="intro-mode-rb" aria-hidden="true"></span>
+        <span class="intro-mode-tx"><span class="intro-mode-name"></span><span class="intro-mode-desc"></span></span>
+      </button>
+      <button type="button" class="intro-mode" data-preset="custom" role="radio" aria-checked="false">
+        <span class="intro-mode-rb" aria-hidden="true"></span>
+        <span class="intro-mode-tx"><span class="intro-mode-name"></span><span class="intro-mode-desc"></span></span>
+      </button>
+    </div>
+    <div class="intro-hint" id="intro-hint"></div>
+    <button class="btn btn-primary" id="btn-intro-start"></button>
+  </div>
 </section>
 <section id="screen-swipe" class="screen">
   <div class="scene-bg" aria-hidden="true">
@@ -429,10 +471,22 @@ var STRINGS={
     ],
     btnStart:"Los geht's",
   },
+  intro:{
+    title:'Bevor du beginnst',
+    intro:'Du bekommst eine Reihe von Inspirationen. Wische intuitiv weg, was nicht passt, und behalte, was zu deinem nächsten Helden passen könnte. Aus deiner Auswahl baut der Generator einen Helden, den du danach noch frei bearbeiten kannst.',
+    modeLabel:'Spielmodus',
+    modeDesc:{
+      beginner:'Nur Ursprung-Themen, Might fest. Ideal für den ersten Helden.',
+      standard:'Alle Theme-Typen auf Buchstufe. Begleiter, Magie und Besitz frei in der Stufe.',
+      custom:'Volle Kontrolle über jeden Theme-Typ und jede Might-Stufe.'
+    },
+    settingsHint:'Feineinstellungen je Modus unter Einstellungen.',
+    cta:"Los geht's",
+  },
   swipe:{
     decisionYes:'Passt',decisionNo:'Nicht',
     cardCounter:function(cur,tot){return 'Karte '+cur+' von '+tot;},
-    inspirationLabel:'Inspiration',possibleThemesLabel:'Mögliche Themen',examplesLabel:'Zum Beispiel',
+    inspirationLabel:'Inspiration',possibleThemesLabel:'Theme-Typen',examplesLabel:'etwa:',
     ariaYes:'Passt',ariaNo:'Passt nicht',ariaUndo:'Letzte Karte zurück',ariaSkip:'Restliche Karten überspringen',
   },
   result:{
