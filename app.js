@@ -1103,14 +1103,22 @@ function generatePreviewTheme() {
 
 function buildWelcomePreviewCard(theme) {
   var mc = levelCssClass(theme.type);
+  // Gleiches Design wie die Heldenblatt-Theme-Karte: Kopfband + neutrale Mitte + Fu\u00dfband.
   return '<div class="wp-card '+mc+'">'+
-    '<div class="wp-type">'+escapeHtml(displayThemebook(theme.themebook))+'</div>'+
-    '<div class="wp-title-tag">'+displayTag(theme.titleTag.text)+'</div>'+
-    '<div class="wp-power-tag">'+displayTag(theme.powerTags[0].text)+'</div>'+
-    '<div class="wp-power-tag">'+displayTag(theme.powerTags[1].text)+'</div>'+
-    '<div class="wp-weakness-tag">'+displayTag(theme.weaknessTag.text)+'</div>'+
-    '<div class="wp-quest-label">'+escapeHtml(STRINGS.result.questLabel)+'</div>'+
-    '<div class="wp-quest">\u201e'+escapeHtml(theme.quest.title)+'\u201c</div>'+
+    '<div class="wp-band wp-band-head">'+
+      '<span class="wp-band-type">'+escapeHtml(displayThemebook(theme.themebook))+'</span>'+
+      '<span class="wp-band-might">'+escapeHtml(displayMight(theme.type))+'</span>'+
+    '</div>'+
+    '<div class="wp-mid">'+
+      '<div class="wp-title-tag">'+displayTag(theme.titleTag.text)+'</div>'+
+      '<div class="wp-power-tag">'+displayTag(theme.powerTags[0].text)+'</div>'+
+      '<div class="wp-power-tag">'+displayTag(theme.powerTags[1].text)+'</div>'+
+      '<div class="wp-weakness-tag">'+displayTag(theme.weaknessTag.text)+'</div>'+
+    '</div>'+
+    '<div class="wp-band wp-band-foot">'+
+      '<div class="wp-quest-label">'+escapeHtml(STRINGS.result.questLabel)+'</div>'+
+      '<div class="wp-quest">\u201e'+escapeHtml(theme.quest.title)+'\u201c</div>'+
+    '</div>'+
   '</div>';
 }
 
