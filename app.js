@@ -301,27 +301,46 @@ function renderCard() {
     var el=document.createElement('div');
     el.className='card'+(i===0?' front':' behind behind-'+i);
     el.style.zIndex=String(10-i);
-    // #42 + #44: Theme-Type Tags UNTEN auf der Karte, deaktivierte Theme Types ausblenden
-    var themeTags = '';
+    // #42 + #44: Theme-Type Hinweise im Fußband, deaktivierte Theme Types ausblenden
+    var footBand = '';
     if (i === 0 && card.affinities) {
       var _settings = loadSettings();
       var sorted = Object.entries(card.affinities)
         .filter(function(kv){ return isThemeTypeEnabled(kv[0], _settings); })
         .sort(function(a,b){return b[1]-a[1];}).slice(0,3);
       if (sorted.length > 0) {
-        themeTags = '<div class="card-themes">' + sorted.map(function(kv){
-          return '<span class="card-theme-tag '+tierClass(kv[0])+'">'+escapeHtml(displayThemebook(kv[0]))+'</span>';
-        }).join('') + '</div>';
+        footBand = '<div class="card-foot">'+
+          '<div class="card-foot-label">'+escapeHtml(STRINGS.swipe.possibleThemesLabel)+'</div>'+
+          '<div class="card-themes">' + sorted.map(function(kv){
+            return '<span class="card-theme-tag '+tierClass(kv[0])+'">'+escapeHtml(displayThemebook(kv[0]))+'</span>';
+          }).join('') + '</div></div>';
       }
+    }
+    // Beispiele: konkrete Helden/Szenen (nur Front-Karte, falls vorhanden)
+    var examplesHtml = '';
+    if (i === 0 && card.examples && card.examples.length) {
+      examplesHtml = '<div class="card-ex">'+
+        '<div class="card-ex-label">'+escapeHtml(STRINGS.swipe.examplesLabel)+'</div>'+
+        '<div class="card-ex-list">' + card.examples.map(function(ex){
+          return '<div class="card-ex-item">'+escapeHtml(ex)+'</div>';
+        }).join('') + '</div></div>';
     }
     el.innerHTML=
       '<div class="card-decision-overlay yes">'+escapeHtml(STRINGS.swipe.decisionYes)+'</div>'+
       '<div class="card-decision-overlay no">'+escapeHtml(STRINGS.swipe.decisionNo)+'</div>'+
-      '<div class="card-glyph">~</div>'+
-      '<div class="card-title">'+escapeHtml(card.title)+'</div>'+
-      '<div class="card-divider"></div>'+
-      '<div class="card-text">'+escapeHtml(card.text)+'</div>'+
-      themeTags;
+      '<div class="card-band">'+
+        '<span class="card-eyebrow">'+escapeHtml(STRINGS.swipe.inspirationLabel)+'</span>'+
+        '<span class="card-mark">❖</span>'+
+      '</div>'+
+      '<div class="card-body">'+
+        '<div class="card-prompt">'+
+          '<div class="card-title">'+escapeHtml(card.title)+'</div>'+
+          '<div class="card-divider" aria-hidden="true"><span class="card-divider-mark">❖</span></div>'+
+          '<div class="card-text">'+escapeHtml(card.text)+'</div>'+
+        '</div>'+
+        examplesHtml+
+      '</div>'+
+      footBand;
     if(i===0) { attachSwipe(el); if(state.cardIndex===0&&!state.swipes.length) el.classList.add('card-hint'); }
     stage.appendChild(el);
   }

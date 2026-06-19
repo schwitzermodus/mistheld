@@ -91,7 +91,7 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 #screen-swipe{padding:56px 20px 12px;touch-action:none;overflow:hidden;position:relative}
 .card-counter{text-align:center;font-size:0.85rem;color:var(--ink-soft);margin-bottom:10px;letter-spacing:0.06em;flex-shrink:0}
 .card-stage{position:relative;flex:1;min-height:0;margin:0 auto;width:100%;max-width:360px;display:flex;align-items:center;justify-content:center;touch-action:none}
-.card{position:absolute;width:100%;height:100%;background:var(--paper);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);padding:22px 24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;cursor:grab;user-select:none;-webkit-user-select:none;touch-action:none;will-change:transform,opacity;transform:translate3d(0,0,0);transition:transform 0.4s cubic-bezier(0.18,0.89,0.32,1.18),opacity 0.3s ease-out}
+.card{position:absolute;width:100%;height:100%;background:var(--paper);border:2px solid var(--gold);border-radius:10px;box-shadow:var(--shadow);padding:0;display:flex;flex-direction:column;overflow:hidden;cursor:grab;user-select:none;-webkit-user-select:none;touch-action:none;will-change:transform,opacity;transform:translate3d(0,0,0);transition:transform 0.4s cubic-bezier(0.18,0.89,0.32,1.18),opacity 0.3s ease-out}
 .card.dragging{transition:none;cursor:grabbing}
 .card.behind{pointer-events:none}
 .card.behind-1{transform:translate3d(0,10px,0) scale(0.96);opacity:0.95}
@@ -102,19 +102,37 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .card.abandoned{pointer-events:none}
 @keyframes hint-swipe{0%{transform:translate3d(0,0,0)}18%{transform:translate3d(-28px,0,0) rotate(-4deg)}36%{transform:translate3d(0,0,0)}56%{transform:translate3d(32px,0,0) rotate(4deg)}74%,100%{transform:translate3d(0,0,0)}}
 .card-hint{animation:hint-swipe 1.5s ease-in-out 0.9s 1 forwards}
-/* #42: Theme-Type Tags auf Swipe-Karten */
-.card-themes{display:flex;gap:5px;flex-wrap:wrap;justify-content:center;margin-bottom:10px}
-.card-theme-tag{font-size:0.6rem;text-transform:uppercase;letter-spacing:0.09em;padding:2px 7px;border-radius:3px;font-family:var(--sans);font-weight:500}
-.card-theme-tag.tc-origin{background:rgba(61,92,42,0.1);color:var(--might-origin)}
-.card-theme-tag.tc-adventure{background:rgba(139,58,43,0.1);color:var(--might-adventure)}
-.card-theme-tag.tc-greatness{background:rgba(66,82,90,0.12);color:var(--might-greatness)}
-.card-theme-tag.tc-variable{background:rgba(169,134,70,0.12);color:var(--gold)}
-.card-glyph{font-size:1.8rem;color:var(--gold);margin-bottom:8px;font-family:var(--serif);font-style:italic;position:relative}
-.card-glyph::before,.card-glyph::after{content:'';display:inline-block;width:20px;height:1px;background:var(--gold);vertical-align:middle;margin:0 10px;opacity:0.6}
-.card-title{font-family:var(--serif);font-size:1.7rem;font-weight:600;font-style:italic;line-height:1.2;color:var(--ink);max-width:280px}
-.card-divider{width:36px;height:1px;background:var(--gold);margin:8px auto;opacity:0.65;flex-shrink:0}
-.card-text{font-family:var(--serif);font-size:1.1rem;line-height:1.5;color:var(--ink);max-width:260px}
-.card-decision-overlay{position:absolute;top:16px;font-family:var(--serif);font-size:2rem;font-style:italic;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:8px 16px;border:3px solid;border-radius:4px;opacity:0;pointer-events:none;transition:opacity 0.05s linear}
+/* Kopfband: golden-neutral (Inspiration = unbestimmtes Potenzial, keine Might-Farbe) */
+.card-band{flex-shrink:0;padding:8px 15px;display:flex;align-items:center;justify-content:space-between;gap:8px;background:linear-gradient(90deg,#b89758,#a98646)}
+.card-band *{color:#fbf3df}
+.card-eyebrow{font-size:var(--fs-label);text-transform:uppercase;letter-spacing:0.14em;font-weight:600}
+.card-mark{font-size:1rem;opacity:0.92}
+/* Mitte: Pergament füllt die Höhe; Titel/Text oben zentriert, Beispiele unten verankert */
+.card-body{flex:1;min-height:0;display:flex;flex-direction:column;padding:16px 22px;overflow:hidden}
+.card-prompt{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.card-ex{flex-shrink:0;text-align:center}
+.card-title{font-family:var(--serif);font-size:var(--fs-display);font-weight:600;font-style:italic;line-height:1.2;color:var(--ink);max-width:290px}
+/* ❖-Trenner im Heldenblatt-Stil */
+.card-divider{display:flex;align-items:center;justify-content:center;gap:9px;color:var(--gold);width:100%;max-width:200px;margin:11px auto;flex-shrink:0}
+.card-divider::before,.card-divider::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(169,134,70,0.6))}
+.card-divider::after{background:linear-gradient(90deg,rgba(169,134,70,0.6),transparent)}
+.card-divider-mark{font-size:0.85rem;line-height:1}
+.card-text{font-family:var(--serif);font-size:var(--fs-body-lg);line-height:1.5;color:var(--ink-soft);max-width:270px}
+/* Beispiele: konkrete Helden/Szenen */
+.card-ex-label{font-size:var(--fs-micro);text-transform:uppercase;letter-spacing:0.13em;color:var(--ink-soft);font-weight:600;margin:16px 0 7px}
+.card-ex-list{display:flex;flex-direction:column;gap:5px}
+.card-ex-item{font-family:var(--serif);font-size:var(--fs-body-lg);font-style:italic;color:var(--ink);display:flex;align-items:baseline;gap:8px;justify-content:center;line-height:1.25}
+.card-ex-item::before{content:'\203a';color:var(--gold);font-style:normal;font-weight:700}
+/* Fußband: Theme-Typ-Hinweise (tier-farbige Chips) */
+.card-foot{flex-shrink:0;padding:9px 14px 11px;background:rgba(120,96,48,0.08);border-top:1px solid var(--line-soft)}
+.card-foot-label{font-size:var(--fs-micro);text-transform:uppercase;letter-spacing:0.13em;color:var(--ink-soft);font-weight:600;text-align:center;margin-bottom:6px}
+.card-themes{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.card-theme-tag{font-size:var(--fs-label);font-family:var(--serif);font-weight:600;letter-spacing:0.02em;padding:3px 11px;border-radius:20px}
+.card-theme-tag.tc-origin{background:rgba(98,114,78,0.16);color:var(--might-origin);border:1px solid rgba(98,114,78,0.4)}
+.card-theme-tag.tc-adventure{background:rgba(145,94,79,0.16);color:var(--might-adventure);border:1px solid rgba(145,94,79,0.4)}
+.card-theme-tag.tc-greatness{background:rgba(101,108,107,0.18);color:#3f4b53;border:1px solid rgba(101,108,107,0.45)}
+.card-theme-tag.tc-variable{background:rgba(169,134,70,0.16);color:#8a6a2e;border:1px solid rgba(169,134,70,0.45)}
+.card-decision-overlay{position:absolute;top:54px;font-family:var(--serif);font-size:2rem;font-style:italic;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:8px 16px;border:3px solid;border-radius:4px;opacity:0;pointer-events:none;transition:opacity 0.05s linear;z-index:5}
 .card-decision-overlay.yes{right:18px;color:var(--green);border-color:var(--green);transform:rotate(-12deg)}
 .card-decision-overlay.no{left:18px;color:var(--accent);border-color:var(--accent);transform:rotate(12deg)}
 .swipe-controls{display:flex;justify-content:center;align-items:center;gap:14px;padding:10px 0 6px;flex-shrink:0}
@@ -329,7 +347,7 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
     <div class="welcome-preview" id="welcome-preview"></div>
     <button class="btn btn-primary" id="btn-start"></button>
   </div>
-  <div class="app-version">v2026-06-19.6</div>
+  <div class="app-version">v2026-06-19.7</div>
 </section>
 <section id="screen-swipe" class="screen">
   <div class="scene-bg" aria-hidden="true">
@@ -414,6 +432,7 @@ var STRINGS={
   swipe:{
     decisionYes:'Passt',decisionNo:'Nicht',
     cardCounter:function(cur,tot){return 'Karte '+cur+' von '+tot;},
+    inspirationLabel:'Inspiration',possibleThemesLabel:'Mögliche Themen',examplesLabel:'Zum Beispiel',
     ariaYes:'Passt',ariaNo:'Passt nicht',ariaUndo:'Letzte Karte zurück',ariaSkip:'Restliche Karten überspringen',
   },
   result:{

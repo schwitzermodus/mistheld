@@ -50,6 +50,18 @@ test('Los-gehts zeigt Swipe-Screen direkt mit Kartenstapel', async ({ page }) =>
   await expect(page.locator('.card.front')).toBeVisible();
 });
 
+test('Swipe-Karte: Inspiration-Kopfband + konkrete Beispiele', async ({ page }) => {
+  await page.goto('/');
+  await page.locator('#btn-start').click();
+  var front = page.locator('.card.front');
+  // Neues Design: golden-neutrales Kopfband mit "Inspiration"
+  await expect(front.locator('.card-band .card-eyebrow')).toHaveText('Inspiration');
+  // Beispiel-Block mit mind. 2 konkreten Helden/Szenen
+  var exCount = await front.locator('.card-ex-item').count();
+  expect(exCount).toBeGreaterThanOrEqual(2);
+  await expect(front.locator('.card-title')).toBeVisible();
+});
+
 // JS-GESUNDHEIT
 test('Keine JS-Fehler beim Seitenaufruf', async ({ page }) => {
   const errors = [];
