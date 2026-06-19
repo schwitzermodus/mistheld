@@ -530,7 +530,7 @@ function finishSwiping() {
   state.busy=true; showLoading(STRINGS.loading.generating);
   setTimeout(function(){
     state.proposals=[generateProposal('initial')]; state.proposalIndex=0; state.edits={};
-    state.hero=generateHero(); state.hero.story=composeHeroStory(); HB_COLLAPSED={}; setHbEditing(false);
+    state.hero=generateHero(); state.hero.story=composeHeroStory(); setHbEditing(false);
     show(SCREENS.RESULT);
     requestAnimationFrame(function(){
       renderHeldenblatt(); hideLoading(); state.busy=false;
@@ -618,7 +618,6 @@ function handleNavigate(ti,k,dir) {
 /* =====================================================
    ERGEBNIS-BEREICH: Heldenblatt (eine scrollbare Charakterblatt-Seite)
 ===================================================== */
-var HB_COLLAPSED = {}; // ti -> true wenn Theme eingeklappt (Default: ausgeklappt)
 // Bearbeiten-Modus: blendet die Edit-Federn ein und tauscht die Aktionsleiste (Fertig).
 function setHbEditing(on){
   var sc=$('screen-result'); if(!sc) return;
@@ -689,30 +688,29 @@ function hbStorySection(){
   '</div>';
 }
 function hbThemeSection(ti){
-  var dt=getDisplayTheme(ti), mc=levelCssClass(dt.type), collapsed=!!HB_COLLAPSED[ti];
+  var dt=getDisplayTheme(ti), mc=levelCssClass(dt.type);
   // Kopfband (Might-Farbe): Theme Type links, Might-Stufe rechts — dezent.
   var headBand =
-    '<div class="hb-band hb-band-head" data-toggle="'+ti+'">'+
+    '<div class="hb-band hb-band-head">'+
       '<span class="hb-band-type">'+escapeHtml(displayThemebook(dt.themebook))+'</span>'+
-      '<span class="hb-band-might">'+escapeHtml(displayMight(dt.type))+'<span class="hb-chev"></span></span>'+
+      '<span class="hb-band-might">'+escapeHtml(displayMight(dt.type))+'</span>'+
     '</div>';
   // Mitte (neutral): Titel-Tag (groß) + Power Tags + Weakness.
   var mid = '<div class="hb-theme-mid">'+
       '<div class="hb-titletag">'+displayTag(dt.titleTag.text)+'</div>'+
-      (collapsed ? '' :
-        '<div class="hb-powertag">'+displayTag(dt.powerTags[0].text)+'</div>'+
-        '<div class="hb-powertag">'+displayTag(dt.powerTags[1].text)+'</div>'+
-        (dt.tierTag?'<div class="hb-powertag hb-tiertag">'+displayTag(dt.tierTag.text)+'</div>':'')+
-        '<div class="hb-weakness">'+displayTag(dt.weaknessTag.text)+'</div>')+
+      '<div class="hb-powertag">'+displayTag(dt.powerTags[0].text)+'</div>'+
+      '<div class="hb-powertag">'+displayTag(dt.powerTags[1].text)+'</div>'+
+      (dt.tierTag?'<div class="hb-powertag hb-tiertag">'+displayTag(dt.tierTag.text)+'</div>':'')+
+      '<div class="hb-weakness">'+displayTag(dt.weaknessTag.text)+'</div>'+
     '</div>';
   // Fußband (Might-Farbe): Quest.
-  var footBand = collapsed ? '' :
+  var footBand =
     '<div class="hb-band hb-band-foot">'+
       '<div class="hb-quest-label">'+escapeHtml(STRINGS.result.questLabel)+'</div>'+
       '<div class="hb-quest-title">„'+escapeHtml(dt.quest.title)+'“</div>'+
       '<div class="hb-quest-desc">'+escapeHtml(dt.quest.description)+'</div>'+
     '</div>';
-  return '<div class="hb-theme '+mc+(collapsed?' collapsed':'')+'">'+
+  return '<div class="hb-theme '+mc+'">'+
     '<button class="hb-edit" data-edit="theme" data-ti="'+ti+'" type="button" aria-label="Theme bearbeiten">'+FEATHER_SVG+'</button>'+
     headBand + mid + footBand +
   '</div>';
@@ -744,13 +742,6 @@ function bindHeldenblatt(scroll){
       if(k==='hero') openHeroEditSheet();
       else if(k==='story'){ state.hero.story=composeHeroStory(); renderHeldenblatt(); }
       else if(k==='theme') openEditSheet(parseInt(btn.dataset.ti));
-    });
-  });
-  scroll.querySelectorAll('.hb-band-head').forEach(function(head){
-    head.addEventListener('click', function(){
-      var ti=parseInt(head.dataset.toggle);
-      HB_COLLAPSED[ti]=!HB_COLLAPSED[ti];
-      renderHeldenblatt();
     });
   });
 }
