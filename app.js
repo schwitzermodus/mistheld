@@ -276,13 +276,35 @@ function diversifyFirstN(cards, n) {
   return picked.concat(pool);
 }
 
+var IMG_GATE_COUNT = 8;   // erste Charge, die hinter der Ladeanimation vorgeladen wird
+var IMG_GATE_TIMEOUT = 3000; // Sicherheitsnetz: nie laenger warten
+
 function startSwipe() {
   state.cardIndex=0; state.swipes=[]; state.affinityScores={}; state.hookCounts={};
   state.proposals=[]; state.proposalIndex=0; state.edits={}; state.hero=null; state.busy=false;
   state.shuffledCards = diversifyFirstN(PHASES[0].cards, CFG.MIN_SWIPES_FOR_SKIP);
-  document.body.classList.add('swipe-active');
-  show(SCREENS.SWIPE);
-  renderCard();
+
+  // Erste Charge Bilder vorladen (mit Ladeanimation), dann erst in den Swipe wechseln.
+  // So erscheinen die ersten Karten sofort als Bild (kein Zucken); Rest laedt im Hintergrund.
+  var firstBatch = state.shuffledCards.slice(0, IMG_GATE_COUNT)
+    .map(function(c){ return c.image; }).filter(Boolean);
+  var started = false;
+  function proceed() {
+    if (started) return; started = true;
+    hideLoading();
+    document.body.classList.add('swipe-active');
+    show(SCREENS.SWIPE);
+    renderCard();
+    // restliche Karten-Bilder im Hintergrund vorwaermen
+    state.shuffledCards.forEach(function(c){ if (c.image) loadImage(c.image); });
+  }
+  if (firstBatch.length === 0) { proceed(); return; }
+  showLoading(STRINGS.loading.cards);
+  var done = 0;
+  firstBatch.forEach(function(src){
+    loadImage(src, function(){ done++; if (done >= firstBatch.length) proceed(); });
+  });
+  setTimeout(proceed, IMG_GATE_TIMEOUT);
 }
 
 // Cache + Loader für Karten-Illustrationen.
@@ -367,9 +389,13 @@ function renderCard() {
       footBand;
     // Vollbild-Layout (mit Illustration): Bild füllt die Karte; Titel + Archetypen
     // + Theme-Typen alle im unteren Verlauf, kein separates Fußband.
+    // Photo-first: hat die Karte ein Bild, IMMER das Vollbild-Layout rendern
+    // (kein Text->Bild-Sprung). Das <img> blendet nur sanft ein, sobald geladen;
+    // ist es schon gecacht, erscheint es sofort (Klasse loaded, kein Fade).
+    var photoCached = card.image && IMG_CACHE[card.image] === 'ok';
     var photoInner =
       '<div class="card-photo">'+
-        '<img src="'+encodeURI(card.image||'')+'" alt="">'+
+        '<img alt=""'+(photoCached?' class="loaded"':'')+' src="'+encodeURI(card.image||'')+'">'+
         '<span class="card-photo-eyebrow">'+escapeHtml(STRINGS.swipe.inspirationLabel)+'</span>'+
         '<div class="card-scrim">'+
           '<div class="card-title">'+escapeHtml(card.title)+'</div>'+
@@ -377,25 +403,18 @@ function renderCard() {
           scrimThemes+
         '</div>'+
       '</div>';
-    // Bild nur zeigen, wenn bereits geladen (synchron) — sonst Text-Layout.
-    // Overlays bleiben außerhalb von .card-content (attachSwipe cacht ihre Refs);
-    // beim Upgrade wird nur der Inhalt von .card-content getauscht.
-    var useImageNow = card.image && IMG_CACHE[card.image] === 'ok';
-    el.innerHTML = overlays + '<div class="card-content">' + (useImageNow ? photoInner : textInner) + '</div>';
+    el.innerHTML = overlays + '<div class="card-content">' + (card.image ? photoInner : textInner) + '</div>';
     if(i===0) { attachSwipe(el); if(state.cardIndex===0&&!state.swipes.length) el.classList.add('card-hint'); }
     stage.appendChild(el);
-    // NUR die Front-Karte stuft sich bei spätem Laden selbst hoch — und nur, wenn
-    // sie noch die aktive (verbundene, nicht weggewischte) Front-Karte ist.
-    // Hintere/abfliegende Karten mutieren NIE asynchron, sonst blitzen Bilder
-    // kommender Karten im Stapel auf.
-    if (i === 0 && card.image && !useImageNow) {
-      (function(frontEl, html){
-        loadImage(card.image, function(ok){
-          if (!ok || !frontEl.isConnected) return;
-          if (!frontEl.classList.contains('front') || frontEl.classList.contains('abandoned')) return;
-          var c = frontEl.querySelector('.card-content'); if (c) c.innerHTML = html;
-        });
-      })(el, photoInner);
+    // Bild-Einblendung beim Laden; bei Fehler (Datei fehlt) auf Text-Layout zurück.
+    if (card.image && !photoCached) {
+      (function(cardEl, src, fallbackHtml){
+        var im = cardEl.querySelector('.card-photo img');
+        if (!im) return;
+        if (im.complete && im.naturalWidth > 0) { im.classList.add('loaded'); IMG_CACHE[src] = 'ok'; return; }
+        im.onload  = function(){ im.classList.add('loaded'); IMG_CACHE[src] = 'ok'; };
+        im.onerror = function(){ IMG_CACHE[src] = 'bad'; var c = cardEl.querySelector('.card-content'); if (c) c.innerHTML = fallbackHtml; };
+      })(el, card.image, textInner);
     }
   }
   // Kommende Karten-Bilder im Hintergrund vorwärmen (nur Cache, kein DOM), damit
