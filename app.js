@@ -285,8 +285,22 @@ function startSwipe() {
   renderCard();
 }
 
-// Cache für Karten-Illustrationen: src -> 'ok' | 'bad' (vermeidet erneutes Laden/404)
+// Cache + Loader für Karten-Illustrationen.
+// IMG_CACHE: src -> 'ok' | 'bad'. IMG_PENDING: laufende Ladevorgänge (dedupe).
 var IMG_CACHE = {};
+var IMG_PENDING = {};
+var IMG_PRELOAD_AHEAD = 4; // wie viele kommende Karten-Bilder vorgewärmt werden
+function loadImage(src, cb) {
+  if (!src) { if (cb) cb(false); return; }
+  if (IMG_CACHE[src] === 'ok')  { if (cb) cb(true);  return; }
+  if (IMG_CACHE[src] === 'bad') { if (cb) cb(false); return; }
+  if (IMG_PENDING[src]) { if (cb) IMG_PENDING[src].push(cb); return; }
+  IMG_PENDING[src] = cb ? [cb] : [];
+  var pre = new Image();
+  pre.onload = function(){ IMG_CACHE[src]='ok'; var cbs=IMG_PENDING[src]||[]; delete IMG_PENDING[src]; cbs.forEach(function(f){f(true);}); };
+  pre.onerror = function(){ IMG_CACHE[src]='bad'; var cbs=IMG_PENDING[src]||[]; delete IMG_PENDING[src]; cbs.forEach(function(f){f(false);}); };
+  pre.src = src;
+}
 function renderCard() {
   var stage=$('card-stage');
   stage.querySelectorAll('.card:not(.abandoned)').forEach(function(c){c.remove();});
@@ -363,22 +377,32 @@ function renderCard() {
           scrimThemes+
         '</div>'+
       '</div>';
+    // Bild nur zeigen, wenn bereits geladen (synchron) — sonst Text-Layout.
     // Overlays bleiben außerhalb von .card-content (attachSwipe cacht ihre Refs);
-    // Inhalt wird bei Bild-Upgrade nur innerhalb .card-content getauscht.
+    // beim Upgrade wird nur der Inhalt von .card-content getauscht.
     var useImageNow = card.image && IMG_CACHE[card.image] === 'ok';
     el.innerHTML = overlays + '<div class="card-content">' + (useImageNow ? photoInner : textInner) + '</div>';
     if(i===0) { attachSwipe(el); if(state.cardIndex===0&&!state.swipes.length) el.classList.add('card-hint'); }
     stage.appendChild(el);
-    // Bild im Hintergrund vorladen; erst bei Erfolg auf Vollbild hochstufen
-    // (kein Flackern, kein kaputtes Bild, wenn die Datei fehlt).
-    if (card.image && !useImageNow && IMG_CACHE[card.image] !== 'bad') {
-      (function(contentEl, src, html){
-        var pre = new Image();
-        pre.onload  = function(){ IMG_CACHE[src] = 'ok'; var c = contentEl.querySelector('.card-content'); if(c) c.innerHTML = html; };
-        pre.onerror = function(){ IMG_CACHE[src] = 'bad'; };
-        pre.src = src;
-      })(el, card.image, photoInner);
+    // NUR die Front-Karte stuft sich bei spätem Laden selbst hoch — und nur, wenn
+    // sie noch die aktive (verbundene, nicht weggewischte) Front-Karte ist.
+    // Hintere/abfliegende Karten mutieren NIE asynchron, sonst blitzen Bilder
+    // kommender Karten im Stapel auf.
+    if (i === 0 && card.image && !useImageNow) {
+      (function(frontEl, html){
+        loadImage(card.image, function(ok){
+          if (!ok || !frontEl.isConnected) return;
+          if (!frontEl.classList.contains('front') || frontEl.classList.contains('abandoned')) return;
+          var c = frontEl.querySelector('.card-content'); if (c) c.innerHTML = html;
+        });
+      })(el, photoInner);
     }
+  }
+  // Kommende Karten-Bilder im Hintergrund vorwärmen (nur Cache, kein DOM), damit
+  // die nächsten Karten beim Aufdecken sofort als Bild erscheinen — ohne Flackern.
+  for (var p = 0; p < IMG_PRELOAD_AHEAD; p++) {
+    var pc = state.shuffledCards[state.cardIndex + p];
+    if (pc && pc.image) loadImage(pc.image);
   }
 }
 
