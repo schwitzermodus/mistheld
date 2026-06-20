@@ -285,6 +285,8 @@ function startSwipe() {
   renderCard();
 }
 
+// Cache für Karten-Illustrationen: src -> 'ok' | 'bad' (vermeidet erneutes Laden/404)
+var IMG_CACHE = {};
 function renderCard() {
   var stage=$('card-stage');
   stage.querySelectorAll('.card:not(.abandoned)').forEach(function(c){c.remove();});
@@ -327,9 +329,11 @@ function renderCard() {
         card.examples.map(function(ex){ return escapeHtml(ex); }).join(' · ')+
       '</div>';
     }
-    el.innerHTML=
+    var overlays =
       '<div class="card-decision-overlay yes">'+escapeHtml(STRINGS.swipe.decisionYes)+'</div>'+
-      '<div class="card-decision-overlay no">'+escapeHtml(STRINGS.swipe.decisionNo)+'</div>'+
+      '<div class="card-decision-overlay no">'+escapeHtml(STRINGS.swipe.decisionNo)+'</div>';
+    // Text-Layout (Standard, ohne Bild)
+    var textInner =
       '<div class="card-band">'+
         '<span class="card-eyebrow">'+escapeHtml(STRINGS.swipe.inspirationLabel)+'</span>'+
       '</div>'+
@@ -342,8 +346,33 @@ function renderCard() {
         archetypesHtml+
       '</div>'+
       footBand;
+    // Vollbild-Layout (mit Illustration): Bild + Verlauf, Beschreibung entfällt
+    var photoInner =
+      '<div class="card-photo">'+
+        '<img src="'+encodeURI(card.image||'')+'" alt="">'+
+        '<span class="card-photo-eyebrow">'+escapeHtml(STRINGS.swipe.inspirationLabel)+'</span>'+
+        '<div class="card-scrim">'+
+          '<div class="card-title">'+escapeHtml(card.title)+'</div>'+
+          archetypesHtml+
+        '</div>'+
+      '</div>'+
+      footBand;
+    // Overlays bleiben außerhalb von .card-content (attachSwipe cacht ihre Refs);
+    // Inhalt wird bei Bild-Upgrade nur innerhalb .card-content getauscht.
+    var useImageNow = card.image && IMG_CACHE[card.image] === 'ok';
+    el.innerHTML = overlays + '<div class="card-content">' + (useImageNow ? photoInner : textInner) + '</div>';
     if(i===0) { attachSwipe(el); if(state.cardIndex===0&&!state.swipes.length) el.classList.add('card-hint'); }
     stage.appendChild(el);
+    // Bild im Hintergrund vorladen; erst bei Erfolg auf Vollbild hochstufen
+    // (kein Flackern, kein kaputtes Bild, wenn die Datei fehlt).
+    if (card.image && !useImageNow && IMG_CACHE[card.image] !== 'bad') {
+      (function(contentEl, src, html){
+        var pre = new Image();
+        pre.onload  = function(){ IMG_CACHE[src] = 'ok'; var c = contentEl.querySelector('.card-content'); if(c) c.innerHTML = html; };
+        pre.onerror = function(){ IMG_CACHE[src] = 'bad'; };
+        pre.src = src;
+      })(el, card.image, photoInner);
+    }
   }
 }
 

@@ -150,6 +150,16 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .card-theme-tag.tc-adventure{background:rgba(145,94,79,0.16);color:var(--might-adventure);border:1px solid rgba(145,94,79,0.4)}
 .card-theme-tag.tc-greatness{background:rgba(101,108,107,0.18);color:#3f4b53;border:1px solid rgba(101,108,107,0.45)}
 .card-theme-tag.tc-variable{background:rgba(169,134,70,0.16);color:#8a6a2e;border:1px solid rgba(169,134,70,0.45)}
+/* Inhalts-Wrapper (Overlays bleiben außerhalb; nur dieser wird beim Bild-Upgrade getauscht) */
+.card-content{flex:1;min-height:0;display:flex;flex-direction:column}
+/* Vollbild-Layout: ganzseitige Illustration mit Verlauf-Scrim */
+.card-photo{position:relative;flex:1;min-height:0;overflow:hidden}
+.card-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.card-photo-eyebrow{position:absolute;top:10px;left:14px;color:#fdf6e3;font-size:var(--fs-label);text-transform:uppercase;letter-spacing:0.16em;font-weight:600;text-shadow:0 1px 5px rgba(0,0,0,0.65);z-index:2}
+.card-scrim{position:absolute;left:0;right:0;bottom:0;padding:36px 16px 14px;background:linear-gradient(0deg,rgba(20,16,8,0.88) 0%,rgba(20,16,8,0.55) 48%,transparent 100%);text-align:center;z-index:1}
+.card-scrim .card-title{font-size:var(--fs-display);color:#fdf6e3;text-shadow:0 1px 8px rgba(0,0,0,0.55);max-width:none}
+.card-scrim .card-archetypes{color:#f3ead4;margin-top:8px}
+.card-scrim .card-arch-label{color:#cdbf9f}
 .card-decision-overlay{position:absolute;top:54px;font-family:var(--serif);font-size:2rem;font-style:italic;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:8px 16px;border:3px solid;border-radius:4px;opacity:0;pointer-events:none;transition:opacity 0.05s linear;z-index:5}
 .card-decision-overlay.yes{right:18px;color:var(--green);border-color:var(--green);transform:rotate(-12deg)}
 .card-decision-overlay.no{left:18px;color:var(--accent);border-color:var(--accent);transform:rotate(12deg)}
@@ -365,7 +375,7 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
     <div class="welcome-preview" id="welcome-preview"></div>
     <button class="btn btn-primary" id="btn-start"></button>
   </div>
-  <div class="app-version">v2026-06-20.1</div>
+  <div class="app-version">v2026-06-20.2</div>
 </section>
 <section id="screen-intro" class="screen">
   <div class="scene-bg" aria-hidden="true">

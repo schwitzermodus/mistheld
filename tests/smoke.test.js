@@ -70,18 +70,17 @@ test('Zwischenschritt: drei Modus-Karten, eine aktiv, Klick wechselt', async ({ 
   await expect(page.locator('#btn-mute')).toBeHidden();
 });
 
-test('Swipe-Karte: Inspiration-Kopfband ohne Ornament, Beschreibung + Archetypen', async ({ page }) => {
+test('Swipe-Karte: Titel + Archetypen, Text- oder Bild-Layout', async ({ page }) => {
   await page.goto('/');
   await page.locator('#btn-start').click();
   await page.locator('#btn-intro-start').click();
   var front = page.locator('.card.front');
-  // Golden-neutrales Kopfband mit "Inspiration", kein dekoratives ❖ mehr
-  await expect(front.locator('.card-band .card-eyebrow')).toHaveText('Inspiration');
-  await expect(front.locator('.card-band .card-mark')).toHaveCount(0);
-  // Beschreibung (Hintergrund-Puzzleteil) + kompakte Archetypen-Zeile
-  await expect(front.locator('.card-text')).toBeVisible();
-  await expect(front.locator('.card-archetypes')).toBeVisible();
+  // Invarianten beider Layouts (Text wie Vollbild): Titel + Archetypen-Zeile, kein ❖-Ornament
   await expect(front.locator('.card-title')).toBeVisible();
+  await expect(front.locator('.card-archetypes')).toHaveCount(1);
+  await expect(front.locator('.card-mark')).toHaveCount(0);
+  // Inhalt steckt im Wrapper, der beim Bild-Upgrade getauscht wird
+  await expect(front.locator('.card-content')).toHaveCount(1);
 });
 
 // JS-GESUNDHEIT
