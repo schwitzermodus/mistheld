@@ -34,5 +34,12 @@ newver="v${today}.${newnum}"
 
 # Versionszeile ersetzen (migriert auch ein altes Format wie "v0.1.0 · 2026-06-07")
 sed -i "s#\(class=\"app-version\">\)[^<]*#\1${newver}#" "$f"
+
+# Cache-Busting: lokale Skripte an die Version koppeln, damit nach einem Deploy
+# nie eine veraltete app.js zu neuer index.html geladen wird (HTML/JS-Drift).
+for js in data phases_patch app; do
+  sed -i "s#src=\"./${js}.js\(?v=[^\"]*\)\{0,1\}\"#src=\"./${js}.js?v=${newver}\"#" "$f"
+done
+
 git add "$f"
 echo "pre-commit: App-Version -> ${newver}"
