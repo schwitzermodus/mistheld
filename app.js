@@ -213,11 +213,11 @@ function show(screenId, suppressAnim) {
   }
   el.classList.add('active');
   var sb=$('btn-settings');
-  // Gear auf Startseite UND Zwischenschritt sichtbar (von dort sind Feineinstellungen erreichbar)
-  if(sb) sb.style.display=(screenId===SCREENS.WELCOME||screenId===SCREENS.INTRO)?'':'none';
-  // Mute-Button auf der Ergebnisseite ausblenden (kein oberer Balken, der den Bogen abschneidet)
+  // Gear nur auf der Startseite (im Zwischenschritt über den Inline-Link erreichbar)
+  if(sb) sb.style.display=screenId===SCREENS.WELCOME?'':'none';
+  // Mute-Button auf Ergebnis- UND Zwischenschritt-Seite ausblenden
   var mb=$('btn-mute');
-  if(mb) mb.style.display=screenId===SCREENS.RESULT?'none':'';
+  if(mb) mb.style.display=(screenId===SCREENS.RESULT||screenId===SCREENS.INTRO)?'none':'';
 }
 function showLoading(t) { $('loading-text').textContent=t||STRINGS.loading.default; $('loading').classList.add('active'); }
 function hideLoading()  { $('loading').classList.remove('active'); }
@@ -1096,6 +1096,7 @@ function renderIntro() {
   if($('intro-text'))      $('intro-text').textContent      = STRINGS.intro.intro;
   if($('intro-modelabel')) $('intro-modelabel').textContent = STRINGS.intro.modeLabel;
   if($('intro-hint'))      $('intro-hint').textContent      = STRINGS.intro.settingsHint;
+  if($('intro-settings-link')) $('intro-settings-link').textContent = STRINGS.intro.settingsLink;
   if($('btn-intro-start')) $('btn-intro-start').textContent = STRINGS.intro.cta;
   var cur = loadSettings().preset;
   var modes = $('intro-modes');
@@ -1224,6 +1225,10 @@ if($('intro-modes')) {
   $('intro-modes').querySelectorAll('.intro-mode').forEach(function(b){
     b.addEventListener('click', function(){ selectIntroMode(b.dataset.preset); });
   });
+}
+if($('intro-settings-link')) {
+  $('intro-settings-link').addEventListener('click', openSettings);
+  $('intro-settings-link').addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openSettings(); } });
 }
 $('btn-yes').addEventListener('click',  function(){programmaticDecide('yes');});
 $('btn-no').addEventListener('click',   function(){programmaticDecide('no');});

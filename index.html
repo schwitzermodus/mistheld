@@ -87,23 +87,28 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .btn-primary{background:var(--ink);color:var(--bg)}
 .btn-primary:hover{background:var(--accent)}
 .btn-primary:active{transform:scale(0.98)}
-/* INTRO / Zwischenschritt: Prinzip-Erklärung + Modus-Auswahl */
+/* INTRO / Zwischenschritt: geschlossene Pergament-Tafel mit Kopfband (Konzept 3) */
 #screen-intro{padding:0;position:relative;overflow:hidden;background:linear-gradient(180deg,#ecd7a6 0%,#e3d2ac 16%,#d0d2c2 38%,#b3bcb0 56%,#92a08b 72%,#6a7a4f 88%,#516037 100%)}
-.intro-scroll{flex:1;min-height:0;width:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:calc(30px + env(safe-area-inset-top,0px)) 22px 24px;position:relative;z-index:1;display:flex;flex-direction:column;align-items:stretch;text-align:center}
-.intro-title{font-size:2.1rem;font-weight:500;font-style:italic;color:var(--ink);text-shadow:0 1px 12px rgba(244,234,213,0.6);margin-bottom:10px}
-.intro-panel{background:var(--paper);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow-soft);padding:14px 16px;font-size:var(--fs-body-lg);line-height:1.55;color:var(--ink);text-align:left}
-.intro-modelabel{font-size:var(--fs-label);text-transform:uppercase;letter-spacing:0.14em;color:#3a3326;font-weight:700;text-align:left;margin:16px 2px 8px}
-.intro-modes{display:flex;flex-direction:column;gap:9px}
-.intro-mode{display:flex;align-items:flex-start;gap:11px;border:1px solid var(--line);border-radius:9px;padding:12px 13px;background:#fbf6e8;cursor:pointer;text-align:left;font-family:var(--serif);transition:transform 0.12s,border-color 0.12s,background 0.12s}
+.intro-wrap{flex:1;min-height:0;width:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:calc(28px + env(safe-area-inset-top,0px)) 22px 28px;position:relative;z-index:1;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:18px}
+.intro-card{width:min(360px,100%);background:var(--paper);border:2px solid var(--gold);border-radius:14px;overflow:hidden;box-shadow:0 12px 28px rgba(40,30,10,0.34)}
+.intro-band{background:linear-gradient(90deg,#b89758,#a98646);padding:12px 16px;text-align:center}
+.intro-band-title{color:#fbf3df;font-family:var(--serif);font-style:italic;font-weight:600;font-size:1.5rem;line-height:1.15}
+.intro-body{padding:16px 16px 18px}
+.intro-lead{font-size:var(--fs-body-lg);line-height:1.5;color:var(--ink);text-align:center;margin:0}
+.intro-modelabel{font-size:var(--fs-label);text-transform:uppercase;letter-spacing:0.16em;color:var(--ink-soft);font-weight:700;text-align:center;margin:16px 0 10px}
+.intro-modes{display:flex;flex-direction:column;gap:8px}
+.intro-mode{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:9px;padding:11px 13px;background:#fbf6e8;cursor:pointer;text-align:left;font-family:var(--serif);transition:transform 0.12s,background 0.12s}
 .intro-mode:active{transform:scale(0.99)}
-.intro-mode.on{border:2px solid var(--gold);background:rgba(169,134,70,0.10);padding:11px 12px}
-.intro-mode-rb{flex-shrink:0;width:18px;height:18px;border-radius:50%;border:2px solid var(--gold);margin-top:3px;position:relative}
-.intro-mode.on .intro-mode-rb::after{content:'';position:absolute;inset:3px;border-radius:50%;background:var(--gold)}
-.intro-mode-tx{display:flex;flex-direction:column;gap:2px}
+.intro-mode.on{border:1px solid var(--might-origin-soft);background:var(--might-origin-soft)}
+.intro-mode-tx{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0}
 .intro-mode-name{font-weight:700;font-size:var(--fs-body-lg);color:var(--ink)}
-.intro-mode-desc{font-size:var(--fs-body);color:var(--ink-soft);line-height:1.35}
-.intro-hint{font-size:var(--fs-label);color:#3a3326;text-align:center;line-height:1.4;margin-top:14px;opacity:0.92}
-#btn-intro-start{align-self:center;margin-top:16px;padding:13px 36px;box-shadow:0 6px 18px rgba(40,30,15,0.32)}
+.intro-mode-desc{font-size:var(--fs-body);color:var(--ink-soft);line-height:1.3}
+.intro-mode.on .intro-mode-name,.intro-mode.on .intro-mode-desc{color:#f3ecd9}
+.intro-mode-tick{flex-shrink:0;font-size:1.1rem;font-weight:700;color:transparent;line-height:1}
+.intro-mode.on .intro-mode-tick{color:#f3ecd9}
+.intro-hint{font-size:var(--fs-label);color:var(--ink-soft);text-align:center;line-height:1.4;margin-top:14px}
+.intro-settings-link{color:var(--accent);text-decoration:underline;text-underline-offset:2px;cursor:pointer}
+#btn-intro-start{flex-shrink:0;padding:13px 40px;box-shadow:0 6px 18px rgba(40,30,15,0.32)}
 /* SWIPE */
 #screen-swipe{padding:56px 20px 12px;touch-action:none;overflow:hidden;position:relative}
 .card-counter{text-align:center;font-size:0.85rem;color:var(--ink-soft);margin-bottom:10px;letter-spacing:0.06em;flex-shrink:0}
@@ -360,7 +365,7 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
     <div class="welcome-preview" id="welcome-preview"></div>
     <button class="btn btn-primary" id="btn-start"></button>
   </div>
-  <div class="app-version">v2026-06-19.8</div>
+  <div class="app-version">v2026-06-20.1</div>
 </section>
 <section id="screen-intro" class="screen">
   <div class="scene-bg" aria-hidden="true">
@@ -369,25 +374,29 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
     <div class="wb-mist wb-mist-2"></div>
     <div class="wb-grain"></div>
   </div>
-  <div class="intro-scroll">
-    <h1 class="intro-title" id="intro-title"></h1>
-    <div class="intro-panel" id="intro-text"></div>
-    <div class="intro-modelabel" id="intro-modelabel"></div>
-    <div class="intro-modes" id="intro-modes" role="radiogroup">
-      <button type="button" class="intro-mode" data-preset="beginner" role="radio" aria-checked="false">
-        <span class="intro-mode-rb" aria-hidden="true"></span>
-        <span class="intro-mode-tx"><span class="intro-mode-name"></span><span class="intro-mode-desc"></span></span>
-      </button>
-      <button type="button" class="intro-mode" data-preset="standard" role="radio" aria-checked="false">
-        <span class="intro-mode-rb" aria-hidden="true"></span>
-        <span class="intro-mode-tx"><span class="intro-mode-name"></span><span class="intro-mode-desc"></span></span>
-      </button>
-      <button type="button" class="intro-mode" data-preset="custom" role="radio" aria-checked="false">
-        <span class="intro-mode-rb" aria-hidden="true"></span>
-        <span class="intro-mode-tx"><span class="intro-mode-name"></span><span class="intro-mode-desc"></span></span>
-      </button>
+  <div class="intro-wrap">
+    <div class="intro-card">
+      <div class="intro-band"><span class="intro-band-title" id="intro-title"></span></div>
+      <div class="intro-body">
+        <p class="intro-lead" id="intro-text"></p>
+        <div class="intro-modelabel" id="intro-modelabel"></div>
+        <div class="intro-modes" id="intro-modes" role="radiogroup">
+          <button type="button" class="intro-mode" data-preset="beginner" role="radio" aria-checked="false">
+            <span class="intro-mode-tx"><span class="intro-mode-name"></span><span class="intro-mode-desc"></span></span>
+            <span class="intro-mode-tick" aria-hidden="true">✓</span>
+          </button>
+          <button type="button" class="intro-mode" data-preset="standard" role="radio" aria-checked="false">
+            <span class="intro-mode-tx"><span class="intro-mode-name"></span><span class="intro-mode-desc"></span></span>
+            <span class="intro-mode-tick" aria-hidden="true">✓</span>
+          </button>
+          <button type="button" class="intro-mode" data-preset="custom" role="radio" aria-checked="false">
+            <span class="intro-mode-tx"><span class="intro-mode-name"></span><span class="intro-mode-desc"></span></span>
+            <span class="intro-mode-tick" aria-hidden="true">✓</span>
+          </button>
+        </div>
+        <div class="intro-hint"><span id="intro-hint"></span> <a class="intro-settings-link" id="intro-settings-link" role="button" tabindex="0"></a></div>
+      </div>
     </div>
-    <div class="intro-hint" id="intro-hint"></div>
     <button class="btn btn-primary" id="btn-intro-start"></button>
   </div>
 </section>
@@ -472,15 +481,16 @@ var STRINGS={
     btnStart:"Los geht's",
   },
   intro:{
-    title:'Bevor du beginnst',
-    intro:'Du bekommst eine Reihe von Inspirationen. Wische intuitiv weg, was nicht passt, und behalte, was zu deinem nächsten Helden passen könnte. Aus deiner Auswahl baut der Generator einen Helden, den du danach noch frei bearbeiten kannst.',
+    title:'So funktioniert es',
+    intro:'Du bekommst gleich verschiedene Inspirationen für deinen nächsten Helden angezeigt. Was gut passt, wischst du nach rechts und was weniger gut passt nach links. Durch deine Auswahl entsteht anschließend dein neuer Held.',
     modeLabel:'Spielmodus',
     modeDesc:{
-      beginner:'Nur Ursprung-Themen, Might fest. Ideal für den ersten Helden.',
-      standard:'Alle Theme-Typen auf Buchstufe. Begleiter, Magie und Besitz frei in der Stufe.',
-      custom:'Volle Kontrolle über jeden Theme-Typ und jede Might-Stufe.'
+      beginner:'Nur Theme-Typ und Might-Stufe Ursprung',
+      standard:'Alle Theme-Typen mit regulären Might-Stufen',
+      custom:'Individuelle Theme-Typen und Might-Stufen'
     },
-    settingsHint:'Feineinstellungen je Modus unter Einstellungen.',
+    settingsHint:'Feineinstellungen unter',
+    settingsLink:'Einstellungen',
     cta:"Los geht's",
   },
   swipe:{

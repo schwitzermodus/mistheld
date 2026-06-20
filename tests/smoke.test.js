@@ -65,6 +65,9 @@ test('Zwischenschritt: drei Modus-Karten, eine aktiv, Klick wechselt', async ({ 
   await page.locator('#intro-modes .intro-mode[data-preset="custom"]').click();
   await expect(page.locator('#intro-modes .intro-mode[data-preset="custom"]')).toHaveClass(/on/);
   await expect(page.locator('#intro-modes .intro-mode.on')).toHaveCount(1);
+  // Zahnrad und Ton-Button sind im Zwischenschritt ausgeblendet
+  await expect(page.locator('#btn-settings')).toBeHidden();
+  await expect(page.locator('#btn-mute')).toBeHidden();
 });
 
 test('Swipe-Karte: Inspiration-Kopfband ohne Ornament, Beschreibung + Archetypen', async ({ page }) => {
