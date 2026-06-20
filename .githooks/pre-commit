@@ -9,6 +9,12 @@ if [ -f "tools/validate_tags.cjs" ]; then
   node tools/validate_tags.cjs
 fi
 
+# Karten-Illustrationen optimieren: abgelegte NN.png/.jpg -> NN.webp
+if [ -f "tools/optimize_images.cjs" ]; then
+  node tools/optimize_images.cjs
+  git add img/cards/*.webp 2>/dev/null || true
+fi
+
 f="index.html"
 [ -f "$f" ] || exit 0
 

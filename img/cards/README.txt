@@ -1,13 +1,18 @@
 Illustrationen der Inspirationskarten
 =====================================
 
-Dateien hier ablegen, benannt nach der zweistelligen Nummer der Inspiration:
-  01.png, 02.png, ... 40.png
+Quellbild hier ablegen, benannt nach der zweistelligen Nummer der Inspiration:
+  01.png, 02.png, ... 40.png   (auch .jpg/.jpeg moeglich)
+
+Beim Commit wird daraus automatisch ein optimiertes NN.webp erzeugt
+(max. 1200px, Qualitaet 80) - nur dieses WebP wird eingecheckt. Die grossen
+Originale (.png/.jpg) bleiben lokal und werden NICHT versioniert (.gitignore).
+Manuell optimieren: npm run optimize:images
 
 Die Nummer bestimmt, in welche Inspiration das Bild wandert (Reihenfolge wie in
-phases_patch.js). Fehlt eine Datei, zeigt die Karte automatisch das Text-Layout.
+phases_patch.js). Fehlt ein WebP, zeigt die Karte automatisch das Text-Layout.
 
-Empfehlung: Hochformat, ~1080px Breite, optimiert (PNG/WebP), moeglichst < 300 KB.
+Hochformat empfohlen (passt zur Karte). Quellgroesse egal - wird klein gerechnet.
 
 Nummern-Zuordnung:
 01 Ein Hof am Waldrand bei Nebel

@@ -9,6 +9,11 @@ playwright-report/
 # Lokale Quellbücher (urheberrechtlich geschützt — NICHT committen)
 docs/
 
+# Karten-Quellbilder: Originale bleiben lokal, nur optimierte *.webp werden committet
+img/cards/*.png
+img/cards/*.jpg
+img/cards/*.jpeg
+
 # Editor-/Tooling-Konfiguration
 .claude/
 .mh_tagdata.json
