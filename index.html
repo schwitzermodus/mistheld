@@ -126,7 +126,7 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .card-hint{animation:hint-swipe 1.5s ease-in-out 0.9s 1 forwards}
 /* Geschmeidiger Übergang: neue Front-Karte + ihr Bild blenden sanft ein
    (nur .front, damit hintere Karten beim Neuaufbau nicht flackern) */
-@keyframes cardIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@keyframes cardIn{from{opacity:0}to{opacity:1}}
 @keyframes imgIn{from{opacity:0}to{opacity:1}}
 .card.front .card-content{animation:cardIn 0.3s ease-out}
 .card.front .card-photo img{animation:imgIn 0.35s ease-out}
@@ -387,7 +387,7 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
     <div class="welcome-preview" id="welcome-preview"></div>
     <button class="btn btn-primary" id="btn-start"></button>
   </div>
-  <div class="app-version">v2026-06-20.9</div>
+  <div class="app-version">v2026-06-20.10</div>
 </section>
 <section id="screen-intro" class="screen">
   <div class="scene-bg" aria-hidden="true">
