@@ -108,7 +108,11 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .intro-modedesc{font-size:var(--fs-body);color:var(--ink);line-height:1.45;text-align:center;margin-top:11px;min-height:2.8rem}
 .intro-hint{font-size:var(--fs-label);color:var(--ink-soft);text-align:center;line-height:1.4;margin-top:12px}
 .intro-settings-link{color:var(--accent);text-decoration:underline;text-underline-offset:2px;cursor:pointer}
-#btn-intro-start{flex-shrink:0;padding:13px 40px;box-shadow:0 6px 18px rgba(40,30,15,0.32)}
+.intro-actions{display:flex;gap:10px;align-items:center;justify-content:center}
+#btn-intro-start{flex-shrink:0;padding:13px 36px;box-shadow:0 6px 18px rgba(40,30,15,0.32)}
+.btn-ghost{flex-shrink:0;background:rgba(250,243,223,0.9);color:var(--ink);border:1px solid var(--line);padding:13px 28px;box-shadow:0 4px 12px rgba(40,30,15,0.18)}
+.btn-ghost:hover{background:var(--paper)}
+.btn-ghost:active{transform:scale(0.98)}
 /* SWIPE */
 #screen-swipe{padding:56px 20px 12px;touch-action:none;overflow:hidden;position:relative}
 .card-counter{text-align:center;font-size:0.85rem;color:var(--ink-soft);margin-bottom:10px;letter-spacing:0.06em;flex-shrink:0}
@@ -387,7 +391,7 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
     <div class="welcome-preview" id="welcome-preview"></div>
     <button class="btn btn-primary" id="btn-start"></button>
   </div>
-  <div class="app-version">v2026-06-20.10</div>
+  <div class="app-version">v2026-06-20.11</div>
 </section>
 <section id="screen-intro" class="screen">
   <div class="scene-bg" aria-hidden="true">
@@ -420,7 +424,10 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
         <div class="intro-hint"><span id="intro-hint"></span> <a class="intro-settings-link" id="intro-settings-link" role="button" tabindex="0"></a></div>
       </div>
     </div>
-    <button class="btn btn-primary" id="btn-intro-start"></button>
+    <div class="intro-actions">
+      <button class="btn btn-ghost" id="btn-intro-back" type="button"></button>
+      <button class="btn btn-primary" id="btn-intro-start"></button>
+    </div>
   </div>
 </section>
 <section id="screen-swipe" class="screen">
@@ -507,7 +514,7 @@ var STRINGS={
       'Wische nach links wenn sie eher nicht passen.',
       'Am Ende erhältst du Vorschläge für deinen Helden.',
     ],
-    btnStart:"Los geht's",
+    btnStart:'Start',
   },
   intro:{
     title:'So funktioniert es',
@@ -521,6 +528,7 @@ var STRINGS={
     settingsHint:'Feineinstellungen unter',
     settingsLink:'Einstellungen',
     cta:"Los geht's",
+    back:'Zurück',
   },
   swipe:{
     decisionYes:'Passt',decisionNo:'Nicht',

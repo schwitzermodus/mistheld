@@ -1159,6 +1159,7 @@ function renderIntro() {
   if($('intro-hint'))      $('intro-hint').textContent      = STRINGS.intro.settingsHint;
   if($('intro-settings-link')) $('intro-settings-link').textContent = STRINGS.intro.settingsLink;
   if($('btn-intro-start')) $('btn-intro-start').textContent = STRINGS.intro.cta;
+  if($('btn-intro-back')) $('btn-intro-back').textContent = STRINGS.intro.back;
   var cur = loadSettings().preset;
   var modes = $('intro-modes');
   if(modes) {
@@ -1282,6 +1283,7 @@ initStrings(); initAudio(); initWelcomePreview();
 // Startseite -> Zwischenschritt (Modus-Auswahl), erst dann Swipe
 $('btn-start').addEventListener('click', function(){ renderIntro(); show(SCREENS.INTRO); });
 if($('btn-intro-start')) $('btn-intro-start').addEventListener('click', startSwipe);
+if($('btn-intro-back')) $('btn-intro-back').addEventListener('click', function(){ show(SCREENS.WELCOME, true); });
 if($('intro-modes')) {
   $('intro-modes').querySelectorAll('.intro-mode').forEach(function(b){
     b.addEventListener('click', function(){ selectIntroMode(b.dataset.preset); });
