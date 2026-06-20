@@ -286,8 +286,8 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .es-footer{padding:12px 20px 4px}
 .es-full-reroll{display:block;width:100%;padding:13px;border-radius:6px;border:1px solid var(--accent);background:transparent;color:var(--accent);font-family:var(--sans);font-size:0.88rem;cursor:pointer;transition:all 0.15s}
 .es-full-reroll:active{background:var(--accent);color:var(--paper)}
-/* SETTINGS: kein display-Property! */
-#screen-settings{padding:12px 18px 14px;overflow:hidden;background:var(--bg)}
+/* SETTINGS: kein display-Property! (transparent -> zeigt die durchgehende Szene) */
+#screen-settings{padding:12px 18px 14px;overflow:hidden}
 .settings-header{display:flex;align-items:center;gap:14px;margin-bottom:14px;flex-shrink:0;padding-top:max(0px,env(safe-area-inset-top,0px))}
 .settings-back-btn{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink-soft);flex-shrink:0;transition:all 0.15s}
 .settings-back-btn:active{transform:scale(0.9)}
@@ -354,11 +354,12 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
 .tt-level-chip.tc-adventure.selected{background:rgba(139,58,43,0.14);border-color:var(--might-adventure);color:var(--might-adventure);font-weight:600}
 .tt-level-chip.tc-greatness.selected{background:rgba(66,82,90,0.16);border-color:var(--might-greatness);color:var(--might-greatness);font-weight:600}
 .settings-consequence{margin-top:14px;padding:10px 12px;background:var(--paper);border:1px solid var(--line-soft);border-radius:6px;font-size:0.82rem;color:var(--ink-soft);text-align:center}
-.loading-overlay{position:fixed;inset:0;background:rgba(244,234,213,0.92);display:none;align-items:center;justify-content:center;z-index:100;flex-direction:column;gap:18px;backdrop-filter:blur(2px)}
+/* Laden auf der durchgehenden Szene: transparent, nur dezenter Mittel-Scrim für Lesbarkeit */
+.loading-overlay{position:fixed;inset:0;background:radial-gradient(circle at 50% 50%,rgba(20,16,8,0.30),transparent 62%);display:none;align-items:center;justify-content:center;z-index:100;flex-direction:column;gap:18px}
 .loading-overlay.active{display:flex}
-.loading-spinner{width:32px;height:32px;border:2px solid var(--line);border-top-color:var(--accent);border-radius:50%;animation:spin 0.9s linear infinite}
+.loading-spinner{width:34px;height:34px;border:2px solid rgba(250,243,223,0.4);border-top-color:#fbf3df;border-radius:50%;animation:spin 0.9s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.loading-text{font-family:var(--serif);font-style:italic;color:var(--ink-soft)}
+.loading-text{font-family:var(--serif);font-style:italic;color:#fbf3df;text-shadow:0 1px 6px rgba(0,0,0,0.55)}
 @media(max-height:740px){.card-title{font-size:1.5rem}.welcome-preview{margin-top:12px}.welcome-title{font-size:2.7rem}.welcome-mark{font-size:1.05rem}.welcome-scroll{padding:48px 28px 28px}#btn-start{margin-top:14px}}
 @media(max-height:640px){.welcome-preview{margin-top:8px}.welcome-title{font-size:2.4rem}.welcome-mark{font-size:0.95rem}.welcome-scroll{padding:36px 24px 24px}#btn-start{margin-top:10px}}
 </style>
@@ -388,7 +389,7 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
     <div class="welcome-preview" id="welcome-preview"></div>
     <button class="btn btn-primary" id="btn-start"></button>
   </div>
-  <div class="app-version">v2026-06-20.13</div>
+  <div class="app-version">v2026-06-20.14</div>
 </section>
 <section id="screen-intro" class="screen">
   <div class="intro-wrap">
@@ -478,8 +479,8 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
 </div>
 <div class="loading-overlay" id="loading"><div class="loading-spinner"></div><div class="loading-text" id="loading-text"></div></div>
 
-<script src="./data.js?v=v2026-06-20.13"></script>
-<script src="./phases_patch.js?v=v2026-06-20.13"></script>
+<script src="./data.js?v=v2026-06-20.14"></script>
+<script src="./phases_patch.js?v=v2026-06-20.14"></script>
 
 <script>
 var STRINGS={
@@ -593,6 +594,6 @@ var HERO_TITLE_HOOKS=[['glaube','geheimnis'],['glaube','verlust'],['verlust','fa
 var HERO_DESC_HOOKS=[['glaube','macht'],['verlust'],['außenseiter','stadt'],['kampf','verlust'],['kampf','geheimnis'],['fahrend','geheimnis'],['verlust','fahrend'],['verlust'],['geheimnis','außenseiter'],['fahrend','außenseiter'],['kampf','geheimnis'],['außenseiter','macht'],['verlust','kampf'],['glaube'],['verlust'],['handwerk','kampf'],['wissen','verlust'],['außenseiter','geheimnis'],['außenseiter','glaube'],['geheimnis','schicksal'],['schicksal'],['fahrend','verlust'],['geheimnis','macht'],['wissen','glaube'],['außenseiter'],['verlust','fahrend'],['glaube','kampf'],['glaube','schicksal'],['kampf','schicksal'],['fahrend','außenseiter']];
 </script>
 
-<script src="./app.js?v=v2026-06-20.13"></script>
+<script src="./app.js?v=v2026-06-20.14"></script>
 </body>
 </html>

@@ -219,7 +219,11 @@ function show(screenId, suppressAnim) {
   var mb=$('btn-mute');
   if(mb) mb.style.display=(screenId===SCREENS.RESULT||screenId===SCREENS.INTRO)?'none':'';
 }
-function showLoading(t) { $('loading-text').textContent=t||STRINGS.loading.default; $('loading').classList.add('active'); }
+function showLoading(t) {
+  // Während des Ladens nur die durchgehende Szene + Spinner zeigen (kein Screen-Inhalt)
+  $$('.screen').forEach(function(s){ s.classList.remove('active'); });
+  $('loading-text').textContent=t||STRINGS.loading.default; $('loading').classList.add('active');
+}
 function hideLoading()  { $('loading').classList.remove('active'); }
 
 var audio=$('bg-audio'), muteBtn=$('btn-mute');
@@ -291,9 +295,9 @@ function startSwipe() {
   var started = false;
   function proceed() {
     if (started) return; started = true;
-    hideLoading();
     document.body.classList.add('swipe-active');
     show(SCREENS.SWIPE);
+    hideLoading();
     renderCard();
     // restliche Karten-Bilder im Hintergrund vorwaermen
     state.shuffledCards.forEach(function(c){ if (c.image) loadImage(c.image); });
