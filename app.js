@@ -306,19 +306,24 @@ function renderCard() {
     var el=document.createElement('div');
     el.className='card'+(i===0?' front':' behind behind-'+i);
     el.style.zIndex=String(10-i);
-    // #42 + #44: Theme-Type Hinweise im Fußband, deaktivierte Theme Types ausblenden
-    var footBand = '';
+    // #42 + #44: Theme-Type Hinweise (deaktivierte Theme Types ausblenden)
+    // footBand = Pergament-Fußband (Text-Layout); scrimThemes = im Bild integriert (Vollbild)
+    var footBand = '', scrimThemes = '';
     if (i === 0 && card.affinities) {
       var _settings = loadSettings();
       var sorted = Object.entries(card.affinities)
         .filter(function(kv){ return isThemeTypeEnabled(kv[0], _settings); })
         .sort(function(a,b){return b[1]-a[1];}).slice(0,3);
       if (sorted.length > 0) {
+        var chips = sorted.map(function(kv){
+          return '<span class="card-theme-tag '+tierClass(kv[0])+'">'+escapeHtml(displayThemebook(kv[0]))+'</span>';
+        }).join('');
+        var label = escapeHtml(STRINGS.swipe.possibleThemesLabel);
         footBand = '<div class="card-foot">'+
-          '<div class="card-foot-label">'+escapeHtml(STRINGS.swipe.possibleThemesLabel)+'</div>'+
-          '<div class="card-themes">' + sorted.map(function(kv){
-            return '<span class="card-theme-tag '+tierClass(kv[0])+'">'+escapeHtml(displayThemebook(kv[0]))+'</span>';
-          }).join('') + '</div></div>';
+          '<div class="card-foot-label">'+label+'</div>'+
+          '<div class="card-themes">'+chips+'</div></div>';
+        scrimThemes = '<div class="card-scrim-label">'+label+'</div>'+
+          '<div class="card-themes">'+chips+'</div>';
       }
     }
     // Archetypen-Zeile: kompakte Helden-Beispiele (nur Front-Karte, falls vorhanden)
@@ -346,7 +351,8 @@ function renderCard() {
         archetypesHtml+
       '</div>'+
       footBand;
-    // Vollbild-Layout (mit Illustration): Bild + Verlauf, Beschreibung entfällt
+    // Vollbild-Layout (mit Illustration): Bild füllt die Karte; Titel + Archetypen
+    // + Theme-Typen alle im unteren Verlauf, kein separates Fußband.
     var photoInner =
       '<div class="card-photo">'+
         '<img src="'+encodeURI(card.image||'')+'" alt="">'+
@@ -354,9 +360,9 @@ function renderCard() {
         '<div class="card-scrim">'+
           '<div class="card-title">'+escapeHtml(card.title)+'</div>'+
           archetypesHtml+
+          scrimThemes+
         '</div>'+
-      '</div>'+
-      footBand;
+      '</div>';
     // Overlays bleiben außerhalb von .card-content (attachSwipe cacht ihre Refs);
     // Inhalt wird bei Bild-Upgrade nur innerhalb .card-content getauscht.
     var useImageNow = card.image && IMG_CACHE[card.image] === 'ok';

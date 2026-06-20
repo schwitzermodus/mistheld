@@ -156,10 +156,18 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .card-photo{position:relative;flex:1;min-height:0;overflow:hidden}
 .card-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .card-photo-eyebrow{position:absolute;top:10px;left:14px;color:#fdf6e3;font-size:var(--fs-label);text-transform:uppercase;letter-spacing:0.16em;font-weight:600;text-shadow:0 1px 5px rgba(0,0,0,0.65);z-index:2}
-.card-scrim{position:absolute;left:0;right:0;bottom:0;padding:36px 16px 14px;background:linear-gradient(0deg,rgba(20,16,8,0.88) 0%,rgba(20,16,8,0.55) 48%,transparent 100%);text-align:center;z-index:1}
+.card-scrim{position:absolute;left:0;right:0;bottom:0;padding:44px 16px 16px;background:linear-gradient(0deg,rgba(18,14,7,0.92) 0%,rgba(18,14,7,0.72) 42%,rgba(18,14,7,0.3) 72%,transparent 100%);text-align:center;z-index:1}
 .card-scrim .card-title{font-size:var(--fs-display);color:#fdf6e3;text-shadow:0 1px 8px rgba(0,0,0,0.55);max-width:none}
 .card-scrim .card-archetypes{color:#f3ead4;margin-top:8px}
 .card-scrim .card-arch-label{color:#cdbf9f}
+/* Theme-Typen im Bild integriert: Mini-Label + kräftig gefüllte Might-Chips */
+.card-scrim-label{font-size:var(--fs-micro);text-transform:uppercase;letter-spacing:0.14em;color:#d8cca9;font-weight:600;margin:13px 0 6px}
+.card-scrim .card-themes{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.card-scrim .card-theme-tag{color:#fbf3df;border:none}
+.card-scrim .card-theme-tag.tc-origin{background:var(--might-origin-soft)}
+.card-scrim .card-theme-tag.tc-adventure{background:var(--might-adventure-soft)}
+.card-scrim .card-theme-tag.tc-greatness{background:var(--might-greatness-soft)}
+.card-scrim .card-theme-tag.tc-variable{background:var(--gold)}
 .card-decision-overlay{position:absolute;top:54px;font-family:var(--serif);font-size:2rem;font-style:italic;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:8px 16px;border:3px solid;border-radius:4px;opacity:0;pointer-events:none;transition:opacity 0.05s linear;z-index:5}
 .card-decision-overlay.yes{right:18px;color:var(--green);border-color:var(--green);transform:rotate(-12deg)}
 .card-decision-overlay.no{left:18px;color:var(--accent);border-color:var(--accent);transform:rotate(12deg)}
@@ -375,7 +383,7 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
     <div class="welcome-preview" id="welcome-preview"></div>
     <button class="btn btn-primary" id="btn-start"></button>
   </div>
-  <div class="app-version">v2026-06-20.3</div>
+  <div class="app-version">v2026-06-20.4</div>
 </section>
 <section id="screen-intro" class="screen">
   <div class="scene-bg" aria-hidden="true">
