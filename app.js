@@ -191,8 +191,8 @@ function initStrings() {
   if($('btn-settings'))      $('btn-settings').setAttribute('aria-label',      STRINGS.settings.ariaOpen);
   // Settings-Redesign: Preset-Segmente, Schnellaktionen, Titel
   if($('settings-preset-intro')) $('settings-preset-intro').textContent = STRINGS.settings.presetIntro;
-  var _seg = $('settings-preset-seg');
-  if(_seg) _seg.querySelectorAll('.preset-seg-btn').forEach(function(b){ b.textContent = STRINGS.settings.presets[b.dataset.preset]; });
+  var _seg = $('settings-preset-modes');
+  if(_seg) _seg.querySelectorAll('.intro-mode .intro-mode-name').forEach(function(n){ n.textContent = STRINGS.settings.presets[n.parentNode.dataset.preset]; });
   var _quick = $('settings-tt-quick');
   if(_quick) _quick.querySelectorAll('.tt-quick-btn').forEach(function(b){ b.textContent = STRINGS.settings.quick[b.dataset.act]; });
   if($('loading-text')) $('loading-text').textContent = STRINGS.loading.default;
@@ -289,7 +289,7 @@ function startSwipe() {
 // IMG_CACHE: src -> 'ok' | 'bad'. IMG_PENDING: laufende Ladevorgänge (dedupe).
 var IMG_CACHE = {};
 var IMG_PENDING = {};
-var IMG_PRELOAD_AHEAD = 4; // wie viele kommende Karten-Bilder vorgewärmt werden
+var IMG_PRELOAD_AHEAD = 6; // wie viele kommende Karten-Bilder vorgewärmt werden
 function loadImage(src, cb) {
   if (!src) { if (cb) cb(false); return; }
   if (IMG_CACHE[src] === 'ok')  { if (cb) cb(true);  return; }
@@ -1005,13 +1005,15 @@ var SETTINGS_SECTION_COLLAPSED = {};
 function buildSettingsUI() {
   var s = loadSettings();
 
-  // Preset-Segmente + Hinweis
-  var seg = $('settings-preset-seg');
+  // Preset-Auswahl (vertikale Kacheln, geteiltes Design mit dem Zwischenschritt) + Hinweis
+  var seg = $('settings-preset-modes');
   if (seg) {
-    seg.querySelectorAll('.preset-seg-btn').forEach(function(b){
+    seg.querySelectorAll('.intro-mode').forEach(function(b){
       var on = b.dataset.preset === s.preset;
-      b.classList.toggle('active', on);
-      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-checked', on ? 'true' : 'false');
+      var nameEl = b.querySelector('.intro-mode-name');
+      if(nameEl) nameEl.textContent = STRINGS.settings.presets[b.dataset.preset];
     });
   }
   if ($('settings-preset-hint')) $('settings-preset-hint').textContent = STRINGS.settings.presetHints[s.preset];
@@ -1165,11 +1167,11 @@ function renderIntro() {
       b.classList.toggle('on', on);
       b.setAttribute('aria-checked', on ? 'true' : 'false');
       var nameEl = b.querySelector('.intro-mode-name');
-      var descEl = b.querySelector('.intro-mode-desc');
       if(nameEl) nameEl.textContent = STRINGS.settings.presets[p];
-      if(descEl) descEl.textContent = STRINGS.intro.modeDesc[p];
     });
   }
+  // Erklärtext nur des gewählten Modus, unter den Kacheln
+  if($('intro-modedesc')) $('intro-modedesc').textContent = STRINGS.intro.modeDesc[cur];
 }
 // Nur bei echtem Wechsel setPreset (das setzt Theme-Typen auf Preset-Default zurück);
 // derselbe Modus bewahrt etwaige Detaileinstellungen aus dem Einstellungen-Screen.
@@ -1309,8 +1311,8 @@ if($('hb-done'))    $('hb-done').addEventListener('click', function(){ setHbEdit
 $('edit-sheet-overlay').addEventListener('click', function(e){if(e.target===$('edit-sheet-overlay')) closeEditSheet();});
 // Settings-Redesign: Preset-Segmente + Schnellaktionen sind statisches Markup → einmalig binden.
 // (Toggles & Level-Chips werden bei jedem Render in buildSettingsUI neu gebunden.)
-if ($('settings-preset-seg')) {
-  $('settings-preset-seg').querySelectorAll('.preset-seg-btn').forEach(function(b){
+if ($('settings-preset-modes')) {
+  $('settings-preset-modes').querySelectorAll('.intro-mode').forEach(function(b){
     b.addEventListener('click', function(){ setPreset(b.dataset.preset); });
   });
 }

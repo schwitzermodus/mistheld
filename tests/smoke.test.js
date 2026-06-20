@@ -121,7 +121,7 @@ test('PHASES geladen (ein Stapel mit 40 Karten)', async ({ page }) => {
 test('Settings-Default: Preset Einsteiger aktiv', async ({ page }) => {
   await page.goto('/');
   await page.locator('#btn-settings').click();
-  await expect(page.locator('.preset-seg-btn[data-preset="beginner"]')).toHaveClass(/active/);
+  await expect(page.locator('#settings-preset-modes .intro-mode[data-preset="beginner"]')).toHaveClass(/on/);
   // Einsteiger zeigt nur Ursprung (7) + Variable (3) = 10 Theme-Type-Zeilen
   await expect(page.locator('.tt-row')).toHaveCount(10);
 });
@@ -129,7 +129,7 @@ test('Settings-Default: Preset Einsteiger aktiv', async ({ page }) => {
 test('Settings: Individuell zeigt alle 20 Theme-Type Zeilen', async ({ page }) => {
   await page.goto('/');
   await page.locator('#btn-settings').click();
-  await page.locator('.preset-seg-btn[data-preset="custom"]').click();
+  await page.locator('#settings-preset-modes .intro-mode[data-preset="custom"]').click();
   await expect(page.locator('.tt-row')).toHaveCount(20);
 });
 
