@@ -8,6 +8,7 @@
     "test:syntax": "node --check app.js data.js",
     "validate:tags": "node tools/validate_tags.cjs",
     "optimize:images": "node tools/optimize_images.cjs",
+    "dev": "node tools/dev.cjs",
     "serve": "npx serve . -p 3000 --no-clipboard"
   },
   "devDependencies": {

@@ -54,4 +54,9 @@ async function main() {
   console.log('optimize_images: ' + done + ' optimiert, ' + skipped + ' aktuell.');
 }
 
-main().catch(err => { console.error('optimize_images Fehler:', err.message); process.exit(1); });
+// Als CLI (pre-commit, npm run optimize:images) direkt ausfuehren;
+// als Modul (tools/dev.cjs) nur exportieren.
+if (require.main === module) {
+  main().catch(err => { console.error('optimize_images Fehler:', err.message); process.exit(1); });
+}
+module.exports = main;
