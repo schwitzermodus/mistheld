@@ -20,6 +20,11 @@ export const CFG = Object.freeze({
   MAX_PROPOSALS: 4, MAX_ELEMENT_ALTS: 3, HAPTIC_MS: 6, AUDIO_VOLUME: 0.4,
   MUTED_KEY: 'mistheld:muted', SETTINGS_KEY: 'mistheld:settings', EXPANDED_PREFERENCE: 0.7,
   MIN_SWIPES_FOR_SKIP: 10,
+  // Kern-Qualität R1: Charakter-Profil + Cross-Theme-Kohäsion (Swipe-Schärfung).
+  PROFILE_SIZE: 4,        // Top-N positive Hooks bilden das Charakter-Profil
+  PROFILE_WEIGHT: 4,      // Gewicht der Profil-Überlappung bei der Auswahl (höher = entschiedener)
+  COHESION_WEIGHT: 3,     // Gewicht der Überlappung mit bereits gewählten Themes (= ein Charakter)
+  MAX_COHESION_RETRIES: 6, // Re-Roll-Versuche des Konflikt-Guards (Terminierung garantiert)
 });
 
 // #44: Default-Stufe pro Theme Type laut Quellbuch

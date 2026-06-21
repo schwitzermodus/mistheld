@@ -242,6 +242,46 @@ test('Bibliothek: gespeicherten Helden auflisten und oeffnen', async ({ page }) 
   await expect(page.locator('.hb-hero-name')).toBeVisible();
 });
 
+// KERN-QUALITÄT R1: Cross-Theme-Kohärenz + Swipe-Schärfung
+test('Kern-Qualität: keine Cross-Theme-Widersprüche (Konflikt-Guard)', async ({ page }) => {
+  await page.goto('/');
+  const bad = await page.evaluate(() => {
+    localStorage.setItem('mistheld:settings', JSON.stringify({ preset: 'custom' }));
+    // Starkes uebernatuerliches Signal -> Themes tendieren zu Magie/Monstrositaet/Unheimlich.
+    state.affinityScores = { Magic: 5, 'Uncanny Being': 4, Monstrosity: 4, Knowledge: 3 };
+    state.hookCounts = { magie: 9, geheimnis: 7, schicksal: 6, macht: 4 };
+    let conflicts = 0;
+    for (let i = 0; i < 150; i++) {
+      const p = generateProposal('initial');
+      if (hasConflict(p.themes)) conflicts++;
+    }
+    return conflicts;
+  });
+  expect(bad).toBe(0);
+});
+
+test('Kern-Qualität: bei klarem Signal tragen (fast) alle Themes die Profil-Hooks (geeinter Charakter)', async ({ page }) => {
+  await page.goto('/');
+  const fraction = await page.evaluate(() => {
+    localStorage.setItem('mistheld:settings', JSON.stringify({ preset: 'custom' }));
+    state.affinityScores = { Magic: 5, Knowledge: 4, 'Uncanny Being': 3, Relic: 3 };
+    state.hookCounts = { magie: 10, geheimnis: 8, wissen: 6 };
+    const targets = ['magie', 'geheimnis', 'wissen'];
+    let hit = 0, tot = 0;
+    for (let i = 0; i < 150; i++) {
+      const p = generateProposal('initial');
+      p.themes.forEach((t) => {
+        tot++;
+        const hs = (t.titleTag.hooks || []).concat(t.powerTags[0].hooks || [], t.powerTags[1].hooks || []);
+        if (hs.some((h) => targets.indexOf(h) !== -1)) hit++;
+      });
+    }
+    return hit / tot;
+  });
+  // Profil-Schärfung + Cross-Theme-Kohäsion: die 4 Themes ziehen entlang des Swipe-Signals.
+  expect(fraction).toBeGreaterThan(0.8);
+});
+
 // #35: PHASEN-BALANCE
 test('#35: Alle 20 Theme-Types haben Phasenkarten-Affinitaet', async ({ page }) => {
   await page.goto('/');
