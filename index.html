@@ -86,7 +86,7 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .btn-primary:hover{background:var(--accent)}
 .btn-primary:active{transform:scale(0.98)}
 /* INTRO / Zwischenschritt: geschlossene Pergament-Tafel mit Kopfband (Konzept 3) */
-#screen-intro{padding:0;position:relative;overflow:hidden;background:linear-gradient(180deg,#ecd7a6 0%,#e3d2ac 16%,#d0d2c2 38%,#b3bcb0 56%,#92a08b 72%,#6a7a4f 88%,#516037 100%)}
+#screen-intro{padding:0;position:relative;overflow:hidden}
 .intro-wrap{flex:1;min-height:0;width:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:calc(40px + env(safe-area-inset-top,0px)) 22px 28px;position:relative;z-index:1;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;gap:18px}
 .intro-card{width:min(360px,100%);background:var(--paper);border:2px solid var(--gold);border-radius:14px;overflow:hidden;box-shadow:0 12px 28px rgba(40,30,10,0.34)}
 .intro-band{background:linear-gradient(90deg,#b89758,#a98646);padding:12px 16px;text-align:center}
@@ -389,7 +389,7 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
     <div class="welcome-preview" id="welcome-preview"></div>
     <button class="btn btn-primary" id="btn-start"></button>
   </div>
-  <div class="app-version">v2026-06-20.15</div>
+  <div class="app-version">v2026-06-21.1</div>
 </section>
 <section id="screen-intro" class="screen">
   <div class="intro-wrap">
@@ -479,8 +479,8 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
 </div>
 <div class="loading-overlay" id="loading"><div class="loading-spinner"></div><div class="loading-text" id="loading-text"></div></div>
 
-<script src="./data.js?v=v2026-06-20.15"></script>
-<script src="./phases_patch.js?v=v2026-06-20.15"></script>
+<script src="./data.js?v=v2026-06-21.1"></script>
+<script src="./phases_patch.js?v=v2026-06-21.1"></script>
 
 <script>
 var STRINGS={
@@ -594,6 +594,6 @@ var HERO_TITLE_HOOKS=[['glaube','geheimnis'],['glaube','verlust'],['verlust','fa
 var HERO_DESC_HOOKS=[['glaube','macht'],['verlust'],['außenseiter','stadt'],['kampf','verlust'],['kampf','geheimnis'],['fahrend','geheimnis'],['verlust','fahrend'],['verlust'],['geheimnis','außenseiter'],['fahrend','außenseiter'],['kampf','geheimnis'],['außenseiter','macht'],['verlust','kampf'],['glaube'],['verlust'],['handwerk','kampf'],['wissen','verlust'],['außenseiter','geheimnis'],['außenseiter','glaube'],['geheimnis','schicksal'],['schicksal'],['fahrend','verlust'],['geheimnis','macht'],['wissen','glaube'],['außenseiter'],['verlust','fahrend'],['glaube','kampf'],['glaube','schicksal'],['kampf','schicksal'],['fahrend','außenseiter']];
 </script>
 
-<script src="./app.js?v=v2026-06-20.15"></script>
+<script src="./app.js?v=v2026-06-21.1"></script>
 </body>
 </html>
