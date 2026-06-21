@@ -56,3 +56,12 @@ export interface Character {
 }
 
 export const CHARACTER_SCHEMA_VERSION = 1;
+
+/* --- Tag-/Theme-Kriterien (src/data/criteria.js) --- */
+export interface FormRules { maxWords: number; forbidComma: boolean; forbidSentenceEnd: boolean; }
+export interface BundleStructure { titlesPerBook: number; minPowerTags: number; minWeaknessTags: number; minQuests: number; }
+export interface ThemebookQuestions {
+  themeQuestions: string[];        // ♦-Leitfragen des Themebooks
+  power: Record<string, string>;   // offizielle Power Tag Questions A..J
+  weakness: Record<string, string>; // offizielle Weakness Tag Questions A..D
+}
