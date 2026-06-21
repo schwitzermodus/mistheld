@@ -12,9 +12,11 @@ import { STORY_FRAGMENTS, STORY_CLOSINGS } from '../data/storyFragments';
 import { loadSettings, effectiveLevel, getEnabledThemeTypes } from './settings';
 import { DEFAULT_THEME_TIER, CFG, TIER_DEVIATION_TAGS } from './constants';
 import {
-  pickTitleWithBias, pickWithSwipeBias, pickQuestWithBias, pickBestFrom, pickRandomFrom,
+  pickTitleWithBias, pickTitleCohesive, characterProfile,
+  pickWithSwipeBias, pickQuestWithBias, pickBestFrom, pickRandomFrom,
   tagHooks, weightedPickIndex,
 } from './scoring';
+import { findConflictIndex } from './conflicts';
 import { capitalizeFirst } from '../util/text';
 
 export function generateTierDeviationTag(level: string): any {
@@ -22,9 +24,12 @@ export function generateTierDeviationTag(level: string): any {
   return { text: pool[Math.floor(Math.random() * pool.length)], expanded: false };
 }
 
-export function generateTheme(name: string, settings: any): any {
+export function generateTheme(name: string, settings: any, ctx?: any): any {
   var tb = (THEMEBOOKS as any)[name];
-  var entry = pickTitleWithBias(tb.titles);              // Titel-Buendel (Anker)
+  // Mit Kohaesions-Kontext: Titel entlang Profil + bereits gewaehlter Themes ziehen.
+  var entry = ctx
+    ? pickTitleCohesive(tb.titles, ctx.profile, ctx.chosenHooks)
+    : pickTitleWithBias(tb.titles);                      // Titel-Buendel (Anker)
   var titleTag = { text: entry.text, expanded: false, hooks: tagHooks(entry) };
   var powerTags = pickWithSwipeBias(entry.powerTags, 2);  // aus DEM Buendel
   var weaknessTag = pickWithSwipeBias(entry.weaknessTags, 1)[0];
@@ -62,7 +67,41 @@ export function generateProposal(mode?: string, base?: any): any {
     used.push(pick);
     tbs.push(pick);
   }
-  return { mode: mode, themes: tbs.map(function (tb) { return generateTheme(tb, s); }) };
+
+  // Cross-Theme-Kohaesion: Profil aus den Swipes; chosenHooks akkumuliert die
+  // Hooks bereits gewaehlter Themes, sodass die 4 entlang eines Fadens ziehen.
+  var profile = characterProfile();
+  var chosenHooks: Record<string, number> = {};
+  function themeHooks(t: any): string[] {
+    return (tagHooks(t.titleTag) || [])
+      .concat(tagHooks(t.powerTags[0]) || [], tagHooks(t.powerTags[1]) || []);
+  }
+  function addHooks(map: Record<string, number>, t: any): void {
+    themeHooks(t).forEach(function (h) { map[h] = (map[h] || 0) + 1; });
+  }
+  var themes: any[] = [];
+  for (var k = 0; k < tbs.length; k++) {
+    var th = generateTheme(tbs[k], s, { profile: profile, chosenHooks: chosenHooks });
+    themes.push(th);
+    addHooks(chosenHooks, th);
+  }
+
+  // Konflikt-Guard: harte Identitaets-Widersprueche zwischen Themes aufloesen.
+  for (var attempt = 0; attempt < CFG.MAX_COHESION_RETRIES; attempt++) {
+    var ci = findConflictIndex(themes);
+    if (ci === -1) break;
+    // Kohaesions-Kontext OHNE das betroffene Theme neu aufbauen.
+    var ch2: Record<string, number> = {};
+    for (var x = 0; x < themes.length; x++) { if (x !== ci) addHooks(ch2, themes[x]); }
+    // Ab der Haelfte der Versuche ein ungenutztes Themebook waehlen, falls der
+    // Buendel-Re-Roll desselben Themebooks den Konflikt nicht aufloest.
+    if (attempt >= 3) {
+      var alt = enabled.filter(function (b) { return tbs.indexOf(b) === -1; });
+      if (alt.length) tbs[ci] = pickRandomFrom(alt);
+    }
+    themes[ci] = generateTheme(tbs[ci], s, { profile: profile, chosenHooks: ch2 });
+  }
+  return { mode: mode, themes: themes };
 }
 
 /* HELD-GENERATOR */

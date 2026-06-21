@@ -10,6 +10,8 @@ import { THEMEBOOKS } from './data/themebooks.js';
 import { PHASES } from './data/inspirations.js';
 import { HERO_FIRSTNAMES } from './data/heroPools.js';
 import { generateProposal, generateHero, composeHeroStory } from './core/generation';
+import { characterProfile } from './core/scoring';
+import { hasConflict } from './core/conflicts';
 import { initStrings, show } from './ui/navigation';
 import { initAudio } from './ui/audio';
 import { initWelcomePreview } from './ui/welcomePreview';
@@ -90,4 +92,5 @@ document.addEventListener('keydown', function (e: any) {
 Object.assign(window as any, {
   state, STRINGS, THEMEBOOKS, PHASES, HERO_FIRSTNAMES,
   generateProposal, generateHero, composeHeroStory, show, renderHeldenblatt,
+  characterProfile, hasConflict,
 });
