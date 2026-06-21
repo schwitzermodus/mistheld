@@ -4,17 +4,24 @@
   "description": "LitM Heldengenerator",
   "type": "module",
   "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "test": "playwright test",
-    "test:syntax": "node --check app.js data.js",
+    "typecheck": "tsc --noEmit",
+    "test:syntax": "tsc --noEmit",
     "validate:tags": "node tools/validate_tags.cjs",
-    "optimize:images": "node tools/optimize_images.cjs",
-    "dev": "node tools/dev.cjs",
-    "serve": "npx serve . -p 3000 --no-clipboard"
+    "optimize:images": "node tools/optimize_images.cjs"
+  },
+  "dependencies": {
+    "jspdf": "^2.5.1"
   },
   "devDependencies": {
     "@playwright/test": "^1.43.0",
-    "serve": "^14.2.3",
+    "@types/node": "^20.12.0",
     "sharp": "^0.35.2",
-    "subset-font": "^2.5.0"
+    "subset-font": "^2.5.0",
+    "typescript": "^5.4.0",
+    "vite": "^5.2.0"
   }
 }

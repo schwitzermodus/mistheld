@@ -10,9 +10,12 @@ playwright-report/
 docs/
 
 # Karten-Quellbilder: Originale bleiben lokal, nur optimierte *.webp werden committet
-img/cards/*.png
-img/cards/*.jpg
-img/cards/*.jpeg
+public/img/cards/*.png
+public/img/cards/*.jpg
+public/img/cards/*.jpeg
+
+# Vite-Build-Output
+dist/
 
 # Editor-/Tooling-Konfiguration
 .claude/

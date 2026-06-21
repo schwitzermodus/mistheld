@@ -7,12 +7,8 @@
 //   - keine Dopplung innerhalb eines Bündels (power + weakness)
 //   - Quest: title als Phrase, description vorhanden
 // Exit 1 bei Verstößen → blockiert Commit (pre-commit) und CI.
-const fs = require('fs');
 const path = require('path');
-
-const dataPath = path.join(__dirname, '..', 'data.js');
-const src = fs.readFileSync(dataPath, 'utf8');
-const { THEMEBOOKS } = new Function(src + '\nreturn { THEMEBOOKS };')();
+const { pathToFileURL } = require('url');
 
 const MAX_WORDS = 5;
 const errors = [];
@@ -23,6 +19,10 @@ function checkPhrase(t, where) {
   if (t.includes(',')) errors.push(where + ' "' + t + '" — Komma');
   if (/[.!?]$/.test(t)) errors.push(where + ' "' + t + '" — Satzzeichen am Ende');
 }
+
+(async () => {
+const dataUrl = pathToFileURL(path.join(__dirname, '..', 'src', 'data', 'themebooks.js')).href;
+const { THEMEBOOKS } = await import(dataUrl);
 
 Object.keys(THEMEBOOKS).forEach((name) => {
   const titles = THEMEBOOKS[name].titles;
@@ -56,3 +56,4 @@ if (errors.length) {
   process.exit(1);
 }
 console.log('Tag-Validierung OK — alle Titel-Bündel erfüllen TAGS.md.');
+})().catch((e) => { console.error(e); process.exit(1); });
