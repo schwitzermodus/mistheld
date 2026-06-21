@@ -1,14 +1,9 @@
 /* =====================================================
-   phases_patch.js — Einzelner Kartenstapel (40 Karten)
-   Keine Phasen mehr — ein gemischter Stapel.
-   hooks: thematische Schlagworte (Swipe-Bias). Kanonisches Vokabular:
-   adel, außenseiter, geheimnis, magie, wissen, handwerk, glaube, kampf,
-   natur, stadt, verlust, macht, fahrend, schicksal
-   text: umfangreiches Hintergrund-Puzzleteil (ergänzt den Titel, nennt ihn nicht).
-   examples: kurze Helden-Archetypen (für die „etwa:"-Zeile auf der Swipe-Karte).
+   Inspirationskarten (40er-Stapel) — Swipe-Bias via hooks.
+   Aus phases_patch.js extrahiert. PHASES bleibt fuer Tests/Altcode als
+   Ein-Phasen-Wrapper erhalten.
 ===================================================== */
-(function() {
-  var newCards = [
+export const INSPIRATION_CARDS = [
     // Welt & Atmosphäre
     { title: 'Ein Hof am Waldrand bei Nebel', text: 'Die Großmutter lehrte dich, den Wald zu lesen, doch eines Morgens war sie fort und nur die Tiere blieben. Seitdem hütest du ein Wissen, das nicht für Menschen gedacht war.', affinities: { 'Skill or Trade': 2, 'People': 2, 'Companion': 1 }, hooks: ['natur','geheimnis'], examples: ['Wildhüterin','Fährtenleser','Einsiedlerin'], image: 'img/cards/01.webp' },
     { title: 'Eine zerstörte Burg, in der noch jemand wohnt', text: 'In den Trümmern deines Geschlechts klammerst du dich an einen letzten Schatz und einen Titel, den niemand mehr anerkennt. Was du bewachst, könnte dein Untergang sein.', affinities: { 'Circumstance': 2, 'Relic': 1, 'Dominion': 2 }, hooks: ['geheimnis','verlust','macht'], examples: ['Erbin','Burgvogt','Verbannter'], image: 'img/cards/02.webp' },
@@ -54,9 +49,5 @@
     { title: 'Ich will das Beste von mir zeigen', text: 'Ein Meister verspottete dein Talent, und seither willst du es allen beweisen. Jedes Werk deiner Hände soll lauter sprechen als jeder Zweifel.', affinities: { 'Prodigious Ability': 2, 'Mastery': 2, 'Personality': 1 }, hooks: ['handwerk'], examples: ['Handwerkerin','Virtuose','Lehrling'], image: 'img/cards/39.webp' },
     { title: 'Ich will das zurückerobern, was mir gehört', text: 'Man riss dir Titel und Land aus den Fingern, vielleicht durch eine Bestie, vielleicht durch Verrat. Du kehrst zurück, bereit, dein Erbe in Blut neu zu schreiben.', affinities: { 'Dominion': 2, 'Monstrosity': 1, 'Duty': 1 }, hooks: ['macht','adel'], examples: ['Thronerbin','Eroberer','Verstoßene'], image: 'img/cards/40.webp' }
   ];
-  // Einzelne Phase mit allen Karten
-  PHASES.splice(0, PHASES.length, {
-    id: 1, title: '', eyebrow: '',
-    cards: newCards
-  });
-})();
+
+export const PHASES = [{ id: 1, title: '', eyebrow: '', cards: INSPIRATION_CARDS }];

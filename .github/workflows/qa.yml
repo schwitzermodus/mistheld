@@ -39,8 +39,8 @@ jobs:
       - name: Install dependencies
         run: npm install --no-audit --no-fund
 
-      - name: JS-Syntaxpruefung
-        run: node --check app.js data.js
+      - name: TypeScript-Typecheck
+        run: npm run typecheck
 
       - name: Tag-Definition prüfen (TAGS.md)
         run: node tools/validate_tags.cjs

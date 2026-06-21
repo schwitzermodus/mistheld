@@ -9,7 +9,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const DIR = path.join(__dirname, '..', 'img', 'cards');
+const DIR = path.join(__dirname, '..', 'public', 'img', 'cards');
 const MAX_WIDTH = 1200;
 const QUALITY = 80;
 const SRC_RE = /\.(png|jpe?g)$/i;

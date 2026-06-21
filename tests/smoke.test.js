@@ -213,6 +213,35 @@ test('Heldenblatt: Aktionsleiste mit Bearbeiten + Speichern + Neu', async ({ pag
   await expect(page.locator('#hb-done')).toBeHidden();
 });
 
+// PERSISTENZ / BIBLIOTHEK (Phase C)
+test('Welcome: Bibliothek-Button sichtbar', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('#btn-library')).toBeVisible();
+});
+
+test('Persistenz: erstellter Held wird gespeichert und ist reload-sicher', async ({ page }) => {
+  await page.goto('/');
+  await loadResultScreen(page); // renderHeldenblatt -> auto-save
+  const saved = await page.evaluate(() => {
+    const raw = localStorage.getItem('mistheld:characters');
+    if (!raw) return 0;
+    return Object.keys(JSON.parse(raw)).length;
+  });
+  expect(saved).toBeGreaterThanOrEqual(1);
+});
+
+test('Bibliothek: gespeicherten Helden auflisten und oeffnen', async ({ page }) => {
+  await page.goto('/');
+  await loadResultScreen(page); // legt einen Helden an
+  await page.evaluate(() => show('screen-welcome'));
+  await page.locator('#btn-library').click();
+  await expect(page.locator('#library-overlay')).toHaveClass(/active/);
+  await expect(page.locator('.lib-row')).toHaveCount(1);
+  await page.locator('.lib-open').first().click();
+  await expect(page.locator('#screen-result')).toBeVisible();
+  await expect(page.locator('.hb-hero-name')).toBeVisible();
+});
+
 // #35: PHASEN-BALANCE
 test('#35: Alle 20 Theme-Types haben Phasenkarten-Affinitaet', async ({ page }) => {
   await page.goto('/');

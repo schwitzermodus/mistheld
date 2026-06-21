@@ -8,7 +8,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
 :root{
   --bg:#f4ead5;--bg-2:#ece0c4;--paper:#faf3df;
@@ -360,6 +359,27 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
 .loading-spinner{width:34px;height:34px;border:2px solid rgba(250,243,223,0.4);border-top-color:#fbf3df;border-radius:50%;animation:spin 0.9s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .loading-text{font-family:var(--serif);font-style:italic;color:#fbf3df;text-shadow:0 1px 6px rgba(0,0,0,0.55)}
+/* BIBLIOTHEK (gespeicherte Helden) */
+#btn-library{align-self:center;margin-top:10px}
+#library-overlay{position:fixed;inset:0;background:rgba(42,36,25,0.52);display:none;flex-direction:column;justify-content:flex-end;z-index:90}
+#library-overlay.active{display:flex;animation:fadeIn 0.25s ease}
+#library-sheet{background:var(--paper);border-radius:18px 18px 0 0;max-height:84vh;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:max(16px,env(safe-area-inset-bottom,16px))}
+.lib-head{display:flex;align-items:center;justify-content:space-between;padding:8px 20px 10px;border-bottom:1px solid var(--line-soft)}
+.lib-head h3{font-family:var(--serif);font-size:1.3rem;color:var(--ink)}
+.lib-close{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--bg);font-size:1.3rem;line-height:1;color:var(--ink-soft);cursor:pointer;flex-shrink:0}
+.lib-close:active{transform:scale(0.9)}
+#library-list{padding:8px 16px 4px}
+.lib-empty{padding:24px 10px;text-align:center;color:var(--ink-soft);font-style:italic;line-height:1.5}
+.lib-row{display:flex;align-items:center;gap:12px;padding:12px 6px;border-bottom:1px solid var(--line-soft)}
+.lib-row-main{flex:1;min-width:0}
+.lib-name{font-family:var(--serif);font-size:1.12rem;font-weight:700;font-style:italic;color:var(--ink);line-height:1.2}
+.lib-sub{font-size:0.9rem;color:var(--accent);font-style:italic;line-height:1.3}
+.lib-meta{font-size:0.74rem;color:var(--ink-soft);margin-top:3px;letter-spacing:0.03em}
+.lib-row-actions{display:flex;gap:6px;flex-shrink:0}
+.lib-open{padding:9px 14px;border-radius:6px;border:1px solid var(--accent);background:transparent;color:var(--accent);font-family:var(--sans);font-size:0.85rem;cursor:pointer}
+.lib-open:active{background:var(--accent);color:var(--paper)}
+.lib-del{padding:9px 12px;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--ink-soft);font-family:var(--sans);font-size:0.8rem;cursor:pointer}
+.lib-del:active{transform:scale(0.97)}
 @media(max-height:740px){.card-title{font-size:1.5rem}.welcome-preview{margin-top:12px}.welcome-title{font-size:2.7rem}.welcome-mark{font-size:1.05rem}.welcome-scroll{padding:48px 28px 28px}#btn-start{margin-top:14px}}
 @media(max-height:640px){.welcome-preview{margin-top:8px}.welcome-title{font-size:2.4rem}.welcome-mark{font-size:0.95rem}.welcome-scroll{padding:36px 24px 24px}#btn-start{margin-top:10px}}
 </style>
@@ -388,8 +408,9 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
     </div>
     <div class="welcome-preview" id="welcome-preview"></div>
     <button class="btn btn-primary" id="btn-start"></button>
+    <button class="btn btn-ghost" id="btn-library" type="button"></button>
   </div>
-  <div class="app-version">v2026-06-21.2</div>
+  <div class="app-version">v2026-06-21.3</div>
 </section>
 <section id="screen-intro" class="screen">
   <div class="intro-wrap">
@@ -478,122 +499,17 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
 </section>
 </div>
 <div class="loading-overlay" id="loading"><div class="loading-spinner"></div><div class="loading-text" id="loading-text"></div></div>
+<div id="library-overlay">
+  <div id="library-sheet">
+    <div class="edit-sheet-handle"></div>
+    <div class="lib-head">
+      <h3 id="lib-title"></h3>
+      <button type="button" id="lib-close" class="lib-close" aria-label="Schließen">×</button>
+    </div>
+    <div id="library-list"></div>
+  </div>
+</div>
 
-<script src="./data.js?v=v2026-06-21.2"></script>
-<script src="./phases_patch.js?v=v2026-06-21.2"></script>
-
-<script>
-var STRINGS={
-  pageTitle:'Mistheld – Heldengenerator',
-  welcome:{
-    mark:'Legenden des Nebels',title:'Heldengenerator',
-    sub:'Mit ein paar Swipes erschaffst du deinen nächsten Helden.',
-    howTitle:"So funktioniert's",
-    howItems:[
-      'Du siehst Bilder und Situationen. Wische nach rechts wenn sie zu deinem Helden passen könnten.',
-      'Wische nach links wenn sie eher nicht passen.',
-      'Am Ende erhältst du Vorschläge für deinen Helden.',
-    ],
-    btnStart:'Start',
-  },
-  intro:{
-    title:'So funktioniert es',
-    intro:'Du bekommst gleich verschiedene Inspirationen für deinen nächsten Helden angezeigt. Was gut passt, wischst du nach rechts und was weniger gut passt nach links. Durch deine Auswahl entsteht anschließend dein neuer Held.',
-    modeLabel:'Spielmodus',
-    modeDesc:{
-      beginner:'Nur Theme-Typ und Might-Stufe Ursprung',
-      standard:'Alle Theme-Typen mit regulären Might-Stufen',
-      custom:'Individuelle Theme-Typen und Might-Stufen'
-    },
-    settingsHint:'Feineinstellungen unter',
-    settingsLink:'Einstellungen',
-    cta:"Los geht's",
-    back:'Zurück',
-  },
-  swipe:{
-    decisionYes:'Passt',decisionNo:'Nicht',
-    cardCounter:function(cur,tot){return 'Karte '+cur+' von '+tot;},
-    inspirationLabel:'Inspiration',possibleThemesLabel:'Theme-Typen',examplesLabel:'etwa:',
-    ariaYes:'Passt',ariaNo:'Passt nicht',ariaUndo:'Letzte Karte zurück',ariaSkip:'Restliche Karten überspringen',
-  },
-  result:{
-    btnAccept:'Speichern',
-    btnRestart:'Neu',
-    btnEdit:'Bearbeiten',
-    btnDone:'Fertig',
-    questLabel:'Quest',
-    storyLabel:'Geschichte',
-    themesLabel:'Themes',
-    themeTypeLabel:'Theme Type',
-    backpackLabel:'Backpack',
-    fellowshipLabel:'Fellowship-Karte',
-    placeholderSoon:'Folgt später',
-  },
-  hero:{
-    eyebrow:'Dein Held',
-    saveEyebrow:'Bereit!',
-    labelName:'Name',
-    labelTitle:'Titel',
-    labelDescription:'Beschreibung',
-    labelFirstName:'Vorname',
-    labelEpithet:'Beiname',
-    labelTitleTag:'Power Tag · Titel',
-    labelPowerTags:'Power Tags',
-    labelPower1:'Power Tag',
-    labelPower2:'Power Tag',
-    labelWeakness:'Weakness Tag',
-    labelQuest:'Quest',
-    editTheme:'Bearbeiten',
-    rerollShort:'Neu',
-    fullReroll:'↺ Ganzes Theme neu würfeln',
-  },
-  settings:{
-    heading:'Einstellungen',ariaBack:'Zurück',ariaOpen:'Einstellungen',
-    presetIntro:'Wähle ein Profil als Ausgangspunkt – es legt fest, welche Theme-Typen dein Held bekommen kann:',
-    presets:{ beginner:'Einsteiger', standard:'Standard', custom:'Individuell' },
-    presetHints:{
-      beginner:'Für den Einstieg: nur Ursprung-Typen (Might fixiert). Begleiter, Magie und Besitz sind optional. Mehr Auswahl unter „Standard“.',
-      standard:'Buch-Standard: alle Theme-Typen auf ihrer Quellbuch-Stufe. Begleiter, Magie und Besitz darfst du in der Stufe frei wählen.',
-      custom:'Volle Kontrolle: jeden Theme-Typ ein- oder ausschalten und jede Might-Stufe frei wählen.',
-    },
-    ttSectionPrefix:'Theme Type ',
-    ttVariableGroup:'Variable Might-Stufe',
-    quick:{ 'all-on':'Alle an', 'all-off':'Alle aus', 'reset':'Zurücksetzen' },
-    consequence:function(n,total){ return 'Aktuell können <b>'+n+'</b> von '+total+' Theme-Typen entstehen.'; },
-  },
-  loading:{default:'Einen Moment...',generating:'Helden weben...',alternative:'Anderen Helden weben...',cards:'Inspirationen werden geladen...'},
-  audio:{ariaOn:'Musik stumm schalten',ariaOff:'Musik anschalten'},
-  might:{Origin:'Ursprung',Adventure:'Abenteuer',Greatness:'Allmacht'},
-  themebooks:{
-    'Circumstance':'Umstand','Devotion':'Hingabe','Past':'Vergangenheit',
-    'People':'Volk','Personality':'Persönlichkeit','Skill or Trade':'Fähigkeit oder Beruf',
-    'Trait':'Begabung','Duty':'Pflicht','Influence':'Einfluss','Knowledge':'Wissen',
-    'Prodigious Ability':'Außergewöhnliche Fähigkeit','Relic':'Relikt',
-    'Uncanny Being':'Unheimliches Wesen','Destiny':'Bestimmung','Dominion':'Herrschaft',
-    'Mastery':'Meisterschaft','Monstrosity':'Monstrosität',
-    'Companion':'Begleiter','Magic':'Magie','Possessions':'Besitz',
-  },
-  pdf:{
-    sheetTitle:'Heldenblatt',
-    powerTags:'Power-Tags',weaknessTag:'Weakness-Tag',quest:'Quest',
-    storyLabel:'Geschichte',backpack:'Backpack',fellowship:'Fellowship',notes:'Notizen',
-    filename:'mistheld-character.pdf',
-    errLoad:'PDF-Bibliothek konnte nicht geladen werden.',
-    errCreate:'PDF konnte nicht erstellt werden.',
-  },
-};
-</script>
-
-<script>
-var HERO_FIRSTNAMES=['Aldric','Astrid','Bran','Brunhild','Calder','Cressida','Dunstan','Edric','Elara','Freyja','Gareth','Hadwin','Halvard','Hedwig','Ingrid','Isolde','Jareth','Kira','Lachlan','Leofric','Mathilda','Merewyn','Morrigan','Niamh','Nils','Orla','Oswin','Phelan','Rhiannon','Rowena','Sable','Sigrid','Sigurd','Sigrún','Tamsin','Thalia','Torsten','Ulf','Vesna','Wulfric'];
-var HERO_EPITHETS=['Waldtochter','der Graue','die Stille','Rabenauge','Silberzunge','vom Schwarzstein','die Stumme','Eisenfaust','Nebelkind','Morgenrot','der Blinde','Schattenläufer','Steinherz','Wolfsbruder','die Vergessene','Mondblut','Aschenpfad','der Verwunschene','Flüsterin','Graumantel','Dunkelherz','der Gestrandete','Kupferklinge','der Letzte','Mondwanderin','Tiefblick','Zwielicht','die Rastlose','Eisgang','Abendrot','der Einsame','Nachtfalke','Silberpfeil','der Verbannte','Windtochter','Sturmherz','der Wanderer','Schattenpfad','die Hehlerin','Gluthaupt'];
-var HERO_TITLES=['Die schweigende Wächterin','Der letzte Hüter des alten Weges','Eine Verlorene auf der Suche nach Heimkehr','Das Kind zweier Welten','Ein Wanderer ohne Wiederkehr','Die Trägerin alter Schuld','Ein Zeuge vergessener Zeiten','Die zwischen den Welten steht','Ein Suchender nach dem, was war','Die Stimme derer, die schweigen müssen','Ein Schatten in der Dämmerung','Der Hüter eines verborgenen Geheimnisses','Ein Herz, das niemals Frieden fand','Die Hüterin eines alten Versprechens','Ein Geist in lebender Gestalt','Die Überlebende einer vergessenen Katastrophe','Ein Kämpfer, der den Krieg hinter sich ließ','Die Trägerin zweier Namen','Ein Wandler zwischen Licht und Schatten','Die Letzte ihrer Art'];
-var HERO_DESCRIPTIONS=['Wer sie einmal angesehen hat, vergisst diesen Blick nicht. Sie spricht wenig — aber wenn sie es tut, hören selbst die Alten zu.','Er hat mehr Abschied erlebt als die meisten in einem ganzen Leben. Irgendwann hört man auf, sich zu wundern, warum er keine Bindungen mehr eingeht.','Auf den ersten Blick wirkt sie wie eine von vielen. Wer länger hinschaut, bemerkt, wie ihre Augen den Raum lesen — als suche sie immer einen Ausweg.','Die Narben auf seinen Händen erzählen eine Geschichte, die er selbst nicht mehr vollständig kennt. Er lebt mit dem, was übrig geblieben ist.','Sie ist nicht grausam. Aber die Grenze zwischen ihr und dem, was sie tut, ist dünner, als es von außen aussieht. Wer sie kennt, weiß das.','Er sagt, er kommt aus dem Norden. Was genau das bedeutet, lässt er offen — wer nachbohrt, bereut es meistens.','Manche Menschen sind von der Welt abgerieben, bis nur das Wesentliche übrig bleibt. Sie ist so jemand.','Das Lachen kommt ihr leicht, aber es erreicht nie ganz die Augen. Die sie wirklich kennen, wissen, was dahintersteckt.','Er hatte einmal einen anderen Namen. Was ihn dazu gebracht hat, diesen hinter sich zu lassen, erzählt er nicht. Manche Dinge trägt man besser allein.','Sie ist schnell vertraut mit fremden Orten — als wäre sie geübt darin, sich anzupassen, weil sie keine andere Wahl hatte.','Wer mit ihm reist, schläft besser. Er selbst kaum. Das Dunkel kennt ihn beim Namen.','Die Leute in ihrem Dorf respektieren sie. Lieben tun sie die wenigsten. Das ist ihr recht.','Er ist kein böser Mensch — nur jemand, dem zu viele schlechte Dinge passiert sind, bis er aufgehört hat, zwischen gut und notwendig zu unterscheiden.','Auf sie zu warten lohnt sich. Sie kommt immer — nur selten dann, wenn man es erwartet.','Es gibt Menschen, denen man ansieht, dass sie früher jemand anderen kannten. Jemanden, der einfacher war. Sie ist einer davon.','Seine Hände sind ruhig, sein Urteil auch. Beides hat ihn schon aus Situationen herausgebracht, aus denen andere nicht zurückgekommen wären.','Sie erinnert sich an alles. Das klingt wie eine Gabe. Es ist keine.','Er hat gelernt, die Stille zu mögen — nicht weil er sie sucht, sondern weil sie ihn meistens findet.','Manche halten sie für kalt. Sie ist es nicht — sie ist nur sehr darauf bedacht, wem sie welche Wärme schenkt.','Irgendwo zwischen dem, was er war, und dem, was er geworden ist, liegt eine Geschichte. Er erzählt sie nicht.','Sie hat das Glück, das man nicht kaufen kann — und das Pech, das einem nie ganz löslässt. Beides trägt sie mit Würde.','Man fragt sich manchmal, was ihn antreibt. Die Antwort: er selbst weiß es nicht mehr genau.','Ihre Stimme ist ruhig, selbst wenn sie Dinge sagt, die andere erschrecken. Das ist das Erschreckendste daran.','Er ist jemand, der zuhört, bevor er spricht. In der Welt, in der er lebt, ist das eine Seltenheit — manchmal auch ein Vorteil.','Sie vertraut nicht leichtfertig. Dieses Vertrauen kostet etwas — und die meisten können sich den Preis nicht leisten.','Die Art, wie er die Welt betrachtet, erinnert an einen, der zu viel davon gesehen hat. Nicht verbittert — nur ehrlich.','Sie hat nicht viele Freunde. Die sie hat, würden für sie durch Feuer gehen. Das ist keine Übertreibung.','Er trägt seinen Namen wie ein Versprechen — eines, das er sich selbst gegeben hat. Ob er es halten kann, weiß er noch nicht.','Manchmal fragt man sich, ob sie Angst kennt. Sie tut es. Sie hat nur gelernt, ihr die Hand zu schütteln statt wegzulaufen.','Er ist in vielen Welten zu Hause, aber in keiner wirklich angekommen. Das macht ihn zu jemandem, dem man vertrauen kann — und dem man manchmal hinterherschaut.'];
-// Swipe-Bias: Hooks parallel (nach Index) zu HERO_TITLES bzw. HERO_DESCRIPTIONS. Fehlende Indizes = kein Bias.
-var HERO_TITLE_HOOKS=[['glaube','geheimnis'],['glaube','verlust'],['verlust','fahrend'],['außenseiter','schicksal'],['fahrend','verlust'],['verlust','glaube'],['wissen','verlust'],['außenseiter','schicksal'],['verlust','wissen'],['glaube'],['geheimnis','außenseiter'],['geheimnis','glaube'],['verlust'],['glaube'],['magie','schicksal'],['verlust','schicksal'],['kampf','verlust'],['geheimnis','außenseiter'],['magie','schicksal'],['außenseiter','schicksal']];
-var HERO_DESC_HOOKS=[['glaube','macht'],['verlust'],['außenseiter','stadt'],['kampf','verlust'],['kampf','geheimnis'],['fahrend','geheimnis'],['verlust','fahrend'],['verlust'],['geheimnis','außenseiter'],['fahrend','außenseiter'],['kampf','geheimnis'],['außenseiter','macht'],['verlust','kampf'],['glaube'],['verlust'],['handwerk','kampf'],['wissen','verlust'],['außenseiter','geheimnis'],['außenseiter','glaube'],['geheimnis','schicksal'],['schicksal'],['fahrend','verlust'],['geheimnis','macht'],['wissen','glaube'],['außenseiter'],['verlust','fahrend'],['glaube','kampf'],['glaube','schicksal'],['kampf','schicksal'],['fahrend','außenseiter']];
-</script>
-
-<script src="./app.js?v=v2026-06-21.2"></script>
+<script type="module" src="/src/main.ts"></script>
 </body>
 </html>

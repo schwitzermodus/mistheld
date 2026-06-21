@@ -10,7 +10,7 @@ export default defineConfig({
     ignoreHTTPSErrors: true,
   },
   webServer: {
-    command: 'npx serve . -p 3000 --no-clipboard',
+    command: 'npx vite --port 3000 --strictPort',
     port: 3000,
     reuseExistingServer: !process.env.CI,
   },
