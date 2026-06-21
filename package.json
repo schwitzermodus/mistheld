@@ -14,6 +14,7 @@
   "devDependencies": {
     "@playwright/test": "^1.43.0",
     "serve": "^14.2.3",
-    "sharp": "^0.35.2"
+    "sharp": "^0.35.2",
+    "subset-font": "^2.5.0"
   }
 }
