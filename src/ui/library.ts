@@ -53,6 +53,6 @@ function renderLibrary(): void {
   });
 }
 
-export function openLibrary(): void { renderLibrary(); $('library-overlay').classList.add('active'); }
-export function closeLibrary(): void { $('library-overlay').classList.remove('active'); }
+export function openLibrary(): void { renderLibrary(); $('library-overlay').classList.add('active'); document.body.classList.add('overlay-open'); }
+export function closeLibrary(): void { $('library-overlay').classList.remove('active'); document.body.classList.remove('overlay-open'); }
 export function libraryHasEntries(): boolean { return characterStore.list().length > 0; }

@@ -50,6 +50,7 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .mute-btn .icon-off{display:none}
 .mute-btn.muted .icon-on{display:none}
 .mute-btn.muted .icon-off{display:block;color:var(--accent)}
+body.overlay-open .mute-btn,body.overlay-open .settings-btn{display:none}
 /* WELCOME */
 #screen-welcome{padding:0;position:relative;overflow:hidden}
 .welcome-scroll{flex:1;min-height:0;width:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;text-align:center;padding:56px 24px 40px;position:relative;z-index:1}
@@ -66,7 +67,7 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 .welcome-title{text-shadow:0 1px 16px rgba(244,234,213,0.7)}
 #screen-swipe{position:relative}
 #screen-swipe>.card-counter,#screen-swipe>.card-stage,#screen-swipe>.swipe-controls{position:relative;z-index:1}
-#btn-start{box-shadow:0 6px 18px rgba(40,30,15,0.32)}
+#btn-start{box-shadow:0 8px 22px rgba(40,30,15,0.4)}
 .app-version{position:absolute;left:max(12px,env(safe-area-inset-left,12px));bottom:max(10px,env(safe-area-inset-bottom,10px));font-family:var(--sans);font-size:0.68rem;letter-spacing:0.04em;color:#f0e6cf;opacity:0.8;text-shadow:0 1px 4px rgba(40,30,15,0.45);z-index:1;user-select:none;pointer-events:none}
 .welcome-mark{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--accent);margin-bottom:8px;letter-spacing:0.12em;text-transform:uppercase}
 .welcome-title{font-size:3.2rem;font-weight:500;font-style:italic;margin:6px 0 0;color:var(--ink);position:relative;display:inline-block}
@@ -80,7 +81,7 @@ h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-
 #welcome-preview .hb-quest-title{display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
 #welcome-preview .hb-quest-desc{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--sans);font-weight:600;font-size:0.95rem;letter-spacing:0.02em;padding:14px 28px;border:none;border-radius:2px;cursor:pointer;transition:all 0.2s ease;min-height:48px;user-select:none}
-#btn-start{align-self:center;padding:12px 32px;min-width:0;margin-top:20px}
+#btn-start{align-self:center;padding:17px 46px;font-size:1.18rem;letter-spacing:0.03em;min-width:210px;margin-top:24px}
 .btn-primary{background:var(--ink);color:var(--bg)}
 .btn-primary:hover{background:var(--accent)}
 .btn-primary:active{transform:scale(0.98)}
@@ -360,10 +361,11 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
 @keyframes spin{to{transform:rotate(360deg)}}
 .loading-text{font-family:var(--serif);font-style:italic;color:#fbf3df;text-shadow:0 1px 6px rgba(0,0,0,0.55)}
 /* BIBLIOTHEK (gespeicherte Helden) */
-#btn-library{align-self:center;margin-top:10px}
-#library-overlay{position:fixed;inset:0;background:rgba(42,36,25,0.52);display:none;flex-direction:column;justify-content:flex-end;z-index:90}
-#library-overlay.active{display:flex;animation:fadeIn 0.25s ease}
-#library-sheet{background:var(--paper);border-radius:18px 18px 0 0;max-height:84vh;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:max(16px,env(safe-area-inset-bottom,16px))}
+#btn-library{align-self:center;margin-top:18px;padding:9px 22px;min-height:38px;font-size:0.82rem;background:transparent;border-color:var(--line-soft);box-shadow:none}
+#library-overlay{position:fixed;inset:0;background:rgba(42,36,25,0.52);display:flex;flex-direction:column;justify-content:flex-end;z-index:90;opacity:0;visibility:hidden;transition:opacity 0.25s ease,visibility 0.25s ease}
+#library-overlay.active{opacity:1;visibility:visible}
+#library-sheet{background:var(--paper);border-radius:18px 18px 0 0;max-height:84vh;overflow-y:auto;scrollbar-gutter:stable;-webkit-overflow-scrolling:touch;padding-bottom:max(16px,env(safe-area-inset-bottom,16px));transform:translateY(100%);transition:transform 0.28s cubic-bezier(0.22,1,0.36,1)}
+#library-overlay.active #library-sheet{transform:translateY(0)}
 .lib-head{display:flex;align-items:center;justify-content:space-between;padding:8px 20px 10px;border-bottom:1px solid var(--line-soft)}
 .lib-head h3{font-family:var(--serif);font-size:1.3rem;color:var(--ink)}
 .lib-close{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--bg);font-size:1.3rem;line-height:1;color:var(--ink-soft);cursor:pointer;flex-shrink:0}
@@ -410,7 +412,7 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
     <button class="btn btn-primary" id="btn-start"></button>
     <button class="btn btn-ghost" id="btn-library" type="button"></button>
   </div>
-  <div class="app-version">v2026-06-22.1</div>
+  <div class="app-version">v2026-06-23.1</div>
 </section>
 <section id="screen-intro" class="screen">
   <div class="intro-wrap">
