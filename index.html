@@ -42,7 +42,7 @@ body.swipe-active{overflow:hidden;position:fixed;inset:0;width:100%;height:100%;
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 h1,h2,h3,h4{font-family:var(--serif);font-weight:600;letter-spacing:0.01em;color:var(--ink)}
 h1{font-size:2.4rem;line-height:1.1}h2{font-size:1.7rem;line-height:1.2}h3{font-size:1.25rem;line-height:1.3}
-.mute-btn,.settings-btn{position:fixed;top:max(12px,env(safe-area-inset-top,12px));width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:rgba(250,243,223,0.85);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink-soft);z-index:200;transition:transform 0.15s ease,color 0.2s ease,opacity 0.25s ease,visibility 0.25s ease;-webkit-tap-highlight-color:transparent;transform:translate3d(0,0,0);will-change:transform,opacity}
+.mute-btn,.settings-btn{position:fixed;top:max(12px,env(safe-area-inset-top,12px));width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:rgba(250,243,223,0.92);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink-soft);z-index:200;transition:transform 0.15s ease,color 0.2s ease,opacity 0.25s ease,visibility 0.25s ease;-webkit-tap-highlight-color:transparent}
 .mute-btn{right:max(12px,env(safe-area-inset-right,12px))}
 .settings-btn{left:max(12px,env(safe-area-inset-left,12px))}
 .mute-btn:active,.settings-btn:active{transform:translate3d(0,0,0) scale(0.9)}
@@ -264,9 +264,10 @@ body.overlay-open .mute-btn,body.overlay-open .settings-btn{opacity:0;visibility
 .hb-ph-title{font-size:var(--fs-title);font-weight:600;color:var(--ink-soft)}
 .hb-ph-sub{font-size:var(--fs-body);color:var(--ink-soft);margin-top:3px}
 /* EDIT SHEET */
-#edit-sheet-overlay{position:fixed;inset:0;background:rgba(42,36,25,0.52);display:none;flex-direction:column;justify-content:flex-end;z-index:80}
-#edit-sheet-overlay.active{display:flex;animation:fadeIn 0.25s ease}
-#edit-sheet{background:var(--paper);border-radius:18px 18px 0 0;max-height:88vh;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:max(16px,env(safe-area-inset-bottom,16px))}
+#edit-sheet-overlay{position:fixed;inset:0;background:rgba(42,36,25,0.52);display:flex;flex-direction:column;justify-content:flex-end;z-index:80;opacity:0;visibility:hidden;transition:opacity 0.25s ease,visibility 0.25s ease}
+#edit-sheet-overlay.active{opacity:1;visibility:visible}
+#edit-sheet{background:var(--paper);border-radius:18px 18px 0 0;max-height:88vh;overflow-y:auto;scrollbar-gutter:stable;-webkit-overflow-scrolling:touch;padding-bottom:max(16px,env(safe-area-inset-bottom,16px));transform:translateY(100%);transition:transform 0.28s cubic-bezier(0.22,1,0.36,1)}
+#edit-sheet-overlay.active #edit-sheet{transform:translateY(0)}
 .edit-sheet-handle{width:38px;height:4px;border-radius:2px;background:var(--line);margin:12px auto 14px}
 .es-header{padding:0 20px 12px;border-bottom:1px solid var(--line-soft);margin-bottom:4px}
 .es-themebook{font-family:var(--serif);font-size:1.35rem;font-weight:600;color:var(--ink)}
@@ -362,7 +363,7 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
 .loading-text{font-family:var(--serif);font-style:italic;color:#fbf3df;text-shadow:0 1px 6px rgba(0,0,0,0.55)}
 /* BIBLIOTHEK (gespeicherte Helden) */
 #btn-library{align-self:center;width:248px;margin-top:12px;min-height:44px;font-size:0.98rem;box-shadow:none}
-#library-overlay{position:fixed;inset:0;background:rgba(42,36,25,0.52);display:flex;flex-direction:column;justify-content:flex-end;z-index:90;opacity:0;visibility:hidden;transition:opacity 0.25s ease,visibility 0.25s ease;will-change:opacity}
+#library-overlay{position:fixed;inset:0;background:rgba(42,36,25,0.52);display:flex;flex-direction:column;justify-content:flex-end;z-index:90;opacity:0;visibility:hidden;transition:opacity 0.25s ease,visibility 0.25s ease}
 #library-overlay.active{opacity:1;visibility:visible}
 #library-sheet{background:var(--paper);border-radius:18px 18px 0 0;max-height:84vh;overflow-y:auto;scrollbar-gutter:stable;-webkit-overflow-scrolling:touch;padding-bottom:max(16px,env(safe-area-inset-bottom,16px));transform:translateY(100%);transition:transform 0.28s cubic-bezier(0.22,1,0.36,1)}
 #library-overlay.active #library-sheet{transform:translateY(0)}
@@ -412,7 +413,7 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
     <button class="btn btn-primary" id="btn-start"></button>
     <button class="btn btn-ghost" id="btn-library" type="button"></button>
   </div>
-  <div class="app-version">v2026-06-23.3</div>
+  <div class="app-version">v2026-06-23.4</div>
 </section>
 <section id="screen-intro" class="screen">
   <div class="intro-wrap">
