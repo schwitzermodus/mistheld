@@ -17,6 +17,11 @@ public/img/cards/*.jpeg
 # Vite-Build-Output
 dist/
 
+# LLM-Judge: lokaler Report + API-Key-Config (nie committen)
+tag-quality-report.md
+tag-quality-report.json
+tools/.judge-config.json
+
 # Editor-/Tooling-Konfiguration
 .claude/
 .mh_tagdata.json

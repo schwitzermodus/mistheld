@@ -41,3 +41,10 @@ Phrasenregeln und die Bündel-Struktur. Quests sind **keine** Tags (Ich-Ziel-Sat
 ---
 Quelle/Abgleich: *Legend in the Mist* Core Book, S. 76–77 („Tags", „Hero Creation Checklist").
 Strukturell pro generiertem Theme: Titel-Tag + 2 Power Tags + 1 Weakness Tag + 1 Quest (aus dem Titel-Bündel).
+
+## Maschinelle Kriterien-Quelle
+Diese Doku ist für Menschen. Die **maschinell genutzte** Kriterien-Quelle ist `src/data/criteria.js`:
+- `FORM_RULES` + `STRUCTURE` — von `tools/validate_tags.cjs` durchgesetzt (Form + Bündelstruktur, pre-commit + CI).
+- `UNIVERSAL` — universelle LitM-Bewertungsfragen (Power-Nützlichkeit, Weakness-Hinderlichkeit, Quest-Milestone/Abandon, Relevanz-Prinzip).
+- `THEMEBOOK_QUESTIONS` — offizielle Power (A–J) + Weakness (A–D) Tag Questions je Themebook (verbatim aus dem Core Book).
+- Relevanz-/Nützlichkeitsbewertung (semantisch): `npm run judge:tags` (LLM-Judge, `tools/judge_tags.mjs`) wendet diese Fragen an und schreibt einen Report. Manuell, nicht in CI.

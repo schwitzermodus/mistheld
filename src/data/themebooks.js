@@ -2383,8 +2383,8 @@ export const THEMEBOOKS = {
           { text: "zu schwer für Feinheit", hooks: ["kampf","handwerk"] },
         ],
         quests: [
-          { title: "Den wahren Gegner finden", description: "Die steinerne Faust am Arm des Helden zerschmettert Tore und schleudert Feinde wie Laub davon, doch solche Wucht an Wegelagerern zu vergeuden fühlt sich falsch an. Irgendwo wartet ein Gegner, der dieser Macht würdig ist. Erst wenn der Held ihm gegenübersteht, wird sich zeigen, wofür die Faust ihm gegeben wurde.", hooks: ["kampf","schicksal"] },
-          { title: "Die Wut bändigen", description: "Wenn die unmenschliche Kraft erwacht, ist es, als schlüge die Faust von selbst, und die Magie fordert jedes Mal ihren Preis. Der Held spürt, wie der Zorn ihn zu verschlingen droht. Er sucht den kühlen Punkt in sich, um zu treffen, wann er es will, und stillzuhalten, wann es nötig ist.", hooks: ["kampf","magie"] },
+          { title: "Ich finde den wahren Gegner hinter meinem Zorn.", description: "Die steinerne Faust am Arm des Helden zerschmettert Tore und schleudert Feinde wie Laub davon, doch solche Wucht an Wegelagerern zu vergeuden fühlt sich falsch an. Irgendwo wartet ein Gegner, der dieser Macht würdig ist. Erst wenn der Held ihm gegenübersteht, wird sich zeigen, wofür die Faust ihm gegeben wurde.", hooks: ["kampf","schicksal"] },
+          { title: "Ich bändige die Wut, die mich treibt.", description: "Wenn die unmenschliche Kraft erwacht, ist es, als schlüge die Faust von selbst, und die Magie fordert jedes Mal ihren Preis. Der Held spürt, wie der Zorn ihn zu verschlingen droht. Er sucht den kühlen Punkt in sich, um zu treffen, wann er es will, und stillzuhalten, wann es nötig ist.", hooks: ["kampf","magie"] },
         ]
       },
       {
@@ -2400,8 +2400,8 @@ export const THEMEBOOKS = {
           { text: "Magie fordert ihren Preis", hooks: ["magie","verlust"] },
         ],
         quests: [
-          { title: "Das letzte Rezept finden", description: "Eine Prise aus dem Beutel beschwört, was die Not gerade verlangt, und entfacht Funken aus dem Nichts. Doch ein Pulver fehlt dem Helden noch, das seltenste von allen, dessen Mischung längst verschollen ist. Er folgt verblassten Aufzeichnungen und Gerüchten alter Mischer, bis das letzte Rezept wieder in seinen Händen liegt.", hooks: ["wissen","handwerk"] },
-          { title: "Den Beutel niemals leeren", description: "Mit jeder Prise wächst die Sorge, denn der Vorrat geht zur Neige und Magie fordert ihren Preis. Der Held weiß, dass kein Markt diesen Staub verkauft. Also lernt er hauszuhalten, jede Beschwörung genau abzuwägen und so zu wirtschaften, als wäre jede Prise die allerletzte, die ihm bleibt.", hooks: ["handwerk","verlust"] },
+          { title: "Ich finde das letzte Rezept, bevor es verloren geht.", description: "Eine Prise aus dem Beutel beschwört, was die Not gerade verlangt, und entfacht Funken aus dem Nichts. Doch ein Pulver fehlt dem Helden noch, das seltenste von allen, dessen Mischung längst verschollen ist. Er folgt verblassten Aufzeichnungen und Gerüchten alter Mischer, bis das letzte Rezept wieder in seinen Händen liegt.", hooks: ["wissen","handwerk"] },
+          { title: "Ich bewahre den Beutel und halte ihn niemals leer.", description: "Mit jeder Prise wächst die Sorge, denn der Vorrat geht zur Neige und Magie fordert ihren Preis. Der Held weiß, dass kein Markt diesen Staub verkauft. Also lernt er hauszuhalten, jede Beschwörung genau abzuwägen und so zu wirtschaften, als wäre jede Prise die allerletzte, die ihm bleibt.", hooks: ["handwerk","verlust"] },
         ]
       },
       {
@@ -2417,8 +2417,8 @@ export const THEMEBOOKS = {
           { text: "andere wollen es", hooks: ["geheimnis","macht"] },
         ],
         quests: [
-          { title: "Einen Geist bannen", description: "Aus dem Kessel steigen Stimmen, und der Held lauscht den Geistern, die er in den Kreis zu bannen vermag. Doch einer weicht nicht, ein Schatten, der sich an die Lebenden klammert und nicht weichen will. Der Held sucht den rechten Sud und die rechten Worte, um das Wesen endlich zur Ruhe zu zwingen.", hooks: ["magie","geheimnis"] },
-          { title: "Den Kreis schließen", description: "Was der Kessel ruft, das bleibt, wenn die Beschwörung misslingt, und der Held hat gesehen, was halb gerufene Wesen anrichten. Diese Last will er nie wieder tragen. Darum übt er jede Anrufung bis zur Vollendung, damit kein Geist je wieder ungebunden zwischen den Welten zurückbleibt.", hooks: ["magie","wissen"] },
+          { title: "Ich banne den Geist, der an meinen Kessel gebunden ist.", description: "Aus dem Kessel steigen Stimmen, und der Held lauscht den Geistern, die er in den Kreis zu bannen vermag. Doch einer weicht nicht, ein Schatten, der sich an die Lebenden klammert und nicht weichen will. Der Held sucht den rechten Sud und die rechten Worte, um das Wesen endlich zur Ruhe zu zwingen.", hooks: ["magie","geheimnis"] },
+          { title: "Ich schließe den Kreis und vollende das Beschwörungsritual.", description: "Was der Kessel ruft, das bleibt, wenn die Beschwörung misslingt, und der Held hat gesehen, was halb gerufene Wesen anrichten. Diese Last will er nie wieder tragen. Darum übt er jede Anrufung bis zur Vollendung, damit kein Geist je wieder ungebunden zwischen den Welten zurückbleibt.", hooks: ["magie","wissen"] },
         ]
       },
       {
@@ -2434,14 +2434,14 @@ export const THEMEBOOKS = {
           { text: "verändert mich subtil", hooks: ["magie","schicksal","verlust"] },
         ],
         quests: [
-          { title: "Den Fluch der Klinge brechen", description: "Die Klinge schneidet durch alles und dürstet nach Blut, doch sie hat einen eigenen Willen und verändert den Helden mit jedem Streich ein wenig. Er fürchtet den Tag, an dem nichts mehr von ihm bleibt. Also sucht er einen Weg, ihre Macht zu führen, ohne ihr selbst zu verfallen.", hooks: ["magie","schicksal"] },
-          { title: "Das erste Opfer rächen", description: "In ruhigen Stunden flüstert die Klinge dem Helden von einem Verrat aus alter Zeit. Wer fiel zuerst durch ihren Schnitt, und welche Schuld klebt an ihrem Stahl? Der Held folgt der blutigen Spur in die Vergangenheit, um das erste Opfer zu rächen und vielleicht den Ursprung des Fluches zu verstehen.", hooks: ["verlust","kampf"] },
+          { title: "Ich breche den Fluch, der die Klinge verdirbt.", description: "Die Klinge schneidet durch alles und dürstet nach Blut, doch sie hat einen eigenen Willen und verändert den Helden mit jedem Streich ein wenig. Er fürchtet den Tag, an dem nichts mehr von ihm bleibt. Also sucht er einen Weg, ihre Macht zu führen, ohne ihr selbst zu verfallen.", hooks: ["magie","schicksal"] },
+          { title: "Ich räche das erste Opfer der verfluchten Klinge.", description: "In ruhigen Stunden flüstert die Klinge dem Helden von einem Verrat aus alter Zeit. Wer fiel zuerst durch ihren Schnitt, und welche Schuld klebt an ihrem Stahl? Der Held folgt der blutigen Spur in die Vergangenheit, um das erste Opfer zu rächen und vielleicht den Ursprung des Fluches zu verstehen.", hooks: ["verlust","kampf"] },
         ]
       },
       {
         text: "Stab der alten Zeiten", hooks: ["magie","wissen"],
         powerTags: [
-          { text: "Kraft des Artefakts", hooks: ["magie","schicksal"] },
+          { text: "entfesselt rohe Arkanmacht", hooks: ["magie","schicksal"] },
           { text: "weckt vergessene Zauber", hooks: ["magie","wissen"] },
           { text: "verstärkt eigene Fähigkeiten", hooks: ["magie","handwerk"] },
           { text: "trägt Wissen alter Mager", hooks: ["wissen","magie"] },
@@ -2451,8 +2451,8 @@ export const THEMEBOOKS = {
           { text: "alte Zauber entgleiten", hooks: ["magie","verlust"] },
         ],
         quests: [
-          { title: "Die alte Sprache lernen", description: "Der Stab birgt die Kraft eines Artefakts und das Wissen längst toter Mager, doch die alten Zauber entgleiten dem Helden, wenn ihm die Worte fehlen. Über den Runen, die seine Macht beherrschen, beugt er sich Nacht um Nacht. Erst wenn er die vergessene Sprache entziffert, wird der Stab ihm wahrhaft gehorchen.", hooks: ["wissen","magie"] },
-          { title: "Den letzten Träger finden", description: "Macht stellt ihre Forderungen, und der Held ahnt, dass er nicht der Erste ist, der diesen Stab führte. Was geschah mit jenem, der ihn vor Zeitaltern trug? Der Held sucht nach Spuren des letzten Trägers, um aus dessen Schicksal zu lernen, ehe ihn dieselbe Bürde verschlingt.", hooks: ["wissen","geheimnis"] },
+          { title: "Ich erlerne die alte Sprache des Stabs.", description: "Der Stab birgt die Kraft eines Artefakts und das Wissen längst toter Mager, doch die alten Zauber entgleiten dem Helden, wenn ihm die Worte fehlen. Über den Runen, die seine Macht beherrschen, beugt er sich Nacht um Nacht. Erst wenn er die vergessene Sprache entziffert, wird der Stab ihm wahrhaft gehorchen.", hooks: ["wissen","magie"] },
+          { title: "Ich finde den letzten Träger des alten Stabs.", description: "Macht stellt ihre Forderungen, und der Held ahnt, dass er nicht der Erste ist, der diesen Stab führte. Was geschah mit jenem, der ihn vor Zeitaltern trug? Der Held sucht nach Spuren des letzten Trägers, um aus dessen Schicksal zu lernen, ehe ihn dieselbe Bürde verschlingt.", hooks: ["wissen","geheimnis"] },
         ]
       },
       {
@@ -2468,8 +2468,8 @@ export const THEMEBOOKS = {
           { text: "andere wollen es", hooks: ["geheimnis","macht"] },
         ],
         quests: [
-          { title: "Das verlorene Reich erinnern", description: "Die Krone trägt die Autorität der Toten und gebietet über Schatten, doch niemand weiß mehr, welches Volk sie einst krönte. Der Held fühlt die vergessenen Eide in ihr nachhallen. Er gräbt in Ruinen und alten Liedern, um das untergegangene Reich ans Licht zu holen, ehe auch sein Name für immer verlischt.", hooks: ["adel","verlust"] },
-          { title: "Die rechtmäßige Erbin suchen", description: "Andere wollen die Krone, und der Held spürt, dass sie nicht ihm gehört, sondern fragt, wer hier eigentlich wen trägt. Irgendwo lebt vielleicht das letzte Blut der Vergessenen. Er macht sich auf, die rechtmäßige Erbin zu finden, um ihr zurückzugeben, was die Toten so lange bewahrt haben.", hooks: ["adel","geheimnis"] },
+          { title: "Ich bewahre die Erinnerung an das verlorene Reich.", description: "Die Krone trägt die Autorität der Toten und gebietet über Schatten, doch niemand weiß mehr, welches Volk sie einst krönte. Der Held fühlt die vergessenen Eide in ihr nachhallen. Er gräbt in Ruinen und alten Liedern, um das untergegangene Reich ans Licht zu holen, ehe auch sein Name für immer verlischt.", hooks: ["adel","verlust"] },
+          { title: "Ich suche die rechtmäßige Erbin des vergessenen Reiches.", description: "Andere wollen die Krone, und der Held spürt, dass sie nicht ihm gehört, sondern fragt, wer hier eigentlich wen trägt. Irgendwo lebt vielleicht das letzte Blut der Vergessenen. Er macht sich auf, die rechtmäßige Erbin zu finden, um ihr zurückzugeben, was die Toten so lange bewahrt haben.", hooks: ["adel","geheimnis"] },
         ]
       },
       {
@@ -2485,15 +2485,15 @@ export const THEMEBOOKS = {
           { text: "andere wollen es", hooks: ["geheimnis","macht"] },
         ],
         quests: [
-          { title: "Eine Lüge entlarven", description: "Der Spiegel enthüllt verborgene Wahrheiten, durchschaut jede Lüge und entlarvt selbst die falscheste Gestalt. Der Held weiß von einem Betrug, der Unschuldige ins Verderben stürzt. Mit dem Glas in der Hand stellt er den Lügner, bis dessen wahres Gesicht für alle sichtbar wird und der Trug zerbricht.", hooks: ["geheimnis","macht"] },
-          { title: "Der eigenen Wahrheit standhalten", description: "Was der Spiegel zeigt, verschont niemanden, denn er offenbart auch die eigene Schuld des Helden. Jeder Blick hinein ist eine Prüfung. Der Held lernt, dem standzuhalten, was ihm das Glas über sich selbst entgegenwirft, denn nur wer die eigene Wahrheit erträgt, darf sie über andere richten.", hooks: ["geheimnis","verlust"] },
+          { title: "Ich entlarve eine Lüge mit dem Spiegel der Wahrheit.", description: "Der Spiegel enthüllt verborgene Wahrheiten, durchschaut jede Lüge und entlarvt selbst die falscheste Gestalt. Der Held weiß von einem Betrug, der Unschuldige ins Verderben stürzt. Mit dem Glas in der Hand stellt er den Lügner, bis dessen wahres Gesicht für alle sichtbar wird und der Trug zerbricht.", hooks: ["geheimnis","macht"] },
+          { title: "Ich halte meiner eigenen Wahrheit stand.", description: "Was der Spiegel zeigt, verschont niemanden, denn er offenbart auch die eigene Schuld des Helden. Jeder Blick hinein ist eine Prüfung. Der Held lernt, dem standzuhalten, was ihm das Glas über sich selbst entgegenwirft, denn nur wer die eigene Wahrheit erträgt, darf sie über andere richten.", hooks: ["geheimnis","verlust"] },
         ]
       },
       {
         text: "selbstschreibendes Buch", hooks: ["magie","wissen","schicksal"],
         powerTags: [
           { text: "verzeichnet kommende Dinge", hooks: ["magie","schicksal"] },
-          { text: "Artefakt mit eigener Geschichte", hooks: ["geheimnis","wissen","schicksal"] },
+          { text: "deutet verborgene Zeichen", hooks: ["geheimnis","wissen","schicksal"] },
           { text: "beantwortet jede Frage", hooks: ["wissen","magie"] },
           { text: "warnt vor Gefahr", hooks: ["magie","schicksal"] },
         ],
@@ -2502,8 +2502,8 @@ export const THEMEBOOKS = {
           { text: "hat einen eigenen Willen", hooks: ["magie","schicksal"] },
         ],
         quests: [
-          { title: "Die letzte Seite verhindern", description: "Das Buch verzeichnet kommende Dinge und warnt vor Gefahr, doch es schreibt auch böse Omen, und auf der letzten Seite steht ein Ende, das der Held nicht hinnehmen will. Mit jedem Blatt rückt es näher. Er sucht fieberhaft einen Weg, das Vorhergesagte zu durchbrechen, ehe die Tinte sein Schicksal besiegelt.", hooks: ["schicksal","magie"] },
-          { title: "Wissen wer das Buch schreibt", description: "Das Artefakt trägt eine eigene Geschichte und einen eigenen Willen, und der Held fragt sich, wessen Hand die Worte wirklich führt. Beantwortet es jede Frage, nur um ihn zu lenken? Er folgt den Zeilen bis zu ihrer Quelle, um zu erfahren, wer hinter der unaufhörlich schreibenden Feder steht.", hooks: ["geheimnis","wissen"] },
+          { title: "Ich verhindere, dass das Buch die letzte Seite schreibt.", description: "Das Buch verzeichnet kommende Dinge und warnt vor Gefahr, doch es schreibt auch böse Omen, und auf der letzten Seite steht ein Ende, das der Held nicht hinnehmen will. Mit jedem Blatt rückt es näher. Er sucht fieberhaft einen Weg, das Vorhergesagte zu durchbrechen, ehe die Tinte sein Schicksal besiegelt.", hooks: ["schicksal","magie"] },
+          { title: "Ich erfahre, wer das selbstschreibende Buch lenkt.", description: "Das Artefakt trägt eine eigene Geschichte und einen eigenen Willen, und der Held fragt sich, wessen Hand die Worte wirklich führt. Beantwortet es jede Frage, nur um ihn zu lenken? Er folgt den Zeilen bis zu ihrer Quelle, um zu erfahren, wer hinter der unaufhörlich schreibenden Feder steht.", hooks: ["geheimnis","wissen"] },
         ]
       },
       {
@@ -2519,8 +2519,8 @@ export const THEMEBOOKS = {
           { text: "Macht stellt Forderungen", hooks: ["macht","schicksal"] },
         ],
         quests: [
-          { title: "Die gefallene Festung erinnern", description: "Der Stein birgt die Kraft alter Mauern und hält jeden Sturm aus, doch er wurzelt nur an einem Ort und trägt die Erinnerung an eine Festung, die einst fiel. Der Held will wissen, warum sie wirklich brach. In den Trümmern ihrer Geschichte sucht er die Wahrheit, die unter dem Schutt begraben liegt.", hooks: ["verlust","macht"] },
-          { title: "Einen neuen Wall errichten", description: "Unerschütterlicher Schutz schläft in dem Stein, doch seine Macht stellt Forderungen. Der Held sieht Wehrlose, die einen sicheren Ort brauchen. Mit der Kraft, die den Mut der Verteidiger weckt, will er einen letzten Wall errichten, hinter dem die Schwachen Zuflucht finden, wenn die Welt um sie her zerbricht.", hooks: ["natur","handwerk"] },
+          { title: "Ich bewahre das Erbe der gefallenen Festung.", description: "Der Stein birgt die Kraft alter Mauern und hält jeden Sturm aus, doch er wurzelt nur an einem Ort und trägt die Erinnerung an eine Festung, die einst fiel. Der Held will wissen, warum sie wirklich brach. In den Trümmern ihrer Geschichte sucht er die Wahrheit, die unter dem Schutt begraben liegt.", hooks: ["verlust","macht"] },
+          { title: "Ich errichte einen neuen Wall aus dem alten Stein.", description: "Unerschütterlicher Schutz schläft in dem Stein, doch seine Macht stellt Forderungen. Der Held sieht Wehrlose, die einen sicheren Ort brauchen. Mit der Kraft, die den Mut der Verteidiger weckt, will er einen letzten Wall errichten, hinter dem die Schwachen Zuflucht finden, wenn die Welt um sie her zerbricht.", hooks: ["natur","handwerk"] },
         ]
       },
       {
@@ -2536,8 +2536,8 @@ export const THEMEBOOKS = {
           { text: "Last eines toten Throns", hooks: ["adel","verlust"] },
         ],
         quests: [
-          { title: "Die letzte Linie finden", description: "Die Kette trägt königliche Autorität und gebietet alten Gehorsam, doch sie ist auch die Last eines toten Throns, und andere wollen sie an sich reißen. Der Held weiß, dass ihr Gewicht nicht ihm bestimmt ist. Er sucht den letzten Erben des verschwundenen Königs, ehe Gierige die Macht für sich beanspruchen.", hooks: ["adel","geheimnis"] },
-          { title: "Das gebrochene Reich kitten", description: "In den Gliedern der Kette hallen gebrochene Schwüre nach, und der Held spürt, wie ein Reich in Zwietracht zerfällt. Mit dem alten Gehorsam, den sie gebietet, will er zerrissene Treue neu binden. Bevor andere die Kette zu Krieg und Eroberung missbrauchen, soll sie das Zerbrochene wieder zusammenfügen.", hooks: ["adel","macht"] },
+          { title: "Ich finde die letzte Erblinie des alten Königs.", description: "Die Kette trägt königliche Autorität und gebietet alten Gehorsam, doch sie ist auch die Last eines toten Throns, und andere wollen sie an sich reißen. Der Held weiß, dass ihr Gewicht nicht ihm bestimmt ist. Er sucht den letzten Erben des verschwundenen Königs, ehe Gierige die Macht für sich beanspruchen.", hooks: ["adel","geheimnis"] },
+          { title: "Ich kitte das gebrochene Reich wieder zusammen.", description: "In den Gliedern der Kette hallen gebrochene Schwüre nach, und der Held spürt, wie ein Reich in Zwietracht zerfällt. Mit dem alten Gehorsam, den sie gebietet, will er zerrissene Treue neu binden. Bevor andere die Kette zu Krieg und Eroberung missbrauchen, soll sie das Zerbrochene wieder zusammenfügen.", hooks: ["adel","macht"] },
         ]
       },
       {
@@ -2553,8 +2553,8 @@ export const THEMEBOOKS = {
           { text: "von Dieben begehrt", hooks: ["stadt","geheimnis"] },
         ],
         quests: [
-          { title: "Das passende Schloss finden", description: "Der Schlüssel öffnet verschlossene Türen, weist den Weg und spürt verborgene Schwellen auf, doch zu keinem Schloss gehört er recht. Der Held fühlt, dass es eine einzige Tür gibt, für die er geschmiedet wurde. Er folgt dem ziehenden Drang des Schlüssels, bis er das Schloss findet, das auf ihn gewartet hat.", hooks: ["geheimnis","schicksal"] },
-          { title: "Hinter die letzte Tür sehen", description: "Leicht zu verlieren und von Dieben begehrt, weist der Schlüssel den Helden auf eine Schwelle, die noch keiner überschritt. Was verbirgt sich hinter der letzten Tür, die er verschließt? Getrieben von einer Neugier, die stärker ist als die Furcht, will der Held öffnen, was niemand vor ihm öffnen durfte.", hooks: ["geheimnis","verlust"] },
+          { title: "Ich finde das passende Schloss für den rätselhaften Schlüssel.", description: "Der Schlüssel öffnet verschlossene Türen, weist den Weg und spürt verborgene Schwellen auf, doch zu keinem Schloss gehört er recht. Der Held fühlt, dass es eine einzige Tür gibt, für die er geschmiedet wurde. Er folgt dem ziehenden Drang des Schlüssels, bis er das Schloss findet, das auf ihn gewartet hat.", hooks: ["geheimnis","schicksal"] },
+          { title: "Ich sehe hinter die letzte Tür, bevor sie sich schließt.", description: "Leicht zu verlieren und von Dieben begehrt, weist der Schlüssel den Helden auf eine Schwelle, die noch keiner überschritt. Was verbirgt sich hinter der letzten Tür, die er verschließt? Getrieben von einer Neugier, die stärker ist als die Furcht, will der Held öffnen, was niemand vor ihm öffnen durfte.", hooks: ["geheimnis","verlust"] },
         ]
       },
       {
@@ -2570,8 +2570,8 @@ export const THEMEBOOKS = {
           { text: "verändert mich subtil", hooks: ["magie","schicksal","verlust"] },
         ],
         quests: [
-          { title: "Eine verlorene Stimme freilassen", description: "Die Kapsel bewahrt die Worte der Toten und flüstert dem Helden Rat aus alter Zeit, doch die Stimmen verstummen nie und verändern ihn mit jedem Tag. Eine darunter fleht um Erlösung. Der Held sucht den Weg, diese gefangene Seele endlich gehen zu lassen, ehe das ewige Flüstern ihn selbst verschlingt.", hooks: ["verlust","magie"] },
-          { title: "Das letzte Wort hören", description: "In Träumen sprechen die verlorenen Stimmen, und eine enthüllt verborgene Wahrheiten, die niemand sonst kennt. Wessen Stimme wurde als letzte in die Kapsel eingeschlossen, und warum? Der Held lauscht durch den Lärm der Toten, bis er jenes eine letzte Wort vernimmt, das alles erklären könnte.", hooks: ["geheimnis","verlust"] },
+          { title: "Ich lasse eine verlorene Stimme aus der Kapsel frei.", description: "Die Kapsel bewahrt die Worte der Toten und flüstert dem Helden Rat aus alter Zeit, doch die Stimmen verstummen nie und verändern ihn mit jedem Tag. Eine darunter fleht um Erlösung. Der Held sucht den Weg, diese gefangene Seele endlich gehen zu lassen, ehe das ewige Flüstern ihn selbst verschlingt.", hooks: ["verlust","magie"] },
+          { title: "Ich höre das letzte Wort einer vergessenen Seele.", description: "In Träumen sprechen die verlorenen Stimmen, und eine enthüllt verborgene Wahrheiten, die niemand sonst kennt. Wessen Stimme wurde als letzte in die Kapsel eingeschlossen, und warum? Der Held lauscht durch den Lärm der Toten, bis er jenes eine letzte Wort vernimmt, das alles erklären könnte.", hooks: ["geheimnis","verlust"] },
         ]
       },
     ]
@@ -2674,7 +2674,7 @@ export const THEMEBOOKS = {
         powerTags: [
           { text: "verschwindet in den Schatten", hooks: ["geheimnis","schicksal"] },
           { text: "erscheint und verschwindet", hooks: ["schicksal","geheimnis"] },
-          { text: "liebt Dunkelheit", hooks: ["schicksal","natur"] },
+          { text: "sieht vollständig im Dunkeln", hooks: ["schicksal","natur"] },
           { text: "weilt in ungesehenen Räumen", hooks: ["geheimnis","schicksal"] },
           { text: "schleicht ohne Geräusch", hooks: ["geheimnis","außenseiter"] },
         ],
@@ -2694,7 +2694,7 @@ export const THEMEBOOKS = {
           { text: "hört Ungesagtes", hooks: ["geheimnis","schicksal"] },
           { text: "flüstert Gedanken in andere", hooks: ["magie","geheimnis"] },
           { text: "sieht kommende Dinge im Schlaf", hooks: ["schicksal","magie"] },
-          { text: "braucht keinen Schlaf", hooks: ["schicksal","natur"] },
+          { text: "wacht wenn andere träumen", hooks: ["schicksal","natur"] },
         ],
         weaknessTags: [
           { text: "verwechselt Traum und Wachsein", hooks: ["verlust","schicksal"] },
@@ -2711,8 +2711,8 @@ export const THEMEBOOKS = {
           { text: "übersteht Feuer", hooks: ["schicksal","magie"] },
           { text: "findet den Weg zwischen Welten", hooks: ["schicksal","fahrend"] },
           { text: "liest die Spuren im Staub", hooks: ["natur","fahrend"] },
-          { text: "trägt nur Asche und Erinnerung", hooks: ["verlust","fahrend"] },
-          { text: "rastet wo kein anderer ruht", hooks: ["fahrend","außenseiter"] },
+          { text: "beschwört Asche als Schleier", hooks: ["verlust","fahrend"] },
+          { text: "schläft sicher in Ruinen", hooks: ["fahrend","außenseiter"] },
         ],
         weaknessTags: [
           { text: "nirgends willkommen", hooks: ["außenseiter","fahrend"] },
@@ -2784,7 +2784,7 @@ export const THEMEBOOKS = {
           { text: "Krallen oder Reißzähne", hooks: ["schicksal","kampf"] },
           { text: "wittert Beute über weite Wege", hooks: ["natur","kampf"] },
           { text: "heilt im Schein des Mondes", hooks: ["schicksal","magie"] },
-          { text: "ungezähmte Wildheit", hooks: ["natur","kampf"] },
+          { text: "bricht Fesseln durch rohe Kraft", hooks: ["natur","kampf"] },
         ],
         weaknessTags: [
           { text: "verliert Kontrolle bei Vollmond", hooks: ["magie","schicksal"] },
@@ -2822,7 +2822,7 @@ export const THEMEBOOKS = {
       {
         text: "Untergang der Welt", hooks: ["schicksal","verlust"],
         powerTags: [
-          { text: "Vorbote des Endes", hooks: ["schicksal","verlust"] },
+          { text: "erkennt das Ende in allem", hooks: ["schicksal","verlust"] },
           { text: "überlebt das Unmögliche", hooks: ["schicksal"] },
           { text: "sieht das nahende Unheil", hooks: ["schicksal","geheimnis"] },
           { text: "unerschütterlicher Mut", hooks: ["kampf","schicksal"] },
@@ -3269,8 +3269,8 @@ export const THEMEBOOKS = {
           { text: "Ruhm zieht Feinde an", hooks: ["macht","verlust"] },
         ],
         quests: [
-          { title: "Das Meisterwerk meines Lebens", description: "Das Feuer gehorcht dem Helden, und seine Klingen tragen Helden in die Schlacht, doch eines fehlt noch. Eine einzige Waffe soll alles übertreffen, was seine Hand je formte, und Jahrhunderte überdauern. Sie wird seinen Namen weitertragen, lange nachdem die Esse erkaltet ist.", hooks: ["handwerk","schicksal"] },
-          { title: "Die letzte Schmiedetechnik", description: "Der Held kennt die Seele jedes Materials, und doch ahnt er, dass irgendwo ein Verfahren wartet, das ihm bisher verschlossen blieb. Diese letzte Kunst lässt ihm keine Ruhe, denn ohne sie bleibt selbst der Größte unvollendet. Er wird sie aufspüren, koste es, was es wolle.", hooks: ["handwerk","wissen"] },
+          { title: "Ich erschaffe das Meisterwerk meines Lebens.", description: "Das Feuer gehorcht dem Helden, und seine Klingen tragen Helden in die Schlacht, doch eines fehlt noch. Eine einzige Waffe soll alles übertreffen, was seine Hand je formte, und Jahrhunderte überdauern. Sie wird seinen Namen weitertragen, lange nachdem die Esse erkaltet ist.", hooks: ["handwerk","schicksal"] },
+          { title: "Ich erlerne die letzte Schmiedetechnik.", description: "Der Held kennt die Seele jedes Materials, und doch ahnt er, dass irgendwo ein Verfahren wartet, das ihm bisher verschlossen blieb. Diese letzte Kunst lässt ihm keine Ruhe, denn ohne sie bleibt selbst der Größte unvollendet. Er wird sie aufspüren, koste es, was es wolle.", hooks: ["handwerk","wissen"] },
         ]
       },
       {
@@ -3288,8 +3288,8 @@ export const THEMEBOOKS = {
           { text: "erträgt keine Niederlage", hooks: ["handwerk","kampf"] },
         ],
         quests: [
-          { title: "Jemanden der mich übertrifft", description: "Der Held liest jeden Gegner, ehe dieser die Klinge hebt, und gilt längst als Legende. Doch an der Spitze ist es einsam, und kein Sieg wärmt mehr. Erst ein ebenbürtiger Gegner würde ihn wieder lebendig machen, und nach diesem einen Menschen sucht er, der ihn endlich zwingt, alles zu geben.", hooks: ["handwerk","kampf"] },
-          { title: "Kunst ohne Krieg", description: "Endlose Herausforderer haben den Helden gelehrt, dass sein Ruf nur Tod und Blut anzieht. Doch seine Technik ohne Namen ist mehr als ein Werkzeug zum Töten. Er will der Welt beweisen, dass seine meisterhafte Kontrolle auch Schönheit schaffen kann, nicht nur Gräber.", hooks: ["handwerk","glaube"] },
+          { title: "Ich finde jemanden, der mich übertrifft.", description: "Der Held liest jeden Gegner, ehe dieser die Klinge hebt, und gilt längst als Legende. Doch an der Spitze ist es einsam, und kein Sieg wärmt mehr. Erst ein ebenbürtiger Gegner würde ihn wieder lebendig machen, und nach diesem einen Menschen sucht er, der ihn endlich zwingt, alles zu geben.", hooks: ["handwerk","kampf"] },
+          { title: "Ich beweise, dass meine Kunst keinen Krieg braucht.", description: "Endlose Herausforderer haben den Helden gelehrt, dass sein Ruf nur Tod und Blut anzieht. Doch seine Technik ohne Namen ist mehr als ein Werkzeug zum Töten. Er will der Welt beweisen, dass seine meisterhafte Kontrolle auch Schönheit schaffen kann, nicht nur Gräber.", hooks: ["handwerk","glaube"] },
         ]
       },
       {
@@ -3306,8 +3306,8 @@ export const THEMEBOOKS = {
           { text: "unzumutbare Selbstansprüche", hooks: ["handwerk"] },
         ],
         quests: [
-          { title: "Die Welt mit meiner Kunst verändern", description: "Der Held sieht ganze Jahre im rohen Werkstück und vollbringt, was andere für unmöglich halten. Sein Ehrgeiz reicht über bloßes Bauen hinaus, denn er will etwas erschaffen, das eine verschlossene Tür für immer aufstößt. Sein Werk soll der Welt einen Weg öffnen, den vor ihm niemand sah.", hooks: ["handwerk","macht"] },
-          { title: "Ein Erbe das mich überdauert", description: "Die eigene Größe ist dem Helden Last und Antrieb zugleich, und der Gedanke an Vergänglichkeit treibt ihn an. Er errichtet ein Bauwerk, das der Zeit trotzt und noch steht, wenn sein Name längst verklungen ist. Stein soll bezeugen, dass er einst hier war, auch ohne dass jemand sich erinnert.", hooks: ["handwerk","schicksal"] },
+          { title: "Ich verändere die Welt mit meiner Kunst.", description: "Der Held sieht ganze Jahre im rohen Werkstück und vollbringt, was andere für unmöglich halten. Sein Ehrgeiz reicht über bloßes Bauen hinaus, denn er will etwas erschaffen, das eine verschlossene Tür für immer aufstößt. Sein Werk soll der Welt einen Weg öffnen, den vor ihm niemand sah.", hooks: ["handwerk","macht"] },
+          { title: "Ich hinterlasse ein Erbe, das mich überdauert.", description: "Die eigene Größe ist dem Helden Last und Antrieb zugleich, und der Gedanke an Vergänglichkeit treibt ihn an. Er errichtet ein Bauwerk, das der Zeit trotzt und noch steht, wenn sein Name längst verklungen ist. Stein soll bezeugen, dass er einst hier war, auch ohne dass jemand sich erinnert.", hooks: ["handwerk","schicksal"] },
         ]
       },
       {
@@ -3324,8 +3324,8 @@ export const THEMEBOOKS = {
           { text: "Ruhm zieht Feinde an", hooks: ["macht","verlust"] },
         ],
         quests: [
-          { title: "Ein Lied das nie verstummt", description: "Mit unverwechselbarem Stil bewegt der Held jedes Herz, und sein Ruf öffnet ihm jede Tür. Doch Beifall verklingt, und das genügt ihm nicht mehr. Er will eine Weise schaffen, die so tief trifft, dass man sie noch Generationen nach ihm singt, lange nachdem die Stimme selbst verstummt ist.", hooks: ["handwerk","schicksal"] },
-          { title: "Die Mächtigen mit Worten wenden", description: "Der Neid der anderen und die Feinde, die sein Ruhm anzieht, haben dem Helden gezeigt, wie viel Macht in einer Stimme liegt. Mit meisterhafter Kontrolle will er beweisen, dass ein Lied mehr bewegt als jedes Heer. Wo Schwerter scheitern, sollen seine Worte die Mächtigen wenden.", hooks: ["handwerk","macht"] },
+          { title: "Ich erschaffe ein Lied, das nie verstummt.", description: "Mit unverwechselbarem Stil bewegt der Held jedes Herz, und sein Ruf öffnet ihm jede Tür. Doch Beifall verklingt, und das genügt ihm nicht mehr. Er will eine Weise schaffen, die so tief trifft, dass man sie noch Generationen nach ihm singt, lange nachdem die Stimme selbst verstummt ist.", hooks: ["handwerk","schicksal"] },
+          { title: "Ich wende die Mächtigen allein durch meine Worte.", description: "Der Neid der anderen und die Feinde, die sein Ruhm anzieht, haben dem Helden gezeigt, wie viel Macht in einer Stimme liegt. Mit meisterhafter Kontrolle will er beweisen, dass ein Lied mehr bewegt als jedes Heer. Wo Schwerter scheitern, sollen seine Worte die Mächtigen wenden.", hooks: ["handwerk","macht"] },
         ]
       },
       {
@@ -3343,8 +3343,8 @@ export const THEMEBOOKS = {
           { text: "kein Verlust verziehen", hooks: ["glaube","verlust"] },
         ],
         quests: [
-          { title: "Kunst ohne Krieg", description: "Selbst andere Meister suchen beim Helden Rat, denn er erkennt Fehler, die allen anderen verborgen bleiben. Doch dieselbe Kunst, die heilt, könnte auch schaden, und manche fürchten genau das. Er will allen zeigen, dass sein Wissen einzig dem Leben dient und niemals zur Waffe wird.", hooks: ["handwerk","glaube"] },
-          { title: "Ein Leiden für immer besiegen", description: "Der Held kennt jede Variante der Heilung und vollbringt, was unmöglich scheint, und doch hat ein Leiden zu viele dahingerafft. Kein Verlust verzeiht er sich leicht, und diese eine Krankheit lässt ihm keinen Frieden. Er will sie nicht nur lindern, sondern für immer von der Welt tilgen.", hooks: ["handwerk","macht"] },
+          { title: "Ich zeige, dass Heilung keinen Krieg braucht.", description: "Selbst andere Meister suchen beim Helden Rat, denn er erkennt Fehler, die allen anderen verborgen bleiben. Doch dieselbe Kunst, die heilt, könnte auch schaden, und manche fürchten genau das. Er will allen zeigen, dass sein Wissen einzig dem Leben dient und niemals zur Waffe wird.", hooks: ["handwerk","glaube"] },
+          { title: "Ich besiege ein Leiden für immer.", description: "Der Held kennt jede Variante der Heilung und vollbringt, was unmöglich scheint, und doch hat ein Leiden zu viele dahingerafft. Kein Verlust verzeiht er sich leicht, und diese eine Krankheit lässt ihm keinen Frieden. Er will sie nicht nur lindern, sondern für immer von der Welt tilgen.", hooks: ["handwerk","macht"] },
         ]
       },
       {
@@ -3361,8 +3361,8 @@ export const THEMEBOOKS = {
           { text: "gefürchtet wie gerühmt", hooks: ["magie","außenseiter"] },
         ],
         quests: [
-          { title: "Die Welt mit meiner Kunst verändern", description: "Mit geheimen Techniken formt der Held, was lebendig ist, und kennt die Seele jedes Materials. Seine eigene Größe droht ihn zu verschlingen, doch er will sie nutzen, um etwas zu schaffen, das zuvor unmöglich schien. Sein Werk soll eine Tür aufstoßen, hinter der ein neues Verständnis vom Leben selbst wartet.", hooks: ["handwerk","magie"] },
-          { title: "Die Grenze des Erschaffbaren", description: "Der Held wird gefürchtet wie gerühmt, denn seine Technik passt sich jeder Umgebung an und überschreitet, was andere wagen. Doch er fragt sich, wo das Weben des Lebens an seine letzte Schranke stößt. Diese Grenze will er finden und ausloten, selbst wenn er dabei riskiert, sie zu überschreiten.", hooks: ["handwerk","geheimnis"] },
+          { title: "Ich webe etwas, das die Welt verändert.", description: "Mit geheimen Techniken formt der Held, was lebendig ist, und kennt die Seele jedes Materials. Seine eigene Größe droht ihn zu verschlingen, doch er will sie nutzen, um etwas zu schaffen, das zuvor unmöglich schien. Sein Werk soll eine Tür aufstoßen, hinter der ein neues Verständnis vom Leben selbst wartet.", hooks: ["handwerk","magie"] },
+          { title: "Ich überschreite die Grenze des Erschaffbaren.", description: "Der Held wird gefürchtet wie gerühmt, denn seine Technik passt sich jeder Umgebung an und überschreitet, was andere wagen. Doch er fragt sich, wo das Weben des Lebens an seine letzte Schranke stößt. Diese Grenze will er finden und ausloten, selbst wenn er dabei riskiert, sie zu überschreiten.", hooks: ["handwerk","geheimnis"] },
         ]
       },
       {
@@ -3379,8 +3379,8 @@ export const THEMEBOOKS = {
           { text: "letzte Hüterin des Wissens", hooks: ["verlust","geheimnis"] },
         ],
         quests: [
-          { title: "Retten was von meiner Schule bleibt", description: "Der Held trägt ein verlorenes Erbe und beherrscht eine Technik ohne Namen, die sonst niemand mehr kennt. Als Letzter seiner Schule lastet das ganze Wissen auf seinen Schultern. Er gibt es nicht dem Vergessen preis, sondern bewahrt jede Lektion und jeden Griff, damit die Kunst seinen Tod überlebt.", hooks: ["handwerk","verlust"] },
-          { title: "Das Werk meines Lehrers vollenden", description: "Sein Lehrer starb mit halbfertiger Hand, und der Held kennt die Geschichte des Fachs wie kein Zweiter. Mit meisterhafter Kontrolle nimmt er auf, was unvollendet blieb. Er führt das Werk zu Ende, als wären es die Hände des Meisters selbst, und ehrt so, was ihm anvertraut wurde.", hooks: ["handwerk","verlust"] },
+          { title: "Ich rette, was von meiner Schule bleibt.", description: "Der Held trägt ein verlorenes Erbe und beherrscht eine Technik ohne Namen, die sonst niemand mehr kennt. Als Letzter seiner Schule lastet das ganze Wissen auf seinen Schultern. Er gibt es nicht dem Vergessen preis, sondern bewahrt jede Lektion und jeden Griff, damit die Kunst seinen Tod überlebt.", hooks: ["handwerk","verlust"] },
+          { title: "Ich vollende das Werk meines Lehrers.", description: "Sein Lehrer starb mit halbfertiger Hand, und der Held kennt die Geschichte des Fachs wie kein Zweiter. Mit meisterhafter Kontrolle nimmt er auf, was unvollendet blieb. Er führt das Werk zu Ende, als wären es die Hände des Meisters selbst, und ehrt so, was ihm anvertraut wurde.", hooks: ["handwerk","verlust"] },
         ]
       },
       {
@@ -3398,8 +3398,8 @@ export const THEMEBOOKS = {
           { text: "Ruhm zieht Feinde an", hooks: ["macht","verlust"] },
         ],
         quests: [
-          { title: "Die letzte verbotene Technik", description: "Der Held wirkt, was andere fürchten, und vollbringt mit geheimen Techniken das Unmögliche. Doch eine verbotene Kunst fehlt ihm noch, und er spürt, wo sie verborgen liegt. Obwohl die Hüter ihn dafür jagen, wird er ihr nachgehen, denn sein Streben nach Vollendung wiegt schwerer als jede Gefahr.", hooks: ["handwerk","geheimnis"] },
-          { title: "Kunst ohne Krieg", description: "Gefürchtet wie gerühmt zieht der Held mit seiner verbotenen Kunst Feinde an, und viele sehen in ihm nur Bedrohung. Doch er kennt jede Variante seines Fachs und weiß, dass selbst das Verbotene heilen kann. Er will beweisen, dass auch die gefürchtete Kunst dem Guten zu dienen vermag.", hooks: ["handwerk","glaube"] },
+          { title: "Ich meistere die letzte verbotene Technik.", description: "Der Held wirkt, was andere fürchten, und vollbringt mit geheimen Techniken das Unmögliche. Doch eine verbotene Kunst fehlt ihm noch, und er spürt, wo sie verborgen liegt. Obwohl die Hüter ihn dafür jagen, wird er ihr nachgehen, denn sein Streben nach Vollendung wiegt schwerer als jede Gefahr.", hooks: ["handwerk","geheimnis"] },
+          { title: "Ich nutze meine Kunst nur, um Frieden zu wahren.", description: "Gefürchtet wie gerühmt zieht der Held mit seiner verbotenen Kunst Feinde an, und viele sehen in ihm nur Bedrohung. Doch er kennt jede Variante seines Fachs und weiß, dass selbst das Verbotene heilen kann. Er will beweisen, dass auch die gefürchtete Kunst dem Guten zu dienen vermag.", hooks: ["handwerk","glaube"] },
         ]
       },
       {
@@ -3416,14 +3416,14 @@ export const THEMEBOOKS = {
           { text: "erträgt kein Mittelmaß", hooks: ["handwerk"] },
         ],
         quests: [
-          { title: "Meine Kunst weitergeben", description: "Der Held lehrt mit einem einzigen Blick, und selbst andere Meister suchen seinen Rat. Doch niemand reicht an seine Ebene heran, und so droht sein Können mit ihm zu sterben. Das ist ihm zu kostbar, und er sucht jenen einen, der würdig genug ist, sein Wissen zu empfangen.", hooks: ["handwerk","wissen"] },
-          { title: "Einen würdigen Erben finden", description: "Der Held erkennt ungeahnte Fehler und veredelt fremdes Werk mit leichter Hand, doch er erträgt kein Mittelmaß. Sein Wissen verlangt einen Erben, der das Erbe wirklich tragen kann, nicht bloß einen eifrigen Nachahmer. Nach diesem einen Schüler hält er Ausschau, der seiner Kunst gewachsen ist.", hooks: ["handwerk","verlust"] },
+          { title: "Ich gebe meine Kunst weiter, bevor sie verloren geht.", description: "Der Held lehrt mit einem einzigen Blick, und selbst andere Meister suchen seinen Rat. Doch niemand reicht an seine Ebene heran, und so droht sein Können mit ihm zu sterben. Das ist ihm zu kostbar, und er sucht jenen einen, der würdig genug ist, sein Wissen zu empfangen.", hooks: ["handwerk","wissen"] },
+          { title: "Ich finde einen würdigen Erben für meine Kunst.", description: "Der Held erkennt ungeahnte Fehler und veredelt fremdes Werk mit leichter Hand, doch er erträgt kein Mittelmaß. Sein Wissen verlangt einen Erben, der das Erbe wirklich tragen kann, nicht bloß einen eifrigen Nachahmer. Nach diesem einen Schüler hält er Ausschau, der seiner Kunst gewachsen ist.", hooks: ["handwerk","verlust"] },
         ]
       },
       {
         text: "Legende zu Lebzeiten", hooks: ["handwerk","schicksal"],
         powerTags: [
-          { text: "gilt als Legende", hooks: ["handwerk","schicksal"] },
+          { text: "ihr Name flößt Ehrfurcht ein", hooks: ["handwerk","schicksal"] },
           { text: "ihr Ruf öffnet Türen", hooks: ["handwerk","macht"] },
           { text: "Werkstatt mit eigenem Namen", hooks: ["handwerk","macht"] },
           { text: "vollbringt das Unmögliche", hooks: ["handwerk","schicksal"] },
@@ -3435,8 +3435,8 @@ export const THEMEBOOKS = {
           { text: "Ruhm zieht Feinde an", hooks: ["macht","verlust"] },
         ],
         quests: [
-          { title: "Dem Mythos gerecht werden", description: "Schüler aus aller Welt strömen herbei, und der Held gilt schon zu Lebzeiten als Legende. Doch die Geschichten über ihn sind größer geworden als er selbst, und ihre Last droht ihn zu erdrücken. Er muss beweisen, dass er den Mythos verdient, ehe der Neid der anderen ihn zu Fall bringt.", hooks: ["handwerk","schicksal"] },
-          { title: "Die Welt mit meiner Kunst verändern", description: "Der Ruf des Helden öffnet jede Tür, und er vollbringt, was anderen unmöglich bleibt. Doch bloße Bewunderung genügt ihm nicht, denn ein Name wie seiner sollte mehr bewirken. Er will seinen Ruhm nutzen, um etwas in der Welt zu verschieben, das ohne ihn für immer feststünde.", hooks: ["handwerk","macht"] },
+          { title: "Ich werde dem Mythos gerecht, der mich umgibt.", description: "Schüler aus aller Welt strömen herbei, und der Held gilt schon zu Lebzeiten als Legende. Doch die Geschichten über ihn sind größer geworden als er selbst, und ihre Last droht ihn zu erdrücken. Er muss beweisen, dass er den Mythos verdient, ehe der Neid der anderen ihn zu Fall bringt.", hooks: ["handwerk","schicksal"] },
+          { title: "Ich verändere die Welt durch meine Kunst.", description: "Der Ruf des Helden öffnet jede Tür, und er vollbringt, was anderen unmöglich bleibt. Doch bloße Bewunderung genügt ihm nicht, denn ein Name wie seiner sollte mehr bewirken. Er will seinen Ruhm nutzen, um etwas in der Welt zu verschieben, das ohne ihn für immer feststünde.", hooks: ["handwerk","macht"] },
         ]
       },
       {
@@ -3453,8 +3453,8 @@ export const THEMEBOOKS = {
           { text: "niemand auf ihrer Ebene", hooks: ["verlust"] },
         ],
         quests: [
-          { title: "Die letzte unkartierte Route", description: "Der Held liest Himmel und Strömung und findet jeden Weg, in jeder Umgebung. Doch er hält zu hohe Standards, um sich mit bekanntem Wasser zu begnügen. Irgendwo wartet eine Route, die noch kein Kiel je befuhr, und er wird der Erste sein, der sie kartiert.", hooks: ["handwerk","fahrend"] },
-          { title: "Meine Kunst weitergeben", description: "Mit meisterhafter Kontrolle kennt der Held jede Variante seines Fachs, doch niemand erreicht seine Ebene. Der Gedanke, dass sein Wissen vom Kurs mit ihm versinkt, lässt ihn nicht los. Er will es der nächsten Generation übergeben, damit andere die Wege finden, die er einst allein beschritt.", hooks: ["handwerk","wissen"] },
+          { title: "Ich kartiere die letzte unbekannte Route.", description: "Der Held liest Himmel und Strömung und findet jeden Weg, in jeder Umgebung. Doch er hält zu hohe Standards, um sich mit bekanntem Wasser zu begnügen. Irgendwo wartet eine Route, die noch kein Kiel je befuhr, und er wird der Erste sein, der sie kartiert.", hooks: ["handwerk","fahrend"] },
+          { title: "Ich gebe mein Navigationswissen weiter.", description: "Mit meisterhafter Kontrolle kennt der Held jede Variante seines Fachs, doch niemand erreicht seine Ebene. Der Gedanke, dass sein Wissen vom Kurs mit ihm versinkt, lässt ihn nicht los. Er will es der nächsten Generation übergeben, damit andere die Wege finden, die er einst allein beschritt.", hooks: ["handwerk","wissen"] },
         ]
       },
       {
@@ -3472,8 +3472,8 @@ export const THEMEBOOKS = {
           { text: "Rivalen um den Vorsitz", hooks: ["macht","stadt"] },
         ],
         quests: [
-          { title: "Die Gilde vereinen", description: "Der Held führt eine Werkstatt mit eigenem Namen, setzt den Maßstab des Fachs und beherrscht selbst verwandte Disziplinen. Doch Rivalen streiten um den Vorsitz, und die Gilde droht zu zerfallen. Er will alle Meister seines Fachs unter einem Banner einen, ehe der Zwist das Erbe zerreißt.", hooks: ["handwerk","macht"] },
-          { title: "Meine Kunst weitergeben", description: "Sein Ruf öffnet dem Helden jede Tür, und Schüler aus aller Welt drängen zu ihm. Doch seine eigene Größe droht ihn zur Geisel zu machen, wenn er das Wissen für sich behält. Er öffnet die Gilde für alle Würdigen und gibt sein Können ungeschmälert weiter, statt es zu horten.", hooks: ["handwerk","wissen"] },
+          { title: "Ich einige die Gilde unter einem gemeinsamen Banner.", description: "Der Held führt eine Werkstatt mit eigenem Namen, setzt den Maßstab des Fachs und beherrscht selbst verwandte Disziplinen. Doch Rivalen streiten um den Vorsitz, und die Gilde droht zu zerfallen. Er will alle Meister seines Fachs unter einem Banner einen, ehe der Zwist das Erbe zerreißt.", hooks: ["handwerk","macht"] },
+          { title: "Ich öffne die Gilde und gebe mein Wissen weiter.", description: "Sein Ruf öffnet dem Helden jede Tür, und Schüler aus aller Welt drängen zu ihm. Doch seine eigene Größe droht ihn zur Geisel zu machen, wenn er das Wissen für sich behält. Er öffnet die Gilde für alle Würdigen und gibt sein Können ungeschmälert weiter, statt es zu horten.", hooks: ["handwerk","wissen"] },
         ]
       },
     ]
@@ -3765,7 +3765,7 @@ export const THEMEBOOKS = {
           { text: "späht aus der Höhe", hooks: ["natur"] },
           { text: "bringt das Gesuchte", hooks: ["natur","glaube"] },
           { text: "findet den Weg zurück", hooks: ["natur","fahrend"] },
-          { text: "Erbe meiner Mutter", hooks: ["verlust","glaube"] },
+          { text: "fängt Botschaften aus der Luft", hooks: ["verlust","glaube"] },
         ],
         weaknessTags: [
           { text: "letztes Andenken", hooks: ["verlust","natur"] },
@@ -4234,7 +4234,7 @@ export const THEMEBOOKS = {
           { text: "verziertes Wams", hooks: ["adel"] },
           { text: "trägt einen ehrwürdigen Namen", hooks: ["adel","verlust"] },
           { text: "alte Pracht beeindruckt noch", hooks: ["adel","macht"] },
-          { text: "Erbe längst vergangener Größe", hooks: ["adel","verlust"] },
+          { text: "trägt altes Haussiegel", hooks: ["adel","verlust"] },
         ],
         weaknessTags: [
           { text: "unbequem und schlecht sitzend", hooks: ["adel","verlust"] },
@@ -4282,7 +4282,7 @@ export const THEMEBOOKS = {
       {
         text: "letztes Stück Heimat", hooks: ["verlust","fahrend"],
         powerTags: [
-          { text: "erinnert an bessere Tage", hooks: ["verlust","fahrend"] },
+          { text: "weckt Mut in Hoffnungslosen", hooks: ["verlust","fahrend"] },
           { text: "spendet Trost in der Fremde", hooks: ["verlust","glaube"] },
           { text: "verbindet mit den Meinen", hooks: ["fahrend","glaube"] },
           { text: "weckt vertraute Kraft", hooks: ["verlust","natur"] },
@@ -4301,7 +4301,7 @@ export const THEMEBOOKS = {
         powerTags: [
           { text: "Aufzeichnungen des Vermissten", hooks: ["geheimnis","wissen"] },
           { text: "getarnter Reisemantel", hooks: ["geheimnis","fahrend"] },
-          { text: "unerwartete Hinterlassenschaft", hooks: ["fahrend","verlust"] },
+          { text: "birgt verborgene Ressourcen", hooks: ["fahrend","verlust"] },
           { text: "Spuren einer letzten Reise", hooks: ["fahrend","geheimnis"] },
         ],
         weaknessTags: [

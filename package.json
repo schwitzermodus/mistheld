@@ -11,12 +11,14 @@
     "typecheck": "tsc --noEmit",
     "test:syntax": "tsc --noEmit",
     "validate:tags": "node tools/validate_tags.cjs",
-    "optimize:images": "node tools/optimize_images.cjs"
+    "optimize:images": "node tools/optimize_images.cjs",
+    "judge:tags": "node tools/judge_tags.mjs"
   },
   "dependencies": {
     "jspdf": "^2.5.1"
   },
   "devDependencies": {
+    "@anthropic-ai/sdk": "^0.40.0",
     "@playwright/test": "^1.43.0",
     "@types/node": "^20.12.0",
     "sharp": "^0.35.2",
