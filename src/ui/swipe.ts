@@ -5,8 +5,8 @@ import { $ } from '../util/dom';
 import { state } from '../state/session';
 import { INSPIRATION_CARDS } from '../data/inspirations.js';
 import { CFG, levelCssClass, SCREENS } from '../core/constants';
-import { loadSettings, isThemeTypeEnabled, effectiveLevel } from '../core/settings';
-import { applyScore, pickBestFrom } from '../core/scoring';
+import { loadSettings, isThemeTypeEnabled, effectiveLevel, getEnabledThemeTypes } from '../core/settings';
+import { applyScore, pickBestFrom, swipeReadiness } from '../core/scoring';
 import { generateProposal, generateHero, composeHeroStory } from '../core/generation';
 import { show, showLoading, hideLoading } from './navigation';
 import { setHbEditing, renderHeldenblatt } from './result';
@@ -49,7 +49,8 @@ export function startSwipe(): void {
   var eligible = INSPIRATION_CARDS.filter(function (c: any) {
     return Object.keys(c.affinities || {}).some(function (t) { return isThemeTypeEnabled(t, _s); });
   });
-  state.shuffledCards = diversifyFirstN(eligible, CFG.MIN_SWIPES_FOR_SKIP);
+  // Diversitaet ueber das GESAMTE Deck (nicht nur die ersten N) + voll randomisiert.
+  state.shuffledCards = diversifyFirstN(eligible, eligible.length);
 
   var firstBatch = state.shuffledCards.slice(0, IMG_GATE_COUNT)
     .map(function (c: any) { return c.image; }).filter(Boolean);
@@ -89,13 +90,8 @@ export function renderCard(): void {
   var stage = $('card-stage');
   stage.querySelectorAll('.card:not(.abandoned)').forEach(function (c: any) { c.remove(); });
   if (state.cardIndex >= state.shuffledCards.length) { finishSwiping(); return; }
-  $('card-counter').textContent = STRINGS.swipe.cardCounter(state.cardIndex + 1, state.shuffledCards.length);
+  updateReadiness();
   $('btn-undo').disabled = !canUndo();
-  var skipBtn = $('btn-skip');
-  if (skipBtn) {
-    var done = state.cardIndex;
-    skipBtn.style.display = done >= CFG.MIN_SWIPES_FOR_SKIP ? '' : 'none';
-  }
   for (var i = CFG.STACK_DEPTH - 1; i >= 0; i--) {
     var idx = state.cardIndex + i;
     if (idx >= state.shuffledCards.length) continue;
@@ -176,6 +172,21 @@ export function renderCard(): void {
 
 export function canUndo(): boolean { return state.swipes.length > 0; }
 
+// Inspo P1.2: Fortschritts-/Readiness-Anzeige statt fixem Karten-Zaehler.
+export function updateReadiness(): void {
+  var rd = swipeReadiness(getEnabledThemeTypes(loadSettings()));
+  var fill = $('readiness-fill');
+  if (fill) { fill.style.width = Math.round(rd.progress * 100) + '%'; fill.classList.toggle('ready', rd.ready); }
+  var label = $('readiness-label'), readyBtn = $('btn-ready');
+  if (rd.ready) {
+    if (label) label.hidden = true;
+    if (readyBtn) { readyBtn.hidden = false; readyBtn.textContent = STRINGS.swipe.readyCta; }
+  } else {
+    if (label) { label.hidden = false; label.textContent = STRINGS.swipe.formingLabel; }
+    if (readyBtn) readyBtn.hidden = true;
+  }
+}
+
 export function adaptiveResort(): void {
   if (state.cardIndex < 2 || state.cardIndex >= state.shuffledCards.length) return;
   var pp: any = {};
@@ -185,7 +196,13 @@ export function adaptiveResort(): void {
   if (!Object.keys(pp).length) return;
   var seen = state.shuffledCards.slice(0, state.cardIndex);
   var rem = state.shuffledCards.slice(state.cardIndex);
-  var sc = function (c: any) { return Object.entries(c.affinities || {}).reduce(function (s: number, kv: any) { return s + (pp[kv[0]] || 0) * kv[1]; }, 0); };
+  // FYP-Adaption: verbleibende Karten nach dem bisherigen Verhalten nachsortieren
+  // — Affinitaet (Theme-Typen) UND Hooks (thematisches Profil) gemeinsam.
+  var sc = function (c: any) {
+    var aff = Object.entries(c.affinities || {}).reduce(function (s: number, kv: any) { return s + (pp[kv[0]] || 0) * kv[1]; }, 0);
+    var hk = (c.hooks || []).reduce(function (s: number, h: string) { return s + Math.max(0, state.hookCounts[h] || 0); }, 0);
+    return aff + CFG.ADAPT_HOOK_WEIGHT * hk;
+  };
   rem.sort(function (a: any, b: any) { return sc(b) - sc(a); });
   state.shuffledCards = seen.concat(rem);
 }
@@ -239,9 +256,9 @@ export function undoLast(): void {
   var l = state.swipes.pop(); applyScore(l.card, l.dir, -1); state.cardIndex = Math.max(0, state.cardIndex - 1); renderCard();
 }
 
-// #47: Swipe-Prozess fruehzeitig beenden
+// Inspo P1.2: Swipe-Prozess abschliessen, sobald der Held bereit ist (Button).
 export function skipRemainingSwipes(): void {
-  if (state.cardIndex < CFG.MIN_SWIPES_FOR_SKIP) return;
+  if (!state.swipes.length) return;
   state.cardIndex = state.shuffledCards.length;
   var stage = $('card-stage');
   stage.querySelectorAll('.card:not(.abandoned)').forEach(function (c: any) { c.remove(); });

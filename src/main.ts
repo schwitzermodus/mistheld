@@ -45,7 +45,7 @@ if ($('intro-settings-link')) {
 $('btn-yes').addEventListener('click', function () { programmaticDecide('yes'); });
 $('btn-no').addEventListener('click', function () { programmaticDecide('no'); });
 $('btn-undo').addEventListener('click', undoLast);
-$('btn-skip').addEventListener('click', skipRemainingSwipes);
+if ($('btn-ready')) $('btn-ready').addEventListener('click', skipRemainingSwipes);
 $('btn-settings').addEventListener('click', openSettings);
 $('btn-settings-back').addEventListener('click', function () {
   saveSettingsFromUI();

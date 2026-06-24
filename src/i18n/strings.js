@@ -43,6 +43,8 @@ export const STRINGS={
     decisionYes:'Passt',decisionNo:'Nicht',
     cardCounter:function(cur,tot){return 'Karte '+cur+' von '+tot;},
     inspirationLabel:'Inspiration',possibleThemesLabel:'Theme-Typen',examplesLabel:'etwa:',
+    formingLabel:'Dein Held nimmt Form an …',
+    readyCta:'Dein Held ist bereit – ansehen',
     ariaYes:'Passt',ariaNo:'Passt nicht',ariaUndo:'Letzte Karte zurück',ariaSkip:'Restliche Karten überspringen',
   },
   result:{
