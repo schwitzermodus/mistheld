@@ -3,7 +3,7 @@
 ===================================================== */
 import { $ } from '../util/dom';
 import { PRESETS } from '../core/constants';
-import { loadSettings } from '../core/settings';
+import { loadSettings, getEnabledThemeTypes } from '../core/settings';
 import { setPreset } from './settingsUI';
 import { STRINGS } from '../i18n/strings.js';
 
@@ -27,6 +27,13 @@ export function renderIntro(): void {
     });
   }
   if ($('intro-modedesc')) $('intro-modedesc').textContent = STRINGS.intro.modeDesc[cur];
+  // Teilergebnis-Hinweis: <4 aktivierte Theme-Typen -> kein vollstaendiger Held (4 Themes).
+  var warn = $('intro-warning');
+  if (warn) {
+    var enabledCount = getEnabledThemeTypes(loadSettings()).length;
+    if (enabledCount < 4) { warn.hidden = false; warn.textContent = STRINGS.intro.partialWarning(Math.max(1, enabledCount)); }
+    else { warn.hidden = true; warn.textContent = ''; }
+  }
 }
 export function selectIntroMode(preset: string): void {
   if (PRESETS.indexOf(preset) === -1) return;

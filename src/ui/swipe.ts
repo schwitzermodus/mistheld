@@ -3,9 +3,9 @@
 ===================================================== */
 import { $ } from '../util/dom';
 import { state } from '../state/session';
-import { PHASES } from '../data/inspirations.js';
-import { CFG, tierClass, SCREENS } from '../core/constants';
-import { loadSettings, isThemeTypeEnabled } from '../core/settings';
+import { INSPIRATION_CARDS } from '../data/inspirations.js';
+import { CFG, levelCssClass, SCREENS } from '../core/constants';
+import { loadSettings, isThemeTypeEnabled, effectiveLevel } from '../core/settings';
 import { applyScore, pickBestFrom } from '../core/scoring';
 import { generateProposal, generateHero, composeHeroStory } from '../core/generation';
 import { show, showLoading, hideLoading } from './navigation';
@@ -43,7 +43,13 @@ export function startSwipe(): void {
   state.cardIndex = 0; state.swipes = []; state.affinityScores = {}; state.hookCounts = {};
   state.proposals = []; state.proposalIndex = 0; state.edits = {}; state.hero = null; state.busy = false;
   state.currentCharacterId = null; // neue Sitzung -> neuer Charakter beim Speichern
-  state.shuffledCards = diversifyFirstN(PHASES[0].cards, CFG.MIN_SWIPES_FOR_SKIP);
+  // Deck passend zu den Einstellungen: nur Inspos mit >=1 aktiviertem Theme-Typ.
+  // Inspos ohne aktiven Typ wuerden ins Leere laufen -> raus aus dem Stapel.
+  var _s = loadSettings();
+  var eligible = INSPIRATION_CARDS.filter(function (c: any) {
+    return Object.keys(c.affinities || {}).some(function (t) { return isThemeTypeEnabled(t, _s); });
+  });
+  state.shuffledCards = diversifyFirstN(eligible, CFG.MIN_SWIPES_FOR_SKIP);
 
   var firstBatch = state.shuffledCards.slice(0, IMG_GATE_COUNT)
     .map(function (c: any) { return c.image; }).filter(Boolean);
@@ -105,7 +111,7 @@ export function renderCard(): void {
         .sort(function (a: any, b: any) { return b[1] - a[1]; }).slice(0, 3);
       if (sorted.length > 0) {
         var chips = sorted.map(function (kv: any) {
-          return '<span class="card-theme-tag ' + tierClass(kv[0]) + '">' + escapeHtml(displayThemebook(kv[0])) + '</span>';
+          return '<span class="card-theme-tag ' + levelCssClass(effectiveLevel(kv[0], _settings)) + '">' + escapeHtml(displayThemebook(kv[0])) + '</span>';
         }).join('');
         var label = escapeHtml(STRINGS.swipe.possibleThemesLabel);
         footBand = '<div class="card-foot">' +

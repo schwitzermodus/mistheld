@@ -299,3 +299,37 @@ test('#35: Alle 20 Theme-Types haben Phasenkarten-Affinitaet', async ({ page }) 
   });
   expect(ok).toBe(true);
 });
+
+// PHASE 1.1: Deck passt zu Einstellungen
+test('Deck-Filter: Einsteiger zeigt weniger Karten als Standard (40)', async ({ page }) => {
+  await page.goto('/');
+  await page.evaluate(() => localStorage.setItem('mistheld:settings', JSON.stringify({ preset: 'standard' })));
+  await page.reload();
+  await page.locator('#btn-start').click();
+  await page.locator('#btn-intro-start').click();
+  await expect(page.locator('#card-counter')).toContainText('von 40');
+
+  await page.evaluate(() => localStorage.setItem('mistheld:settings', JSON.stringify({ preset: 'beginner' })));
+  await page.reload();
+  await page.locator('#btn-start').click();
+  await page.locator('#btn-intro-start').click();
+  await expect(page.locator('#card-counter')).toContainText('Karte');
+  const txt = await page.locator('#card-counter').textContent();
+  const total = parseInt((txt.match(/von (\d+)/) || [])[1], 10);
+  expect(total).toBeGreaterThan(0);
+  expect(total).toBeLessThan(40);
+});
+
+test('Enge Einstellungen: Teilergebnis-Warnung im Intro + nur so viele Themes wie aktivierte Typen', async ({ page }) => {
+  await page.goto('/');
+  await page.evaluate(() => {
+    const types = ['Circumstance','Devotion','Past','People','Personality','Skill or Trade','Trait','Duty','Influence','Knowledge','Prodigious Ability','Relic','Uncanny Being','Destiny','Dominion','Mastery','Monstrosity','Companion','Magic','Possessions'];
+    const tt = {}; types.forEach(t => { tt[t] = { enabled: t === 'Magic', level: 'Origin' }; });
+    localStorage.setItem('mistheld:settings', JSON.stringify({ preset: 'custom', themeTypes: tt }));
+  });
+  await page.reload();
+  await page.locator('#btn-start').click();
+  await expect(page.locator('#intro-warning')).toBeVisible();
+  const n = await page.evaluate(() => generateProposal('initial').themes.length);
+  expect(n).toBe(1);
+});

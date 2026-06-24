@@ -47,7 +47,9 @@ export function generateProposal(mode?: string, base?: any): any {
   var s = loadSettings();
   var enabled = getEnabledThemeTypes(s);
   if (enabled.length === 0) enabled = ['People', 'Skill or Trade', 'Trait', 'Personality'];
-  var n = 4;
+  // Teilergebnis: nie mehr verschiedene Themes als aktivierte Theme-Typen (keine
+  // erzwungene Wiederholung auf 4, wenn die Einstellungen zu eng sind).
+  var n = Math.min(4, enabled.length);
   var used: string[] = [];
   var tbs: string[] = [];
   for (var i = 0; i < n; i++) {
