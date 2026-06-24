@@ -20,6 +20,10 @@ export const CFG = Object.freeze({
   MAX_PROPOSALS: 4, MAX_ELEMENT_ALTS: 3, HAPTIC_MS: 6, AUDIO_VOLUME: 0.4,
   MUTED_KEY: 'mistheld:muted', SETTINGS_KEY: 'mistheld:settings', EXPANDED_PREFERENCE: 0.7,
   MIN_SWIPES_FOR_SKIP: 10,
+  // Inspo P1.2: adaptive Länge / Readiness ("Dein Held ist bereit").
+  MIN_READY_SWIPES: 8,    // Mindestanzahl Swipes, bevor "bereit" gemeldet wird
+  READY_MIN_HOOKS: 3,     // so viele positive Hooks für ein klares Profil
+  ADAPT_HOOK_WEIGHT: 1.5, // Gewicht der Hook-Überlappung in der FYP-Nachsortierung
   // Kern-Qualität R1: Charakter-Profil + Cross-Theme-Kohäsion (Swipe-Schärfung).
   PROFILE_SIZE: 4,        // Top-N positive Hooks bilden das Charakter-Profil
   PROFILE_WEIGHT: 4,      // Gewicht der Profil-Überlappung bei der Auswahl (höher = entschiedener)

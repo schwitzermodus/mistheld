@@ -301,23 +301,35 @@ test('#35: Alle 20 Theme-Types haben Phasenkarten-Affinitaet', async ({ page }) 
 });
 
 // PHASE 1.1: Deck passt zu Einstellungen
-test('Deck-Filter: Einsteiger zeigt weniger Karten als Standard (40)', async ({ page }) => {
+test('Deck-Filter: Einsteiger-Stapel kleiner als Standard (40)', async ({ page }) => {
   await page.goto('/');
   await page.evaluate(() => localStorage.setItem('mistheld:settings', JSON.stringify({ preset: 'standard' })));
   await page.reload();
   await page.locator('#btn-start').click();
   await page.locator('#btn-intro-start').click();
-  await expect(page.locator('#card-counter')).toContainText('von 40');
+  const std = await page.evaluate(() => state.shuffledCards.length);
+  expect(std).toBe(40);
 
   await page.evaluate(() => localStorage.setItem('mistheld:settings', JSON.stringify({ preset: 'beginner' })));
   await page.reload();
   await page.locator('#btn-start').click();
   await page.locator('#btn-intro-start').click();
-  await expect(page.locator('#card-counter')).toContainText('Karte');
-  const txt = await page.locator('#card-counter').textContent();
-  const total = parseInt((txt.match(/von (\d+)/) || [])[1], 10);
-  expect(total).toBeGreaterThan(0);
-  expect(total).toBeLessThan(40);
+  const beg = await page.evaluate(() => state.shuffledCards.length);
+  expect(beg).toBeGreaterThan(0);
+  expect(beg).toBeLessThan(40);
+});
+
+// PHASE 1.2: adaptive Länge / Readiness
+test('Readiness: nach genug Ja-Swipes erscheint der Bereit-Button', async ({ page }) => {
+  await page.goto('/');
+  await page.evaluate(() => localStorage.setItem('mistheld:settings', JSON.stringify({ preset: 'standard' })));
+  await page.reload();
+  await page.locator('#btn-start').click();
+  await page.locator('#btn-intro-start').click();
+  await expect(page.locator('.card.front')).toBeVisible();
+  await expect(page.locator('#btn-ready')).toBeHidden();
+  for (let i = 0; i < 12; i++) { await page.locator('#btn-yes').click(); await page.waitForTimeout(70); }
+  await expect(page.locator('#btn-ready')).toBeVisible();
 });
 
 test('Enge Einstellungen: Teilergebnis-Warnung im Intro + nur so viele Themes wie aktivierte Typen', async ({ page }) => {

@@ -73,6 +73,24 @@ export function characterProfile(): Record<string, number> {
   return profile;
 }
 export function hasProfileSignal(profile: Record<string, number>): boolean { return Object.keys(profile).length > 0; }
+
+/* =====================================================
+   Inspo P1.2: Readiness — "ist genug Signal da, um einen klaren Helden zu
+   bauen?". Speist die Fortschrittsanzeige + den "Dein Held ist bereit"-Button.
+   ready, wenn genug Swipes + genug verschiedene positive Theme-Typen (>= Anzahl
+   benoetigter Themes) + genug positive Hooks. progress (0..1) fuer den Balken.
+===================================================== */
+export function swipeReadiness(enabledTypes: string[]): { ready: boolean; progress: number } {
+  var maxThemes = Math.min(4, enabledTypes.length || 4);
+  var distinctTypes = enabledTypes.filter(function (t) { return (state.affinityScores[t] || 0) > 0; }).length;
+  var positiveHooks = Object.keys(state.hookCounts).filter(function (h) { return (state.hookCounts[h] || 0) > 0; }).length;
+  var swipes = state.swipes.length;
+  var pSwipes = Math.min(1, swipes / CFG.MIN_READY_SWIPES);
+  var pTypes = maxThemes ? Math.min(1, distinctTypes / maxThemes) : 1;
+  var pHooks = Math.min(1, positiveHooks / CFG.READY_MIN_HOOKS);
+  var ready = swipes >= CFG.MIN_READY_SWIPES && distinctTypes >= maxThemes && positiveHooks >= CFG.READY_MIN_HOOKS;
+  return { ready: ready, progress: (pSwipes + pTypes + pHooks) / 3 };
+}
 export function profileScore(e: any, profile: Record<string, number>): number {
   var hs = tagHooks(e), sc = 0;
   for (var i = 0; i < hs.length; i++) { sc += profile[hs[i]] || 0; }
