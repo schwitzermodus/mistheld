@@ -104,6 +104,8 @@ body.overlay-open .mute-btn,body.overlay-open .settings-btn{display:none}
 .intro-mode.on .intro-mode-tick{color:#f3ecd9}
 /* Erklärtext des gewählten Modus — unter den Kacheln, nicht in ihnen */
 .intro-modedesc{font-size:var(--fs-body);color:var(--ink);line-height:1.45;text-align:center;margin-top:11px;min-height:2.8rem}
+.intro-warning{font-size:var(--fs-label);color:var(--accent);text-align:center;line-height:1.4;margin-top:11px;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:rgba(139,58,43,0.06)}
+.intro-warning[hidden]{display:none}
 .intro-hint{font-size:var(--fs-label);color:var(--ink-soft);text-align:center;line-height:1.4;margin-top:12px}
 .intro-settings-link{color:var(--accent);text-decoration:underline;text-underline-offset:2px;cursor:pointer}
 .intro-actions{display:flex;gap:10px;align-items:center;justify-content:center}
@@ -413,7 +415,7 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
     <button class="btn btn-primary" id="btn-start"></button>
     <button class="btn btn-ghost" id="btn-library" type="button"></button>
   </div>
-  <div class="app-version">v2026-06-23.5</div>
+  <div class="app-version">v2026-06-24.1</div>
 </section>
 <section id="screen-intro" class="screen">
   <div class="intro-wrap">
@@ -437,6 +439,7 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
           </button>
         </div>
         <div class="intro-modedesc" id="intro-modedesc"></div>
+        <div class="intro-warning" id="intro-warning" hidden></div>
         <div class="intro-hint"><span id="intro-hint"></span> <a class="intro-settings-link" id="intro-settings-link" role="button" tabindex="0"></a></div>
       </div>
     </div>

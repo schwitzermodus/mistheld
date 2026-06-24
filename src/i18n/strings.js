@@ -37,6 +37,7 @@ export const STRINGS={
     settingsLink:'Einstellungen',
     cta:"Los geht's",
     back:'Zurück',
+    partialWarning:function(k){return 'Mit diesen Einstellungen entsteht nur ein Teilergebnis ('+k+' von 4 Themes). Passe die Einstellungen an für einen vollständigen Helden.';},
   },
   swipe:{
     decisionYes:'Passt',decisionNo:'Nicht',
