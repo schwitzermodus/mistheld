@@ -20,6 +20,11 @@ export const CFG = Object.freeze({
   MAX_PROPOSALS: 4, MAX_ELEMENT_ALTS: 3, HAPTIC_MS: 6, AUDIO_VOLUME: 0.4,
   MUTED_KEY: 'mistheld:muted', SETTINGS_KEY: 'mistheld:settings', EXPANDED_PREFERENCE: 0.7,
   MIN_SWIPES_FOR_SKIP: 10,
+  // Phase 2: Super-Like (Swipe hoch / Herz-Button) + Detail-Flip (Tap).
+  SWIPE_UP_DISTANCE: 90,  // px nach oben für Super-Like-Geste
+  SWIPE_UP_VELOCITY: 0.35, // px/ms Aufwärts-Geschwindigkeit als Auslöser
+  SUPERLIKE_WEIGHT: 2,    // Gewicht eines Super-Likes (Affinitäten + Hooks)
+  TAP_MOVE_MAX: 8,        // max. Bewegung (px), damit ein Pointer-Up als Tap (Flip) zählt
   // Inspo P1.2: adaptive Länge / Readiness ("Dein Held ist bereit").
   MIN_READY_SWIPES: 8,    // Mindestanzahl Swipes, bevor "bereit" gemeldet wird
   READY_MIN_HOOKS: 3,     // so viele positive Hooks für ein klares Profil

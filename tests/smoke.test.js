@@ -345,3 +345,65 @@ test('Enge Einstellungen: Teilergebnis-Warnung im Intro + nur so viele Themes wi
   const n = await page.evaluate(() => generateProposal('initial').themes.length);
   expect(n).toBe(1);
 });
+
+// PHASE 2.1: Super-Like (Swipe hoch / Herz-Button)
+async function startSwiping(page, preset = 'standard') {
+  await page.goto('/');
+  await page.evaluate((p) => localStorage.setItem('mistheld:settings', JSON.stringify({ preset: p })), preset);
+  await page.reload();
+  await page.locator('#btn-start').click();
+  await page.locator('#btn-intro-start').click();
+  await expect(page.locator('.card.front')).toBeVisible();
+}
+
+test('Super-Like: zählt mit doppeltem Gewicht auf Affinitäten + Hooks', async ({ page }) => {
+  await startSwiping(page);
+  const res = await page.evaluate(() => {
+    const card = state.shuffledCards[state.cardIndex];
+    const type = Object.keys(card.affinities)[0];
+    const hook = (card.hooks || [])[0];
+    decide('super');
+    const last = state.swipes[state.swipes.length - 1];
+    return {
+      weight: last.weight, dir: last.dir,
+      aff: state.affinityScores[type], affExpected: card.affinities[type] * 2,
+      hook: hook ? state.hookCounts[hook] : null,
+    };
+  });
+  expect(res.dir).toBe('super');
+  expect(res.weight).toBe(2);
+  expect(res.aff).toBeCloseTo(res.affExpected, 5);
+  if (res.hook !== null) expect(res.hook).toBeCloseTo(2, 5);
+});
+
+test('Super-Like: undoLast macht das doppelte Gewicht exakt rückgängig', async ({ page }) => {
+  await startSwiping(page);
+  const res = await page.evaluate(() => {
+    decide('super');
+    undoLast();
+    const vals = Object.values(state.affinityScores).concat(Object.values(state.hookCounts));
+    return { swipes: state.swipes.length, maxAbs: vals.reduce((m, v) => Math.max(m, Math.abs(v)), 0) };
+  });
+  expect(res.swipes).toBe(0);
+  expect(res.maxAbs).toBeCloseTo(0, 6);
+});
+
+test('Super-Like: Herz-Button und ArrowUp lösen einen Super-Like aus', async ({ page }) => {
+  await startSwiping(page);
+  await page.locator('#btn-super').click();
+  await page.waitForTimeout(120);
+  let last = await page.evaluate(() => state.swipes[state.swipes.length - 1]);
+  expect(last.dir).toBe('super');
+  expect(last.weight).toBe(2);
+  await page.locator('body').press('ArrowUp');
+  await page.waitForTimeout(120);
+  last = await page.evaluate(() => state.swipes[state.swipes.length - 1]);
+  expect(last.dir).toBe('super');
+});
+
+test('Steuerleiste: Reihenfolge ist Zurück · Ablehnen · Herz · Liken', async ({ page }) => {
+  await startSwiping(page);
+  const ids = await page.evaluate(() =>
+    Array.from(document.querySelectorAll('.swipe-controls button')).map((b) => b.id));
+  expect(ids).toEqual(['btn-undo', 'btn-no', 'btn-super', 'btn-yes']);
+});

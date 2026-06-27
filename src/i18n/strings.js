@@ -40,12 +40,12 @@ export const STRINGS={
     partialWarning:function(k){return 'Mit diesen Einstellungen entsteht nur ein Teilergebnis ('+k+' von 4 Themes). Passe die Einstellungen an für einen vollständigen Helden.';},
   },
   swipe:{
-    decisionYes:'Passt',decisionNo:'Nicht',
+    decisionYes:'Passt',decisionNo:'Nicht',decisionSuper:'Genau ich!',
     cardCounter:function(cur,tot){return 'Karte '+cur+' von '+tot;},
     inspirationLabel:'Inspiration',possibleThemesLabel:'Theme-Typen',examplesLabel:'etwa:',
     formingLabel:'Dein Held nimmt Form an …',
     readyCta:'Dein Held ist bereit – ansehen',
-    ariaYes:'Passt',ariaNo:'Passt nicht',ariaUndo:'Letzte Karte zurück',ariaSkip:'Restliche Karten überspringen',
+    ariaYes:'Passt',ariaNo:'Passt nicht',ariaSuper:'Genau mein Held – zählt doppelt',ariaUndo:'Letzte Karte zurück',ariaSkip:'Restliche Karten überspringen',
   },
   result:{
     btnAccept:'Speichern',

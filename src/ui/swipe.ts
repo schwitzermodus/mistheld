@@ -126,7 +126,8 @@ export function renderCard(): void {
     }
     var overlays =
       '<div class="card-decision-overlay yes">' + escapeHtml(STRINGS.swipe.decisionYes) + '</div>' +
-      '<div class="card-decision-overlay no">' + escapeHtml(STRINGS.swipe.decisionNo) + '</div>';
+      '<div class="card-decision-overlay no">' + escapeHtml(STRINGS.swipe.decisionNo) + '</div>' +
+      '<div class="card-decision-overlay super">' + escapeHtml(STRINGS.swipe.decisionSuper) + '</div>';
     var textInner =
       '<div class="card-band">' +
         '<span class="card-eyebrow">' + escapeHtml(STRINGS.swipe.inspirationLabel) + '</span>' +
@@ -190,8 +191,10 @@ export function updateReadiness(): void {
 export function adaptiveResort(): void {
   if (state.cardIndex < 2 || state.cardIndex >= state.shuffledCards.length) return;
   var pp: any = {};
-  state.swipes.filter(function (s: any) { return s.dir === 'yes'; }).forEach(function (s: any) {
-    Object.entries(s.card.affinities || {}).forEach(function (kv: any) { pp[kv[0]] = (pp[kv[0]] || 0) + kv[1]; });
+  // Positive Swipes (Ja UND Super-Like) treiben die Nachsortierung; Super zieht mit seinem Gewicht staerker.
+  state.swipes.filter(function (s: any) { return s.dir !== 'no'; }).forEach(function (s: any) {
+    var w = s.weight || 1;
+    Object.entries(s.card.affinities || {}).forEach(function (kv: any) { pp[kv[0]] = (pp[kv[0]] || 0) + kv[1] * w; });
   });
   if (!Object.keys(pp).length) return;
   var seen = state.shuffledCards.slice(0, state.cardIndex);
@@ -208,52 +211,65 @@ export function adaptiveResort(): void {
 }
 
 export function attachSwipe(el: any): void {
-  var startX = 0, dx = 0, dragging = false, lastX = 0, lastTime = 0, velocityX = 0, activePtr: any = null;
-  var yesEl = el.querySelector('.yes'), noEl = el.querySelector('.no');
+  var startX = 0, startY = 0, dx = 0, dy = 0, dragging = false;
+  var lastX = 0, lastY = 0, lastTime = 0, velocityX = 0, velocityY = 0, activePtr: any = null;
+  var yesEl = el.querySelector('.yes'), noEl = el.querySelector('.no'), superEl = el.querySelector('.super');
+  var resetOverlays = function () { yesEl.style.opacity = '0'; noEl.style.opacity = '0'; if (superEl) superEl.style.opacity = '0'; };
   var upd = function () {
-    if (dx > 8) { yesEl.style.opacity = String(Math.min(1, (dx - 8) / 60)); noEl.style.opacity = '0'; }
-    else if (dx < -8) { noEl.style.opacity = String(Math.min(1, (-dx - 8) / 60)); yesEl.style.opacity = '0'; }
-    else { yesEl.style.opacity = '0'; noEl.style.opacity = '0'; }
+    // Vertikal-dominant & aufwaerts => Super-Like-Overlay, sonst Ja/Nein.
+    if (dy < -8 && Math.abs(dy) > Math.abs(dx)) {
+      if (superEl) superEl.style.opacity = String(Math.min(1, (-dy - 8) / 60)); yesEl.style.opacity = '0'; noEl.style.opacity = '0';
+    } else if (dx > 8) { yesEl.style.opacity = String(Math.min(1, (dx - 8) / 60)); noEl.style.opacity = '0'; if (superEl) superEl.style.opacity = '0'; }
+    else if (dx < -8) { noEl.style.opacity = String(Math.min(1, (-dx - 8) / 60)); yesEl.style.opacity = '0'; if (superEl) superEl.style.opacity = '0'; }
+    else resetOverlays();
   };
   el.addEventListener('pointerdown', function (e: any) {
     if (el.classList.contains('abandoned') || activePtr !== null) return;
     el.classList.remove('card-hint'); activePtr = e.pointerId;
     try { el.setPointerCapture(e.pointerId); } catch (_) {}
-    dragging = true; el.classList.add('dragging'); startX = lastX = e.clientX; lastTime = performance.now(); dx = 0; velocityX = 0;
+    dragging = true; el.classList.add('dragging');
+    startX = lastX = e.clientX; startY = lastY = e.clientY; lastTime = performance.now(); dx = 0; dy = 0; velocityX = 0; velocityY = 0;
   });
   el.addEventListener('pointermove', function (e: any) {
     if (!dragging || e.pointerId !== activePtr) return; if (e.cancelable) e.preventDefault();
     var now = performance.now(), dt = now - lastTime;
-    if (dt > 0) velocityX = velocityX * 0.5 + ((e.clientX - lastX) / dt) * 0.5;
-    lastX = e.clientX; lastTime = now; dx = e.clientX - startX;
-    el.style.transform = 'translate3d(' + dx + 'px,0,0) rotate(' + Math.max(-18, Math.min(18, dx * 0.06)) + 'deg)';
+    if (dt > 0) {
+      velocityX = velocityX * 0.5 + ((e.clientX - lastX) / dt) * 0.5;
+      velocityY = velocityY * 0.5 + ((e.clientY - lastY) / dt) * 0.5;
+    }
+    lastX = e.clientX; lastY = e.clientY; lastTime = now; dx = e.clientX - startX; dy = e.clientY - startY;
+    // Nur Aufwaerts-Hub visualisieren (downward bleibt 0), Rotation aus der Horizontalen.
+    el.style.transform = 'translate3d(' + dx + 'px,' + Math.min(0, dy) + 'px,0) rotate(' + Math.max(-18, Math.min(18, dx * 0.06)) + 'deg)';
     upd();
   }, { passive: false });
   var onUp = function (e: any) {
     if (!dragging || e.pointerId !== activePtr) return;
     dragging = false; activePtr = null; el.classList.remove('dragging');
     try { el.releasePointerCapture(e.pointerId); } catch (_) {}
+    var up = (dy < -CFG.SWIPE_UP_DISTANCE || (velocityY < -CFG.SWIPE_UP_VELOCITY && dy < -4)) && Math.abs(dy) > Math.abs(dx);
     var iy = dx > CFG.SWIPE_DISTANCE || (velocityX > CFG.SWIPE_VELOCITY && dx > 4);
     var in_ = dx < -CFG.SWIPE_DISTANCE || (velocityX < -CFG.SWIPE_VELOCITY && dx < -4);
-    if (iy) flyOut(el, 'yes'); else if (in_) flyOut(el, 'no');
-    else { el.style.transform = 'translate3d(0,0,0) rotate(0deg)'; yesEl.style.opacity = '0'; noEl.style.opacity = '0'; }
+    if (up) flyOut(el, 'super'); else if (iy) flyOut(el, 'yes'); else if (in_) flyOut(el, 'no');
+    else { el.style.transform = 'translate3d(0,0,0) rotate(0deg)'; resetOverlays(); }
   };
   el.addEventListener('pointerup', onUp); el.addEventListener('pointercancel', onUp);
 }
 export function flyOut(el: any, dir: string): void {
   if (el.classList.contains('abandoned')) return;
-  el.classList.remove('card-hint'); el.classList.add('abandoned', dir === 'yes' ? 'gone-right' : 'gone-left');
-  try { if (navigator.vibrate) navigator.vibrate(CFG.HAPTIC_MS); } catch (_) {}
+  var goneClass = dir === 'no' ? 'gone-left' : (dir === 'super' ? 'gone-up' : 'gone-right');
+  el.classList.remove('card-hint'); el.classList.add('abandoned', goneClass);
+  try { if (navigator.vibrate) navigator.vibrate(dir === 'super' ? CFG.HAPTIC_MS * 2 : CFG.HAPTIC_MS); } catch (_) {}
   decide(dir); renderCard(); setTimeout(function () { el.remove(); }, CFG.FLY_DURATION_MS + 80);
 }
 export function decide(dir: string): void {
   var c = state.shuffledCards[state.cardIndex]; if (!c) return;
-  applyScore(c, dir, +1); state.swipes.push({ card: c, dir: dir }); state.cardIndex++; adaptiveResort();
+  var weight = dir === 'super' ? CFG.SUPERLIKE_WEIGHT : 1;
+  applyScore(c, dir, +1, weight); state.swipes.push({ card: c, dir: dir, weight: weight }); state.cardIndex++; adaptiveResort();
 }
 export function programmaticDecide(dir: string): void { var el = $('card-stage').querySelector('.card.front:not(.abandoned)'); if (el) flyOut(el, dir); }
 export function undoLast(): void {
   if (!canUndo()) return;
-  var l = state.swipes.pop(); applyScore(l.card, l.dir, -1); state.cardIndex = Math.max(0, state.cardIndex - 1); renderCard();
+  var l = state.swipes.pop(); applyScore(l.card, l.dir, -1, l.weight || 1); state.cardIndex = Math.max(0, state.cardIndex - 1); renderCard();
 }
 
 // Inspo P1.2: Swipe-Prozess abschliessen, sobald der Held bereit ist (Button).
