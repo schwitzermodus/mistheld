@@ -152,17 +152,26 @@ export function renderCard(): void {
           scrimThemes +
         '</div>' +
       '</div>';
-    el.innerHTML = overlays + '<div class="card-content">' + (card.image ? photoInner : textInner) + '</div>';
+    // Detail-Flip: Vorderseite = bisheriger Inhalt, Rueckseite = narrativer Ich-Text.
+    // Bei Foto-Karten ist der Text sonst verborgen; der Tap dreht ihn nach vorn.
+    var frontInner = card.image ? photoInner : textInner;
+    var hintFront = '<span class="card-flip-hint" aria-hidden="true">i</span>';
+    var hintBack = '<span class="card-flip-hint card-flip-hint-back" aria-hidden="true">↩</span>';
+    el.innerHTML = overlays +
+      '<div class="card-flip">' +
+        '<div class="card-face card-front">' + hintFront + '<div class="card-content">' + frontInner + '</div></div>' +
+        '<div class="card-face card-back">' + hintBack + '<div class="card-content">' + textInner + '</div></div>' +
+      '</div>';
     if (i === 0) { attachSwipe(el); if (state.cardIndex === 0 && !state.swipes.length) el.classList.add('card-hint'); }
     stage.appendChild(el);
     if (card.image && !photoCached) {
       (function (cardEl, src, fallbackHtml) {
-        var im: any = cardEl.querySelector('.card-photo img');
+        var im: any = cardEl.querySelector('.card-front .card-photo img');
         if (!im) return;
         if (im.complete && im.naturalWidth > 0) { im.classList.add('loaded'); IMG_CACHE[src] = 'ok'; return; }
         im.onload = function () { im.classList.add('loaded'); IMG_CACHE[src] = 'ok'; };
-        im.onerror = function () { IMG_CACHE[src] = 'bad'; var c = cardEl.querySelector('.card-content'); if (c) c.innerHTML = fallbackHtml; };
-      })(el, card.image, textInner);
+        im.onerror = function () { IMG_CACHE[src] = 'bad'; var c = cardEl.querySelector('.card-front .card-content'); if (c) c.innerHTML = fallbackHtml; };
+      })(el, card.image, frontInner);
     }
   }
   for (var p = 0; p < IMG_PRELOAD_AHEAD; p++) {
@@ -211,7 +220,7 @@ export function adaptiveResort(): void {
 }
 
 export function attachSwipe(el: any): void {
-  var startX = 0, startY = 0, dx = 0, dy = 0, dragging = false;
+  var startX = 0, startY = 0, dx = 0, dy = 0, dragging = false, downTime = 0;
   var lastX = 0, lastY = 0, lastTime = 0, velocityX = 0, velocityY = 0, activePtr: any = null;
   var yesEl = el.querySelector('.yes'), noEl = el.querySelector('.no'), superEl = el.querySelector('.super');
   var resetOverlays = function () { yesEl.style.opacity = '0'; noEl.style.opacity = '0'; if (superEl) superEl.style.opacity = '0'; };
@@ -228,7 +237,7 @@ export function attachSwipe(el: any): void {
     el.classList.remove('card-hint'); activePtr = e.pointerId;
     try { el.setPointerCapture(e.pointerId); } catch (_) {}
     dragging = true; el.classList.add('dragging');
-    startX = lastX = e.clientX; startY = lastY = e.clientY; lastTime = performance.now(); dx = 0; dy = 0; velocityX = 0; velocityY = 0;
+    startX = lastX = e.clientX; startY = lastY = e.clientY; lastTime = downTime = performance.now(); dx = 0; dy = 0; velocityX = 0; velocityY = 0;
   });
   el.addEventListener('pointermove', function (e: any) {
     if (!dragging || e.pointerId !== activePtr) return; if (e.cancelable) e.preventDefault();
@@ -238,6 +247,7 @@ export function attachSwipe(el: any): void {
       velocityY = velocityY * 0.5 + ((e.clientY - lastY) / dt) * 0.5;
     }
     lastX = e.clientX; lastY = e.clientY; lastTime = now; dx = e.clientX - startX; dy = e.clientY - startY;
+    if (el.classList.contains('flipped')) return; // Detail-Flip aktiv: Karte nicht bewegen
     // Nur Aufwaerts-Hub visualisieren (downward bleibt 0), Rotation aus der Horizontalen.
     el.style.transform = 'translate3d(' + dx + 'px,' + Math.min(0, dy) + 'px,0) rotate(' + Math.max(-18, Math.min(18, dx * 0.06)) + 'deg)';
     upd();
@@ -246,6 +256,11 @@ export function attachSwipe(el: any): void {
     if (!dragging || e.pointerId !== activePtr) return;
     dragging = false; activePtr = null; el.classList.remove('dragging');
     try { el.releasePointerCapture(e.pointerId); } catch (_) {}
+    // Tap (kaum Bewegung, kurz) => Detail-Flip umschalten, kein Swipe.
+    var isTap = Math.abs(dx) < CFG.TAP_MOVE_MAX && Math.abs(dy) < CFG.TAP_MOVE_MAX && (performance.now() - downTime) < 400;
+    if (isTap) { el.classList.toggle('flipped'); el.style.transform = 'translate3d(0,0,0) rotate(0deg)'; resetOverlays(); return; }
+    // Auf gedrehter Karte keine Swipe-Entscheidung (erst zurueckdrehen).
+    if (el.classList.contains('flipped')) { el.style.transform = 'translate3d(0,0,0) rotate(0deg)'; resetOverlays(); return; }
     var up = (dy < -CFG.SWIPE_UP_DISTANCE || (velocityY < -CFG.SWIPE_UP_VELOCITY && dy < -4)) && Math.abs(dy) > Math.abs(dx);
     var iy = dx > CFG.SWIPE_DISTANCE || (velocityX > CFG.SWIPE_VELOCITY && dx > 4);
     var in_ = dx < -CFG.SWIPE_DISTANCE || (velocityX < -CFG.SWIPE_VELOCITY && dx < -4);
