@@ -8,8 +8,10 @@ import { tagText, isExpanded } from '../util/text';
 
 export function tagHooks(e: any): string[] { return (e && typeof e === 'object' && Array.isArray(e.hooks)) ? e.hooks : []; }
 
-export function applyScore(card: any, dir: string, sign: number): void {
-  var f = (dir === 'yes' ? 1 : -0.2) * sign;
+export function applyScore(card: any, dir: string, sign: number, weight?: number): void {
+  // Positive Richtungen: 'yes' und 'super' (Super-Like). 'no' zaehlt negativ.
+  var pos = dir !== 'no';
+  var f = (pos ? 1 : -0.2) * sign * (weight || 1);
   Object.entries(card.affinities || {}).forEach(function (kv: any) { state.affinityScores[kv[0]] = (state.affinityScores[kv[0]] || 0) + f * kv[1]; });
   // Swipe-Bias: Hooks der Karte mitzaehlen (steuert spaeter Tag-/Held-Auswahl)
   (card.hooks || []).forEach(function (h: string) { state.hookCounts[h] = (state.hookCounts[h] || 0) + f; });

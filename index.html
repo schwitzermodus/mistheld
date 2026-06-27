@@ -133,9 +133,10 @@ body.overlay-open .mute-btn,body.overlay-open .settings-btn{display:none}
 .card.front{z-index:20}
 .card.gone-left{transform:translate3d(-130%,30px,0) rotate(-22deg) !important;opacity:0;transition:transform 0.9s cubic-bezier(0.4,0,0.5,1),opacity 0.65s ease-out}
 .card.gone-right{transform:translate3d(130%,30px,0) rotate(22deg) !important;opacity:0;transition:transform 0.9s cubic-bezier(0.4,0,0.5,1),opacity 0.65s ease-out}
+.card.gone-up{transform:translate3d(0,-135%,0) scale(0.9) !important;opacity:0;transition:transform 0.9s cubic-bezier(0.4,0,0.5,1),opacity 0.65s ease-out}
 .card.abandoned{pointer-events:none}
-@keyframes hint-swipe{0%{transform:translate3d(0,0,0)}18%{transform:translate3d(-28px,0,0) rotate(-4deg)}36%{transform:translate3d(0,0,0)}56%{transform:translate3d(32px,0,0) rotate(4deg)}74%,100%{transform:translate3d(0,0,0)}}
-.card-hint{animation:hint-swipe 1.5s ease-in-out 0.9s 1 forwards}
+@keyframes hint-swipe{0%{transform:translate3d(0,0,0)}13%{transform:translate3d(-28px,0,0) rotate(-4deg)}26%{transform:translate3d(0,0,0)}40%{transform:translate3d(32px,0,0) rotate(4deg)}53%{transform:translate3d(0,0,0)}68%{transform:translate3d(0,-34px,0)}82%,100%{transform:translate3d(0,0,0)}}
+.card-hint{animation:hint-swipe 2.1s ease-in-out 0.9s 1 forwards}
 /* Geschmeidiger Übergang: neue Front-Karte + ihr Bild blenden sanft ein
    (nur .front, damit hintere Karten beim Neuaufbau nicht flackern) */
 @keyframes cardIn{from{opacity:0}to{opacity:1}}
@@ -188,6 +189,7 @@ body.overlay-open .mute-btn,body.overlay-open .settings-btn{display:none}
 .card-decision-overlay{position:absolute;top:54px;font-family:var(--serif);font-size:2rem;font-style:italic;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:8px 16px;border:3px solid;border-radius:4px;opacity:0;pointer-events:none;transition:opacity 0.05s linear;z-index:5}
 .card-decision-overlay.yes{right:18px;color:var(--green);border-color:var(--green);transform:rotate(-12deg)}
 .card-decision-overlay.no{left:18px;color:var(--accent);border-color:var(--accent);transform:rotate(12deg)}
+.card-decision-overlay.super{left:50%;top:38%;color:var(--gold);border-color:var(--gold);transform:translate(-50%,-50%) rotate(-6deg);text-align:center}
 .swipe-controls{display:flex;justify-content:center;align-items:center;gap:14px;padding:10px 0 6px;flex-shrink:0}
 .swipe-btn{width:64px;height:64px;border-radius:50%;border:2px solid;background:var(--paper);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.15s ease;box-shadow:0 2px 8px rgba(60,40,10,0.12)}
 .swipe-btn:active{transform:scale(0.88)}
@@ -195,6 +197,9 @@ body.overlay-open .mute-btn,body.overlay-open .settings-btn{display:none}
 .swipe-btn-no:active{background:var(--accent);color:var(--paper)}
 .swipe-btn-yes{border-color:var(--green);color:var(--green)}
 .swipe-btn-yes:active{background:var(--green);color:var(--paper)}
+.swipe-btn-super{width:52px;height:52px;border-color:var(--gold);color:var(--gold)}
+.swipe-btn-super svg{width:26px;height:26px}
+.swipe-btn-super:active{background:var(--gold);color:var(--paper)}
 .swipe-btn-undo{width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:rgba(250,243,223,0.9);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink-soft);transition:all 0.15s ease}
 .swipe-btn-undo:active{transform:scale(0.88)}
 .swipe-btn-undo:disabled{opacity:0.3;cursor:not-allowed}
@@ -423,7 +428,7 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
     <button class="btn btn-primary" id="btn-start"></button>
     <button class="btn btn-ghost" id="btn-library" type="button"></button>
   </div>
-  <div class="app-version">v2026-06-24.3</div>
+  <div class="app-version">v2026-06-27.1</div>
 </section>
 <section id="screen-intro" class="screen">
   <div class="intro-wrap">
@@ -465,8 +470,9 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
   </div>
   <div class="card-stage" id="card-stage"></div>
   <div class="swipe-controls">
-    <button class="swipe-btn swipe-btn-no" id="btn-no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
     <button class="swipe-btn-undo" id="btn-undo" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 00-15-6.7L3 13"/></svg></button>
+    <button class="swipe-btn swipe-btn-no" id="btn-no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    <button class="swipe-btn swipe-btn-super" id="btn-super"><svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 21s-7.6-4.9-10-9.2C.6 9 1.7 5.6 4.8 4.8 6.9 4.2 9 5 12 8c3-3 5.1-3.8 7.2-3.2 3.1.8 4.2 4.2 2.8 7C19.6 16.1 12 21 12 21z"/></svg></button>
     <button class="swipe-btn swipe-btn-yes" id="btn-yes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></button>
   </div>
 </section>

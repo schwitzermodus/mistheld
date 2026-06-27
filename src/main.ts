@@ -16,7 +16,7 @@ import { initStrings, show } from './ui/navigation';
 import { initAudio } from './ui/audio';
 import { initWelcomePreview } from './ui/welcomePreview';
 import { renderIntro, selectIntroMode, saveSettingsFromUI } from './ui/intro';
-import { startSwipe, programmaticDecide, undoLast, skipRemainingSwipes } from './ui/swipe';
+import { startSwipe, programmaticDecide, decide, undoLast, skipRemainingSwipes } from './ui/swipe';
 import { renderHeldenblatt, setHbEditing } from './ui/result';
 import { closeEditSheet } from './ui/editSheet';
 import { openSettings, setPreset, applyQuickAction } from './ui/settingsUI';
@@ -44,6 +44,7 @@ if ($('intro-settings-link')) {
 }
 $('btn-yes').addEventListener('click', function () { programmaticDecide('yes'); });
 $('btn-no').addEventListener('click', function () { programmaticDecide('no'); });
+if ($('btn-super')) $('btn-super').addEventListener('click', function () { programmaticDecide('super'); });
 $('btn-undo').addEventListener('click', undoLast);
 if ($('btn-ready')) $('btn-ready').addEventListener('click', skipRemainingSwipes);
 $('btn-settings').addEventListener('click', openSettings);
@@ -81,6 +82,7 @@ document.addEventListener('keydown', function (e: any) {
   if ($('screen-swipe').classList.contains('active')) {
     if (e.key === 'ArrowRight') { e.preventDefault(); programmaticDecide('yes'); }
     else if (e.key === 'ArrowLeft') { e.preventDefault(); programmaticDecide('no'); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); programmaticDecide('super'); }
     else if (e.key === 'Backspace') { e.preventDefault(); undoLast(); }
   }
   if ($('screen-result').classList.contains('active')) {
@@ -92,5 +94,5 @@ document.addEventListener('keydown', function (e: any) {
 Object.assign(window as any, {
   state, STRINGS, THEMEBOOKS, PHASES, HERO_FIRSTNAMES,
   generateProposal, generateHero, composeHeroStory, show, renderHeldenblatt,
-  characterProfile, hasConflict,
+  characterProfile, hasConflict, programmaticDecide, decide, undoLast,
 });
