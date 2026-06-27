@@ -74,7 +74,8 @@ test('Swipe-Karte: Titel + Archetypen, Text- oder Bild-Layout', async ({ page })
   await page.goto('/');
   await page.locator('#btn-start').click();
   await page.locator('#btn-intro-start').click();
-  var front = page.locator('.card.front');
+  // Vorderseite der Flip-Karte (Rueckseite traegt den Narrativtext, hier nicht geprueft)
+  var front = page.locator('.card.front .card-front');
   // Invarianten beider Layouts (Text wie Vollbild): Titel + Archetypen-Zeile, kein ❖-Ornament
   await expect(front.locator('.card-title')).toBeVisible();
   await expect(front.locator('.card-archetypes')).toHaveCount(1);
@@ -406,4 +407,38 @@ test('Steuerleiste: Reihenfolge ist Zurück · Ablehnen · Herz · Liken', async
   const ids = await page.evaluate(() =>
     Array.from(document.querySelectorAll('.swipe-controls button')).map((b) => b.id));
   expect(ids).toEqual(['btn-undo', 'btn-no', 'btn-super', 'btn-yes']);
+});
+
+// PHASE 2.2: Detail-Flip (Tippen dreht die Karte)
+test('Detail-Flip: Tippen dreht die Karte und zeigt den narrativen Ich-Text', async ({ page }) => {
+  await startSwiping(page);
+  const card = page.locator('.card.front');
+  await expect(card).not.toHaveClass(/flipped/);
+  await card.click();
+  await expect(card).toHaveClass(/flipped/);
+  const res = await page.evaluate(() => {
+    const c = state.shuffledCards[state.cardIndex];
+    const back = document.querySelector('.card.front .card-back .card-text');
+    return { matches: !!back && back.textContent === c.text, swipes: state.swipes.length };
+  });
+  expect(res.matches).toBe(true);
+  expect(res.swipes).toBe(0);
+});
+
+test('Detail-Flip: zweiter Tap dreht zurück; Drag auf gedrehter Karte löst keinen Swipe aus', async ({ page }) => {
+  await startSwiping(page);
+  const card = page.locator('.card.front');
+  await card.click();
+  await expect(card).toHaveClass(/flipped/);
+  // Drag nach rechts auf der gedrehten Karte => kein Swipe, bleibt gedreht
+  const box = await card.boundingBox();
+  await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+  await page.mouse.down();
+  await page.mouse.move(box.x + box.width / 2 + 220, box.y + box.height / 2, { steps: 8 });
+  await page.mouse.up();
+  expect(await page.evaluate(() => state.swipes.length)).toBe(0);
+  await expect(card).toHaveClass(/flipped/);
+  // Zweiter Tap dreht zurück
+  await card.click();
+  await expect(card).not.toHaveClass(/flipped/);
 });
