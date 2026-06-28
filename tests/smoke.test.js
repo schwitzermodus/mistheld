@@ -321,16 +321,17 @@ test('Deck-Filter: Einsteiger-Stapel kleiner als Standard (40)', async ({ page }
 });
 
 // PHASE 1.2: adaptive Länge / Readiness
-test('Readiness: nach genug Ja-Swipes erscheint der Bereit-Button', async ({ page }) => {
+test('Readiness: Bereit-Leiste ist von Anfang an sichtbar, anfangs disabled, nach genug Ja-Swipes aktiv', async ({ page }) => {
   await page.goto('/');
   await page.evaluate(() => localStorage.setItem('mistheld:settings', JSON.stringify({ preset: 'standard' })));
   await page.reload();
   await page.locator('#btn-start').click();
   await page.locator('#btn-intro-start').click();
   await expect(page.locator('.card.front')).toBeVisible();
-  await expect(page.locator('#btn-ready')).toBeHidden();
-  for (let i = 0; i < 12; i++) { await page.locator('#btn-yes').click(); await page.waitForTimeout(70); }
   await expect(page.locator('#btn-ready')).toBeVisible();
+  await expect(page.locator('#btn-ready')).toBeDisabled();
+  for (let i = 0; i < 12; i++) { await page.locator('#btn-yes').click(); await page.waitForTimeout(70); }
+  await expect(page.locator('#btn-ready')).toBeEnabled();
 });
 
 test('Enge Einstellungen: Teilergebnis-Warnung im Intro + nur so viele Themes wie aktivierte Typen', async ({ page }) => {
@@ -407,6 +408,16 @@ test('Steuerleiste: Reihenfolge ist Zurück · Ablehnen · Herz · Liken', async
   const ids = await page.evaluate(() =>
     Array.from(document.querySelectorAll('.swipe-controls button')).map((b) => b.id));
   expect(ids).toEqual(['btn-undo', 'btn-no', 'btn-super', 'btn-yes']);
+});
+
+test('Steuerleiste: Herz ist exakt zentriert', async ({ page }) => {
+  await startSwiping(page);
+  const res = await page.evaluate(() => {
+    const row = document.querySelector('.swipe-controls').getBoundingClientRect();
+    const heart = document.getElementById('btn-super').getBoundingClientRect();
+    return { rowCenter: row.left + row.width / 2, heartCenter: heart.left + heart.width / 2 };
+  });
+  expect(Math.abs(res.heartCenter - res.rowCenter)).toBeLessThanOrEqual(2);
 });
 
 // PHASE 2.2: Detail-Flip (Tippen dreht die Karte)
