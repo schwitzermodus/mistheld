@@ -12,7 +12,8 @@
     "test:syntax": "tsc --noEmit",
     "validate:tags": "node tools/validate_tags.cjs",
     "optimize:images": "node tools/optimize_images.cjs",
-    "judge:tags": "node tools/judge_tags.mjs"
+    "judge:tags": "node tools/judge_tags.mjs",
+    "catalog:export": "node tools/export_catalog.mjs"
   },
   "dependencies": {
     "jspdf": "^2.5.1"
