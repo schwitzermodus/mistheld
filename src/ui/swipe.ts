@@ -187,13 +187,12 @@ export function updateReadiness(): void {
   var rd = swipeReadiness(getEnabledThemeTypes(loadSettings()));
   var fill = $('readiness-fill');
   if (fill) { fill.style.width = Math.round(rd.progress * 100) + '%'; fill.classList.toggle('ready', rd.ready); }
-  var label = $('readiness-label'), readyBtn = $('btn-ready');
-  if (rd.ready) {
-    if (label) label.hidden = true;
-    if (readyBtn) { readyBtn.hidden = false; readyBtn.textContent = STRINGS.swipe.readyCta; }
-  } else {
-    if (label) { label.hidden = false; label.textContent = STRINGS.swipe.formingLabel; }
-    if (readyBtn) readyBtn.hidden = true;
+  // Bereit-Leiste ist dauerhaft sichtbar: grau/disabled bis bereit, dann gruen/aktiv.
+  var readyBtn: any = $('btn-ready');
+  if (readyBtn) {
+    readyBtn.disabled = !rd.ready;
+    readyBtn.classList.toggle('ready', rd.ready);
+    readyBtn.textContent = rd.ready ? STRINGS.swipe.readyCta : STRINGS.swipe.formingLabel;
   }
 }
 
