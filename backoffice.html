@@ -32,6 +32,9 @@ h1{font-size:1.5rem;font-weight:700}
   color:var(--ink);border-radius:8px;padding:7px 14px;cursor:pointer}
 .nav-btn:disabled{opacity:0.4;cursor:not-allowed}
 .progress{font-size:0.88rem;color:var(--ink-soft)}
+.toolbar{padding-top:0!important;gap:8px}
+.toolbar .nav-btn{font-size:0.85rem;padding:5px 11px}
+.toolbar-note{font-size:0.78rem;color:var(--ink-soft);margin-left:auto}
 select{font-family:var(--serif);font-size:0.9rem;padding:6px 8px;border:1px solid var(--line);
   border-radius:8px;background:var(--paper);color:var(--ink);max-width:280px}
 
@@ -104,6 +107,13 @@ select{font-family:var(--serif);font-size:0.9rem;padding:6px 8px;border:1px soli
   <button class="nav-btn" id="btn-prev">‹ Zurück</button>
   <select id="jump" title="Zu Bündel springen"></select>
   <button class="nav-btn" id="btn-next">Weiter ›</button>
+</div>
+<div class="wrap toolbar">
+  <button class="nav-btn" id="btn-export">⬇ Export</button>
+  <button class="nav-btn" id="btn-copy">⧉ Kopieren</button>
+  <button class="nav-btn" id="btn-import">⬆ Import</button>
+  <input type="file" id="file-import" accept="application/json,.json" hidden />
+  <span class="toolbar-note" id="mode-note"></span>
 </div></div>
 
 <div class="wrap" id="content"></div>

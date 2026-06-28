@@ -47,7 +47,9 @@ function tagFeedbackApi(): Plugin {
 
 // GitHub Pages serviert von / (Projektseite) — relative Asset-Pfade via base './'.
 // Statische Laufzeit-Assets (img/, fonts/, mp3) liegen in public/ und landen 1:1 in dist/.
-// backoffice.html ist NICHT als Build-Input gelistet -> bleibt dev-only, wird nie deployed.
+// backoffice.html wird mitgebaut/deployed (erreichbar unter .../backoffice.html).
+// Auf der statischen Seite gibt es KEINE /api/tag-feedback-Middleware -> die Review-Seite
+// faellt dann automatisch auf localStorage + Export zurueck (siehe src/review/main.ts).
 export default defineConfig({
   base: './',
   plugins: [tagFeedbackApi()],
@@ -56,7 +58,10 @@ export default defineConfig({
     target: 'es2020',
     assetsInlineLimit: 0,
     rollupOptions: {
-      input: join(__dirname, 'index.html'),
+      input: {
+        main: join(__dirname, 'index.html'),
+        backoffice: join(__dirname, 'backoffice.html'),
+      },
     },
   },
 });
