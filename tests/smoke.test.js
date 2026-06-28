@@ -436,6 +436,26 @@ test('Detail-Flip: Tippen dreht die Karte und zeigt den narrativen Ich-Text', as
   expect(res.swipes).toBe(0);
 });
 
+test('Detail-Flip: Rückseite zeigt nur Titel + Narrativ (keine Chips/Beispiele)', async ({ page }) => {
+  await startSwiping(page);
+  const card = page.locator('.card.front');
+  await card.click();
+  await expect(card).toHaveClass(/flipped/);
+  const res = await page.evaluate(() => {
+    const back = document.querySelector('.card.front .card-back');
+    return {
+      hasTitle: !!back.querySelector('.card-title'),
+      hasText: !!back.querySelector('.card-text'),
+      chips: back.querySelectorAll('.card-theme-tag').length,
+      archetypes: back.querySelectorAll('.card-archetypes').length,
+    };
+  });
+  expect(res.hasTitle).toBe(true);
+  expect(res.hasText).toBe(true);
+  expect(res.chips).toBe(0);
+  expect(res.archetypes).toBe(0);
+});
+
 test('Detail-Flip: zweiter Tap dreht zurück; Drag auf gedrehter Karte löst keinen Swipe aus', async ({ page }) => {
   await startSwiping(page);
   const card = page.locator('.card.front');

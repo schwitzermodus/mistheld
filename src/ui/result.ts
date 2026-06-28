@@ -66,9 +66,10 @@ function hbPlaceholder(label: string): string {
   '</div>';
 }
 function hbDivider(): string { return '<div class="hb-divider" aria-hidden="true"><span class="hb-divider-mark">❖</span></div>'; }
-export function renderHeldenblatt(): void {
+export function renderHeldenblatt(resetScroll?: boolean): void {
   var scroll = $('hb-scroll'); if (!scroll) return;
-  var st = scroll.scrollTop;
+  // Fresh-Entry (nach Swipe / Bibliothek-Oeffnen) startet oben; In-Place-Re-Renders behalten Position.
+  var st = resetScroll ? 0 : scroll.scrollTop;
   var n = state.proposals[state.proposalIndex].themes.length;
   var inner = hbHeroSection() + hbDivider() + hbStorySection() + hbDivider() + '<div class="hb-seclabel hb-themes-label">' + escapeHtml(STRINGS.result.themesLabel) + '</div>';
   for (var i = 0; i < n; i++) inner += hbThemeSection(i);
