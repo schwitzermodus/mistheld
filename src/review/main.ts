@@ -39,6 +39,10 @@ const notReadyThemes = Object.keys(THEMEBOOKS).filter((name) =>
   !allBundles.some((b) => b.themebook === name && b.ready)).length;
 
 // ---- Feedback-Zustand ----
+const LS_KEY = 'mh_tag_feedback';
+// Lokaler Dev-Server (Vite) hat die /api-Middleware; die deployte Pages-Seite nicht.
+const isLocal = /^(localhost|127\.|0\.0\.0\.0$|\[?::1)/.test(location.hostname);
+let mode: string = 'local'; // 'api' (Dev-Middleware) | 'local' (localStorage)
 let feedback: any = {};
 let current = 0;
 let saveTimer: any = null;
@@ -46,27 +50,71 @@ let saveTimer: any = null;
 const $ = (id: string) => document.getElementById(id) as any;
 const tierClass = (tier: string) => 'tier-' + String(tier).toLowerCase().split(' ')[0];
 
-async function loadFeedback() {
-  try {
-    const r = await fetch('/api/tag-feedback');
-    feedback = await r.json();
-  } catch (_) { feedback = {}; }
+function normalize() {
   if (!feedback || typeof feedback !== 'object') feedback = {};
   if (!Array.isArray(feedback._done)) feedback._done = [];
 }
 
+async function loadFeedback() {
+  if (isLocal) {
+    try {
+      const r = await fetch('/api/tag-feedback');
+      if (r.ok) {
+        const j = await r.json();
+        if (j && typeof j === 'object') { feedback = j; mode = 'api'; normalize(); return; }
+      }
+    } catch (_) { /* keine Middleware -> localStorage */ }
+  }
+  mode = 'local';
+  try { feedback = JSON.parse(localStorage.getItem(LS_KEY) || '{}'); } catch (_) { feedback = {}; }
+  normalize();
+}
+
 function saveFeedback() {
   flashSaving();
+  try { localStorage.setItem(LS_KEY, JSON.stringify(feedback)); } catch (_) {} // immer lokal spiegeln
   clearTimeout(saveTimer);
   saveTimer = setTimeout(() => {
-    fetch('/api/tag-feedback', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(feedback),
-    }).then(() => flashSaved()).catch(() => {});
+    if (mode === 'api') {
+      fetch('/api/tag-feedback', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(feedback),
+      }).then(() => flashSaved()).catch(() => flashSaved());
+    } else {
+      flashSaved();
+    }
   }, 350);
 }
 function flashSaving() { const el = $('saved'); el.textContent = 'speichere …'; el.classList.add('show'); }
 function flashSaved() { const el = $('saved'); el.textContent = 'gespeichert ✓'; el.classList.add('show'); setTimeout(() => el.classList.remove('show'), 1200); }
+function toast(msg: string) { const el = $('saved'); el.textContent = msg; el.classList.add('show'); setTimeout(() => el.classList.remove('show'), 1800); }
+
+// ---- Export / Kopieren / Import (damit Feedback von Mobil zurueck zu mir kommt) ----
+function exportJson() {
+  const blob = new Blob([JSON.stringify(feedback, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'tag-feedback.json';
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  toast('exportiert ⬇');
+}
+async function copyJson() {
+  const text = JSON.stringify(feedback, null, 2);
+  try { await navigator.clipboard.writeText(text); toast('JSON kopiert ⧉'); }
+  catch (_) { window.prompt('JSON markieren und kopieren:', text); }
+}
+function importJson(file: File) {
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      const j = JSON.parse(String(reader.result));
+      if (j && typeof j === 'object') { feedback = j; normalize(); saveFeedback(); current = firstIncomplete(); render(); toast('importiert ⬆'); }
+      else toast('ungültige Datei');
+    } catch (_) { toast('ungültige Datei'); }
+  };
+  reader.readAsText(file);
+}
 
 function bundleComplete(b: Bundle) { return b.tags.every((t) => feedback[t.id] && feedback[t.id].vote); }
 function isDone(b: Bundle) { return feedback._done.indexOf(b.id) >= 0; }
@@ -225,6 +273,13 @@ function firstIncomplete() {
   $('btn-next').onclick = () => go(current + 1);
   $('btn-done').onclick = finishCurrent;
   $('jump').onchange = (e: any) => go(parseInt(e.target.value, 10) || 0);
+  $('btn-export').onclick = exportJson;
+  $('btn-copy').onclick = copyJson;
+  $('btn-import').onclick = () => $('file-import').click();
+  $('file-import').onchange = (e: any) => { const f = e.target.files && e.target.files[0]; if (f) importJson(f); e.target.value = ''; };
+  $('mode-note').textContent = mode === 'api'
+    ? 'Speichert auf Platte (tools/tag-feedback.json)'
+    : 'Speichert im Browser — zum Zurückgeben: Export / Kopieren';
   current = firstIncomplete();
   render();
 })();
