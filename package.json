@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "review": "vite --open /backoffice.html",
     "build": "vite build",
     "preview": "vite preview",
     "test": "playwright test",
@@ -13,6 +14,7 @@
     "validate:tags": "node tools/validate_tags.cjs",
     "optimize:images": "node tools/optimize_images.cjs",
     "judge:tags": "node tools/judge_tags.mjs",
+    "tags:describe": "node tools/describe_tags.mjs",
     "catalog:export": "node tools/export_catalog.mjs"
   },
   "dependencies": {
