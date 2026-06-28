@@ -171,9 +171,14 @@ body.overlay-open .mute-btn,body.overlay-open .settings-btn{display:none}
 /* Inhalts-Wrapper (Overlays bleiben außerhalb; nur dieser wird beim Bild-Upgrade getauscht) */
 .card-content{flex:1;min-height:0;display:flex;flex-direction:column}
 /* Detail-Flip: Tippen dreht die GANZE Karte; Optik liegt auf den Faces (3D sauber) */
-.card-flip{position:absolute;inset:0;transform-style:preserve-3d;transition:transform 0.5s cubic-bezier(0.2,0.7,0.2,1)}
+.card-flip{position:absolute;inset:0;transform-style:preserve-3d;transition:transform 0.5s ease-in-out}
 .card.flipped .card-flip{transform:rotateY(180deg)}
-.card-face{position:absolute;inset:0;display:flex;flex-direction:column;overflow:hidden;border:2px solid var(--gold);border-radius:10px;background:var(--paper);box-shadow:var(--shadow);backface-visibility:hidden;-webkit-backface-visibility:hidden}
+/* Backface fuer Chromium + harter visibility-Tausch am 90deg-Wendepunkt (robust auf iOS Safari,
+   das backface-visibility hier nicht zuverlaessig respektiert -> sonst scheint die Vorderseite gespiegelt durch) */
+.card-face{position:absolute;inset:0;display:flex;flex-direction:column;overflow:hidden;border:2px solid var(--gold);border-radius:10px;background:var(--paper);box-shadow:var(--shadow);backface-visibility:hidden;-webkit-backface-visibility:hidden;visibility:hidden;transition:visibility 0s linear 0.25s}
+.card-front{visibility:visible}
+.card.flipped .card-front{visibility:hidden}
+.card.flipped .card-back{visibility:visible}
 .card-back{transform:rotateY(180deg)}
 .card-flip-hint{position:absolute;top:10px;right:12px;z-index:4;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fbf3df;background:rgba(40,30,15,0.42);border:1px solid rgba(251,243,223,0.55);pointer-events:none}
 .card-flip-hint svg{width:15px;height:15px}
@@ -439,7 +444,7 @@ input[type=checkbox]:disabled+.toggle-visual{opacity:0.38;cursor:not-allowed}
     <button class="btn btn-primary" id="btn-start"></button>
     <button class="btn btn-ghost" id="btn-library" type="button"></button>
   </div>
-  <div class="app-version">v2026-06-28.2</div>
+  <div class="app-version">v2026-06-28.3</div>
 </section>
 <section id="screen-intro" class="screen">
   <div class="intro-wrap">
