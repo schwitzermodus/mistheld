@@ -152,15 +152,25 @@ export function renderCard(): void {
           scrimThemes +
         '</div>' +
       '</div>';
-    // Detail-Flip: Vorderseite = bisheriger Inhalt, Rueckseite = narrativer Ich-Text.
-    // Bei Foto-Karten ist der Text sonst verborgen; der Tap dreht ihn nach vorn.
+    // Detail-Flip: Vorderseite = bisheriger Inhalt, Rueckseite = nur Titel + Narrativ
+    // (keine Theme-Chips, keine Beispielhelden). Bei Foto-Karten ist der Text sonst verborgen.
     var frontInner = card.image ? photoInner : textInner;
-    var hintFront = '<span class="card-flip-hint" aria-hidden="true">i</span>';
-    var hintBack = '<span class="card-flip-hint card-flip-hint-back" aria-hidden="true">↩</span>';
+    var backInner =
+      '<div class="card-band"><span class="card-eyebrow">' + escapeHtml(STRINGS.swipe.inspirationLabel) + '</span></div>' +
+      '<div class="card-body">' +
+        '<div class="card-prompt">' +
+          '<div class="card-title">' + escapeHtml(card.title) + '</div>' +
+          '<div class="card-divider" aria-hidden="true"><span class="card-divider-mark">❖</span></div>' +
+          '<div class="card-text">' + escapeHtml(card.text) + '</div>' +
+        '</div>' +
+      '</div>';
+    var flipIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v5h-5"/></svg>';
+    var hint = '<span class="card-flip-hint" aria-hidden="true">' + flipIcon + '</span>';
+    var hintBack = '<span class="card-flip-hint card-flip-hint-back" aria-hidden="true">' + flipIcon + '</span>';
     el.innerHTML = overlays +
       '<div class="card-flip">' +
-        '<div class="card-face card-front">' + hintFront + '<div class="card-content">' + frontInner + '</div></div>' +
-        '<div class="card-face card-back">' + hintBack + '<div class="card-content">' + textInner + '</div></div>' +
+        '<div class="card-face card-front">' + hint + '<div class="card-content">' + frontInner + '</div></div>' +
+        '<div class="card-face card-back">' + hintBack + '<div class="card-content">' + backInner + '</div></div>' +
       '</div>';
     if (i === 0) { attachSwipe(el); if (state.cardIndex === 0 && !state.swipes.length) el.classList.add('card-hint'); }
     stage.appendChild(el);
@@ -303,7 +313,7 @@ export function finishSwiping(): void {
     state.hero = generateHero(); state.hero.story = composeHeroStory(); setHbEditing(false);
     show(SCREENS.RESULT);
     requestAnimationFrame(function () {
-      renderHeldenblatt(); hideLoading(); state.busy = false;
+      renderHeldenblatt(true); hideLoading(); state.busy = false;
     });
   }, CFG.LOADING_DELAY_MS);
 }

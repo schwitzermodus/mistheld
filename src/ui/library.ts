@@ -45,7 +45,7 @@ function renderLibrary(): void {
       setHbEditing(false);
       document.body.classList.remove('swipe-active');
       show(SCREENS.RESULT);
-      renderHeldenblatt();
+      renderHeldenblatt(true);
     });
   });
   list.querySelectorAll('.lib-del').forEach(function (b: any) {
