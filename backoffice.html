@@ -96,9 +96,31 @@ select{font-family:var(--serif);font-size:0.9rem;padding:6px 8px;border:1px soli
 
 .empty{margin-top:40px;text-align:center;color:var(--ink-soft)}
 .done-tick{color:var(--green);font-weight:700;margin-left:6px}
+
+/* Login-Overlay (nur Worker-Modus; per JS eingeblendet) */
+.login{display:none;position:fixed;inset:0;z-index:100;background:var(--bg);
+  background-image:radial-gradient(ellipse at top left,rgba(169,134,70,0.10) 0%,transparent 55%);
+  align-items:center;justify-content:center;padding:24px}
+.login-box{background:var(--paper);border:1px solid var(--line);border-radius:16px;
+  box-shadow:var(--shadow);padding:28px 26px;max-width:360px;width:100%;text-align:center}
+.login-box h2{font-size:1.4rem;font-weight:700;margin-bottom:4px}
+.login-box p{color:var(--ink-soft);font-size:0.92rem;margin-bottom:16px}
+.login-box input{width:100%;font-family:var(--serif);font-size:1.05rem;padding:11px 12px;
+  border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);margin-bottom:12px}
+.login-box button{width:100%;font-family:var(--serif);font-size:1.05rem;font-weight:700;border:none;
+  border-radius:10px;padding:11px;cursor:pointer;background:var(--green);color:#fff}
+.login-msg{min-height:1.2em;margin-top:10px;font-size:0.88rem;color:var(--accent)}
 </style>
 </head>
 <body>
+<div class="login" id="login"><div class="login-box">
+  <h2>Tag-Review</h2>
+  <p>Bitte Passwort eingeben, um fortzufahren.</p>
+  <input type="password" id="login-pw" placeholder="Passwort" autocomplete="current-password" />
+  <button id="login-btn">Anmelden</button>
+  <div class="login-msg" id="login-msg"></div>
+</div></div>
+
 <div class="topbar"><div class="wrap">
   <div class="grow">
     <h1>Tag-Review <span style="font-weight:400;color:var(--ink-soft);font-size:1rem">· Backoffice</span></h1>

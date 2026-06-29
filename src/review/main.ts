@@ -38,11 +38,16 @@ const bundles = allBundles.filter((b) => b.ready);
 const notReadyThemes = Object.keys(THEMEBOOKS).filter((name) =>
   !allBundles.some((b) => b.themebook === name && b.ready)).length;
 
-// ---- Feedback-Zustand ----
+// ---- Feedback-Zustand + Persistenz ----
 const LS_KEY = 'mh_tag_feedback';
+const PW_KEY = 'mh_review_pw';
+// NACH dem Worker-Deploy hier die Cloudflare-Worker-URL eintragen (ohne Slash am Ende).
+// Leer = deployte Seite arbeitet wie bisher (localStorage + Export), kein Login.
+const WORKER_URL = '';
 // Lokaler Dev-Server (Vite) hat die /api-Middleware; die deployte Pages-Seite nicht.
 const isLocal = /^(localhost|127\.|0\.0\.0\.0$|\[?::1)/.test(location.hostname);
-let mode: string = 'local'; // 'api' (Dev-Middleware) | 'local' (localStorage)
+let mode: string = 'local'; // 'api' (Dev-Platte) | 'worker' (Cloudflare+Passwort) | 'local' (nur localStorage)
+let password = '';
 let feedback: any = {};
 let current = 0;
 let saveTimer: any = null;
@@ -54,36 +59,64 @@ function normalize() {
   if (!feedback || typeof feedback !== 'object') feedback = {};
   if (!Array.isArray(feedback._done)) feedback._done = [];
 }
+function hasEntries(o: any) { return !!o && Object.keys(o).some((k) => k !== '_done'); }
+function readLocal(): any { try { return JSON.parse(localStorage.getItem(LS_KEY) || '{}'); } catch (_) { return {}; } }
 
-async function loadFeedback() {
+// Lokaler Modus (Dev oder ohne Worker): /api versuchen, sonst localStorage.
+async function loadLocalOrApi() {
   if (isLocal) {
     try {
       const r = await fetch('/api/tag-feedback');
-      if (r.ok) {
-        const j = await r.json();
-        if (j && typeof j === 'object') { feedback = j; mode = 'api'; normalize(); return; }
-      }
+      if (r.ok) { const j = await r.json(); if (j && typeof j === 'object') { feedback = j; mode = 'api'; normalize(); return; } }
     } catch (_) { /* keine Middleware -> localStorage */ }
   }
   mode = 'local';
-  try { feedback = JSON.parse(localStorage.getItem(LS_KEY) || '{}'); } catch (_) { feedback = {}; }
+  feedback = readLocal();
   normalize();
+}
+
+// Worker-Modus: Feedback vom Worker laden (Quelle der Wahrheit, Geräte-Sync).
+async function workerLoad(pw: string): Promise<boolean> {
+  const r = await fetch(WORKER_URL + '/load', {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ password: pw }),
+  });
+  if (r.status === 401) return false;
+  if (!r.ok) throw new Error('load ' + r.status);
+  const j = await r.json();
+  const remote = (j && j.feedback) || {};
+  const local = readLocal();
+  // Remote ist führend; nur wenn remote leer ist, lokalen Stand übernehmen (und gleich hochsyncen).
+  feedback = hasEntries(remote) ? remote : local;
+  normalize();
+  password = pw; mode = 'worker';
+  try { sessionStorage.setItem(PW_KEY, pw); } catch (_) {}
+  if (!hasEntries(remote) && hasEntries(local)) syncNow();
+  return true;
 }
 
 function saveFeedback() {
   flashSaving();
   try { localStorage.setItem(LS_KEY, JSON.stringify(feedback)); } catch (_) {} // immer lokal spiegeln
   clearTimeout(saveTimer);
-  saveTimer = setTimeout(() => {
-    if (mode === 'api') {
-      fetch('/api/tag-feedback', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(feedback),
-      }).then(() => flashSaved()).catch(() => flashSaved());
-    } else {
-      flashSaved();
-    }
-  }, 350);
+  saveTimer = setTimeout(syncNow, mode === 'worker' ? 2500 : 300);
+}
+function syncNow() {
+  clearTimeout(saveTimer);
+  if (mode === 'api') {
+    fetch('/api/tag-feedback', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(feedback) })
+      .then(() => flashSaved()).catch(() => flashSaved());
+  } else if (mode === 'worker') {
+    fetch(WORKER_URL + '/save', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password, feedback }) })
+      .then((r) => setSync(r.ok)).catch(() => setSync(false));
+  } else {
+    flashSaved();
+  }
+}
+function setSync(ok: boolean) {
+  const note = $('mode-note');
+  if (ok) { flashSaved(); if (note) note.textContent = 'Automatisch gespeichert (Server)'; }
+  else if (note) note.textContent = '⚠ nicht gespeichert — Verbindung? wird erneut versucht';
 }
 function flashSaving() { const el = $('saved'); el.textContent = 'speichere …'; el.classList.add('show'); }
 function flashSaved() { const el = $('saved'); el.textContent = 'gespeichert ✓'; el.classList.add('show'); setTimeout(() => el.classList.remove('show'), 1200); }
@@ -255,6 +288,7 @@ function finishCurrent() {
   if (!b || !bundleComplete(b)) return;
   if (!isDone(b)) feedback._done.push(b.id);
   saveFeedback();
+  if (mode === 'worker') syncNow(); // beim Abschließen sofort committen (Checkpoint)
   // Naechstes unerledigtes Buendel, sonst einfach das naechste
   let next = -1;
   for (let i = current + 1; i < bundles.length; i++) { if (!isDone(bundles[i])) { next = i; break; } }
@@ -267,8 +301,14 @@ function firstIncomplete() {
   return 0;
 }
 
-(async function init() {
-  await loadFeedback();
+function setModeNote() {
+  const note = $('mode-note'); if (!note) return;
+  note.textContent = mode === 'api' ? 'Speichert auf Platte (tools/tag-feedback.json)'
+    : mode === 'worker' ? 'Automatisch gespeichert (Server)'
+    : 'Speichert im Browser — zum Zurückgeben: Export / Kopieren';
+}
+
+function start() {
   $('btn-prev').onclick = () => go(current - 1);
   $('btn-next').onclick = () => go(current + 1);
   $('btn-done').onclick = finishCurrent;
@@ -277,9 +317,39 @@ function firstIncomplete() {
   $('btn-copy').onclick = copyJson;
   $('btn-import').onclick = () => $('file-import').click();
   $('file-import').onchange = (e: any) => { const f = e.target.files && e.target.files[0]; if (f) importJson(f); e.target.value = ''; };
-  $('mode-note').textContent = mode === 'api'
-    ? 'Speichert auf Platte (tools/tag-feedback.json)'
-    : 'Speichert im Browser — zum Zurückgeben: Export / Kopieren';
+  // Beim Verlassen/Tab-Wechsel offene Änderungen sichern (Worker-Modus).
+  window.addEventListener('pagehide', () => { if (mode === 'worker') syncNow(); });
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden' && mode === 'worker') syncNow(); });
+  setModeNote();
   current = firstIncomplete();
   render();
+}
+
+// ---- Login (nur Worker-Modus) ----
+function setLoginMsg(msg: string) { const el = $('login-msg'); if (el) el.textContent = msg; }
+function showLogin() {
+  const overlay = $('login'); overlay.style.display = 'flex';
+  const attempt = async (pw: string) => {
+    if (!pw) { setLoginMsg('Bitte Passwort eingeben.'); return; }
+    setLoginMsg('prüfe …');
+    try {
+      const ok = await workerLoad(pw);
+      if (ok) { overlay.style.display = 'none'; start(); }
+      else setLoginMsg('Falsches Passwort.');
+    } catch (_) { setLoginMsg('Server nicht erreichbar — später erneut versuchen.'); }
+  };
+  $('login-btn').onclick = () => attempt($('login-pw').value);
+  $('login-pw').onkeydown = (e: any) => { if (e.key === 'Enter') attempt($('login-pw').value); };
+  const saved = (() => { try { return sessionStorage.getItem(PW_KEY) || ''; } catch (_) { return ''; } })();
+  if (saved) attempt(saved); // Auto-Login innerhalb derselben Sitzung
+  else $('login-pw').focus();
+}
+
+(async function init() {
+  if (!isLocal && WORKER_URL) {
+    showLogin();
+  } else {
+    await loadLocalOrApi();
+    start();
+  }
 })();
