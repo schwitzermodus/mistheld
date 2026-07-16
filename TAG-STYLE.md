@@ -12,9 +12,11 @@ Inhalts- und Voice-Regeln für Themes, Tags und Quests im Mistheld-Katalog.
 
 ## 1. Sprache und Wording
 
-- **Kürze.** So wenige Wörter wie möglich. Füllverben und Artikel streichen (z.B. „trägt ein", „ein", „in den"). Beispiel: „liest in den Sternen" → „liest Sterne".
+- **Kürze.** So wenige Wörter wie möglich. Füllverben und Artikel streichen (z.B. „trägt ein", „ein", „in den"). Beispiel: „liest in den Sternen" → „liest Sterne". Richtwert: nicht mehr als drei Wörter, wenn es sich vermeiden lässt.
 - **Einfache Sprache.** Gängige, sofort verständliche Wörter. Was man nachschlagen müsste, wird ersetzt. Beispiel: „Standesdünkel" → „Hochmut".
 - **Präzises Wording.** Die treffendere Formulierung wählen. Beispiel: „falsches Siegel" → „gefälschtes Siegel".
+- **Fähigkeit statt Handlung.** Ein Tag benennt eine Fähigkeit oder Eigenschaft, nicht den Vollzug einer Handlung. Beispiele: „liest die Karte" → „kartenkundig"; „gilt als Sonderling" → „Sonderling".
+- **Keine Bindestrich-Komposita als Titel.** Konstruktionen wie „Hinterland-Spurenleser" vermeiden; lieber ein schlichtes Wort („Fährtenleser") oder eine natürliche Fügung („Fährtenleser des Hinterlands").
 
 ## 2. Spielmechanische Brauchbarkeit
 
@@ -25,8 +27,8 @@ Inhalts- und Voice-Regeln für Themes, Tags und Quests im Mistheld-Katalog.
 ## 3. Themen-Kohärenz
 
 - **Titel-Tag = erstes Power Tag.** Der Theme-Titel ist immer das erste und wichtigste Power Tag (LitM: „main power tag / theme title"). Er **zählt bei der Anzahl mit**: „max. 3 Power Tags" heißt Titel plus zwei weitere. Der Titel-Tag muss **alle** Qualitätskriterien erfüllen wie jedes andere Tag.
-- **Differenzierung innerhalb des Themes.** Die Tags eines Themes sollen sich möglichst wenig überlappen, besser noch: deutlich voneinander unterscheidbar sein. Jeder Tag deckt einen eigenen Einsatzbereich ab, statt dieselbe Fähigkeit nur anders zu benennen. Negativbeispiel: „Hofmanieren" neben „feine Gesellschaft".
-- **Differenzierung gilt auch im Pool.** Nahezu gleichbedeutende Tags eines Bündels sind nur als sich ausschließende Alternativen erlaubt und dürfen nicht gemeinsam in einem Theme erscheinen. Erfordert eine Generator-Regel (kein gemeinsames Ziehen von near-duplicates). Beispiel: „der Wald antwortet" und „spricht mit Geistern".
+- **Differenzierung innerhalb des Themes.** Die Tags eines Themes sollen sich möglichst wenig überlappen, besser noch: deutlich voneinander unterscheidbar sein. Jeder Tag deckt einen eigenen Einsatzbereich ab, statt dieselbe Fähigkeit nur anders zu benennen. Negativbeispiele: „Hofmanieren" neben „feine Gesellschaft"; „kennt jede Spur im Wald" neben Titel „Fährtenleser" (dieselbe Fähigkeit in länger).
+- **Differenzierung gilt auch im Pool.** Nahezu gleichbedeutende Tags eines Bündels sind nur als sich ausschließende Alternativen erlaubt und dürfen nicht gemeinsam in einem Theme erscheinen. Erfordert eine Generator-Regel (kein gemeinsames Ziehen von near-duplicates, Issue #115). Beispiel: „der Wald antwortet" und „spricht mit Geistern".
 - **Gesinnung erlaubt, Passung entscheidet.** Tags dürfen moralisch gefärbt sein, gut wie böse (z.B. der Betrugsaspekt bei „gefälschtes Siegel"). Kriterium ist nicht Neutralität, sondern ob der Tag zum Theme/Titel und zum Heldenbild passt, das die Swipes erzeugen. Der Generator lässt einzelne Tags ohnehin austauschen.
 
 ## 4. Might-Passung (verbindlich)
@@ -37,6 +39,8 @@ Inhalts- und Voice-Regeln für Themes, Tags und Quests im Mistheld-Katalog.
 - **Adventure:** über dem Gewöhnlichen, bemerkenswert (z.B. eine Hexe, die Tiergestalt annimmt und mit Geistern spricht).
 - **Greatness:** grandios, weltbewegend (z.B. eine Herrin des Waldes, die Sturm und Wurzel gebietet).
 
+**Auch der Klang des Titel-Tags skaliert mit der Stufe:** auf Origin schlicht und handwerklich („Fährtenleser"), auf Adventure/Greatness entsprechend mächtiger klingend.
+
 Grundlage: LitM Vol. I, S. 75/78/171 ff. und „Changing a Theme's Might" (S. 79).
 
 ### Ein Motiv über mehrere Stufen (Produktentscheidung)
@@ -45,7 +49,7 @@ Dasselbe Motiv soll in verschiedenen Might-Stufen existieren können: thematisch
 
 ### Umsetzungsstand
 
-Der aktuelle Generator hängt bei Stufen-Abweichung nur ein generisches Marker-Tag an (`generateTierDeviationTag`), statt echte stufengerechte Varianten zu ziehen. Das Ziel-Modell (echte Stufen-Varianten je Motiv) ist eine Daten- und Generator-Änderung und wird separat als Implementierungs-Issue geführt. Priorität: die Variable-Typen (Magic, Companion, Possessions), wo die Stufe im normalen Spiel gewählt wird.
+Der aktuelle Generator hängt bei Stufen-Abweichung nur ein generisches Marker-Tag an (`generateTierDeviationTag`), statt echte stufengerechte Varianten zu ziehen. Das Ziel-Modell (echte Stufen-Varianten je Motiv) ist eine Daten- und Generator-Änderung und wird als Issue #114 geführt. Priorität: die Variable-Typen (Magic, Companion, Possessions), wo die Stufe im normalen Spiel gewählt wird.
 
 ## 5. Power gegen Weakness
 
@@ -54,8 +58,8 @@ Der aktuelle Generator hängt bei Stufen-Abweichung nur ein generisches Marker-T
 
 ## 6. Quests
 
-- **Titel.** Prägnantes Ich-Ziel oder prägnante Ziel-Formulierung. (Offen: Vereinheitlichung Ich-Satz gegen Nominalphrase, siehe unten.)
-- **Beschreibung.** Liefert Hintergrund und Motivation. Wiederholt die Tags **nicht** wörtlich.
+- **Titel klingt wie Ziel oder Auftrag.** Kein Zustands- oder Themenlabel. Der Titel muss inhaltlich zur Beschreibung passen. Prägnantes Ich-Ziel oder prägnante Ziel-Formulierung. Negativbeispiel: „Ich finde Anwendung für meine Kunst" als Label ohne Auftrag-Klang und mit unpassendem Wort („Kunst" für einen Fährtenleser).
+- **Beschreibung liefert nur Hintergrund und Motivation** — das, was in den Tags *nicht* steht. Sie wiederholt die Tags weder wörtlich noch als prosaische Nacherzählung. Negativbeispiel: Power- und Weakness-Inhalte in Satzform aneinanderreihen und erst im letzten Satz das eigentliche Ziel nennen.
 - **Verfolgbar unterwegs.** Ein Quest muss sich während des reisenden Spiels verfolgen lassen. Keine Ziele, die nur durch Verharren an einem festen Ort erfüllbar sind, sonst läuft ein reisender Held strukturell in Abandon (3 Abandon → Theme wird ersetzt; Vol. I S. 188–192). Portable Framings bevorzugen: erreichen, finden, wiederherstellen, rächen, aufdecken, oder ein mitreisendes „Zuhause" (ein getragenes Ding, eine Gruppe, eine Lebensweise) statt eines zurückgelassenen Ortes.
 
 ---
@@ -63,4 +67,4 @@ Der aktuelle Generator hängt bei Stufen-Abweichung nur ein generisches Marker-T
 ## Offene Punkte
 
 - Quest-Titel-Format noch nicht vereinheitlicht (Ich-Ziel-Satz vs. evokative Nominalphrase). Beide Formen liegen aktuell im Katalog.
-- Ziel-Modell „ein Motiv über mehrere Might-Stufen" (Abschnitt 4) noch nicht implementiert; wird als Implementierungs-Issue erfasst.
+- Ziel-Modell „ein Motiv über mehrere Might-Stufen" (Abschnitt 4) noch nicht implementiert; Issue #114.
