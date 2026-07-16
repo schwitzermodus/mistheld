@@ -26,24 +26,26 @@ Inhalts- und Voice-Regeln für Themes, Tags und Quests im Mistheld-Katalog.
 
 - **Titel-Tag = erstes Power Tag.** Der Theme-Titel ist immer das erste und wichtigste Power Tag (LitM: „main power tag / theme title"). Er **zählt bei der Anzahl mit**: „max. 3 Power Tags" heißt Titel plus zwei weitere. Der Titel-Tag muss **alle** Qualitätskriterien erfüllen wie jedes andere Tag.
 - **Differenzierung innerhalb des Themes.** Die Tags eines Themes sollen sich möglichst wenig überlappen, besser noch: deutlich voneinander unterscheidbar sein. Jeder Tag deckt einen eigenen Einsatzbereich ab, statt dieselbe Fähigkeit nur anders zu benennen. Negativbeispiel: „Hofmanieren" neben „feine Gesellschaft".
+- **Differenzierung gilt auch im Pool.** Nahezu gleichbedeutende Tags eines Bündels sind nur als sich ausschließende Alternativen erlaubt und dürfen nicht gemeinsam in einem Theme erscheinen. Erfordert eine Generator-Regel (kein gemeinsames Ziehen von near-duplicates). Beispiel: „der Wald antwortet" und „spricht mit Geistern".
 - **Gesinnung erlaubt, Passung entscheidet.** Tags dürfen moralisch gefärbt sein, gut wie böse (z.B. der Betrugsaspekt bei „gefälschtes Siegel"). Kriterium ist nicht Neutralität, sondern ob der Tag zum Theme/Titel und zum Heldenbild passt, das die Swipes erzeugen. Der Generator lässt einzelne Tags ohnehin austauschen.
 
 ## 4. Might-Passung (verbindlich)
 
 **Das Theme und alle seine Tags — der Titel-Tag eingeschlossen — müssen zur Might-Stufe des Themes passen.**
 
-- **Origin:** gewöhnlich, bodenständig, alltagsnah (z.B. „humble gravedigger", „local gossip").
-- **Adventure:** über dem Gewöhnlichen, bemerkenswert (z.B. „remarkable swordfighter", „blessing of the gods").
-- **Greatness:** grandios, weltbewegend (z.B. „queen of the realm", „spell of annihilation").
+- **Origin:** gewöhnlich, bodenständig, alltagsnah. Darf leicht übernatürlich sein, aber nur harmlos und gering (z.B. eine Heckenhexe, die Kräuter kennt und der der Wald leise antwortet).
+- **Adventure:** über dem Gewöhnlichen, bemerkenswert (z.B. eine Hexe, die Tiergestalt annimmt und mit Geistern spricht).
+- **Greatness:** grandios, weltbewegend (z.B. eine Herrin des Waldes, die Sturm und Wurzel gebietet).
 
-Grundlage: LitM Vol. I, S. 75/78/171 ff.
+Grundlage: LitM Vol. I, S. 75/78/171 ff. und „Changing a Theme's Might" (S. 79).
 
-### App-Mechanik dazu (wichtig fürs Schreiben und Bewerten)
+### Ein Motiv über mehrere Stufen (Produktentscheidung)
 
-- Jedes Themebook hat eine **feste Buch-Stufe** (`DEFAULT_THEME_TIER` in `src/core/constants.ts`). Beispiel: Monstrosity = Greatness, Circumstance = Origin.
-- Der Generator schreibt Tag-Texte **nicht um**, wenn die Stufe im Spiel abweicht. Eine Abweichung von der Buch-Stufe wird nur durch ein generisches Zusatz-Tag markiert (`generateTierDeviationTag`), nicht durch eine zweite Tag-Fassung.
-- **Konsequenz für den Katalog:** Jedes Bündel wird gegen die **feste Buch-Stufe seines Themebooks** geschrieben und geprüft. Es braucht keine mehreren stufengerechten Fassungen desselben Motivs.
-- **Variable Might** (Companion, Magic, Possessions): stehen standardmäßig auf Origin. Ihre Basis-Tags werden im **Origin-/Grundregister** geschrieben, weil eine Anhebung nach Adventure/Greatness mechanisch über das Marker-Tag läuft.
+Dasselbe Motiv soll in verschiedenen Might-Stufen existieren können: thematisch verwandt (immer eine naturbezogene Hexe), aber mit **skalierender Mächtigkeit der Tags**. Beispiel „Waldhexe": Origin = harmlose Heckenhexe (Heilkräuter, Waldwissen, evtl. leiser Zauber); Adventure = echte Hexe (Tiergestalt, spricht mit Geistern); Greatness = Herrin des Waldes (gebietet Sturm und Wurzel). Jede Stufen-Variante wird gegen ihre Stufe geschrieben; die Tags werden nicht einfach über die Stufen hinweg wiederverwendet.
+
+### Umsetzungsstand
+
+Der aktuelle Generator hängt bei Stufen-Abweichung nur ein generisches Marker-Tag an (`generateTierDeviationTag`), statt echte stufengerechte Varianten zu ziehen. Das Ziel-Modell (echte Stufen-Varianten je Motiv) ist eine Daten- und Generator-Änderung und wird separat als Implementierungs-Issue geführt. Priorität: die Variable-Typen (Magic, Companion, Possessions), wo die Stufe im normalen Spiel gewählt wird.
 
 ## 5. Power gegen Weakness
 
@@ -54,9 +56,11 @@ Grundlage: LitM Vol. I, S. 75/78/171 ff.
 
 - **Titel.** Prägnantes Ich-Ziel oder prägnante Ziel-Formulierung. (Offen: Vereinheitlichung Ich-Satz gegen Nominalphrase, siehe unten.)
 - **Beschreibung.** Liefert Hintergrund und Motivation. Wiederholt die Tags **nicht** wörtlich.
+- **Verfolgbar unterwegs.** Ein Quest muss sich während des reisenden Spiels verfolgen lassen. Keine Ziele, die nur durch Verharren an einem festen Ort erfüllbar sind, sonst läuft ein reisender Held strukturell in Abandon (3 Abandon → Theme wird ersetzt; Vol. I S. 188–192). Portable Framings bevorzugen: erreichen, finden, wiederherstellen, rächen, aufdecken, oder ein mitreisendes „Zuhause" (ein getragenes Ding, eine Gruppe, eine Lebensweise) statt eines zurückgelassenen Ortes.
 
 ---
 
 ## Offene Punkte
 
 - Quest-Titel-Format noch nicht vereinheitlicht (Ich-Ziel-Satz vs. evokative Nominalphrase). Beide Formen liegen aktuell im Katalog.
+- Ziel-Modell „ein Motiv über mehrere Might-Stufen" (Abschnitt 4) noch nicht implementiert; wird als Implementierungs-Issue erfasst.
