@@ -1724,15 +1724,15 @@ export const THEMEBOOKS = {
           { text: "Schmugglerschulden im Nacken", hooks: ["geheimnis","verlust"] },
         ],
         quests: [
-          { title: "Ich beherrsche den ganzen Hafen", description: "Der Held kennt jeden Kai, jede Mole und jeden Spitzel, der dort lauert. Kein Schiff legt an, ohne dass er es will, und genau diese Gewissheit treibt ihn an. Solange auch nur ein Steg sich seiner Kontrolle entzieht, ist das Werk nicht vollendet. Der ganze Hafen soll seinem Wink gehorchen.", hooks: ["macht","stadt"] },
-          { title: "Ich verteidige meinen Kai", description: "Mühsam hat der Held sich seine Stellung an den Docks erkämpft, Faden um Faden, Bote um Bote. Doch die Konkurrenz lauert, und alte Schmugglerschulden drücken im Nacken. Was er aufgebaut hat, gibt er an niemanden ab, und wer danach greift, wird seine Entschlossenheit zu spüren bekommen.", hooks: ["macht","stadt"] },
+          { title: "Meinen Griff auf jeden Hafen ausweiten", description: "Einen Hafen hält sie fest in der Hand, doch die großen Waren fließen durch Häfen, die anderen gehören. Solange ein fremder Kai über ihren Kopf hinweg entscheidet, ist sie nur eine unter vielen. Sie reist die Küste ab, Hafen um Hafen, bis alle Fäden bei ihr zusammenlaufen.", hooks: ["macht","stadt"] },
+          { title: "Aufspüren, was meinen Kai bedroht", description: "Jemand untergräbt still ihre Stellung, kauft ihre Spitzel, schneidet ihre Boten ab, und die Fäden führen aus der Stadt hinaus. Abzuwarten hieße verlieren. Sie folgt der Spur des Widersachers dorthin, wo er sitzt, ehe er ihr den Boden unter den Füßen wegzieht.", hooks: ["macht","stadt"] },
         ]
       },
       {
         text: "graue Eminenz", hooks: ["macht","geheimnis"],
         powerTags: [
           { text: "zieht Fäden im Verborgenen", hooks: ["macht","geheimnis"] },
-          { text: "kennt das Geheimnis aller", hooks: ["geheimnis","macht"] },
+          { text: "kennt jedes Geheimnis", hooks: ["geheimnis","macht"] },
           { text: "Beobachter überall", hooks: ["geheimnis","stadt"] },
           { text: "eine Geste genügt", hooks: ["macht","geheimnis"] },
         ],
@@ -1741,8 +1741,8 @@ export const THEMEBOOKS = {
           { text: "erpressbar durch Geheimnisse", hooks: ["geheimnis","macht"] },
         ],
         quests: [
-          { title: "Ich entlarve die wahren Strippenzieher", description: "Der Held zieht selbst die Fäden im Verborgenen und weiß darum, wie tief das Spiel der Macht reicht. Hinter allem Offenen bewegen sich andere verborgene Hände, deren Namen er nicht kennt. Dieser blinde Fleck lässt ihm keine Ruhe, denn wer im Schatten wirkt, fürchtet nichts mehr als einen Schatten neben sich. Er wird sie finden.", hooks: ["geheimnis","macht"] },
-          { title: "Ich finde heraus wer mich kontrolliert", description: "Lange glaubte der Held, er allein bewege die Figuren auf dem Brett. Doch je mehr Geheimnisse er sammelt, desto deutlicher spürt er eine fremde Hand, die ihn lenkt. Erpressbar durch das, was er selbst verbirgt, wächst der Zweifel zur Gewissheit. Er muss wissen, wer wirklich die Zügel hält.", hooks: ["geheimnis","macht"] },
+          { title: "Die wahren Strippenzieher entlarven", description: "Er dachte, er stehe an der Spitze des Spiels, bis er Fäden bemerkte, die über seine hinausreichen, gezogen von Händen ohne Namen. Wer im Schatten wirkt, fürchtet nichts mehr als einen zweiten Schatten. Er folgt den Fäden nach oben, bis er die Hände sieht.", hooks: ["geheimnis","macht"] },
+          { title: "Herausfinden, wer mich lenkt", description: "Je mehr Geheimnisse er sammelt, desto klarer spürt er, dass eines davon ihn selbst betrifft und in fremder Hand liegt. Jemand kennt seinen wunden Punkt. Ehe man ihn wie eine Marionette führt, muss er wissen, wer die Schnur hält, und sie durchtrennen.", hooks: ["geheimnis","macht"] },
         ]
       },
       {
@@ -1758,15 +1758,15 @@ export const THEMEBOOKS = {
           { text: "zu viele Verpflichtungen", hooks: ["macht","verlust"] },
         ],
         quests: [
-          { title: "Ich wende die Stadt zum Guten", description: "Mit Befehlsgewalt und einer festen Stimme im Ratssaal hat der Held Einfluss erlangt, von dem andere nur träumen. Doch Macht allein genügt ihm nicht; sie soll etwas hinterlassen, das bleibt. Beschluss um Beschluss will er die Stadt zum Besseren wenden, ehe die vielen Verpflichtungen ihn auffressen. Sein Vermächtnis soll in Stein gemeißelt sein.", hooks: ["macht","stadt"] },
-          { title: "Ich verteidige mein Amt", description: "Der Sitz im Rat macht den Helden zur Zielscheibe, denn Macht weckt stets den Neid der anderen. Längst kennt er die Regeln und ihre Ausnahmen besser als jeder Widersacher. Wer ihm das Amt nehmen will, lernt rasch dessen Preis kennen. Was er sich erkämpfte, verteidigt er mit jedem Mittel, das ihm zu Gebote steht.", hooks: ["macht","stadt"] },
+          { title: "Eine Ordnung durchsetzen, die zählt", description: "Er hat Einfluss erlangt, von dem andere träumen, doch Beschlüsse verpuffen, wenn sie nur die eigene Stadt betreffen. Er will etwas anstoßen, das über die Mauern hinausreicht. Dafür verhandelt er dort, wo die wirklichen Entscheidungen fallen, und reist den Mächtigen nach.", hooks: ["macht","stadt"] },
+          { title: "Beweisen, dass man mich nicht stürzt", description: "Ein Rivale sammelt heimlich Belege, um ihn zu Fall zu bringen, und die Zeugen sind über das halbe Land verstreut. Sitzenbleiben und hoffen ist keine Option. Er reist ihnen nach, kauft ihr Schweigen oder ihre Wahrheit, ehe der Schlag gegen ihn geführt wird.", hooks: ["macht","stadt"] },
         ]
       },
       {
         text: "Gildenführer", hooks: ["handwerk","macht"],
         powerTags: [
           { text: "Gildensiegel", hooks: ["handwerk","macht"] },
-          { text: "kann Verbündete mobilisieren", hooks: ["macht"] },
+          { text: "mobilisiert Verbündete", hooks: ["macht"] },
           { text: "kennt jedermanns Schulden", hooks: ["geheimnis","macht"] },
           { text: "macht und bricht Rufe", hooks: ["macht","stadt"] },
         ],
@@ -1775,8 +1775,8 @@ export const THEMEBOOKS = {
           { text: "jedes Bündnis hat seinen Preis", hooks: ["macht","stadt"] },
         ],
         quests: [
-          { title: "Ich eine die zerstrittenen Gilden", description: "Mit dem Gildensiegel in der Hand kann der Held Verbündete mobilisieren und Rufe machen oder brechen. Doch zersplittert in Eifersucht sind die Gilden ein leichtes Spiel für jeden Lehnsherrn. Geschlossen aber wären sie mächtiger als jede Krone. Diese Einheit zu schmieden, trotz aller Konkurrenz um die Führung, ist sein großes Ziel.", hooks: ["handwerk","macht"] },
-          { title: "Ich räche die Ehre meiner Gilde", description: "Der Held kennt jedermanns Schulden und weiß, wie man einen Ruf zu Fall bringt. Doch nun hat jemand seinen Stand beschmutzt, und das schreit nach Antwort. Jedes Bündnis hat seinen Preis, und diese Schmach wird er einfordern. Wer die Ehre seiner Gilde antastet, soll erfahren, dass es nicht ungestraft bleibt.", hooks: ["handwerk","macht"] },
+          { title: "Die zerstrittenen Gilden einen", description: "Getrennt sind die Gilden ein Spielball jedes Lehnsherrn, geeint wären sie mächtiger als eine Krone. Doch jede sitzt in einer anderen Stadt und misstraut den übrigen. Er reist von Halle zu Halle, um die Alten an einen Tisch zu bringen, ehe man sie einzeln bricht.", hooks: ["handwerk","macht"] },
+          { title: "Die Ehre meiner Gilde rächen", description: "Jemand hat den Ruf seiner Gilde in den Schmutz gezogen, und das Gerücht wandert schneller als er. Er kennt die Schulden derer, die es verbreiten. Er folgt der Verleumdung bis zu ihrem Urheber und stellt richtig, was verdreht wurde, mit welchem Mittel auch immer.", hooks: ["handwerk","macht"] },
         ]
       },
       {
@@ -1784,7 +1784,7 @@ export const THEMEBOOKS = {
         powerTags: [
           { text: "Zugang zu verschlossenen Orten", hooks: ["geheimnis","macht"] },
           { text: "kennt jeden Schleichweg", hooks: ["stadt","geheimnis"] },
-          { text: "loyale Schmugglerbande", hooks: ["außenseiter","macht"] },
+          { text: "loyale Bande", hooks: ["außenseiter","macht"] },
           { text: "Gold öffnet Türen", hooks: ["macht","stadt"] },
         ],
         weaknessTags: [
@@ -1792,8 +1792,8 @@ export const THEMEBOOKS = {
           { text: "alte Intrigen holen sie ein", hooks: ["stadt","verlust"] },
         ],
         quests: [
-          { title: "Ich beherrsche den Schwarzmarkt", description: "Mit Zugang zu verschlossenen Orten und dem Wissen um jeden Schleichweg hat sich der Held zur Macht im Verborgenen aufgeschwungen. Gold öffnet ihm Türen, hinter denen das Gesetz keine Geltung hat. Keine verbotene Ware soll den Besitzer wechseln, ohne dass sein Anteil fließt. Den ganzen Schwarzmarkt unter sich zu wissen, ist sein Antrieb, mag das Gesetz ihn auch jagen.", hooks: ["außenseiter","macht"] },
-          { title: "Ich schütze meine Bande", description: "Eine loyale Schmugglerbande folgt dem Helden durch die dunkelsten Gassen und vertraut ihm ihr Leben an. Alte Intrigen holen ihn ein, und das Gesetz sitzt ihm im Nacken. Doch wer ihm treu folgt, den lässt er niemals fallen. Diese Loyalität zu wahren, gegen alle Gefahr, ist ihm mehr wert als jeder Gewinn.", hooks: ["außenseiter","stadt"] },
+          { title: "Den Schwarzmarkt beherrschen", description: "Ihre Ware fließt durch ein Dutzend Städte, doch in dreien schneidet ihr ein Rivale die Wege ab. Sie will, dass keine verbotene Fracht den Besitzer wechselt, ohne dass ihr Anteil fließt. Sie reist die Schmuggelrouten ab und übernimmt sie, eine nach der anderen.", hooks: ["außenseiter","macht"] },
+          { title: "Meine Bande schützen", description: "Alte Intrigen holen sie ein, und einer ihrer Leute ist ins Netz des Gesetzes geraten, weit weg, in einer Stadt, die sie meidet. Wer ihr treu folgt, den lässt sie nicht fallen. Sie bricht auf, ihn herauszuholen, auch wenn es sie mitten in die Falle führt.", hooks: ["außenseiter","stadt"] },
         ]
       },
       {
@@ -1801,7 +1801,7 @@ export const THEMEBOOKS = {
         powerTags: [
           { text: "Recht auf Audienz", hooks: ["adel","macht"] },
           { text: "Vertrauen der Mächtigen", hooks: ["macht","adel"] },
-          { text: "lenkt durch geschickte Fragen", hooks: ["stadt","macht"] },
+          { text: "lenkt mit klugen Fragen", hooks: ["stadt","macht"] },
           { text: "beschwichtigt jeden Streit", hooks: ["stadt","adel"] },
         ],
         weaknessTags: [
@@ -1809,32 +1809,32 @@ export const THEMEBOOKS = {
           { text: "jedes Bündnis hat seinen Preis", hooks: ["macht","stadt"] },
         ],
         quests: [
-          { title: "Ich stifte Frieden zwischen den Häusern", description: "Mit dem Recht auf Audienz und dem Vertrauen der Mächtigen wandelt der Held durch die Säle der Macht. Wo andere zum Schwert greifen, legt er Worte auf die Waage und beschwichtigt jeden Streit. Die zerstrittenen Häuser zu versöhnen, ist seine wahre Berufung. Ein dauerhafter Friede, geschmiedet durch geschickte Fragen statt durch Klingen, ist sein Ziel.", hooks: ["adel","stadt"] },
-          { title: "Ich wahre mein Wort am Hof", description: "Der Hof ist ein Schlangennest, und der Held weiß, dass sein einziges Kapital sein gegebenes Wort ist. Ein gebrochenes Versprechen wäre der Anfang seines Endes, denn jedes Bündnis hat seinen Preis. Darum hält er, was er zusagt, auch wenn es ihn alles kostet. Seine Verlässlichkeit ist der Boden, auf dem all sein Einfluss steht.", hooks: ["adel","glaube"] },
+          { title: "Frieden zwischen den Häusern stiften", description: "Zwei mächtige Häuser treiben auf einen Krieg zu, der Tausende kosten wird, und beide hören noch auf sie, gerade eben. Wo andere zum Schwert greifen, legt sie Worte auf die Waage. Sie reist zwischen den Höfen hin und her, ehe der erste Funke fällt.", hooks: ["adel","stadt"] },
+          { title: "Mein Wort am Hof halten", description: "Ihr einziges Kapital ist ihr gegebenes Wort, und man hat sie in eine Zusage gedrängt, die kaum zu halten ist. Ein gebrochenes Versprechen wäre ihr Ende. Sie tut das Unmögliche, um einzulösen, was sie versprach, denn ihre Verlässlichkeit ist der Boden all ihres Einflusses.", hooks: ["adel","glaube"] },
         ]
       },
       {
         text: "Händlerin mit dem Netz", hooks: ["stadt","geheimnis"],
         powerTags: [
-          { text: "eine Karte mit allen Namen", hooks: ["wissen","macht"] },
+          { text: "Karte aller Namen", hooks: ["wissen","macht"] },
           { text: "Boten in jede Richtung", hooks: ["stadt","fahrend"] },
-          { text: "Gefälligkeiten einfordern", hooks: ["macht","stadt"] },
-          { text: "kennt den Preis jeder Ware", hooks: ["handwerk","stadt"] },
+          { text: "fordert Gefälligkeiten ein", hooks: ["macht","stadt"] },
+          { text: "kennt jeden Warenpreis", hooks: ["handwerk","stadt"] },
         ],
         weaknessTags: [
           { text: "zu viele Verpflichtungen", hooks: ["macht","verlust"] },
           { text: "jedes Bündnis hat seinen Preis", hooks: ["macht","stadt"] },
         ],
         quests: [
-          { title: "Ich spanne mein Netz übers ganze Reich", description: "Der Held hält eine Karte mit allen Namen und sendet Boten in jede Richtung des Landes. Doch sein Netz ist noch lückenhaft, und das lässt ihm keine Ruhe. Von jeder Stadt soll ein Faden in seine Hand laufen, jeder Markt ihm Tribut zollen. Erst wenn das ganze Reich von seinen Verbindungen durchzogen ist, ist sein Werk vollbracht.", hooks: ["stadt","macht"] },
-          { title: "Ich löse meine Abhängigkeiten", description: "So viele Gefälligkeiten kann der Held einfordern, doch ebenso viele schuldet er selbst. Zu viele Verpflichtungen ketten ihn, und jedes Bündnis hat seinen Preis. Er will nicht länger das letzte Glied in einer Kette von Schulden sein. Sich aus diesen Abhängigkeiten zu befreien und endlich frei zu handeln, treibt ihn voran.", hooks: ["macht","verlust"] },
+          { title: "Mein Netz übers ganze Reich spannen", description: "Ihr Netz ist dicht, aber lückenhaft, und die Lücken kosten sie Gold und Wissen. Von jeder Stadt soll ein Faden in ihre Hand laufen. Sie reist die weißen Flecken ab und knüpft an, wo bisher niemand für sie sprach.", hooks: ["stadt","macht"] },
+          { title: "Meine Abhängigkeiten lösen", description: "So viele schulden ihr, doch ebenso vielen schuldet sie selbst, und die Ketten werden enger. Sie will nicht das letzte Glied in fremden Rechnungen sein. Sie sucht ihre Gläubiger auf, einen nach dem anderen, um frei zu werden und auf eigene Rechnung zu handeln.", hooks: ["macht","verlust"] },
         ]
       },
       {
         text: "Beraterin im Verborgenen", hooks: ["geheimnis","stadt"],
         powerTags: [
           { text: "Briefe öffnen Tore", hooks: ["macht","geheimnis"] },
-          { text: "hält Informationen zurück", hooks: ["geheimnis","stadt"] },
+          { text: "hält Wissen zurück", hooks: ["geheimnis","stadt"] },
           { text: "kennt jedes Schweigen", hooks: ["geheimnis","macht"] },
           { text: "flüstert ins rechte Ohr", hooks: ["geheimnis","macht"] },
         ],
@@ -1843,8 +1843,8 @@ export const THEMEBOOKS = {
           { text: "unsichtbare Feinde", hooks: ["geheimnis","macht"] },
         ],
         quests: [
-          { title: "Ich lenke den Herrscher klug", description: "Aus dem Verborgenen flüstert der Held ins rechte Ohr und weiß, dass Briefe Tore öffnen können. Seine Ratschläge wiegen schwerer als jedes Schwert im Saal. Klug gelenkt, soll der Herrscher das Reich vor dem Abgrund bewahren, an dessen Rand es taumelt. Diese stille Führung, unsichtbar und doch entscheidend, ist seine Aufgabe.", hooks: ["geheimnis","macht"] },
-          { title: "Ich bleibe im Schatten unentbehrlich", description: "Der Held hält Informationen zurück und kennt jedes Schweigen, das ihm Macht verleiht. Doch unsichtbare Feinde lauern, und Geheimnisse machen ihn erpressbar. Wer ihn übersieht, soll niemals begreifen, wie sehr er ihn braucht. Im Schatten unentbehrlich zu bleiben, dort wo niemand seinen Wert ahnt, ist sein stilles Streben.", hooks: ["geheimnis","stadt"] },
+          { title: "Den Herrscher klug lenken", description: "Das Reich taumelt, weil der Herrscher einem Einflüsterer glaubt, der ihn ins Verderben rät. Gegen bloße Worte kommt sie nicht an; sie braucht einen Beweis, und der liegt weit außerhalb der Hauptstadt. Sie bricht auf, ihn zu holen, ehe der falsche Rat zur Tat wird.", hooks: ["geheimnis","macht"] },
+          { title: "Im Schatten unentbehrlich bleiben", description: "Unsichtbare Feinde arbeiten daran, sie überflüssig zu machen, und ihre Geheimnisse taugen nur, solange niemand sie kennt. Wer sie übersieht, soll nie begreifen, wie sehr er sie braucht. Sie sichert ihre stillen Quellen, quer durchs Land, ehe ein anderer sie kappt.", hooks: ["geheimnis","stadt"] },
         ]
       },
       {
@@ -1857,28 +1857,28 @@ export const THEMEBOOKS = {
         ],
         weaknessTags: [
           { text: "Macht macht zur Zielscheibe", hooks: ["macht","stadt"] },
-          { text: "kann nicht Nein sagen", hooks: ["glaube","verlust"] },
+          { text: "kann nicht nein sagen", hooks: ["glaube","verlust"] },
         ],
         quests: [
-          { title: "Ich hebe die Vergessenen empor", description: "Mit einer Schatzkammer im Hintergrund und loyalen Leuten in den Gassen verfügt der Held über stille Macht. Doch sein Gold soll nicht ihm allein dienen, sondern denen, die sonst niemand sieht. Für die Schwachen zu sprechen und die Vergessenen emporzuheben, gibt seinem Reichtum erst einen Sinn. Diesen Auftrag verfolgt er, auch wenn Macht ihn zur Zielscheibe macht.", hooks: ["stadt","glaube"] },
-          { title: "Ich mache Unrecht wieder gut", description: "Der Held weiß, dass dasselbe Gold, das die Türen öffnet, auch ihn einst korrumpierte. Diese Schuld lastet schwer, und er kann nicht Nein sagen, wenn Not an ihn herantritt. Nun will er mit jenem Reichtum den Schaden begrenzen, den er mit anrichtete. Altes Unrecht wiedergutzumachen, ist die Last, die ihn vorantreibt.", hooks: ["macht","verlust"] },
+          { title: "Die Vergessenen emporheben", description: "Ihr Gold soll nicht ihr allein dienen, sondern denen, die sonst niemand sieht. In einer fernen Provinz treibt eine Hungersnot die Menschen in die Knechtschaft. Sie reist mit vollen Truhen dorthin, wo die Not am größten ist, ehe die Verzweiflung sie ausliefert.", hooks: ["stadt","glaube"] },
+          { title: "Altes Unrecht wiedergutmachen", description: "Dasselbe Gold, das ihr Türen öffnet, hat sie einst mit Schuld beladen, und die Menschen, die dafür bezahlten, sind verstreut. Sie kann nicht nein sagen, wenn ihre Not vor ihr steht. Sie sucht die Geschädigten von einst auf, um so viel zu heilen, wie sich noch heilen lässt.", hooks: ["macht","verlust"] },
         ]
       },
       {
         text: "Schiedsrichterin der Straßen", hooks: ["stadt","macht"],
         powerTags: [
-          { text: "kennt jede Losung jeder Wache", hooks: ["stadt","kampf"] },
-          { text: "schlichtet jeden Bandenkrieg", hooks: ["stadt","macht"] },
+          { text: "kennt jede Wachlosung", hooks: ["stadt","kampf"] },
+          { text: "schlichtet Bandenkriege", hooks: ["stadt","macht"] },
           { text: "Vollstrecker auf Zuruf", hooks: ["macht","kampf"] },
-          { text: "hört die Gerüchte zuerst", hooks: ["stadt","geheimnis"] },
+          { text: "hört Gerüchte zuerst", hooks: ["stadt","geheimnis"] },
         ],
         weaknessTags: [
           { text: "Konkurrenz um die Gasse", hooks: ["macht","stadt"] },
           { text: "verhasst bei den Verurteilten", hooks: ["kampf","verlust"] },
         ],
         quests: [
-          { title: "Ich halte Frieden im Viertel", description: "Der Held kennt jede Losung jeder Wache und hört die Gerüchte zuerst, ehe sie zur Gewalt werden. Auf seinen Zuruf treten Vollstrecker an, und seine Schlichtung beendet jeden Bandenkrieg. Solange er richtet, fließt in seinen Gassen kein unnötiges Blut. Diesen brüchigen Frieden zu wahren, trotz aller Konkurrenz um die Gasse, ist seine Pflicht.", hooks: ["stadt","macht"] },
-          { title: "Ich beweise dass mein Wort Gesetz ist", description: "In den Straßen gilt das Urteil des Helden mehr als jeder Erlass von oben. Doch bei den Verurteilten ist er verhasst, und mancher wagt es, sein Wort zu missachten. Wer das tut, soll erfahren, wie weit sein Arm wirklich reicht. Dass sein Wort Gesetz ist und bleibt, will er unmissverständlich beweisen.", hooks: ["macht","stadt"] },
+          { title: "Den Frieden der Straße ausbreiten", description: "In ihrem Viertel fließt kein unnötiges Blut, solange sie richtet, doch die Nachbarviertel versinken in Bandenkriegen, die zu ihr überschwappen. Sie will ihren brüchigen Frieden weitertragen. Sie geht von Gasse zu Gasse, wo man sie ruft, und schlichtet, wo sonst nur Klingen sprechen.", hooks: ["stadt","macht"] },
+          { title: "Beweisen, dass mein Wort Gesetz ist", description: "Ein Verurteilter hat ihr Urteil missachtet und ist geflohen, quer durch die Unterstadt, und andere warten, ob sie es dabei belässt. Ließe sie es durchgehen, wäre ihr Wort wertlos. Sie nimmt die Verfolgung auf, damit alle sehen, wie weit ihr Arm reicht.", hooks: ["macht","stadt"] },
         ]
       },
       {
@@ -1894,25 +1894,25 @@ export const THEMEBOOKS = {
           { text: "alte Intrigen holen sie ein", hooks: ["adel","verlust"] },
         ],
         quests: [
-          { title: "Ich setze meinen Kandidaten auf den Thron", description: "Der Held genießt das Vertrauen der Mächtigen und kann Throne einsetzen wie absetzen. Im Verborgenen zieht er die Fäden, während der Hof ein Schlangennest bleibt. Wer herrscht, entscheidet er, auch wenn niemand seinen Namen je nennt. Seinen Kandidaten auf den Thron zu heben, ist das Spiel, dem all sein Sinnen gilt.", hooks: ["macht","adel"] },
-          { title: "Ich bleibe die Hand hinter der Krone", description: "Macht und Rufe macht und bricht der Held nach Belieben, doch die Krone selbst begehrt er nicht. Die wahre Gewalt, das hat er gelernt, trägt kein Diadem, sondern lenkt den, der es trägt. Alte Intrigen holen ihn ein, und der Hof intrigiert ohne Unterlass. Die Hand hinter der Krone zu bleiben, unangefochten und unsichtbar, ist sein Ziel.", hooks: ["macht","geheimnis"] },
+          { title: "Meinen Kandidaten auf den Thron heben", description: "Der Thron wackelt, und mehrere Anwärter buhlen um ihn, doch nur einer taugt in ihren Augen. Wer herrscht, entscheidet sie, auch wenn niemand ihren Namen nennt. Sie reist zu den Zünglein an der Waage, kauft, überzeugt, erpresst, bis ihr Mann sitzt.", hooks: ["macht","adel"] },
+          { title: "Die Hand hinter der Krone bleiben", description: "Die wahre Macht trägt kein Diadem, sondern lenkt den, der es trägt, und genau das will man ihr streitig machen. Alte Intrigen holen sie ein, geschmiedet an Orten, die sie lange mied. Sie reist ihnen entgegen und erstickt sie, ehe sie die Hand entlarven, die alles bewegt.", hooks: ["macht","geheimnis"] },
         ]
       },
       {
         text: "Stimme des Rates", hooks: ["macht","stadt"],
         powerTags: [
-          { text: "kann Legitimität einfordern", hooks: ["macht","adel"] },
+          { text: "fordert Legitimität ein", hooks: ["macht","adel"] },
           { text: "spricht mit Befehlsgewalt", hooks: ["macht"] },
           { text: "kennt die wahren Mächte", hooks: ["stadt","macht"] },
-          { text: "bewegt die Menge mit Worten", hooks: ["macht","stadt"] },
+          { text: "bewegt die Menge", hooks: ["macht","stadt"] },
         ],
         weaknessTags: [
           { text: "an Beschlüsse gebunden", hooks: ["macht","stadt"] },
           { text: "Konkurrenz um das Wort", hooks: ["macht","stadt"] },
         ],
         quests: [
-          { title: "Ich gebe den Stummen eine Stimme", description: "Mit Befehlsgewalt spricht der Held und bewegt die Menge mit seinen Worten. Er kennt die wahren Mächte und kann Legitimität einfordern, wo andere verstummen. Im Rat soll erklingen, was sonst niemand auszusprechen wagt. Den Stummen seine Stimme zu leihen, ist die Aufgabe, der er sich verschrieben hat, mag die Konkurrenz um das Wort auch hart sein.", hooks: ["macht","stadt"] },
-          { title: "Ich baue eine Ordnung die mich überdauert", description: "An die Beschlüsse des Rates gebunden, ringt der Held doch um mehr als den Tag. Was er verkündet, soll noch gelten, wenn seine Stimme längst verstummt ist. Eine Ordnung zu schaffen, die ihn überdauert, treibt ihn über alle Konkurrenz hinaus. Sein wahres Vermächtnis liegt nicht in Macht, sondern in dem, was nach ihm Bestand hat.", hooks: ["macht","stadt"] },
+          { title: "Den Stummen eine Stimme geben", description: "Im Rat wird über die entschieden, die selbst nie hineindürfen, und er ist der Einzige, der für sie das Wort ergreift. Doch die Betroffenen sind über das Land verstreut, ihre Klagen ungehört. Er reist zu ihnen, sammelt ihre Stimmen und trägt sie dorthin, wo entschieden wird.", hooks: ["macht","stadt"] },
+          { title: "Eine Ordnung schaffen, die mich überdauert", description: "An die Beschlüsse gebunden, ringt er doch um mehr als den Tag; was er anstößt, soll noch gelten, wenn seine Stimme verstummt ist. Dafür braucht er Verbündete jenseits des Ratssaals. Er reist, um sie zu gewinnen, denn ein Vermächtnis baut man nicht allein.", hooks: ["macht","stadt"] },
         ]
       },
     ]
