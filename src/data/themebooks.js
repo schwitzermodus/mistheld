@@ -2550,61 +2550,57 @@ export const THEMEBOOKS = {
       {
         text: "körperloser Geist", hooks: ["schicksal","magie","verlust"],
         powerTags: [
-          { text: "fließt durch Spalten", hooks: ["schicksal","geheimnis"] },
-          { text: "unverletzlich durch Stahl", hooks: ["schicksal","kampf"] },
+          { text: "durchdringt jede Wand", hooks: ["magie","schicksal"] },
           { text: "bewegt Dinge ohne Berührung", hooks: ["magie","schicksal"] },
           { text: "spricht mit Toten", hooks: ["magie","verlust"] },
-          { text: "durchdringt jede Wand", hooks: ["magie","schicksal"] },
+          { text: "unverletzlich durch Stahl", hooks: ["schicksal","kampf"] },
         ],
         weaknessTags: [
           { text: "gebannt durch Salz und Eisen", hooks: ["magie","schicksal"] },
           { text: "gemieden von Mensch und Tier", hooks: ["außenseiter","schicksal"] },
         ],
         quests: [
-          { title: "Ich finde meinen letzten Atem", description: "Ungesehen gleitet der Held durch Mauern und Stahl, doch zwischen den Lebenden findet er keinen Frieden. Etwas Unerledigtes kettet ihn an diese Welt, ein Faden, der reißen müsste und es nicht tut. Solange dieses Band besteht, bleibt jeder Ort nur ein Durchgang. Der Held wird der Ursache nachspüren, bis er weiß, was seinen Tod verhindert.", hooks: ["verlust","geheimnis"] },
-          { title: "Ich finde Ruhe im Jenseits", description: "Der Held weiß, dass er nicht mehr hierher gehört, und das Wissen wiegt schwerer als jede Kette aus Salz und Eisen. Gemieden von Mensch und Tier, treibt er durch eine Welt, die ihn längst verloren glaubt. Irgendwo wartet eine Schwelle, ein letzter Übergang. Diesen Weg sucht der Held, damit er endlich gehen kann.", hooks: ["schicksal","verlust"] },
+          { title: "Meinen letzten Atem finden", description: "Durch Mauern und Stahl gleitet er ungesehen, doch zwischen den Lebenden findet er keinen Frieden. Etwas Unerledigtes hält ihn hier, ein Faden, der reißen müsste und es nicht tut. Er sucht die Ursache, ehe der Faden ihn für immer bindet.", hooks: ["verlust","geheimnis"] },
+          { title: "Die letzte Schwelle finden", description: "Er weiß, dass er hierher nicht mehr gehört, und dieses Wissen wiegt schwerer als Salz und Eisen. Gemieden von Mensch und Tier, treibt er durch eine Welt, die ihn längst verloren glaubt. Irgendwo wartet ein Übergang, und den sucht er, um endlich zu gehen.", hooks: ["schicksal","verlust"] },
         ]
       },
       {
         text: "Höllenkind", hooks: ["schicksal","magie","verlust"],
         powerTags: [
           { text: "übersteht Feuer", hooks: ["schicksal","magie"] },
-          { text: "Krallen oder Reißzähne", hooks: ["schicksal","kampf"] },
-          { text: "spürt böse Magie", hooks: ["magie","schicksal"] },
+          { text: "Krallen und Reißzähne", hooks: ["schicksal","kampf"] },
+          { text: "wittert dunkle Magie", hooks: ["magie","schicksal"] },
           { text: "flüstert Gedanken in andere", hooks: ["magie","geheimnis"] },
-          { text: "furchteinflößende Präsenz", hooks: ["macht","schicksal"] },
         ],
         weaknessTags: [
-          { text: "angreifbar durch heiliges Symbol", hooks: ["glaube","schicksal"] },
-          { text: "gehasst von beiden Welten", hooks: ["außenseiter","verlust"] },
+          { text: "schwach gegen Geweihtes", hooks: ["glaube","schicksal"] },
+          { text: "von beiden Welten gehasst", hooks: ["außenseiter","verlust"] },
         ],
         quests: [
-          { title: "Ich entkomme meinem Erbe", description: "Höllisches Blut brennt in den Adern des Helden und fordert seinen Tribut mit jedem Atemzug. Krallen, Feuer und ein Flüstern in fremden Köpfen verraten, wessen Kind er ist, und beide Welten hassen ihn dafür. Doch der Held will nicht sein, was man in ihm sieht. Er kämpft jeden Tag darum, dem dunklen Erbe nicht zu verfallen.", hooks: ["schicksal","magie"] },
-          { title: "Ich finde die, die mich erschufen", description: "Etwas Dunkles rief den Helden in diese Welt, und er hat nie erfahren, wessen Hand ihn formte. Die Gabe, böse Magie zu wittern, weist ihm nun den Weg zurück zur Quelle. Verhasst bei Himmel wie Hölle, hat er nichts zu verlieren außer Antworten. Dem, der ihn erschuf, will der Held endlich ins Angesicht sehen.", hooks: ["geheimnis","verlust"] },
+          { title: "Meinem Erbe entkommen", description: "Höllisches Blut brennt in seinen Adern und fordert Tribut mit jedem Atemzug. Krallen und ein Flüstern in fremden Köpfen verraten, wessen Kind er ist, und beide Welten hassen ihn dafür. Er kämpft jeden Tag, dem dunklen Erbe nicht zu verfallen.", hooks: ["schicksal","magie"] },
+          { title: "Die finden, die mich erschufen", description: "Etwas Dunkles rief ihn in diese Welt, und er hat nie erfahren, wessen Hand ihn formte. Sein Gespür für dunkle Magie weist ihm den Weg zurück zur Quelle. Verhasst bei Himmel wie Hölle, hat er nichts zu verlieren außer der Antwort.", hooks: ["geheimnis","verlust"] },
         ]
       },
       {
-        text: "kleiner Hob", hooks: ["schicksal","natur","geheimnis"],
+        text: "Hauskobold", hooks: ["schicksal","natur","geheimnis"],
         powerTags: [
           { text: "bleibt unbemerkt nach Belieben", hooks: ["geheimnis","außenseiter"] },
           { text: "findet jeden verborgenen Winkel", hooks: ["natur","geheimnis"] },
           { text: "schließt Pakt für eine Gabe", hooks: ["schicksal","handwerk"] },
           { text: "spielt listige Streiche", hooks: ["außenseiter","geheimnis"] },
-          { text: "kennt die kleinen Geister", hooks: ["natur","magie"] },
         ],
         weaknessTags: [
           { text: "an ein Versprechen gebunden", hooks: ["schicksal","glaube"] },
-          { text: "leicht beleidigt und nachtragend", hooks: ["außenseiter","schicksal"] },
+          { text: "nachtragend bei Kleinigkeiten", hooks: ["außenseiter","schicksal"] },
         ],
         quests: [
-          { title: "Ich bewahre meinen Winkel", description: "Ungesehen, wenn er es will, kennt der Held jeden verborgenen Winkel und hütet einen, der ihm allein gehört. Dieser stille Ort ist mehr als Unterschlupf, er ist das Einzige, das ihn in dieser großen Welt festhält. Wer ihn betritt, weckt den nachtragenden Zorn eines kleinen Geistes. Gegen jeden Eindringling wird der Held seinen Winkel verteidigen.", hooks: ["natur","geheimnis"] },
-          { title: "Ich löse den alten Handel ein", description: "Ein Pakt bindet den Helden, geschlossen vor langer Zeit, als ein listiger Streich noch alles war. Sein Wort ist ihm heilig, denn die kleinen Geister vergessen keine Schuld. Nun läutet die Stunde, in der die alte Abmachung eingelöst werden muss. Was immer es koste, der Held wird den Handel von einst erfüllen.", hooks: ["schicksal","glaube"] },
+          { title: "Meinen Winkel bewahren", description: "Er hütet einen verborgenen Ort, der ihm allein gehört, mehr als Unterschlupf, das Einzige, das ihn in dieser großen Welt hält. Wer ihn betritt, weckt seinen nachtragenden Zorn. Gegen jeden Eindringling verteidigt er diesen Winkel.", hooks: ["natur","geheimnis"] },
+          { title: "Den alten Handel einlösen", description: "Ein Pakt bindet ihn, geschlossen vor langer Zeit, als ein listiger Streich noch alles war. Sein Wort ist ihm heilig, denn die kleinen Geister vergessen keine Schuld. Die Stunde naht, in der er die alte Abmachung einlösen muss.", hooks: ["schicksal","glaube"] },
         ]
       },
       {
         text: "Wechselgestalt", hooks: ["schicksal","geheimnis"],
         powerTags: [
-          { text: "kann sich verwandeln", hooks: ["schicksal","geheimnis"] },
           { text: "trägt jedes fremde Gesicht", hooks: ["geheimnis","stadt"] },
           { text: "ahmt fremde Stimmen nach", hooks: ["geheimnis","handwerk"] },
           { text: "schlüpft in jede Rolle", hooks: ["geheimnis","außenseiter"] },
@@ -2615,8 +2611,8 @@ export const THEMEBOOKS = {
           { text: "ein Makel verrät die Gestalt", hooks: ["geheimnis","schicksal"] },
         ],
         quests: [
-          { title: "Ich finde mein wahres Gesicht", description: "Jedes Gesicht trägt der Held mühelos, jede Stimme ahmt er nach, in jede Rolle schlüpft er wie in neue Haut. Doch unter all den Masken hat er vergessen, wie sein eigenes Antlitz aussieht. Die Verwandlung, die ihn rettet, droht ihn auch auszulöschen. Bevor er ganz verschwindet, will der Held herausfinden, wer er wirklich ist.", hooks: ["verlust","geheimnis"] },
-          { title: "Ich entlarve einen Betrüger", description: "Niemand durchschaut eine Täuschung so rasch wie der Held, denn er kennt jeden Kniff des falschen Spiels von innen. Ein einziger Makel hat schon manche Verkleidung verraten, seine eigene wie die anderer. Jetzt treibt irgendwo ein Betrüger sein Unwesen hinter einer geborgten Gestalt. Diesen Schwindler wird der Held aufspüren und entlarven.", hooks: ["geheimnis","schicksal"] },
+          { title: "Mein wahres Gesicht finden", description: "Jedes Gesicht trägt sie mühelos, doch unter all den Masken hat sie vergessen, wie ihr eigenes aussieht. Die Verwandlung, die sie rettet, droht sie auch auszulöschen. Ehe sie ganz verschwindet, sucht sie den Ort, an dem sie zuletzt sie selbst war.", hooks: ["verlust","geheimnis"] },
+          { title: "Einen Betrüger entlarven", description: "Niemand durchschaut eine Täuschung so rasch wie sie, denn sie kennt jeden Kniff von innen. Irgendwo treibt ein Betrüger sein Unwesen hinter einer geborgten Gestalt, die einer Unschuldigen schadet. Diesen Schwindler wird sie aufspüren, an seinem einen verräterischen Makel.", hooks: ["geheimnis","schicksal"] },
         ]
       },
       {
@@ -2625,42 +2621,39 @@ export const THEMEBOOKS = {
           { text: "Kraft im Mondlicht", hooks: ["schicksal","magie"] },
           { text: "sieht das Unsichtbare", hooks: ["schicksal","geheimnis"] },
           { text: "liest die Zeichen am Himmel", hooks: ["wissen","magie"] },
-          { text: "spürt die Gezeiten des Mondes", hooks: ["natur","schicksal"] },
           { text: "wandelt sicher bei Nacht", hooks: ["natur","geheimnis"] },
         ],
         weaknessTags: [
-          { text: "verliert Kontrolle bei Vollmond", hooks: ["magie","schicksal"] },
+          { text: "Visionen überwältigen bei Vollmond", hooks: ["magie","schicksal"] },
           { text: "kraftlos bei Neumond", hooks: ["schicksal","verlust"] },
         ],
         quests: [
-          { title: "Ich zähme das Mondblut", description: "Im Mondlicht erwacht die Kraft des Helden, doch bei Vollmond entfesselt sie etwas, das ihm nicht mehr gehorcht. Was bei Neumond zu kraftlosem Schweigen verebbt, tobt in heller Nacht wie eine Flut. Der Held spürt die Gezeiten des Mondes in seinem eigenen Blut wogen. Diese wilde Strömung will er beherrschen lernen, ehe sie ihn fortreißt.", hooks: ["magie","schicksal"] },
-          { title: "Ich ergründe meine Sterndeutung", description: "Der Himmel spricht zum Helden in Zeichen, die nur er am nächtlichen Firmament zu lesen vermag. Jeder Stern scheint eine Botschaft zu tragen, jede Konstellation einen Wink auf das, was kommt. Doch noch fügen sich die Bilder nicht zu einem klaren Sinn. Der Held will ergründen, was der Sternenhimmel ihm seit jeher kündet.", hooks: ["wissen","schicksal"] },
+          { title: "Das Mondblut zähmen", description: "Im Mondlicht erwacht ihre Kraft, doch bei Vollmond überwältigen sie die Visionen, bis sie kaum noch weiß, was Vorahnung und was Gegenwart ist. Bei Neumond verebbt alles zu kraftlosem Schweigen. Diese Gezeiten in sich zu beherrschen, ehe sie sie fortreißen, ist ihr Ziel.", hooks: ["magie","schicksal"] },
+          { title: "Meine Sterndeutung ergründen", description: "Der Himmel spricht zu ihr in Zeichen, die nur sie am nächtlichen Firmament liest, doch noch fügen sich die Bilder nicht zu einem klaren Sinn. Jede Konstellation scheint einen Wink zu tragen. Sie sucht den Ort und die Nacht, in der sich das Muster endlich zusammenfügt.", hooks: ["wissen","schicksal"] },
         ]
       },
       {
         text: "Schattenwandler", hooks: ["schicksal","geheimnis"],
         powerTags: [
           { text: "verschwindet in den Schatten", hooks: ["geheimnis","schicksal"] },
-          { text: "erscheint und verschwindet", hooks: ["schicksal","geheimnis"] },
+          { text: "erscheint andernorts", hooks: ["schicksal","geheimnis"] },
           { text: "sieht vollständig im Dunkeln", hooks: ["schicksal","natur"] },
-          { text: "weilt in ungesehenen Räumen", hooks: ["geheimnis","schicksal"] },
           { text: "schleicht ohne Geräusch", hooks: ["geheimnis","außenseiter"] },
         ],
         weaknessTags: [
-          { text: "ihre Nähe verstört Menschen", hooks: ["schicksal","außenseiter"] },
+          { text: "seine Nähe verstört Menschen", hooks: ["schicksal","außenseiter"] },
           { text: "geschwächt im hellen Licht", hooks: ["schicksal","verlust"] },
         ],
         quests: [
-          { title: "Ich erkunde das Schattenreich", description: "In den Schatten verschwindet der Held lautlos und taucht andernorts wieder auf, als gäbe es keine Entfernung. Seine Nähe verstört die Menschen, das helle Licht aber raubt ihm die Kraft, und so liebt er die Dunkelheit. Hinter den Schatten ahnt er eine andere Welt, weit und ungesehen. Ihre Tiefen will der Held erkunden, wohin ihm kein Lebender folgt.", hooks: ["geheimnis","schicksal"] },
-          { title: "Ich verberge eine dunkle Wahrheit", description: "Ein Geheimnis lastet auf dem Helden, das niemals ans Tageslicht treten darf. In ungesehenen Räumen, dort wo das Licht versagt, fühlt er sich diesem Wissen am nächsten und am sichersten. Die Dunkelheit, die andere fürchten, ist ihm Verbündete und Versteck zugleich. Mit den Schatten als Schleier wird der Held diese dunkle Wahrheit hüten.", hooks: ["geheimnis","verlust"] },
+          { title: "Das Schattenreich erkunden", description: "In den Schatten verschwindet er lautlos und taucht andernorts wieder auf, als gäbe es keine Entfernung. Hinter den Schatten ahnt er eine andere Welt, weit und ungesehen. Diese Tiefen will er erkunden, wohin ihm kein Lebender folgt.", hooks: ["geheimnis","schicksal"] },
+          { title: "Eine dunkle Wahrheit hüten", description: "Ein Geheimnis lastet auf ihm, das niemals ans Licht treten darf, und im Dunkeln fühlt er sich diesem Wissen am sichersten. Doch jemand ist ihm auf der Spur, jemand, der genau wissen will, was er verbirgt. Er weicht ihm aus, Schatten für Schatten, um die Wahrheit zu bewahren.", hooks: ["geheimnis","verlust"] },
         ]
       },
       {
-        text: "halbwaches Traumkind", hooks: ["schicksal","geheimnis","magie"],
+        text: "Traumwandler", hooks: ["schicksal","geheimnis","magie"],
         powerTags: [
           { text: "wandelt durch Träume", hooks: ["magie","schicksal"] },
           { text: "hört Ungesagtes", hooks: ["geheimnis","schicksal"] },
-          { text: "flüstert Gedanken in andere", hooks: ["magie","geheimnis"] },
           { text: "sieht kommende Dinge im Schlaf", hooks: ["schicksal","magie"] },
           { text: "wacht wenn andere träumen", hooks: ["schicksal","natur"] },
         ],
@@ -2669,8 +2662,8 @@ export const THEMEBOOKS = {
           { text: "verirrt sich in fremden Träumen", hooks: ["magie","verlust"] },
         ],
         quests: [
-          { title: "Ich deute meine Visionen", description: "Im Halbschlaf wandelt der Held durch Träume und sieht Bilder dessen, was kommen wird. Doch die Visionen sprechen in Rätseln, und oft verschwimmt, was Vorahnung ist und was bloßer Wahn. Ungesagtes hört er und flüstert Gedanken in fremde Köpfe, und doch bleibt sein eigenes Schauen unklar. Der Held will lernen, die Bilder zu deuten, ehe sie ihn in die Irre führen.", hooks: ["schicksal","geheimnis"] },
-          { title: "Ich finde den Weg zurück", description: "Zwischen Traum und Wachen hat der Held die Grenze verloren und weiß nicht mehr, welche Welt die wahre ist. In fremden Träumen verirrt er sich, bis das eigene Leben fern und verschwommen scheint. Der Schlaf, den er nicht braucht, ist ihm zum Labyrinth geworden. Den Pfad zurück ins eigene Dasein sucht der Held, ehe er sich ganz verliert.", hooks: ["verlust","schicksal"] },
+          { title: "Meine Visionen deuten", description: "Im Halbschlaf sieht sie Bilder dessen, was kommen wird, doch die Visionen sprechen in Rätseln, und oft verschwimmt, was Vorahnung ist und was bloßer Wahn. Eine Vision kehrt immer wieder, dieselbe Tür, derselbe Name. Sie sucht die Deutung, ehe die Bilder sie in die Irre führen.", hooks: ["schicksal","geheimnis"] },
+          { title: "Den Weg zurück finden", description: "Zwischen Traum und Wachen hat sie die Grenze verloren, und in fremden Träumen verirrt sie sich, bis das eigene Leben fern und verschwommen scheint. Jemand ruft sie von draußen, eine Stimme, die sie kennt. Ihr folgt sie, um den Pfad zurück ins eigene Dasein zu finden.", hooks: ["verlust","schicksal"] },
         ]
       },
       {
@@ -2679,7 +2672,6 @@ export const THEMEBOOKS = {
           { text: "übersteht Feuer", hooks: ["schicksal","magie"] },
           { text: "findet den Weg zwischen Welten", hooks: ["schicksal","fahrend"] },
           { text: "liest die Spuren im Staub", hooks: ["natur","fahrend"] },
-          { text: "beschwört Asche als Schleier", hooks: ["verlust","fahrend"] },
           { text: "schläft sicher in Ruinen", hooks: ["fahrend","außenseiter"] },
         ],
         weaknessTags: [
@@ -2687,8 +2679,8 @@ export const THEMEBOOKS = {
           { text: "hinterlässt verbrannte Spuren", hooks: ["schicksal","verlust"] },
         ],
         quests: [
-          { title: "Ich suche die verlorene Heimat", description: "Feuer nahm dem Helden alles und ließ nur Asche und Erinnerung zurück, die er mit sich trägt. Nirgends willkommen, hinterlässt er verbrannte Spuren, wo er rastet, und zieht weiter, ehe man ihn verjagt. Doch tief in ihm glimmt die Sehnsucht nach einem Ort, der bleibt. Eine verlorene Heimat sucht der Held, und er wandert, bis er sie findet.", hooks: ["verlust","fahrend"] },
-          { title: "Ich finde die Glut der Schuldigen", description: "Das Feuer, das des Helden Leben verzehrte, brach nicht von selbst aus, das weiß er gewiss. Eine Hand legte die Glut, und in Staub und Trümmern liest er noch die Spuren jener Nacht. Das Feuer überstand er, doch die Schuld eines anderen brennt weiter in ihm. Der Glut der Schuldigen folgt der Held, bis ans bittere Ende.", hooks: ["verlust","schicksal"] },
+          { title: "Die verlorene Heimat suchen", description: "Feuer nahm ihr alles und ließ nur Asche und Erinnerung zurück, die sie mit sich trägt. Nirgends willkommen, hinterlässt sie verbrannte Spuren, wo sie rastet, und zieht weiter, ehe man sie verjagt. Tief in ihr glimmt die Sehnsucht nach einem Ort, der bleibt, und den sucht sie.", hooks: ["verlust","fahrend"] },
+          { title: "Der Glut der Schuldigen folgen", description: "Das Feuer, das ihr Leben verzehrte, brach nicht von selbst aus, das weiß sie gewiss. Eine Hand legte die Glut, und in Staub und Trümmern liest sie noch die Spuren jener Nacht. Das Feuer überstand sie, doch die Schuld eines anderen brennt weiter, und der folgt sie bis ans Ende.", hooks: ["verlust","schicksal"] },
         ]
       },
       {
@@ -2696,7 +2688,6 @@ export const THEMEBOOKS = {
         powerTags: [
           { text: "taucht endlos und tief", hooks: ["natur","schicksal"] },
           { text: "spürt die Strömungen", hooks: ["natur","magie"] },
-          { text: "ruft das Wasser herbei", hooks: ["magie","natur"] },
           { text: "atmet unter der Oberfläche", hooks: ["schicksal","natur"] },
           { text: "spricht mit Wesen der Tiefe", hooks: ["natur","magie"] },
         ],
@@ -2705,15 +2696,14 @@ export const THEMEBOOKS = {
           { text: "ruhelos auf festem Land", hooks: ["natur","außenseiter"] },
         ],
         quests: [
-          { title: "Ich kehre in die Tiefe heim", description: "Unter der Oberfläche atmet der Held und taucht in Tiefen, die kein Mensch erreicht, denn aus dem Wasser kam er einst. An Land aber bleibt er ruhelos und vertrocknet fern von den Fluten, die ihn nährten. Jeder Tag auf festem Boden fühlt sich an wie Gefangenschaft. In die Tiefe, aus der er stammt, sehnt sich der Held heimzukehren.", hooks: ["natur","schicksal"] },
-          { title: "Ich befriede die zornigen Gewässer", description: "Der Held spürt die Strömungen und spricht mit den Wesen der Tiefe, und nun regt sich dort unten etwas Altes und Zorniges. Die Gewässer, die ihm Heimat sind, werden unruhig, und das Beben trägt sich bis an die Küsten. Er allein versteht ihre Sprache und vermag ihren Groll zu lindern. Die zornigen Gewässer will der Held wieder befrieden.", hooks: ["natur","magie"] },
+          { title: "In die Tiefe heimkehren", description: "Unter der Oberfläche taucht sie in Tiefen, die kein Mensch erreicht, denn aus dem Wasser kam sie einst. An Land aber vertrocknet sie fern von den Fluten, die sie nährten, und jeder Tag auf festem Boden fühlt sich an wie Gefangenschaft. In die Tiefe, aus der sie stammt, sehnt sie sich heimzukehren.", hooks: ["natur","schicksal"] },
+          { title: "Die zornigen Gewässer befrieden", description: "Sie spricht mit den Wesen der Tiefe, und nun regt sich dort unten etwas Altes und Zorniges, dessen Beben sich bis an die Küsten trägt. Sie allein versteht seine Sprache und vermag den Groll zu lindern. Die zornigen Gewässer will sie wieder befrieden, ehe sie an Land übergreifen.", hooks: ["natur","magie"] },
         ]
       },
       {
         text: "Kind des Zwielichts", hooks: ["schicksal","geheimnis"],
         powerTags: [
           { text: "sieht durch Glamour und Täuschung", hooks: ["schicksal","geheimnis"] },
-          { text: "spürt lebende Seelen", hooks: ["schicksal","magie"] },
           { text: "wandelt zwischen Tag und Nacht", hooks: ["schicksal","geheimnis"] },
           { text: "beeinflusst Stimmungen durch Präsenz", hooks: ["magie","schicksal"] },
           { text: "geht ungesehen durch Dämmerung", hooks: ["geheimnis","natur"] },
@@ -2723,8 +2713,8 @@ export const THEMEBOOKS = {
           { text: "schwindet im hellen Mittag", hooks: ["schicksal","verlust"] },
         ],
         quests: [
-          { title: "Ich finde meinen Platz dazwischen", description: "Weder dem Tag noch der Nacht gehört der Held, der ungesehen durch die Dämmerung geht und durch jeden Glamour blickt. Im hellen Mittag schwindet er fast dahin, doch in der Stunde dazwischen ist er ganz bei sich. Diese Heimatlosigkeit zwischen den Welten lastet auf ihm wie ein leiser Fluch. Eine Schwelle sucht der Held, eine Schwelle, auf der er endlich stehen darf.", hooks: ["außenseiter","schicksal"] },
-          { title: "Ich hüte die Schwelle", description: "Im Zwielicht, wo der Held lebende Seelen spürt und Stimmungen mit bloßer Gegenwart wendet, öffnen sich Wege, die niemand betreten sollte. In der Dämmerung dünnt die Welt aus, und durch die Risse könnte kriechen, was draußen lauert. Der Held kennt diese verborgenen Pfade und ihre Gefahr. Über die Schwelle zwischen Tag und Nacht wird er wachen.", hooks: ["geheimnis","schicksal"] },
+          { title: "Meinen Platz dazwischen finden", description: "Weder dem Tag noch der Nacht gehört sie, die ungesehen durch die Dämmerung geht. Im hellen Mittag schwindet sie fast dahin, doch in der Stunde dazwischen ist sie ganz bei sich. Eine Schwelle sucht sie, auf der sie endlich stehen darf, ohne zwischen den Welten zu zerreißen.", hooks: ["außenseiter","schicksal"] },
+          { title: "Die Schwelle hüten", description: "Im Zwielicht, wo sie lebende Seelen spürt, dünnt die Welt aus, und durch die Risse könnte kriechen, was draußen lauert. Sie kennt diese verborgenen Pfade und ihre Gefahr besser als jeder andere. Über die Schwelle zwischen Tag und Nacht wird sie wachen, wo immer sie sich öffnet.", hooks: ["geheimnis","schicksal"] },
         ]
       },
       {
@@ -2733,7 +2723,6 @@ export const THEMEBOOKS = {
           { text: "findet den Weg zwischen Welten", hooks: ["schicksal","fahrend"] },
           { text: "Sprache der anderen Seite", hooks: ["magie","geheimnis"] },
           { text: "verlässt kurz den Körper", hooks: ["schicksal","magie"] },
-          { text: "öffnet verborgene Pforten", hooks: ["magie","schicksal"] },
           { text: "spürt dünne Stellen der Welt", hooks: ["magie","geheimnis"] },
         ],
         weaknessTags: [
@@ -2741,26 +2730,25 @@ export const THEMEBOOKS = {
           { text: "zieht Wesen von drüben an", hooks: ["schicksal","magie"] },
         ],
         quests: [
-          { title: "Ich schließe den offenen Riss", description: "Durch den Helden, der dünne Stellen der Welt erspürt und verborgene Pforten öffnet, kam etwas herüber, das nicht hierher gehört. Die Sprache der anderen Seite versteht er, doch drüben vergisst er fast, wer er ist. Nun zieht der offene Riss weitere Wesen nach, und die Schuld lastet schwer. Den klaffenden Spalt will der Held wieder versiegeln, ehe Schlimmeres folgt.", hooks: ["magie","schicksal"] },
-          { title: "Ich ergründe die andere Seite", description: "Jenseits des Risses liegt ein Reich, das den Helden ruft, seit er erstmals den Weg zwischen den Welten beschritt. Kurz verlässt er den Körper und lauscht der Sprache der anderen Seite, die ihn lockt und verstört. Die Geheimnisse jener Schwelle lassen ihn nicht mehr los. Die andere Seite will der Held ergründen, auch wenn er sich dort zu verlieren droht.", hooks: ["geheimnis","magie"] },
+          { title: "Den offenen Riss schließen", description: "Durch ihn kam etwas herüber, das nicht hierher gehört, und die Schuld lastet schwer. Er versteht die Sprache der anderen Seite, doch drüben vergisst er fast, wer er ist. Nun zieht der offene Riss weitere Wesen nach, und er will den klaffenden Spalt versiegeln, ehe Schlimmeres folgt.", hooks: ["magie","schicksal"] },
+          { title: "Die andere Seite ergründen", description: "Jenseits des Risses liegt ein Reich, das ihn ruft, seit er erstmals den Weg zwischen den Welten beschritt. Kurz verlässt er den Körper und lauscht der Sprache der anderen Seite, die ihn lockt und verstört. Die Geheimnisse jener Schwelle lassen ihn nicht mehr los, auch wenn er sich dort zu verlieren droht.", hooks: ["geheimnis","magie"] },
         ]
       },
       {
         text: "Gezeichnete des Mondes", hooks: ["schicksal","magie","natur"],
         powerTags: [
-          { text: "verwandelt sich im Mondlicht", hooks: ["schicksal","natur"] },
-          { text: "Krallen oder Reißzähne", hooks: ["schicksal","kampf"] },
+          { text: "verwandelt sich unweigerlich bei Vollmond", hooks: ["schicksal","natur"] },
+          { text: "Krallen und Reißzähne", hooks: ["schicksal","kampf"] },
           { text: "wittert Beute über weite Wege", hooks: ["natur","kampf"] },
-          { text: "heilt im Schein des Mondes", hooks: ["schicksal","magie"] },
           { text: "bricht Fesseln durch rohe Kraft", hooks: ["natur","kampf"] },
         ],
         weaknessTags: [
-          { text: "verliert Kontrolle bei Vollmond", hooks: ["magie","schicksal"] },
+          { text: "heilt nur im Mondschein", hooks: ["schicksal","magie"] },
           { text: "das Mal verrät ihr Wesen", hooks: ["außenseiter","schicksal"] },
         ],
         quests: [
-          { title: "Ich bändige die Bestie in mir", description: "Wenn der volle Mond aufsteigt, verwandelt sich der Held, und Krallen, Reißzähne und ungezähmte Wildheit drohen ihn zu verschlingen. Das Mal an seinem Leib verrät sein wahres Wesen, sosehr er es auch zu verbergen sucht. Im Mondschein heilt er, doch der Preis ist der Verlust seiner selbst. Um die Herrschaft über die Bestie in ihm ringt der Held Nacht für Nacht.", hooks: ["schicksal","kampf"] },
-          { title: "Ich finde das Rudel meiner Art", description: "Irgendwo da draußen leben andere, die dasselbe Mal tragen wie der Held, der Beute über weite Wege wittert. Allein unter den Menschen, gezeichnet und gefürchtet, sehnt er sich nach Wesen seiner Art. Vielleicht würde unter Seinesgleichen die ungezähmte Wildheit endlich einen Sinn ergeben. Nach dem Rudel seiner Art sucht der Held, das ihn versteht.", hooks: ["natur","außenseiter"] },
+          { title: "Die Bestie in mir bändigen", description: "Wenn der volle Mond aufsteigt, verwandelt sie sich, und Krallen und ungezähmte Wildheit drohen sie zu verschlingen. Das Mal an ihrem Leib verrät ihr wahres Wesen, so sehr sie es auch zu verbergen sucht. Um die Herrschaft über die Bestie ringt sie Nacht für Nacht.", hooks: ["schicksal","kampf"] },
+          { title: "Das Rudel meiner Art finden", description: "Irgendwo da draußen leben andere, die dasselbe Mal tragen wie sie. Allein unter den Menschen, gezeichnet und gefürchtet, sehnt sie sich nach Wesen ihrer Art. Vielleicht würde unter Seinesgleichen die ungezähmte Wildheit endlich einen Sinn ergeben, und danach sucht sie.", hooks: ["natur","außenseiter"] },
         ]
       },
     ]
