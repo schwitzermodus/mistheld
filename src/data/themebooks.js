@@ -250,52 +250,52 @@ export const THEMEBOOKS = {
       {
         text: "Schwertschwur", hooks: ["glaube","kampf"],
         powerTags: [
-          { text: "Schwur ablegen", hooks: ["glaube"] },
-          { text: "betet vor dem Kampf", hooks: ["glaube","kampf"] },
-          { text: "hält ihr Wort", hooks: ["glaube"] },
-          { text: "unbeirrbar im Eid", hooks: ["glaube","kampf"] },
+          { text: "Kampfgebet", hooks: ["glaube","kampf"] },
+          { text: "hält Wort", hooks: ["glaube"] },
+          { text: "unerschütterlich", hooks: ["glaube","kampf"] },
+          { text: "Schwerthand", hooks: ["kampf"] },
         ],
         weaknessTags: [
           { text: "darf nicht fliehen", hooks: ["glaube","kampf"] },
           { text: "Schwur über Vernunft", hooks: ["glaube","schicksal"] },
         ],
         quests: [
-          { title: "Mein Gelübde halten", description: "Ein Schwur bindet den Helden fester als jede Kette, und was einmal versprochen wurde, das wird getan. Auch wenn die ganze Welt sich dagegenstellt und die Vernunft zur Umkehr rät, weicht er nicht von seinem Eid. Lieber bricht er als sein gegebenes Wort.", hooks: ["glaube"] },
-          { title: "Die Treue beweisen", description: "Andere setzen auf rohe Stärke und scharfe Klingen, doch der Held vertraut auf etwas Beständigeres. Mit jeder Tat will er zeigen, dass ein gehaltenes Wort schwerer wiegt als der Stahl. Wo er steht, hält der Eid, und das soll niemand je wieder anzweifeln müssen.", hooks: ["glaube","macht"] },
+          { title: "Ich halte den Schwur, den niemand kennt.", description: "Was er schwor und wem, behält er für sich; nur die Narbe an seiner Schwurhand erzählt, dass es kein leichter Eid war. Manche Nächte spricht er die Worte lautlos nach, damit sie sich nicht abnutzen. Der Tag der Einlösung rückt näher, und er wird bereit sein.", hooks: ["glaube"] },
+          { title: "Mein Wort wiegt schwerer als Stahl.", description: "Sein Vater brach einst ein Versprechen, und ein Dorf bezahlte dafür; diesen Makel trägt der Name bis heute. Er hat sich geschworen, die Rechnung zu begleichen: mit einem Leben, in dem kein gegebenes Wort je wieder fällt. Jeder gehaltene Eid wäscht ein Stück der alten Schuld ab.", hooks: ["glaube","macht"] },
         ]
       },
       {
         text: "werdender Ritter", hooks: ["adel","kampf"],
         powerTags: [
-          { text: "Mut sammeln", hooks: ["glaube","kampf"] },
-          { text: "schreitet mutig ein", hooks: ["glaube","kampf"] },
-          { text: "Schutzschild für die Schwachen", hooks: ["glaube","kampf"] },
-          { text: "hält durch bis zuletzt", hooks: ["glaube","kampf"] },
+          { text: "beherzt", hooks: ["glaube","kampf"] },
+          { text: "Schild der Schwachen", hooks: ["glaube","kampf"] },
+          { text: "ausdauernd", hooks: ["glaube","kampf"] },
+          { text: "sattelfest", hooks: ["adel","kampf"] },
         ],
         weaknessTags: [
           { text: "blind durch Ehre", hooks: ["glaube","adel"] },
-          { text: "leidet an jedem Versagen", hooks: ["glaube","verlust"] },
+          { text: "verzeiht sich nichts", hooks: ["glaube","verlust"] },
         ],
         quests: [
-          { title: "Die Ritterprobe bestehen", description: "Noch trägt der Held nicht die Würde, nach der sein Herz verlangt, doch er sammelt den Mut, sich jeder Prüfung zu stellen. Er schreitet ein, wo andere zaudern, und stellt sich vor die Schwachen. Sich selbst und aller Welt will er beweisen, dass er des Schwertes würdig ist.", hooks: ["adel","kampf"] },
-          { title: "Einen würdigen Herrn finden", description: "Ein Gelübde ohne ein Ziel, das es verdient, bleibt nur leeres Versprechen, und das spürt der Held mit jedem Tag. Seine Ehre, so unbeugsam sie ist, sucht eine Sache, der sie sich ganz hingeben kann. Er zieht aus, um jemanden zu finden, dessen Banner seine Treue wahrhaft verdient.", hooks: ["adel","glaube"] },
+          { title: "Die Ritterprobe bestehen", description: "Drei Prüfungen verlangt der alte Brauch: eine vor Zeugen, eine im Verborgenen und eine, von der niemand sagen kann, worin sie besteht. Die ersten beiden fürchtet er nicht. Aber die Alten lächeln seltsam, wenn er nach der dritten fragt.", hooks: ["adel","kampf"] },
+          { title: "Einen würdigen Herrn finden", description: "Er hat Bannern gedient, die im ersten Sturm rissen, und Herren, deren Ehre nur bis zur Kasse reichte. Sein Schwur liegt bereit wie eine ungetragene Klinge. Irgendwo gibt es jemanden, vor dem man knien kann, ohne sich zu verbiegen, und er wird ihn erkennen, wenn er ihn trifft.", hooks: ["adel","glaube"] },
         ]
       },
       {
         text: "Verteidiger des Dorfes", hooks: ["glaube","kampf"],
         powerTags: [
-          { text: "schützt mit dem eigenen Leib", hooks: ["glaube","kampf"] },
-          { text: "kennt jeden Schutzbefohlenen", hooks: ["glaube"] },
-          { text: "hält die Wache allein", hooks: ["kampf","glaube"] },
-          { text: "sammelt die Dörfler", hooks: ["glaube","stadt"] },
+          { text: "wirft sich dazwischen", hooks: ["glaube","kampf"] },
+          { text: "wachsames Auge", hooks: ["kampf","glaube"] },
+          { text: "braucht wenig Schlaf", hooks: ["kampf"] },
+          { text: "Anführer in der Not", hooks: ["glaube","stadt"] },
         ],
         weaknessTags: [
-          { text: "kann nicht fortgehen", hooks: ["glaube","verlust"] },
-          { text: "trägt jede Not allein", hooks: ["glaube","verlust"] },
+          { text: "mit dem Herzen daheim", hooks: ["glaube","verlust"] },
+          { text: "trägt alles allein", hooks: ["glaube","verlust"] },
         ],
         quests: [
-          { title: "Sie beschützen bis zuletzt", description: "Der Held kennt jeden, den er behütet, beim Namen und wirft den eigenen Leib vor jede Gefahr. Solange noch Atem in ihm ist, soll seinen Leuten kein Leid geschehen, und sei es, dass er die Wache ganz allein hält. Fortgehen kann er nicht; hier ist sein Posten, hier sein Herz.", hooks: ["glaube","kampf"] },
-          { title: "Das Dorf wehrhaft machen", description: "Eine Last allein zu tragen zehrt selbst am Stärksten, und das hat der Held erkannt. Darum will er die Furchtsamen sammeln und die Schwachen lehren, für sich selbst einzustehen. Nicht ewig kann ein Einzelner Schild sein; sein Volk soll lernen, sich auch ohne ihn zu schützen.", hooks: ["glaube","handwerk"] },
+          { title: "Ich halte das Unheil von ihnen fern.", description: "Was sein Dorf bedroht, sitzt nicht vor der Palisade, sondern irgendwo da draußen: in einem Namen, den die Händler nur flüsternd nennen, in Rauchsäulen, die jedes Jahr näher rücken. Er ist losgezogen, um die Gefahr zu treffen, bevor sie seine Leute trifft. Jede Meile, die er sie aufhält, ist eine Meile zwischen ihr und den Seinen.", hooks: ["glaube","kampf"] },
+          { title: "Das Dorf wehrhaft machen", description: "Palisaden aus grünem Holz und Mut allein halten keinen zweiten Winter. Draußen gibt es Leute, die wissen, wie man Mauern setzt, Bögen baut, Wachen schult, und er wird lernen oder mitbringen, was sein Dorf braucht. Er sammelt unterwegs, was daheim einmal Leben retten wird.", hooks: ["glaube","handwerk"] },
         ]
       },
       {
@@ -303,152 +303,152 @@ export const THEMEBOOKS = {
         powerTags: [
           { text: "kennt jedes Gebet", hooks: ["glaube"] },
           { text: "Ritualgesang", hooks: ["glaube","magie"] },
-          { text: "hält ein heiliges Symbol", hooks: ["glaube","magie"] },
-          { text: "Zeichen gegen das Böse", hooks: ["glaube","magie"] },
+          { text: "heiliges Symbol", hooks: ["glaube","magie"] },
+          { text: "Schutzzeichen", hooks: ["glaube","magie"] },
         ],
         weaknessTags: [
           { text: "blind durch Hingabe", hooks: ["glaube"] },
-          { text: "die Pflicht verschlingt die Zeit", hooks: ["glaube"] },
+          { text: "nie dienstfrei", hooks: ["glaube"] },
         ],
         quests: [
-          { title: "Das Licht aufrechthalten", description: "Die Finsternis drückt von allen Seiten gegen den Helden, doch sein Glaube an die Göttin lässt ihn keinen Schritt weichen. Mit Gebet, Ritual und dem heiligen Zeichen gegen das Böse hält er das Licht hoch, wo andere längst geflohen wären. Seine Hingabe ist sein Schild, auch wenn sie ihn blind für anderes macht.", hooks: ["glaube"] },
-          { title: "Einen Nachfolger finden", description: "Der Dienst, dem der Held sein Leben verschrieb, ist größer als ein einzelnes Leben. Die Pflicht verschlingt seine Zeit, doch eine Sorge lässt ihn nicht los: Was wird, wenn er einmal nicht mehr ist? Er sucht eine Seele, der er die Flamme weiterreichen kann, damit das Licht ihn überdauert.", hooks: ["glaube","schicksal"] },
+          { title: "Das Licht aufrechthalten", description: "In seinem Traum erlosch eine Kerze nach der anderen, bis nur noch eine brannte, und die stand in seiner Hand. Die Priester nennen es Einbildung, doch seither begegnen ihm überall kleine Finsternisse: erloschene Herdfeuer, verstummte Glocken, Schreine voller Staub. Er entzündet wieder, was er findet, und zählt nicht mehr, wie oft.", hooks: ["glaube"] },
+          { title: "Einen Nachfolger finden", description: "Das Gebet, das er hütet, wurde ihm von sterbenden Lippen übergeben, so wie es seit jeher weitergegeben wird: von Mund zu Ohr, niemals durch Schrift. Er hat länger gewartet, als klug war. Nun prüft er jeden jungen Menschen am Weg mit derselben stillen Frage: Kannst du tragen, was ich trage?", hooks: ["glaube","schicksal"] },
         ]
       },
       {
         text: "Pflegerin der Kranken", hooks: ["glaube","handwerk"],
         powerTags: [
-          { text: "kennt heilende Kräuter", hooks: ["handwerk","natur"] },
-          { text: "einfache Heilkunst", hooks: ["handwerk"] },
+          { text: "Heilkräuter", hooks: ["handwerk","natur"] },
           { text: "heilende Hände", hooks: ["handwerk","magie"] },
-          { text: "beruhigt die Fiebrigen", hooks: ["glaube","handwerk"] },
+          { text: "beruhigende Gegenwart", hooks: ["glaube","handwerk"] },
+          { text: "unermüdlich", hooks: ["glaube"] },
         ],
         weaknessTags: [
-          { text: "fremder Schmerz wird ihrer", hooks: ["glaube","verlust"] },
+          { text: "leidet mit", hooks: ["glaube","verlust"] },
           { text: "vergisst sich selbst", hooks: ["glaube","verlust"] },
         ],
         quests: [
-          { title: "Keinen sterben lassen", description: "Heilende Hände und das Wissen um die Kräuter sind dem Helden Gabe und Bürde zugleich. Solange ein Atemzug zu retten ist, gibt er keinen Kranken auf und beugt sich über jedes Fieberbett. Dass fremder Schmerz dabei zu seinem eigenen wird, nimmt er still in Kauf.", hooks: ["glaube","handwerk"] },
-          { title: "Die Seuche zurückdrängen", description: "Eine Krankheit frisst sich durch das Dorf des Helden, und seine einfache Heilkunst stößt an ihre Grenzen. Doch aufzugeben kommt ihm nicht in den Sinn, auch wenn er sich selbst dabei vergisst. Er sucht das Mittel gegen das Leiden, ehe es noch mehr von denen nimmt, die er beruhigt und pflegt.", hooks: ["handwerk","wissen"] },
+          { title: "Keinen sterben lassen", description: "Sie führt keine Liste ihrer Geretteten, wohl aber eine der Verlorenen: sieben Namen, jeden kann sie aufsagen wie ein Gebet. Die Alten sagen, wer den Tod zu oft betrügt, macht ihn neugierig. Soll er neugierig werden; sie hat nicht vor, die Liste wachsen zu lassen.", hooks: ["glaube","handwerk"] },
+          { title: "Die Seuche zurückdrängen", description: "Das Fieber wandert die Handelsstraße entlang, Dorf um Dorf, immer eine Woche voraus. Eine alte Frau hat ihr im Sterben von einer Quelle im Moor erzählt, deren Wasser das Leiden einst stillte. Vielleicht Fieberwahn, vielleicht Rettung; sie folgt der Straße und sucht das Moor.", hooks: ["handwerk","wissen"] },
         ]
       },
       {
         text: "Liebe meines Lebens", hooks: ["glaube","verlust"],
         powerTags: [
-          { text: "erinnert sich an einen Schwur", hooks: ["glaube"] },
-          { text: "gibt ihr Letztes", hooks: ["glaube"] },
-          { text: "nimmt Wunden für andere", hooks: ["glaube","verlust"] },
-          { text: "unverbrüchliche Treue", hooks: ["glaube","verlust"] },
+          { text: "gibt das Letzte", hooks: ["glaube"] },
+          { text: "nimmt Wunden auf sich", hooks: ["glaube","verlust"] },
+          { text: "treu bis zuletzt", hooks: ["glaube","verlust"] },
+          { text: "unbeirrbar", hooks: ["glaube"] },
         ],
         weaknessTags: [
           { text: "kann nicht loslassen", hooks: ["glaube","verlust"] },
-          { text: "alles für den einen Menschen", hooks: ["glaube","verlust"] },
+          { text: "erpressbar durch Liebe", hooks: ["glaube","verlust"] },
         ],
         quests: [
-          { title: "Den Menschen retten", description: "Ein einziger Mensch hat den Helden zu dem gemacht, was er ist, und diese unverbrüchliche Treue trägt er wie einen Schwur im Herzen. Nun, da Gefahr droht, gibt er sein Letztes und nimmt jede Wunde auf sich. Loslassen kann er nicht; für diesen einen tut er, was kein anderer wagen würde.", hooks: ["glaube","verlust"] },
-          { title: "Das Versprechen einlösen", description: "Was der Held einst dem geliebten Menschen schwor, lebt in ihm fort wie ein heiliger Eid. Jetzt ist die Stunde gekommen, das Versprechen einzulösen, koste es, was es wolle. Alles würde er für diesen einen geben, denn ohne ihn hat keine andere Last und kein anderes Ziel mehr Gewicht.", hooks: ["glaube"] },
+          { title: "Den geliebten Menschen zurückholen", description: "Eines Morgens war die Tür offen, der Herd noch warm, und auf dem Tisch lag ein fremdes Zeichen aus geflochtenem Gras. Niemand im Dorf will es kennen, doch die Älteste wurde blass, als sie es sah. Er folgt dem Zeichen, so weit es ihn führt.", hooks: ["glaube","verlust"] },
+          { title: "Das Versprechen einlösen", description: "In einer Sommernacht vor vielen Jahren haben sie einander etwas versprochen, halb im Scherz, halb im Ernst, wie junge Menschen das tun. Nur einer von beiden hat es nie vergessen. Nun ist die Zeit gekommen, in der aus dem alten Wort eine Tat werden muss, und er gedenkt, sie zu vollbringen.", hooks: ["glaube"] },
         ]
       },
       {
         text: "Hüterin des Tempels", hooks: ["glaube","geheimnis"],
         powerTags: [
-          { text: "kennt die alten heiligen Orte", hooks: ["glaube","geheimnis"] },
-          { text: "spricht für die Stille", hooks: ["glaube"] },
-          { text: "bewahrt heilige Riten", hooks: ["glaube","geheimnis"] },
+          { text: "kennt heilige Orte", hooks: ["glaube","geheimnis"] },
+          { text: "kennt alte Riten", hooks: ["glaube","geheimnis"] },
           { text: "liest verborgene Zeichen", hooks: ["glaube","wissen"] },
+          { text: "ehrfurchtgebietend", hooks: ["glaube","macht"] },
         ],
         weaknessTags: [
-          { text: "an den Ort gebunden", hooks: ["glaube","verlust"] },
-          { text: "ihr Glaube wird ausgenutzt", hooks: ["glaube","außenseiter"] },
+          { text: "weltfremd", hooks: ["glaube","verlust"] },
+          { text: "arglos", hooks: ["glaube","außenseiter"] },
         ],
         quests: [
-          { title: "Das Heiligtum zurückbringen", description: "Der Held wacht über die alten heiligen Orte und kennt ihre verborgenen Zeichen wie kein Zweiter. Doch ohne das Heiligtum ist sein Volk gebrochen und seiner Mitte beraubt. An den Ort gebunden, wie er ist, treibt ihn dennoch nur ein Gedanke: das Verlorene zurückzuholen, ehe der Glaube ganz erlischt.", hooks: ["glaube","geheimnis"] },
-          { title: "Das Geheimnis bewahren", description: "Heilige Riten und ein altes Geheimnis sind dem Helden anvertraut, und er spricht für die Stille, die sie umgibt. Was in seine Hut gelegt wurde, soll niemals in falsche Hände fallen. Manche würden seinen Glauben für ihre Zwecke ausnutzen, doch eher schweigt er bis zum letzten Atemzug, als zu verraten.", hooks: ["glaube","geheimnis"] },
+          { title: "Das Heiligtum zurückbringen", description: "In der Nacht des Raubs verstummten die Glocken von selbst, und seither schweigt der Tempel wie ein Mund ohne Zunge. Die Diebe verkauften das Heiligtum weiter, und jede Spur führt zu einem neuen Besitzer. Sie folgt der Kette von Hand zu Hand, und mit jedem Schritt wird ihr klarer: Der letzte Name auf der Liste wird kein Händler sein.", hooks: ["glaube","geheimnis"] },
+          { title: "Das Geheimnis bewahren", description: "Was ihr anvertraut wurde, passt in drei Sätze und wiegt doch schwerer als der Tempel selbst. Es gibt Fragen, die Fremde ihr zu beiläufig stellen, und Münzen, die zu leicht angeboten werden. Sie lächelt, schweigt und merkt sich jedes Gesicht, das zu neugierig war.", hooks: ["glaube","geheimnis"] },
         ]
       },
       {
         text: "Schwester des Ordens", hooks: ["glaube","magie"],
         powerTags: [
-          { text: "erinnert sich an einen Schwur", hooks: ["glaube"] },
-          { text: "loyale Ordensbrüder", hooks: ["glaube"] },
-          { text: "kennt die Regel des Ordens", hooks: ["glaube","wissen"] },
-          { text: "Segen sprechen", hooks: ["glaube","magie"] },
+          { text: "Ordensgeschwister überall", hooks: ["glaube"] },
+          { text: "kennt die Ordensregel", hooks: ["glaube","wissen"] },
+          { text: "Segensworte", hooks: ["glaube","magie"] },
+          { text: "schriftkundig", hooks: ["wissen"] },
         ],
         weaknessTags: [
           { text: "an Gehorsam gebunden", hooks: ["glaube","macht"] },
-          { text: "die Pflicht verschlingt die Zeit", hooks: ["glaube"] },
+          { text: "nie dienstfrei", hooks: ["glaube"] },
         ],
         quests: [
-          { title: "Dem Orden treu bleiben", description: "Der Held erinnert sich an den Schwur, den er ablegte, und kennt die Regel seines Ordens auswendig. Was er gelobte, das hält er, selbst wenn der Orden selbst ins Wanken gerät und zweifelt. An Gehorsam gebunden, sieht er gerade in der Treue seinen festen Stand, wenn alles andere schwankt.", hooks: ["glaube"] },
-          { title: "Die wahre Lehre bewahren", description: "Loyale Ordensbrüder stehen dem Helden zur Seite, doch er spürt, dass die alte Lehre zu verblassen droht. Die Pflicht verschlingt seine Zeit, dennoch wacht er darüber, dass die Regel nicht verfälscht wird. Was über Generationen Bestand hatte, soll rein bleiben, solange er den Segen sprechen kann.", hooks: ["glaube","wissen"] },
+          { title: "Dem Orden treu bleiben", description: "Es gehen Briefe um, die nicht vom Mutterhaus stammen, aber dessen Siegel tragen, und die Anweisungen darin werden von Mal zu Mal seltsamer. Irgendjemand spricht im Namen des Ordens, dem sie ihr Leben gab. Gehorchen und schweigen, wie die Regel es will, oder fragen, wie ihr Gewissen es drängt: Noch trägt die Regel. Noch.", hooks: ["glaube"] },
+          { title: "Die wahre Lehre bewahren", description: "Die junge Generation kürzt die Gebete, und die alte vergisst sie. Im Skriptorium ihres Heimatklosters fehlen Seiten, die vor zehn Jahren noch da waren, das weiß sie genau. Sie schreibt ab, was sie findet, lernt auswendig, was man ihr zeigt, und trägt die Lehre dorthin, wo Motten und Zensoren sie nicht erreichen.", hooks: ["glaube","wissen"] },
         ]
       },
       {
         text: "letzter Wächter", hooks: ["glaube","kampf"],
         powerTags: [
-          { text: "hält durch bis zuletzt", hooks: ["glaube","kampf"] },
-          { text: "hält die Stellung allein", hooks: ["glaube","kampf"] },
-          { text: "schmerzhaft ehrlich", hooks: ["glaube"] },
           { text: "weicht keinen Schritt", hooks: ["glaube","kampf"] },
+          { text: "schmerzhaft ehrlich", hooks: ["glaube"] },
+          { text: "hat alles schon gesehen", hooks: ["wissen"] },
+          { text: "eiserne Routine", hooks: ["kampf"] },
         ],
         weaknessTags: [
           { text: "darf nicht fliehen", hooks: ["glaube","kampf"] },
-          { text: "trägt die Last allein", hooks: ["glaube","verlust"] },
+          { text: "trägt alles allein", hooks: ["glaube","verlust"] },
         ],
         quests: [
-          { title: "Die Wacht nicht verlassen", description: "Solange noch ein Einziger steht, fällt der Posten nicht, und dieser Eine ist der Held. Schmerzhaft ehrlich mit sich selbst, weicht er keinen Schritt und hält die Stellung allein. Fliehen darf er nicht, will er nicht, denn die Last, die er trägt, kennt sonst niemand mehr.", hooks: ["glaube","kampf"] },
-          { title: "Einen Nachfolger einweisen", description: "Der Held hält durch bis zuletzt, doch er weiß, dass kein Wächter ewig steht. Was er hütet, kann nicht mit ihm enden, sonst war alles Ausharren umsonst. Darum sucht er einen, dem er sein Wissen und seine Bürde übergeben kann, ehe die Kräfte ihn verlassen.", hooks: ["glaube","schicksal"] },
+          { title: "Meine Wacht endet nie.", description: "Alle, die den Eid mit ihm sprachen, liegen unter Steinen, und mit jedem Grab ging ein Teil des Wissens, was eigentlich bewacht wird. Er weiß nur noch: Es darf nicht ans Licht, und es wandert, wenn man es nicht hütet. Also wandert er mit, der Letzte einer Reihe, deren Anfang niemand mehr kennt.", hooks: ["glaube","kampf"] },
+          { title: "Die Reihe darf nicht mit mir enden.", description: "Er hat drei Anwärter geprüft: Der Erste war zu neugierig, der Zweite zu furchtsam, der Dritte verschwand nach der ersten Nacht und redet seither wirr. Vielleicht sucht er falsch, vielleicht sucht das Amt selbst. Die alten Verse sagen, der Nachfolger trage ein Zeichen; sie sagen nicht, welches.", hooks: ["glaube","schicksal"] },
         ]
       },
       {
-        text: "Wächterin am Tor", hooks: ["glaube","kampf"],
+        text: "Wächterin der Schwelle", hooks: ["glaube","kampf"],
         powerTags: [
-          { text: "durchschaut jeden Eindringling", hooks: ["glaube","wissen"] },
-          { text: "steht fest im Durchgang", hooks: ["glaube","kampf"] },
+          { text: "wittert Eindringlinge", hooks: ["glaube","wissen"] },
+          { text: "weicht keinen Schritt", hooks: ["glaube","kampf"] },
           { text: "kennt jede Losung", hooks: ["kampf","stadt"] },
-          { text: "wachsam bei jedem Geräusch", hooks: ["kampf","natur"] },
+          { text: "hellhörig", hooks: ["kampf","natur"] },
         ],
         weaknessTags: [
-          { text: "darf den Posten nicht räumen", hooks: ["glaube","kampf"] },
+          { text: "kann nie ruhen", hooks: ["glaube","kampf"] },
           { text: "misstraut jedem Fremden", hooks: ["glaube","außenseiter"] },
         ],
         quests: [
-          { title: "Das Tor halten", description: "Am Durchgang steht der Held fest und durchschaut jeden Eindringling, der sich heranschleicht. Was herein will, kommt nur an ihm vorbei oder gar nicht, denn jede Losung ist ihm vertraut. Wachsam bei jedem Geräusch, räumt er den Posten nicht, dem er sich verschrieben hat.", hooks: ["glaube","kampf"] },
-          { title: "Den Verräter im Inneren finden", description: "Der Held misstraut jedem Fremden, doch die wahre Gefahr lauert diesmal hinter ihm. Jemand öffnet heimlich von innen, was er von außen so treu verschließt. Mit demselben scharfen Blick, der jeden Eindringling erkennt, wird er den Verräter aufspüren und wissen, wessen Hand das Tor verrät.", hooks: ["glaube","geheimnis"] },
+          { title: "Keine Schwelle fällt unter meiner Wacht.", description: "Einmal, ein einziges Mal, hat sie eine Tür unbewacht gelassen, und was in jener Nacht hereinkam, hat sie nie jemandem beschrieben. Seither gibt es für sie keine fremden Türen mehr, nur unbewachte. Wo sie nächtigt, schläft man sicherer, und das ist kein Zufall, sondern ihr stiller Schwur.", hooks: ["glaube","kampf"] },
+          { title: "Den Verräter im Inneren finden", description: "Der Riegel war vorgelegt, die Losung nicht verraten, und trotzdem stand die Tür im Morgengrauen offen. Es gibt nur eine Erklärung, und sie schmerzt: Jemand von innen hat aufgemacht. Seither prüft sie jedes vertraute Gesicht mit demselben Blick wie jeden Fremden, bis die Hand gefunden ist, die den Riegel hob.", hooks: ["glaube","geheimnis"] },
         ]
       },
       {
         text: "Verbündete der Ausgestoßenen", hooks: ["glaube","außenseiter"],
         powerTags: [
-          { text: "erkennt verborgene Verzweiflung", hooks: ["glaube"] },
-          { text: "sammelt Almosen für andere", hooks: ["glaube"] },
-          { text: "tröstet die Verzagten", hooks: ["glaube"] },
-          { text: "findet überall Verbündete", hooks: ["glaube","außenseiter"] },
+          { text: "erkennt stille Not", hooks: ["glaube"] },
+          { text: "sammelt Almosen", hooks: ["glaube"] },
+          { text: "teilt das Wenige", hooks: ["glaube"] },
+          { text: "daheim in den Gassen", hooks: ["stadt","außenseiter"] },
         ],
         weaknessTags: [
-          { text: "kann nicht Nein sagen", hooks: ["glaube"] },
+          { text: "kann nicht nein sagen", hooks: ["glaube"] },
           { text: "selbst gemieden", hooks: ["außenseiter","verlust"] },
         ],
         quests: [
-          { title: "Den Übersehenen helfen", description: "Der Held erkennt die verborgene Verzweiflung in den Gesichtern, an denen die Welt achtlos vorbeirauscht. Während andere die Schwachen übergehen, tut er es nicht und reicht den Verzagten Trost und Almosen. Auch wenn er selbst gemieden wird, bleibt sein Blick bei denen, die sonst keiner sieht.", hooks: ["glaube","außenseiter"] },
-          { title: "Ihnen einen Platz schaffen", description: "Trost allein reicht dem Helden nicht, denn die Ausgestoßenen brauchen mehr als gute Worte. Da er keine Bitte abschlagen kann, wächst sein Anliegen über ihn hinaus. Er sucht einen Ort, an dem die Verstoßenen endlich sicher leben können, fern von Verachtung und Furcht, mit den Verbündeten, die er überall findet.", hooks: ["glaube","außenseiter"] },
+          { title: "Den Übersehenen helfen", description: "Als Kind stand sie selbst einmal im Regen vor verschlossenen Türen, und eine einzige Fremde hielt an. Den Namen der Frau kennt sie bis heute nicht. Also zahlt sie die Schuld an alle zurück, die im Regen stehen, eine Tür nach der anderen.", hooks: ["glaube","außenseiter"] },
+          { title: "Ihnen einen Platz schaffen", description: "Sie hat von einem Tal gehört, in dem niemand nach Herkunft fragt, und von einer Bruderschaft, die Verstoßene aufnimmt; beides klang zu schön, beides will geprüft sein. Ihre Schützlinge können nicht ewig von Almosen und Glück leben. Irgendwo muss Platz sein für Menschen ohne Platz, und wenn nicht, dann wird sie welchen machen.", hooks: ["glaube","außenseiter"] },
         ]
       },
       {
         text: "Heilerin ohne Lohn", hooks: ["glaube","handwerk"],
         powerTags: [
-          { text: "kennt heilende Kräuter", hooks: ["handwerk","natur"] },
+          { text: "Heilkräuter", hooks: ["handwerk","natur"] },
           { text: "heilende Hände", hooks: ["handwerk","magie"] },
-          { text: "beruhigt Sterbende", hooks: ["glaube","verlust"] },
-          { text: "gibt ihr Letztes", hooks: ["glaube"] },
+          { text: "Beistand der Sterbenden", hooks: ["glaube","verlust"] },
+          { text: "gibt das Letzte", hooks: ["glaube"] },
         ],
         weaknessTags: [
-          { text: "kaum genug zum Leben", hooks: ["glaube","verlust"] },
-          { text: "kann keine Bitte abschlagen", hooks: ["glaube"] },
+          { text: "bettelarm", hooks: ["glaube","verlust"] },
+          { text: "kann nicht nein sagen", hooks: ["glaube"] },
         ],
         quests: [
-          { title: "Heilen ohne zu fragen", description: "Heilende Hände und das Wissen um die Kräuter setzt der Held für jeden ein, der vor ihm liegt. Ob arm oder reich, ob Freund oder Fremder, wer Hilfe braucht, bekommt sie, ohne dass er nach Lohn fragt. So gibt er sein Letztes, auch wenn er selbst kaum genug zum Leben hat.", hooks: ["glaube","handwerk"] },
-          { title: "Das verlorene Rezept wiederfinden", description: "Der Held kann keine Bitte abschlagen, doch manches Leiden trotzt seiner gewohnten Kunst. Eine alte Arznei, die einst viele Leben rettete, ist verloren gegangen. Er macht sich auf, das vergessene Rezept wiederzufinden, damit seine Hände auch jene heilen können, die er bislang nur sterbend beruhigen kann.", hooks: ["handwerk","wissen"] },
+          { title: "Ich heile, wer vor mir liegt.", description: "Man hat ihr schon Mörder gebracht und Gehenkte, die noch zuckten, und einmal einen Mann, den das halbe Dorf lieber sterben sah. Ihre Hände fragen nicht nach Schuld, das haben sie nie gelernt. Sie weiß, dass dieser Grundsatz sie eines Tages teuer zu stehen kommt, und hält trotzdem daran fest.", hooks: ["glaube","handwerk"] },
+          { title: "Das verlorene Rezept wiederfinden", description: "Ihre Lehrmeisterin starb zu früh und hinterließ ein halbes Wissen: den Namen einer Arznei, drei ihrer sieben Zutaten und die Warnung, sie nie bei Vollmond zu brauen. Der Rest liegt verstreut in den Köpfen alter Weiber und auf Rändern vergilbter Seiten. Sie sammelt Stück für Stück, denn irgendwo hustet immer jemand, dem nur dieses Mittel helfen kann.", hooks: ["handwerk","wissen"] },
         ]
       },
     ]
