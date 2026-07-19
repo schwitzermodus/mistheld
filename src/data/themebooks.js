@@ -3843,8 +3843,8 @@ export const THEMEBOOKS = {
           { text: "erschöpft durch Magie", hooks: ["magie","verlust"] },
         ],
         quests: [
-          { title: "Den Sturm bändigen", description: "Die Winde gehorchen dem Held, doch der Sturm hört selten ganz auf ihn, und jeder Zauber lässt ihn erschöpft zurück. Schon einmal entglitt ihm das Unwetter und traf, wen es nicht treffen sollte. Diese Schuld treibt ihn an, seine Gabe endlich zu meistern, ehe der nächste Donner Unschuldige verschlingt.", hooks: ["magie","natur"] },
-          { title: "Rache des Himmels", description: "Der Held sah sein Land unter fremden Händen verwüstet, und in ihm braut sich etwas zusammen, das dunkler ist als jede Wolke. Er kann den Donner rufen und den Feind verfluchen. Nun will er das Wetter selbst gegen jene herabrufen, die das Unrecht begingen, auch wenn der Himmel ihm nur widerwillig dient.", hooks: ["natur","kampf","verlust"] },
+          { title: "Den Sturm bändigen", description: "Die Winde gehorchen ihm, doch der Sturm hört selten ganz auf ihn, und jeder Zauber lässt ihn erschöpft zurück. Schon einmal entglitt ihm das Unwetter und traf, wen es nicht treffen sollte. Diese Schuld treibt ihn an, seine Gabe endlich zu meistern, ehe der nächste Donner Unschuldige verschlingt.", hooks: ["magie","natur"] },
+          { title: "Rache des Himmels", description: "Er sah sein Land unter fremden Händen verwüstet, und in ihm braut sich etwas zusammen, das dunkler ist als jede Wolke. Er kann den Donner rufen und den Feind verfluchen. Nun will er das Wetter selbst gegen jene herabrufen, die das Unrecht begingen, auch wenn der Himmel ihm nur widerwillig dient.", hooks: ["natur","kampf","verlust"] },
         ]
       },
       {
@@ -3860,25 +3860,25 @@ export const THEMEBOOKS = {
           { text: "kann keinen Leidenden abweisen", hooks: ["glaube","magie"] },
         ],
         quests: [
-          { title: "Würdige Hände", description: "Die Götter legten dem Held heilendes Licht in die Hände, doch sein eigener Körper zahlt für jeden Segen den Preis. Da er keinen Leidenden abweisen kann, droht ihn die Last zu verzehren. Also ringt er um die Weisheit, seine geschenkte Kraft nur für jene einzusetzen, die ihrer wahrhaft würdig sind.", hooks: ["magie","glaube"] },
-          { title: "Gunst der Götter halten", description: "Alles Heilen, alle Schutzzauber des Held fließen aus dem Segen einer Gottheit, deren Gunst so zerbrechlich ist wie kostbar. Ein Fehltritt, ein Bruch des Glaubens, und das tröstende Licht könnte für immer erlöschen. Darum hält der Held seiner Gottheit treu, denn ohne ihre Gnade sind seine Hände nur noch Hände.", hooks: ["glaube","magie"] },
+          { title: "Würdige Hände", description: "Die Götter legten ihm heilendes Licht in die Hände, doch sein eigener Körper zahlt für jeden Segen den Preis. Da er keinen Leidenden abweisen kann, droht ihn die Last zu verzehren. Er ringt um die Weisheit, seine geschenkte Kraft nur für jene einzusetzen, die ihrer wahrhaft würdig sind.", hooks: ["magie","glaube"] },
+          { title: "Die Gunst der Götter halten", description: "Alles Heilen, alle Schutzzauber fließen aus dem Segen einer Gottheit, deren Gunst so zerbrechlich ist wie kostbar. Ein Fehltritt, ein Bruch des Glaubens, und das tröstende Licht könnte für immer erlöschen. Darum hält er seiner Gottheit treu, denn ohne ihre Gnade sind seine Hände nur noch Hände.", hooks: ["glaube","magie"] },
         ]
       },
       {
         text: "Bannerin der Geister", hooks: ["magie","geheimnis"],
         powerTags: [
           { text: "spricht mit Geistern", hooks: ["magie","geheimnis"] },
-          { text: "Bannkreis ziehen", hooks: ["magie","geheimnis"] },
+          { text: "zieht den Bannkreis", hooks: ["magie","geheimnis"] },
           { text: "beschwört kleine Wesen", hooks: ["magie","geheimnis"] },
-          { text: "sieht durch Schleier", hooks: ["magie","geheimnis"] },
+          { text: "sieht durch den Schleier", hooks: ["magie","geheimnis"] },
         ],
         weaknessTags: [
           { text: "zieht gefährliche Aufmerksamkeit", hooks: ["magie","schicksal"] },
           { text: "die Toten verlangen Antwort", hooks: ["magie","geheimnis","verlust"] },
         ],
         quests: [
-          { title: "Ruhelose Seelen erlösen", description: "Der Held sieht durch den Schleier und hört die Toten, die im Bannkreis nach Antwort verlangen. Ihre ruhelose Klage lässt ihn nicht schlafen, denn er allein vermag ihnen zu helfen. So zieht er aus, gefangene Geister von ihrer Last zu lösen und ihnen endlich den Weg in den Frieden zu weisen.", hooks: ["geheimnis","magie","verlust"] },
-          { title: "Den Schleier wahren", description: "Wo der Held mit Geistern spricht, wird die Grenze zwischen Lebenden und Toten dünn, und seine Gabe zieht gefährliche Aufmerksamkeit auf sich. Etwas drängt von der anderen Seite herüber. Darum zieht er Bannkreis um Bannkreis und wacht darüber, dass der Schleier geschlossen bleibt, ehe er ganz zerreißt.", hooks: ["magie","geheimnis"] },
+          { title: "Ruhelose Seelen erlösen", description: "Sie sieht durch den Schleier und hört die Toten, die im Bannkreis nach Antwort verlangen. Ihre ruhelose Klage lässt sie nicht schlafen, denn sie allein vermag ihnen zu helfen. So zieht sie aus, gefangene Geister von ihrer Last zu lösen und ihnen endlich den Weg in den Frieden zu weisen.", hooks: ["geheimnis","magie","verlust"] },
+          { title: "Den Schleier wahren", description: "Wo sie mit Geistern spricht, wird die Grenze zwischen Lebenden und Toten dünn, und ihre Gabe zieht gefährliche Aufmerksamkeit auf sich. Etwas drängt von der anderen Seite herüber. Darum zieht sie Bannkreis um Bannkreis und wacht darüber, dass der Schleier geschlossen bleibt, ehe er ganz zerreißt.", hooks: ["magie","geheimnis"] },
         ]
       },
       {
@@ -3894,8 +3894,8 @@ export const THEMEBOOKS = {
           { text: "unkontrollierbare Nebenwirkungen", hooks: ["magie","geheimnis"] },
         ],
         quests: [
-          { title: "Das vollkommene Ritual", description: "Der Held kennt die Regeln der Magie und spricht die alten Worte, doch jedes große Ritual fordert Zeit und birgt unberechenbare Nebenwirkungen. Ein Zauber widersteht ihm seit jeher, derselbe, an dem schon seine Lehrmeister zerbrachen. Ihn endlich zu vollenden ist zur stillen Besessenheit geworden, die den Held Nacht für Nacht antreibt.", hooks: ["magie","handwerk"] },
-          { title: "Wissen weitergeben", description: "Was nützt die Kunst des Held, wenn sie mit seinem letzten Atemzug verlischt? Seine Rituale brauchen Zeit, und die Zeit eines Menschen ist kurz. Darum sucht er eine Schülerin, der er die alten Worte und die Regeln der Magie anvertrauen kann, damit das Wissen ihn überdauert und nicht verloren geht.", hooks: ["magie","wissen","handwerk"] },
+          { title: "Das vollkommene Ritual", description: "Sie kennt die Regeln der Magie und spricht die alten Worte, doch jedes große Ritual fordert Zeit und birgt unberechenbare Nebenwirkungen. Ein Zauber widersteht ihr seit jeher, derselbe, an dem schon ihre Lehrmeister zerbrachen. Ihn endlich zu vollenden ist zur stillen Besessenheit geworden, die sie Nacht für Nacht antreibt.", hooks: ["magie","handwerk"] },
+          { title: "Wissen weitergeben", description: "Was nützt ihre Kunst, wenn sie mit ihrem letzten Atemzug verlischt? Ihre Rituale brauchen Zeit, und die Zeit eines Menschen ist kurz. Darum sucht sie eine Schülerin, der sie die alten Worte und die Regeln der Magie anvertrauen kann, damit das Wissen sie überdauert.", hooks: ["magie","wissen","handwerk"] },
         ]
       },
       {
@@ -3911,8 +3911,8 @@ export const THEMEBOOKS = {
           { text: "der Körper zahlt den Preis", hooks: ["magie","verlust"] },
         ],
         quests: [
-          { title: "Die wandelnde Formel", description: "In ihrer Werkstatt, ohne die der Held hilflos ist, braut er Tränke und erkennt verborgene Wirkstoffe, die anderen entgehen. Eine Formel aber lockt ihn mehr als alle anderen: jenes Rezept, das gewöhnliche Stoffe in etwas Wunderbares verwandelt. Diese Verheißung treibt ihn an, auch wenn sein eigener Körper für jeden Versuch zahlt.", hooks: ["magie","wissen","handwerk"] },
-          { title: "Gegengift für die Pest", description: "Der Held kennt die Heilkräuter und die verborgenen Wirkstoffe, und doch frisst eine Seuche sich durch die Dörfer, gegen die noch kein Mittel hilft. An seine Werkstatt gebunden, beugt er sich über Kessel und Salben. Das eine Gegengift zu finden, das diese Krankheit stillt, ist die Aufgabe, die alles andere überwiegt.", hooks: ["magie","handwerk","natur"] },
+          { title: "Die wandelnde Formel", description: "In ihrer Werkstatt, ohne die sie hilflos ist, braut sie Tränke und erkennt verborgene Wirkstoffe, die anderen entgehen. Eine Formel aber lockt sie mehr als alle anderen: jenes Rezept, das gewöhnliche Stoffe in etwas Wunderbares verwandelt. Diese Verheißung treibt sie an, auch wenn ihr eigener Körper für jeden Versuch zahlt.", hooks: ["magie","wissen","handwerk"] },
+          { title: "Gegengift für die Pest", description: "Sie kennt die Heilkräuter und die verborgenen Wirkstoffe, und doch frisst eine Seuche sich durch die Dörfer, gegen die noch kein Mittel hilft. An ihre Werkstatt gebunden, beugt sie sich über Kessel und Salben. Das eine Gegengift zu finden, das diese Krankheit stillt, ist die Aufgabe, die alles andere überwiegt.", hooks: ["magie","handwerk","natur"] },
         ]
       },
       {
@@ -3928,8 +3928,8 @@ export const THEMEBOOKS = {
           { text: "eine falsche Rune zerstört alles", hooks: ["magie","wissen"] },
         ],
         quests: [
-          { title: "Die verlorene Rune", description: "Der Held ritzt mächtige Runen und liest die Magie aus den Dingen, doch ein Zeichen fehlt, dessen Macht seit Generationen vergessen ist. Eine falsche Rune zerstört alles, also wiegt jede Suche schwer. Dennoch lässt ihn der Gedanke an das verlorene Zeichen nicht los, denn mit ihm wäre seine Kunst endlich vollständig.", hooks: ["magie","wissen","geheimnis"] },
-          { title: "Unzerstörbarer Bann", description: "Mit alten Worten und uralten Schutzzaubern bannt der Held das Böse, doch was er schreibt, können andere nicht lesen, und ein Fehler zunichte machen. Nun strebt er nach dem dauerhaftesten Werk: jene Runen zu ritzen, die einen Ort für immer schützen. Ein Bann, der noch steht, wenn der Held längst Staub ist.", hooks: ["magie","glaube"] },
+          { title: "Die verlorene Rune", description: "Sie ritzt mächtige Runen und liest die Magie aus den Dingen, doch ein Zeichen fehlt, dessen Macht seit Generationen vergessen ist. Eine falsche Rune zerstört alles, also wiegt jede Suche schwer. Dennoch lässt sie der Gedanke an das verlorene Zeichen nicht los, denn mit ihm wäre ihre Kunst endlich vollständig.", hooks: ["magie","wissen","geheimnis"] },
+          { title: "Unzerstörbarer Bann", description: "Mit alten Worten und uralten Schutzzaubern bannt sie das Böse, doch was sie schreibt, können andere nicht lesen, und ein Fehler zunichtemachen. Nun strebt sie nach dem dauerhaftesten Werk: jene Runen zu ritzen, die einen Ort für immer schützen, ein Bann, der noch steht, wenn sie längst Staub ist.", hooks: ["magie","glaube"] },
         ]
       },
       {
@@ -3937,16 +3937,16 @@ export const THEMEBOOKS = {
         powerTags: [
           { text: "ruft die Flut", hooks: ["magie","natur"] },
           { text: "spricht mit den Tiefen", hooks: ["magie","natur","geheimnis"] },
-          { text: "Grenze von Magie und Natur", hooks: ["magie","natur"] },
-          { text: "heilende Quellen finden", hooks: ["magie","natur"] },
+          { text: "wandelt zwischen Magie und Natur", hooks: ["magie","natur"] },
+          { text: "findet heilende Quellen", hooks: ["magie","natur"] },
         ],
         weaknessTags: [
           { text: "machtlos fern vom Wasser", hooks: ["magie","natur"] },
           { text: "verlangt einen Preis", hooks: ["magie","schicksal"] },
         ],
         quests: [
-          { title: "Die versiegte Quelle", description: "Der Held ruft die Flut und spricht mit den Tiefen, doch fern vom Wasser ist er machtlos, und jeder Zauber verlangt seinen Preis. Nun ist das Land verdorrt und die Quelle versiegt, das Leben weicht aus der Erde. Also macht er sich auf, das Wasser dorthin zurückzubringen, wo es einst sprudelte.", hooks: ["natur","magie"] },
-          { title: "Pakt mit den Tiefen", description: "Einst sprach der Held mit den Wesen unter den Wellen und schloss einen Pakt, der ihm seine Macht über die Flut verlieh. Doch jede Gabe verlangt einen Preis, und das Versprechen wiegt schwer. Nun ist die Zeit gekommen, das Wort einzulösen, das er den Tiefen gab, ehe sie es einfordern.", hooks: ["magie","geheimnis","schicksal"] },
+          { title: "Die versiegte Quelle", description: "Sie ruft die Flut und spricht mit den Tiefen, doch fern vom Wasser ist sie machtlos, und jeder Zauber verlangt seinen Preis. Nun ist das Land verdorrt und die Quelle versiegt, das Leben weicht aus der Erde. Also macht sie sich auf, das Wasser dorthin zurückzubringen, wo es einst sprudelte.", hooks: ["natur","magie"] },
+          { title: "Pakt mit den Tiefen", description: "Einst sprach sie mit den Wesen unter den Wellen und schloss einen Pakt, der ihr ihre Macht über die Flut verlieh. Doch jede Gabe verlangt einen Preis, und das Versprechen wiegt schwer. Nun ist die Zeit gekommen, das Wort einzulösen, das sie den Tiefen gab, ehe sie es einfordern.", hooks: ["magie","geheimnis","schicksal"] },
         ]
       },
       {
@@ -3954,7 +3954,7 @@ export const THEMEBOOKS = {
         powerTags: [
           { text: "flüstert in die Träume", hooks: ["magie","geheimnis"] },
           { text: "biegt den Zufall", hooks: ["magie","schicksal"] },
-          { text: "sieht durch Schleier", hooks: ["magie","geheimnis"] },
+          { text: "sieht durch den Schleier", hooks: ["magie","geheimnis"] },
           { text: "deutet Vorzeichen", hooks: ["magie","schicksal","wissen"] },
         ],
         weaknessTags: [
@@ -3962,8 +3962,8 @@ export const THEMEBOOKS = {
           { text: "zieht gefährliche Aufmerksamkeit", hooks: ["magie","schicksal"] },
         ],
         quests: [
-          { title: "Der Traum hinter dem Traum", description: "Der Held flüstert in fremde Träume, biegt den Zufall und deutet die Vorzeichen, doch im Schlaf droht er sich selbst zu verlieren. Eine Vision sucht ihn seit Jahren Nacht für Nacht heim und lässt ihn nicht los. Dem Traum hinter dem Traum zu folgen, bis er seinen Sinn versteht, ist sein heimlicher Antrieb.", hooks: ["magie","schicksal","geheimnis"] },
-          { title: "Den Albträumen ein Ende", description: "Der Held sieht durch den Schleier und wandelt durch die Träume anderer, doch seine Gabe zieht gefährliche Aufmerksamkeit auf sich. Irgendwo quält ein Schrecken einen Schläfer, vergiftet jede seiner Nächte. Der Held kann es nicht ertragen und will hineingehen in diese Albträume, um den Geplagten von ihrem Griff zu befreien.", hooks: ["magie","geheimnis"] },
+          { title: "Der Traum hinter dem Traum", description: "Sie flüstert in fremde Träume, biegt den Zufall und deutet die Vorzeichen, doch im Schlaf droht sie sich selbst zu verlieren. Eine Vision sucht sie seit Jahren Nacht für Nacht heim und lässt sie nicht los. Dem Traum hinter dem Traum zu folgen, bis sie seinen Sinn versteht, ist ihr heimlicher Antrieb.", hooks: ["magie","schicksal","geheimnis"] },
+          { title: "Den Albträumen ein Ende", description: "Sie sieht durch den Schleier und wandelt durch die Träume anderer, doch ihre Gabe zieht gefährliche Aufmerksamkeit auf sich. Irgendwo quält ein Schrecken einen Schläfer und vergiftet jede seiner Nächte. Sie kann es nicht ertragen und will hineingehen in diese Albträume, um den Geplagten von ihrem Griff zu befreien.", hooks: ["magie","geheimnis"] },
         ]
       },
       {
@@ -3979,15 +3979,15 @@ export const THEMEBOOKS = {
           { text: "verlangt einen Preis", hooks: ["magie","schicksal"] },
         ],
         quests: [
-          { title: "Das versiegelte Tor", description: "Der Held öffnet verschlossene Wege und schreitet durch Schwellen, die anderen verborgen bleiben, doch jeder Übergang verlangt seinen Preis, und etwas folgt durch die Tür. Unbedacht hat er einen Weg aufgetan, der besser geschlossen geblieben wäre. Nun lässt ihm der Gedanke keine Ruhe, dieses Tor für immer zu versiegeln, ehe Schlimmeres hindurchtritt.", hooks: ["magie","geheimnis"] },
-          { title: "Weg zwischen den Welten", description: "Der Held sieht die verborgenen Verbindungen und schreitet durch Schwellen, die für andere bloß Wände sind. Eine Sehnsucht treibt ihn weiter, als jede gewöhnliche Tür reicht: der Pfad in das Reich jenseits des unseren. Ihn zu finden, auch wenn der Übergang einen Preis fordert und etwas hindurch folgen mag, lässt ihn nicht ruhen.", hooks: ["magie","fahrend","geheimnis"] },
+          { title: "Das versiegelte Tor", description: "Sie öffnet verschlossene Wege und schreitet durch Schwellen, die anderen verborgen bleiben, doch jeder Übergang verlangt seinen Preis, und etwas folgt durch die Tür. Unbedacht hat sie einen Weg aufgetan, der besser geschlossen geblieben wäre. Nun lässt ihr der Gedanke keine Ruhe, dieses Tor für immer zu versiegeln, ehe Schlimmeres hindurchtritt.", hooks: ["magie","geheimnis"] },
+          { title: "Weg zwischen den Welten", description: "Sie sieht die verborgenen Verbindungen und schreitet durch Schwellen, die für andere bloß Wände sind. Eine Sehnsucht treibt sie weiter, als jede gewöhnliche Tür reicht: der Pfad in das Reich jenseits des unseren. Ihn zu finden, auch wenn der Übergang einen Preis fordert, lässt sie nicht ruhen.", hooks: ["magie","fahrend","geheimnis"] },
         ]
       },
       {
         text: "Hüterin des Gleichgewichts", hooks: ["magie","natur"],
         powerTags: [
           { text: "hebt Flüche", hooks: ["magie","geheimnis"] },
-          { text: "Grenze von Magie und Natur", hooks: ["magie","natur"] },
+          { text: "wandelt zwischen Magie und Natur", hooks: ["magie","natur"] },
           { text: "spürt gestörte Ordnung", hooks: ["magie","natur","wissen"] },
           { text: "uralte Schutzzauber", hooks: ["magie","glaube"] },
         ],
@@ -3996,8 +3996,8 @@ export const THEMEBOOKS = {
           { text: "erschöpft durch Magie", hooks: ["magie","verlust"] },
         ],
         quests: [
-          { title: "Die gestörte Ordnung", description: "Der Held spürt die gestörte Ordnung wie einen Misston und steht an der Grenze von Magie und Natur, wo das Gleichgewicht ins Wanken gerät. Jeder Bann, jeder Schutzzauber zehrt an ihm. Dennoch muss er der Wurzel des Ungleichgewichts nachgehen, das die Welt aus dem Lot bringt, ehe alles vollends zerfällt.", hooks: ["magie","natur","schicksal"] },
-          { title: "Weder Licht noch Schatten", description: "Der Held hebt Flüche und wahrt die Grenze von Magie und Natur, doch sein Eid verbietet ihm, je eine Seite zu ergreifen, und die Magie erschöpft ihn. Beide Lager drängen ihn, sich zu erklären. Trotzdem hält er das Gleichgewicht, auch wenn ihn Licht wie Schatten dafür verachten, denn dies ist seine Bestimmung.", hooks: ["magie","glaube","natur"] },
+          { title: "Die gestörte Ordnung", description: "Sie spürt die gestörte Ordnung wie einen Misston und steht an der Grenze von Magie und Natur, wo das Gleichgewicht ins Wanken gerät. Jeder Bann, jeder Schutzzauber zehrt an ihr. Dennoch muss sie der Wurzel des Ungleichgewichts nachgehen, das die Welt aus dem Lot bringt, ehe alles vollends zerfällt.", hooks: ["magie","natur","schicksal"] },
+          { title: "Weder Licht noch Schatten", description: "Sie hebt Flüche und wahrt die Grenze von Magie und Natur, doch ihr Eid verbietet ihr, je eine Seite zu ergreifen, und die Magie erschöpft sie. Beide Lager drängen sie, sich zu erklären. Trotzdem hält sie das Gleichgewicht, auch wenn Licht wie Schatten sie dafür verachten, denn dies ist ihre Bestimmung.", hooks: ["magie","glaube","natur"] },
         ]
       },
       {
@@ -4013,8 +4013,8 @@ export const THEMEBOOKS = {
           { text: "ein Wort zu viel", hooks: ["magie","schicksal"] },
         ],
         quests: [
-          { title: "Die letzte verlorene Silbe", description: "Der Held spricht die alten Worte und liest fremde Magie, doch nach jedem Zauber entgleitet ihm sein Wissen wieder. Eine Silbe fehlt, die letzte, die die uralte Sprache wieder ganz machen würde. Sie zu finden ist seine stille Besessenheit, auch wenn ein einziges Wort zu viel verheerende Folgen heraufbeschwören kann.", hooks: ["magie","wissen","verlust"] },
-          { title: "Zu gefährlich zu bewahren", description: "Der Held kennt die Regeln der Magie und Worte von roher Macht, doch eben diese Worte könnten die Welt zerreißen, spräche ein Unbedachter sie aus. Da ihm ohnehin jeder Zauber wieder entfällt, weiß er um die Gefahr. Darum will er dieses Wissen tilgen, ehe es in falsche Hände gerät und alles verschlingt.", hooks: ["magie","wissen","geheimnis"] },
+          { title: "Die letzte verlorene Silbe", description: "Sie spricht die alten Worte und liest fremde Magie, doch nach jedem Zauber entgleitet ihr das Wissen wieder. Eine Silbe fehlt, die letzte, die die uralte Sprache wieder ganz machen würde. Sie zu finden ist ihre stille Besessenheit, auch wenn ein einziges Wort zu viel verheerende Folgen heraufbeschwören kann.", hooks: ["magie","wissen","verlust"] },
+          { title: "Zu gefährlich zu bewahren", description: "Sie kennt die Regeln der Magie und Worte von roher Macht, doch eben diese Worte könnten die Welt zerreißen, spräche ein Unbedachter sie aus. Da ihr ohnehin jeder Zauber wieder entfällt, weiß sie um die Gefahr. Darum will sie dieses Wissen tilgen, ehe es in falsche Hände gerät und alles verschlingt.", hooks: ["magie","wissen","geheimnis"] },
         ]
       },
     ]
