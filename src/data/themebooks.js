@@ -669,205 +669,205 @@ export const THEMEBOOKS = {
       {
         text: "Sylvenelf", hooks: ["natur","schicksal"],
         powerTags: [
-          { text: "kennt die Sitten meines Volkes", hooks: ["natur"] },
-          { text: "die Sprache der Ahnen", hooks: ["wissen","natur"] },
+          { text: "Sitten der Sippe", hooks: ["natur"] },
+          { text: "Ahnensprache", hooks: ["wissen","natur"] },
           { text: "leiser Schritt", hooks: ["natur"] },
           { text: "sieht im Dunkeln", hooks: ["natur","schicksal"] },
         ],
         weaknessTags: [
-          { text: "misstrauisch gegen Fremde", hooks: ["außenseiter","natur"] },
-          { text: "fremde Sitten überfordern sie", hooks: ["außenseiter","natur"] },
+          { text: "misstraut Fremden", hooks: ["außenseiter","natur"] },
+          { text: "verloren unter Menschen", hooks: ["außenseiter","natur"] },
         ],
         quests: [
-          { title: "Ich erfülle eine Prophezeiung meiner Sippe", description: "Aufgewachsen in verschwiegenen Wäldern, kennt der Held die Sitten seines Volkes und die Sprache der Ahnen wie den eigenen Herzschlag. Schon die Alten lasen sein Gesicht in den Zeichen dessen, was kommen wird. So sehr er Fremden auch misstraut, er kann sich diesem Ruf nicht entziehen und folgt dem Pfad, den die Weissagung ihm wies.", hooks: ["schicksal","natur"] },
-          { title: "Ich finde meinesgleichen", description: "Mit leisem Schritt und einem Blick, der das Dunkel durchdringt, bewegt sich der Held durch eine Welt, deren Bräuche ihn oft überfordern. Doch unter all den fremden Gesichtern fehlt eines, das dieselbe alte Zunge spricht. Irgendwo dort draußen müssen andere seines Volkes leben, und dieser stille Gedanke treibt ihn fort, bis er nicht mehr allein ist.", hooks: ["außenseiter","natur"] },
+          { title: "Die Weissagung erfüllen", description: "Bei seiner Geburt lasen die Alten ein Zeichen, das nur einmal in vielen Generationen erscheint, und schwiegen erschrocken. Erst als er auszog, gaben sie ihm drei Worte mit, deren Sinn sich unterwegs zeigen soll. Zwei versteht er inzwischen. Das dritte fürchtet er.", hooks: ["schicksal","natur"] },
+          { title: "Andere meiner Sippe finden", description: "Sein Wald ist still geworden, die Rauchzeichen blieben aus, mit denen die Sippen einander einst grüßten. Vielleicht sind sie nur weitergezogen, vielleicht mehr. Er sucht die Zeichen an Rinde und Stein, die nur seinesgleichen lesen, und folgt ihnen, solange sie nicht abreißen.", hooks: ["außenseiter","natur"] },
         ]
       },
       {
-        text: "Highlanderin", hooks: ["natur","kampf"],
+        text: "Hochländerin", hooks: ["natur","kampf"],
         powerTags: [
-          { text: "unerwartete Stärke", hooks: ["kampf"] },
-          { text: "Schwert meines Volkes", hooks: ["kampf","natur"] },
-          { text: "heimischer Boden gibt Kraft", hooks: ["natur"] },
-          { text: "wettergegerbte Haut", hooks: ["natur"] },
+          { text: "unerwartet stark", hooks: ["kampf"] },
+          { text: "Hochlandklinge", hooks: ["kampf","natur"] },
+          { text: "trittsicher", hooks: ["natur"] },
+          { text: "wetterhart", hooks: ["natur"] },
         ],
         weaknessTags: [
-          { text: "gemieden in dieser Gegend", hooks: ["außenseiter"] },
+          { text: "als wild verschrien", hooks: ["außenseiter"] },
           { text: "loyaler als vernünftig", hooks: ["glaube"] },
         ],
         quests: [
-          { title: "Ich erhebe mein Volk wieder zu Würde", description: "Die wettergegerbte Haut und die unerwartete Stärke verraten die Herkunft des Helden: das raue Hochland, dessen heimischer Boden ihm Kraft schenkt. In der Fremde wird sein Volk gemieden und in Geschichten verzerrt, die andere am Feuer erzählen. Loyaler als vernünftig steht er dafür ein, dass die Seinen mehr sind, und will ihnen ihre Würde zurückgeben.", hooks: ["natur","macht"] },
-          { title: "Ich bringe Frieden mit den alten Feinden", description: "Mit dem Schwert seines Volkes in der Hand wuchs der Held in einer Fehde auf, deren Ursprung niemand mehr benennen kann. Der Krieg ist alt, und keiner weiß mehr, warum er begann, doch das Blutvergießen reißt nicht ab. Auch wenn manche ihn für treulos halten, sucht er einen Weg, die uralte Feindschaft endlich zu begraben.", hooks: ["natur","kampf"] },
+          { title: "Meinem Volk die Ehre zurückgeben", description: "Fern der Berge kennt man die Seinen nur aus Spottliedern, in denen sie Vieh stehlen und Rohes essen. Sie hat diese Lieder gehört und die Fäuste in den Taschen geballt. Sie will, dass man eines Tages ein anderes Lied singt, und weiß, dass Fäuste dafür nicht reichen.", hooks: ["natur","macht"] },
+          { title: "Die uralte Fehde begraben", description: "Die Fehde ist älter als die Ältesten, und niemand kann mehr sagen, welches Blut zuerst floss. Beide Seiten hüten einen Stein mit eingeritzten Namen, und solange sie getrennt bleiben, geht das Töten weiter. Sie glaubt, dass die Steine zusammengehören, und sucht den anderen.", hooks: ["natur","kampf"] },
         ]
       },
       {
-        text: "Battlerider", hooks: ["kampf"],
+        text: "Steppenreiter", hooks: ["kampf"],
         powerTags: [
-          { text: "Bogen meines Volkes", hooks: ["kampf","natur"] },
-          { text: "angeborene Schnelligkeit", hooks: ["natur"] },
-          { text: "Affinität zu Tieren", hooks: ["natur"] },
-          { text: "sitzt fest im Sattel", hooks: ["kampf","natur"] },
+          { text: "Reiterbogen", hooks: ["kampf","natur"] },
+          { text: "reitet wie der Wind", hooks: ["natur"] },
+          { text: "versteht Tiere", hooks: ["natur"] },
+          { text: "sattelfest", hooks: ["kampf","natur"] },
         ],
         weaknessTags: [
-          { text: "aus dem Element gerissen", hooks: ["fahrend","außenseiter"] },
-          { text: "loyaler als vernünftig", hooks: ["glaube"] },
+          { text: "zu Fuß verloren", hooks: ["fahrend","außenseiter"] },
+          { text: "fremd unter Sesshaften", hooks: ["außenseiter","fahrend"] },
         ],
         quests: [
-          { title: "Ich beweise den Wert meiner Reiter", description: "Mit dem Bogen seines Volkes und angeborener Schnelligkeit sitzt der Held fest im Sattel, eins mit dem Tier unter sich. Die Sesshaften halten seine Reiter für rohe, ungeschlachte Krieger, doch er kennt die Kunst und Ehre hinter dem Galopp. Fern der vertrauten Steppe will er zeigen, was sein Volk wirklich vermag, und jeden Zweifel zerstreuen.", hooks: ["außenseiter","kampf"] },
-          { title: "Ich finde mein verlorenes Ross wieder", description: "Seine tiefe Affinität zu Tieren machte das Ross zu mehr als einem Reittier: zu einem Gefährten, der jeden Ritt mit ihm teilte. Nun ist es fort, und aus dem Element gerissen fühlt der Held sich nur noch halb. Loyaler als vernünftig nimmt er die Spur auf, denn ohne sein Tier ist er kein ganzer Krieger.", hooks: ["kampf","natur"] },
+          { title: "Den Wert meiner Reiter beweisen", description: "Die Sesshaften sehen in seinen Leuten nur Räuber, die kommen, plündern und im Staub verschwinden. Er kennt die Regeln hinter dem Galopp, die Ehre, die kein Sesshafter je gelernt hat. Er sucht die eine Tat, nach der niemand mehr Räuber sagt, wenn er einen Reiter sieht.", hooks: ["außenseiter","kampf"] },
+          { title: "Mein verlorenes Ross wiederfinden", description: "Sie wuchsen zusammen auf, das Tier und er, und verstanden einander ohne Zügel. In einer Nacht voller Rauch riss man sie auseinander, und seither reitet ein Fremder, was ihm gehört. Er kennt die Brandmarke, kennt den weißen Fleck über dem Huf, und folgt ihm, so weit die Spur reicht.", hooks: ["kampf","natur"] },
         ]
       },
       {
         text: "Hexenblut", hooks: ["magie","schicksal"],
         powerTags: [
-          { text: "wittert Unrecht sofort", hooks: ["glaube","schicksal"] },
-          { text: "kennt verborgene Heilpflanzen", hooks: ["natur","wissen"] },
-          { text: "altertümliches Lied", hooks: ["natur","wissen"] },
-          { text: "trägt das Wissen der Alten", hooks: ["wissen","natur"] },
+          { text: "wittert Unrecht", hooks: ["glaube","schicksal"] },
+          { text: "kennt Heilpflanzen", hooks: ["natur","wissen"] },
+          { text: "kennt Segenssprüche", hooks: ["magie","glaube"] },
+          { text: "altes Wissen", hooks: ["wissen","natur"] },
         ],
         weaknessTags: [
-          { text: "auffälliges Merkmal", hooks: ["außenseiter","schicksal"] },
-          { text: "gemieden in dieser Gegend", hooks: ["außenseiter"] },
+          { text: "auffälliges Mal", hooks: ["außenseiter","schicksal"] },
+          { text: "als Hexe gefürchtet", hooks: ["außenseiter"] },
         ],
         quests: [
-          { title: "Ich erforsche das Erbe meines Blutes", description: "Ein altertümliches Lied auf den Lippen und das Wissen der Alten in sich tragend, wittert der Held jedes Unrecht und kennt verborgene Heilpflanzen. Doch etwas Älteres regt sich in seinen Adern, ein auffälliges Mal, das ihn von allen abhebt. Er muss wissen, woher diese Gabe stammt, und folgt der Spur seines Blutes zurück, gleich wohin.", hooks: ["magie","schicksal"] },
-          { title: "Ich beweise dass mein Volk mehr ist als sein Ruf", description: "Wo der Held auch hinkommt, eilt ihm der Ruf seines Blutes voraus, und die Leute weichen seinem Mal scheu aus. Sie erzählen alte und falsche Geschichten über die Seinen, gespeist aus Furcht vor dem Unbekannten. Gemieden in dieser Gegend, will er mit seinem heilenden Wissen beweisen, dass sein Volk mehr ist als die Gerüchte.", hooks: ["außenseiter","natur"] },
+          { title: "Dem Erbe meines Blutes nachgehen", description: "Das Mal auf seiner Haut gleicht keiner Krankheit, die ein Bader kennt, und in Vollmondnächten wird es warm. Seine Mutter schwieg dazu bis zuletzt und nannte im Fieber einen Namen und einen Ort. Beide sucht er, denn er will wissen, was in ihm erwacht.", hooks: ["magie","schicksal"] },
+          { title: "Die Furcht vor meinesgleichen widerlegen", description: "Wo er hinkommt, ist der Ruf schon da: Kindesräuber, Milchverderber, Wetterhexen. Er hat gelernt, dass ein geheiltes Fieber mehr wiegt als hundert Beteuerungen. Also heilt er, Dorf um Dorf, und lässt die Taten sprechen, bis die Geschichten leiser werden.", hooks: ["außenseiter","natur"] },
         ]
       },
       {
         text: "Karawanenvolk", hooks: ["fahrend"],
         powerTags: [
-          { text: "Tanz mit tiefer Bedeutung", hooks: ["natur","glaube"] },
-          { text: "Körpersprache nur für Eingeweihte", hooks: ["geheimnis","außenseiter"] },
-          { text: "findet immer Orientierung", hooks: ["fahrend","natur"] },
-          { text: "entfacht Feuer überall", hooks: ["natur","handwerk"] },
+          { text: "ritueller Tanz", hooks: ["natur","glaube"] },
+          { text: "geheime Zeichen", hooks: ["geheimnis","außenseiter"] },
+          { text: "Orientierungssinn", hooks: ["fahrend","natur"] },
+          { text: "entfacht jedes Feuer", hooks: ["natur","handwerk"] },
         ],
         weaknessTags: [
-          { text: "gemieden in dieser Gegend", hooks: ["außenseiter"] },
-          { text: "spricht mit fremdem Akzent", hooks: ["außenseiter","fahrend"] },
+          { text: "als Gauner verschrien", hooks: ["außenseiter"] },
+          { text: "fremder Akzent", hooks: ["außenseiter","fahrend"] },
         ],
         quests: [
-          { title: "Ich bewahre die Lieder meines Volkes", description: "Im Schein der Feuer, die der Held überall zu entfachen weiß, lebt die Seele seines fahrenden Volkes: in Tänzen voll tiefer Bedeutung und einer Körpersprache nur für Eingeweihte. Doch unterwegs, gemieden und mit fremdem Akzent verlacht, drohen die alten Weisen zu verklingen. Wer keine Lieder mehr hat, hat kein Volk, und so trägt er sie weiter.", hooks: ["natur","wissen"] },
-          { title: "Ich finde das verlorene Herz meiner Kultur", description: "Stets findet der Held Orientierung auf den endlosen Straßen, doch eine Leere reist mit ihm, die kein Wegzeichen füllt. Etwas wurde seinem Volk genommen: ein Ort, ein Ritual, ein Name, an dem einst alles hing. Gemieden und mit fremdem Akzent durch die Lande ziehend, sucht er dieses verlorene Herz seiner Kultur.", hooks: ["natur","verlust"] },
+          { title: "Die Weisen der Karawane retten", description: "Jedes Lager weniger, das aufbricht, nimmt Lieder mit, die niemand aufschrieb, weil man sie nie aufschreiben durfte. Die alte Sängerin, die sie alle kannte, ist letzten Winter gestorben. Er sammelt, was in den Köpfen der Übriggebliebenen noch klingt, ehe auch das verstummt.", hooks: ["natur","wissen"] },
+          { title: "Das genommene Herz meines Volkes suchen", description: "Einst besaß die Karawane ein Zeichen, um das sich jedes Lager scharte, und ohne das die Wege sich verloren. Vor drei Generationen ging es fort, geraubt oder verspielt, darüber schweigt man. Er glaubt, ohne dieses Herz zerfällt sein Volk in Staub, und zieht aus, es zu finden.", hooks: ["natur","verlust"] },
         ]
       },
       {
         text: "Bibervolk", hooks: ["natur"],
         powerTags: [
-          { text: "Werkzeug aus der Heimat", hooks: ["handwerk","natur"] },
-          { text: "taucht und schwimmt mühelos", hooks: ["natur"] },
-          { text: "baut Dämme und Unterschlüpfe", hooks: ["handwerk","natur"] },
-          { text: "kennt die Zeichen des Wetters", hooks: ["natur"] },
+          { text: "starke Nagezähne", hooks: ["natur","handwerk"] },
+          { text: "wassergängig", hooks: ["natur"] },
+          { text: "baut Dämme", hooks: ["handwerk","natur"] },
+          { text: "wetterkundig", hooks: ["natur"] },
         ],
         weaknessTags: [
-          { text: "auffälliges Merkmal", hooks: ["außenseiter","schicksal"] },
-          { text: "misstrauisch gegen Fremde", hooks: ["außenseiter","natur"] },
+          { text: "tierhaftes Äußeres", hooks: ["außenseiter","schicksal"] },
+          { text: "scheu unter Menschen", hooks: ["außenseiter","natur"] },
         ],
         quests: [
-          { title: "Ich schütze die Wasser meiner Heimat", description: "Mit dem Werkzeug aus der Heimat taucht und schwimmt der Held mühelos und baut Dämme und Unterschlüpfe, wie es seinem Volk eigen ist. Flüsse und Teiche sind sein Leben, und sein Auge für die Zeichen des Wetters warnt ihn früh: etwas bedroht sie. Trotz allen Misstrauens gegen Fremde stellt er sich vor das Wasser.", hooks: ["natur"] },
-          { title: "Ich finde meinesgleichen", description: "Geschickt errichtet der Held seine Bauten und kennt das Wasser wie kein anderer, doch zwischen den Trockenwohnern bleibt er ein auffälliger Sonderling. Misstrauisch gegen Fremde, vermisst er die Seinen, mit denen er Damm und Bau einst teilte. Irgendwo dort draußen müssen andere seiner Art leben, und das zieht ihn flussaufwärts, bis er sie findet.", hooks: ["außenseiter","natur"] },
+          { title: "Die Flüsse vor dem Gift schützen", description: "Flussabwärts kommt etwas Fauliges, das die Fische auf den Bauch dreht und das Schilf schwarz färbt, und es wandert stromauf, Wehr um Wehr. Seine Sippe an der Quelle ahnt nichts. Er zieht der Fäulnis entgegen, um zu finden, woher sie quillt, ehe sie das klare Wasser erreicht.", hooks: ["natur"] },
+          { title: "Andere vom Bibervolk finden", description: "Die Dämme, an denen er als Junges spielte, sind verlassen, das Holz längst grau. Wohin seine Sippe zog, weiß niemand, nur dass sie flussaufwärts verschwand. Er liest die alten Fraßspuren an den Ufern wie eine Schrift und folgt ihnen, bis wieder frisch genagtes Holz am Wasser liegt.", hooks: ["außenseiter","natur"] },
         ]
       },
       {
         text: "Fjordgeborene", hooks: ["natur"],
         powerTags: [
-          { text: "überlebt in unwirtlichen Gebieten", hooks: ["natur","außenseiter"] },
-          { text: "wettergegerbte Haut", hooks: ["natur"] },
-          { text: "kennt die Zeichen des Wetters", hooks: ["natur"] },
-          { text: "seefest und sicher zu Schiff", hooks: ["natur","fahrend"] },
+          { text: "kälteerprobt", hooks: ["natur"] },
+          { text: "liest die See", hooks: ["natur"] },
+          { text: "seefest", hooks: ["natur","fahrend"] },
+          { text: "sichere Harpune", hooks: ["kampf","natur"] },
         ],
         weaknessTags: [
-          { text: "aus dem Element gerissen", hooks: ["fahrend","außenseiter"] },
-          { text: "blind für fremde Bräuche", hooks: ["natur","außenseiter"] },
+          { text: "fern der See rastlos", hooks: ["fahrend","außenseiter"] },
+          { text: "eckt bei Fremden an", hooks: ["natur","außenseiter"] },
         ],
         quests: [
-          { title: "Ich kehre an die Küste meiner Ahnen zurück", description: "Geboren zwischen steilen Fjorden, überlebt der Held in unwirtlichen Gebieten, liest die Zeichen des Wetters und steht seefest an Deck. Doch fern der See, aus seinem Element gerissen, fühlt er sich verloren und blind für fremde Bräuche. Das Salz im Wind ruft ihn heim, und er folgt diesem Ruf zur Küste seiner Ahnen zurück.", hooks: ["natur","verlust"] },
-          { title: "Ich erhebe mein Volk wieder zu Würde", description: "Mit wettergegerbter Haut und dem Wissen, jeder Strapaze zu trotzen, trägt der Held das harte Erbe der Fjorde in sich. Doch in der Fremde, blind für fremde Bräuche und aus dem Element gerissen, hört er nur Hohn über die Seinen. Sie sind mehr als die Geschichten der anderen, und er will ihnen ihre Würde zurückgeben.", hooks: ["natur","macht"] },
+          { title: "Zur Küste der Ahnen zurückkehren", description: "Das Salz im Wind riecht hier falsch, süßlich, nach fremdem Meer, und nachts hört er die eigene Brandung nicht. Ein Versprechen hält ihn: Er schwor, die Asche seines Vaters dorthin zu tragen, wo die Fjorde beginnen. Solange sie in seinem Beutel liegt, ist er nicht angekommen.", hooks: ["natur","verlust"] },
+          { title: "Dem Hohn über mein Volk ein Ende setzen", description: "In den Wirtshäusern des Binnenlands sind die Seinen der Stoff für Gruselgeschichten, Plünderer aus dem Nebel, die Kinder holen. Er hat zu oft still dagesessen, während man lachte. Er will beweisen, dass hinter dem Schrecken Menschen stehen, mit Liedern, Trauer und Gastrecht, und sammelt Zeugen dafür.", hooks: ["natur","macht"] },
         ]
       },
       {
         text: "Tochter der Wanderer", hooks: ["fahrend"],
         powerTags: [
-          { text: "findet immer Orientierung", hooks: ["fahrend","natur"] },
-          { text: "seelenbewegender Gesang", hooks: ["natur","schicksal"] },
-          { text: "erkennt Gast und Eindringling", hooks: ["natur","geheimnis"] },
-          { text: "findet überall Unterschlupf", hooks: ["fahrend","stadt"] },
+          { text: "ergreifender Gesang", hooks: ["natur","schicksal"] },
+          { text: "durchschaut Absichten", hooks: ["natur","geheimnis"] },
+          { text: "findet Unterschlupf", hooks: ["fahrend","stadt"] },
+          { text: "Orientierungssinn", hooks: ["fahrend","natur"] },
         ],
         weaknessTags: [
-          { text: "spricht mit fremdem Akzent", hooks: ["außenseiter","fahrend"] },
-          { text: "gemieden in dieser Gegend", hooks: ["außenseiter"] },
+          { text: "fremder Akzent", hooks: ["außenseiter","fahrend"] },
+          { text: "überall nur geduldet", hooks: ["außenseiter"] },
         ],
         quests: [
-          { title: "Ich überbrücke die Welten in denen ich lebe", description: "Mit untrüglichem Orientierungssinn findet der Held überall Unterschlupf und erkennt mit einem Blick, wer Gast und wer Eindringling ist. Doch zwischen den Welten, in denen er lebt, gehört er nirgends ganz dazu: weder ganz von hier noch ganz von dort. Mit fremdem Akzent und gemieden, will er Brücken schlagen, statt sich entscheiden zu müssen.", hooks: ["außenseiter","schicksal"] },
-          { title: "Ich bewahre die Lieder meines Volkes", description: "Sein seelenbewegender Gesang ist das Erbe der Wanderer, deren Wege der Held seit Kindesbeinen teilt. Doch unterwegs, gemieden und mit fremdem Akzent belächelt, drohen die alten Weisen mit den Jahren zu verklingen. Wer keine Lieder mehr hat, hat kein Volk, und so singt und sammelt er sie weiter, damit das Erbe niemals verstummt.", hooks: ["fahrend","wissen"] },
+          { title: "Einen Ort finden, der uns bleibt", description: "Ihr Volk zieht weiter, seit sie denken kann, immer einen Schritt vor den misstrauischen Blicken der Sesshaften. Sie hat von einem Tal gehört, in dem Wanderer über den Winter bleiben dürfen, ohne dass man die Hunde losbindet. Ob es das Tal gibt oder nur das Lied davon, will sie sehen.", hooks: ["fahrend","außenseiter"] },
+          { title: "Die Lieder der Wanderer bewahren", description: "Die Alten sterben schneller, als die Jungen lernen wollen, und mit jedem Grab verstummt eine Strophe. Sie trägt die Lieder wie andere ihr Erspartes. Ein Lied fehlt ihr noch, das letzte ihrer Großmutter, von dem nur der Anfang blieb, und sie sucht, wer das Ende kennt.", hooks: ["fahrend","wissen"] },
         ]
       },
       {
         text: "Küstenkind", hooks: ["natur"],
         powerTags: [
-          { text: "taucht und schwimmt mühelos", hooks: ["natur"] },
-          { text: "kennt die Zeichen des Wetters", hooks: ["natur"] },
-          { text: "angeborener Sinn für Spuren", hooks: ["natur"] },
-          { text: "liest die Gezeiten", hooks: ["natur","wissen"] },
+          { text: "taucht tief", hooks: ["natur"] },
+          { text: "riecht den Sturm", hooks: ["natur"] },
+          { text: "kennt jede Bucht", hooks: ["natur","wissen"] },
+          { text: "gezeitenkundig", hooks: ["natur","wissen"] },
         ],
         weaknessTags: [
-          { text: "aus dem Element gerissen", hooks: ["fahrend","außenseiter"] },
-          { text: "fremde Sitten überfordern sie", hooks: ["außenseiter","natur"] },
+          { text: "landeinwärts verloren", hooks: ["fahrend","außenseiter"] },
+          { text: "arglos", hooks: ["glaube","natur"] },
         ],
         quests: [
-          { title: "Ich finde das verlorene Herz meiner Kultur", description: "Am Saum der Brandung aufgewachsen, taucht und schwimmt der Held mühelos, liest die Gezeiten und kennt die Zeichen des Wetters. Doch eine Leere begleitet ihn: Etwas wurde seinem Volk genommen, ein Ort, ein Ritual, ein Name, der einst alles zusammenhielt. Aus dem Element gerissen, sucht er dieses verlorene Herz seiner Kultur, eh die See es verschlingt.", hooks: ["natur","verlust"] },
-          { title: "Ich schütze die Küste vor dem was aus der See kommt", description: "Mit angeborenem Sinn für Spuren und einem wachen Auge für jedes Wetterzeichen steht der Held an der Schwelle zwischen Land und Meer. Das Meer gibt, und es nimmt, und er kennt beide Gesichter dieser launischen Macht. Wenn Dunkles aus der Tiefe heraufzieht, sind die Seinen blind dafür, er aber nicht, und stellt sich ihm entgegen.", hooks: ["natur"] },
+          { title: "Finden, was die Flut nahm", description: "Eine Sturmflut verschlang das Dorf seiner Kindheit in einer Nacht, Häuser, Netze, Namen. Man sagt, bei tiefster Ebbe sehe man noch die Dachfirste unter Wasser. Er sucht die Stelle, um zu bergen, was die See freigibt, und um zu begreifen, warum ausgerechnet er verschont blieb.", hooks: ["natur","verlust"] },
+          { title: "Abwehren, was aus der Tiefe steigt", description: "Die alten Fischer kennen ein Zeichen: Wenn die Möwen landeinwärts fliehen und das Wasser nach Eisen riecht, kommt etwas aus der Tiefe. Diesmal flohen die Möwen und kamen nicht zurück. Er allein scheint es zu bemerken und folgt der Küste dorthin, wo das Meer am stillsten ist.", hooks: ["natur"] },
         ]
       },
       {
         text: "Sumpfbewohner", hooks: ["natur"],
         powerTags: [
-          { text: "überlebt in unwirtlichen Gebieten", hooks: ["natur","außenseiter"] },
-          { text: "kennt verborgene Heilpflanzen", hooks: ["natur","wissen"] },
-          { text: "angeborener Sinn für Spuren", hooks: ["natur"] },
-          { text: "leiser Schritt", hooks: ["natur"] },
+          { text: "kennt sichere Pfade", hooks: ["natur","wissen"] },
+          { text: "kennt Sumpfkräuter", hooks: ["natur","wissen"] },
+          { text: "wittert jede Spur", hooks: ["natur"] },
+          { text: "lautlos im Schilf", hooks: ["natur"] },
         ],
         weaknessTags: [
-          { text: "gemieden in dieser Gegend", hooks: ["außenseiter"] },
-          { text: "misstrauisch gegen Fremde", hooks: ["außenseiter","natur"] },
+          { text: "riecht nach Moor", hooks: ["außenseiter","natur"] },
+          { text: "menschenscheu", hooks: ["außenseiter","natur"] },
         ],
         quests: [
-          { title: "Ich bewahre die Geheimnisse des Moors", description: "Wo andere im Schlamm versinken, überlebt der Held mit leisem Schritt und angeborenem Sinn für jede Spur in den trügerischen Sümpfen. Er kennt verborgene Heilpflanzen und alte Wege, die nur sein Volk noch zu lesen versteht. Der Sumpf birgt uraltes Wissen, das zu verschwinden droht, und gemieden wie er ist, will er es bewahren.", hooks: ["natur","geheimnis"] },
-          { title: "Ich beweise dass mein Volk mehr ist als sein Ruf", description: "Misstrauisch gegen Fremde bewegt sich der Held lautlos durch das Dickicht, das ihm Heimat und Schutz zugleich ist. Die Leute der trockenen Länder erzählen alte und falsche Geschichten über die Sumpfbewohner, gespeist aus Furcht vor dem Moor. Gemieden in dieser Gegend, will er beweisen, dass sein Volk mehr ist als der finstere Ruf.", hooks: ["außenseiter","natur"] },
+          { title: "Ergründen, was im Moor versank", description: "Das Moor gibt nichts zurück, heißt es, doch es zeigt manches: einen Balken, eine Hand, ein Gesicht im Torf, das aussieht wie lebendig. Er hat als Kind eines gesehen und nie vergessen. Er will wissen, wer die Toten im Moor sind und warum sie nicht verwesen, ehe das Wissen mit den Alten stirbt.", hooks: ["natur","geheimnis"] },
+          { title: "Den Ruf des Moorvolks widerlegen", description: "Trockenwohner erzählen ihren Kindern, das Moorvolk stehle Seelen und tausche Säuglinge. Er hat diese Märchen sein Leben lang gehört und die Türen sich schließen sehen. Mit dem Heilwissen des Moors, das schon manches Fieber brach, will er beweisen, dass aus dem Sumpf auch Rettung kommt.", hooks: ["außenseiter","natur"] },
         ]
       },
       {
-        text: "Halbblut zwischen zwei Welten", hooks: ["außenseiter","schicksal"],
+        text: "Halbblut", hooks: ["außenseiter","schicksal"],
         powerTags: [
-          { text: "kennt die Sitten zweier Völker", hooks: ["natur","außenseiter"] },
-          { text: "erkennt Gast und Eindringling", hooks: ["natur","geheimnis"] },
-          { text: "die Sprache der Ahnen", hooks: ["wissen","natur"] },
-          { text: "vermittelt zwischen Fremden", hooks: ["stadt","außenseiter"] },
+          { text: "kennt beide Welten", hooks: ["natur","außenseiter"] },
+          { text: "spricht zwei Zungen", hooks: ["wissen","natur"] },
+          { text: "geborener Mittler", hooks: ["stadt","außenseiter"] },
+          { text: "passt sich überall an", hooks: ["außenseiter","fahrend"] },
         ],
         weaknessTags: [
-          { text: "gemieden in dieser Gegend", hooks: ["außenseiter"] },
-          { text: "auffälliges Merkmal", hooks: ["außenseiter","schicksal"] },
+          { text: "von beiden Seiten beäugt", hooks: ["außenseiter"] },
+          { text: "unverkennbar gemischt", hooks: ["außenseiter","schicksal"] },
         ],
         quests: [
-          { title: "Ich überbrücke die Welten in denen ich lebe", description: "In den Adern des Helden fließt das Erbe zweier Völker, deren Sitten er beide kennt und deren Ahnensprache er spricht. Mit dem Blick für Gast und Eindringling vermittelt er zwischen Fremden, doch sein auffälliges Mal macht ihn beiderorts zum Außenseiter. Weder ganz von hier noch von dort, will er diese Welten überbrücken statt sich zerreiben zu lassen.", hooks: ["außenseiter","schicksal"] },
-          { title: "Ich finde meinesgleichen", description: "Als Mittler zwischen Fremden kennt der Held die Sitten zweier Völker, und doch gehört er zu keinem von beiden wirklich dazu. Gemieden und durch sein Mal gezeichnet, sehnt er sich nach jemandem, der dieselbe gespaltene Herkunft trägt. Irgendwo müssen andere sein, die zwischen den Welten stehen wie er, und das treibt ihn fort, sie zu finden.", hooks: ["außenseiter","schicksal"] },
+          { title: "Die zwei Welten versöhnen", description: "In ihm treffen zwei Völker aufeinander, die sich seit Menschengedenken misstrauen, und in seinem Gesicht sehen beide den Feind. Er hat begriffen, dass er die einzige Brücke zwischen ihnen ist. Es gibt einen alten Vertrag, halb vergessen, den beide Seiten einst brachen, und er sucht die zweite Hälfte der Urkunde.", hooks: ["außenseiter","schicksal"] },
+          { title: "Andere finden, die dazwischenstehen", description: "Zwischen den Völkern, so heißt es, gibt es mehr wie ihn, geboren aus Nächten, über die man nicht spricht, und überall gemieden. Er hat nie einen getroffen und zweifelt, ob er der Einzige ist. Ein Zeichen, an dem solche wie er sich erkennen, soll es geben, und er sucht das erste Gesicht, das es erwidert.", hooks: ["außenseiter","schicksal"] },
         ]
       },
       {
         text: "aus dem fernen Osten", hooks: ["fahrend","geheimnis"],
         powerTags: [
-          { text: "trägt das Wissen der Alten", hooks: ["wissen","natur"] },
-          { text: "Körpersprache nur für Eingeweihte", hooks: ["geheimnis","außenseiter"] },
-          { text: "altertümliches Lied", hooks: ["natur","wissen"] },
-          { text: "kennt ferne Sitten und Wege", hooks: ["fahrend","wissen"] },
+          { text: "Wissen aus der Ferne", hooks: ["wissen","natur"] },
+          { text: "fremde Kampfkunst", hooks: ["kampf","wissen"] },
+          { text: "Lieder der Heimat", hooks: ["natur","wissen"] },
+          { text: "kennt ferne Länder", hooks: ["fahrend","wissen"] },
         ],
         weaknessTags: [
-          { text: "spricht mit fremdem Akzent", hooks: ["außenseiter","fahrend"] },
-          { text: "fremde Sitten überfordern sie", hooks: ["außenseiter","natur"] },
+          { text: "kaum der Sprache mächtig", hooks: ["außenseiter","fahrend"] },
+          { text: "fremd in dieser Welt", hooks: ["außenseiter","natur"] },
         ],
         quests: [
-          { title: "Ich finde den Weg in die Heimat zurück", description: "Aus einem fernen Land im Osten trägt der Held das Wissen der Alten, alte Lieder und eine Körpersprache nur für Eingeweihte. Doch hier spricht er mit fremdem Akzent, und die hiesigen Sitten überfordern ihn auf Schritt und Tritt. Ein langer, ungewisser Pfad liegt zwischen ihm und dem Land, das ihn kennt, und die Sehnsucht heimzukehren wächst.", hooks: ["fahrend","verlust"] },
-          { title: "Ich bringe das Wissen meiner Heimat in diese Welt", description: "In der Ferne erlernte der Held Künste und Sitten, die hier kein Mensch je gesehen hat, und trägt das Wissen der Alten mit sich. Auch wenn sein Akzent ihn verrät und die fremden Bräuche ihn ratlos lassen, ahnt er den Wert dessen, was er bewahrt. Was hier niemand kennt, könnte vieles verändern, und das will er hineintragen.", hooks: ["wissen","geheimnis"] },
+          { title: "Den langen Weg heim finden", description: "Zwischen ihm und dem Land seiner Geburt liegen Meere, Wüsten und Namen, die er nicht aussprechen kann. Er kam nicht freiwillig hierher, so viel weiß er, den Rest verschluckte ein Fieber auf der Überfahrt. Er sammelt jeden Hinweis auf eine Route nach Osten, denn irgendwo beginnt der Weg zurück.", hooks: ["fahrend","verlust"] },
+          { title: "Das Wissen der Heimat hier fruchten lassen", description: "Er trägt Künste in sich, die hier niemand kennt, eine Heilung, die kein Bader glaubt, eine Rechenkunst, über die die Gelehrten lachen, bis sie stimmt. Anfangs wollte er nur überleben. Nun will er, dass etwas von seiner Heimat bleibt, auch wenn er selbst einmal geht, und sucht die Ersten, die lernen wollen.", hooks: ["wissen","geheimnis"] },
         ]
       },
     ]
