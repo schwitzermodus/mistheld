@@ -2347,29 +2347,29 @@ export const THEMEBOOKS = {
           { text: "hält Feinde fern", hooks: ["kampf","schicksal"] },
         ],
         weaknessTags: [
-          { text: "Magie fordert ihren Preis", hooks: ["magie","verlust"] },
+          { text: "die Kraft fordert Tribut", hooks: ["magie","verlust"] },
           { text: "zu schwer für Feinheit", hooks: ["kampf","handwerk"] },
         ],
         quests: [
-          { title: "Ich finde den wahren Gegner hinter meinem Zorn.", description: "Die steinerne Faust am Arm des Helden zerschmettert Tore und schleudert Feinde wie Laub davon, doch solche Wucht an Wegelagerern zu vergeuden fühlt sich falsch an. Irgendwo wartet ein Gegner, der dieser Macht würdig ist. Erst wenn der Held ihm gegenübersteht, wird sich zeigen, wofür die Faust ihm gegeben wurde.", hooks: ["kampf","schicksal"] },
-          { title: "Ich bändige die Wut, die mich treibt.", description: "Wenn die unmenschliche Kraft erwacht, ist es, als schlüge die Faust von selbst, und die Magie fordert jedes Mal ihren Preis. Der Held spürt, wie der Zorn ihn zu verschlingen droht. Er sucht den kühlen Punkt in sich, um zu treffen, wann er es will, und stillzuhalten, wann es nötig ist.", hooks: ["kampf","magie"] },
+          { title: "Ich finde den wahren Gegner hinter meinem Zorn.", description: "Die steinerne Faust zerschmettert Tore und schleudert Wegelagerer wie Laub, doch solche Wucht an Strauchdieben zu vergeuden fühlt sich falsch an. Irgendwo wartet ein Gegner, der dieser Macht würdig ist. Erst vor ihm, ahnt er, wird sich zeigen, wofür die Faust ihm gegeben wurde.", hooks: ["kampf","schicksal"] },
+          { title: "Ich bändige die Wut, die mich treibt.", description: "Wenn die Kraft erwacht, ist es, als schlüge die Faust von selbst, und jedes Mal fordert sie ihren Tribut. Er spürt, wie der Zorn ihn zu verschlingen droht. Er sucht den kühlen Punkt in sich, um zu treffen, wann er will, und stillzuhalten, wann es nötig ist.", hooks: ["kampf","magie"] },
         ]
       },
       {
         text: "Beutel mit Zauberstaub", hooks: ["magie","handwerk"],
         powerTags: [
-          { text: "beschwört nützliche Dinge", hooks: ["magie","handwerk"] },
           { text: "eine Prise für jede Not", hooks: ["magie","handwerk"] },
-          { text: "verstärkt eigene Fähigkeiten", hooks: ["magie","handwerk"] },
-          { text: "entfacht Funken aus dem Nichts", hooks: ["magie","natur"] },
+          { text: "beschwört nützliche Dinge", hooks: ["magie","handwerk"] },
+          { text: "Funken aus dem Nichts", hooks: ["magie","natur"] },
+          { text: "verstärkt die eigene Kraft", hooks: ["magie","handwerk"] },
         ],
         weaknessTags: [
           { text: "der Vorrat geht zur Neige", hooks: ["verlust","handwerk"] },
-          { text: "Magie fordert ihren Preis", hooks: ["magie","verlust"] },
+          { text: "jede Prise fordert ihren Preis", hooks: ["magie","verlust"] },
         ],
         quests: [
-          { title: "Ich finde das letzte Rezept, bevor es verloren geht.", description: "Eine Prise aus dem Beutel beschwört, was die Not gerade verlangt, und entfacht Funken aus dem Nichts. Doch ein Pulver fehlt dem Helden noch, das seltenste von allen, dessen Mischung längst verschollen ist. Er folgt verblassten Aufzeichnungen und Gerüchten alter Mischer, bis das letzte Rezept wieder in seinen Händen liegt.", hooks: ["wissen","handwerk"] },
-          { title: "Ich bewahre den Beutel und halte ihn niemals leer.", description: "Mit jeder Prise wächst die Sorge, denn der Vorrat geht zur Neige und Magie fordert ihren Preis. Der Held weiß, dass kein Markt diesen Staub verkauft. Also lernt er hauszuhalten, jede Beschwörung genau abzuwägen und so zu wirtschaften, als wäre jede Prise die allerletzte, die ihm bleibt.", hooks: ["handwerk","verlust"] },
+          { title: "Ich finde das letzte Rezept, ehe es verlorengeht.", description: "Eine Prise beschwört, was die Not verlangt, doch ein Pulver fehlt ihm, das seltenste, dessen Mischung längst verschollen ist. Er folgt verblassten Aufzeichnungen und Gerüchten alter Mischer, bis das letzte Rezept wieder in seinen Händen liegt, ehe der Letzte stirbt, der es kannte.", hooks: ["wissen","handwerk"] },
+          { title: "Ich halte den Beutel niemals leer.", description: "Mit jeder Prise wächst die Sorge, denn der Vorrat schwindet und kein Markt verkauft diesen Staub. Er lernt hauszuhalten, jede Beschwörung abzuwägen. Er sucht die Quellen der Zutaten selbst auf, um nie wieder zu erleben, wie sich ein leerer Beutel im schlimmsten Moment anfühlt.", hooks: ["handwerk","verlust"] },
         ]
       },
       {
@@ -2377,33 +2377,33 @@ export const THEMEBOOKS = {
         powerTags: [
           { text: "lauscht den Geistern", hooks: ["magie","geheimnis"] },
           { text: "ruft Verbündete aus dem Jenseits", hooks: ["magie","geheimnis"] },
-          { text: "braut wirksame Sude", hooks: ["magie","handwerk"] },
           { text: "bannt Wesen in den Kreis", hooks: ["magie","macht"] },
+          { text: "braut wirksame Sude", hooks: ["magie","handwerk"] },
         ],
         weaknessTags: [
           { text: "was gerufen wird bleibt", hooks: ["magie","schicksal"] },
-          { text: "andere wollen es", hooks: ["geheimnis","macht"] },
+          { text: "andere begehren ihn", hooks: ["geheimnis","macht"] },
         ],
         quests: [
-          { title: "Ich banne den Geist, der an meinen Kessel gebunden ist.", description: "Aus dem Kessel steigen Stimmen, und der Held lauscht den Geistern, die er in den Kreis zu bannen vermag. Doch einer weicht nicht, ein Schatten, der sich an die Lebenden klammert und nicht weichen will. Der Held sucht den rechten Sud und die rechten Worte, um das Wesen endlich zur Ruhe zu zwingen.", hooks: ["magie","geheimnis"] },
-          { title: "Ich schließe den Kreis und vollende das Beschwörungsritual.", description: "Was der Kessel ruft, das bleibt, wenn die Beschwörung misslingt, und der Held hat gesehen, was halb gerufene Wesen anrichten. Diese Last will er nie wieder tragen. Darum übt er jede Anrufung bis zur Vollendung, damit kein Geist je wieder ungebunden zwischen den Welten zurückbleibt.", hooks: ["magie","wissen"] },
+          { title: "Ich banne den Geist, der an meinen Kessel gebunden ist.", description: "Aus dem Kessel steigen Stimmen, doch einer weicht nicht, ein Schatten, der sich an die Lebenden klammert. Er sucht den rechten Sud und die rechten Worte, um das Wesen zur Ruhe zu zwingen, und reist zu dem Ort, an dem es einst starb, denn nur dort lässt es sich lösen.", hooks: ["magie","geheimnis"] },
+          { title: "Ich vollende das Ritual, das ich einst verpfuschte.", description: "Was der Kessel ruft, das bleibt, wenn die Beschwörung misslingt, und er hat gesehen, was halb gerufene Wesen anrichten. Diese Last will er nie wieder tragen. Er sucht den Meister, der die Anrufung ganz beherrscht, um zu lernen, sie fehlerfrei zu Ende zu bringen.", hooks: ["magie","wissen"] },
         ]
       },
       {
         text: "verfluchte Klinge", hooks: ["magie","schicksal","kampf"],
         powerTags: [
           { text: "schneidet durch alles", hooks: ["magie","kampf"] },
-          { text: "dürstet nach Blut", hooks: ["kampf","schicksal"] },
           { text: "bindet feindliche Magie", hooks: ["magie","kampf"] },
           { text: "kennt den tödlichen Streich", hooks: ["kampf","schicksal"] },
+          { text: "dürstet nach Blut", hooks: ["kampf","schicksal"] },
         ],
         weaknessTags: [
           { text: "hat einen eigenen Willen", hooks: ["magie","schicksal"] },
-          { text: "verändert mich subtil", hooks: ["magie","schicksal","verlust"] },
+          { text: "verändert mich langsam", hooks: ["magie","schicksal","verlust"] },
         ],
         quests: [
-          { title: "Ich breche den Fluch, der die Klinge verdirbt.", description: "Die Klinge schneidet durch alles und dürstet nach Blut, doch sie hat einen eigenen Willen und verändert den Helden mit jedem Streich ein wenig. Er fürchtet den Tag, an dem nichts mehr von ihm bleibt. Also sucht er einen Weg, ihre Macht zu führen, ohne ihr selbst zu verfallen.", hooks: ["magie","schicksal"] },
-          { title: "Ich räche das erste Opfer der verfluchten Klinge.", description: "In ruhigen Stunden flüstert die Klinge dem Helden von einem Verrat aus alter Zeit. Wer fiel zuerst durch ihren Schnitt, und welche Schuld klebt an ihrem Stahl? Der Held folgt der blutigen Spur in die Vergangenheit, um das erste Opfer zu rächen und vielleicht den Ursprung des Fluches zu verstehen.", hooks: ["verlust","kampf"] },
+          { title: "Ich lerne die Klinge zu führen, ohne ihr zu verfallen.", description: "Die Klinge schneidet durch alles, doch sie hat einen eigenen Willen und verändert ihn mit jedem Streich ein wenig. Er fürchtet den Tag, an dem nichts von ihm bleibt. Er sucht einen Weg, ihre Macht zu lenken, statt von ihr gelenkt zu werden, koste es ihn, was es wolle.", hooks: ["magie","schicksal"] },
+          { title: "Ich räche das erste Opfer der Klinge.", description: "In stillen Stunden flüstert sie ihm von einem Verrat aus alter Zeit. Wer fiel zuerst durch ihren Schnitt, und welche Schuld klebt am Stahl? Er folgt der blutigen Spur in die Vergangenheit, um das erste Opfer zu rächen und vielleicht den Ursprung des Fluches zu verstehen.", hooks: ["verlust","kampf"] },
         ]
       },
       {
@@ -2411,33 +2411,33 @@ export const THEMEBOOKS = {
         powerTags: [
           { text: "entfesselt rohe Arkanmacht", hooks: ["magie","schicksal"] },
           { text: "weckt vergessene Zauber", hooks: ["magie","wissen"] },
-          { text: "verstärkt eigene Fähigkeiten", hooks: ["magie","handwerk"] },
-          { text: "trägt Wissen alter Mager", hooks: ["wissen","magie"] },
+          { text: "trägt das Wissen alter Magier", hooks: ["wissen","magie"] },
+          { text: "verstärkt jeden Bann", hooks: ["magie","macht"] },
         ],
         weaknessTags: [
-          { text: "Macht stellt Forderungen", hooks: ["magie","macht"] },
+          { text: "die Macht stellt Forderungen", hooks: ["magie","macht"] },
           { text: "alte Zauber entgleiten", hooks: ["magie","verlust"] },
         ],
         quests: [
-          { title: "Ich erlerne die alte Sprache des Stabs.", description: "Der Stab birgt die Kraft eines Artefakts und das Wissen längst toter Mager, doch die alten Zauber entgleiten dem Helden, wenn ihm die Worte fehlen. Über den Runen, die seine Macht beherrschen, beugt er sich Nacht um Nacht. Erst wenn er die vergessene Sprache entziffert, wird der Stab ihm wahrhaft gehorchen.", hooks: ["wissen","magie"] },
-          { title: "Ich finde den letzten Träger des alten Stabs.", description: "Macht stellt ihre Forderungen, und der Held ahnt, dass er nicht der Erste ist, der diesen Stab führte. Was geschah mit jenem, der ihn vor Zeitaltern trug? Der Held sucht nach Spuren des letzten Trägers, um aus dessen Schicksal zu lernen, ehe ihn dieselbe Bürde verschlingt.", hooks: ["wissen","geheimnis"] },
+          { title: "Ich erlerne die alte Sprache des Stabs.", description: "Der Stab birgt die Kraft eines Artefakts, doch die alten Zauber entgleiten ihm, wenn die Worte fehlen. Nacht um Nacht beugt er sich über die Runen. Er sucht die letzten, die diese Sprache noch lesen, denn erst wenn er sie entziffert, wird der Stab ihm wahrhaft gehorchen.", hooks: ["wissen","magie"] },
+          { title: "Ich finde den letzten, der den Stab trug.", description: "Macht stellt ihre Forderungen, und er ahnt, dass er nicht der Erste ist, der diesen Stab führte. Was geschah mit jenem vor ihm? Er sucht die Spuren des letzten Trägers, um aus dessen Schicksal zu lernen, ehe ihn dieselbe Bürde verschlingt.", hooks: ["wissen","geheimnis"] },
         ]
       },
       {
         text: "Krone der Vergessenen", hooks: ["adel","verlust","geheimnis"],
         powerTags: [
-          { text: "trägt Autorität der Toten", hooks: ["adel","macht"] },
+          { text: "Autorität der Toten", hooks: ["adel","macht"] },
           { text: "gebietet über Schatten", hooks: ["magie","macht"] },
           { text: "erinnert vergessene Eide", hooks: ["wissen","verlust"] },
           { text: "verbirgt vor dem Bösen", hooks: ["magie","geheimnis"] },
         ],
         weaknessTags: [
           { text: "wer trägt hier wen", hooks: ["schicksal","geheimnis"] },
-          { text: "andere wollen es", hooks: ["geheimnis","macht"] },
+          { text: "andere begehren sie", hooks: ["geheimnis","macht"] },
         ],
         quests: [
-          { title: "Ich bewahre die Erinnerung an das verlorene Reich.", description: "Die Krone trägt die Autorität der Toten und gebietet über Schatten, doch niemand weiß mehr, welches Volk sie einst krönte. Der Held fühlt die vergessenen Eide in ihr nachhallen. Er gräbt in Ruinen und alten Liedern, um das untergegangene Reich ans Licht zu holen, ehe auch sein Name für immer verlischt.", hooks: ["adel","verlust"] },
-          { title: "Ich suche die rechtmäßige Erbin des vergessenen Reiches.", description: "Andere wollen die Krone, und der Held spürt, dass sie nicht ihm gehört, sondern fragt, wer hier eigentlich wen trägt. Irgendwo lebt vielleicht das letzte Blut der Vergessenen. Er macht sich auf, die rechtmäßige Erbin zu finden, um ihr zurückzugeben, was die Toten so lange bewahrt haben.", hooks: ["adel","geheimnis"] },
+          { title: "Ich bewahre die Erinnerung an das verlorene Reich.", description: "Die Krone gebietet über Schatten, doch niemand weiß mehr, welches Volk sie einst krönte, und er fühlt die vergessenen Eide in ihr nachhallen. Er gräbt in Ruinen und alten Liedern, um das untergegangene Reich ans Licht zu holen, ehe auch sein Name für immer verlischt.", hooks: ["adel","verlust"] },
+          { title: "Ich finde die rechtmäßige Erbin des Reiches.", description: "Andere wollen die Krone, und er spürt, dass sie nicht ihm gehört, sondern fragt, wer hier wen trägt. Irgendwo lebt vielleicht das letzte Blut der Vergessenen. Er macht sich auf, die rechtmäßige Erbin zu finden, um ihr zurückzugeben, was die Toten so lange bewahrten.", hooks: ["adel","geheimnis"] },
         ]
       },
       {
@@ -2449,29 +2449,29 @@ export const THEMEBOOKS = {
           { text: "entlarvt falsche Gestalt", hooks: ["magie","geheimnis"] },
         ],
         weaknessTags: [
-          { text: "zeigt auch eigene Schuld", hooks: ["geheimnis","verlust"] },
-          { text: "andere wollen es", hooks: ["geheimnis","macht"] },
+          { text: "zeigt auch die eigene Schuld", hooks: ["geheimnis","verlust"] },
+          { text: "andere begehren ihn", hooks: ["geheimnis","macht"] },
         ],
         quests: [
-          { title: "Ich entlarve eine Lüge mit dem Spiegel der Wahrheit.", description: "Der Spiegel enthüllt verborgene Wahrheiten, durchschaut jede Lüge und entlarvt selbst die falscheste Gestalt. Der Held weiß von einem Betrug, der Unschuldige ins Verderben stürzt. Mit dem Glas in der Hand stellt er den Lügner, bis dessen wahres Gesicht für alle sichtbar wird und der Trug zerbricht.", hooks: ["geheimnis","macht"] },
-          { title: "Ich halte meiner eigenen Wahrheit stand.", description: "Was der Spiegel zeigt, verschont niemanden, denn er offenbart auch die eigene Schuld des Helden. Jeder Blick hinein ist eine Prüfung. Der Held lernt, dem standzuhalten, was ihm das Glas über sich selbst entgegenwirft, denn nur wer die eigene Wahrheit erträgt, darf sie über andere richten.", hooks: ["geheimnis","verlust"] },
+          { title: "Ich entlarve eine Lüge mit dem Spiegel.", description: "Der Spiegel durchschaut jede Lüge und entlarvt die falscheste Gestalt, und er weiß von einem Betrug, der Unschuldige ins Verderben stürzt. Mit dem Glas in der Hand reist er dem Lügner nach, bis dessen wahres Gesicht für alle sichtbar wird und der Trug zerbricht.", hooks: ["geheimnis","macht"] },
+          { title: "Ich halte meiner eigenen Wahrheit stand.", description: "Was der Spiegel zeigt, verschont niemanden, denn er offenbart auch die eigene Schuld, und jeder Blick hinein ist eine Prüfung. Er lernt, dem standzuhalten, was ihm das Glas über sich selbst entgegenwirft, denn nur wer die eigene Wahrheit erträgt, darf sie über andere richten.", hooks: ["geheimnis","verlust"] },
         ]
       },
       {
         text: "selbstschreibendes Buch", hooks: ["magie","wissen","schicksal"],
         powerTags: [
           { text: "verzeichnet kommende Dinge", hooks: ["magie","schicksal"] },
-          { text: "deutet verborgene Zeichen", hooks: ["geheimnis","wissen","schicksal"] },
           { text: "beantwortet jede Frage", hooks: ["wissen","magie"] },
           { text: "warnt vor Gefahr", hooks: ["magie","schicksal"] },
+          { text: "deutet verborgene Zeichen", hooks: ["geheimnis","wissen","schicksal"] },
         ],
         weaknessTags: [
           { text: "schreibt auch böse Omen", hooks: ["schicksal","verlust"] },
           { text: "hat einen eigenen Willen", hooks: ["magie","schicksal"] },
         ],
         quests: [
-          { title: "Ich verhindere, dass das Buch die letzte Seite schreibt.", description: "Das Buch verzeichnet kommende Dinge und warnt vor Gefahr, doch es schreibt auch böse Omen, und auf der letzten Seite steht ein Ende, das der Held nicht hinnehmen will. Mit jedem Blatt rückt es näher. Er sucht fieberhaft einen Weg, das Vorhergesagte zu durchbrechen, ehe die Tinte sein Schicksal besiegelt.", hooks: ["schicksal","magie"] },
-          { title: "Ich erfahre, wer das selbstschreibende Buch lenkt.", description: "Das Artefakt trägt eine eigene Geschichte und einen eigenen Willen, und der Held fragt sich, wessen Hand die Worte wirklich führt. Beantwortet es jede Frage, nur um ihn zu lenken? Er folgt den Zeilen bis zu ihrer Quelle, um zu erfahren, wer hinter der unaufhörlich schreibenden Feder steht.", hooks: ["geheimnis","wissen"] },
+          { title: "Ich verhindere, dass das Buch die letzte Seite schreibt.", description: "Das Buch warnt vor Gefahr, doch es schreibt auch böse Omen, und auf der letzten Seite steht ein Ende, das er nicht hinnehmen will. Mit jedem Blatt rückt es näher. Er sucht fieberhaft den Weg, das Vorhergesagte zu durchbrechen, ehe die Tinte sein Schicksal besiegelt.", hooks: ["schicksal","magie"] },
+          { title: "Ich erfahre, wessen Hand das Buch führt.", description: "Das Artefakt trägt einen eigenen Willen, und er fragt sich, wessen Hand die Worte wirklich schreibt. Beantwortet es jede Frage, nur um ihn zu lenken? Er folgt den Zeilen bis zu ihrer Quelle, um zu erfahren, wer hinter der unaufhörlich schreibenden Feder steht.", hooks: ["geheimnis","wissen"] },
         ]
       },
       {
@@ -2483,29 +2483,29 @@ export const THEMEBOOKS = {
           { text: "weckt den Mut der Verteidiger", hooks: ["glaube","kampf"] },
         ],
         weaknessTags: [
-          { text: "wurzelt nur an einem Ort", hooks: ["natur","verlust"] },
-          { text: "Macht stellt Forderungen", hooks: ["macht","schicksal"] },
+          { text: "stark nur hinter Mauern", hooks: ["natur","verlust"] },
+          { text: "die Macht stellt Forderungen", hooks: ["macht","schicksal"] },
         ],
         quests: [
-          { title: "Ich bewahre das Erbe der gefallenen Festung.", description: "Der Stein birgt die Kraft alter Mauern und hält jeden Sturm aus, doch er wurzelt nur an einem Ort und trägt die Erinnerung an eine Festung, die einst fiel. Der Held will wissen, warum sie wirklich brach. In den Trümmern ihrer Geschichte sucht er die Wahrheit, die unter dem Schutt begraben liegt.", hooks: ["verlust","macht"] },
-          { title: "Ich errichte einen neuen Wall aus dem alten Stein.", description: "Unerschütterlicher Schutz schläft in dem Stein, doch seine Macht stellt Forderungen. Der Held sieht Wehrlose, die einen sicheren Ort brauchen. Mit der Kraft, die den Mut der Verteidiger weckt, will er einen letzten Wall errichten, hinter dem die Schwachen Zuflucht finden, wenn die Welt um sie her zerbricht.", hooks: ["natur","handwerk"] },
+          { title: "Ich decke auf, warum die Festung wirklich fiel.", description: "Der Stein trägt die Erinnerung an eine Festung, die einst fiel, und hält doch jeden Sturm aus. Er will wissen, warum sie wirklich brach, wo sie doch uneinnehmbar schien. In den Trümmern ihrer Geschichte sucht er die Wahrheit, die unter dem Schutt begraben liegt.", hooks: ["verlust","macht"] },
+          { title: "Ich errichte einen neuen Wall aus dem alten Stein.", description: "Unerschütterlicher Schutz schläft im Stein, doch seine Macht stellt Forderungen, und er sieht Wehrlose, die einen sicheren Ort brauchen. Mit der Kraft, die den Mut der Verteidiger weckt, will er dort einen letzten Wall errichten, wo die Schwachen sonst schutzlos wären.", hooks: ["natur","handwerk"] },
         ]
       },
       {
         text: "Kette des letzten Königs", hooks: ["adel","verlust","macht"],
         powerTags: [
-          { text: "trägt königliche Autorität", hooks: ["adel","macht"] },
+          { text: "königliche Autorität", hooks: ["adel","macht"] },
           { text: "gebietet alten Gehorsam", hooks: ["adel","macht"] },
           { text: "erinnert gebrochene Schwüre", hooks: ["adel","verlust"] },
           { text: "unerklärlicher Schutz", hooks: ["magie","schicksal","geheimnis"] },
         ],
         weaknessTags: [
-          { text: "andere wollen es", hooks: ["geheimnis","macht"] },
+          { text: "andere begehren sie", hooks: ["geheimnis","macht"] },
           { text: "Last eines toten Throns", hooks: ["adel","verlust"] },
         ],
         quests: [
-          { title: "Ich finde die letzte Erblinie des alten Königs.", description: "Die Kette trägt königliche Autorität und gebietet alten Gehorsam, doch sie ist auch die Last eines toten Throns, und andere wollen sie an sich reißen. Der Held weiß, dass ihr Gewicht nicht ihm bestimmt ist. Er sucht den letzten Erben des verschwundenen Königs, ehe Gierige die Macht für sich beanspruchen.", hooks: ["adel","geheimnis"] },
-          { title: "Ich kitte das gebrochene Reich wieder zusammen.", description: "In den Gliedern der Kette hallen gebrochene Schwüre nach, und der Held spürt, wie ein Reich in Zwietracht zerfällt. Mit dem alten Gehorsam, den sie gebietet, will er zerrissene Treue neu binden. Bevor andere die Kette zu Krieg und Eroberung missbrauchen, soll sie das Zerbrochene wieder zusammenfügen.", hooks: ["adel","macht"] },
+          { title: "Ich finde die letzte Erblinie des Königs.", description: "Die Kette gebietet alten Gehorsam, doch sie ist auch die Last eines toten Throns, und andere wollen sie an sich reißen. Er weiß, ihr Gewicht ist nicht ihm bestimmt. Er sucht den letzten Erben des verschwundenen Königs, ehe Gierige die Macht für sich beanspruchen.", hooks: ["adel","geheimnis"] },
+          { title: "Ich kitte das zerbrochene Reich zusammen.", description: "In den Gliedern hallen gebrochene Schwüre nach, und er spürt, wie ein Reich in Zwietracht zerfällt. Mit dem Gehorsam, den die Kette gebietet, will er zerrissene Treue neu binden. Ehe andere sie zu Krieg missbrauchen, soll sie das Zerbrochene wieder zusammenfügen.", hooks: ["adel","macht"] },
         ]
       },
       {
@@ -2513,33 +2513,33 @@ export const THEMEBOOKS = {
         powerTags: [
           { text: "öffnet verschlossene Türen", hooks: ["magie","geheimnis"] },
           { text: "weist den Weg", hooks: ["magie","schicksal"] },
-          { text: "verbirgt vor dem Bösen", hooks: ["magie","geheimnis"] },
           { text: "spürt verborgene Schwellen", hooks: ["geheimnis","wissen"] },
+          { text: "verbirgt vor dem Bösen", hooks: ["magie","geheimnis"] },
         ],
         weaknessTags: [
           { text: "leicht zu verlieren", hooks: ["verlust","geheimnis"] },
           { text: "von Dieben begehrt", hooks: ["stadt","geheimnis"] },
         ],
         quests: [
-          { title: "Ich finde das passende Schloss für den rätselhaften Schlüssel.", description: "Der Schlüssel öffnet verschlossene Türen, weist den Weg und spürt verborgene Schwellen auf, doch zu keinem Schloss gehört er recht. Der Held fühlt, dass es eine einzige Tür gibt, für die er geschmiedet wurde. Er folgt dem ziehenden Drang des Schlüssels, bis er das Schloss findet, das auf ihn gewartet hat.", hooks: ["geheimnis","schicksal"] },
-          { title: "Ich sehe hinter die letzte Tür, bevor sie sich schließt.", description: "Leicht zu verlieren und von Dieben begehrt, weist der Schlüssel den Helden auf eine Schwelle, die noch keiner überschritt. Was verbirgt sich hinter der letzten Tür, die er verschließt? Getrieben von einer Neugier, die stärker ist als die Furcht, will der Held öffnen, was niemand vor ihm öffnen durfte.", hooks: ["geheimnis","verlust"] },
+          { title: "Ich finde das Schloss, für das der Schlüssel gemacht ist.", description: "Der Schlüssel öffnet verschlossene Türen, doch zu keinem Schloss gehört er recht, und er fühlt, dass es eine einzige Tür gibt, für die er geschmiedet wurde. Er folgt dem ziehenden Drang des Schlüssels über Land und Meer, bis er das Schloss findet, das auf ihn gewartet hat.", hooks: ["geheimnis","schicksal"] },
+          { title: "Ich sehe hinter die letzte Tür, ehe sie sich schließt.", description: "Der Schlüssel weist ihn auf eine Schwelle, die noch keiner überschritt, und die Neugier ist stärker als die Furcht. Was verbirgt sich dahinter? Von Dieben gejagt, eilt er dorthin, um zu öffnen, was niemand vor ihm öffnen durfte, ehe sich die Tür für immer schließt.", hooks: ["geheimnis","verlust"] },
         ]
       },
       {
         text: "Kapsel verlorener Stimmen", hooks: ["geheimnis","verlust","magie"],
         powerTags: [
-          { text: "spricht in Träumen", hooks: ["magie","schicksal"] },
-          { text: "bewahrt Worte der Toten", hooks: ["geheimnis","verlust"] },
+          { text: "bewahrt die Worte der Toten", hooks: ["geheimnis","verlust"] },
           { text: "flüsternder Rat aus alter Zeit", hooks: ["geheimnis","magie"] },
+          { text: "spricht in Träumen", hooks: ["magie","schicksal"] },
           { text: "enthüllt verborgene Wahrheiten", hooks: ["geheimnis","wissen","magie"] },
         ],
         weaknessTags: [
           { text: "die Stimmen verstummen nie", hooks: ["magie","verlust"] },
-          { text: "verändert mich subtil", hooks: ["magie","schicksal","verlust"] },
+          { text: "verändert mich langsam", hooks: ["magie","schicksal","verlust"] },
         ],
         quests: [
-          { title: "Ich lasse eine verlorene Stimme aus der Kapsel frei.", description: "Die Kapsel bewahrt die Worte der Toten und flüstert dem Helden Rat aus alter Zeit, doch die Stimmen verstummen nie und verändern ihn mit jedem Tag. Eine darunter fleht um Erlösung. Der Held sucht den Weg, diese gefangene Seele endlich gehen zu lassen, ehe das ewige Flüstern ihn selbst verschlingt.", hooks: ["verlust","magie"] },
-          { title: "Ich höre das letzte Wort einer vergessenen Seele.", description: "In Träumen sprechen die verlorenen Stimmen, und eine enthüllt verborgene Wahrheiten, die niemand sonst kennt. Wessen Stimme wurde als letzte in die Kapsel eingeschlossen, und warum? Der Held lauscht durch den Lärm der Toten, bis er jenes eine letzte Wort vernimmt, das alles erklären könnte.", hooks: ["geheimnis","verlust"] },
+          { title: "Ich lasse eine gefangene Stimme endlich frei.", description: "Die Kapsel bewahrt die Worte der Toten, doch die Stimmen verstummen nie und verändern ihn Tag um Tag. Eine darunter fleht um Erlösung. Er sucht den Weg, diese gefangene Seele gehen zu lassen, und reist dorthin, wo sie einst lebte, ehe das ewige Flüstern ihn selbst verschlingt.", hooks: ["verlust","magie"] },
+          { title: "Ich höre das letzte Wort einer vergessenen Seele.", description: "In Träumen sprechen die verlorenen Stimmen, und eine enthüllt Wahrheiten, die niemand sonst kennt. Wessen Stimme wurde als letzte eingeschlossen, und warum? Er lauscht durch den Lärm der Toten, bis er jenes eine letzte Wort vernimmt, das alles erklären könnte.", hooks: ["geheimnis","verlust"] },
         ]
       },
     ]
