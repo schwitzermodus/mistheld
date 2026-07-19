@@ -1299,118 +1299,118 @@ export const THEMEBOOKS = {
         powerTags: [
           { text: "unbändige Kraft", hooks: ["kampf","schicksal"] },
           { text: "fester Griff", hooks: ["kampf","natur"] },
-          { text: "trägt schwere Lasten", hooks: ["natur","handwerk"] },
-          { text: "bricht durch Hindernisse", hooks: ["kampf","natur"] },
+          { text: "schleppt mühelos", hooks: ["natur","handwerk"] },
+          { text: "bricht durch", hooks: ["kampf","natur"] },
         ],
         weaknessTags: [
-          { text: "auffällig für Feinde", hooks: ["schicksal","kampf"] },
+          { text: "unübersehbar groß", hooks: ["schicksal","kampf"] },
           { text: "schwer und langsam", hooks: ["kampf","verlust"] },
         ],
         quests: [
-          { title: "Ich beweise meine Stärke", description: "Wenn der Held einen Wagen aus dem Schlamm hebt oder ein verklemmtes Tor aufbricht, sehen andere nur die rohe Kraft. Doch er weiß, dass mehr in ihm steckt als bloße Muskeln. Mit jeder Tat will er zeigen, dass hinter dem festen Griff auch ein Kopf und ein Herz wohnen, die zählen.", hooks: ["kampf","schicksal"] },
-          { title: "Ich schütze die Schwachen", description: "Die unbändige Kraft, die dem Helden gegeben ist, fühlt sich erst dann richtig an, wenn sie einem anderen dient. Wo ein Schwächerer zu Boden gedrückt wird, stellt er sich dazwischen und bricht durch jedes Hindernis. Seine breiten Schultern sollen ein Schild für jene sein, die sich allein nicht wehren können.", hooks: ["glaube","kampf"] },
+          { title: "Mehr sein als bloße Kraft", description: "Alle rufen ihn, wenn ein Karren im Dreck steckt, und vergessen ihn, wenn geredet wird, als säße sein Verstand in den Armen. Das wurmt ihn mehr, als er zeigt. Er sucht die eine Gelegenheit, bei der nicht seine Kraft zählt, sondern sein Kopf, und will sie nutzen.", hooks: ["kampf","schicksal"] },
+          { title: "Mich vor die Wehrlosen stellen", description: "Als er einmal nicht eingriff, weil es ihn nichts anging, trug ein Kind die Folgen; das Bild wird er nicht los. Seine Kraft, hat er beschlossen, gehört nicht ihm allein. Wo eine Faust auf einen Schwächeren zielt, will er die Faust sein, die dazwischenfährt.", hooks: ["glaube","kampf"] },
         ]
       },
       {
-        text: "akrobatische Beweglichkeit", hooks: ["handwerk","natur"],
+        text: "gelenkig wie eine Katze", hooks: ["handwerk","natur"],
         powerTags: [
-          { text: "klettert wie eine Katze", hooks: ["natur","handwerk"] },
-          { text: "springt höher als andere", hooks: ["schicksal","natur"] },
-          { text: "leichter Schritt", hooks: ["handwerk","geheimnis"] },
-          { text: "fällt nie", hooks: ["handwerk","natur"] },
+          { text: "klettert überall hoch", hooks: ["natur","handwerk"] },
+          { text: "weiter Sprung", hooks: ["schicksal","natur"] },
+          { text: "sicherer Tritt", hooks: ["natur","handwerk"] },
+          { text: "fällt weich", hooks: ["handwerk","natur"] },
         ],
         weaknessTags: [
-          { text: "erschöpft sich rasch", hooks: ["schicksal","verlust"] },
-          { text: "tollkühn ohne Maß", hooks: ["schicksal","verlust"] },
+          { text: "schnell erschöpft", hooks: ["schicksal","verlust"] },
+          { text: "tollkühn", hooks: ["schicksal","verlust"] },
         ],
         quests: [
-          { title: "Ich meistere das Unmögliche", description: "Wände, Klüfte und Abgründe sind für den Helden nur Einladungen, denn er klettert wie eine Katze und springt höher als alle anderen. Irgendwo wartet ein Sprung, den noch niemand zu wagen gewagt hat. Diesen Weg zu gehen treibt ihn an, auch wenn seine tollkühne Art ihn manchmal weiter führt, als klug wäre.", hooks: ["schicksal","handwerk"] },
-          { title: "Ich finde den höchsten Gipfel", description: "Was andere für unerreichbar halten, erkennt der Held als seine eigentliche Prüfung. Mit leichtem Schritt und sicherem Griff sucht er den Punkt, an dem die Welt unter ihm liegt und kein Mensch je stand. Erst auf dem höchsten Gipfel, glaubt er, wird er wirklich erfahren, wozu er geboren ist.", hooks: ["natur","fahrend"] },
+          { title: "Den Sprung wagen, den keiner wagt", description: "Es heißt, über der Schlucht der Verzweiflung habe noch nie ein Mensch die andere Seite erreicht, und die wenigen, die es versuchten, kamen nicht zurück. Genau deshalb kann sie an nichts anderes mehr denken. Sie sucht den Sprung, der sie unsterblich macht oder eben nicht.", hooks: ["schicksal","handwerk"] },
+          { title: "Den höchsten Gipfel finden", description: "Als Kind stand sie auf jedem Dach des Dorfes und fühlte sich der Welt näher. Nun gibt es einen Gipfel, von dem die Alten sagen, oben stehe man zwischen den Sternen. Ob das stimmt, will sie mit eigenen Händen erklettern, denn Erzählungen genügen ihr nicht.", hooks: ["natur","fahrend"] },
         ]
       },
       {
         text: "unheimlich schön", hooks: ["schicksal","geheimnis"],
         powerTags: [
-          { text: "betörende Schönheit", hooks: ["schicksal","geheimnis"] },
-          { text: "zieht Blicke an", hooks: ["schicksal","adel"] },
-          { text: "unvergesslicher Anblick", hooks: ["schicksal","stadt"] },
-          { text: "gewinnt Sympathie sofort", hooks: ["stadt","schicksal"] },
+          { text: "betörender Anblick", hooks: ["schicksal","geheimnis"] },
+          { text: "zieht alle Blicke an", hooks: ["schicksal","adel"] },
+          { text: "unvergesslich", hooks: ["schicksal","stadt"] },
+          { text: "gewinnt Sympathie", hooks: ["stadt","schicksal"] },
         ],
         weaknessTags: [
-          { text: "wird beneidet", hooks: ["schicksal","stadt"] },
-          { text: "zieht unliebsame Neugier an", hooks: ["schicksal","geheimnis"] },
+          { text: "heftig beneidet", hooks: ["schicksal","stadt"] },
+          { text: "zieht unliebsame Blicke an", hooks: ["schicksal","geheimnis"] },
         ],
         quests: [
-          { title: "Ich werde nicht nur für mein Gesicht gesehen", description: "Überall ziehen die Blicke dem Helden hinterher, gefangen von einer betörenden Schönheit, die er sich nie ausgesucht hat. Doch er sehnt sich danach, für seinen Mut, seinen Verstand und seine Taten geachtet zu werden. Hinter dem unvergesslichen Anblick steckt ein ganzer Mensch, und genau den will er den anderen endlich zeigen.", hooks: ["schicksal","außenseiter"] },
-          { title: "Ich enthülle das Geheimnis meiner Herkunft", description: "In der Schönheit des Helden liegt etwas Fremdartiges, das mehr Neugier weckt, als ihm lieb ist. Manche Blicke verraten Ehrfurcht, andere kaum verhohlenen Neid. Er spürt, dass sein Antlitz eine Geschichte erzählt, die er selbst nicht kennt, und er wird nicht ruhen, bis er weiß, woher dieser seltsame Glanz wirklich stammt.", hooks: ["geheimnis","schicksal"] },
+          { title: "Nicht nur fürs Gesicht gesehen werden", description: "Sein ganzes Leben lang haben Menschen ihn angestarrt und dabei nie gesehen. Man lobt sein Gesicht wie ein Gemälde und fragt nie, was er denkt. Er sucht den einen Ort oder Menschen, wo sein Mut oder sein Wort mehr zählt als sein Antlitz.", hooks: ["schicksal","außenseiter"] },
+          { title: "Das Geheimnis meiner Herkunft enthüllen", description: "In seiner Schönheit liegt etwas, das nicht von hier zu sein scheint, und manche bekreuzigen sich heimlich, wenn er vorübergeht. Seine Eltern schwiegen über seine Geburt bis zuletzt. Er will wissen, woher dieser fremde Glanz stammt, ehe andere die Antwort vor ihm finden.", hooks: ["geheimnis","schicksal"] },
         ]
       },
       {
-        text: "wache Beobachtungsgabe", hooks: ["schicksal","magie"],
+        text: "wacher Beobachter", hooks: ["schicksal","magie"],
         powerTags: [
           { text: "vorausschauend", hooks: ["schicksal","magie"] },
-          { text: "spürt nahende Gefahr", hooks: ["magie","schicksal"] },
-          { text: "liest Räume sofort", hooks: ["schicksal","stadt"] },
-          { text: "übersieht kein Detail", hooks: ["wissen","schicksal"] },
+          { text: "wittert Gefahr", hooks: ["magie","schicksal"] },
+          { text: "liest den Raum", hooks: ["schicksal","stadt"] },
+          { text: "übersieht nichts", hooks: ["wissen","schicksal"] },
         ],
         weaknessTags: [
           { text: "verliert sich in Details", hooks: ["wissen","geheimnis"] },
-          { text: "sieht zu viel", hooks: ["schicksal","verlust"] },
+          { text: "sieht überall Gefahren", hooks: ["schicksal","verlust"] },
         ],
         quests: [
-          { title: "Ich deute die Zeichen richtig", description: "Dem Helden entgeht kein Detail, und schon bevor andere etwas ahnen, spürt er die nahende Gefahr. Doch zu sehen ist nicht dasselbe wie zu verstehen, und manchmal verliert er sich in den vielen kleinen Hinweisen. Er will lernen, die Zeichen richtig zu deuten, ehe es zu spät ist und das Unheil bereits geschehen kann.", hooks: ["schicksal","wissen"] },
-          { title: "Ich warne vor dem kommenden Unheil", description: "Während die anderen sorglos in ihren Tag hineinleben, liest der Held die Räume und erkennt die Gefahr, die niemand sehen will. Sein vorausschauender Blick ist Gabe und Last zugleich. Er nimmt es auf sich, die Warnung auszusprechen, auch wenn man ihm nicht glaubt, denn lieber unbequem mahnen als schweigend ins Verderben gehen.", hooks: ["magie","schicksal"] },
+          { title: "Die Zeichen richtig deuten", description: "Er sieht die Vorzeichen, ehe andere sie bemerken, doch Sehen und Verstehen sind zweierlei, und schon zweimal hat er falsch gedeutet. Einmal zu viel gewarnt, einmal zu wenig. Er will lernen, die Zeichen richtig zu lesen, ehe sein Zögern jemanden das Leben kostet.", hooks: ["schicksal","wissen"] },
+          { title: "Vor dem kommenden Unheil warnen", description: "Er hat etwas kommen sehen, das die anderen nicht wahrhaben wollen, ein Muster in Kleinigkeiten, das sich zu einer Katastrophe fügt. Man nennt ihn einen Schwarzseher und wendet sich ab. Er nimmt die Undankbarkeit in Kauf und reist voraus, um zu warnen, wo man noch warnen kann.", hooks: ["magie","schicksal"] },
         ]
       },
       {
         text: "ausdauernder Schwimmer", hooks: ["natur","schicksal"],
         powerTags: [
-          { text: "taucht tief und lange", hooks: ["natur","schicksal"] },
+          { text: "langer Atem", hooks: ["natur","schicksal"] },
           { text: "trotzt jeder Strömung", hooks: ["natur","kampf"] },
-          { text: "fühlt sich im Wasser zuhause", hooks: ["natur","schicksal"] },
+          { text: "wasserfest", hooks: ["natur","schicksal"] },
           { text: "unermüdliche Beine", hooks: ["schicksal","natur"] },
         ],
         weaknessTags: [
           { text: "ruhelos an Land", hooks: ["natur","außenseiter"] },
-          { text: "trotzt der Gefahr zu lange", hooks: ["schicksal","verlust"] },
+          { text: "bleibt zu lange in Gefahr", hooks: ["schicksal","verlust"] },
         ],
         quests: [
-          { title: "Ich durchquere die tiefen Gewässer", description: "Im Wasser fühlt sich der Held zuhause, taucht tief und lange und trotzt jeder Strömung, die andere längst fortgerissen hätte. Jenseits des sicheren Ufers liegt etwas, das nur er erreichen kann. Dieser Ruf der Tiefe lässt ihn nicht los, auch wenn er an Land ruhelos bleibt und der Gefahr im Strudel zu lange standhält.", hooks: ["natur","fahrend"] },
-          { title: "Ich berge was im Wasser verloren ging", description: "Auf dem Grund der dunklen Tiefe ruht etwas, nach dem der Held tauchen muss, mag es ein verlorener Schatz, ein Mensch oder eine Wahrheit sein. Seine unermüdlichen Beine und der lange Atem tragen ihn dorthin, wo niemand sonst hinabsteigt. Erst wenn er das Verlorene geborgen hat, findet die Ruhelosigkeit in ihm ein Ende.", hooks: ["natur","verlust"] },
+          { title: "Die tiefen Gewässer durchqueren", description: "Jenseits der Meerenge, die noch kein Schwimmer bezwang, soll ein Ufer liegen, das man nur ohne Boot erreicht. Er hat sein Leben im Wasser verbracht und spürt, dass diese Strecke die ist, für die er gemacht wurde. Der Sog der Tiefe lässt ihn nicht los.", hooks: ["natur","fahrend"] },
+          { title: "Bergen, was im Wasser verloren ging", description: "Auf dem Grund, wo das Licht nicht mehr hinreicht, liegt etwas, nach dem außer ihm niemand zu tauchen wagt, ein Schatz, ein Mensch, eine Wahrheit, er weiß es selbst nicht genau. Nur, dass es ihn ruft. Erst wenn er es heraufgeholt hat, wird seine Ruhelosigkeit schweigen.", hooks: ["natur","verlust"] },
         ]
       },
       {
         text: "unerschütterlich", hooks: ["glaube","schicksal"],
         powerTags: [
+          { text: "eiserne Konzentration", hooks: ["handwerk","glaube"] },
           { text: "unermüdlich", hooks: ["schicksal","glaube"] },
-          { text: "unerschütterliche Konzentration", hooks: ["handwerk","glaube"] },
-          { text: "behält die Ruhe", hooks: ["natur","glaube"] },
-          { text: "unerschütterlich heiter", hooks: ["schicksal","kampf"] },
+          { text: "heiter unter Druck", hooks: ["schicksal","kampf"] },
+          { text: "lässt sich nicht hetzen", hooks: ["natur","glaube"] },
         ],
         weaknessTags: [
-          { text: "kennt ihre Grenzen nicht", hooks: ["schicksal","verlust"] },
+          { text: "kennt keine Grenzen", hooks: ["schicksal","verlust"] },
           { text: "starr im Urteil", hooks: ["glaube","außenseiter"] },
         ],
         quests: [
-          { title: "Ich halte stand wenn alle weichen", description: "Wenn andere die Nerven verlieren und davonlaufen, bleibt der Held mit unerschütterlicher Konzentration stehen. Wenn alles um ihn zerbricht, will er der sein, der nicht weicht. Diese unbeugsame Festigkeit ist sein Stolz, auch wenn sie ihn manchmal seine eigenen Grenzen vergessen lässt und ihn dort verharren heißt, wo Klugheit zum Rückzug riete.", hooks: ["glaube","kampf"] },
-          { title: "Ich bewahre die Ruhe im Sturm", description: "Mitten im Chaos, wo Panik und Streit toben, sucht der Held den festen Punkt und findet ihn in sich selbst. Seine unerschütterliche Heiterkeit gibt den anderen Halt, wenn ihnen der Boden unter den Füßen schwindet. Er will jener ruhige Anker sein, an dem sich die Aufgewühlten festklammern, selbst wenn ihn das starr und unnachgiebig erscheinen lässt.", hooks: ["glaube","natur"] },
+          { title: "Standhalten, wenn alle weichen", description: "Als das halbe Dorf floh, blieb er am Deich und hielt, was zu halten war; seither nennt man ihn den Sturkopf, und er trägt es wie einen Orden. Irgendwo wartet der Posten, den kein anderer halten will. Dort will er stehen, wenn alle weichen.", hooks: ["glaube","kampf"] },
+          { title: "Der feste Punkt für andere sein", description: "Wo Panik ausbricht, wird er ruhig, und die Aufgewühlten sammeln sich um ihn wie um einen Pfahl im Strom. Er hat gemerkt, dass seine Ruhe andere trägt, und beginnt, sie bewusst dorthin zu tragen, wo sie gebraucht wird, auch wenn ihn manche für kalt halten.", hooks: ["glaube","natur"] },
         ]
       },
       {
         text: "leicht zu übersehen", hooks: ["geheimnis","schicksal"],
         powerTags: [
-          { text: "geht in der Menge unter", hooks: ["außenseiter","geheimnis"] },
-          { text: "leise Schritte", hooks: ["geheimnis","stadt"] },
-          { text: "unbemerkt zuhören", hooks: ["geheimnis","stadt"] },
-          { text: "unauffällig", hooks: ["außenseiter","geheimnis"] },
+          { text: "verschwindet in der Menge", hooks: ["außenseiter","geheimnis"] },
+          { text: "lautlose Schritte", hooks: ["geheimnis","stadt"] },
+          { text: "lauscht unbemerkt", hooks: ["geheimnis","stadt"] },
+          { text: "vergessenes Gesicht", hooks: ["außenseiter","geheimnis"] },
         ],
         weaknessTags: [
           { text: "wird leicht vergessen", hooks: ["schicksal","verlust"] },
           { text: "selten ernst genommen", hooks: ["außenseiter","verlust"] },
         ],
         quests: [
-          { title: "Ich erfahre was niemand sagen will", description: "Niemand achtet auf den Helden, denn er geht in der Menge unter und verschwindet hinter leisen Schritten. Doch was für andere eine Kränkung wäre, macht er sich zunutze. Ungesehen lauscht er an Türen und in Winkeln und erfährt im Verborgenen genau das, was vor allen anderen sorgsam verschwiegen bleibt.", hooks: ["geheimnis","stadt"] },
-          { title: "Ich werde endlich gesehen", description: "Sein Leben lang wurde der Held übersehen, leicht vergessen und selten ernst genommen, als wäre er kaum vorhanden. Doch tief in ihm wächst der Wunsch, einmal wirklich zu zählen. Er sehnt sich nach dem einen Augenblick, in dem ein Blick auf ihm ruht und erkennt, dass auch der Unauffällige ein eigenes Gewicht besitzt.", hooks: ["außenseiter","schicksal"] },
+          { title: "Erfahren, was niemand sagen will", description: "Niemand senkt die Stimme, wenn er im Raum ist, weil niemand ihn bemerkt, und so hat er gehört, was Mächtige einander nur im Flüsterton sagen. Etwas davon dürfte er nicht wissen. Genau dem geht er nach, ungesehen, Tür um Tür.", hooks: ["geheimnis","stadt"] },
+          { title: "Endlich gesehen werden", description: "Ein Leben lang ist er durch Räume gegangen, ohne eine Spur zu hinterlassen, übersehen, vergessen, überhört. In ihm wächst der Wunsch, ein einziges Mal wirklich zu zählen. Er sucht den Augenblick, in dem ein Blick auf ihm ruht und erkennt, dass auch er ein Gewicht hat.", hooks: ["außenseiter","schicksal"] },
         ]
       },
       {
@@ -1418,24 +1418,24 @@ export const THEMEBOOKS = {
         powerTags: [
           { text: "hört den leisesten Laut", hooks: ["schicksal","natur"] },
           { text: "lauscht durch Wände", hooks: ["geheimnis","stadt"] },
-          { text: "erwacht beim leisesten Geräusch", hooks: ["kampf","natur"] },
+          { text: "leiser Schläfer", hooks: ["kampf","natur"] },
           { text: "scharfe Sinne", hooks: ["schicksal","natur"] },
         ],
         weaknessTags: [
-          { text: "geplagt von Lärm", hooks: ["schicksal","verlust"] },
-          { text: "abgelenkt durch Geräusche", hooks: ["geheimnis","verlust"] },
+          { text: "von Lärm gepeinigt", hooks: ["schicksal","verlust"] },
+          { text: "durch Geräusche ablenkbar", hooks: ["geheimnis","verlust"] },
         ],
         quests: [
-          { title: "Ich erlausche das verborgene Wort", description: "Der Held hört den leisesten Laut und lauscht durch Wände, wo andere nur Stille wahrnehmen. Irgendwo wird ein Geheimnis nur im Flüsterton weitergegeben, und genau dieses Wort will er vernehmen. Seine scharfen Sinne führen ihn zu dem, was im Verborgenen gesprochen wird, auch wenn ihn der Lärm der Welt sonst quält.", hooks: ["geheimnis","schicksal"] },
-          { title: "Ich folge dem Klang in die Ferne", description: "Ein Ruf dringt zum Helden, den außer ihm niemand zu hören vermag, und er weist ihm den Weg. Mit feinem Gehör erwacht er beim leisesten Geräusch und folgt dem fernen Klang, wohin er auch führt. Etwas oder jemand sucht ihn, davon ist er überzeugt, und er wird der Spur des Klanges bis ans Ende nachgehen.", hooks: ["natur","fahrend"] },
+          { title: "Das verborgene Wort erlauschen", description: "In einem Haus, das er nie betrat, wird ein Satz nur einmal im Jahr geflüstert, ein Satz, für den Menschen töten würden. Sein Ohr reicht weiter als die Vorsicht der anderen. Er sucht die Wand, hinter der dieses Wort fällt, und den Tag, an dem es fällt.", hooks: ["geheimnis","schicksal"] },
+          { title: "Dem Klang in die Ferne folgen", description: "Seit Wochen dringt ein Klang zu ihm, den außer ihm niemand hört, mal ein Läuten, mal eine Stimme, immer aus derselben Richtung. Die anderen tippen sich an die Stirn. Er ist sicher, dass ihn etwas ruft, und folgt dem Ton, wohin er auch führt.", hooks: ["natur","fahrend"] },
         ]
       },
       {
         text: "guter Menschenkenner", hooks: ["schicksal","geheimnis"],
         powerTags: [
-          { text: "durchschaut eine Lüge", hooks: ["stadt","geheimnis"] },
+          { text: "durchschaut Lügen", hooks: ["stadt","geheimnis"] },
           { text: "hört Falschheit heraus", hooks: ["schicksal","stadt"] },
-          { text: "spürt Stimmungen in Räumen", hooks: ["schicksal","stadt"] },
+          { text: "liest Stimmungen", hooks: ["schicksal","stadt"] },
           { text: "erkennt verborgene Not", hooks: ["glaube","wissen"] },
         ],
         weaknessTags: [
@@ -1443,8 +1443,8 @@ export const THEMEBOOKS = {
           { text: "durchschaut auch Freunde", hooks: ["geheimnis","verlust"] },
         ],
         quests: [
-          { title: "Ich entlarve den Verräter", description: "Der Held hört die Falschheit aus jedem Wort heraus und durchschaut jede Lüge an einem Zucken im Blick. Jemand in der eigenen Mitte spielt ein doppeltes Spiel, das spürt er deutlich. Er nimmt es auf sich, den Verräter zu entlarven, ehe dessen Maske weiteren Schaden anrichtet, auch wenn sein scharfes Urteil ihn einsam macht.", hooks: ["geheimnis","schicksal"] },
-          { title: "Ich finde den wahren Freund", description: "Weil der Held verborgene Not erkennt und Stimmungen in Räumen erspürt, sieht er hinter die Masken der Menschen. Doch wer alle durchschaut, misstraut leicht auch denen, die es ehrlich meinen. Unter all den Gesichtern sucht er den einen, dessen Freundschaft echt ist, damit sein wachsames Herz endlich jemandem ohne Zweifel vertrauen kann.", hooks: ["glaube","stadt"] },
+          { title: "Den Verräter entlarven", description: "Etwas an einem aus der eigenen Runde stimmt nicht, ein Zucken zu viel, ein Lachen zu spät; er spürt es, kann es aber nicht beweisen. Ein doppeltes Spiel wird gespielt, und er ist der Einzige, der es ahnt. Er wird die Maske herunterreißen, ehe Schaden geschieht.", hooks: ["geheimnis","schicksal"] },
+          { title: "Den wahren Freund finden", description: "Weil er hinter jede Maske sieht, misstraut er selbst denen, die es ehrlich meinen, und bleibt darüber allein. Einmal möchte er jemandem glauben, ohne im Gesicht nach der Lüge zu suchen. Er sucht den einen, dessen Freundschaft seiner Prüfung standhält.", hooks: ["glaube","stadt"] },
         ]
       },
       {
@@ -1452,16 +1452,16 @@ export const THEMEBOOKS = {
         powerTags: [
           { text: "sieht im Halbdunkel", hooks: ["natur","geheimnis"] },
           { text: "erkennt das Ferne", hooks: ["natur","schicksal"] },
-          { text: "scharfer Blick fürs Detail", hooks: ["wissen","handwerk"] },
-          { text: "erspäht jede Bewegung", hooks: ["kampf","natur"] },
+          { text: "scharfer Detailblick", hooks: ["wissen","handwerk"] },
+          { text: "erspäht jede Regung", hooks: ["kampf","natur"] },
         ],
         weaknessTags: [
-          { text: "geblendet von hellem Licht", hooks: ["schicksal","verlust"] },
-          { text: "vertraut nur dem Auge", hooks: ["schicksal","außenseiter"] },
+          { text: "von grellem Licht geblendet", hooks: ["schicksal","verlust"] },
+          { text: "traut nur dem Auge", hooks: ["schicksal","außenseiter"] },
         ],
         quests: [
-          { title: "Ich erspähe was verborgen bleibt", description: "Mit Augen wie ein Falke erkennt der Held das Ferne und sieht selbst im Halbdunkel jede kleinste Bewegung. Was sich vor anderen verbirgt, kann sich vor ihm nicht verstecken. Diesen scharfen Blick will er nutzen, um das Verborgene aufzudecken, auch wenn ihn helles Licht blendet und er manchmal nur dem traut, was sein Auge sieht.", hooks: ["geheimnis","natur"] },
-          { title: "Ich finde den fernen Weg", description: "Vom höchsten Punkt aus lässt der Held den Blick über das Land schweifen und erkennt den Pfad, den kein anderer ausmacht. Wo sich für die übrigen nur Wildnis erstreckt, zeichnet sich für sein scharfes Auge eine Route ab. Diesen fernen Weg zu finden treibt ihn an, denn er sieht das Ziel, lange bevor andere es ahnen.", hooks: ["natur","fahrend"] },
+          { title: "Erspähen, was verborgen bleibt", description: "Aus einer Meile Entfernung liest er, was anderen erst aus einem Schritt auffällt, und sieht in Schatten, die für die übrigen schwarz sind. Irgendwo verbirgt sich etwas, das nur ein Blick wie seiner findet. Er weiß noch nicht, was, nur dass es sich lohnt, danach zu suchen.", hooks: ["geheimnis","natur"] },
+          { title: "Den fernen Weg finden", description: "Vom höchsten Grat aus zeichnet sich für ihn ein Pfad ab, wo alle anderen nur Wildnis sehen, ein Weg zu einem Ort, den keine Karte kennt. Er hat ihn nur einmal erspäht, im Abendlicht, und nie wieder gefunden. Er sucht ihn erneut, denn er weiß, dass er dort ist.", hooks: ["natur","fahrend"] },
         ]
       },
       {
@@ -1470,32 +1470,32 @@ export const THEMEBOOKS = {
           { text: "trotzt Hitze und Kälte", hooks: ["natur","schicksal"] },
           { text: "heilt schnell", hooks: ["schicksal","magie"] },
           { text: "steckt Schläge weg", hooks: ["kampf","schicksal"] },
-          { text: "übersteht jede Strapaze", hooks: ["schicksal","natur"] },
+          { text: "unverwüstlich", hooks: ["schicksal","natur"] },
         ],
         weaknessTags: [
-          { text: "ignoriert eigene Wunden", hooks: ["schicksal","verlust"] },
+          { text: "übersieht eigene Wunden", hooks: ["schicksal","verlust"] },
           { text: "mutet sich zu viel zu", hooks: ["schicksal","verlust"] },
         ],
         quests: [
-          { title: "Ich überstehe die unwirtliche Wildnis", description: "Zäh wie Leder trotzt der Held Hitze und Kälte und steckt Strapazen weg, an denen andere zerbrechen würden. Dort, wo die Wildnis am erbarmungslosesten ist, will er beweisen, dass er durchhält. Jeder überstandene Tag bestätigt seinen eisernen Willen, auch wenn er dabei zu leicht über die eigenen Wunden hinwegsieht.", hooks: ["natur","schicksal"] },
-          { title: "Ich halte durch bis zuletzt", description: "Solange noch ein Funke Atem in ihm ist, gibt der Held nicht auf, denn seine Heilung kommt schnell und sein Körper steckt jeden Schlag weg. Aufzugeben kennt er nicht; lieber mutet er sich zu viel zu, als einen Schritt zurückzuweichen. Bis zuletzt durchzuhalten ist sein stiller Schwur, der ihn aufrecht hält, wenn alles andere wankt.", hooks: ["kampf","glaube"] },
+          { title: "Die unwirtliche Wildnis überstehen", description: "Es gibt eine Ödnis, aus der niemand zurückkehrt, nicht wegen Bestien, sondern weil das Land selbst den Menschen aufzehrt. Man erzählt sich von etwas am anderen Ende, das die Durchquerung lohnt. Er glaubt, sein Körper hält aus, woran andere zerbrachen, und will es beweisen.", hooks: ["natur","schicksal"] },
+          { title: "Nicht der Erste sein, der aufgibt", description: "Aufgeben hat er nie gelernt; sein Körper vergisst Schläge, die andere zu Boden werfen. Doch er ahnt, dass Durchhalten allein noch kein Ziel ist. Er sucht die eine Sache, die es wert ist, bis zum Umfallen dafür zu stehen, damit seine Zähigkeit nicht ins Leere läuft.", hooks: ["kampf","glaube"] },
         ]
       },
       {
         text: "durchdringende Stimme", hooks: ["schicksal","macht"],
         powerTags: [
           { text: "übertönt jeden Lärm", hooks: ["schicksal","macht"] },
-          { text: "bringt Menschen zum Schweigen", hooks: ["macht","stadt"] },
-          { text: "Befehlston wirkt sofort", hooks: ["macht","kampf"] },
+          { text: "gebietet Schweigen", hooks: ["macht","stadt"] },
+          { text: "Befehlston wirkt", hooks: ["macht","kampf"] },
           { text: "ergreifender Gesang", hooks: ["schicksal","natur"] },
         ],
         weaknessTags: [
-          { text: "kann sich nicht verstecken", hooks: ["schicksal","geheimnis"] },
+          { text: "kann sich nicht leise machen", hooks: ["schicksal","geheimnis"] },
           { text: "redet sich in Gefahr", hooks: ["macht","verlust"] },
         ],
         quests: [
-          { title: "Ich gebe den Stummen eine Stimme", description: "Die durchdringende Stimme des Helden übertönt jeden Lärm und bringt selbst eine aufgebrachte Menge zum Schweigen. Wer sonst nicht gehört wird, soll durch ihn vernommen werden. Er leiht seine Kraft denen, die zu leise sind, um sich selbst Gehör zu verschaffen, auch wenn ihn diese Lautstärke nie wirklich verborgen bleiben lässt.", hooks: ["macht","glaube"] },
-          { title: "Ich wende die Menge mit Worten", description: "Wenn der Befehlston des Helden erklingt, verstummen die Streitenden und wenden ihm das Ohr zu. Mit seiner Stimme allein, das spürt er, kann er den Lauf der Dinge ändern, ohne je das Schwert zu ziehen. Eine ergriffene Menge in eine neue Richtung zu lenken ist sein Antrieb, selbst wenn ihn das Reden bisweilen in Gefahr bringt.", hooks: ["macht","stadt"] },
+          { title: "Den Stummen eine Stimme geben", description: "Wo er herkommt, entscheiden die Lauten, und die Leisen verhungern im Recht. Er hat eine Stimme, die ganze Plätze füllt, und beschlossen, sie nicht für sich zu brauchen. Er sucht die, denen man das Wort nimmt, und leiht ihnen die seine, bis man sie hört.", hooks: ["macht","glaube"] },
+          { title: "Die Menge mit Worten wenden", description: "Einmal hat er mit ein paar Sätzen einen Aufruhr besänftigt und gespürt, welche Macht darin liegt und welche Gefahr. Er will lernen, eine aufgebrachte Menge zum Guten zu wenden, ohne sie je zu missbrauchen. Die Gelegenheit, das zu beweisen, sucht er, auch wenn ihn seine Lautstärke nie verbergen lässt.", hooks: ["macht","stadt"] },
         ]
       },
     ]
