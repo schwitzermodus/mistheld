@@ -3192,17 +3192,15 @@ export const THEMEBOOKS = {
           { text: "Werkzeuge eines Meisters", hooks: ["handwerk"] },
           { text: "kennt die Seele des Materials", hooks: ["handwerk"] },
           { text: "Klingen für Helden", hooks: ["handwerk","kampf"] },
-          { text: "Werke überdauern Jahrhunderte", hooks: ["handwerk","schicksal"] },
-          { text: "Feuer gehorcht ihm", hooks: ["handwerk","natur"] },
+          { text: "das Feuer gehorcht ihm", hooks: ["handwerk","natur"] },
         ],
         weaknessTags: [
           { text: "gefährdet durch Neid", hooks: ["stadt"] },
-          { text: "alle wollen seine Waffen", hooks: ["handwerk","macht"] },
           { text: "Ruhm zieht Feinde an", hooks: ["macht","verlust"] },
         ],
         quests: [
-          { title: "Ich erschaffe das Meisterwerk meines Lebens.", description: "Das Feuer gehorcht dem Helden, und seine Klingen tragen Helden in die Schlacht, doch eines fehlt noch. Eine einzige Waffe soll alles übertreffen, was seine Hand je formte, und Jahrhunderte überdauern. Sie wird seinen Namen weitertragen, lange nachdem die Esse erkaltet ist.", hooks: ["handwerk","schicksal"] },
-          { title: "Ich erlerne die letzte Schmiedetechnik.", description: "Der Held kennt die Seele jedes Materials, und doch ahnt er, dass irgendwo ein Verfahren wartet, das ihm bisher verschlossen blieb. Diese letzte Kunst lässt ihm keine Ruhe, denn ohne sie bleibt selbst der Größte unvollendet. Er wird sie aufspüren, koste es, was es wolle.", hooks: ["handwerk","wissen"] },
+          { title: "Das Meisterwerk meines Lebens erschaffen", description: "Seine Klingen tragen Helden in die Schlacht, doch eine Waffe fehlt noch, die alles übertrifft, was seine Hand je formte. Er hat von einem Erz gehört, das nur an einem einzigen Ort der Welt bricht. Er reist dorthin, um es zu bergen und die Waffe zu schmieden, die seinen Namen überdauern soll.", hooks: ["handwerk","schicksal"] },
+          { title: "Die letzte Schmiedetechnik erlernen", description: "Er kennt die Seele jedes Materials, doch irgendwo wartet ein Verfahren, das ihm bisher verschlossen blieb, gehütet von einem Meister, der Fremde nicht empfängt. Ohne diese letzte Kunst bleibt selbst der Größte unvollendet. Er sucht diesen Meister auf, komme, was wolle.", hooks: ["handwerk","wissen"] },
         ]
       },
       {
@@ -3211,24 +3209,21 @@ export const THEMEBOOKS = {
           { text: "unschlagbar im Wettkampf", hooks: ["handwerk","kampf"] },
           { text: "Technik ohne Namen", hooks: ["handwerk","schicksal"] },
           { text: "liest jeden Gegner sofort", hooks: ["kampf","wissen"] },
-          { text: "meisterhafte Kontrolle", hooks: ["handwerk"] },
           { text: "gilt als Legende", hooks: ["handwerk","schicksal"] },
         ],
         weaknessTags: [
           { text: "Herausforderer ohne Ende", hooks: ["kampf","macht"] },
-          { text: "Ruhm zieht Feinde an", hooks: ["macht","verlust"] },
           { text: "erträgt keine Niederlage", hooks: ["handwerk","kampf"] },
         ],
         quests: [
-          { title: "Ich finde jemanden, der mich übertrifft.", description: "Der Held liest jeden Gegner, ehe dieser die Klinge hebt, und gilt längst als Legende. Doch an der Spitze ist es einsam, und kein Sieg wärmt mehr. Erst ein ebenbürtiger Gegner würde ihn wieder lebendig machen, und nach diesem einen Menschen sucht er, der ihn endlich zwingt, alles zu geben.", hooks: ["handwerk","kampf"] },
-          { title: "Ich beweise, dass meine Kunst keinen Krieg braucht.", description: "Endlose Herausforderer haben den Helden gelehrt, dass sein Ruf nur Tod und Blut anzieht. Doch seine Technik ohne Namen ist mehr als ein Werkzeug zum Töten. Er will der Welt beweisen, dass seine meisterhafte Kontrolle auch Schönheit schaffen kann, nicht nur Gräber.", hooks: ["handwerk","glaube"] },
+          { title: "Jemanden finden, der mich übertrifft", description: "Er liest jeden Gegner, ehe dieser die Klinge hebt, und gilt längst als Legende, doch an der Spitze ist es einsam, und kein Sieg wärmt mehr. Gerüchte erzählen von einer Fechterin im äußersten Norden, die nie verlor. Er reist ihr entgegen, denn nur sie könnte ihn wieder lebendig machen.", hooks: ["handwerk","kampf"] },
+          { title: "Beweisen, dass meine Kunst keinen Krieg braucht", description: "Endlose Herausforderer haben ihn gelehrt, dass sein Ruf nur Tod und Blut anzieht, doch seine namenlose Technik ist mehr als ein Werkzeug zum Töten. Er nimmt an einem Turnier ohne Todesfolge teil, um der Welt zu zeigen, dass seine meisterhafte Kontrolle auch Schönheit schaffen kann.", hooks: ["handwerk","glaube"] },
         ]
       },
       {
         text: "Erbauer der Welten", hooks: ["handwerk","schicksal"],
         powerTags: [
           { text: "vollbringt das Unmögliche", hooks: ["handwerk","schicksal"] },
-          { text: "geht über alles Dagewesene hinaus", hooks: ["handwerk"] },
           { text: "sieht Jahre im Werkstück", hooks: ["handwerk","wissen"] },
           { text: "Werke überdauern Jahrhunderte", hooks: ["handwerk","schicksal"] },
           { text: "Bauwerke trotzen der Zeit", hooks: ["handwerk","macht"] },
@@ -3238,8 +3233,8 @@ export const THEMEBOOKS = {
           { text: "unzumutbare Selbstansprüche", hooks: ["handwerk"] },
         ],
         quests: [
-          { title: "Ich verändere die Welt mit meiner Kunst.", description: "Der Held sieht ganze Jahre im rohen Werkstück und vollbringt, was andere für unmöglich halten. Sein Ehrgeiz reicht über bloßes Bauen hinaus, denn er will etwas erschaffen, das eine verschlossene Tür für immer aufstößt. Sein Werk soll der Welt einen Weg öffnen, den vor ihm niemand sah.", hooks: ["handwerk","macht"] },
-          { title: "Ich hinterlasse ein Erbe, das mich überdauert.", description: "Die eigene Größe ist dem Helden Last und Antrieb zugleich, und der Gedanke an Vergänglichkeit treibt ihn an. Er errichtet ein Bauwerk, das der Zeit trotzt und noch steht, wenn sein Name längst verklungen ist. Stein soll bezeugen, dass er einst hier war, auch ohne dass jemand sich erinnert.", hooks: ["handwerk","schicksal"] },
+          { title: "Die Welt mit meiner Kunst verändern", description: "Er sieht ganze Jahre im rohen Werkstück und vollbringt, was andere für unmöglich halten. Ein zerstörter Ort, den niemand wieder aufzubauen wagt, ruft nach ihm. Er reist dorthin, um etwas zu errichten, das eine verschlossene Tür für immer aufstößt.", hooks: ["handwerk","macht"] },
+          { title: "Ein Erbe hinterlassen, das mich überdauert", description: "Die eigene Größe ist ihm Last und Antrieb zugleich, und der Gedanke an Vergänglichkeit treibt ihn an. Er sucht den Ort, an dem sein größtes Bauwerk stehen soll, eines, das der Zeit trotzt und noch steht, wenn sein Name längst verklungen ist.", hooks: ["handwerk","schicksal"] },
         ]
       },
       {
@@ -3248,7 +3243,6 @@ export const THEMEBOOKS = {
           { text: "unverwechselbarer Stil", hooks: ["handwerk"] },
           { text: "bewegt jedes Herz", hooks: ["handwerk","macht"] },
           { text: "ihr Ruf öffnet Türen", hooks: ["handwerk","macht"] },
-          { text: "meisterhafte Kontrolle", hooks: ["handwerk"] },
           { text: "gilt als Legende", hooks: ["handwerk","schicksal"] },
         ],
         weaknessTags: [
@@ -3256,8 +3250,8 @@ export const THEMEBOOKS = {
           { text: "Ruhm zieht Feinde an", hooks: ["macht","verlust"] },
         ],
         quests: [
-          { title: "Ich erschaffe ein Lied, das nie verstummt.", description: "Mit unverwechselbarem Stil bewegt der Held jedes Herz, und sein Ruf öffnet ihm jede Tür. Doch Beifall verklingt, und das genügt ihm nicht mehr. Er will eine Weise schaffen, die so tief trifft, dass man sie noch Generationen nach ihm singt, lange nachdem die Stimme selbst verstummt ist.", hooks: ["handwerk","schicksal"] },
-          { title: "Ich wende die Mächtigen allein durch meine Worte.", description: "Der Neid der anderen und die Feinde, die sein Ruhm anzieht, haben dem Helden gezeigt, wie viel Macht in einer Stimme liegt. Mit meisterhafter Kontrolle will er beweisen, dass ein Lied mehr bewegt als jedes Heer. Wo Schwerter scheitern, sollen seine Worte die Mächtigen wenden.", hooks: ["handwerk","macht"] },
+          { title: "Ein Lied erschaffen, das nie verstummt", description: "Mit ihrem Stil bewegt sie jedes Herz, und ihr Ruf öffnet ihr jede Tür, doch Beifall verklingt, und das genügt ihr nicht mehr. Eine wahre Geschichte, die noch niemand besungen hat, wartet darauf, gehört zu werden. Sie reist zu ihrem Ursprung, um eine Weise zu schaffen, die man noch Generationen nach ihr singt.", hooks: ["handwerk","schicksal"] },
+          { title: "Die Mächtigen allein durch Worte wenden", description: "Der Neid der anderen und die Feinde, die ihr Ruhm anzieht, haben ihr gezeigt, wie viel Macht in einer Stimme liegt. An einem Hof droht ein Krieg. Sie reist dorthin, um mit meisterhafter Kontrolle zu beweisen, dass ein Lied mehr bewegt als jedes Heer.", hooks: ["handwerk","macht"] },
         ]
       },
       {
@@ -3266,17 +3260,15 @@ export const THEMEBOOKS = {
           { text: "kennt jede Variante", hooks: ["handwerk","wissen"] },
           { text: "andere Meister suchen Rat", hooks: ["handwerk","wissen"] },
           { text: "erkennt ungeahnte Fehler", hooks: ["handwerk","wissen"] },
-          { text: "vollbringt das Unmögliche", hooks: ["handwerk","schicksal"] },
           { text: "Heilung gegen jedes Leiden", hooks: ["handwerk","glaube"] },
         ],
         weaknessTags: [
-          { text: "alle wollen von mir lernen", hooks: ["handwerk"] },
-          { text: "erwartet zu hohe Standards", hooks: ["handwerk"] },
+          { text: "alle wollen von ihr lernen", hooks: ["handwerk"] },
           { text: "kein Verlust verziehen", hooks: ["glaube","verlust"] },
         ],
         quests: [
-          { title: "Ich zeige, dass Heilung keinen Krieg braucht.", description: "Selbst andere Meister suchen beim Helden Rat, denn er erkennt Fehler, die allen anderen verborgen bleiben. Doch dieselbe Kunst, die heilt, könnte auch schaden, und manche fürchten genau das. Er will allen zeigen, dass sein Wissen einzig dem Leben dient und niemals zur Waffe wird.", hooks: ["handwerk","glaube"] },
-          { title: "Ich besiege ein Leiden für immer.", description: "Der Held kennt jede Variante der Heilung und vollbringt, was unmöglich scheint, und doch hat ein Leiden zu viele dahingerafft. Kein Verlust verzeiht er sich leicht, und diese eine Krankheit lässt ihm keinen Frieden. Er will sie nicht nur lindern, sondern für immer von der Welt tilgen.", hooks: ["handwerk","macht"] },
+          { title: "Zeigen, dass Heilung keinen Krieg braucht", description: "Selbst andere Meister suchen bei ihr Rat, denn sie erkennt Fehler, die allen anderen verborgen bleiben, doch manche fürchten, dieselbe Kunst könnte auch schaden. Ein Fürst will ihr Wissen für seine Waffenschmiede. Sie reist zu ihm, um zu zeigen, dass ihre Gabe einzig dem Leben dient.", hooks: ["handwerk","glaube"] },
+          { title: "Ein Leiden für immer besiegen", description: "Sie kennt jede Variante der Heilung und vollbringt, was unmöglich scheint, doch ein Leiden hat zu viele dahingerafft, und keinen Verlust verzeiht sie sich leicht. Sie reist zum Ursprung der Krankheit, in ein Sumpfgebiet, das man meidet, um sie nicht nur zu lindern, sondern für immer zu tilgen.", hooks: ["handwerk","macht"] },
         ]
       },
       {
@@ -3285,7 +3277,6 @@ export const THEMEBOOKS = {
           { text: "geheime Techniken", hooks: ["handwerk","geheimnis"] },
           { text: "vollbringt das Unmögliche", hooks: ["handwerk","schicksal"] },
           { text: "kennt die Seele des Materials", hooks: ["handwerk","magie"] },
-          { text: "Technik für jede Umgebung", hooks: ["handwerk","natur"] },
           { text: "formt was lebendig ist", hooks: ["handwerk","magie"] },
         ],
         weaknessTags: [
@@ -3293,8 +3284,8 @@ export const THEMEBOOKS = {
           { text: "gefürchtet wie gerühmt", hooks: ["magie","außenseiter"] },
         ],
         quests: [
-          { title: "Ich webe etwas, das die Welt verändert.", description: "Mit geheimen Techniken formt der Held, was lebendig ist, und kennt die Seele jedes Materials. Seine eigene Größe droht ihn zu verschlingen, doch er will sie nutzen, um etwas zu schaffen, das zuvor unmöglich schien. Sein Werk soll eine Tür aufstoßen, hinter der ein neues Verständnis vom Leben selbst wartet.", hooks: ["handwerk","magie"] },
-          { title: "Ich überschreite die Grenze des Erschaffbaren.", description: "Der Held wird gefürchtet wie gerühmt, denn seine Technik passt sich jeder Umgebung an und überschreitet, was andere wagen. Doch er fragt sich, wo das Weben des Lebens an seine letzte Schranke stößt. Diese Grenze will er finden und ausloten, selbst wenn er dabei riskiert, sie zu überschreiten.", hooks: ["handwerk","geheimnis"] },
+          { title: "Etwas weben, das die Welt verändert", description: "Mit geheimen Techniken formt er, was lebendig ist, doch seine eigene Größe droht ihn zu verschlingen. Er will sie nutzen, um etwas zu schaffen, das zuvor unmöglich schien, und reist zu den Orten, an denen die seltensten Fäden des Lebens noch zu finden sind.", hooks: ["handwerk","magie"] },
+          { title: "Die Grenze des Erschaffbaren überschreiten", description: "Er wird gefürchtet wie gerühmt, denn seine Technik überschreitet, was andere wagen, doch er fragt sich, wo das Weben des Lebens an seine letzte Schranke stößt. Er sucht die, die diese Schranke schon einmal berührt haben, um von ihrem Scheitern zu lernen.", hooks: ["handwerk","geheimnis"] },
         ]
       },
       {
@@ -3303,7 +3294,6 @@ export const THEMEBOOKS = {
           { text: "Technik ohne Namen", hooks: ["handwerk","schicksal"] },
           { text: "kennt die Geschichte des Fachs", hooks: ["handwerk","wissen"] },
           { text: "geheime Techniken", hooks: ["handwerk","geheimnis"] },
-          { text: "meisterhafte Kontrolle", hooks: ["handwerk"] },
           { text: "trägt ein verlorenes Erbe", hooks: ["handwerk","verlust"] },
         ],
         weaknessTags: [
@@ -3311,27 +3301,25 @@ export const THEMEBOOKS = {
           { text: "letzte Hüterin des Wissens", hooks: ["verlust","geheimnis"] },
         ],
         quests: [
-          { title: "Ich rette, was von meiner Schule bleibt.", description: "Der Held trägt ein verlorenes Erbe und beherrscht eine Technik ohne Namen, die sonst niemand mehr kennt. Als Letzter seiner Schule lastet das ganze Wissen auf seinen Schultern. Er gibt es nicht dem Vergessen preis, sondern bewahrt jede Lektion und jeden Griff, damit die Kunst seinen Tod überlebt.", hooks: ["handwerk","verlust"] },
-          { title: "Ich vollende das Werk meines Lehrers.", description: "Sein Lehrer starb mit halbfertiger Hand, und der Held kennt die Geschichte des Fachs wie kein Zweiter. Mit meisterhafter Kontrolle nimmt er auf, was unvollendet blieb. Er führt das Werk zu Ende, als wären es die Hände des Meisters selbst, und ehrt so, was ihm anvertraut wurde.", hooks: ["handwerk","verlust"] },
+          { title: "Retten, was von meiner Schule bleibt", description: "Sie trägt ein verlorenes Erbe und beherrscht eine Technik ohne Namen, die sonst niemand mehr kennt. Als Letzte ihrer Schule lastet das ganze Wissen auf ihr. Sie sucht die verstreuten Schriften und letzten Schüler ihrer Vorgänger, ehe auch diese Spuren verwehen.", hooks: ["handwerk","verlust"] },
+          { title: "Das Werk meines Lehrers vollenden", description: "Ihr Lehrer starb mit halbfertiger Hand, und sie kennt die Geschichte des Fachs wie keine Zweite. Ein letztes, unvollendetes Werk wartet an dem Ort, den er nie erreichte. Sie reist dorthin, um es zu Ende zu führen, als wären es die Hände des Meisters selbst.", hooks: ["handwerk","verlust"] },
         ]
       },
       {
         text: "Meisterin der verbotenen Kunst", hooks: ["handwerk","geheimnis"],
         powerTags: [
           { text: "geheime Techniken", hooks: ["handwerk","geheimnis"] },
-          { text: "Technik ohne Namen", hooks: ["handwerk","schicksal"] },
           { text: "vollbringt das Unmögliche", hooks: ["handwerk","schicksal"] },
           { text: "kennt jede Variante", hooks: ["handwerk","wissen"] },
           { text: "wirkt was andere fürchten", hooks: ["handwerk","magie"] },
         ],
         weaknessTags: [
           { text: "von Hütern gejagt", hooks: ["geheimnis","macht"] },
-          { text: "gefürchtet wie gerühmt", hooks: ["geheimnis","außenseiter"] },
           { text: "Ruhm zieht Feinde an", hooks: ["macht","verlust"] },
         ],
         quests: [
-          { title: "Ich meistere die letzte verbotene Technik.", description: "Der Held wirkt, was andere fürchten, und vollbringt mit geheimen Techniken das Unmögliche. Doch eine verbotene Kunst fehlt ihm noch, und er spürt, wo sie verborgen liegt. Obwohl die Hüter ihn dafür jagen, wird er ihr nachgehen, denn sein Streben nach Vollendung wiegt schwerer als jede Gefahr.", hooks: ["handwerk","geheimnis"] },
-          { title: "Ich nutze meine Kunst nur, um Frieden zu wahren.", description: "Gefürchtet wie gerühmt zieht der Held mit seiner verbotenen Kunst Feinde an, und viele sehen in ihm nur Bedrohung. Doch er kennt jede Variante seines Fachs und weiß, dass selbst das Verbotene heilen kann. Er will beweisen, dass auch die gefürchtete Kunst dem Guten zu dienen vermag.", hooks: ["handwerk","glaube"] },
+          { title: "Die letzte verbotene Technik meistern", description: "Sie wirkt, was andere fürchten, doch eine verbotene Kunst fehlt ihr noch, verborgen an einem Ort, den die Hüter bewachen. Obwohl sie dort gejagt wird, geht sie ihr nach, denn ihr Streben nach Vollendung wiegt schwerer als jede Gefahr.", hooks: ["handwerk","geheimnis"] },
+          { title: "Meine Kunst nur nutzen, um Frieden zu wahren", description: "Gefürchtet wie gerühmt zieht sie mit ihrer verbotenen Kunst Feinde an, und viele sehen in ihr nur Bedrohung. Ein Konflikt, den nur ihre Kunst lösen kann, ohne Blutvergießen, ruft nach ihr. Sie reist hin, um zu beweisen, dass auch das Verbotene dem Guten dienen kann.", hooks: ["handwerk","glaube"] },
         ]
       },
       {
@@ -3339,7 +3327,6 @@ export const THEMEBOOKS = {
         powerTags: [
           { text: "lehrt mit einem Blick", hooks: ["handwerk","wissen"] },
           { text: "andere Meister suchen Rat", hooks: ["handwerk","wissen"] },
-          { text: "kennt die Geschichte des Fachs", hooks: ["handwerk","wissen"] },
           { text: "erkennt ungeahnte Fehler", hooks: ["handwerk","wissen"] },
           { text: "veredelt fremdes Werk", hooks: ["handwerk"] },
         ],
@@ -3348,8 +3335,8 @@ export const THEMEBOOKS = {
           { text: "erträgt kein Mittelmaß", hooks: ["handwerk"] },
         ],
         quests: [
-          { title: "Ich gebe meine Kunst weiter, bevor sie verloren geht.", description: "Der Held lehrt mit einem einzigen Blick, und selbst andere Meister suchen seinen Rat. Doch niemand reicht an seine Ebene heran, und so droht sein Können mit ihm zu sterben. Das ist ihm zu kostbar, und er sucht jenen einen, der würdig genug ist, sein Wissen zu empfangen.", hooks: ["handwerk","wissen"] },
-          { title: "Ich finde einen würdigen Erben für meine Kunst.", description: "Der Held erkennt ungeahnte Fehler und veredelt fremdes Werk mit leichter Hand, doch er erträgt kein Mittelmaß. Sein Wissen verlangt einen Erben, der das Erbe wirklich tragen kann, nicht bloß einen eifrigen Nachahmer. Nach diesem einen Schüler hält er Ausschau, der seiner Kunst gewachsen ist.", hooks: ["handwerk","verlust"] },
+          { title: "Meine Kunst weitergeben, ehe sie verloren geht", description: "Sie lehrt mit einem einzigen Blick, und selbst andere Meister suchen ihren Rat, doch niemand reicht an ihre Ebene heran, und ihr Können droht mit ihr zu sterben. Sie reist von Werkstatt zu Werkstatt, um den einen zu finden, der würdig genug ist, es zu empfangen.", hooks: ["handwerk","wissen"] },
+          { title: "Einen würdigen Erben für meine Kunst finden", description: "Sie erkennt ungeahnte Fehler und veredelt fremdes Werk mit leichter Hand, doch sie erträgt kein Mittelmaß. Ihr Wissen verlangt einen Erben, der das Erbe wirklich tragen kann, nicht bloß einen eifrigen Nachahmer. Nach diesem einen hält sie Ausschau, weit über die eigene Stadt hinaus.", hooks: ["handwerk","verlust"] },
         ]
       },
       {
@@ -3357,18 +3344,16 @@ export const THEMEBOOKS = {
         powerTags: [
           { text: "ihr Name flößt Ehrfurcht ein", hooks: ["handwerk","schicksal"] },
           { text: "ihr Ruf öffnet Türen", hooks: ["handwerk","macht"] },
-          { text: "Werkstatt mit eigenem Namen", hooks: ["handwerk","macht"] },
-          { text: "vollbringt das Unmögliche", hooks: ["handwerk","schicksal"] },
           { text: "Schüler aus aller Welt", hooks: ["handwerk","wissen"] },
+          { text: "vollbringt das Unmögliche", hooks: ["handwerk","schicksal"] },
         ],
         weaknessTags: [
           { text: "Geisel der eigenen Größe", hooks: ["macht","verlust"] },
-          { text: "gefährdet durch Neid", hooks: ["stadt"] },
           { text: "Ruhm zieht Feinde an", hooks: ["macht","verlust"] },
         ],
         quests: [
-          { title: "Ich werde dem Mythos gerecht, der mich umgibt.", description: "Schüler aus aller Welt strömen herbei, und der Held gilt schon zu Lebzeiten als Legende. Doch die Geschichten über ihn sind größer geworden als er selbst, und ihre Last droht ihn zu erdrücken. Er muss beweisen, dass er den Mythos verdient, ehe der Neid der anderen ihn zu Fall bringt.", hooks: ["handwerk","schicksal"] },
-          { title: "Ich verändere die Welt durch meine Kunst.", description: "Der Ruf des Helden öffnet jede Tür, und er vollbringt, was anderen unmöglich bleibt. Doch bloße Bewunderung genügt ihm nicht, denn ein Name wie seiner sollte mehr bewirken. Er will seinen Ruhm nutzen, um etwas in der Welt zu verschieben, das ohne ihn für immer feststünde.", hooks: ["handwerk","macht"] },
+          { title: "Dem Mythos gerecht werden, der mich umgibt", description: "Schüler aus aller Welt strömen zu ihr, und sie gilt schon zu Lebzeiten als Legende, doch die Geschichten über sie sind größer geworden als sie selbst. Eine Aufgabe, an der schon andere Legenden scheiterten, stellt sich ihr in den Weg. Sie nimmt sie an, um zu beweisen, dass sie den Mythos verdient.", hooks: ["handwerk","schicksal"] },
+          { title: "Die Welt durch meine Kunst verändern", description: "Ihr Ruf öffnet jede Tür, und sie vollbringt, was anderen unmöglich bleibt, doch bloße Bewunderung genügt ihr nicht mehr. Sie sucht die eine Gelegenheit, ihren Ruhm zu nutzen, um etwas in der Welt zu verschieben, das ohne sie für immer feststünde.", hooks: ["handwerk","macht"] },
         ]
       },
       {
@@ -3376,7 +3361,6 @@ export const THEMEBOOKS = {
         powerTags: [
           { text: "Technik für jede Umgebung", hooks: ["handwerk","natur"] },
           { text: "kennt jede Variante", hooks: ["handwerk","wissen"] },
-          { text: "meisterhafte Kontrolle", hooks: ["handwerk"] },
           { text: "findet jeden Weg", hooks: ["handwerk","fahrend"] },
           { text: "liest Himmel und Strömung", hooks: ["handwerk","natur"] },
         ],
@@ -3385,8 +3369,8 @@ export const THEMEBOOKS = {
           { text: "niemand auf ihrer Ebene", hooks: ["verlust"] },
         ],
         quests: [
-          { title: "Ich kartiere die letzte unbekannte Route.", description: "Der Held liest Himmel und Strömung und findet jeden Weg, in jeder Umgebung. Doch er hält zu hohe Standards, um sich mit bekanntem Wasser zu begnügen. Irgendwo wartet eine Route, die noch kein Kiel je befuhr, und er wird der Erste sein, der sie kartiert.", hooks: ["handwerk","fahrend"] },
-          { title: "Ich gebe mein Navigationswissen weiter.", description: "Mit meisterhafter Kontrolle kennt der Held jede Variante seines Fachs, doch niemand erreicht seine Ebene. Der Gedanke, dass sein Wissen vom Kurs mit ihm versinkt, lässt ihn nicht los. Er will es der nächsten Generation übergeben, damit andere die Wege finden, die er einst allein beschritt.", hooks: ["handwerk","wissen"] },
+          { title: "Die letzte unbekannte Route kartieren", description: "Sie liest Himmel und Strömung und findet jeden Weg, doch ihre hohen Standards lassen sie mit bekanntem Wasser nicht zufrieden. Irgendwo wartet eine Route, die noch kein Kiel je befuhr. Sie sticht in See, um die Erste zu sein, die sie kartiert.", hooks: ["handwerk","fahrend"] },
+          { title: "Mein Navigationswissen weitergeben", description: "Sie kennt jede Variante ihres Fachs, doch niemand erreicht ihre Ebene, und der Gedanke, dass ihr Wissen mit ihr versinkt, lässt sie nicht los. Sie reist zu den besten jungen Steuerleuten des Landes, um es weiterzugeben, ehe der letzte Kurs, den nur sie kennt, verloren geht.", hooks: ["handwerk","wissen"] },
         ]
       },
       {
@@ -3395,17 +3379,15 @@ export const THEMEBOOKS = {
           { text: "Werkstatt mit eigenem Namen", hooks: ["handwerk","macht"] },
           { text: "ihr Ruf öffnet Türen", hooks: ["handwerk","macht"] },
           { text: "Schüler aus aller Welt", hooks: ["handwerk","wissen"] },
-          { text: "beherrscht verwandte Disziplinen", hooks: ["handwerk"] },
           { text: "setzt den Maßstab des Fachs", hooks: ["handwerk","macht"] },
         ],
         weaknessTags: [
           { text: "gefährdet durch Neid", hooks: ["stadt"] },
-          { text: "Geisel der eigenen Größe", hooks: ["macht","verlust"] },
           { text: "Rivalen um den Vorsitz", hooks: ["macht","stadt"] },
         ],
         quests: [
-          { title: "Ich einige die Gilde unter einem gemeinsamen Banner.", description: "Der Held führt eine Werkstatt mit eigenem Namen, setzt den Maßstab des Fachs und beherrscht selbst verwandte Disziplinen. Doch Rivalen streiten um den Vorsitz, und die Gilde droht zu zerfallen. Er will alle Meister seines Fachs unter einem Banner einen, ehe der Zwist das Erbe zerreißt.", hooks: ["handwerk","macht"] },
-          { title: "Ich öffne die Gilde und gebe mein Wissen weiter.", description: "Sein Ruf öffnet dem Helden jede Tür, und Schüler aus aller Welt drängen zu ihm. Doch seine eigene Größe droht ihn zur Geisel zu machen, wenn er das Wissen für sich behält. Er öffnet die Gilde für alle Würdigen und gibt sein Können ungeschmälert weiter, statt es zu horten.", hooks: ["handwerk","wissen"] },
+          { title: "Die Gilde unter einem Banner einen", description: "Sie setzt den Maßstab des Fachs und beherrscht selbst verwandte Disziplinen, doch Rivalen streiten um den Vorsitz, und die Gilde droht zu zerfallen. Sie reist zu den zerstrittenen Meistern in ihren eigenen Werkstätten, um sie unter einem Banner zu einen, ehe der Zwist das Erbe zerreißt.", hooks: ["handwerk","macht"] },
+          { title: "Die Gilde öffnen und mein Wissen weitergeben", description: "Ihr Ruf öffnet jede Tür, und Schüler aus aller Welt drängen zu ihr, doch ihre eigene Größe droht sie zur Geisel zu machen, wenn sie das Wissen für sich behält. Sie öffnet die Gilde für alle Würdigen, auch für jene, die sich die Reise zu ihr nie hätten leisten können.", hooks: ["handwerk","wissen"] },
         ]
       },
     ]
