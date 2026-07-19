@@ -169,6 +169,9 @@ export function handleReroll(ti: number, k: string): void {
     return;
   }
   var entry = getBaseTheme(ti)._titleEntry;
+  // Alte gespeicherte Helden: Titel existiert nach Content-Updates evtl. nicht mehr im Katalog
+  // (_titleEntry beim Rehydrieren null). Dann degradiert der Element-Reroll zum Voll-Theme-Reroll.
+  if (!entry) { handleReroll(ti, 'theme'); return; }
   var v;
   if (k === 'pow0' || k === 'pow1') { v = pickWithSwipeBias(entry.powerTags, 1)[0]; }
   else if (k === 'weakness') { v = pickWithSwipeBias(entry.weaknessTags, 1)[0]; }

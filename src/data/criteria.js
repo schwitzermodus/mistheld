@@ -34,6 +34,46 @@ export const MIGHT_GUIDANCE = {
   Greatness: { label: 'Allmacht', desc: 'grandios, legendär, welt- oder schicksalsprägend', examples: ['Königin des Reiches', 'Zauber der Vernichtung'] },
 };
 
+// Inhalts-/Stilregeln (semantisches Herzstück des Contents — vom LLM-Judge angewandt).
+// Menschliche Fassung + Herleitung/Beispiele: TAG-STYLE.md (lebendes Dokument, Quelle der Wahrheit).
+// Diese Konstante ist die maschinenlesbare Verdichtung für judge_tags.mjs und künftige Tooling-Nutzung.
+// Rein mechanisch prüfbare Teile (Bindestrich-Titel, Wortzahl-Richtwert) sind zusätzlich in
+// tools/validate_tags.cjs verankert und laufen automatisch im pre-commit/CI.
+export const STYLE_RULES = {
+  source: 'TAG-STYLE.md',
+  sprache: [
+    'Kürze: so wenige Wörter wie möglich, Füllverben/Artikel streichen. Richtwert ≤3 Wörter, wenn vermeidbar (Hartgrenze bleibt 5, siehe FORM_RULES).',
+    'Einfache, sofort verständliche Sprache statt nachschlagepflichtiger Wörter (z.B. „Standesdünkel" -> „Hochmut").',
+    'Präziseres Wording wählen, wenn eine treffendere Formulierung existiert (z.B. „falsches Siegel" -> „gefälschtes Siegel").',
+    'Fähigkeit/Eigenschaft statt Handlungsvollzug benennen (z.B. „liest die Karte" -> „kartenkundig").',
+    'Keine Bindestrich-Komposita als Titel-Tag (z.B. „Hinterland-Spurenleser" vermeiden; „Fährtenleser" oder "Fährtenleser des Hinterlands").',
+  ],
+  mechanik: [
+    'Konkretheit: sofort klar, welche Aktionen der Tag stützt. Vage/abstrakte Tags fallen durch (Negativbeispiel: „errechnet himmlische Bahnen").',
+    'Breit/spezifisch-Mischung anstreben (LitM Vol.I S.78), aber kein Übergewicht breiter Tags.',
+    'Nicht zu selten relevant: ein Tag, der nur in Rand-/Sonderfällen greift, ist zu schwach (Negativbeispiele: „verborgene Gönner", „alte Beziehungen").',
+  ],
+  kohaerenz: [
+    'Titel-Tag = erstes Power Tag, zählt bei der Power-Tag-Anzahl mit und muss dieselben Qualitätskriterien erfüllen wie jedes andere Tag.',
+    'Differenzierung innerhalb des Themes: Tags decken je einen eigenen Einsatzbereich ab, keine Umbenennungen derselben Fähigkeit (Negativbeispiel: „Hofmanieren" neben „feine Gesellschaft").',
+    'Differenzierung im Pool: nahezu gleichbedeutende Tags eines Bündels sind nur als sich ausschließende Alternativen erlaubt, nicht gemeinsam ziehbar (Generator-Aspekt, siehe Issue #115).',
+    'Gesinnung (gut/böse) ist erlaubt; Kriterium ist Passung zu Theme/Titel/Heldenbild, nicht Neutralität.',
+  ],
+  mightPassung: [
+    'Verbindlich: Theme + alle Tags (Titel eingeschlossen) passen zur Might-Stufe (Werte in MIGHT_GUIDANCE).',
+    'Auch der Klang des Titel-Tags skaliert mit der Stufe (Origin schlicht/handwerklich, Adventure/Greatness mächtiger klingend).',
+    'Produktidee (noch nicht implementiert, Issue #114): dasselbe Motiv kann als eigene Stufen-Variante über Origin/Adventure/Greatness existieren, jede Stufe mit eigenen, stufengerecht geschriebenen Tags statt wiederverwendeten.',
+  ],
+  powerVsWeakness: [
+    'Power und Weakness dürfen dieselbe Domäne betreffen, müssen aber in unterschiedlichen Situationen greifen — keine wortgleichen Spiegelbilder, die sich zum Patt aufheben.',
+  ],
+  quests: [
+    'Quest-Titel klingt wie Ziel/Auftrag, kein Zustands- oder Themenlabel; muss inhaltlich zur Beschreibung passen.',
+    'Beschreibung liefert nur Hintergrund/Motivation — keine wörtliche oder prosaische Nacherzählung der Tags.',
+    'Verfolgbar unterwegs: kein Ziel, das nur durch Verharren an einem festen Ort erfüllbar ist (reisendes Spiel, sonst struktureller Abandon-Druck). Portable Framings bevorzugen (erreichen, finden, wiederherstellen, rächen, aufdecken; mitreisendes „Zuhause" statt zurückgelassenem Ort).',
+  ],
+};
+
 // Pro Themebook: die offiziellen Fragen, die ein guter Tag beantwortet (= Relevanz + Diversität).
 export const THEMEBOOK_QUESTIONS = {
   "Circumstance": {

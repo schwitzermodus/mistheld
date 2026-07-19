@@ -42,9 +42,20 @@ Phrasenregeln und die Bündel-Struktur. Quests sind **keine** Tags (Ich-Ziel-Sat
 Quelle/Abgleich: *Legend in the Mist* Core Book, S. 76–77 („Tags", „Hero Creation Checklist").
 Strukturell pro generiertem Theme: Titel-Tag + 2 Power Tags + 1 Weakness Tag + 1 Quest (aus dem Titel-Bündel).
 
+## Verhältnis zu TAG-STYLE.md
+Diese Datei (`TAGS.md`) definiert die **strukturellen Pflichtregeln** (Form, Bündelstruktur,
+mechanisch mit `tools/validate_tags.cjs` erzwungen). **`TAG-STYLE.md`** legt zusätzlich die
+**inhaltlichen und sprachlichen Qualitätsregeln** obendrauf (Kürze, einfache Sprache,
+Fähigkeit statt Handlung, Might-Passung inkl. Titel-Klang, Differenzierung im Theme und im
+Tag-Pool, Power/Weakness-Spannung, Quest-Regeln) — entstanden in der Kalibrierung mit Sascha,
+lebendes Dokument. Beide gelten gemeinsam für alle bestehenden und künftigen Tags.
+
 ## Maschinelle Kriterien-Quelle
 Diese Doku ist für Menschen. Die **maschinell genutzte** Kriterien-Quelle ist `src/data/criteria.js`:
 - `FORM_RULES` + `STRUCTURE` — von `tools/validate_tags.cjs` durchgesetzt (Form + Bündelstruktur, pre-commit + CI).
 - `UNIVERSAL` — universelle LitM-Bewertungsfragen (Power-Nützlichkeit, Weakness-Hinderlichkeit, Quest-Milestone/Abandon, Relevanz-Prinzip).
 - `THEMEBOOK_QUESTIONS` — offizielle Power (A–J) + Weakness (A–D) Tag Questions je Themebook (verbatim aus dem Core Book).
-- Relevanz-/Nützlichkeitsbewertung (semantisch): `npm run judge:tags` (LLM-Judge, `tools/judge_tags.mjs`) wendet diese Fragen an und schreibt einen Report. Manuell, nicht in CI.
+- `STYLE_RULES` — maschinenlesbare Verdichtung von TAG-STYLE.md; die mechanisch prüfbaren Teile
+  (kein Bindestrich-Kompositum als Titel-Tag = Fehler; Wortzahl-Richtwert ≤3 = Warnung) laufen
+  zusätzlich automatisch in `tools/validate_tags.cjs` (pre-commit + CI).
+- Relevanz-/Nützlichkeitsbewertung (semantisch): `npm run judge:tags` (LLM-Judge, `tools/judge_tags.mjs`) wendet diese Fragen + STYLE_RULES an und schreibt einen Report. Manuell, nicht in CI.

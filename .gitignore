@@ -25,3 +25,6 @@ tools/.judge-config.json
 # Editor-/Tooling-Konfiguration
 .claude/
 .mh_tagdata.json
+
+# Transferordner für Content-Anlieferungen aus Claude.ai-Sessions (lokal als Referenz, nie committen)
+[Ii]ncoming/

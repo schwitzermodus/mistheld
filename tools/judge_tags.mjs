@@ -89,13 +89,26 @@ function buildPrompt(themebook, tier, q, bundle) {
   return lines.join('\n');
 }
 
-const SYSTEM = [
+function buildStyleSection(styleRules) {
+  const lines = ['STIL-/INHALTSREGELN (TAG-STYLE.md — zusätzlich zu den offiziellen Fragen anzuwenden):'];
+  Object.entries(styleRules).forEach(([section, rules]) => {
+    if (section === 'source') return;
+    lines.push(`  ${section}:`);
+    rules.forEach((r) => lines.push(`    - ${r}`));
+  });
+  return lines.join('\n');
+}
+
+const SYSTEM = (styleRules) => [
   'Du bist ein strenger Prüfer für das TTRPG "Legend in the Mist".',
   'Bewerte jeden Tag/Quest gegen die offiziellen Kriterien:',
   '- Power Tag: nützlich? Welche offizielle Power-Frage (A–J) beantwortet er? Unterstützt er hilfreiche Aktionen im Spiel?',
   '- Weakness Tag: einschränkend? Welche Weakness-Frage (A–D)? Wie behindert er / verursacht Probleme?',
-  '- Quest: klares Ich-Ziel mit möglichem Milestone und erkennbarem "Aufgeben"?',
-  '- Passt der Tag zur Might-Stufe? Wiederholen sich Tags inhaltlich (Diversität)?',
+  '- Quest: klares Ziel mit möglichem Milestone und erkennbarem "Aufgeben"? Beschreibung erzählt Hintergrund, nicht die Tags nach?',
+  '- Passt der Tag zur Might-Stufe (Titel-Klang eingeschlossen)? Wiederholen sich Tags inhaltlich (Diversität)?',
+  '',
+  buildStyleSection(styleRules),
+  '',
   'Antworte AUSSCHLIESSLICH knapp auf DEUTSCH, stichwortartig (Grammatik nachrangig).',
 ].join('\n');
 
@@ -129,7 +142,8 @@ const SCHEMA = {
 (async () => {
   const args = parseArgs(process.argv.slice(2));
   const { THEMEBOOKS } = await imp('themebooks.js');
-  const { THEMEBOOK_QUESTIONS, MIGHT_GUIDANCE } = await imp('criteria.js');
+  const { THEMEBOOK_QUESTIONS, MIGHT_GUIDANCE, STYLE_RULES } = await imp('criteria.js');
+  const system = SYSTEM(STYLE_RULES);
 
   // Bündel-Arbeitsliste aufbauen
   const work = [];
@@ -147,7 +161,7 @@ const SCHEMA = {
     const w = todo[0];
     if (!w) { console.log('Nichts zu tun.'); return; }
     console.log('\n=== DRY-RUN: Beispiel-Prompt (erstes Bündel) ===\n');
-    console.log('--- System ---\n' + SYSTEM);
+    console.log('--- System ---\n' + system);
     console.log('\n--- User ---\n' + buildPrompt(w.name, w.tier, THEMEBOOK_QUESTIONS[w.name], w.bundle));
     console.log('\n(API wird im Dry-Run NICHT aufgerufen.)');
     return;
@@ -168,7 +182,7 @@ const SCHEMA = {
       const resp = await client.messages.create({
         model: args.model,
         max_tokens: 4000,
-        system: SYSTEM,
+        system,
         output_config: { format: { type: 'json_schema', schema: SCHEMA }, effort: 'low' },
         messages: [{ role: 'user', content: prompt }],
       });
