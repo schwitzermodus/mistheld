@@ -2136,33 +2136,31 @@ export const THEMEBOOKS = {
           { text: "liest das Publikum", hooks: ["handwerk","fahrend"] },
           { text: "erfindet im Augenblick", hooks: ["handwerk"] },
           { text: "kennt tausend Sagen", hooks: ["wissen","fahrend"] },
-          { text: "fesselt jeden Saal", hooks: ["handwerk","stadt"] },
         ],
         weaknessTags: [
           { text: "schmückt die Wahrheit aus", hooks: ["geheimnis","handwerk"] },
-          { text: "braucht stets ein Publikum", hooks: ["verlust","außenseiter"] },
+          { text: "braucht stets Publikum", hooks: ["verlust","außenseiter"] },
         ],
         quests: [
-          { title: "Die verschollene Sage", description: "Tausend Sagen kann der Held aus dem Stegreif entfachen, doch eine fehlt ihm noch immer. Es heißt, sie sei so dunkel, dass keine Zunge sie mehr zu formen wagt. Den Helden lässt diese Lücke nicht ruhen, und er folgt halb verwehten Spuren, bis die verschollene Geschichte endlich wieder in seiner Stimme lebt.", hooks: ["fahrend","geheimnis"] },
-          { title: "Ein Lied das überdauert", description: "Jeder Saal verstummt, wenn der Held zu erzählen beginnt, doch Beifall verklingt mit dem letzten Wort. Was nützt eine Gabe, die nur im Augenblick lebt, wenn der Held selbst vergessen wird. Darum sucht er die eine Erzählung, die fest genug gewoben ist, um ihn um Generationen zu überleben und seinen Namen unvergänglich zu machen.", hooks: ["handwerk","schicksal"] },
+          { title: "Die verschollene Sage", description: "Tausend Geschichten kann er aus dem Stegreif entfachen, doch eine fehlt, so dunkel, dass keine Zunge sie mehr zu formen wagt. Die Lücke lässt ihn nicht ruhen. Er folgt halb verwehten Bruchstücken, von Wirtshaus zu Wirtshaus, bis die verschollene Sage wieder in seiner Stimme lebt.", hooks: ["fahrend","geheimnis"] },
+          { title: "Ein Lied, das mich überdauert", description: "Jeder Saal verstummt, wenn er beginnt, doch Beifall verklingt mit dem letzten Wort, und was nützt eine Gabe, die nur im Augenblick lebt. Er sucht die eine Erzählung, fest genug gewoben, um ihn um Generationen zu überleben und seinen Namen nicht sterben zu lassen.", hooks: ["handwerk","schicksal"] },
         ]
       },
       {
         text: "meisterhafter Koch", hooks: ["handwerk"],
         powerTags: [
-          { text: "wundersames Werk", hooks: ["handwerk"] },
-          { text: "improvisiert das Unmögliche", hooks: ["handwerk"] },
           { text: "erkennt jede Zutat", hooks: ["handwerk","natur"] },
           { text: "verfeinert jedes Mahl", hooks: ["handwerk"] },
+          { text: "improvisiert am Herd", hooks: ["handwerk"] },
           { text: "öffnet Herzen am Tisch", hooks: ["handwerk","glaube"] },
         ],
         weaknessTags: [
-          { text: "reagiert gereizt auf Pfusch", hooks: ["handwerk"] },
+          { text: "erträgt keinen Pfusch", hooks: ["handwerk"] },
           { text: "wählerisch bis zur Plage", hooks: ["handwerk","verlust"] },
         ],
         quests: [
-          { title: "Das vollkommene Mahl", description: "Der Held verfeinert jedes Gericht, bis es Herzen am Tisch öffnet, und doch nagt der Zweifel, ob er sein Können je ganz ausgeschöpft hat. Ein einziges Festmahl schwebt ihm vor, in das alle Kunst seiner Hände fließt. Erst wenn dieser Gang vollendet vor ihm steht, weiß der Held endlich, wozu seine Gabe wirklich fähig ist.", hooks: ["handwerk"] },
-          { title: "Die verlorene Rezeptur", description: "Die alten Meister kannten Speisen, von denen heute nur noch Gerüchte flüstern, und den Helden erkennt jede Zutat auf der Zunge. Eine vergessene Rezeptur lockt ihn wie ein Rätsel, das nur sein Gaumen lösen kann. Über vergilbte Notizen und ferne Küchen folgt er ihrer Spur, bis das verlorene Werk auf seinem Herd neu erwacht.", hooks: ["handwerk","verlust"] },
+          { title: "Das vollkommene Mahl", description: "Er verfeinert jedes Gericht, bis es Herzen öffnet, und zweifelt doch, ob er sein Können je ganz ausschöpfte. Ein einziges Festmahl schwebt ihm vor, in das alle Kunst seiner Hände fließt. Er sucht den Anlass, die Gäste und die Zutaten, um es endlich zu bereiten.", hooks: ["handwerk"] },
+          { title: "Die verlorene Rezeptur", description: "Die alten Meister kannten Speisen, von denen heute nur Gerüchte flüstern, und seine Zunge erkennt jede Zutat. Eine vergessene Rezeptur lockt ihn wie ein Rätsel. Über vergilbte Notizen und ferne Küchen folgt er ihrer Spur, bis das verlorene Werk auf seinem Herd neu erwacht.", hooks: ["handwerk","verlust"] },
         ]
       },
       {
@@ -2171,16 +2169,15 @@ export const THEMEBOOKS = {
           { text: "staunenswerte Schwertkunst", hooks: ["kampf","handwerk"] },
           { text: "eigene Signaturtechnik", hooks: ["handwerk"] },
           { text: "erkennt den schwachen Punkt", hooks: ["kampf","handwerk"] },
-          { text: "unlesbare Technik", hooks: ["handwerk","geheimnis"] },
-          { text: "unerschütterlich unter Druck", hooks: ["handwerk"] },
+          { text: "kühl unter Druck", hooks: ["handwerk"] },
         ],
         weaknessTags: [
-          { text: "wird ständig herausgefordert", hooks: ["kampf","handwerk"] },
+          { text: "ständig herausgefordert", hooks: ["kampf","handwerk"] },
           { text: "verträgt keine Niederlage", hooks: ["handwerk"] },
         ],
         quests: [
-          { title: "Der ebenbürtige Gegner", description: "Mit staunenswerter Schwertkunst und einer ganz eigenen Technik hat der Held jeden Fechter bezwungen, der ihm gegenübertrat. Doch leichte Siege schmecken schal, und die ewigen Herausforderer langweilen ihn nur. Was der Held wirklich sucht, ist der eine Gegner, der ihn an seine Grenze treibt und ihn endlich spüren lässt, was es heißt, gefordert zu werden.", hooks: ["handwerk","fahrend"] },
-          { title: "Die verbotene Form", description: "Der Held erkennt jeden schwachen Punkt und liest jede Klinge, doch eine Technik haben selbst die größten Meister stets gemieden. Zu gefährlich, hieß es, zu vermessen für sterbliche Hände. Gerade das reizt den Helden, der keine Niederlage erträgt, und er wird nicht ruhen, bis er die verbotene Form gezähmt und sich zu eigen gemacht hat.", hooks: ["kampf","geheimnis"] },
+          { title: "Der ebenbürtige Gegner", description: "Jeden Fechter hat er bezwungen, und leichte Siege schmecken schal, die ewigen Herausforderer langweilen ihn nur. Was er sucht, ist der eine Gegner, der ihn an die Grenze treibt. Gerüchte künden von einem Meister im fernen Osten, und er reist ihm entgegen.", hooks: ["handwerk","fahrend"] },
+          { title: "Die verbotene Form", description: "Eine Technik haben selbst die größten Meister stets gemieden, zu gefährlich, zu vermessen für sterbliche Hände. Gerade das reizt ihn, der keine Niederlage erträgt. Er sucht den letzten, der sie kannte, und wird nicht ruhen, bis er die verbotene Form gezähmt hat.", hooks: ["kampf","geheimnis"] },
         ]
       },
       {
@@ -2189,7 +2186,6 @@ export const THEMEBOOKS = {
           { text: "einmalige Heiltechnik", hooks: ["handwerk","magie"] },
           { text: "erkennt jedes Leiden", hooks: ["handwerk","wissen"] },
           { text: "ruhige Hände im Notfall", hooks: ["handwerk"] },
-          { text: "kennt seltene Heilmittel", hooks: ["handwerk","natur"] },
           { text: "holt Verlorene zurück", hooks: ["handwerk","schicksal"] },
         ],
         weaknessTags: [
@@ -2197,87 +2193,82 @@ export const THEMEBOOKS = {
           { text: "wird für Unmögliches eingespannt", hooks: ["handwerk","macht"] },
         ],
         quests: [
-          { title: "Die unheilbare Seuche", description: "Mit seiner einmaligen Heiltechnik hat der Held Verlorene zurückgeholt, an denen andere längst verzweifelten. Doch nun wütet ein Leiden, das noch niemand bezwang, und jeder Tote fühlt sich an wie sein eigenes Versagen. Der Held kann nicht tatenlos zusehen und sucht das Mittel gegen diese Seuche, koste ihn die Suche auch den letzten Funken Hoffnung.", hooks: ["handwerk","verlust"] },
-          { title: "Ein Leben das zählt", description: "Der Held erkennt jedes Leiden und behält ruhige Hände, wo andere zittern, doch keine Gabe schützt vor dem Schmerz des Scheiterns. In dieser Nacht hängt ein einziges Leben an einem seidenen Faden, und nur seine Kunst kann es halten. Für den Helden zählt jetzt nichts als dieser eine Mensch, den er um jeden Preis dem Tod entreißen will.", hooks: ["handwerk","glaube"] },
+          { title: "Die unheilbare Seuche", description: "Er hat Verlorene zurückgeholt, an denen andere verzweifelten, doch nun wütet ein Leiden, das noch niemand bezwang, und jeder Tote fühlt sich an wie sein Versagen. Er kann nicht zusehen. Er folgt der Seuche zu ihrem Ursprung, um das Mittel zu finden, das es noch nicht gibt.", hooks: ["handwerk","verlust"] },
+          { title: "Ein Leben, das zählt", description: "Keine Gabe schützt vor dem Schmerz des Scheiterns, und in dieser Nacht hängt ein einziges Leben an einem seidenen Faden. Nur seine Kunst kann es halten. Für ihn zählt jetzt nichts als dieser eine Mensch, den er dem Tod entreißen will, ganz gleich, was es ihn kostet.", hooks: ["handwerk","glaube"] },
         ]
       },
       {
         text: "untrüglicher Bogenschütze", hooks: ["kampf","handwerk"],
         powerTags: [
-          { text: "unfehlbarer Pfeil", hooks: ["kampf","handwerk"] },
           { text: "trifft jedes Ziel", hooks: ["kampf","handwerk"] },
           { text: "ruhiger Atem im Anschlag", hooks: ["handwerk"] },
-          { text: "schießt schneller als der Blick", hooks: ["handwerk","kampf"] },
+          { text: "schneller als der Blick", hooks: ["handwerk","kampf"] },
           { text: "kennt jeden Bogen", hooks: ["handwerk"] },
         ],
         weaknessTags: [
-          { text: "wird ständig herausgefordert", hooks: ["kampf","handwerk"] },
+          { text: "ständig herausgefordert", hooks: ["kampf","handwerk"] },
           { text: "hilflos im Nahkampf", hooks: ["kampf","verlust"] },
         ],
         quests: [
-          { title: "Der unmögliche Schuss", description: "Kein Ziel ist dem Helden zu fern, sein Pfeil fliegt unfehlbar und schneller, als das Auge folgen kann. Doch gerade darum reizt ihn das, was alle für unmöglich halten. Irgendwo wartet ein Schuss, den niemand sonst zu wagen träumt, und der Held wird seinen Atem so lange ruhig halten, bis auch dieses Ziel seiner Sehne nicht mehr entgeht.", hooks: ["handwerk","schicksal"] },
-          { title: "Der Wettstreit der Meister", description: "Der Held kennt jeden Bogen und trifft, worauf er auch zielt, doch im Nahkampf wäre er verloren. Sein Reich ist die Distanz, sein Stolz die Treffsicherheit. Wenn die besten Schützen des Landes zum großen Wettkampf zusammenkommen, will der Held unter ihnen stehen und mit ruhigem Atem beweisen, dass keine Hand seine Pfeile übertrifft.", hooks: ["handwerk","kampf"] },
+          { title: "Der unmögliche Schuss", description: "Kein Ziel ist ihm zu fern, und gerade darum reizt ihn das, was alle für unmöglich halten. Irgendwo wartet ein Schuss, von dem man sagt, er sei nicht zu machen, ein Pfeil durch drei Ringe, ein Turmfenster im Sturm. Er sucht ihn, um seinen Atem auch dort ruhig zu halten.", hooks: ["handwerk","schicksal"] },
+          { title: "Der Wettstreit der Meister", description: "Sein Reich ist die Distanz, sein Stolz die Treffsicherheit, im Nahkampf wäre er verloren. Wenn die besten Schützen des Landes zum großen Wettkampf zusammenkommen, will er unter ihnen stehen. Er reist zum Turnier, um zu beweisen, dass keine Hand seine Pfeile übertrifft.", hooks: ["handwerk","kampf"] },
         ]
       },
       {
         text: "Meister des Spiels", hooks: ["handwerk","stadt"],
         powerTags: [
-          { text: "blitzschnelle Auffassung", hooks: ["handwerk","kampf"] },
           { text: "durchschaut jede Strategie", hooks: ["handwerk","wissen"] },
           { text: "denkt zehn Züge voraus", hooks: ["handwerk","wissen"] },
-          { text: "unvorhersehbarer Weg zum Ziel", hooks: ["handwerk","geheimnis"] },
-          { text: "bleibt eiskalt am Brett", hooks: ["handwerk"] },
+          { text: "blitzschnelle Auffassung", hooks: ["handwerk","kampf"] },
+          { text: "eiskalt am Brett", hooks: ["handwerk"] },
         ],
         weaknessTags: [
           { text: "kann nicht verlieren", hooks: ["handwerk","macht"] },
           { text: "sieht überall nur Spiele", hooks: ["handwerk","außenseiter"] },
         ],
         quests: [
-          { title: "Der ungeschlagene Großmeister", description: "Der Held denkt zehn Züge voraus und durchschaut jede Strategie, ehe der Gegner sie zu Ende denkt. Doch es heißt, ein Großmeister habe seit Jahren keine Partie verloren, und dieser Ruf lässt dem Helden keine Ruhe. Eiskalt am Brett und blitzschnell im Geist sucht er die eine Partie, in der er den Unbesiegten endlich stürzt.", hooks: ["handwerk","macht"] },
-          { title: "Die tödliche Partie", description: "Für den Helden ist alles ein Spiel, und auf unvorhersehbaren Wegen führt er jede Strategie zum Sieg. Doch diesmal liegen keine Steine auf dem Brett, sondern Leben und Tod. Mit der gewohnten kühlen Berechnung tritt der Held an, fest entschlossen, die eine Partie zu gewinnen, bei der ein Fehler weit mehr kostet als bloß den nächsten Zug.", hooks: ["handwerk","schicksal"] },
+          { title: "Der ungeschlagene Großmeister", description: "Er durchschaut jede Strategie, ehe der Gegner sie zu Ende denkt, doch ein Großmeister soll seit Jahren keine Partie verloren haben. Dieser Ruf lässt ihn nicht ruhen. Er reist zu dessen Turnier, um den Unbesiegten in der einen Partie zu stürzen, die zählt.", hooks: ["handwerk","macht"] },
+          { title: "Die tödliche Partie", description: "Für ihn ist alles ein Spiel, doch diesmal liegen keine Steine auf dem Brett, sondern Leben und Tod. Mit gewohnter kühler Berechnung tritt er an. Ein Fehler kostet hier weit mehr als den nächsten Zug, und genau das reizt und erschreckt ihn zugleich.", hooks: ["handwerk","schicksal"] },
         ]
       },
       {
         text: "Tänzerin ohne Gleichen", hooks: ["handwerk"],
         powerTags: [
-          { text: "unbestreitbare Eleganz", hooks: ["handwerk"] },
+          { text: "bewegt sich wie Wasser", hooks: ["handwerk","natur"] },
           { text: "staunenswerter Sprung", hooks: ["handwerk"] },
           { text: "fesselt jeden Blick", hooks: ["handwerk","schicksal"] },
-          { text: "bewegt sich wie Wasser", hooks: ["handwerk","natur"] },
           { text: "spricht ohne Worte", hooks: ["handwerk","geheimnis"] },
         ],
         weaknessTags: [
-          { text: "wird beneidet", hooks: ["handwerk","stadt"] },
-          { text: "erschöpft im Alltag", hooks: ["verlust"] },
+          { text: "heftig beneidet", hooks: ["handwerk","stadt"] },
+          { text: "im Alltag erschöpft", hooks: ["verlust"] },
         ],
         quests: [
-          { title: "Der Tanz der niemals war", description: "Die Bewegungen des Helden fließen wie Wasser und sprechen, wo Worte versagen, sodass jeder Blick im Saal an ihm haftet. Doch die alten Tänze genügen ihm längst nicht mehr. In ihm reift die Sehnsucht nach Schritten, die noch keine Welt gesehen hat, und der Held wird tanzen und schaffen, bis aus dieser Vision ein Tanz wird, den niemand vor ihm kannte.", hooks: ["handwerk","schicksal"] },
-          { title: "Die große Bühne", description: "Mit staunenswerten Sprüngen und unbestreitbarer Eleganz fesselt der Held jeden, der ihn sieht, auch wenn der Alltag seine Kräfte zehrt. Doch kleine Bühnen sind seiner Gabe nicht würdig. Einmal will der Held vor dem Hof tanzen, der über Ruhm und Vergessen entscheidet, und dort beweisen, dass seine Kunst auf die größte aller Bühnen gehört.", hooks: ["handwerk","adel"] },
+          { title: "Der Tanz, den es nie gab", description: "Ihre Bewegungen fließen wie Wasser und sprechen, wo Worte versagen, doch die alten Tänze genügen ihr nicht mehr. In ihr reift die Sehnsucht nach Schritten, die keine Welt gesehen hat. Sie tanzt und verwirft, Nacht um Nacht, bis aus der Vision ein Tanz wird, den niemand vor ihr kannte.", hooks: ["handwerk","schicksal"] },
+          { title: "Die große Bühne", description: "Kleine Bühnen sind ihrer Gabe nicht würdig, auch wenn der Alltag ihre Kräfte zehrt. Einmal will sie vor dem Hof tanzen, der über Ruhm und Vergessen entscheidet. Sie reist zur Residenz, um dort zu beweisen, dass ihre Kunst auf die größte aller Bühnen gehört.", hooks: ["handwerk","adel"] },
         ]
       },
       {
         text: "Diebin des Unmöglichen", hooks: ["handwerk","stadt"],
         powerTags: [
-          { text: "erstaunliche Geschwindigkeit", hooks: ["handwerk"] },
           { text: "öffnet jedes Schloss", hooks: ["handwerk","geheimnis"] },
           { text: "lautlos wie ein Schatten", hooks: ["handwerk","außenseiter"] },
-          { text: "improvisiert das Unmögliche", hooks: ["handwerk"] },
           { text: "findet jeden Schwachpunkt", hooks: ["handwerk","wissen"] },
+          { text: "flink wie kein Zweiter", hooks: ["handwerk"] },
         ],
         weaknessTags: [
-          { text: "misstrauisch beobachtet", hooks: ["geheimnis"] },
+          { text: "überall beobachtet", hooks: ["geheimnis"] },
           { text: "kann nicht widerstehen", hooks: ["handwerk","verlust"] },
         ],
         quests: [
-          { title: "Der undurchdringliche Hort", description: "Der Held öffnet jedes Schloss und gleitet lautlos wie ein Schatten an jeder Wache vorbei, und seinem Auge entgeht kein Schwachpunkt. Doch ein Tresor gilt als unknackbar, und genau das kann der Held nicht auf sich beruhen lassen. Was kein Dieb je bezwang, reizt ihn unwiderstehlich, und er wird nicht rasten, bis auch dieser Hort sich ihm öffnet.", hooks: ["handwerk","geheimnis"] },
-          { title: "Ein letzter Coup", description: "Mit erstaunlicher Geschwindigkeit und dem Geschick, das Unmögliche zu improvisieren, hat der Held schon manchen Schatz erbeutet, doch misstrauische Blicke folgen ihm überall. Ein einziger Coup könnte ihn endlich freikaufen von Jagd und Verdacht. Der Held plant den großen Streich, der ihn aus dem Schatten holt, auch wenn seine Gier nach dem Verbotenen ihm im Weg steht.", hooks: ["handwerk","verlust"] },
+          { title: "Der undurchdringliche Hort", description: "Sie öffnet jedes Schloss und gleitet lautlos an jeder Wache vorbei, doch ein Tresor gilt als unknackbar, und das kann sie nicht auf sich beruhen lassen. Was kein Dieb je bezwang, reizt sie unwiderstehlich. Sie reist zu dem Hort, um zu beweisen, dass auch er sich öffnen lässt.", hooks: ["handwerk","geheimnis"] },
+          { title: "Ein letzter Coup", description: "Misstrauische Blicke folgen ihr überall, und sie träumt von dem einen Streich, der sie freikauft von Jagd und Verdacht. Er müsste größer sein als alles zuvor. Sie plant ihn bis ins Letzte, auch wenn ihre Gier nach dem Verbotenen ihr selbst im Weg steht.", hooks: ["handwerk","verlust"] },
         ]
       },
       {
         text: "Bardin der Legenden", hooks: ["fahrend","handwerk"],
         powerTags: [
           { text: "reißt jede Menge mit", hooks: ["handwerk","fahrend"] },
-          { text: "verzaubert mit Worten", hooks: ["handwerk","fahrend"] },
           { text: "spornt andere an", hooks: ["handwerk","macht"] },
           { text: "kennt jedes Lied", hooks: ["handwerk","wissen"] },
           { text: "stimmt jeden Saal um", hooks: ["handwerk","stadt"] },
@@ -2287,17 +2278,16 @@ export const THEMEBOOKS = {
           { text: "verschuldet durch Großzügigkeit", hooks: ["fahrend","verlust"] },
         ],
         quests: [
-          { title: "Das Lied der Helden", description: "Der Held reißt jede Menge mit und verzaubert mit Worten, doch seine Gabe hat ihn auch einsam gemacht. Worte können mehr als unterhalten, sie können Taten zu Legenden erheben. Darum will der Held eine Heldentat besingen, so machtvoll und wahr, dass sein Lied sie unsterblich macht und niemand je wieder vergisst, was geschah.", hooks: ["handwerk","schicksal"] },
-          { title: "Das Ohr des Königs", description: "Jeden Saal stimmt der Held nach seinem Willen um, und er kennt jedes Lied, das je gesungen wurde, auch wenn ihn die Großzügigkeit in Schulden treibt. Am Hof aber werden Lieder zu Geschichte. Einmal will der Held vor dem König spielen und mit seiner Kunst dort etwas bewegen, wo Melodien über das Schicksal von Reichen entscheiden.", hooks: ["handwerk","adel"] },
+          { title: "Das Lied der Helden", description: "Worte können mehr als unterhalten, sie können Taten zu Legenden erheben, doch ihre Gabe hat sie einsam gemacht. Sie will eine Heldentat besingen, so machtvoll und wahr, dass ihr Lied sie unsterblich macht. Sie reist der Tat nach, um sie mit eigenen Augen zu sehen, ehe sie sie besingt.", hooks: ["handwerk","schicksal"] },
+          { title: "Das Ohr des Königs", description: "Am Hof werden Lieder zu Geschichte, auch wenn ihre Großzügigkeit sie in Schulden treibt. Einmal will sie vor dem König spielen und mit ihrer Kunst dort etwas bewegen, wo Melodien über das Schicksal von Reichen entscheiden. Sie sucht den Weg an den Hof, Empfehlung um Empfehlung.", hooks: ["handwerk","adel"] },
         ]
       },
       {
         text: "unfehlbare Reiterin", hooks: ["handwerk","natur"],
         powerTags: [
           { text: "verschmilzt mit dem Pferd", hooks: ["handwerk","natur"] },
-          { text: "reitet wo keiner reitet", hooks: ["handwerk","natur"] },
           { text: "bändigt jedes Tier", hooks: ["handwerk","natur"] },
-          { text: "erstaunliche Geschwindigkeit", hooks: ["handwerk"] },
+          { text: "reitet wo keiner reitet", hooks: ["handwerk","natur"] },
           { text: "unerschütterlich im Sattel", hooks: ["handwerk","kampf"] },
         ],
         weaknessTags: [
@@ -2305,26 +2295,25 @@ export const THEMEBOOKS = {
           { text: "tollkühn im Ritt", hooks: ["handwerk","natur"] },
         ],
         quests: [
-          { title: "Das ungezähmte Ross", description: "Der Held verschmilzt mit jedem Pferd und bändigt selbst die wildesten Tiere, doch ohne sein Ross fühlt er sich nur halb. Nun gibt es einen Hengst, den noch keine Hand zähmen konnte, störrisch und ungebrochen. Gerade dieser Stolz weckt den Ehrgeiz des Helden, und er wird so lange Geduld und Mut aufbringen, bis auch dieses ungezähmte Ross ihn trägt.", hooks: ["handwerk","natur"] },
-          { title: "Das große Wettrennen", description: "Mit atemberaubender Geschwindigkeit reitet der Held, wo sich kein anderer hinwagt, unerschütterlich im Sattel und oft tollkühn dazu. Ein großes Rennen steht bevor, das alle für längst entschieden halten. Doch der Held glaubt an sein Tier und seine Kunst und wird sich in den Sattel schwingen, um den Ritt zu gewinnen, den niemand ihm zutraut.", hooks: ["handwerk","schicksal"] },
+          { title: "Das ungezähmte Ross", description: "Sie bändigt selbst die wildesten Tiere, doch nun gibt es einen Hengst, den keine Hand je brach, störrisch und ungebrochen. Gerade dieser Stolz weckt ihren Ehrgeiz. Sie reist dorthin, wo er läuft, und bringt Geduld und Mut auf, bis auch dieses Ross sie trägt.", hooks: ["handwerk","natur"] },
+          { title: "Das große Wettrennen", description: "Ein großes Rennen steht bevor, das alle für längst entschieden halten, doch sie glaubt an ihr Tier und ihre Kunst. Ohne ihr Ross wäre sie nur halb, im Sattel ist sie unbesiegbar. Sie meldet sich zum Ritt, um zu gewinnen, was ihr niemand zutraut.", hooks: ["handwerk","schicksal"] },
         ]
       },
       {
         text: "Rednerin der Massen", hooks: ["macht","stadt"],
         powerTags: [
-          { text: "reißt jede Menge mit", hooks: ["handwerk","fahrend"] },
-          { text: "findet stets das rechte Wort", hooks: ["handwerk","macht"] },
+          { text: "findet das rechte Wort", hooks: ["handwerk","macht"] },
           { text: "entfacht die Menge", hooks: ["handwerk","macht"] },
           { text: "liest das Publikum", hooks: ["handwerk","fahrend"] },
           { text: "unerschütterlich unter Druck", hooks: ["handwerk"] },
         ],
         weaknessTags: [
-          { text: "arrogant gegenüber Schwächeren", hooks: ["macht"] },
+          { text: "herablassend zu Schwächeren", hooks: ["macht"] },
           { text: "glaubt der eigenen Rede", hooks: ["macht","schicksal"] },
         ],
         quests: [
-          { title: "Die Stadt in Aufruhr", description: "Der Held findet stets das rechte Wort und liest jedes Publikum, sodass er eine Menge entfacht, wann immer er will. Manchmal genügt eine einzige Rede, um den Lauf der Dinge zu wenden. Wenn Unrecht die Gassen vergiftet, will der Held seine Stimme erheben und eine ganze Stadt bewegen, auch wenn ihn der Glaube an die eigenen Worte zuweilen blendet.", hooks: ["handwerk","macht"] },
-          { title: "Worte gegen Schwerter", description: "Unerschütterlich unter Druck reißt der Held jede Menge mit, wo andere im Lärm der Schlacht verstummen. Er weiß, dass ein gut gewähltes Wort schärfer schneidet als jede Klinge. Wenn die Heere bereits gegeneinander stehen, will der Held allein durch seine Rede das Blatt wenden und beweisen, dass Worte mächtiger sein können als Schwerter.", hooks: ["handwerk","kampf"] },
+          { title: "Die Stadt in Aufruhr", description: "Manchmal genügt eine Rede, um den Lauf der Dinge zu wenden, und in einer Stadt vergiftet Unrecht die Gassen. Sie will ihre Stimme erheben und die Menge bewegen. Sie reist dorthin, wo es gärt, auch wenn der Glaube an die eigenen Worte sie zuweilen blendet.", hooks: ["handwerk","macht"] },
+          { title: "Worte gegen Schwerter", description: "Wo andere im Lärm der Schlacht verstummen, reißt sie noch jede Menge mit, denn sie weiß, ein Wort schneidet schärfer als eine Klinge. Wenn zwei Heere gegeneinanderstehen, will sie allein durch ihre Rede das Blatt wenden und beweisen, dass Worte mächtiger sein können als Schwerter.", hooks: ["handwerk","kampf"] },
         ]
       },
       {
@@ -2332,17 +2321,16 @@ export const THEMEBOOKS = {
         powerTags: [
           { text: "durchschaut jeden Bluff", hooks: ["handwerk","geheimnis"] },
           { text: "unbewegte Miene", hooks: ["handwerk"] },
-          { text: "gilt als die Beste", hooks: ["handwerk","schicksal"] },
           { text: "rechnet jede Chance", hooks: ["handwerk","wissen"] },
           { text: "behält die Nerven", hooks: ["handwerk"] },
         ],
         weaknessTags: [
           { text: "verträgt keine Niederlage", hooks: ["handwerk"] },
-          { text: "wird der Falschheit verdächtigt", hooks: ["geheimnis","stadt"] },
+          { text: "der Falschheit verdächtigt", hooks: ["geheimnis","stadt"] },
         ],
         quests: [
-          { title: "Das Spiel um alles", description: "Der Held durchschaut jeden Bluff hinter unbewegter Miene und gilt als die Beste am Tisch, doch eine Niederlage könnte er kaum ertragen. Nun lockt eine Partie gegen den besten Spieler weit und breit, bei der alles auf dem Spiel steht. Mit kühlem Kopf und ruhigem Herzschlag setzt der Held alles auf diese eine Begegnung, um zu beweisen, wer wirklich die Beste ist.", hooks: ["handwerk","macht"] },
-          { title: "Die Schuld vom Tisch", description: "Mit eiserner Nervenstärke rechnet der Held jede Chance aus, auch wenn man ihm hinter vorgehaltener Hand Falschheit nachsagt. Eine alte Schuld lastet schwer und droht ihn zu erdrücken. Nur ein einziges Spiel kann sie tilgen, und der Held setzt sich an den Tisch, fest entschlossen, mit seiner Gabe die Last für immer von seinen Schultern zu spielen.", hooks: ["handwerk","verlust"] },
+          { title: "Das Spiel um alles", description: "Sie gilt als die Beste am Tisch, doch eine Niederlage könnte sie kaum ertragen. Nun lockt eine Partie gegen den besten Spieler weit und breit, bei der alles auf dem Spiel steht. Mit kühlem Kopf reist sie hin, um zu beweisen, wer wirklich die Beste ist.", hooks: ["handwerk","macht"] },
+          { title: "Die Schuld vom Tisch", description: "Man sagt ihr hinter vorgehaltener Hand Falschheit nach, und eine alte Schuld lastet schwer und droht sie zu erdrücken. Nur ein einziges Spiel kann sie tilgen. Sie setzt sich an den Tisch, entschlossen, mit ihrer Gabe die Last für immer von den Schultern zu spielen.", hooks: ["handwerk","verlust"] },
         ]
       },
     ]
