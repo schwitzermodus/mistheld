@@ -879,204 +879,204 @@ export const THEMEBOOKS = {
         text: "Herz aus Gold", hooks: ["glaube"],
         powerTags: [
           { text: "gibt sein Letztes", hooks: ["glaube","verlust"] },
-          { text: "erkennt verborgene Not", hooks: ["glaube","wissen"] },
-          { text: "trägt keinen Groll", hooks: ["glaube"] },
-          { text: "macht Mut zum Aufstehen", hooks: ["glaube","natur"] },
+          { text: "erkennt stille Not", hooks: ["glaube","wissen"] },
+          { text: "macht Mut", hooks: ["glaube","natur"] },
+          { text: "kann verzeihen", hooks: ["glaube"] },
         ],
         weaknessTags: [
-          { text: "ausnutzbar", hooks: ["außenseiter"] },
-          { text: "nimmt sich alles zu Herzen", hooks: ["verlust","natur"] },
+          { text: "leicht ausnutzbar", hooks: ["außenseiter"] },
+          { text: "nimmt alles zu Herzen", hooks: ["verlust","natur"] },
         ],
         quests: [
-          { title: "Ein offenes Ohr für die Übersehenen", description: "Wo andere wegsehen, erkennt der Held die verborgene Not im Blick der Vergessenen. Er gibt sein Letztes, leiht ein Ohr und macht denen Mut, die längst aufgegeben haben. Niemand soll sich allein fühlen, solange er in der Nähe ist, denn jedes übersehene Leid wiegt für sein weiches Herz schwer.", hooks: ["glaube","außenseiter"] },
-          { title: "Güte zurückgeben", description: "Einst stand der Held selbst am Boden, und eine fremde Hand richtete ihn wieder auf. Diese Güte hat sich tief eingeprägt, und nun drängt es ihn, sie weiterzureichen. Was ihm geschenkt wurde, will er vervielfachen, bis die Welt ein wenig wärmer ist, auch wenn man seine Großzügigkeit allzu leicht ausnutzt.", hooks: ["glaube","verlust"] },
+          { title: "Keinen im Stich lassen", description: "Als Kind sah er zu, wie ein Bettler vor dem Wirtshaus erfror, während drinnen gelacht wurde, und schwor sich, nie zu den Lachenden zu gehören. Seither zählt für ihn jeder, den die anderen übersehen. Er sucht die Vergessenen, weil er weiß, wie sich Vergessenwerden anfühlt.", hooks: ["glaube","außenseiter"] },
+          { title: "Güte zurückgeben", description: "Einmal, als er ganz unten war, hielt eine Fremde an, teilte ihr Brot und ging weiter, ohne einen Namen zu nennen. Diese Schuld kann er ihr nie zurückzahlen, also zahlt er sie an alle anderen. Er sucht die Gelegenheit, jemandem so beizustehen, wie man einst ihm beistand.", hooks: ["glaube","verlust"] },
         ]
       },
       {
         text: "das goldene Lächeln", hooks: ["stadt"],
         powerTags: [
           { text: "einnehmendes Lächeln", hooks: ["stadt"] },
-          { text: "plaudert sich aus jeder Lage", hooks: ["stadt"] },
+          { text: "geschliffene Zunge", hooks: ["stadt"] },
           { text: "bringt jeden zum Reden", hooks: ["stadt"] },
-          { text: "liest Räume sofort", hooks: ["stadt","wissen"] },
+          { text: "liest den Raum", hooks: ["stadt","wissen"] },
         ],
         weaknessTags: [
-          { text: "erwartet Anerkennung", hooks: ["macht"] },
-          { text: "spricht zu viel", hooks: ["stadt"] },
+          { text: "braucht Applaus", hooks: ["macht"] },
+          { text: "redet zu viel", hooks: ["stadt"] },
         ],
         quests: [
-          { title: "Menschen für eine Sache gewinnen", description: "Der Held weiß, dass ein Lächeln Türen öffnet, wo Schwerter nur Mauern errichten. Mit warmen Worten liest er jeden Raum und bringt selbst Verstockte zum Reden. Statt durch Zwang will er die Herzen der Menschen für eine Sache gewinnen und beweisen, dass sich die Welt durch Überzeugung verändern lässt, nicht durch Gewalt.", hooks: ["stadt","macht"] },
-          { title: "Wahre Freunde hinter den Masken", description: "So viele lächeln dem Helden zu, doch er ahnt, dass mancher nur sein Charisma sucht und nicht ihn selbst. Hinter den freundlichen Masken sehnt er sich nach jenen wenigen, die bleiben, wenn der Glanz verblasst. Er will herausfinden, wer ihm wirklich vertraut, statt bloß seine Anerkennung zu spiegeln.", hooks: ["glaube","stadt"] },
+          { title: "Menschen für eine Sache gewinnen", description: "Er hat gesehen, was Schwerter anrichten, und glaubt seither, dass man mit dem richtigen Wort mehr bewegt als mit jeder Klinge. Eine Sache brennt in ihm, größer als er selbst. Er sucht die Menschen, die er dafür gewinnen kann, einen Handschlag, ein Lächeln nach dem anderen.", hooks: ["stadt","macht"] },
+          { title: "Erkennen, wer wirklich bleibt", description: "So viele lächeln zurück, dass er nicht mehr weiß, wer ihn meint und wer nur den Glanz. Einmal, als es ihm schlecht ging, blieb der Saal leer. Er will herausfinden, wer dann noch kommt, und hört auf, sich mit Applaus zu begnügen.", hooks: ["glaube","stadt"] },
         ]
       },
       {
         text: "mürrisch wie Stein", hooks: ["außenseiter"],
         powerTags: [
-          { text: "Sturheit als Tugend", hooks: ["natur"] },
-          { text: "einschüchterndes Auftreten", hooks: ["natur"] },
+          { text: "sturer Dickkopf", hooks: ["natur"] },
+          { text: "einschüchternd", hooks: ["natur"] },
           { text: "kalter Blick", hooks: ["macht"] },
-          { text: "gibt nie vorzeitig auf", hooks: ["glaube","schicksal"] },
+          { text: "gibt nie auf", hooks: ["glaube","schicksal"] },
         ],
         weaknessTags: [
-          { text: "leicht zu provozieren", hooks: ["kampf"] },
-          { text: "verschreckt mit der schroffen Art", hooks: ["außenseiter"] },
+          { text: "leicht zu reizen", hooks: ["kampf"] },
+          { text: "schroff und abweisend", hooks: ["außenseiter"] },
         ],
         quests: [
-          { title: "Mir selbst nicht im Weg stehen", description: "Hart wie Fels steht der Held für andere ein und gibt niemals vorzeitig auf. Doch dieselbe Sturheit lässt ihn die eigenen Bedürfnisse übergehen, als zähle er selbst am wenigsten. Nun lernt er mühsam, sich nicht länger im Weg zu stehen und auch für sich jene Härte aufzubringen, die er stets nur für andere zeigte.", hooks: ["natur","verlust"] },
-          { title: "Treu bleiben um jeden Preis", description: "Der schroffe Blick und das einschüchternde Auftreten verschrecken viele, doch hinter dem Stein verbirgt sich eine eiserne Treue. Der Held hat sich entschieden, zu wem er gehört, und nichts wird ihn davon abbringen. Mag man ihn leicht provozieren, sein Wort hält wie Granit, koste es, was es wolle.", hooks: ["glaube","außenseiter"] },
+          { title: "Mir selbst nicht im Weg stehen", description: "Für andere bricht er Berge ab, für sich selbst rührt er keinen Finger, als hätte er es nicht verdient. Ein alter Freund hat ihm das einmal ins Gesicht gesagt, kurz bevor er starb. Der Satz sitzt wie ein Splitter, und er sucht mühsam den Weg, ihn sich herauszuziehen.", hooks: ["natur","verlust"] },
+          { title: "Treu bleiben um jeden Preis", description: "Er hat sich entschieden, zu wem er gehört, ein für alle Mal, und diese Wahl steht fester als Granit. Man hat versucht, sie ihm abzukaufen, abzupressen, auszureden. Er wird beweisen, dass sein Wort hält, auch wenn ihn das Festhalten am Ende alles kostet.", hooks: ["glaube","außenseiter"] },
         ]
       },
       {
         text: "geübte Lügnerin", hooks: ["stadt","geheimnis"],
         powerTags: [
-          { text: "durchschaut eine Lüge", hooks: ["stadt","geheimnis"] },
-          { text: "plaudert sich aus jeder Lage", hooks: ["stadt"] },
-          { text: "trägt jede Maske glaubhaft", hooks: ["stadt","geheimnis"] },
-          { text: "behält die Ruhe", hooks: ["natur"] },
+          { text: "durchschaut Lügen", hooks: ["stadt","geheimnis"] },
+          { text: "trägt jede Maske", hooks: ["stadt","geheimnis"] },
+          { text: "lügt mit ruhigem Puls", hooks: ["natur"] },
+          { text: "redet sich heraus", hooks: ["stadt"] },
         ],
         weaknessTags: [
-          { text: "misstraut der eigenen Geschichte", hooks: ["geheimnis","verlust"] },
+          { text: "glaubt sich selbst nicht mehr", hooks: ["geheimnis","verlust"] },
           { text: "wird beim Wort genommen", hooks: ["stadt","geheimnis"] },
         ],
         quests: [
-          { title: "Das Gesicht unter den Masken", description: "Jahrelang trug der Held jede Maske glaubhaft, log sich aus jeder Lage und durchschaute zugleich die Lügen anderer. Doch über all den Rollen ist das eigene Gesicht verschwommen. Nun treibt es ihn, das wahre Ich unter den Masken wiederzufinden, ehe er der eigenen Geschichte selbst nicht mehr zu trauen vermag.", hooks: ["geheimnis","schicksal"] },
-          { title: "Menschen finden die das Echte sehen", description: "Wer ständig täuscht, wird selten durchschaut, doch der Held zahlt dafür mit Einsamkeit. Er sehnt sich nach Menschen, die das Echte hinter der glatten Fassade erkennen und trotzdem bleiben. Statt beim nächsten Wort ertappt zu werden, will er jene finden, denen er die Wahrheit anvertrauen und wirklich vertrauen kann.", hooks: ["glaube","stadt"] },
+          { title: "Mein eigenes Gesicht wiederfinden", description: "So viele Rollen hat sie gespielt, dass sie nachts nicht mehr weiß, welche Stimme die ihre ist. In einem alten Spiegel hat sie neulich kurz jemanden gesehen, den sie nicht erkannte. Sie will herausfinden, wer unter all den Masken übrig geblieben ist, ehe gar nichts mehr da ist.", hooks: ["geheimnis","schicksal"] },
+          { title: "Jemanden finden, der mich durchschaut", description: "Niemand durchschaut sie, und was Stolz sein sollte, fühlt sich an wie eine Zelle. Einmal hat einer sie beim Lügen ertappt und trotzdem geblieben; sie hat ihn fortgeschickt und bereut es bis heute. Sie sucht den Blick, der hinter die Maske sieht und nicht wegschaut.", hooks: ["glaube","stadt"] },
         ]
       },
       {
         text: "unstillbar neugierig", hooks: ["wissen","geheimnis"],
         powerTags: [
-          { text: "kennt die richtige Frage", hooks: ["wissen"] },
-          { text: "fragt im richtigen Moment", hooks: ["wissen","stadt"] },
-          { text: "keine Gerüchte entgehen mir", hooks: ["stadt","geheimnis"] },
-          { text: "merkt sich jede Einzelheit", hooks: ["wissen"] },
+          { text: "stellt die richtige Frage", hooks: ["wissen"] },
+          { text: "hört jedes Gerücht", hooks: ["stadt","geheimnis"] },
+          { text: "vergisst nichts", hooks: ["wissen"] },
+          { text: "kombiniert schnell", hooks: ["wissen"] },
         ],
         weaknessTags: [
           { text: "verliert sich in Details", hooks: ["wissen","geheimnis"] },
-          { text: "steckt die Nase in Fremdes", hooks: ["geheimnis","außenseiter"] },
+          { text: "muss alles wissen", hooks: ["wissen","geheimnis"] },
         ],
         quests: [
-          { title: "Der Wahrheit auf den Grund gehen", description: "Keine Frage lässt der Held unbeantwortet, kein Gerücht entgeht ihm, und jede Einzelheit prägt sich ihm ein. Wo andere achtlos vorübergehen, bohrt er weiter, bis die Wahrheit selbst vor ihm liegt. Er will den Dingen auf den Grund gehen und mit eigenen Augen sehen, auch wenn er sich dabei leicht in Details verliert.", hooks: ["wissen","geheimnis"] },
-          { title: "Ein Rätsel das mich nicht loslässt", description: "Ein Geheimnis hat sich in den Helden verbissen und lässt ihn nicht mehr los. Alle anderen winken ab oder fürchten die Antwort, doch gerade das schürt seine Neugier nur. Frage um Frage folgt er dem Rätsel, getrieben von dem Drang, jenes eine Geheimnis zu lösen, an das sich sonst niemand heranwagt.", hooks: ["geheimnis","schicksal"] },
+          { title: "Der Wahrheit auf den Grund gehen", description: "Sie erträgt kein „das war schon immer so“; jede glatte Erklärung juckt sie wie ein loser Faden, an dem sie ziehen muss. Gerade jetzt beschäftigt sie eine Frage, der alle auszuweichen scheinen. Sie wird nicht ruhen, bis sie mit eigenen Augen gesehen hat, was dahintersteckt.", hooks: ["wissen","geheimnis"] },
+          { title: "Das Rätsel lösen, das keiner lösen will", description: "Ein altes Rätsel hat sich in ihr festgebissen, eines, bei dem die Alten abwinken und die Klugen blass werden. Genau das macht es unwiderstehlich. Sie folgt jedem Hinweis, sammelt jede Halbwahrheit, bis das Bild sich fügt, egal wohin es sie führt.", hooks: ["geheimnis","schicksal"] },
         ]
       },
       {
         text: "tröstet die Welt", hooks: ["glaube"],
         powerTags: [
           { text: "einfühlsame Stille", hooks: ["glaube"] },
-          { text: "gibt anderen Hoffnung", hooks: ["glaube","natur"] },
-          { text: "gibt guten Rat", hooks: ["glaube","natur"] },
-          { text: "verbreitet Zuversicht", hooks: ["glaube"] },
+          { text: "findet die rechten Worte", hooks: ["glaube"] },
+          { text: "schenkt Hoffnung", hooks: ["glaube","natur"] },
+          { text: "guter Rat", hooks: ["glaube","natur"] },
         ],
         weaknessTags: [
-          { text: "leidet unter Misstimmung", hooks: ["natur","glaube"] },
-          { text: "vergisst die eigenen Sorgen", hooks: ["verlust","glaube"] },
+          { text: "leidet an fremdem Kummer", hooks: ["natur","glaube"] },
+          { text: "vergisst sich selbst", hooks: ["verlust","glaube"] },
         ],
         quests: [
-          { title: "Licht in dunkle Räume bringen", description: "In einfühlsamer Stille spürt der Held, wo Mut fehlt, und schenkt mit gutem Rat und ruhiger Zuversicht neue Hoffnung. Er trägt Licht in die dunkelsten Räume und richtet auf, was zu zerbrechen droht. Solange irgendwo ein Funke Trost gebraucht wird, will er ihn entzünden, denn fremde Verzagtheit drückt schwer auf sein Gemüt.", hooks: ["glaube","macht"] },
-          { title: "Auch für mich selbst da sein", description: "Stets gibt der Held anderen Halt und vergisst dabei die eigenen Sorgen, bis die fremde Misstimmung ihn selbst auszehrt. Nun erkennt er, dass auch sein Herz Pflege braucht. Mühsam lernt er, ebenso für sich selbst da zu sein, wie er es seit jeher für alle anderen gewesen ist.", hooks: ["natur","verlust"] },
+          { title: "Licht in dunkle Räume bringen", description: "Wo andere die Verzagten meiden wie eine Krankheit, setzt sie sich dazu. Sie hat einmal jemanden zu spät getröstet und trägt das seither mit sich. Sie sucht die Stillen mit den leeren Blicken, weil sie glaubt, dass ein einziges gutes Wort einen Menschen halten kann.", hooks: ["glaube","macht"] },
+          { title: "Auch für mich selbst da sein", description: "Für jeden fremden Kummer hat sie ein offenes Ohr, den eigenen schluckt sie hinunter, bis er sie von innen aushöhlt. Eine Freundin fragte neulich, wer eigentlich sie tröste, und sie wusste keine Antwort. Sie lernt langsam, dass auch ihr Herz Pflege braucht.", hooks: ["natur","verlust"] },
         ]
       },
       {
         text: "gefährlich gutgläubig", hooks: ["außenseiter","schicksal"],
         powerTags: [
-          { text: "sieht das Gute im Menschen", hooks: ["glaube"] },
-          { text: "macht Mut zum Aufstehen", hooks: ["glaube","natur"] },
-          { text: "trägt keinen Groll", hooks: ["glaube"] },
+          { text: "sieht das Gute", hooks: ["glaube"] },
           { text: "gewinnt schnell Vertrauen", hooks: ["glaube","stadt"] },
+          { text: "gibt zweite Chancen", hooks: ["glaube"] },
+          { text: "unbeirrbar freundlich", hooks: ["glaube","natur"] },
         ],
         weaknessTags: [
-          { text: "ausnutzbar", hooks: ["außenseiter"] },
           { text: "läuft in offene Fallen", hooks: ["außenseiter","schicksal"] },
+          { text: "glaubt jede Ausrede", hooks: ["außenseiter"] },
         ],
         quests: [
-          { title: "Vertrauen ohne Reue lernen", description: "Der Held sieht das Gute in jedem Menschen, trägt keinen Groll und gewinnt rasch Vertrauen, doch genau das führt ihn allzu oft in offene Fallen. Nun will er lernen, sein Vertrauen klüger zu schenken, ohne dabei kalt und misstrauisch zu werden. Er sucht den schmalen Pfad zwischen Offenheit und Vorsicht.", hooks: ["außenseiter","schicksal"] },
-          { title: "An die Güte glauben", description: "Mancher hält die Gutgläubigkeit des Helden für Schwäche und nutzt sie schamlos aus. Doch er weigert sich, deshalb am Menschen zu verzweifeln. Mit jeder Seele, der er Mut macht, will er beweisen, dass gelebtes Vertrauen die Welt tatsächlich besser macht, und so seinen Glauben an die Güte gegen alle Enttäuschung verteidigen.", hooks: ["glaube","außenseiter"] },
+          { title: "Vertrauen ohne Reue lernen", description: "Dreimal hat ihn sein Vertrauen teuer zu stehen gebracht, und dreimal hat er trotzdem wieder die Hand gereicht. Er will kein misstrauischer, harter Mensch werden, aber auch kein Narr bleiben. Er sucht den schmalen Grat, auf dem man offen bleibt, ohne blind zu sein.", hooks: ["außenseiter","schicksal"] },
+          { title: "An die Güte glauben", description: "Man nennt seine Gutgläubigkeit Schwäche und lacht, wenn er wieder hereinfällt. Er weigert sich, deshalb am Menschen zu verzweifeln. Mit jedem, dem er zu Recht vertraut hat, will er beweisen, dass gelebtes Vertrauen mehr aufbaut, als es je zerstört.", hooks: ["glaube","außenseiter"] },
         ]
       },
       {
         text: "das ruhige Auge im Sturm", hooks: ["natur","macht"],
         powerTags: [
-          { text: "behält die Ruhe", hooks: ["natur"] },
-          { text: "stellt sich dem Konflikt", hooks: ["kampf","glaube"] },
+          { text: "unerschütterlich ruhig", hooks: ["natur"] },
           { text: "ordnet das Chaos", hooks: ["natur","macht"] },
-          { text: "gibt anderen Halt", hooks: ["glaube","natur"] },
+          { text: "schlichtet Streit", hooks: ["kampf","glaube"] },
+          { text: "gibt Halt", hooks: ["glaube","natur"] },
         ],
         weaknessTags: [
           { text: "staut alles in sich auf", hooks: ["verlust","natur"] },
-          { text: "wirkt unnahbar kühl", hooks: ["außenseiter","natur"] },
+          { text: "wirkt kühl und fern", hooks: ["außenseiter","natur"] },
         ],
         quests: [
-          { title: "Frieden stiften wo Streit tobt", description: "Wenn um den Helden herum alles aufbraust, bleibt er ruhig und ordnet das Chaos mit klarem Kopf. Er stellt sich dem Konflikt, statt ihm auszuweichen, und gibt den Aufgebrachten Halt. Zum ruhigen Punkt will er werden, an dem sich die Streitenden sammeln und endlich wieder Frieden möglich wird.", hooks: ["natur","macht"] },
-          { title: "Den eigenen Sturm beruhigen", description: "Nach außen wirkt der Held kühl und gefasst, doch in seinem Inneren staut sich alles auf, was er für andere besänftigt. Der eigene Sturm tobt ungesehen weiter. Nun erkennt er, dass er nicht ewig nur Fels für die anderen sein kann, und lernt, auch für sich selbst da zu sein.", hooks: ["natur","verlust"] },
+          { title: "Frieden stiften wo Streit tobt", description: "Er hat als Kind zu viele Türen knallen hören und früh gelernt, in der Mitte des Sturms still zu werden. Wo andere schreien, wird er leise, und die Lautesten verstummen. Er sucht die Konflikte, die sonst niemand entwirren will, weil er glaubt, dass fast jeder Streit einen ruhigen Punkt braucht.", hooks: ["natur","macht"] },
+          { title: "Den eigenen Sturm beruhigen", description: "Nach außen ist er der Fels, an dem sich alle festhalten; innen tobt, was er für die anderen glättet, unbemerkt weiter. Neulich zitterte ihm zum ersten Mal die Hand, und niemand sah es. Er beginnt zu ahnen, dass auch ein Fels Risse bekommt, und sucht seinen eigenen ruhigen Punkt.", hooks: ["natur","verlust"] },
         ]
       },
       {
         text: "kein Blatt vor dem Mund", hooks: ["außenseiter"],
         powerTags: [
-          { text: "sucht nach der Wahrheit", hooks: ["außenseiter"] },
-          { text: "spricht aus was alle denken", hooks: ["außenseiter","stadt"] },
-          { text: "lässt sich nicht einschüchtern", hooks: ["außenseiter","macht"] },
-          { text: "durchschaut eine Lüge", hooks: ["stadt","geheimnis"] },
+          { text: "spricht Klartext", hooks: ["außenseiter","stadt"] },
+          { text: "unerschrocken", hooks: ["außenseiter","macht"] },
+          { text: "durchschaut Lügen", hooks: ["stadt","geheimnis"] },
+          { text: "unbestechlich", hooks: ["glaube","macht"] },
         ],
         weaknessTags: [
           { text: "zu ehrlich", hooks: ["glaube"] },
-          { text: "macht sich Feinde mit Worten", hooks: ["außenseiter","kampf"] },
+          { text: "macht sich Feinde", hooks: ["außenseiter","kampf"] },
         ],
         quests: [
-          { title: "Wahrheit gegen Mächtige aussprechen", description: "Der Held sucht die Wahrheit und spricht aus, was alle denken, doch keiner zu sagen wagt. Von keiner Macht lässt er sich einschüchtern, und er durchschaut jede Lüge. Gerade dort, wo es weh tut, will er das Unbequeme aussprechen, auch wenn ihm seine schonungslose Offenheit mächtige Feinde schafft.", hooks: ["außenseiter","macht"] },
-          { title: "Treu bleiben koste es was es wolle", description: "Lügen und Schmeicheln liegen dem Helden nicht; lieber macht er sich Feinde, als sich selbst zu verraten. Mag ihn seine Ehrlichkeit teuer zu stehen kommen, er weicht nicht von dem ab, was er für richtig hält. Sich selbst treu zu bleiben ist sein Gelübde, koste es, was es wolle.", hooks: ["glaube","außenseiter"] },
+          { title: "Wahrheit gegen Mächtige aussprechen", description: "Er hat einmal geschwiegen, als ein Mächtiger log, und ein Unschuldiger bezahlte dafür; dieses Schweigen verzeiht er sich nicht. Seither redet er, wo andere kuschen. Es gibt eine Lüge, groß und gut geschützt, die er vor allen aussprechen will, ganz gleich, wer dahintersteht.", hooks: ["außenseiter","macht"] },
+          { title: "Mir selbst nicht untreu werden", description: "Man hat ihm Posten geboten, Gold, ein ruhiges Leben, alles gegen ein bisschen Schweigen. Jedes Mal spürt er, wie leicht es wäre und wie viel er dabei verlöre. Er will beweisen, dass ein Mensch sich nicht kaufen lässt, auch wenn ihn die Ehrlichkeit einsam und arm macht.", hooks: ["glaube","außenseiter"] },
         ]
       },
       {
         text: "lacht zuletzt", hooks: ["stadt"],
         powerTags: [
-          { text: "Lacher in dunkler Stunde", hooks: ["natur"] },
-          { text: "frohe Geschichte", hooks: ["natur"] },
+          { text: "Witz in dunkler Stunde", hooks: ["natur"] },
           { text: "findet überall Komik", hooks: ["außenseiter","schicksal"] },
           { text: "spielt den Narren", hooks: ["glaube"] },
+          { text: "entwaffnender Humor", hooks: ["stadt"] },
         ],
         weaknessTags: [
           { text: "macht alles ins Lächerliche", hooks: ["außenseiter","stadt"] },
-          { text: "sentimental im falschen Moment", hooks: ["verlust"] },
+          { text: "im falschen Moment rührselig", hooks: ["verlust"] },
         ],
         quests: [
-          { title: "Mit einem Scherz die Stimmung wenden", description: "Selbst in der dunkelsten Stunde findet der Held noch einen Lacher und eine frohe Geschichte. Wo Verzweiflung lähmt, wendet er mit einem Scherz die Stimmung und bringt Licht in finstere Räume. Er weiß, dass ein rechtzeitiges Lachen Mauern niederreißt, die kein ernstes Wort je überwinden könnte.", hooks: ["glaube","macht"] },
-          { title: "Ernst genommen werden", description: "Weil der Held alles ins Lächerliche zieht, hält man ihn oft für einen bloßen Narren und nimmt ihn nicht ernst. Doch hinter dem Spott verbirgt sich mehr, als die meisten ahnen. Nun will er beweisen, dass unter dem Lachen ein scharfer Verstand und ein fühlendes Herz wohnen, die Beachtung verdienen.", hooks: ["stadt","außenseiter"] },
+          { title: "Mit einem Scherz die Stimmung wenden", description: "Er hat gelernt, dass ein Lachen in der richtigen Sekunde eine Faust wieder öffnet und einen Streit entwaffnet. Als sein Dorf einst verzweifelte, war er der Einzige, der noch einen Witz fand, und es half. Er sucht die Momente, in denen ein Scherz mehr ausrichtet als jedes ernste Wort.", hooks: ["glaube","macht"] },
+          { title: "Ernst genommen werden", description: "Weil er alles ins Lächerliche zieht, hält man ihn für einen Narren und übersieht, dass er mehr sieht als die meisten. Einmal warnte er im Scherz vor einer Gefahr, und niemand hörte hin, bis es zu spät war. Er will, dass man erkennt, dass unter dem Lachen ein wacher Kopf sitzt.", hooks: ["stadt","außenseiter"] },
         ]
       },
       {
-        text: "hält Geheimnisse wie Atemluft", hooks: ["geheimnis"],
+        text: "verschwiegen wie ein Grab", hooks: ["geheimnis"],
         powerTags: [
-          { text: "verrät niemals ein Wort", hooks: ["geheimnis","glaube"] },
-          { text: "keine Gerüchte entgehen mir", hooks: ["stadt","geheimnis"] },
-          { text: "behält die Ruhe", hooks: ["natur"] },
-          { text: "liest Räume sofort", hooks: ["stadt","wissen"] },
+          { text: "verrät kein Wort", hooks: ["geheimnis","glaube"] },
+          { text: "hört jedes Gerücht", hooks: ["stadt","geheimnis"] },
+          { text: "unbewegte Miene", hooks: ["natur"] },
+          { text: "liest den Raum", hooks: ["stadt","wissen"] },
         ],
         weaknessTags: [
-          { text: "trägt zu viele Lasten allein", hooks: ["geheimnis","verlust"] },
-          { text: "erpressbar durch das Gewusste", hooks: ["geheimnis","macht"] },
+          { text: "trägt zu viele Geheimnisse", hooks: ["geheimnis","verlust"] },
+          { text: "erpressbar durch Wissen", hooks: ["geheimnis","macht"] },
         ],
         quests: [
-          { title: "Ein anvertrautes Geheimnis schützen", description: "Kein Wort verrät der Held, und doch entgeht ihm kein Gerücht; ruhig liest er jeden Raum und behält für sich, was andere preisgeben. Nun ist ihm ein Geheimnis anvertraut, das schwer auf ihm lastet. Gegen jeden Druck und jede Erpressung will er es schützen, denn ein gegebenes Wort ist ihm heilig.", hooks: ["geheimnis","glaube"] },
-          { title: "Jemandem das ganze Geheimnis sein", description: "Der Held trägt so viele fremde Geheimnisse, dass die Last ihn allein zu erdrücken droht und ihn angreifbar macht. Tief sehnt er sich danach, einem einzigen Menschen alles offenbaren zu können, ohne Furcht vor Verrat. Er sucht jenen einen, dem er restlos vertrauen und das ganze Geheimnis sein darf.", hooks: ["glaube","stadt"] },
+          { title: "Ein anvertrautes Geheimnis schützen", description: "Jemand hat ihm im Sterben etwas anvertraut, das mächtige Leute lieber begraben sähen, und ihn zum einzigen Träger gemacht. Seither prüft er jedes zu freundliche Gesicht. Er will das Geheimnis dorthin bringen, wo es sicher ist, oder es hüten, bis der Richtige danach fragt.", hooks: ["geheimnis","glaube"] },
+          { title: "Jemandem das ganze Geheimnis sein", description: "Er trägt die Geheimnisse halber Städte, und die Last macht ihn einsam und angreifbar zugleich. Einmal alles aussprechen zu dürfen, ohne Furcht vor Verrat, kommt ihm vor wie ein unerreichbarer Luxus. Er sucht den einen Menschen, dem er sich ganz offenbaren kann.", hooks: ["glaube","stadt"] },
         ]
       },
       {
         text: "verhängnisvoll neugierig", hooks: ["wissen","geheimnis"],
         powerTags: [
-          { text: "kennt die richtige Frage", hooks: ["wissen"] },
-          { text: "spürt dem Verborgenen nach", hooks: ["geheimnis","wissen"] },
-          { text: "fragt im richtigen Moment", hooks: ["wissen","stadt"] },
-          { text: "gibt nie vorzeitig auf", hooks: ["glaube","schicksal"] },
+          { text: "spürt Verborgenem nach", hooks: ["geheimnis","wissen"] },
+          { text: "findet verborgene Türen", hooks: ["geheimnis"] },
+          { text: "entziffert alte Schriften", hooks: ["wissen","geheimnis"] },
+          { text: "lässt nicht locker", hooks: ["glaube","schicksal"] },
         ],
         weaknessTags: [
           { text: "weckt schlafende Hunde", hooks: ["geheimnis","schicksal"] },
           { text: "verliert sich in Details", hooks: ["wissen","geheimnis"] },
         ],
         quests: [
-          { title: "Ein gefährliches Geheimnis lüften", description: "Der Held kennt die richtige Frage und spürt dem Verborgenen nach, auch wenn es besser begraben bliebe. Etwas Dunkles lockt ihn, und sein Drang, niemals vorzeitig aufzugeben, treibt ihn immer tiefer. Er wird graben, bis er die gefährliche Wahrheit mit eigenen Augen erblickt, mag er damit auch schlafende Hunde wecken.", hooks: ["geheimnis","schicksal"] },
-          { title: "Die Folgen meiner Fragen tragen", description: "Die Neugier des Helden hat etwas ans Licht gezerrt, das nun nicht mehr ruht und Gefahr über andere bringt. Doch er weigert sich davonzulaufen. Für das, was seine Fragen aufgedeckt haben, will er geradestehen und die Folgen tragen, statt feige zu leugnen, dass er diese Tür geöffnet hat.", hooks: ["wissen","verlust"] },
+          { title: "Ein gefährliches Geheimnis lüften", description: "Es gibt eine Tür, die alle für zugemauert halten, und ein Wort, das man im Dorf nur mit gesenkter Stimme sagt. Genau dorthin zieht es sie. Sie weiß, dass manche Wahrheiten beißen, und kann trotzdem nicht anders, als das Verborgene ans Licht zu zerren.", hooks: ["geheimnis","schicksal"] },
+          { title: "Die Folgen meiner Fragen tragen", description: "Ihre Fragerei hat etwas geweckt, das nun nicht mehr schläft, und andere sind dadurch in Gefahr geraten. Weglaufen wäre leicht. Sie bleibt und stellt sich dem, was ihre Neugier heraufbeschwor, denn wer eine Tür öffnet, hat sie auch wieder zu schließen.", hooks: ["wissen","verlust"] },
         ]
       },
     ]
