@@ -1506,189 +1506,178 @@ export const THEMEBOOKS = {
         text: "Licht gegen die Finsternis", hooks: ["glaube","schicksal"],
         powerTags: [
           { text: "leuchtende Rüstung", hooks: ["kampf","glaube"] },
-          { text: "gefürchteter Gegner des Bösen", hooks: ["kampf","schicksal"] },
-          { text: "Zeichen gegen das Böse", hooks: ["glaube","magie"] },
-          { text: "unbeirrbar im Zweck", hooks: ["glaube"] },
+          { text: "Bannzeichen gegen das Böse", hooks: ["glaube","magie"] },
           { text: "spürt nahende Finsternis", hooks: ["magie","schicksal"] },
+          { text: "unbeirrbar", hooks: ["glaube"] },
         ],
         weaknessTags: [
           { text: "Auftrag über Vernunft", hooks: ["glaube","schicksal"] },
           { text: "verhasst bei Dienern der Nacht", hooks: ["kampf","verlust"] },
         ],
         quests: [
-          { title: "Ich treibe die Finsternis zurück", description: "In leuchtender Rüstung zieht der Held dorthin, wo der Schatten sich breitmacht und die Diener der Nacht ihn schon fürchten. Wo andere fliehen, stellt er sich der Finsternis entgegen und weicht keinen Schritt. Sein Zweck duldet keinen Zweifel: Solange er steht, gewinnt das Dunkel keinen Fußbreit Land.", hooks: ["glaube","kampf"] },
-          { title: "Ich finde die Quelle des Bösen", description: "Der Held spürt das nahende Dunkel, doch jeden zurückgeschlagenen Schatten ersetzt ein neuer. Er ahnt, dass irgendwo ein Ursprung pulsiert, aus dem die Finsternis quillt. Geleitet von seinem Gespür folgt er der Spur bis zur Wurzel, denn erst wenn er die Quelle kennt, lässt sich das Böse wirklich bezwingen, statt nur ewig bekämpft.", hooks: ["schicksal","geheimnis"] },
+          { title: "Die Finsternis zurücktreiben", description: "Wo der Schatten sich breitmacht, zieht er hin, und die Diener der Nacht kennen seinen Namen. Doch für jeden zurückgeschlagenen Schatten steht ein neuer auf. Er sucht die Orte, an denen das Dunkel am dichtesten fällt, denn dort wird man ihn am dringendsten brauchen.", hooks: ["glaube","kampf"] },
+          { title: "Die Quelle des Bösen finden", description: "Er hat begriffen, dass er ewig Schatten schlägt, solange er nur die Ausläufer trifft. Irgendwo pulsiert ein Ursprung, aus dem die Finsternis quillt. Sein Gespür zieht ihn dorthin, und er folgt ihm bis zur Wurzel, ganz gleich, wie tief sie liegt.", hooks: ["schicksal","geheimnis"] },
         ]
       },
       {
         text: "Söldner auf Vertrag", hooks: ["glaube","handwerk"],
         powerTags: [
-          { text: "Vertrag in der Hand", hooks: ["handwerk","macht"] },
           { text: "hält jede Abmachung", hooks: ["handwerk","glaube"] },
-          { text: "unbestechlich durch Gold", hooks: ["glaube","macht"] },
-          { text: "erfahrener Klingenkämpfer", hooks: ["kampf","handwerk"] },
-          { text: "kennt den Preis jeder Klinge", hooks: ["handwerk","stadt"] },
+          { text: "erprobter Klingenkämpfer", hooks: ["kampf","handwerk"] },
+          { text: "unbestechlich", hooks: ["glaube","macht"] },
+          { text: "kennt den Sold der Klinge", hooks: ["handwerk","stadt"] },
         ],
         weaknessTags: [
           { text: "dem höchsten Gebot verpflichtet", hooks: ["macht","verlust"] },
           { text: "kein Freund ohne Sold", hooks: ["außenseiter","verlust"] },
         ],
         quests: [
-          { title: "Ich erfülle den Vertrag bis zum letzten Wort", description: "Der Vertrag liegt in der Hand des Helden, und sein Wort ist so unbestechlich wie seine Klinge. Was er unterschrieben hat, das führt er aus, gleich wie der Wind sich dreht oder welcher Preis fällig wird. Eine Abmachung zu brechen käme ihm nie in den Sinn, denn ohne sie wäre seine Klinge nichts als Stahl ohne Sinn.", hooks: ["handwerk","glaube"] },
-          { title: "Ich finde einen Herrn der mich verdient", description: "Der Held kennt den Preis jeder Klinge, auch den seiner eigenen, und das Gold allein wärmt ihn längst nicht mehr. Zu oft diente sein Schwert Sachen, die seiner unwürdig waren. Nun sucht er einen Auftrag und einen Herrn, für den seine Treue mehr bedeutet als bloßes Werkzeug, das dem höchsten Gebot gehört.", hooks: ["glaube","kampf"] },
+          { title: "Den Vertrag bis zum letzten Wort erfüllen", description: "Er hat unterschrieben, und ein Söldner, der sein Wort bricht, ist bald ein toter Söldner. Der aktuelle Vertrag führt ihn in ein Nest, aus dem selten einer heil zurückkehrt. Trotzdem wird er ihn erfüllen, Zeile für Zeile, denn ohne sein Wort ist seine Klinge nichts wert.", hooks: ["handwerk","glaube"] },
+          { title: "Einen Herrn finden, der mich verdient", description: "Das Gold wärmt ihn längst nicht mehr, und zu oft diente seine Klinge Sachen, für die er sich schämt. Er sucht einen Auftrag, bei dem Treue mehr zählt als der Preis, und einen Herrn, den zu verraten ihm schwerfiele. Ob es so etwas gibt, weiß er nicht, aber er sucht.", hooks: ["glaube","kampf"] },
         ]
       },
       {
         text: "Schwur dem Lehnsherrn", hooks: ["glaube","adel"],
         powerTags: [
-          { text: "Banner meines Lehnsherrn", hooks: ["adel","kampf"] },
-          { text: "mein Eid macht mich stark", hooks: ["glaube"] },
-          { text: "trägt die Autorität ihres Hauses", hooks: ["adel","macht"] },
-          { text: "kann Legitimität einfordern", hooks: ["macht","adel"] },
-          { text: "kraftvoller Schwur", hooks: ["glaube","macht"] },
+          { text: "Banner des Hauses", hooks: ["adel","kampf"] },
+          { text: "Eid gibt Kraft", hooks: ["glaube"] },
+          { text: "fordert Gehorsam ein", hooks: ["macht","adel"] },
+          { text: "Autorität des Hauses", hooks: ["adel","macht"] },
         ],
         weaknessTags: [
           { text: "an Befehle gebunden", hooks: ["glaube","macht"] },
-          { text: "kann Befehlen nicht widersprechen", hooks: ["glaube","macht"] },
+          { text: "kann nicht widersprechen", hooks: ["glaube","macht"] },
         ],
         quests: [
-          { title: "Ich erfülle meinen Schwur koste es was es wolle", description: "Unter dem Banner seines Lehnsherrn hat der Held einen kraftvollen Eid geleistet, der ihn stärkt und zugleich bindet. Was er seinem Herrn versprach, ist die Achse, um die sein ganzes Leben sich dreht. Befehlen kann er nicht widersprechen, und das will er auch nicht: Den Schwur zu halten, koste es was es wolle, ist sein höchster Stolz.", hooks: ["glaube","schicksal"] },
-          { title: "Ich prüfe ob mein Herr meiner Treue würdig ist", description: "Lange trug der Held die Autorität seines Hauses und gehorchte blind, an jeden Befehl gebunden. Doch ein Zweifel hat sich eingeschlichen, leise und beharrlich. Bevor er noch einen Eid in dessen Namen erfüllt, will er wissen, wem er seine Treue eigentlich geschworen hat, und ob dieser Herr sie überhaupt verdient.", hooks: ["glaube","adel"] },
+          { title: "Meinen Schwur halten, koste es was es wolle", description: "Was er seinem Herrn schwor, ist die Achse seines Lebens, und nun verlangt der Eid etwas, das ihn alles kosten könnte. Andere würden sich davonstehlen. Er nicht. Er zieht aus, das Versprechen einzulösen, ganz gleich, wohin es ihn führt.", hooks: ["glaube","schicksal"] },
+          { title: "Prüfen, ob mein Herr meiner Treue würdig ist", description: "Ein Zweifel hat sich eingeschlichen, leise und beharrlich: Dient er einem gerechten Haus oder nur einem mächtigen? Ehe er noch einen Eid in dessen Namen erfüllt, will er die Wahrheit über seinen Herrn wissen, auch wenn sie seinen Schwur zerbrechen könnte.", hooks: ["glaube","adel"] },
         ]
       },
       {
         text: "Hüterin des Landes", hooks: ["natur","glaube"],
         powerTags: [
-          { text: "kennt das ganze Reich", hooks: ["wissen","fahrend"] },
-          { text: "handelt richtig ohne Befehl", hooks: ["glaube","kampf"] },
-          { text: "kennt jeden Pfad des Landes", hooks: ["natur","wissen"] },
-          { text: "wacht über die Schwachen", hooks: ["glaube","natur"] },
+          { text: "kennt jeden Pfad", hooks: ["natur","wissen"] },
           { text: "liest die Zeichen des Landes", hooks: ["natur","schicksal"] },
+          { text: "wacht über die Schwachen", hooks: ["glaube","natur"] },
+          { text: "handelt ohne Befehl", hooks: ["glaube","kampf"] },
         ],
         weaknessTags: [
-          { text: "kann das Land nicht verlassen", hooks: ["natur","schicksal"] },
-          { text: "fühlt Schuld bei jeder Verwüstung", hooks: ["glaube","verlust"] },
+          { text: "mit dem Land verwachsen", hooks: ["natur","schicksal"] },
+          { text: "trägt jede Verwüstung als Schuld", hooks: ["glaube","verlust"] },
         ],
         quests: [
-          { title: "Ich beschütze das Land dem ich diene", description: "Der Held kennt jeden Pfad des Reiches und liest die Zeichen des Landes wie andere ein Buch. Diese Erde und ihre Menschen sind sein Auftrag und sein Anker zugleich, und er wacht über die Schwachen, ohne dass jemand es befehlen müsste. Verlassen kann er das Land nicht, denn er ist mit ihm verwachsen wie die Wurzel mit dem Boden.", hooks: ["natur","glaube"] },
-          { title: "Ich heile die Wunden meines Landes", description: "Wo Krieg und Raub durch das Reich zogen, blieben Narben in Feldern und Herzen zurück, und der Held fühlt Schuld bei jeder Verwüstung, als wäre es seine eigene. Er kennt das ganze Land und weiß, wo es blutet. Nun zieht er aus, diese Wunden zu schließen und das Land Stück für Stück wieder ganz zu machen.", hooks: ["natur","verlust"] },
+          { title: "Das Land beschützen, dem ich diene", description: "Diese Erde und ihre Menschen sind ihr Auftrag, nicht auf Befehl, sondern aus einer Bindung, die sie sich nicht erklären kann. Etwas zieht durchs Reich, das Felder verdorren und Vieh verstummen lässt. Sie folgt den kranken Stellen im Land, um zu finden, was es befällt.", hooks: ["natur","glaube"] },
+          { title: "Die Wunden meines Landes heilen", description: "Krieg und Raub haben Narben hinterlassen, in Feldern wie in Herzen, und jede fühlt sie wie eine eigene. Sie kennt jeden Ort, an dem das Land blutet. Sie zieht von Wunde zu Wunde, um zu schließen, was aufgerissen wurde, Acker um Acker, Dorf um Dorf.", hooks: ["natur","verlust"] },
         ]
       },
       {
         text: "Rachezwang", hooks: ["verlust","kampf"],
         powerTags: [
-          { text: "unbeirrbar bis zur Vergeltung", hooks: ["kampf","schicksal"] },
           { text: "vergisst kein Gesicht", hooks: ["verlust","wissen"] },
           { text: "narbiger Schwertarm", hooks: ["kampf","verlust"] },
-          { text: "kalter Blick auf den Feind", hooks: ["kampf","macht"] },
-          { text: "wittert eine Falle", hooks: ["kampf","wissen"] },
+          { text: "kalt gegen den Feind", hooks: ["kampf","macht"] },
+          { text: "wittert Fallen", hooks: ["kampf","wissen"] },
         ],
         weaknessTags: [
-          { text: "die Rache frisst alles andere", hooks: ["verlust","schicksal"] },
-          { text: "verhasst bei der gejagten Sippe", hooks: ["kampf","verlust"] },
+          { text: "die Rache frisst alles", hooks: ["verlust","schicksal"] },
+          { text: "gejagt von der verfolgten Sippe", hooks: ["kampf","verlust"] },
         ],
         quests: [
-          { title: "Ich räche das Unrecht das mir geschah", description: "Der Held vergisst kein Gesicht, und sein Schwertarm trägt die Narben jenes Unrechts, das alles entzündete. Unbeirrbar folgt er der Spur der Vergeltung, mit kaltem Blick auf den Feind und wachsam für jede Falle. Erst wenn die Schuld beglichen ist, so glaubt er, findet er wieder ruhigen Schlaf, auch wenn die Rache alles andere in ihm verzehrt.", hooks: ["verlust","kampf"] },
-          { title: "Ich entscheide ob die Rache mich lohnt", description: "Die Vergeltung hat den Helden ausgehöhlt und alles andere aus seinem Leben verdrängt. Verhasst bei der gejagten Sippe, jagt er den letzten Feind. Doch in einer stillen Stunde fragt er sich, was bleibt, wenn dieser fällt. Wenn der letzte Gegner gestürzt ist, muss er wissen, ob unter all dem kalten Hass noch ein Mensch übrig ist.", hooks: ["verlust","schicksal"] },
+          { title: "Das Unrecht rächen, das mir geschah", description: "Ein Gesicht hat sich ihm eingebrannt, und die Narbe an seinem Arm erinnert ihn jeden Morgen daran. Er folgt der Spur der Schuldigen, einen nach dem anderen, wachsam für jede Falle, die man ihm stellt. Erst wenn die Rechnung beglichen ist, glaubt er, findet er Schlaf.", hooks: ["verlust","kampf"] },
+          { title: "Entscheiden, ob die Rache mich noch lohnt", description: "Die Vergeltung hat ihn ausgehöhlt und alles verdrängt, was ihm einmal lieb war. Nur ein Feind bleibt. In einer stillen Stunde fragt er sich, was von ihm übrig ist, wenn auch dieser fällt, und ob er den letzten Schritt wirklich gehen will.", hooks: ["verlust","schicksal"] },
         ]
       },
       {
         text: "Bote des Königs", hooks: ["fahrend","macht"],
         powerTags: [
-          { text: "Recht auf freien Durchgang", hooks: ["fahrend","macht"] },
-          { text: "Recht auf Kost und Quartier", hooks: ["macht","fahrend"] },
-          { text: "kennt jede Losung jeder Wache", hooks: ["stadt","kampf"] },
-          { text: "findet immer den schnellsten Weg", hooks: ["fahrend","wissen"] },
           { text: "Siegel des Königs", hooks: ["adel","macht"] },
+          { text: "freies Geleit", hooks: ["fahrend","macht"] },
+          { text: "kennt jede Losung", hooks: ["stadt","kampf"] },
+          { text: "findet den schnellsten Weg", hooks: ["fahrend","wissen"] },
         ],
         weaknessTags: [
           { text: "Ziel für Feinde der Krone", hooks: ["macht","kampf"] },
           { text: "die Botschaft duldet keinen Aufschub", hooks: ["fahrend","schicksal"] },
         ],
         quests: [
-          { title: "Ich bringe die Botschaft ans Ziel", description: "Das Siegel des Königs öffnet dem Helden Tore und sichert ihm Durchgang, Kost und Quartier, doch es macht ihn auch zum Ziel für Feinde der Krone. Die Botschaft duldet keinen Aufschub. Auf dem schnellsten Weg, vorbei an jeder Wache und durch jede Gefahr, trägt er das anvertraute Wort an seinen Ort, ganz gleich, wer ihm dabei nach dem Leben trachtet.", hooks: ["fahrend","macht"] },
-          { title: "Ich erfahre was ich wirklich trage", description: "Die versiegelte Botschaft wiegt in der Hand des Helden schwerer, als Wachs und Papier es sollten. Zu oft hat man ihn dafür gejagt, zu teuer der Preis, den sein Lauf schon forderte. Bevor er erneut sein Leben aufs Spiel setzt, will er wissen, was er da wirklich trägt und in wessen Spiel die Krone ihn geschickt hat.", hooks: ["geheimnis","macht"] },
+          { title: "Die Botschaft ans Ziel bringen", description: "Das Siegel öffnet ihm Tore und macht ihn zugleich zur Zielscheibe für alle, die der Krone übelwollen. Diese Nachricht duldet keinen Aufschub, und der Weg wimmelt von Leuten, die sie abfangen wollen. Ans Ziel zu kommen, ehe es zu spät ist, ist sein einziger Gedanke.", hooks: ["fahrend","macht"] },
+          { title: "Erfahren, was ich wirklich trage", description: "Die versiegelte Botschaft wiegt schwerer, als Wachs und Papier es sollten, und man hat ihn zu oft dafür gejagt. Ehe er erneut sein Leben aufs Spiel setzt, will er wissen, was da wirklich in seiner Tasche liegt und in wessen Spiel die Krone ihn geschickt hat.", hooks: ["geheimnis","macht"] },
         ]
       },
       {
         text: "Schwertarm des Ordens", hooks: ["kampf","glaube"],
         powerTags: [
-          { text: "hält die Stellung allein", hooks: ["kampf","glaube"] },
-          { text: "betet vor dem Kampf", hooks: ["glaube","kampf"] },
-          { text: "Anweisungen ausführen", hooks: ["glaube","kampf"] },
-          { text: "geweihte Klinge des Ordens", hooks: ["kampf","magie"] },
-          { text: "Brüder im Glauben zur Seite", hooks: ["glaube","kampf"] },
+          { text: "geweihte Klinge", hooks: ["kampf","magie"] },
+          { text: "Kampfgebet", hooks: ["glaube","kampf"] },
+          { text: "Glaubensbrüder zur Seite", hooks: ["glaube","kampf"] },
+          { text: "hält die Stellung", hooks: ["kampf","glaube"] },
         ],
         weaknessTags: [
           { text: "der Orden vor dem Leben", hooks: ["glaube","schicksal"] },
-          { text: "fühlt Schuld bei Versagen", hooks: ["glaube","verlust"] },
+          { text: "Schuld bei jedem Versagen", hooks: ["glaube","verlust"] },
         ],
         quests: [
-          { title: "Ich diene dem Orden mit Klinge und Glauben", description: "Der Held betet vor dem Kampf und führt die geweihte Klinge des Ordens, an seiner Seite die Brüder im Glauben. Sein Schwert und sein Eid gehören ganz der heiligen Sache, der er sich verschrieb, und die Befehle des Ordens führt er ohne Zögern aus. Der Orden steht ihm vor dem eigenen Leben, denn allein im Dienst findet er seinen Sinn.", hooks: ["kampf","glaube"] },
-          { title: "Ich reinige den Orden von innen", description: "Etwas ist faul geworden in den Reihen, denen der Held mit Klinge und Glauben dient, und der Verdacht lässt ihn keine Ruhe finden. Bei jedem Versagen quält ihn die Schuld, doch hier wiegt das Schweigen schwerer als jede Niederlage. Ehe die Fäulnis den ganzen Orden verdirbt, wird er sie aufspüren und ausmerzen, so schmerzhaft die Wahrheit auch sei.", hooks: ["glaube","geheimnis"] },
+          { title: "Dem Orden mit Klinge und Glauben dienen", description: "Sein Schwert und sein Eid gehören der heiligen Sache, und im Dienst findet er den Sinn, den ihm sonst nichts gibt. Nun ruft der Orden ihn zu einer Aufgabe, an der schon andere zerbrachen. Er nimmt sie an, ohne zu zögern, denn Zweifel wäre Verrat.", hooks: ["kampf","glaube"] },
+          { title: "Den Orden von innen reinigen", description: "Etwas ist faul geworden in den Reihen, denen er dient, und der Verdacht raubt ihm den Schlaf mehr als jede Schlacht. Hier wiegt Schweigen schwerer als Versagen. Ehe die Fäulnis den ganzen Orden verdirbt, wird er sie aufspüren, so sehr die Wahrheit auch schmerzt.", hooks: ["glaube","geheimnis"] },
         ]
       },
       {
         text: "Wächterin der Grenzmark", hooks: ["kampf","natur"],
         powerTags: [
           { text: "kennt die wilde Grenze", hooks: ["natur","wissen"] },
-          { text: "wacht beim leisesten Geräusch", hooks: ["kampf","natur"] },
-          { text: "hält die Stellung allein", hooks: ["kampf","glaube"] },
-          { text: "kennt die Verbündeten der Sache", hooks: ["stadt","kampf"] },
-          { text: "späht den Feind frühzeitig", hooks: ["natur","kampf"] },
+          { text: "späht den Feind früh", hooks: ["natur","kampf"] },
+          { text: "wacht bei jedem Geräusch", hooks: ["kampf","natur"] },
+          { text: "hält die Stellung", hooks: ["kampf","glaube"] },
         ],
         weaknessTags: [
-          { text: "darf den Posten nie verlassen", hooks: ["glaube","kampf"] },
+          { text: "lässt die Grenze nie unbewacht", hooks: ["glaube","kampf"] },
           { text: "fern von jeder Hilfe", hooks: ["natur","verlust"] },
         ],
         quests: [
-          { title: "Ich halte die Grenze gegen alles", description: "Der Held kennt die wilde Grenze wie kein anderer und erwacht beim leisesten Geräusch in der Nacht. Fern von jeder Hilfe hält er die Stellung allein, denn seinen Posten darf er nie verlassen. Was auch immer hinter der Mark lauert und nach innen drängt, es kommt nicht an ihm vorbei, solange er noch auf seinen Füßen steht.", hooks: ["kampf","natur"] },
-          { title: "Ich ergründe was jenseits der Mark erwacht", description: "Späht der Held über die Grenze, spürt er ein Erwachen, das sich nicht benennen lässt und ihm den Schlaf raubt. Allein und fern jeder Hilfe steht er an der Schwelle zur Wildnis. Bevor das Unbekannte hervorbricht und die Mark überrennt, muss er wissen, was sich dort regt, damit das Land gewarnt ist, ehe es zu spät ist.", hooks: ["natur","geheimnis"] },
+          { title: "Die Grenze gegen alles halten", description: "Was hinter der Mark lauert, drängt nach innen, und sie ist oft die Einzige, die es kommen sieht. Von einem Posten ist sie längst zu einer wandernden Wacht geworden, die den ganzen Saum der Wildnis abschreitet. Wo die Grenze dünn wird, will sie stehen.", hooks: ["kampf","natur"] },
+          { title: "Ergründen, was jenseits der Mark erwacht", description: "Seit Wochen spürt sie ein Erwachen jenseits der Grenze, das sich nicht benennen lässt und ihr den Schlaf raubt. Ehe das Unbekannte hervorbricht, muss sie wissen, was sich dort regt. Sie überschreitet die Mark, allein, um das Land warnen zu können, bevor es zu spät ist.", hooks: ["natur","geheimnis"] },
         ]
       },
       {
         text: "letzter Zeuge eines Vertrags", hooks: ["geheimnis","glaube"],
         powerTags: [
-          { text: "kennt jede Klausel auswendig", hooks: ["wissen","geheimnis"] },
-          { text: "kennt die Grenzen ihres Auftrags", hooks: ["wissen","glaube"] },
-          { text: "sieht durch Lügen", hooks: ["geheimnis"] },
-          { text: "kennt den Preis jeder Stille", hooks: ["geheimnis"] },
+          { text: "kennt jede Klausel", hooks: ["wissen","geheimnis"] },
+          { text: "durchschaut Lügen", hooks: ["geheimnis"] },
           { text: "bewahrt das versiegelte Wort", hooks: ["geheimnis","glaube"] },
+          { text: "weiß wann Schweigen zählt", hooks: ["geheimnis"] },
         ],
         weaknessTags: [
-          { text: "gejagt um des Wissens willen", hooks: ["geheimnis","kampf"] },
+          { text: "gejagt um seines Wissens willen", hooks: ["geheimnis","kampf"] },
           { text: "kann das Geheimnis nicht teilen", hooks: ["geheimnis","glaube"] },
         ],
         quests: [
-          { title: "Ich finde heraus ob der Vertrag gerecht war", description: "Der Held kennt jede Klausel jenes Vertrags auswendig, dessen versiegeltes Wort er als Letzter bewahrt. Lange schwieg er, wie sein Auftrag es verlangte, und durchschaut doch jede Lüge darüber. Nun trägt er die Antwort wie einen Stein in der Brust. Ehe das Geheimnis ihn ganz erdrückt, will er für sich selbst wissen, ob das, was er hütet, je gerecht war.", hooks: ["glaube","geheimnis"] },
-          { title: "Ich bezeuge die Wahrheit ehe sie mit mir stirbt", description: "Als einziger Lebender weiß der Held, was damals wirklich geschah, und genau dieses Wissen macht ihn zur Beute derer, die es begraben wollen. Teilen kann er das Geheimnis bislang nicht. Doch er spürt, dass die Wahrheit nicht mit ihm sterben darf. Bevor man ihn zum Schweigen bringt, wird er Zeugnis ablegen, damit das, was er sah, weiterlebt.", hooks: ["geheimnis","verlust"] },
+          { title: "Herausfinden, ob der Vertrag gerecht war", description: "Er kennt jede Klausel jenes Vertrags auswendig, dessen versiegeltes Wort er als Letzter bewahrt, und trägt die Antwort wie einen Stein in der Brust. Lange schwieg er, wie es sein Auftrag verlangte. Ehe das Geheimnis ihn erdrückt, will er selbst wissen, ob das, was er hütet, je recht war.", hooks: ["glaube","geheimnis"] },
+          { title: "Die Wahrheit bezeugen, ehe sie mit mir stirbt", description: "Als einziger Lebender weiß er, was damals geschah, und genau das macht ihn zur Beute derer, die es begraben wollen. Teilen kann er es bislang nicht. Doch er spürt, die Wahrheit darf nicht mit ihm sterben, und sucht den Ort und die Ohren, vor denen er endlich Zeugnis ablegen kann.", hooks: ["geheimnis","verlust"] },
         ]
       },
       {
         text: "Schuldenbegleicherin", hooks: ["stadt","verlust"],
         powerTags: [
           { text: "kennt jedermanns Schulden", hooks: ["geheimnis","macht"] },
-          { text: "Gefälligkeiten einfordern", hooks: ["macht","stadt"] },
           { text: "spürt jeden Schuldner auf", hooks: ["stadt","wissen"] },
-          { text: "unnachgiebig im Eintreiben", hooks: ["macht","kampf"] },
-          { text: "führt Buch über jede Gefälligkeit", hooks: ["handwerk","stadt"] },
+          { text: "fordert Gefälligkeiten ein", hooks: ["macht","stadt"] },
+          { text: "unnachgiebig", hooks: ["macht","kampf"] },
         ],
         weaknessTags: [
           { text: "verhasst bei den Schuldnern", hooks: ["stadt","verlust"] },
           { text: "eigene Schulden holen sie ein", hooks: ["verlust","macht"] },
         ],
         quests: [
-          { title: "Ich treibe jede Schuld ein", description: "Der Held führt Buch über jedermanns Schulden und spürt jeden säumigen Schuldner auf, unnachgiebig im Eintreiben. Keine offene Rechnung bleibt ungesühnt, solange seine Feder das Hauptbuch füllt. Verhasst ist er bei denen, die ihm etwas schulden, doch das ficht ihn nicht an: Eine Schuld ist eine Schuld, und sie will beglichen sein, bis zur letzten Münze.", hooks: ["stadt","macht"] },
-          { title: "Ich begleiche meine eigene letzte Schuld", description: "So genau der Held über fremde Schulden Buch führt, so sehr holen ihn die eigenen ein, die er allzu lange verdrängt hat. Wie kann er über andere richten und Gefälligkeiten einfordern, solange er selbst tief in der Kreide steht? Bevor er weiter eintreibt, muss er frei werden von dem, was er schuldet, und reinen Tisch mit sich selbst machen.", hooks: ["verlust","glaube"] },
+          { title: "Jede offene Schuld eintreiben", description: "Sie führt Buch über die Schulden halber Landstriche, und keine bleibt ihr entgehen. Eine besonders alte, besonders große steht noch aus, und der Schuldner gilt als unerreichbar. Genau den spürt sie auf, denn eine Schuld ist eine Schuld, bis zur letzten Münze.", hooks: ["stadt","macht"] },
+          { title: "Meine eigene letzte Schuld begleichen", description: "So genau sie über fremde Schulden wacht, so sehr holen die eigenen sie ein, die sie zu lange verdrängt hat. Wie kann sie eintreiben, solange sie selbst tief in der Kreide steht? Ehe sie weitermacht, will sie frei werden von dem, was sie schuldet.", hooks: ["verlust","glaube"] },
         ]
       },
       {
         text: "bezahlter Verteidiger", hooks: ["kampf","handwerk"],
         powerTags: [
-          { text: "Schutzschild für den Auftraggeber", hooks: ["kampf","glaube"] },
-          { text: "instinktive Reaktion auf Gefahr", hooks: ["kampf","schicksal"] },
-          { text: "Vertrag in der Hand", hooks: ["handwerk","macht"] },
-          { text: "deckt jede Schwachstelle ab", hooks: ["kampf","wissen"] },
+          { text: "Schutzschild des Auftraggebers", hooks: ["kampf","glaube"] },
+          { text: "reagiert blitzschnell", hooks: ["kampf","schicksal"] },
+          { text: "deckt jede Blöße", hooks: ["kampf","wissen"] },
           { text: "nimmt Wunden für andere", hooks: ["kampf","verlust"] },
         ],
         weaknessTags: [
@@ -1696,17 +1685,16 @@ export const THEMEBOOKS = {
           { text: "treu nur für Sold", hooks: ["macht","verlust"] },
         ],
         quests: [
-          { title: "Ich halte meinen Schützling am Leben", description: "Der Held ist Schutzschild für seinen Auftraggeber, reagiert instinktiv auf jede Gefahr und deckt jede Schwachstelle ab, den Vertrag stets in der Hand. Wofür man ihn bezahlt, das tut er ganz und ohne halbe Sachen. Notfalls nimmt er die Wunde, die einem anderen galt, denn niemand rührt den, dessen Schutz er auf sich genommen hat.", hooks: ["kampf","handwerk"] },
-          { title: "Ich schütze einen den ich nicht aufgeben kann", description: "Aus bloßer Pflicht ist beim Helden längst etwas Tieferes geworden, auch wenn er nur für seinen Sold treu sein sollte. Der Sold ist verbraucht, der Vertrag erfüllt, und dennoch weicht er nicht von der Seite jenes Menschen. Er deckt jede Schwachstelle und nimmt jede Wunde, denn diesen einen kann er nicht aufgeben, was auch immer es ihn kostet.", hooks: ["kampf","glaube"] },
+          { title: "Meinen Schützling am Leben halten", description: "Man bezahlt ihn dafür, zwischen einem Menschen und dem Tod zu stehen, und das tut er ganz. Diesmal ist die Gefahr größer als der Sold, und die Feinde kommen aus einer Richtung, die er nicht kennt. Trotzdem weicht er nicht von der Seite dessen, den er schützen soll.", hooks: ["kampf","handwerk"] },
+          { title: "Einen schützen, den ich nicht aufgeben kann", description: "Aus Pflicht ist längst etwas anderes geworden, auch wenn er nur für Gold treu sein sollte. Der Sold ist verbraucht, der Vertrag erfüllt, und dennoch bleibt er. Diesen einen Menschen kann er nicht im Stich lassen, was immer es ihn kostet, und das verwirrt ihn selbst am meisten.", hooks: ["kampf","glaube"] },
         ]
       },
       {
         text: "Vollstreckerin des alten Gesetzes", hooks: ["macht","glaube"],
         powerTags: [
-          { text: "kennt Regeln und Ausnahmen", hooks: ["wissen","macht"] },
-          { text: "setzt Befehle ohne Feinde durch", hooks: ["macht","stadt"] },
-          { text: "unbestechlich durch Gold", hooks: ["glaube","macht"] },
-          { text: "Autorität des alten Gesetzes", hooks: ["macht","adel"] },
+          { text: "kennt jede Regel und Ausnahme", hooks: ["wissen","macht"] },
+          { text: "Autorität des Gesetzes", hooks: ["macht","adel"] },
+          { text: "unbestechlich", hooks: ["glaube","macht"] },
           { text: "kennt jeden Präzedenzfall", hooks: ["wissen","macht"] },
         ],
         weaknessTags: [
@@ -1714,8 +1702,8 @@ export const THEMEBOOKS = {
           { text: "kann keinen Auftrag aufgeben", hooks: ["glaube","schicksal"] },
         ],
         quests: [
-          { title: "Ich vollstrecke das Gesetz ohne Ansehen der Person", description: "Mit der Autorität des alten Gesetzes setzt der Held jeden Befehl durch, kennt Regeln, Ausnahmen und jeden Präzedenzfall, und kein Gold beugt sein Urteil. Vor dem alten Recht sind alle gleich, ob Bettler oder Fürst. Einen Auftrag kann er nicht aufgeben, und so vollstreckt er ohne Ansehen der Person, selbst wenn das Gesetz schwerer wiegt als jede Gnade.", hooks: ["macht","glaube"] },
-          { title: "Ich prüfe ob das alte Gesetz noch gerecht ist", description: "Lange diente der Held dem Buchstaben des alten Gesetzes, unbestechlich und kompromisslos, das Recht über jede Gnade stellend. Doch er hat gesehen, wie die starre Regel manchem Unrecht tat. Nun, da das Gesetz die Gnade zu oft erstickt, fragt er sich, ob der Paragraph noch dem Recht dient, dem er einst folgte, oder ob er selbst es verraten muss, um gerecht zu bleiben.", hooks: ["glaube","geheimnis"] },
+          { title: "Das Gesetz ohne Ansehen der Person vollstrecken", description: "Vor dem alten Recht sind Bettler und Fürst gleich, und kein Gold beugt ihr Urteil. Nun führt ihr Auftrag sie zu einem Mächtigen, den noch nie jemand zur Rechenschaft zog. Sie wird das Gesetz auch an ihm vollstrecken, ganz gleich, wer sie davon abzuhalten sucht.", hooks: ["macht","glaube"] },
+          { title: "Prüfen, ob das alte Gesetz noch gerecht ist", description: "Lange diente sie dem Buchstaben, unbestechlich und hart, das Recht über jede Gnade stellend. Doch sie hat gesehen, wie die starre Regel Unrecht tat. Nun fragt sie sich, ob der Paragraph noch dem Recht dient, dem sie folgen wollte, und was sie tun muss, um gerecht zu bleiben.", hooks: ["glaube","geheimnis"] },
         ]
       },
     ]
