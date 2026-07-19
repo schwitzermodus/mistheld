@@ -1940,18 +1940,18 @@ export const THEMEBOOKS = {
       {
         text: "Bewohner des Verborgenen", hooks: ["geheimnis","wissen"],
         powerTags: [
-          { text: "kennt den Weg zur Wahrheit", hooks: ["wissen","geheimnis"] },
-          { text: "führt geheime Forschung", hooks: ["wissen","geheimnis"] },
+          { text: "geheime Forschung", hooks: ["wissen","geheimnis"] },
           { text: "sieht verborgene Zusammenhänge", hooks: ["wissen","geheimnis"] },
           { text: "bewegt sich ungesehen", hooks: ["geheimnis","außenseiter"] },
+          { text: "kennt den Weg zur Wahrheit", hooks: ["wissen","geheimnis"] },
         ],
         weaknessTags: [
           { text: "verfolgt von neugierigen Mächten", hooks: ["macht","geheimnis"] },
           { text: "traut keinem Licht", hooks: ["geheimnis","außenseiter"] },
         ],
         quests: [
-          { title: "Die verschlossene Kammer", description: "Im Verborgenen hat der Held ein Leben lang nach einer Wahrheit geforscht, die andere lieber begraben ließen. Nun trennt ihn nur noch eine letzte Tür von dem Geheimnis, dem er alles geopfert hat. Ungesehen muss er zu ihr vordringen, denn was hinter ihr liegt, könnte alles erklären oder alles in Frage stellen, was er zu wissen glaubte.", hooks: ["geheimnis","wissen"] },
-          { title: "Der enttarnte Mitwisser", description: "Sein Schutz war stets das Verborgene, doch nun weiß jemand um sein Versteck, und der Held spürt fremde, neugierige Augen im Rücken. Verrat kann ihn alles kosten, was er so lange im Schatten bewahrt hat. Er muss herausfinden, wer ihn verraten hat, ehe die Mächte des Lichts die Tür eintreten, hinter der er arbeitet.", hooks: ["geheimnis","verlust"] },
+          { title: "Die verschlossene Kammer", description: "Ein Leben lang hat er einer Wahrheit nachgeforscht, die andere lieber begraben ließen, und nur eine letzte Tür trennt ihn noch von ihr. Hinter ihr liegt, wofür er alles gab. Ungesehen muss er sie erreichen, denn was dort ruht, erklärt alles oder stürzt alles um, was er zu wissen glaubte.", hooks: ["geheimnis","wissen"] },
+          { title: "Der enttarnte Mitwisser", description: "Sein Schutz war stets das Verborgene, doch nun kennt jemand sein Versteck, und er spürt fremde Augen im Rücken. Verrat kann ihn alles kosten. Er muss herausfinden, wer ihn verriet, ehe die Mächte des Lichts die Tür eintreten, hinter der er arbeitet.", hooks: ["geheimnis","verlust"] },
         ]
       },
       {
@@ -1967,42 +1967,42 @@ export const THEMEBOOKS = {
           { text: "fremd in jeder Heimat", hooks: ["außenseiter","verlust"] },
         ],
         quests: [
-          { title: "Die letzte weiße Stelle", description: "Der Held hat fast jedes Land bereist und unverzeichnete Routen gegangen, doch eine einzige leere Stelle auf den Karten lässt ihm keine Ruhe. Kein Reisender hat sie je betreten, und genau das ruft ihn. Als Erster will er dieses Land erkunden und verzeichnen, denn nur jenseits des Bekannten findet ein Heimatloser endlich, wonach er wirklich sucht.", hooks: ["wissen","fahrend"] },
-          { title: "Der verschollene Pass", description: "In alten Erzählungen lebt ein Handelsweg fort, den niemand mehr zu finden weiß, doch der Held liest die vergessenen Spuren in fremden Sitten und Landschaften. Ein wiedereröffneter Pass könnte entlegene Völker verbinden, die seit Generationen getrennt sind. Er nimmt sich vor, die verschollene Route wieder begehbar zu machen, und schreibt damit ein Stück Welt neu.", hooks: ["fahrend","wissen"] },
+          { title: "Die letzte weiße Stelle", description: "Fast jedes Land hat er bereist, doch ein leerer Fleck auf allen Karten lässt ihn nicht los, ein Landstrich, den kein Reisender je betrat. Genau das ruft ihn. Als Erster will er ihn erkunden und verzeichnen, denn nur jenseits des Bekannten findet ein Heimatloser, wonach er sucht.", hooks: ["wissen","fahrend"] },
+          { title: "Der verschollene Pass", description: "In alten Erzählungen lebt ein Handelsweg fort, den niemand mehr zu finden weiß, doch er liest die vergessenen Spuren in Sitten und Landschaft. Ein wiedereröffneter Pass könnte getrennte Völker verbinden. Er nimmt sich vor, die verschollene Route wieder begehbar zu machen.", hooks: ["fahrend","wissen"] },
         ]
       },
       {
         text: "Bibliothekar des Verbotenen", hooks: ["wissen","geheimnis"],
         powerTags: [
-          { text: "kennt verbotene Riten", hooks: ["magie","geheimnis"] },
           { text: "erinnert sich an jedes Buch", hooks: ["wissen"] },
-          { text: "birgt gefährliche Bände", hooks: ["wissen","geheimnis"] },
-          { text: "erkennt jeden Falschdruck", hooks: ["wissen","handwerk"] },
+          { text: "kennt verbotene Riten", hooks: ["magie","geheimnis"] },
+          { text: "hütet gefährliche Bände", hooks: ["wissen","geheimnis"] },
+          { text: "erkennt jede Fälschung", hooks: ["wissen","handwerk"] },
         ],
         weaknessTags: [
           { text: "gefährliches Wissen lockt Feinde", hooks: ["wissen","geheimnis"] },
           { text: "Wahrheit vor dem Wohl anderer", hooks: ["wissen","geheimnis"] },
         ],
         quests: [
-          { title: "Das verbotene Folio", description: "Der Held hütet Bände, die niemand lesen darf, und kennt die Gefahr, die in jeder ihrer Zeilen schlummert. Nun ist ausgerechnet das gefährlichste Folio gestohlen, und in falschen Händen wird es zur Waffe. Er muss es zurückholen, ehe das verbotene Wissen entfesselt wird, auch wenn die Suche Feinde anlockt, die schon lange auf seine Sammlung lauern.", hooks: ["wissen","geheimnis"] },
-          { title: "Die Brandstifter der Wahrheit", description: "Mächtige fürchten, was in den Regalen des Helden geschrieben steht, und wollen seine Sammlung in Flammen aufgehen lassen. Für ihn aber wiegt die Wahrheit schwerer als das Wohlgefallen der Herrschenden. Während die Brandstifter näher rücken, rettet er, was zu retten ist, denn jedes verlorene Buch ist eine Erinnerung weniger, die der Welt für immer fehlt.", hooks: ["wissen","macht","verlust"] },
+          { title: "Das verbotene Folio", description: "Ausgerechnet der gefährlichste Band seiner Sammlung ist gestohlen, und in falschen Händen wird er zur Waffe. Er kennt jede Zeile darin und die Gefahr, die darin schlummert. Er nimmt die Spur des Diebs auf, ehe das verbotene Wissen entfesselt wird, auch wenn die Suche alte Feinde weckt.", hooks: ["wissen","geheimnis"] },
+          { title: "Die Brandstifter der Wahrheit", description: "Mächtige fürchten, was in seinen Regalen steht, und wollen die Sammlung in Flammen sehen. Für ihn wiegt die Wahrheit schwerer als ihr Wohlgefallen. Während die Brandstifter näher rücken, bringt er in Sicherheit, was zu retten ist, denn jedes verlorene Buch ist eine Erinnerung weniger.", hooks: ["wissen","macht","verlust"] },
         ]
       },
       {
         text: "Gelehrter der alten Reiche", hooks: ["wissen","adel"],
         powerTags: [
-          { text: "kennt den historischen Kontext", hooks: ["wissen"] },
-          { text: "kennt jedes Provinzwappen", hooks: ["wissen","adel"] },
+          { text: "kennt jede Chronik", hooks: ["wissen"] },
+          { text: "kennt jedes Wappen", hooks: ["wissen","adel"] },
           { text: "rekonstruiert aus Fragmenten", hooks: ["wissen"] },
-          { text: "entlarvt geschönte Chroniken", hooks: ["wissen","stadt"] },
+          { text: "entlarvt Fälschungen", hooks: ["wissen","stadt"] },
         ],
         weaknessTags: [
           { text: "weltfremder Bücherwurm", hooks: ["wissen","außenseiter"] },
           { text: "lebt in vergangenen Zeiten", hooks: ["wissen","verlust"] },
         ],
         quests: [
-          { title: "Die getilgte Dynastie", description: "Aus Chroniken und Provinzwappen liest der Held die Echos längst gestürzter Reiche, und eines davon wurde mit Absicht aus aller Erinnerung gelöscht. Wer ein Herrschergeschlecht tilgt, hat etwas zu verbergen. Aus Fragmenten und geschönten Aufzeichnungen rekonstruiert er die verschwiegene Wahrheit und stellt wieder her, was Mächtige aus der Geschichte zu reißen versuchten.", hooks: ["wissen","adel","geheimnis"] },
-          { title: "Das Erbe der Ruinen", description: "Der Held lebt halb in vergangenen Zeiten, und die Trümmer eines alten Reichs ziehen ihn unwiderstehlich an. Zwischen geborstenen Säulen und verwitterten Inschriften ahnt er den Schlüssel zu einem Untergang, den niemand erklären konnte. Geduldig setzt er die Bruchstücke zusammen, denn wer versteht, wie ein Reich fiel, versteht vielleicht, was die Gegenwart noch retten kann.", hooks: ["wissen","verlust"] },
+          { title: "Die getilgte Dynastie", description: "Ein Herrschergeschlecht wurde mit Absicht aus aller Erinnerung gelöscht, und wer so etwas tut, hat etwas zu verbergen. Aus Fragmenten und geschönten Aufzeichnungen setzt er die verschwiegene Wahrheit zusammen. Er reist den letzten Spuren nach, ehe auch sie getilgt werden.", hooks: ["wissen","adel","geheimnis"] },
+          { title: "Das Erbe der Ruinen", description: "Die Trümmer eines alten Reichs ziehen ihn unwiderstehlich an, denn zwischen geborstenen Säulen ahnt er den Schlüssel zu einem rätselhaften Untergang. Geduldig fügt er die Bruchstücke. Wer versteht, wie ein Reich fiel, versteht vielleicht, was die Gegenwart noch retten kann.", hooks: ["wissen","verlust"] },
         ]
       },
       {
@@ -2011,66 +2011,66 @@ export const THEMEBOOKS = {
           { text: "kennt die alten Sprachen", hooks: ["wissen"] },
           { text: "übersetzt jede Schrift", hooks: ["wissen"] },
           { text: "spricht die Sprache der Toten", hooks: ["magie","geheimnis"] },
-          { text: "hört jeden Dialekt heraus", hooks: ["wissen","fahrend"] },
+          { text: "hört jeden Dialekt", hooks: ["wissen","fahrend"] },
         ],
         weaknessTags: [
           { text: "verliert sich in Worten", hooks: ["wissen","außenseiter"] },
-          { text: "nimmt jedes Wort wörtlich", hooks: ["wissen"] },
+          { text: "nimmt alles wörtlich", hooks: ["wissen"] },
         ],
         quests: [
-          { title: "Die unentzifferte Zunge", description: "Der Held übersetzt jede Schrift und spricht selbst die Sprache der Toten, doch eine Zunge widersteht ihm bislang. In ihren Zeichen ruht ein Versprechen, das seit Ewigkeiten ungehört verhallt. Er gibt sich der Aufgabe ganz hin und will die verlorene Sprache entschlüsseln, auch wenn er sich dabei zu verlieren droht zwischen Worten, die seit Jahrhunderten niemand mehr sprach.", hooks: ["wissen","geheimnis"] },
-          { title: "Das missverstandene Wort", description: "Ein einziger Übersetzungsfehler hat sich in einen Vertrag geschlichen, und der Held hört das falsche Wort heraus, wo alle anderen nur den Wortlaut sehen. Aus diesem Missverständnis droht ein Krieg zu erwachsen, der Tausende kosten könnte. Nur er kann die wahre Bedeutung richtigstellen, ehe aus einem verkehrten Satz Blut und Verderben werden.", hooks: ["wissen","macht"] },
+          { title: "Die unentzifferte Zunge", description: "Jede Schrift übersetzt er, doch eine Zunge widersteht ihm, und in ihren Zeichen ruht ein Versprechen, das seit Ewigkeiten ungehört verhallt. Er gibt sich der Aufgabe ganz hin und reist zu den letzten Steinen, die sie tragen, um zu entschlüsseln, was seit Jahrhunderten niemand mehr sprach.", hooks: ["wissen","geheimnis"] },
+          { title: "Das missverstandene Wort", description: "Ein einziger Übersetzungsfehler hat sich in einen Vertrag geschlichen, und nur er hört das falsche Wort heraus. Aus dem Missverständnis droht ein Krieg zu wachsen. Er eilt dorthin, wo verhandelt wird, um die wahre Bedeutung richtigzustellen, ehe aus einem verkehrten Satz Blut wird.", hooks: ["wissen","macht"] },
         ]
       },
       {
         text: "Kartografin vergessener Wege", hooks: ["wissen","fahrend"],
         powerTags: [
           { text: "zeichnet getreue Karten", hooks: ["wissen","handwerk"] },
-          { text: "kennt unverzeichnete Routen", hooks: ["wissen","fahrend"] },
           { text: "liest jedes Gelände", hooks: ["natur","fahrend"] },
           { text: "merkt sich jeden Weg", hooks: ["wissen","fahrend"] },
+          { text: "findet unverzeichnete Routen", hooks: ["wissen","fahrend"] },
         ],
         weaknessTags: [
           { text: "besessen vom nächsten Horizont", hooks: ["fahrend","schicksal"] },
           { text: "hilflos ohne ihre Karten", hooks: ["wissen","handwerk"] },
         ],
         quests: [
-          { title: "Die Karte zum verlorenen Ort", description: "Der Held zeichnet getreue Karten und merkt sich jeden Weg, doch ein Ort entzieht sich ihm noch immer, verstreut über Fragmente alter Karten. Der nächste Horizont lässt ihn nicht los. Er folgt den Bruchstücken, bis sie zusammenpassen, denn er will diesen verlorenen Ort endlich vollständig verzeichnen und seinem leeren Fleck auf dem Pergament ein wahres Bild geben.", hooks: ["wissen","fahrend","geheimnis"] },
-          { title: "Das fehlerhafte Reich", description: "Eine falsch gezeichnete Karte führt Reisende in Sümpfe und Abgründe in den Tod, und der Held, der jedes Gelände liest, erträgt diesen Fehler nicht. Ohne genaue Karten ist auch er hilflos, doch dieser Irrtum kostet Leben. Er nimmt es auf sich, das fehlerhafte Reich neu zu vermessen und zu berichtigen, damit kein weiterer Wanderer dem falschen Strich vertraut.", hooks: ["fahrend","verlust"] },
+          { title: "Die Karte zum verlorenen Ort", description: "Ein Ort entzieht sich ihr, verstreut über Fragmente alter Karten, die einander widersprechen. Der nächste Horizont lässt sie nicht los. Sie folgt den Bruchstücken, bis sie zusammenpassen, und will dem leeren Fleck auf ihrem Pergament endlich ein wahres Bild geben.", hooks: ["wissen","fahrend","geheimnis"] },
+          { title: "Das fehlerhafte Reich", description: "Eine falsch gezeichnete Karte führt Reisende in Sümpfe und Abgründe, und sie, die jedes Gelände liest, erträgt den Fehler nicht. Er kostet Leben. Sie zieht los, das fehlerhafte Land neu zu vermessen, damit kein Wanderer mehr dem falschen Strich vertraut.", hooks: ["fahrend","verlust"] },
         ]
       },
       {
         text: "Entschlüsslerin alter Schriften", hooks: ["wissen","geheimnis"],
         powerTags: [
           { text: "erkennt jedes Symbol", hooks: ["wissen"] },
-          { text: "rekonstruiert aus Fragmenten", hooks: ["wissen"] },
           { text: "knackt jeden Code", hooks: ["wissen","geheimnis"] },
           { text: "sieht das Muster im Chaos", hooks: ["wissen","schicksal"] },
+          { text: "liest zwischen den Zeilen", hooks: ["wissen","geheimnis"] },
         ],
         weaknessTags: [
           { text: "besessen von ungelösten Rätseln", hooks: ["wissen","geheimnis"] },
-          { text: "Studium zehrt am Körper", hooks: ["wissen","verlust"] },
+          { text: "das Studium zehrt am Körper", hooks: ["wissen","verlust"] },
         ],
         quests: [
-          { title: "Die versiegelte Botschaft", description: "Der Held erkennt jedes Symbol und sieht das Muster noch im größten Chaos, und nun liegt eine verschlüsselte Schrift vor ihm, die eine Warnung birgt. Die Zeit drängt, denn ungelesen nützt selbst die dringendste Botschaft nichts. Besessen beugt er sich über die Zeichen und muss sie entziffern, ehe es zu spät ist und das angekündigte Unheil bereits geschehen ist.", hooks: ["wissen","geheimnis"] },
-          { title: "Der Schlüssel im Stein", description: "In uralten Gravuren ahnt der Held einen Code, an dem vor ihm jeder gescheitert ist, und das ungelöste Rätsel zehrt an seinen Kräften. Nacht für Nacht studiert er die verwitterten Linien, bis ihm die Augen brennen. Doch er gibt nicht auf, denn er will als Erster brechen, was der Stein so lange verbirgt, koste es ihn auch die eigene Gesundheit.", hooks: ["wissen","geheimnis","schicksal"] },
+          { title: "Die versiegelte Botschaft", description: "Eine verschlüsselte Schrift liegt vor ihr, die eine Warnung birgt, und die Zeit drängt, denn ungelesen nützt selbst die dringendste Botschaft nichts. Besessen beugt sie sich über die Zeichen und muss sie brechen, ehe das angekündigte Unheil geschieht.", hooks: ["wissen","geheimnis"] },
+          { title: "Der Schlüssel im Stein", description: "In uralten Gravuren ahnt sie einen Code, an dem vor ihr jeder scheiterte, und das ungelöste Rätsel zehrt an ihren Kräften. Nacht um Nacht studiert sie die verwitterten Linien. Sie will als Erste brechen, was der Stein so lange verbirgt, koste es sie auch die Gesundheit.", hooks: ["wissen","geheimnis","schicksal"] },
         ]
       },
       {
         text: "Schülerin verbotenen Wissens", hooks: ["wissen","geheimnis"],
         powerTags: [
-          { text: "kennt verbotene Riten", hooks: ["magie","geheimnis"] },
-          { text: "führt geheime Forschung", hooks: ["wissen","geheimnis"] },
-          { text: "Wissen als Hebel", hooks: ["wissen","macht"] },
           { text: "wagt was andere meiden", hooks: ["geheimnis","außenseiter"] },
+          { text: "Wissen als Hebel", hooks: ["wissen","macht"] },
+          { text: "kennt verbotene Riten", hooks: ["magie","geheimnis"] },
+          { text: "lernt unheimlich schnell", hooks: ["wissen","magie"] },
         ],
         weaknessTags: [
           { text: "blind für reale Gefahr", hooks: ["wissen"] },
           { text: "gefährliches Wissen lockt Feinde", hooks: ["wissen","geheimnis"] },
         ],
         quests: [
-          { title: "Das letzte Kapitel", description: "Der Held führt geheime Forschung und wagt, was andere meiden, doch seiner Lehre fehlt der verbotene Schlussteil. Ohne ihn bleibt all sein Wissen Stückwerk. Blind für die reale Gefahr, die solches Wissen anzieht, riskiert er alles, um das letzte Kapitel zu finden, denn erst mit ihm wird vollständig, wofür er bereits so vieles aufs Spiel gesetzt hat.", hooks: ["wissen","geheimnis","magie"] },
-          { title: "Der gefallene Meister", description: "Einst lehrte ihn ein Meister, doch der verschwand auf der Jagd nach verbotenem Wissen, und der Held kann den Gedanken nicht abschütteln. Wissen ist sein Hebel, und die Spur des Verschollenen ruft ihn. Trotz aller Gefahr folgt er den Pfaden seines Lehrers, um zu erfahren, was ihn verschlang, und ob am Ende dieses Weges Rettung oder dasselbe Verderben wartet.", hooks: ["wissen","verlust","geheimnis"] },
+          { title: "Das letzte Kapitel", description: "Ihrer Lehre fehlt der verbotene Schlussteil, und ohne ihn bleibt all ihr Wissen Stückwerk. Blind für die Gefahr, die solches Wissen anzieht, riskiert sie alles, um das letzte Kapitel zu finden, denn erst damit wird vollständig, wofür sie schon so viel aufs Spiel setzte.", hooks: ["wissen","geheimnis","magie"] },
+          { title: "Der gefallene Meister", description: "Ihr Lehrer verschwand auf der Jagd nach verbotenem Wissen, und der Gedanke lässt sie nicht los. Wissen ist ihr Hebel, und seine Spur ruft sie. Trotz aller Gefahr folgt sie den Pfaden des Verschollenen, um zu erfahren, was ihn verschlang, und ob am Ende Rettung wartet oder dasselbe Verderben.", hooks: ["wissen","verlust","geheimnis"] },
         ]
       },
       {
@@ -2078,50 +2078,50 @@ export const THEMEBOOKS = {
         powerTags: [
           { text: "ein Lexikon an Lore", hooks: ["wissen"] },
           { text: "erinnert sich an jedes Buch", hooks: ["wissen"] },
-          { text: "hält die Archive geheim", hooks: ["geheimnis","glaube"] },
           { text: "findet jede Quelle wieder", hooks: ["wissen","handwerk"] },
+          { text: "kennt jedes Gerücht der Gelehrten", hooks: ["wissen","stadt"] },
         ],
         weaknessTags: [
-          { text: "an die Archive gebunden", hooks: ["glaube","verlust"] },
+          { text: "trägt zu viel Wissen allein", hooks: ["wissen","außenseiter"] },
           { text: "wird für ihr Wissen benutzt", hooks: ["wissen","macht"] },
         ],
         quests: [
-          { title: "Die geplünderte Sammlung", description: "An die verborgenen Archive gebunden, hat der Held jede Quelle behütet wie einen Schatz, bis Diebe in die geheimen Gewölbe einbrachen. Jeder entwendete Band reißt eine Lücke in das Wissen, das seiner Obhut anvertraut ist. Er findet jede Quelle wieder, und so nimmt er die Spur der Räuber auf, um das Verlorene zurückzuholen, ehe es in falschen Händen missbraucht wird.", hooks: ["wissen","geheimnis","verlust"] },
-          { title: "Der würdige Erbe", description: "Der Held trägt ein Lexikon an Lore in sich und erinnert sich an jedes Buch, doch er weiß, dass er nicht ewig wachen kann. Stirbt der Hüter ohne Nachfolger, so stirbt auch das Wissen der Archive mit ihm. Darum sucht er jemanden, der nach ihm würdig genug ist, die verborgene Sammlung zu hüten und ihr Vermächtnis in die nächste Zeit zu tragen.", hooks: ["wissen","glaube","schicksal"] },
+          { title: "Die geplünderte Sammlung", description: "Diebe sind in die geheimen Gewölbe eingebrochen, und jeder entwendete Band reißt eine Lücke in das ihr anvertraute Wissen. Sie findet jede Quelle wieder. Sie nimmt die Spur der Räuber auf, quer durchs Land, um das Verlorene zurückzuholen, ehe es missbraucht wird.", hooks: ["wissen","geheimnis","verlust"] },
+          { title: "Der würdige Erbe", description: "Sie trägt ein Lexikon an Lore in sich, doch sie kann nicht ewig wachen, und stirbt der Hüter ohne Nachfolger, stirbt das Wissen mit ihm. Sie sucht jemanden, der würdig genug ist, das Erbe der Archive zu hüten, und reist dorthin, wo solche Menschen noch geboren werden.", hooks: ["wissen","glaube","schicksal"] },
         ]
       },
       {
         text: "Kennerin der Naturgesetze", hooks: ["wissen","natur"],
         powerTags: [
-          { text: "analysiert eine Substanz", hooks: ["wissen","handwerk"] },
+          { text: "analysiert jede Substanz", hooks: ["wissen","handwerk"] },
           { text: "kennt Bestienkunde", hooks: ["wissen","natur"] },
           { text: "kennt die Schwäche jedes Wesens", hooks: ["wissen","kampf"] },
           { text: "erklärt jedes Phänomen", hooks: ["wissen","natur"] },
         ],
         weaknessTags: [
-          { text: "körperlich nicht stark", hooks: ["kampf"] },
+          { text: "körperlich schwach", hooks: ["kampf"] },
           { text: "glaubt nur was sie beweist", hooks: ["wissen","außenseiter"] },
         ],
         quests: [
-          { title: "Das ungeklärte Phänomen", description: "Der Held glaubt nur, was er beweisen kann, und erklärt sonst jedes Phänomen, doch nun begegnet ihm ein Vorgang, der allem widerspricht, was er weiß. Das Rätsel erschüttert die Gewissheit, auf der sein ganzes Denken ruht. Mit kühlem Verstand muss er die Ursache ergründen, denn solange er sie nicht versteht, hat die Welt aufgehört, den Gesetzen zu folgen, die er ihr zuschrieb.", hooks: ["wissen","natur","geheimnis"] },
-          { title: "Die unbekannte Bestie", description: "Der Held kennt Bestienkunde und die Schwäche jedes Wesens, doch ein Geschöpf steht in keinem seiner Bücher und bedroht nun das Land. Körperlich ist er den Klauen kaum gewachsen, sein einziger Schutz ist sein Wissen. Geduldig beobachtet und studiert er die fremde Bestie, um ihre verwundbare Stelle zu erforschen, ehe sie weitere Opfer fordert und niemand sie zu bezwingen weiß.", hooks: ["wissen","natur","kampf"] },
+          { title: "Das ungeklärte Phänomen", description: "Ihr begegnet ein Vorgang, der allem widerspricht, was sie weiß, und das erschüttert die Gewissheit, auf der ihr ganzes Denken ruht. Mit kühlem Verstand muss sie die Ursache ergründen, denn solange sie sie nicht versteht, hat die Welt aufgehört, ihren Gesetzen zu folgen.", hooks: ["wissen","natur","geheimnis"] },
+          { title: "Die unbekannte Bestie", description: "Ein Geschöpf steht in keinem ihrer Bücher und bedroht nun das Land, und ihren Klauen ist sie kaum gewachsen; ihr einziger Schutz ist ihr Wissen. Geduldig beobachtet sie das fremde Wesen, um seine verwundbare Stelle zu finden, ehe es weitere Opfer fordert.", hooks: ["wissen","natur","kampf"] },
         ]
       },
       {
         text: "Forscherin der alten Kulte", hooks: ["wissen","magie","geheimnis"],
         powerTags: [
-          { text: "kennt verbotene Riten", hooks: ["magie","geheimnis"] },
-          { text: "sieht die Zeichen", hooks: ["wissen","schicksal"] },
-          { text: "durchschaut jeden Glauben", hooks: ["wissen","glaube"] },
           { text: "spürt das Wirken der Kulte", hooks: ["geheimnis","magie"] },
+          { text: "durchschaut jeden Glauben", hooks: ["wissen","glaube"] },
+          { text: "kennt geheime Riten", hooks: ["magie","geheimnis"] },
+          { text: "deutet die Zeichen", hooks: ["wissen","schicksal"] },
         ],
         weaknessTags: [
           { text: "verfolgt von neugierigen Mächten", hooks: ["macht","geheimnis"] },
           { text: "zu tief in den Riten", hooks: ["magie","verlust"] },
         ],
         quests: [
-          { title: "Der wiedererwachte Kult", description: "Der Held spürt das Wirken der Kulte und kennt ihre verbotenen Riten, und nun regt sich ein totgeglaubter Kult aufs Neue. Hinter neugierigen Mächten verborgen, sammeln seine Anhänger heimlich Kraft. Er muss ihre Absichten entschlüsseln, ehe sie ihr finsteres Werk vollenden, auch wenn ihn die Suche tiefer in die Riten zieht, als ihm selbst noch geheuer ist.", hooks: ["wissen","magie","geheimnis"] },
-          { title: "Die wahre Gottheit", description: "Der Held durchschaut jeden Glauben und liest die Zeichen alter Riten, und unter ihrer frommen Oberfläche ahnt er eine verborgene Wahrheit. Wem galten die Gebete wirklich, die seit Jahrhunderten gesprochen werden? Getrieben von der Frage gräbt er immer tiefer und enthüllt, welche Macht sich hinter den vertrauten Ritualen verbirgt, selbst wenn die Antwort alles erschüttert, woran die Menschen glaubten.", hooks: ["wissen","glaube","geheimnis"] },
+          { title: "Der wiedererwachte Kult", description: "Ein totgeglaubter Kult regt sich aufs Neue, und hinter mächtigen Gönnern verborgen sammeln seine Anhänger heimlich Kraft. Sie muss ihre Absichten entschlüsseln, ehe sie ihr Werk vollenden, auch wenn die Suche sie tiefer in die Riten zieht, als ihr geheuer ist.", hooks: ["wissen","magie","geheimnis"] },
+          { title: "Die wahre Gottheit", description: "Unter der frommen Oberfläche alter Gebete ahnt sie eine verborgene Wahrheit: Wem galten sie wirklich, all die Jahrhunderte? Getrieben von der Frage gräbt sie tiefer und will enthüllen, welche Macht sich hinter den vertrauten Ritualen verbirgt, selbst wenn die Antwort erschüttert, woran alle glaubten.", hooks: ["wissen","glaube","geheimnis"] },
         ]
       },
     ]
