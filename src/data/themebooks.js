@@ -457,21 +457,21 @@ export const THEMEBOOKS = {
     type: "Origin",
     titles: [
       {
-        text: "verflucht", hooks: ["magie","schicksal"],
+        text: "Verfluchter", hooks: ["magie","schicksal"],
         powerTags: [
-          { text: "spürt einen Fluch", hooks: ["magie","schicksal"] },
-          { text: "Zeichen gegen Unheil", hooks: ["magie","glaube"] },
-          { text: "warnende Erinnerungen", hooks: ["schicksal","verlust"] },
-          { text: "trotzt dem Schlimmsten", hooks: ["schicksal","verlust"] },
+          { text: "spürt Flüche", hooks: ["magie","schicksal"] },
+          { text: "Bannzeichen", hooks: ["magie","glaube"] },
+          { text: "dunkle Ahnungen", hooks: ["schicksal","verlust"] },
+          { text: "kennt alte Riten", hooks: ["wissen","magie"] },
         ],
         weaknessTags: [
-          { text: "das Mal des Fluches", hooks: ["magie","verlust"] },
-          { text: "wehrlos an bestimmten Orten", hooks: ["schicksal","verlust"] },
-          { text: "wiederkehrende Albträume", hooks: ["verlust","schicksal"] },
+          { text: "das Fluchmal", hooks: ["magie","verlust"] },
+          { text: "wehrlos auf geweihtem Boden", hooks: ["schicksal","verlust"] },
+          { text: "Albträume", hooks: ["verlust","schicksal"] },
         ],
         quests: [
-          { title: "Den Fluch brechen", description: "Ein altes Mal liegt auf dem Helden und färbt jeden Tag dunkler. Er spürt den Fluch in den Knochen, hört seine warnenden Erinnerungen und trotzt dem Schlimmsten, doch leben will er so nicht weiter. Was wie ein Schatten an ihm hängt, soll fallen. Bis der Bann gebrochen ist, findet er keine Ruhe.", hooks: ["magie","schicksal"] },
-          { title: "Den Ursprung finden", description: "Niemand verflucht ohne Grund, und der Held weigert sich, blind zu leiden. Die wiederkehrenden Albträume und die Zeichen gegen das Unheil weisen ihm einen Weg zurück. Er folgt der Spur des Fluches durch jede Erinnerung bis zu der Hand, die ihn einst wirkte. Erst wer den Ursprung kennt, kann das Übel an der Wurzel packen.", hooks: ["schicksal","geheimnis"] },
+          { title: "Den Fluch brechen", description: "Eine Wahrsagerin nannte ihm drei Bedingungen, unter denen das Mal vergeht, und starb, ehe sie die dritte aussprach. Zwei hat er erfüllt, nichts geschah. Also sucht er die dritte, von der niemand weiß, ob es sie gibt.", hooks: ["magie","schicksal"] },
+          { title: "Wessen Fluch ich trage", description: "In seinen Träumen kehrt dasselbe halb abgewandte Gesicht wieder, an einer Hand ein Ring, den er wachend schon gesehen haben muss, nur wo? Er folgt dem Ring, denn wer den Fluch wirkte, trägt ihn vielleicht noch.", hooks: ["schicksal","geheimnis"] },
         ]
       },
       {
@@ -479,85 +479,84 @@ export const THEMEBOOKS = {
         powerTags: [
           { text: "narbiger Schwertarm", hooks: ["kampf","verlust"] },
           { text: "kennt das Schlachtfeld", hooks: ["kampf"] },
-          { text: "wittert eine Falle", hooks: ["kampf","wissen"] },
-          { text: "Blick fürs Schlimmste", hooks: ["kampf","verlust"] },
-          { text: "abgehärtet vom Schlimmsten", hooks: ["verlust","kampf"] },
+          { text: "wittert Fallen", hooks: ["kampf","wissen"] },
+          { text: "abgehärtet", hooks: ["verlust","kampf"] },
         ],
         weaknessTags: [
-          { text: "verfolgt von alten Feinden", hooks: ["kampf","verlust"] },
-          { text: "schmerzende Erinnerung", hooks: ["verlust"] },
+          { text: "von alten Feinden gejagt", hooks: ["kampf","verlust"] },
+          { text: "verroht vom Töten", hooks: ["kampf","verlust"] },
         ],
         quests: [
-          { title: "Den Krieg hinter sich lassen", description: "Der narbige Schwertarm hat genug Schlachtfelder gesehen, und der Held ist müde des Tötens. Abgehärtet vom Schlimmsten witterte er jede Falle, doch der Friede blieb ihm stets versagt. Nun sucht er die Stille, die ihm die Schlacht nie schenkte. Vielleicht liegt jenseits der alten Feinde endlich ein Ort, an dem er die Waffe ablegen darf.", hooks: ["kampf","verlust"] },
-          { title: "Alte Waffenbrüder finden", description: "Von allen, die mit dem Helden in die Schlacht zogen, blieben nur wenige übrig. Sein Blick fürs Schlimmste hat ihn durchgebracht, doch das Überleben allein wiegt schwer. Er spürt die letzten Gefährten auf, die das Gemetzel mit ihm überstanden, ehe auch ihre Spuren verwehen. Wer Seite an Seite stand, gehört wieder zusammen.", hooks: ["kampf","verlust"] },
+          { title: "Den Krieg hinter sich lassen", description: "Er hat mehr Schlachtfelder gesehen als Geburtstage und weiß nicht mehr, wofür der erste Krieg geführt wurde. Nachts zählt er nicht Schafe, sondern Namen. Er sucht einen Ort, an dem eine Hand auch etwas anderes tun darf als eine Klinge halten.", hooks: ["kampf","verlust"] },
+          { title: "Alte Waffenbrüder finden", description: "Sieben zogen sie aus, Rücken an Rücken, und schworen, sich wiederzufinden, falls sie überlebten. Er hält den Schwur als Letzter, der noch sucht. Von zweien gehen Gerüchte, einer führe ein Wirtshaus, einer sitze im Kerker; den Rest verschweigt die Zeit.", hooks: ["kampf","verlust"] },
         ]
       },
       {
         text: "letzter meines Volkes", hooks: ["verlust","natur"],
         powerTags: [
-          { text: "spricht eine vergessene Zunge", hooks: ["wissen","verlust"] },
-          { text: "kennt die Namen der Toten", hooks: ["verlust","geheimnis"] },
-          { text: "Sprache der Verlorenen", hooks: ["verlust","wissen"] },
-          { text: "einst gelernte Liturgie", hooks: ["glaube","verlust"] },
+          { text: "spricht die alte Zunge", hooks: ["wissen","verlust"] },
+          { text: "kennt die Ahnen", hooks: ["verlust","geheimnis"] },
+          { text: "alte Riten", hooks: ["glaube","verlust"] },
+          { text: "alte Heilkunst", hooks: ["wissen","natur"] },
         ],
         weaknessTags: [
-          { text: "lebt in der Vergangenheit", hooks: ["verlust","schicksal"] },
-          { text: "traut nur Vertrauten von einst", hooks: ["geheimnis","verlust"] },
+          { text: "gefangen im Gestern", hooks: ["verlust","schicksal"] },
+          { text: "zerbricht an der Einsamkeit", hooks: ["verlust","außenseiter"] },
         ],
         quests: [
-          { title: "Das Erbe bewahren", description: "Der Held ist der Letzte, der die vergessene Zunge noch spricht und die Namen der Toten kennt. Mit ihm droht das Wissen eines ganzen Volkes für immer zu verlöschen. Solange er atmet, soll wenigstens ein Funke dieser alten Welt weiterglimmen. Er trägt die Liturgie und die Sprache der Verlorenen wie ein Vermächtnis, das niemand sonst mehr hüten kann.", hooks: ["verlust","natur"] },
-          { title: "Das Werk vollenden", description: "Sein Volk ließ etwas Unvollendetes zurück, als es unterging, und der Held kennt es als Einziger noch. Er lebt zwar in der Vergangenheit, doch gerade darin liegt seine Aufgabe. Was die Seinen nicht mehr zu Ende bringen konnten, will er für sie beenden. So gibt er ihrem Untergang im Nachhinein einen Sinn.", hooks: ["verlust","natur"] },
+          { title: "Das Erbe weitertragen", description: "Alles, was von seinem Volk blieb, passt in seinen Kopf und ein Bündel abgegriffener Zeichen. Stirbt er ungehört, stirbt es zweimal. Also sucht er Ohren, die zuhören, und Hände, die weiterschreiben, ehe die letzten Wörter mit ihm verstummen.", hooks: ["verlust","natur"] },
+          { title: "Das unvollendete Werk vollenden", description: "Die Alten begannen etwas, das sie nicht mehr beenden konnten, ein Lied ohne letzte Strophe, ein Weg ohne letztes Zeichen, er ist sich selbst nicht sicher, was. Nur dass es offen blieb, spürt er wie einen unfertigen Kreis, und zieht los, das fehlende Stück zu finden.", hooks: ["verlust","natur"] },
         ]
       },
       {
         text: "mystischer Pilger", hooks: ["magie","fahrend"],
         powerTags: [
-          { text: "findet immer Orientierung", hooks: ["fahrend","natur"] },
-          { text: "reist mit leichtem Gepäck", hooks: ["fahrend","verlust"] },
+          { text: "Orientierungssinn", hooks: ["fahrend","natur"] },
+          { text: "reist leicht", hooks: ["fahrend","verlust"] },
           { text: "kennt heilige Wege", hooks: ["glaube","fahrend"] },
-          { text: "liest die Zeichen", hooks: ["magie","schicksal"] },
+          { text: "deutet Zeichen", hooks: ["magie","schicksal"] },
         ],
         weaknessTags: [
-          { text: "nirgends lange zu Hause", hooks: ["fahrend","außenseiter"] },
-          { text: "als Fremder beäugt", hooks: ["außenseiter","fahrend"] },
+          { text: "überall ein Fremder", hooks: ["außenseiter","fahrend"] },
+          { text: "weltfremd", hooks: ["außenseiter","glaube"] },
         ],
         quests: [
-          { title: "Die Pilgerfahrt vollenden", description: "Der Held zieht von Schwelle zu Schwelle, liest die Zeichen und findet immer Orientierung, wo andere sich verlieren. Doch nirgends ist er lange zu Hause, und überall beäugt man ihn als Fremden. Der Weg selbst ist seine Prüfung, das hat er begriffen. Erst wenn er am Ziel ankommt, wird er erkennen, wer er wirklich geworden ist.", hooks: ["glaube","fahrend"] },
-          { title: "Das verborgene Heiligtum finden", description: "Auf seinen Wanderungen hörte der Held von einem Ort, den niemand sonst zu suchen wagt. Mit leichtem Gepäck und dem Wissen um die heiligen Wege fühlt er sich berufen, dorthin zu gelangen. Etwas an diesem Heiligtum ruft nach ihm, als hätte es auf ihn gewartet. Er folgt dem Ruf, auch wenn ihn der Pfad weit aus jeder bekannten Welt hinausführt.", hooks: ["magie","fahrend"] },
+          { title: "Die Pilgerfahrt vollenden", description: "Ein Traum in drei Nächten schickte ihn los, und seither misst er sein Leben in Schwellen, nicht in Meilen. Wohin der Weg führt, weiß er nicht, nur dass er es erkennen wird, wenn er ankommt. Bis dahin ist jeder Schritt Gebet.", hooks: ["glaube","fahrend"] },
+          { title: "Das verborgene Heiligtum finden", description: "Am Rand einer alten Karte, dort wo die Zeichner nur noch Nebel malen, soll ein Ort liegen, den kein Lebender betrat. Drei Menschen wussten davon, zwei schwiegen, einer lachte zu laut. Etwas dort ruft ihn, und er kann nicht anders als folgen.", hooks: ["magie","fahrend"] },
         ]
       },
       {
         text: "aus den Trümmern", hooks: ["verlust","fahrend"],
         powerTags: [
-          { text: "hat die Ruinen gesehen", hooks: ["verlust","natur"] },
-          { text: "durchgemacht und überlebt", hooks: ["verlust"] },
-          { text: "lernt aus jedem Fehler", hooks: ["wissen","handwerk"] },
+          { text: "findet Brauchbares", hooks: ["handwerk","verlust"] },
+          { text: "improvisiert", hooks: ["handwerk","wissen"] },
+          { text: "lernt aus Fehlern", hooks: ["wissen","handwerk"] },
           { text: "überlebt jede Not", hooks: ["verlust","außenseiter"] },
         ],
         weaknessTags: [
-          { text: "bleibende Schuld", hooks: ["verlust","schicksal"] },
+          { text: "Schuld des Überlebens", hooks: ["verlust","schicksal"] },
           { text: "kann nicht loslassen", hooks: ["verlust"] },
         ],
         quests: [
-          { title: "Neu aufbauen", description: "Der Held hat die Ruinen mit eigenen Augen gesehen und überlebt, wo alles andere zerbrach. Aus jedem Fehler hat er gelernt, und gerade das macht ihn zum richtigen Baumeister. Wo andere nur Schutt sehen, erkennt er das Fundament für etwas Neues. Aus Trümmern lässt sich etwas schaffen, glaubt er, denn er ist selbst aus Trümmern wieder aufgestanden.", hooks: ["verlust","handwerk"] },
-          { title: "Retten was bleibt", description: "Was der Held einst verlor, lehrte ihn, jeden Rest zu schätzen, der noch zu retten ist. Er kann nicht loslassen, und so verschließt er die Augen nicht vor dem Wenigen, das übrig blieb. Solange irgendwo ein Funke glimmt, bückt er sich danach und schützt ihn mit der Hand. Aufgeben ist für einen, der schon einmal alles verlor, keine Möglichkeit.", hooks: ["verlust","natur"] },
+          { title: "Etwas Bleibendes errichten", description: "Er hat gesehen, wie schnell ein Leben zu Schutt wird, und ertrug es, weil er sich vornahm, aus dem Schutt etwas zu machen. Nicht dasselbe wieder, sondern etwas, das dem nächsten Sturm standhält. Er sucht Ort und Menschen, mit denen der Vorsatz gelingt.", hooks: ["verlust","handwerk"] },
+          { title: "Bewahren, was übrig ist", description: "Von allem, was verloren ging, existiert noch ein einziges Stück, und nur er weiß, wo. Ein Kästchen, ein Name, ein Grab, mehr braucht es nicht, um zu beweisen, dass es das alles gab. Ehe auch dieser Rest verweht, bringt er ihn in Sicherheit.", hooks: ["verlust","natur"] },
         ]
       },
       {
         text: "der Heimkehrer", hooks: ["fahrend","verlust"],
         powerTags: [
-          { text: "kennt den Weg zurück", hooks: ["fahrend","verlust"] },
-          { text: "getragene Reisetracht", hooks: ["fahrend","verlust"] },
+          { text: "kennt den Heimweg", hooks: ["fahrend","verlust"] },
+          { text: "straßenerprobt", hooks: ["fahrend","verlust"] },
           { text: "altes Andenken", hooks: ["verlust"] },
           { text: "findet alte Verbündete", hooks: ["fahrend","glaube"] },
         ],
         weaknessTags: [
-          { text: "daheim hat sich alles verändert", hooks: ["verlust","schicksal"] },
-          { text: "wird von alten Bekannten erkannt", hooks: ["geheimnis","verlust"] },
+          { text: "daheim alles fremd", hooks: ["verlust","schicksal"] },
+          { text: "bekanntes Gesicht", hooks: ["geheimnis","verlust"] },
         ],
         quests: [
-          { title: "Nach Hause finden", description: "Der Held kennt den Weg zurück, auch nach all den Jahren in der Fremde. Ein altes Andenken trägt er bei sich, ein Versprechen an den Ort, den er einst verlassen musste. Nun zieht es ihn heim, dorthin, wo seine Wurzeln liegen. Doch er ahnt, dass die Heimat, die er sucht, nicht mehr ganz dieselbe sein wird, die er kannte.", hooks: ["fahrend","verlust"] },
-          { title: "Das alte Unrecht klären", description: "Bevor der Held fortging, geschah etwas, das nie ausgesprochen wurde. Daheim hat sich seither alles verändert, und alte Bekannte erkennen ihn mit gemischten Blicken. Das ungeklärte Unrecht von damals lässt ihm keine Ruhe und folgt ihm bis in den Schlaf. Er kehrt zurück, um endlich zu begreifen, was wirklich vorfiel, und es ins Reine zu bringen.", hooks: ["verlust","geheimnis"] },
+          { title: "Nach Hause finden", description: "Zwölf Jahre und drei Kriege liegen zwischen ihm und dem Dorf, das er Heimat nannte. Er trägt etwas bei sich, das er dort zurückgeben oder zurücklassen muss, er weiß noch nicht, welches. Je näher er kommt, desto weniger sicher ist er, ob man ihn noch kennt.", hooks: ["fahrend","verlust"] },
+          { title: "Die alte Rechnung begleichen", description: "In der Nacht, bevor er ging, fiel ein Wort, das nie zurückgenommen wurde, und ein Mensch, der es hätte richtigstellen können, schweigt bis heute. Lange glaubte er, die Zeit heile das. Sie tat es nicht. Er kehrt zurück, um auszusprechen, was ungesagt blieb.", hooks: ["verlust","geheimnis"] },
         ]
       },
       {
@@ -565,101 +564,101 @@ export const THEMEBOOKS = {
         powerTags: [
           { text: "Andenken eines Toten", hooks: ["verlust"] },
           { text: "eiserner Wille", hooks: ["verlust"] },
-          { text: "eine Lektion aus Leid", hooks: ["verlust","wissen"] },
-          { text: "wacht beim leisesten Geräusch", hooks: ["kampf","natur"] },
+          { text: "riecht Rauch zuerst", hooks: ["natur","verlust"] },
+          { text: "leichter Schlaf", hooks: ["kampf","natur"] },
         ],
         weaknessTags: [
-          { text: "schmerzende Erinnerung", hooks: ["verlust"] },
-          { text: "wehrlos vor Flammen", hooks: ["schicksal","verlust"] },
+          { text: "Brandnarben", hooks: ["verlust"] },
+          { text: "erstarrt vor Feuer", hooks: ["schicksal","verlust"] },
         ],
         quests: [
-          { title: "Das Vergangene zur Ruhe bringen", description: "Der Held überlebte die Flammen, doch ein Andenken eines Toten erinnert ihn jede Nacht daran. Sein eiserner Wille trug ihn durch das Leid, das ihm eine bittere Lektion wurde. Noch immer wacht er beim leisesten Geräusch und schreckt vor jedem Funken zurück. Er will, dass die Geister der Brandnacht endlich schweigen und er wieder ruhig atmen kann.", hooks: ["verlust","schicksal"] },
-          { title: "Den Brandstifter finden", description: "Das Feuer kam nicht von selbst, das weiß der Held mit jeder schmerzenden Erinnerung. Wehrlos stand er einst vor den Flammen, doch das Leid hat ihn nicht gebrochen, sondern geschärft. Er will wissen, wessen Hand das Feuer legte und warum. Erst wenn er dem Schuldigen ins Gesicht gesehen hat, kann die Asche der Vergangenheit zur Ruhe kommen.", hooks: ["verlust","geheimnis"] },
+          { title: "Die Toten ruhen lassen", description: "Aus dem Feuer trug sie nur eines, ein Ding, das einem gehörte, den sie nicht retten konnte. Solange sie es bei sich hat, ist die Nacht nicht vorbei. Sie sucht den Ort, an den es gehört, ein Grab, ein Fluss, eine Hand, um es endlich weggeben zu können.", hooks: ["verlust","schicksal"] },
+          { title: "Den Brandstifter finden", description: "Das Feuer brach an drei Stellen zugleich aus, so etwas tut kein Funke von allein. Einer hat es gelegt und lebt, während andere starben. Sie kennt nur ein Detail, den Geruch eines seltenen Öls in jener Nacht, und dem folgt sie von Markt zu Markt.", hooks: ["verlust","geheimnis"] },
         ]
       },
       {
         text: "entflohener Gefangener", hooks: ["außenseiter","verlust"],
         powerTags: [
-          { text: "kennt den Preis des Aufgebens", hooks: ["verlust","wissen"] },
-          { text: "geht in der Menge unter", hooks: ["außenseiter","geheimnis"] },
-          { text: "sieht durch Lügen", hooks: ["geheimnis"] },
+          { text: "kennt Schloss und Riegel", hooks: ["handwerk","geheimnis"] },
+          { text: "unauffällig", hooks: ["außenseiter","geheimnis"] },
+          { text: "durchschaut Lügen", hooks: ["geheimnis"] },
           { text: "überlebt jede Not", hooks: ["verlust","außenseiter"] },
         ],
         weaknessTags: [
-          { text: "verfolgt von alten Feinden", hooks: ["kampf","verlust"] },
-          { text: "traut niemandem ganz", hooks: ["außenseiter","verlust"] },
+          { text: "steckbrieflich gesucht", hooks: ["kampf","verlust"] },
+          { text: "traut niemandem", hooks: ["außenseiter","verlust"] },
         ],
         quests: [
-          { title: "Sich von den Ketten befreien", description: "Der Held kennt den Preis des Aufgebens und hat ihn nie gezahlt, selbst hinter Gittern nicht. Er entkam, geht in der Menge unter und überlebt jede Not, doch frei fühlt er sich nicht. Verfolgt von alten Feinden, bleibt ein Schatten an ihm haften. Solange dieser Schatten ihn jagt, gehört sein Leben ihm nicht ganz, und genau das will er ändern.", hooks: ["verlust","außenseiter"] },
-          { title: "Mit den Wärtern abrechnen", description: "Wer den Helden gefangen hielt, hat ihm Dinge angetan, die er nicht vergisst. Er durchschaut jede Lüge und traut niemandem ganz, am wenigsten denen, die ihn einst in Ketten legten. Die Wärter sollen nicht ungestraft bleiben für das, was sie taten. Er spürt sie auf, einen nach dem anderen, und fordert die Rechnung ein, die noch offen steht.", hooks: ["außenseiter","kampf"] },
+          { title: "Endgültig frei werden", description: "Die Zelle hat er hinter sich, aber nicht das Gefühl, dass jede offene Tür eine Falle sein könnte. Ein Steckbrief mit seinem Gesicht hängt in Städten, die er nie betrat. Er will den Tag, an dem kein Aushang mehr seinen Namen trägt, und muss dafür zur Wurzel dessen, was ihn einbrachte.", hooks: ["verlust","außenseiter"] },
+          { title: "Mit den Wärtern abrechnen", description: "Vier Schließer teilten sich die Nachtwache, jeder mit seiner eigenen Grausamkeit. Drei Namen kennt er, den vierten nur an einer Stimme, die er im Schlaf noch hört. Er sucht sie, nicht aus Wut allein, sondern weil er wissen will, wer die Befehle gab.", hooks: ["außenseiter","kampf"] },
         ]
       },
       {
         text: "Kriegskind", hooks: ["kampf","verlust"],
         powerTags: [
-          { text: "abgehärtet vom Schlimmsten", hooks: ["verlust"] },
-          { text: "Blick fürs Schlimmste", hooks: ["kampf","verlust"] },
-          { text: "trägt Narben mit Würde", hooks: ["verlust","kampf"] },
-          { text: "wittert eine Falle", hooks: ["kampf","wissen"] },
+          { text: "früh erwachsen", hooks: ["verlust"] },
+          { text: "kennt jedes Versteck", hooks: ["geheimnis","kampf"] },
+          { text: "wittert Gefahr", hooks: ["kampf","wissen"] },
+          { text: "findet immer Nahrung", hooks: ["natur","verlust"] },
         ],
         weaknessTags: [
-          { text: "wiederkehrende Albträume", hooks: ["verlust"] },
+          { text: "ruhelose Nächte", hooks: ["verlust"] },
           { text: "kennt nur den Krieg", hooks: ["kampf","außenseiter"] },
         ],
         quests: [
-          { title: "Einen ruhigen Platz suchen", description: "Der Held kennt nichts als den Krieg, in den er hineingeboren wurde, abgehärtet vom Schlimmsten von Kindesbeinen an. Sein Blick fürs Schlimmste hat ihn am Leben gehalten, doch die Albträume kehren jede Nacht wieder. Einmal will er leben, ohne dass jede Straße zum Schlachtfeld wird. Er sucht einen stillen Ort, an dem er endlich lernen darf, was Frieden bedeutet.", hooks: ["kampf","verlust"] },
-          { title: "Die Eltern wiederfinden", description: "Der Krieg nahm dem Helden die Familie, ehe er sie richtig kennen konnte. Seine Narben trägt er mit Würde, doch die Lücke, die jene Nacht riss, blieb. Irgendwo, so hofft er, leben seine Eltern noch oder zumindest die Spur ihres Schicksals. Er folgt den wenigen Erinnerungen, die ihm blieben, um die Menschen zu finden, denen er einst gehörte.", hooks: ["verlust","geheimnis"] },
+          { title: "Einen Ort ohne Krieg finden", description: "Er erinnert sich an keinen Tag, an dem irgendwo nicht geschossen, geflohen oder begraben wurde. Frieden kennt er nur als Wort, das Erwachsene sagen, ehe sie seufzen. Er sucht einen Ort, an dem das Wort etwas bedeutet, und ist nicht sicher, ob er ihn erkennen würde.", hooks: ["kampf","verlust"] },
+          { title: "Die Eltern wiederfinden", description: "Von seiner Mutter blieb ein Lied, von seinem Vater ein Wort in einer Sprache, die hier keiner spricht. Ob sie leben, weiß er nicht; er weiß nur, dass er ihre Gesichter vergisst, Zug um Zug. Er sucht sie, ehe auch der Rest verblasst.", hooks: ["verlust","geheimnis"] },
         ]
       },
       {
         text: "einzige Mitwisserin", hooks: ["geheimnis","wissen"],
         powerTags: [
-          { text: "sieht durch Lügen", hooks: ["geheimnis"] },
-          { text: "kennt die Namen der Toten", hooks: ["verlust","geheimnis"] },
-          { text: "eine Lektion aus Leid", hooks: ["verlust","wissen"] },
-          { text: "hört wo andere schweigen", hooks: ["geheimnis","wissen"] },
+          { text: "durchschaut Lügen", hooks: ["geheimnis"] },
+          { text: "vergisst nichts", hooks: ["wissen","geheimnis"] },
+          { text: "geht unter falschem Namen", hooks: ["geheimnis","außenseiter"] },
+          { text: "findet Unterschlupf", hooks: ["fahrend","außenseiter"] },
         ],
         weaknessTags: [
-          { text: "wird gejagt um ihr Wissen", hooks: ["geheimnis","verlust"] },
-          { text: "traut nur Vertrauten von einst", hooks: ["geheimnis","verlust"] },
+          { text: "gejagt um ihr Wissen", hooks: ["geheimnis","verlust"] },
+          { text: "sieht überall Späher", hooks: ["geheimnis","außenseiter"] },
         ],
         quests: [
-          { title: "Die Wahrheit ans Licht bringen", description: "Der Held sieht durch Lügen und hört, wo andere schweigen, und so kennt er, was hinter den Rissen der Geschichte liegt. Eine bittere Lektion aus Leid hat ihn gelehrt, wie gefährlich dieses Wissen ist. Doch er wird gejagt, gerade weil er die Wahrheit trägt. Lieber spricht er sie aus, als sie mit sich ins Grab zu nehmen, damit endlich ans Licht kommt, was verschwiegen wurde.", hooks: ["geheimnis","wissen"] },
-          { title: "Den Verräter entlarven", description: "Jemand aus dem eigenen Kreis hat den Helden verraten und ihn so zur einzigen Mitwisserin werden lassen. Er kennt die Namen der Toten und traut nur noch den Vertrauten von einst. Doch der Verräter verbirgt sich hinter einem freundlichen Gesicht. Der Held wird nicht ruhen, bis er weiß, wessen Hand ihn ans Messer lieferte, und ihn vor allen entlarvt.", hooks: ["verlust","geheimnis"] },
+          { title: "Die Wahrheit ans Licht bringen", description: "Sie hat gesehen, was geschah, und trägt es wie einen Stein im Mund: Sprechen bedeutet Gefahr, Schweigen bedeutet Mitschuld. Es gibt einen Beweis, den sie versteckte, ehe man sie fand. Sie will ihn dorthin bringen, wo man ihn nicht mehr vertuschen kann.", hooks: ["geheimnis","wissen"] },
+          { title: "Den Verräter entlarven", description: "Nur einer wusste, wo sie sich verbarg, und am Morgen standen die Häscher vor der Tür. Es war jemand, dem sie ihr Leben anvertraut hätte, und das macht es unerträglich. Sie sammelt die kleinen Widersprüche, bis das freundliche Gesicht keine Ausrede mehr hat.", hooks: ["verlust","geheimnis"] },
         ]
       },
       {
         text: "getriebene ohne Heimat", hooks: ["fahrend","verlust"],
         powerTags: [
-          { text: "reist mit leichtem Gepäck", hooks: ["fahrend","verlust"] },
-          { text: "findet immer Orientierung", hooks: ["fahrend","natur"] },
-          { text: "findet überall Unterschlupf", hooks: ["fahrend","außenseiter"] },
-          { text: "abgehärtet vom Schlimmsten", hooks: ["verlust"] },
+          { text: "findet Unterschlupf", hooks: ["fahrend","außenseiter"] },
+          { text: "liest fremde Sitten", hooks: ["wissen","fahrend"] },
+          { text: "reist leicht", hooks: ["fahrend","verlust"] },
+          { text: "Orientierungssinn", hooks: ["fahrend","natur"] },
         ],
         weaknessTags: [
           { text: "nirgends willkommen", hooks: ["außenseiter","fahrend"] },
-          { text: "kann nicht loslassen", hooks: ["verlust"] },
+          { text: "vom Drang getrieben", hooks: ["schicksal","fahrend"] },
         ],
         quests: [
-          { title: "Einen Ort zum Bleiben finden", description: "Der Held reist mit leichtem Gepäck und findet überall Unterschlupf, doch nirgends ist er willkommen. Abgehärtet von einem ruhelosen Leben kennt er jede Straße, aber keine Heimat. Er kann die Vergangenheit nicht loslassen, die ihn immer weitertreibt. Irgendwo, glaubt er, muss ein Platz sein, an dem er bleiben und endlich aufatmen darf.", hooks: ["fahrend","verlust"] },
-          { title: "Dem Getriebensein entkommen", description: "Eine unsichtbare Hand treibt den Helden rastlos durch die Lande, und er weiß nicht recht, woher sie kommt. Seine sichere Orientierung führt ihn überallhin, nur nie zur Ruhe. Was ihn nicht stillhalten lässt, will er endlich begreifen. Erst wenn er den Grund seines Getriebenseins kennt, kann er hoffen, sich von ihm zu befreien.", hooks: ["verlust","schicksal"] },
+          { title: "Einen Ort zum Bleiben finden", description: "Sie hat aufgehört zu zählen, wie viele Betten sie kannte und wie wenige warm blieben. Etwas lässt sie nie länger als einen Mond an einem Fleck. Sie sucht den einen Ort, an dem der Drang schweigt, und beginnt zu fürchten, dass es ihn nicht gibt.", hooks: ["fahrend","verlust"] },
+          { title: "Herausfinden, was mich treibt", description: "Immer wenn sie bleiben will, wird sie unruhig, als zöge eine Schnur hinter ihrer Brust. Eine alte Frau sagte einmal, so etwas werde einem in die Wiege gelegt, und verstummte dann. Sie will wissen, wer die Schnur gespannt hat, ehe sie sie zu Tode zieht.", hooks: ["verlust","schicksal"] },
         ]
       },
       {
         text: "wer alles zurückließ", hooks: ["verlust","außenseiter"],
         powerTags: [
-          { text: "lebt vom Wenigen", hooks: ["außenseiter","verlust"] },
-          { text: "kennt den Preis des Aufgebens", hooks: ["verlust","wissen"] },
+          { text: "reist ohne Ballast", hooks: ["fahrend","verlust"] },
           { text: "altes Andenken", hooks: ["verlust"] },
-          { text: "durchgemacht und überlebt", hooks: ["verlust"] },
+          { text: "überlebt jede Not", hooks: ["verlust","außenseiter"] },
+          { text: "knüpft neu an", hooks: ["fahrend","außenseiter"] },
         ],
         weaknessTags: [
-          { text: "bleibende Schuld", hooks: ["verlust","schicksal"] },
+          { text: "von Reue zerfressen", hooks: ["verlust","schicksal"] },
           { text: "lebt in der Vergangenheit", hooks: ["verlust","schicksal"] },
         ],
         quests: [
-          { title: "Dem Zurückgelassenen vergeben", description: "Der Held ließ alles hinter sich und lebt seither vom Wenigen, das er bei sich trägt. Ein altes Andenken erinnert ihn an das, was er aufgab, und an die bleibende Schuld, die daran hängt. Er lebt zu sehr in der Vergangenheit, das spürt er selbst. Vergeben will er nicht, weil die anderen es verdienen, sondern damit er die Last endlich ablegen und weitergehen kann.", hooks: ["verlust","glaube"] },
-          { title: "Das eine zurückholen", description: "Von allem, was der Held zurückließ, gibt es eines, dessen Verlust er nicht ertragen kann. Er hat durchgemacht und überlebt und kennt den Preis des Aufgebens nur zu gut. Doch dieses eine wiegt schwerer als alles andere, was er hinter sich ließ. Er kehrt um, koste es, was es wolle, um es zurückzuholen, ehe es für immer verloren ist.", hooks: ["verlust","schicksal"] },
+          { title: "Vergeben, was zurückblieb", description: "Er ging, weil Bleiben ihn zerstört hätte, und trägt seither die Gesichter derer mit sich, die er ohne Abschied ließ. Vergeben will er nicht, weil sie es verdienen, sondern weil die Last ihn sonst in die Knie zwingt. Er weiß nur nicht, ob Vergeben heißt zurückzugehen oder endlich nicht mehr.", hooks: ["verlust","glaube"] },
+          { title: "Das eine zurückholen", description: "Von allem, was er zurückließ, gibt es eines, dessen Verlust er sich nicht verzeiht, klein genug zum Vergessen, groß genug, um ihn nachts zu wecken. Er weiß, wo es zuletzt war, nicht, ob es noch dort ist. Er kehrt um, dieses eine zu holen, und lässt den Rest, wo er hingehört.", hooks: ["verlust","schicksal"] },
         ]
       },
     ]
