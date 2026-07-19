@@ -2981,18 +2981,17 @@ export const THEMEBOOKS = {
         text: "Herrin der Mark", hooks: ["macht","natur","adel"],
         powerTags: [
           { text: "Tribute aus dem Land", hooks: ["macht","natur"] },
-          { text: "kennt jede Grenze des Reiches", hooks: ["macht","natur"] },
+          { text: "kennt jede Grenze", hooks: ["macht","natur"] },
           { text: "Soldaten der Mark", hooks: ["kampf","macht"] },
           { text: "ein ergebenes Volk", hooks: ["macht","glaube"] },
-          { text: "Banner und Wappen", hooks: ["adel","macht"] },
         ],
         weaknessTags: [
           { text: "zahlt persönlich fürs Reich", hooks: ["macht","verlust"] },
           { text: "jede Schwäche wird ausgenutzt", hooks: ["macht","stadt"] },
         ],
         quests: [
-          { title: "Ich vergrößere mein Reich", description: "Die Mark, die der Held verwaltet, trägt sein Banner und nährt ihn mit Tributen, doch was er hält, sättigt seinen Ehrgeiz nicht. Jede Grenze des Reiches kennt er auswendig, und genau deshalb sieht er, wo sie weiter hinausgeschoben werden könnte. Sein Schatten soll länger werden, bis kein Nachbar mehr neben ihm aufrecht steht.", hooks: ["macht","kampf"] },
-          { title: "Ich beschütze mein Land", description: "Soldaten der Mark stehen bereit und ein ergebenes Volk vertraut auf seinen Schutz. Diese Erde gehört zum Helden, wie er zu ihr gehört, und jede Bedrohung an der Grenze ist ein Angriff auf alles, was er ist. Solange sein Wappen weht, weicht er keinen Schritt, denn wer das Land bedroht, bedroht ihn selbst.", hooks: ["macht","natur","glaube"] },
+          { title: "Mein Reich vergrößern", description: "Ihre Mark trägt ihr Banner und nährt sie mit Tributen, doch was sie hält, sättigt ihren Ehrgeiz nicht. Ein schwacher Nachbar zögert, sein Land zu verteidigen. Sie zieht mit ihren Soldaten aus, ehe ein anderer diese Gelegenheit ergreift.", hooks: ["macht","kampf"] },
+          { title: "Mein Land beschützen", description: "Ein ergebenes Volk vertraut auf ihren Schutz, und jede Bedrohung an der Grenze ist ein Angriff auf alles, was sie ist. Ein Heer sammelt sich jenseits ihrer Marksteine. Solange ihr Banner weht, weicht sie keinen Schritt und reitet der Gefahr entgegen, ehe sie das Dorf erreicht.", hooks: ["macht","natur","glaube"] },
         ]
       },
       {
@@ -3000,7 +2999,6 @@ export const THEMEBOOKS = {
         powerTags: [
           { text: "Gildensiegel", hooks: ["handwerk","macht"] },
           { text: "eingespielte Verwaltung", hooks: ["macht","handwerk"] },
-          { text: "Steuereinnahmen", hooks: ["macht","stadt"] },
           { text: "macht und bricht Rufe", hooks: ["macht","stadt"] },
           { text: "kennt jedermanns Schulden", hooks: ["geheimnis","macht"] },
         ],
@@ -3009,8 +3007,8 @@ export const THEMEBOOKS = {
           { text: "jedes Bündnis hat seinen Preis", hooks: ["macht","stadt"] },
         ],
         quests: [
-          { title: "Ich beherrsche den gesamten Handel", description: "Mit Gildensiegel und eingespielter Verwaltung lenkt der Held die Ströme der Stadt, und doch entgleitet ihm noch zu viel. Er kennt jedermanns Schulden und weiß, wie sehr Macht aus Wissen erwächst. Keine Ware soll diese Stadt verlassen, ohne dass er davon weiß, bis jeder Handel durch seine Hände führt.", hooks: ["macht","handwerk","stadt"] },
-          { title: "Ich baue ein Netzwerk das mich überdauert", description: "Rufe macht und bricht der Held mit einem Wort, und seine Verwaltung läuft wie ein Uhrwerk. Doch Konkurrenz lauert um die Spitze, und jedes Bündnis fordert seinen Preis. Was er mühsam aufbaute, soll nicht mit ihm enden, sondern als Geflecht aus Treue und Schuld weiterwirken, lange nachdem er gegangen ist.", hooks: ["macht","stadt"] },
+          { title: "Den gesamten Handel beherrschen", description: "Ihre Verwaltung läuft wie ein Uhrwerk, und doch entgleitet ihr noch zu viel Handel an Konkurrenten in Nachbarstädten. Sie kennt deren Schulden bereits. Sie reist dorthin, um Anteile zu kaufen oder zu erpressen, bis jeder Handel durch ihre Hände führt.", hooks: ["macht","handwerk","stadt"] },
+          { title: "Ein Netzwerk aufbauen, das mich überdauert", description: "Rufe macht und bricht sie mit einem Wort, doch Konkurrenz lauert um die Spitze, und jedes Bündnis fordert seinen Preis. Was sie aufbaute, soll nicht mit ihr enden. Sie sucht Nachfolger in jeder Handelsstadt, die ihr Werk aus Treue und Schuld weitertragen.", hooks: ["macht","stadt"] },
         ]
       },
       {
@@ -3018,17 +3016,16 @@ export const THEMEBOOKS = {
         powerTags: [
           { text: "Burg auf dem Berg", hooks: ["adel","macht"] },
           { text: "Recht zu richten", hooks: ["macht","glaube"] },
-          { text: "Räte und Berater", hooks: ["macht","wissen"] },
           { text: "kennt die Adligen", hooks: ["adel","stadt"] },
-          { text: "ihr Wort verurteilt", hooks: ["macht"] },
+          { text: "sein Wort verurteilt", hooks: ["macht"] },
         ],
         weaknessTags: [
           { text: "der Thron wird begehrt", hooks: ["macht","adel"] },
           { text: "Schulden gegenüber Mächtigen", hooks: ["macht","verlust"] },
         ],
         quests: [
-          { title: "Ich setze Recht durch das mich selbst trifft", description: "Von der Burg auf dem Berg spricht der Held Recht, und sein Wort verurteilt. Doch er weiß, dass Macht verdirbt, wenn sie sich selbst ausnimmt, und Mächtige stehen ohnehin in seiner Schuld. Das Gesetz gilt für alle oder für niemanden, und so beugt er sich derselben Klinge, die er über andere hält.", hooks: ["macht","glaube"] },
-          { title: "Ich bin der gerechte Herrscher", description: "Räte und Berater flüstern dem Helden zu, und er kennt die Adligen, deren Gunst der Thron begehrt. Vor ihm saßen Tyrannen auf diesem Stein und beugten das Recht nach ihrer Laune. Er aber will anders sein, ein Herrscher, dessen Urteil das Volk nicht fürchtet, sondern dem es vertraut.", hooks: ["macht","glaube"] },
+          { title: "Recht durchsetzen, das mich selbst trifft", description: "Von seiner Burg spricht er Recht, doch er weiß, dass Macht verdirbt, wenn sie sich selbst ausnimmt, und Mächtige stehen ohnehin in seiner Schuld. Ein Fall verlangt, dass er sich seinem eigenen Urteil unterwirft. Er reist zum Ort des Vergehens, um sich derselben Klinge zu beugen, die er über andere hält.", hooks: ["macht","glaube"] },
+          { title: "Der gerechte Herrscher sein", description: "Vor ihm saßen Tyrannen auf diesem Stein und beugten das Recht nach Laune, und er kennt die Adligen, die genauso handeln würden. Er will anders sein. Er zieht durch sein Land, um zu hören, wo seine Richter versagen, und richtet dort selbst.", hooks: ["macht","glaube"] },
         ]
       },
       {
@@ -3037,7 +3034,6 @@ export const THEMEBOOKS = {
           { text: "ein ergebenes Volk", hooks: ["macht","glaube"] },
           { text: "spricht für ein Volk", hooks: ["macht","glaube"] },
           { text: "Tribute aus dem Land", hooks: ["macht","natur"] },
-          { text: "wendet Krisen ab", hooks: ["macht","schicksal"] },
           { text: "kennt jede Grenze ihres Reiches", hooks: ["macht","natur"] },
         ],
         weaknessTags: [
@@ -3045,8 +3041,8 @@ export const THEMEBOOKS = {
           { text: "zahlt persönlich für ihr Reich", hooks: ["macht","verlust"] },
         ],
         quests: [
-          { title: "Ich schütze mein Tal vor allen Feinden", description: "Der Held spricht für sein Volk und kennt jede Grenze seines kleinen Reiches im Tal. Tribute nähren ihn, doch wahre Stärke schöpft er aus der Verbundenheit mit dieser Erde. Sie gehört zu ihm, wie er zu ihr gehört, und gegen jeden Feind, der über die Hänge kommt, stellt er sich an ihre Schwelle.", hooks: ["macht","natur","glaube"] },
-          { title: "Ich beende einen Krieg um mein Land", description: "Ein ergebenes Volk blickt auf den Helden, wenn Krisen über das Tal hereinbrechen, und die Einsamkeit der Spitze lastet schwer. Der Krieg um sein Land fordert auf allen Seiten Tote und droht alles zu verzehren. Es muss enden, und jemand muss die Bürde des Friedens tragen, auch wenn er persönlich dafür bezahlt.", hooks: ["kampf","macht"] },
+          { title: "Mein Tal vor allen Feinden schützen", description: "Sie spricht für ihr Volk und kennt jede Grenze ihres kleinen Reiches, dessen wahre Stärke aus der Verbundenheit mit der Erde selbst kommt. Ein Feind sammelt sich jenseits der Hänge. Sie zieht ihm entgegen, an die Schwelle des Tals, ehe er es erreicht.", hooks: ["macht","natur","glaube"] },
+          { title: "Einen Krieg um mein Land beenden", description: "Ein ergebenes Volk blickt zu ihr auf, wenn Krisen hereinbrechen, und die Einsamkeit der Spitze lastet schwer. Der Krieg um ihr Land fordert auf allen Seiten Tote. Sie reist zum Feind, um zu verhandeln, was ihre Heere allein nicht erreichen, und trägt die Bürde des Friedens persönlich.", hooks: ["kampf","macht"] },
         ]
       },
       {
@@ -3055,7 +3051,6 @@ export const THEMEBOOKS = {
           { text: "regiert durch Stärke", hooks: ["macht","kampf"] },
           { text: "bewegt Heere in Tagen", hooks: ["kampf","macht"] },
           { text: "Recht auf Krieg", hooks: ["macht","kampf"] },
-          { text: "kennt jede Losung jeder Wache", hooks: ["stadt","kampf"] },
           { text: "Soldaten meines Reiches", hooks: ["kampf","macht"] },
         ],
         weaknessTags: [
@@ -3063,8 +3058,8 @@ export const THEMEBOOKS = {
           { text: "Entscheidungen ohne Gewissen", hooks: ["macht","verlust"] },
         ],
         quests: [
-          { title: "Ich halte die Ordnung mit eiserner Hand", description: "Der Held regiert durch Stärke, und die Soldaten seines Reiches gehorchen jeder Losung. Doch unter der Oberfläche gärt ein Aufstand, und Ordnung hält nur, wer sie unnachgiebig durchsetzt. Niemand bricht das Gesetz dieser Stadt ungestraft, denn jede geduldete Schwäche wäre der erste Riss in der Mauer, die er aufrechterhält.", hooks: ["macht","kampf","stadt"] },
-          { title: "Ich beende einen Krieg der das Land zerstört", description: "Heere bewegt der Held in wenigen Tagen, und das Recht auf Krieg liegt in seiner Hand. Doch er trifft Entscheidungen, die kein Gewissen mehr wägt, und die Toten liegen auf beiden Seiten. Der Krieg zerfrisst das Land, das er verteidigen soll, und so beschließt er, dass er enden muss, koste es, was es wolle.", hooks: ["kampf","macht"] },
+          { title: "Die Ordnung mit eiserner Hand halten", description: "Seine Soldaten gehorchen jeder Losung, doch unter der Oberfläche gärt ein Aufstand, dessen Anführer er noch nicht kennt. Jede geduldete Schwäche wäre der erste Riss in der Mauer. Er reist verdeckt durch die Viertel, um die Rädelsführer zu finden, ehe sie losschlagen.", hooks: ["macht","kampf","stadt"] },
+          { title: "Einen Krieg beenden, der das Land zerstört", description: "Heere bewegt er in wenigen Tagen, und das Recht auf Krieg liegt in seiner Hand, doch er trifft Entscheidungen, die kein Gewissen mehr wägt. Der Krieg zerfrisst, was er verteidigen soll. Er reist zum Feldherrn der Gegenseite, um zu beenden, was beide Seiten nicht mehr aufhalten können.", hooks: ["kampf","macht"] },
         ]
       },
       {
@@ -3072,7 +3067,6 @@ export const THEMEBOOKS = {
         powerTags: [
           { text: "beste Spione weit und breit", hooks: ["geheimnis","stadt"] },
           { text: "verborgene Reserven", hooks: ["macht","geheimnis"] },
-          { text: "wendet Krisen ab", hooks: ["macht","schicksal"] },
           { text: "kennt jedes Schweigen", hooks: ["geheimnis","macht"] },
           { text: "zieht Fäden im Verborgenen", hooks: ["macht","geheimnis"] },
         ],
@@ -3081,17 +3075,16 @@ export const THEMEBOOKS = {
           { text: "unsichtbare Feinde", hooks: ["geheimnis","macht"] },
         ],
         quests: [
-          { title: "Ich beherrsche die Welt aus dem Schatten", description: "Die besten Spione weit und breit dienen dem Helden, und er zieht die Fäden im Verborgenen. Verborgene Reserven und ein Gespür für jedes Schweigen machen ihn zur unsichtbaren Macht. Sein Wille geschieht, ohne dass ein Name ihn trägt, und während andere um Throne ringen, lenkt er die Welt, ohne je gesehen zu werden.", hooks: ["macht","geheimnis"] },
-          { title: "Ich finde heraus wer mich verraten hat", description: "Der Held kennt jedes Schweigen und wendet Krisen ab, ehe sie ans Licht treten. Doch ein Verräter sitzt in seinem inneren Kreis, und unsichtbare Feinde nutzen jede Lücke. Es war jemand, dem er vertraute, der die Fäden gegen ihn spann, und dieser Name muss ans Licht, ehe das ganze Netz zerreißt.", hooks: ["geheimnis","verlust"] },
+          { title: "Die Welt aus dem Schatten beherrschen", description: "Ihre Spione dienen ihr weit über die eigenen Grenzen hinaus, und sie zieht die Fäden im Verborgenen. Ein Hof, den sie noch nicht durchdrungen hat, entscheidet gerade über etwas, das sie betrifft. Sie reist dorthin, unsichtbar, um auch diesen letzten Faden in die Hand zu bekommen.", hooks: ["macht","geheimnis"] },
+          { title: "Herausfinden, wer mich verraten hat", description: "Sie kennt jedes Schweigen und wendet Krisen ab, ehe sie ans Licht treten, doch ein Verräter sitzt in ihrem inneren Kreis. Es war jemand, dem sie vertraute. Sie folgt der Spur des Verrats bis zu dem Ort, an dem er geschmiedet wurde, ehe das ganze Netz zerreißt.", hooks: ["geheimnis","verlust"] },
         ]
       },
       {
         text: "Erbin einer Festung ohne Land", hooks: ["adel","verlust","macht"],
         powerTags: [
           { text: "Banner und Wappen", hooks: ["adel","macht"] },
-          { text: "kann andere legitimieren", hooks: ["adel","macht"] },
-          { text: "eine Handvoll treuer Soldaten", hooks: ["kampf","macht"] },
           { text: "uralte Ansprüche", hooks: ["adel","verlust"] },
+          { text: "eine Handvoll treuer Soldaten", hooks: ["kampf","macht"] },
           { text: "Burg auf dem Berg", hooks: ["adel","macht"] },
         ],
         weaknessTags: [
@@ -3099,17 +3092,16 @@ export const THEMEBOOKS = {
           { text: "Schulden gegenüber Mächtigen", hooks: ["macht","verlust"] },
         ],
         quests: [
-          { title: "Ich erobere mein Erbe zurück", description: "Banner und Wappen führt der Held mit Stolz, und uralte Ansprüche stützen seinen Namen. Doch sein Reich besteht nur auf dem Papier, eine Burg auf dem Berg ohne Land darunter. Eine Handvoll treuer Soldaten folgt ihm, während Schulden gegenüber Mächtigen drücken. Der Titel ist sein, nun muss es auch die Erde sein.", hooks: ["adel","macht","verlust"] },
-          { title: "Ich baue das Reich neu auf", description: "Andere kann der Held legitimieren, doch seine eigene Festung steht leer und verlassen. Uralte Ansprüche allein füllen keine Speicher und stellen keine Heere. Aus den nackten Mauern und einer Handvoll Getreuer will er wieder eine Macht formen, Stein um Stein, Eid um Eid, bis aus dem Reich auf Papier ein Reich aus Fleisch und Erde wird.", hooks: ["macht","schicksal"] },
+          { title: "Mein Erbe zurückerobern", description: "Ihr Banner und ihre uralten Ansprüche stützen ihren Namen, doch ihr Reich besteht nur auf Papier, eine Burg ohne Land darunter. Eine Handvoll treuer Soldaten folgt ihr. Sie zieht aus, das Land zurückzuerobern, das einst ihrem Haus gehörte, Dorf um Dorf.", hooks: ["adel","macht","verlust"] },
+          { title: "Das Reich neu aufbauen", description: "Uralte Ansprüche allein füllen keine Speicher und stellen keine Heere, und ihre Festung steht leer. Aus den nackten Mauern und einer Handvoll Getreuer will sie wieder eine Macht formen. Sie reist zu möglichen Verbündeten, um Eid um Eid zu sammeln, bis aus dem Reich auf Papier ein Reich aus Fleisch und Erde wird.", hooks: ["macht","schicksal"] },
         ]
       },
       {
         text: "Anführerin des Widerstands", hooks: ["außenseiter","kampf","macht"],
         powerTags: [
-          { text: "kann Verbündete mobilisieren", hooks: ["macht"] },
+          { text: "mobilisiert Verbündete", hooks: ["macht"] },
           { text: "spricht für ein unterdrücktes Volk", hooks: ["macht","glaube"] },
           { text: "Boten in jede Richtung", hooks: ["macht","fahrend"] },
-          { text: "regiert durch Überzeugung", hooks: ["macht","glaube"] },
           { text: "verborgene Reserven", hooks: ["macht","geheimnis"] },
         ],
         weaknessTags: [
@@ -3117,26 +3109,25 @@ export const THEMEBOOKS = {
           { text: "Verräter im inneren Kreis", hooks: ["geheimnis","stadt"] },
         ],
         quests: [
-          { title: "Ich stürze den Tyrannen", description: "Der Held kann Verbündete mobilisieren und spricht für ein unterdrücktes Volk. Boten tragen seine Worte in jede Richtung, und verborgene Reserven warten auf den richtigen Moment. Doch die herrschende Macht jagt ihn, und ein Verräter könnte alles verraten. Solange der Tyrann herrscht, ist niemand frei, und so stellt er sich gegen den Thron selbst.", hooks: ["macht","kampf","außenseiter"] },
-          { title: "Ich gebe dem Volk seine Stimme zurück", description: "Durch Überzeugung regiert der Held, nicht durch Furcht, und ein unterdrücktes Volk schart sich um seine Sache. Was man diesen Menschen nahm, ihre Stimme, ihr Recht, ihre Würde, will er für sie zurückholen. Gejagt von der Macht und verraten aus den eigenen Reihen, hält er dennoch daran fest, dass ihr Schweigen ein Ende haben muss.", hooks: ["macht","glaube"] },
+          { title: "Den Tyrannen stürzen", description: "Sie kann Verbündete mobilisieren und spricht für ein unterdrücktes Volk, und verborgene Reserven warten auf den richtigen Moment. Doch die herrschende Macht jagt sie, und ein Verräter könnte alles verraten. Sie reist von Zelle zu Zelle des Widerstands, um den Schlag gegen den Thron endlich zu koordinieren.", hooks: ["macht","kampf","außenseiter"] },
+          { title: "Dem Volk seine Stimme zurückgeben", description: "Durch Überzeugung führt sie, nicht durch Furcht, und ein unterdrücktes Volk schart sich um ihre Sache. Was man diesen Menschen nahm, ihre Stimme, ihr Recht, will sie zurückholen. Gejagt und verraten aus den eigenen Reihen, hält sie dennoch fest daran, dass ihr Schweigen enden muss.", hooks: ["macht","glaube"] },
         ]
       },
       {
         text: "Regentin für ein Kind", hooks: ["macht","adel","glaube"],
         powerTags: [
           { text: "Räte und Berater", hooks: ["macht","wissen"] },
-          { text: "kann andere legitimieren", hooks: ["adel","macht"] },
           { text: "Vertrauen der Mächtigen", hooks: ["macht","adel"] },
           { text: "beherrscht das Gleichgewicht der Mächte", hooks: ["macht","stadt"] },
           { text: "ihr Wort gilt am Hof", hooks: ["macht","adel"] },
         ],
         weaknessTags: [
-          { text: "Macht nur geliehen", hooks: ["macht","verlust"] },
+          { text: "die Macht ist nur geliehen", hooks: ["macht","verlust"] },
           { text: "der Thron wird begehrt", hooks: ["macht","adel"] },
         ],
         quests: [
-          { title: "Ich wahre den Thron für das Kind", description: "Räte und Berater umgeben den Helden, und sein Wort gilt am Hof, doch die Macht ist ihm nur geliehen. Er beherrscht das Gleichgewicht der Mächte und kann andere legitimieren, während der Thron von vielen begehrt wird. Bis das Kind alt genug ist, hält er die Wölfe fern, die nur auf einen Augenblick der Schwäche warten.", hooks: ["macht","adel","glaube"] },
-          { title: "Ich gebe die Macht ab wenn es Zeit ist", description: "Das Vertrauen der Mächtigen ruht auf dem Helden, und am Hof verneigt man sich vor seinem Wort. Doch er weiß, dass diese Macht nicht die seine ist, sondern nur geborgt für eine kurze Frist. Wenn die Zeit kommt, wird er sie zurückgeben, auch wenn der Thron verlockt und mancher ihm einflüstert, sie zu behalten.", hooks: ["macht","adel"] },
+          { title: "Den Thron für das Kind wahren", description: "Räte umgeben sie, und ihr Wort gilt am Hof, doch die Macht ist ihr nur geliehen. Ein Fürst am Rand des Reiches erkennt das Kind nicht als Erben an. Sie reist zu ihm, um mit Worten oder Waffen zu sichern, was ihr anvertraut wurde, bis das Kind alt genug ist.", hooks: ["macht","adel","glaube"] },
+          { title: "Die Macht abgeben, wenn es Zeit ist", description: "Das Vertrauen der Mächtigen ruht auf ihr, doch sie weiß, diese Macht ist nicht die ihre, sondern nur geborgt für eine Frist. Ein Berater drängt sie, die Frist zu verlängern. Sie widersteht und bereitet den Tag vor, an dem sie die Macht zurückgibt, komme, was wolle.", hooks: ["macht","adel"] },
         ]
       },
       {
@@ -3146,15 +3137,14 @@ export const THEMEBOOKS = {
           { text: "ein ergebenes Volk", hooks: ["macht","glaube"] },
           { text: "wendet Krisen ab", hooks: ["macht","schicksal"] },
           { text: "Banner und Wappen", hooks: ["adel","macht"] },
-          { text: "Räte und Berater", hooks: ["macht","wissen"] },
         ],
         weaknessTags: [
           { text: "einsam an der Spitze", hooks: ["macht","verlust"] },
           { text: "kann die Krone nicht ablegen", hooks: ["macht","schicksal"] },
         ],
         quests: [
-          { title: "Ich trage die Bürde der Krone", description: "Ererbtes Recht legte dem Helden die Krone aufs Haupt, und ein ergebenes Volk blickt zu ihm auf. Banner und Wappen künden von seinem Hause, und Räte stützen seine Herrschaft. Doch niemand fragte ihn, ob er dies wollte, und einsam an der Spitze kann er die Krone nicht ablegen. Das Reich ruht auf ihm, und er trägt es.", hooks: ["macht","schicksal","adel"] },
-          { title: "Ich baue ein Reich das mich überdauert", description: "Krisen wendet der Held ab, wie es sein ererbtes Recht von ihm verlangt, doch die Last drückt schwer und einsam. Die Krone lässt sich nicht ablegen, also gibt er ihr einen Sinn, der größer ist als er selbst. Er legt Grundsteine für die Herrschaft nach ihm, damit aus erzwungener Pflicht ein Reich erwächst, das ihn überdauert.", hooks: ["macht","schicksal"] },
+          { title: "Die Bürde der Krone tragen", description: "Ererbtes Recht legte ihr die Krone aufs Haupt, und ein ergebenes Volk blickt zu ihr auf, doch niemand fragte sie, ob sie dies wollte. Eine Krise jenseits ihrer Grenzen verlangt ihr persönliches Eingreifen. Einsam an der Spitze reist sie hin, denn die Krone lässt sich nicht ablegen.", hooks: ["macht","schicksal","adel"] },
+          { title: "Ein Reich aufbauen, das mich überdauert", description: "Krisen wendet sie ab, wie es ihr ererbtes Recht verlangt, doch die Last drückt schwer und einsam. Sie legt Grundsteine für die Herrschaft nach ihr, sucht Bündnisse und Erben in fernen Höfen, damit aus erzwungener Pflicht ein Reich erwächst, das sie überdauert.", hooks: ["macht","schicksal"] },
         ]
       },
       {
@@ -3164,15 +3154,14 @@ export const THEMEBOOKS = {
           { text: "beste Spione weit und breit", hooks: ["geheimnis","stadt"] },
           { text: "kennt das Geheimnis aller", hooks: ["geheimnis","macht"] },
           { text: "ihr Wort verurteilt", hooks: ["macht"] },
-          { text: "verborgene Reserven", hooks: ["macht","geheimnis"] },
         ],
         weaknessTags: [
           { text: "jede Schwäche wird ausgenutzt", hooks: ["macht","stadt"] },
           { text: "alte Intrigen holen sie ein", hooks: ["stadt","verlust"] },
         ],
         quests: [
-          { title: "Ich halte das Tor der Stadt verschlossen", description: "Zugang zu verschlossenen Orten hat allein der Held, und die besten Spione melden ihm jede Regung. Er kennt das Geheimnis aller, und sein Wort verurteilt, doch jede Schwäche wird sogleich ausgenutzt. Was hinter den Mauern dieser Stadt ruht, darf die Welt niemals erreichen, und so wacht er über das Tor, das verschlossen bleiben muss.", hooks: ["macht","stadt","geheimnis"] },
-          { title: "Ich entlarve die wahren Strippenzieher", description: "Verborgene Reserven und ein Wissen um die Geheimnisse aller geben dem Helden Macht, doch alte Intrigen holen ihn ein. Hinter allem, was in der verbotenen Stadt geschieht, bewegen sich verborgene Hände, deren Ziele er nicht durchschaut. Er folgt den Fäden zurück, bis er die wahren Strippenzieher ans Licht zerrt, ehe sie ihn zu Fall bringen.", hooks: ["geheimnis","macht"] },
+          { title: "Das Tor der Stadt verschlossen halten", description: "Nur sie hat Zugang zu den verschlossenen Orten, und die besten Spione melden ihr jede Regung von außen. Was hinter den Mauern ruht, darf die Welt niemals erreichen. Sie reist zu den Grenzwachen und Bündnispartnern, um das Tor auch dann zu sichern, wenn sie selbst nicht da ist.", hooks: ["macht","stadt","geheimnis"] },
+          { title: "Die wahren Strippenzieher entlarven", description: "Verborgene Reserven und ihr Wissen um die Geheimnisse aller geben ihr Macht, doch alte Intrigen holen sie ein. Hinter dem, was in der verbotenen Stadt geschieht, bewegen sich Hände, deren Ziele sie nicht durchschaut. Sie folgt den Fäden über die Stadtgrenze hinaus, bis sie die Strippenzieher findet.", hooks: ["geheimnis","macht"] },
         ]
       },
       {
@@ -3182,15 +3171,14 @@ export const THEMEBOOKS = {
           { text: "ihr Wort verurteilt", hooks: ["macht"] },
           { text: "ein ergebenes Volk", hooks: ["macht","glaube"] },
           { text: "regiert durch Furcht und Gnade", hooks: ["macht","schicksal"] },
-          { text: "Räte und Berater", hooks: ["macht","wissen"] },
         ],
         weaknessTags: [
           { text: "Entscheidungen ohne Gewissen", hooks: ["macht","verlust"] },
           { text: "einsam an der Spitze", hooks: ["macht","verlust"] },
         ],
         quests: [
-          { title: "Ich spreche das letzte Urteil", description: "Das Recht zu richten liegt beim Helden, und sein Wort verurteilt, gestützt von Räten und einem ergebenen Volk. Durch Furcht und Gnade regiert er, doch jede Entscheidung trifft er ohne ein Gewissen, das ihn mahnt. Über Leben und Tod entscheidet allein er, und niemand sonst darf die Waage halten, die er in Händen trägt.", hooks: ["macht","glaube","schicksal"] },
-          { title: "Ich gebe die Macht ab bevor sie mich verdirbt", description: "Ein ergebenes Volk fürchtet und liebt den Helden, der durch Furcht und Gnade gebietet. Doch die Einsamkeit der Spitze zehrt, und er spürt, wie die Macht über Leben und Tod sein Gewissen aushöhlt. Es ist Zeit, sie loszulassen, ehe sie ihn ganz verdirbt, wenn es nicht für seine Seele schon zu spät ist.", hooks: ["macht","verlust"] },
+          { title: "Das letzte Urteil sprechen", description: "Das Recht zu richten liegt bei ihr, gestützt von einem ergebenen Volk, und durch Furcht und Gnade regiert sie. Ein Fall, größer als alle zuvor, verlangt, dass sie selbst vor Ort urteilt, nicht durch Boten. Sie reist dorthin, um über Leben und Tod zu entscheiden, wo niemand sonst die Waage halten darf.", hooks: ["macht","glaube","schicksal"] },
+          { title: "Die Macht abgeben, ehe sie mich verdirbt", description: "Ein ergebenes Volk fürchtet und liebt sie, doch die Einsamkeit der Spitze zehrt, und sie spürt, wie die Macht über Leben und Tod ihr Gewissen aushöhlt. Sie sucht eine Nachfolgerin, der sie vertrauen kann. Sie reist zu ihr, um loszulassen, ehe es für ihre Seele zu spät ist.", hooks: ["macht","verlust"] },
         ]
       },
     ]
