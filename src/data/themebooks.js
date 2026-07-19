@@ -3607,7 +3607,6 @@ export const THEMEBOOKS = {
       {
         text: "Schwertbande", hooks: ["kampf","fahrend"],
         powerTags: [
-          { text: "Bande Schwertkämpfer", hooks: ["kampf"] },
           { text: "Schulter an Schulter", hooks: ["kampf","glaube"] },
           { text: "gehorcht jedem Befehl", hooks: ["glaube","macht"] },
           { text: "hält die Klingenlinie", hooks: ["kampf"] },
@@ -3618,42 +3617,42 @@ export const THEMEBOOKS = {
           { text: "verlangt Sold", hooks: ["macht","verlust"] },
         ],
         quests: [
-          { title: "Auftrag zu zweit gemeistert", description: "Allein wäre der Held nur eine Klinge unter vielen, doch im Trupp findet er seine wahre Stärke. Schulter an Schulter, in geschlossener Klingenlinie, hat seine Schwertbande schon manches überstanden. Eine Aufgabe wartet, die kein Einzelner bewältigt, und der Held weiß: Nur gemeinsam, als verschworener Haufen, lässt sie sich vollbringen.", hooks: ["glaube","fahrend"] },
-          { title: "Die Bande zusammenhalten", description: "Eine Schwertbande, die jedem Befehl gehorcht und als Trupp durch die Lande zieht, ist mehr als ihre einzelnen Klingen. Doch sie ist auch lärmig, unbeherrscht und verlangt ihren Sold, und solcher Zwist droht sie zu zersprengen. Der Held kämpft darum, seine Leute beieinanderzuhalten, denn ohne die Bande ist er nichts.", hooks: ["kampf","verlust"] },
+          { title: "Einen Auftrag meistern, den keiner allein schafft", description: "Allein wäre er nur eine Klinge unter vielen, doch im Trupp findet er seine wahre Stärke. Eine Aufgabe wartet, die kein Einzelner bewältigt, ein befestigtes Lager, das nur eine geschlossene Linie durchbrechen kann. Nur gemeinsam, als verschworener Haufen, lässt sie sich vollbringen.", hooks: ["glaube","fahrend"] },
+          { title: "Die Bande zusammenhalten", description: "Eine Schwertbande, die jedem Befehl gehorcht, ist mehr als ihre einzelnen Klingen, doch sie ist auch lärmig, unbeherrscht und verlangt ihren Sold, und ausbleibender Lohn droht sie zu zersprengen. Er kämpft darum, seine Leute beieinanderzuhalten, denn ohne die Bande ist er nichts.", hooks: ["kampf","verlust"] },
         ]
       },
       {
-        text: "imposanter Wolfshund", hooks: ["natur","kampf"],
+        text: "treuer Wolfshund", hooks: ["natur","kampf"],
         powerTags: [
-          { text: "treuer Wolfshund", hooks: ["natur","kampf"] },
           { text: "unfehlbare Spürnase", hooks: ["natur"] },
           { text: "rettet mich im Notfall", hooks: ["glaube","kampf"] },
           { text: "schlafloser Wächter", hooks: ["glaube","kampf"] },
+          { text: "unermüdlicher Läufer", hooks: ["natur","fahrend"] },
         ],
         weaknessTags: [
           { text: "gerät leicht in Gefahr", hooks: ["natur","verlust"] },
           { text: "beschützt nur mich", hooks: ["glaube","natur"] },
         ],
         quests: [
-          { title: "Meinen Hund beschützen", description: "Der treue Wolfshund an seiner Seite ist mehr als ein Tier: unfehlbare Spürnase, schlafloser Wächter, der den Helden im Notfall schon oft gerettet hat. Doch der Gefährte beschützt nur ihn und gerät dabei leicht selbst in Gefahr. Ohne dieses Tier geht es für den Helden nicht weiter, und so wacht nun er über den, der über ihn wacht.", hooks: ["glaube","kampf"] },
-          { title: "Die Witterung verfolgen", description: "Was Augen und Ohren des Helden entgeht, fängt die unfehlbare Nase seines Wolfshunds mühelos auf. Eine Fährte hat das Tier aufgenommen, eine Spur, die kein Mensch je gefunden hätte. Der Held vertraut dem Gefährten blind und folgt der Witterung, wohin sie auch führt, denn der Hund irrt sich nie.", hooks: ["natur","fahrend"] },
+          { title: "Meinen Hund beschützen", description: "Der treue Wolfshund an seiner Seite ist mehr als ein Tier, eine Spürnase, die noch nie irrte, ein Wächter, der ihn im Notfall schon oft gerettet hat. Doch der Gefährte beschützt nur ihn und gerät dabei leicht selbst in Gefahr. Ohne dieses Tier geht es nicht weiter, und so wacht nun er über den, der über ihn wacht.", hooks: ["glaube","kampf"] },
+          { title: "Der Witterung folgen", description: "Was Augen und Ohren entgeht, fängt die Nase seines Wolfshunds mühelos auf. Eine Fährte hat das Tier aufgenommen, eine Spur, die kein Mensch je gefunden hätte. Er vertraut dem Gefährten blind und folgt der Witterung, wohin sie auch führt, denn der Hund irrt sich nie.", hooks: ["natur","fahrend"] },
         ]
       },
       {
         text: "Schutzgeist", hooks: ["magie","schicksal"],
         powerTags: [
-          { text: "unsichtbarer Schutzgeist", hooks: ["magie","geheimnis"] },
           { text: "spürt feindliche Absichten", hooks: ["geheimnis","schicksal"] },
           { text: "flüstert Warnungen", hooks: ["geheimnis","magie"] },
-          { text: "wendet das Unglück ab", hooks: ["magie","schicksal"] },
+          { text: "wendet Unglück ab", hooks: ["magie","schicksal"] },
+          { text: "unsichtbar für andere", hooks: ["magie","geheimnis"] },
         ],
         weaknessTags: [
           { text: "an mein Schicksal gebunden", hooks: ["schicksal","magie"] },
           { text: "schweigt im falschen Moment", hooks: ["geheimnis","verlust"] },
         ],
         quests: [
-          { title: "Den Geist verstehen", description: "Ein unsichtbarer Schutzgeist wacht über den Helden, flüstert ihm Warnungen zu und wendet das Unglück ab, ehe es ihn trifft. Doch warum diese Macht sich gerade an ihn gebunden hat, bleibt ihm ein Rätsel. Der Held will begreifen, wem er seine Rettungen verdankt, denn ein Beschützer, den man nicht versteht, schweigt vielleicht im falschen Moment.", hooks: ["geheimnis","schicksal"] },
-          { title: "Seinen letzten Willen erfüllen", description: "Der Schutzgeist, der dem Helden feindliche Absichten verrät und das Unheil von ihm fernhält, ist an dessen Schicksal gefesselt. Doch dieser Beistand währt nicht ewig: Eine alte, ungeklärte Sache hält die Seele zurück. Der Held will herausfinden, was sie bindet, und ihren letzten Willen erfüllen, ehe der Geist für immer schweigt.", hooks: ["schicksal","verlust"] },
+          { title: "Den Geist verstehen", description: "Ein unsichtbarer Schutzgeist wacht über ihn, flüstert Warnungen und wendet Unglück ab, ehe es ihn trifft, doch warum diese Macht sich gerade an ihn gebunden hat, bleibt ein Rätsel. Er will begreifen, wem er seine Rettungen verdankt, denn ein Beschützer, den man nicht versteht, schweigt vielleicht im falschen Moment.", hooks: ["geheimnis","schicksal"] },
+          { title: "Seinen letzten Willen erfüllen", description: "Der Geist ist an sein Schicksal gefesselt, doch dieser Beistand währt nicht ewig, denn eine alte, ungeklärte Sache hält die Seele zurück. Er will herausfinden, was sie bindet, und ihren letzten Willen erfüllen, ehe der Geist für immer schweigt.", hooks: ["schicksal","verlust"] },
         ]
       },
       {
@@ -3669,8 +3668,8 @@ export const THEMEBOOKS = {
           { text: "stiftet ständig Unfug", hooks: ["natur","außenseiter"] },
         ],
         quests: [
-          { title: "Den Pixie zähmen", description: "Der freche Pixie an der Seite des Helden ist ein Meister der Ablenkung, zerstreut Wachen und beobachtet aus dem Verborgenen. Doch das kleine Wesen stiftet auch ständig Unfug und handelt ungefragt das Falsche. Der Held bemüht sich, die Streiche des Kobolds in nützliche Bahnen zu lenken, ehe dessen Übermut sie beide ins Verderben reißt.", hooks: ["magie","natur"] },
-          { title: "Sein Versprechen einlösen", description: "Ein kleiner Zauberstreich hier, eine geschickte Ablenkung dort: Der freche Pixie ist ein launischer, doch wertvoller Gefährte. Aus der Feenwelt schuldet ihm das Wesen noch einen Gefallen, ein Versprechen, das eingelöst werden will. Der Held drängt darauf, dass der Kobold sein Wort hält, auch wenn der ständige Unfug die Sache nicht leichter macht.", hooks: ["magie","geheimnis"] },
+          { title: "Den Pixie zähmen", description: "Der freche Pixie an seiner Seite ist ein Meister der Ablenkung, zerstreut Wachen und beobachtet aus dem Verborgenen, doch das kleine Wesen stiftet auch ständig Unfug und handelt ungefragt das Falsche. Er lenkt die Streiche des Kobolds in nützliche Bahnen, ehe dessen Übermut sie beide ins Verderben reißt.", hooks: ["magie","natur"] },
+          { title: "Sein Versprechen einlösen", description: "Der freche Pixie ist ein launischer, doch wertvoller Gefährte, und aus der Feenwelt schuldet ihm das Wesen noch einen Gefallen, ein Versprechen, das eingelöst werden will. Er drängt darauf, dass der Kobold sein Wort hält, auch wenn der ständige Unfug die Sache nicht leichter macht.", hooks: ["magie","geheimnis"] },
         ]
       },
       {
@@ -3686,8 +3685,8 @@ export const THEMEBOOKS = {
           { text: "scheu vor Fremden", hooks: ["natur","außenseiter"] },
         ],
         quests: [
-          { title: "Das Vermächtnis ehren", description: "Der Falke, der aus der Höhe späht und stets den Weg zurückfindet, ist das letzte Andenken an die Mutter des Helden. Mehr als ein Jagdtier ist er ein Stück ihres Erbes, scheu vor Fremden, vertraut nur ihm. Solange der Vogel auf seiner Faust sitzt, hält der Held die Erinnerung an seine Mutter lebendig und wacht über ihr Vermächtnis.", hooks: ["verlust","glaube"] },
-          { title: "Den Falken heimbringen", description: "Der Falke seiner Mutter bringt dem Helden das Gesuchte und kehrt aus jeder Ferne heim, doch ein Ort ruft das Tier stärker als alle anderen. Dort, wo seine Mutter den Vogel einst hielt, gehört der Falke wohl wirklich hin. Der Held nimmt die Reise auf sich, um das letzte Andenken an jenen heimatlichen Platz zurückzubringen.", hooks: ["natur","verlust"] },
+          { title: "Das Vermächtnis ehren", description: "Der Falke, der aus der Höhe späht und stets den Weg zurückfindet, ist das letzte Andenken an seine Mutter, scheu vor Fremden, vertraut nur ihm. Solange der Vogel auf seiner Faust sitzt, hält er die Erinnerung an seine Mutter lebendig.", hooks: ["verlust","glaube"] },
+          { title: "Den Falken heimbringen", description: "Der Falke bringt ihm das Gesuchte und kehrt aus jeder Ferne heim, doch ein Ort ruft das Tier stärker als alle anderen, jener, an dem seine Mutter den Vogel einst hielt. Er nimmt die Reise auf sich, um das letzte Andenken an jenen Platz zurückzubringen.", hooks: ["natur","verlust"] },
         ]
       },
       {
@@ -3703,8 +3702,8 @@ export const THEMEBOOKS = {
           { text: "deutet den Pakt eigenwillig", hooks: ["geheimnis","schicksal"] },
         ],
         quests: [
-          { title: "Den Pakt erfüllen", description: "Auf seinen Ruf erscheint der Geist, durchschreitet Wände und teilt verborgenes Wissen, doch er dient nur dem Pakt, den der Held einst schloss. Fordert die Erscheinung ihren Preis und der Held bleibt ihn schuldig, so endet der Beistand. Darum hält er seinen Teil der Abmachung mit Sorgfalt, denn ein gebrochener Pakt verwandelt den Diener leicht in eine Gefahr.", hooks: ["magie","macht"] },
-          { title: "Den wahren Namen finden", description: "Der beschworene Geist deutet den Pakt eigenwillig und biegt sich jede Klausel zurecht, solange sein wahrer Name verborgen bleibt. Der Held ahnt: Wer diesen Namen kennt, gebietet wirklich über das Wesen, statt nur seinen Launen ausgeliefert zu sein. Also sucht er nach dem einen Wort, das die Erscheinung zwingt und den Pakt endlich in seine Hand legt.", hooks: ["geheimnis","wissen"] },
+          { title: "Den Pakt erfüllen", description: "Auf seinen Ruf erscheint der Geist, durchschreitet Wände und teilt verborgenes Wissen, doch er dient nur dem Pakt. Fordert die Erscheinung ihren Preis und bleibt er ihn schuldig, endet der Beistand. Darum hält er seinen Teil der Abmachung mit Sorgfalt.", hooks: ["magie","macht"] },
+          { title: "Den wahren Namen finden", description: "Der beschworene Geist deutet den Pakt eigenwillig, solange sein wahrer Name verborgen bleibt. Wer diesen Namen kennt, gebietet wirklich über das Wesen, statt nur seinen Launen ausgeliefert zu sein. Er sucht nach dem einen Wort, das die Erscheinung zwingt.", hooks: ["geheimnis","wissen"] },
         ]
       },
       {
@@ -3720,8 +3719,8 @@ export const THEMEBOOKS = {
           { text: "alte Knochen", hooks: ["verlust","außenseiter"] },
         ],
         quests: [
-          { title: "Den alten Freund würdigen", description: "Überall verrufen und mit alten Knochen geschlagen, ist der zerlumpte Strolch dennoch der treueste Gefährte des Helden. Er kennt jede Gasse, schmuggelt Botschaften und findet überall Unterschlupf, und vor allem steht er treu zu ihm. Mehr Treue als jeder Edelmann steckt in diesem alten Halunken, und der Held will ihm endlich die Ehre erweisen, die er verdient.", hooks: ["außenseiter","glaube"] },
-          { title: "Ein letztes Abenteuer", description: "Der treue alte Strolch hat schon manche Botschaft geschmuggelt und manchen Unterschlupf geteilt, doch seine Knochen sind alt geworden und seine Tage gezählt. Bevor der Gefährte sich zur Ruhe legt, will der Held mit ihm noch einmal hinausziehen. Ein letztes Abenteuer zu zweit, eine letzte gemeinsame Gasse, ehe der alte Freund für immer rastet.", hooks: ["fahrend","verlust"] },
+          { title: "Den alten Freund würdigen", description: "Überall verrufen und mit alten Knochen geschlagen, ist der zerlumpte Strolch dennoch der treueste Gefährte, den er hat. Er kennt jede Gasse und steht treu zu ihm. Mehr Treue als jeder Edelmann steckt in diesem alten Halunken, und er will ihm endlich die Ehre erweisen, die er verdient.", hooks: ["außenseiter","glaube"] },
+          { title: "Ein letztes Abenteuer", description: "Der treue alte Strolch hat schon manche Botschaft geschmuggelt und manchen Unterschlupf geteilt, doch seine Knochen sind alt geworden. Ehe der Gefährte sich zur Ruhe legt, will er mit ihm noch einmal hinausziehen, eine letzte gemeinsame Gasse, ehe der alte Freund für immer rastet.", hooks: ["fahrend","verlust"] },
         ]
       },
       {
@@ -3729,16 +3728,16 @@ export const THEMEBOOKS = {
         powerTags: [
           { text: "versteht meine Zeichen", hooks: ["glaube","geheimnis"] },
           { text: "hält stets Wache", hooks: ["glaube","kampf"] },
-          { text: "unverbrüchliche Treue", hooks: ["glaube"] },
           { text: "verrät kein Wort", hooks: ["geheimnis","glaube"] },
+          { text: "unverbrüchliche Treue", hooks: ["glaube"] },
         ],
         weaknessTags: [
           { text: "kann nicht sprechen", hooks: ["geheimnis","verlust"] },
           { text: "missverstanden von anderen", hooks: ["außenseiter","geheimnis"] },
         ],
         quests: [
-          { title: "Sein Schweigen ehren", description: "Der stumme Wächter versteht jedes Zeichen des Helden, hält unermüdlich Wache und verrät niemals ein Wort, denn er kann nicht sprechen. In seinem Schweigen bewahrt er ein Geheimnis, das nie über seine Lippen kommt. Der Held achtet diese Verschwiegenheit als Tugend, schützt den oft Missverstandenen vor fremdem Urteil und hütet das Vertrauen, das zwischen ihnen wortlos gewachsen ist.", hooks: ["geheimnis","glaube"] },
-          { title: "Ihm eine Stimme geben", description: "Unverbrüchlich treu hält der stumme Wächter dem Helden die Wacht, doch warum er verstummt ist, weiß niemand, und von Fremden wird er stets missverstanden. Der Held will das Schweigen durchdringen und herausfinden, was dem Gefährten einst die Stimme nahm. Vielleicht lässt sich heilen, was ihn verstummen ließ, und dem treuen Wächter endlich wieder eine Stimme geben.", hooks: ["geheimnis","verlust"] },
+          { title: "Sein Schweigen ehren", description: "Der stumme Wächter versteht jedes Zeichen, hält unermüdlich Wache und verrät niemals ein Wort, denn er kann nicht sprechen. Er achtet diese Verschwiegenheit als Tugend und schützt den oft Missverstandenen vor fremdem Urteil.", hooks: ["geheimnis","glaube"] },
+          { title: "Ihm eine Stimme geben", description: "Unverbrüchlich treu hält der stumme Wächter die Wacht, doch warum er verstummt ist, weiß niemand. Er will das Schweigen durchdringen und herausfinden, was dem Gefährten einst die Stimme nahm, und ihm vielleicht wiedergeben, was er verlor.", hooks: ["geheimnis","verlust"] },
         ]
       },
       {
@@ -3754,8 +3753,8 @@ export const THEMEBOOKS = {
           { text: "erträgt keine Fremden", hooks: ["außenseiter","magie"] },
         ],
         quests: [
-          { title: "Das Haus bewahren", description: "Der Geist des Hauses kennt jeden Winkel der alten Mauern, verbirgt den Helden im Gemäuer und weckt ihn, sobald Eindringlinge nahen. Doch der Hüter ist an das Haus gebunden und erträgt keine Fremden. Solange das Gemäuer steht, hat der Geist eine Heimat und der Held einen Beschützer, darum kämpft er darum, die alten Mauern vor Verfall und Feinden zu bewahren.", hooks: ["geheimnis","magie"] },
-          { title: "Den Hausgeist erlösen", description: "Treu hütet der Geist die alten Mauern und wacht über den Helden, doch er ist an das Haus gefesselt und kann es niemals verlassen. Der Held spürt das stille Leid des Hüters und will herausfinden, was ihn an dieses Gemäuer bindet. Wenn er die alte Fessel löst, schenkt er dem treuen Geist vielleicht endlich die Erlösung.", hooks: ["geheimnis","verlust"] },
+          { title: "Das Haus bewahren", description: "Der Geist des Hauses kennt jeden Winkel, verbirgt ihn im Gemäuer und weckt ihn, sobald Eindringlinge nahen, doch der Hüter ist an das Haus gebunden. Solange das Gemäuer steht, hat der Geist eine Heimat und er einen Beschützer, darum kämpft er darum, die alten Mauern vor Verfall und Feinden zu bewahren.", hooks: ["geheimnis","magie"] },
+          { title: "Den Hausgeist erlösen", description: "Treu hütet der Geist die alten Mauern, doch er ist an das Haus gefesselt und kann es niemals verlassen. Er spürt das stille Leid des Hüters und will herausfinden, was ihn an dieses Gemäuer bindet, um ihm vielleicht endlich die Erlösung zu schenken.", hooks: ["geheimnis","verlust"] },
         ]
       },
       {
@@ -3763,16 +3762,16 @@ export const THEMEBOOKS = {
         powerTags: [
           { text: "handelt eigenständig", hooks: ["schicksal","natur"] },
           { text: "läuft schneller als mein Pferd", hooks: ["natur","fahrend"] },
-          { text: "schleicht lautlos", hooks: ["natur","geheimnis"] },
           { text: "durchschaut die Lage", hooks: ["schicksal","natur"] },
+          { text: "schleicht lautlos", hooks: ["natur","geheimnis"] },
         ],
         weaknessTags: [
           { text: "folgt eigenem Willen", hooks: ["natur","schicksal"] },
           { text: "verschwindet nach Lust", hooks: ["natur","verlust"] },
         ],
         quests: [
-          { title: "Ihr Vertrauen verdienen", description: "Lautlos schleichend und schneller als jedes Pferd, durchschaut die wilde Katze jede Lage und handelt dabei ganz nach eigenem Willen. Sie bleibt nur, solange sie es selbst will, und verschwindet nach Lust und Laune. Der Held weiß, dass kein Zwang dieses Tier hält, und müht sich geduldig darum, das Vertrauen der eigensinnigen Gefährtin Schritt für Schritt zu verdienen.", hooks: ["natur","schicksal"] },
-          { title: "Ihrem Instinkt folgen", description: "Die wilde Katze mit Verstand durchschaut Gefahren, die dem Helden verborgen bleiben, und folgt einem Instinkt, der selten trügt. Wohin das eigensinnige Tier ihn auch führt, dort liegt oft die Antwort, die er sucht. Auch wenn die Gefährtin ihrem eigenen Willen gehorcht und nach Lust verschwindet, lernt der Held, ihrer untrüglichen Witterung zu vertrauen.", hooks: ["schicksal","natur"] },
+          { title: "Ihr Vertrauen verdienen", description: "Lautlos und schneller als jedes Pferd, durchschaut die wilde Katze jede Lage und handelt dabei ganz nach eigenem Willen. Sie bleibt nur, solange sie es selbst will. Er müht sich geduldig darum, das Vertrauen der eigensinnigen Gefährtin Schritt für Schritt zu verdienen.", hooks: ["natur","schicksal"] },
+          { title: "Ihrem Instinkt folgen", description: "Die wilde Katze durchschaut Gefahren, die ihm verborgen bleiben, und folgt einem Instinkt, der selten trügt. Wohin das eigensinnige Tier ihn auch führt, dort liegt oft die Antwort, die er sucht, und er lernt, ihrer untrüglichen Witterung zu vertrauen.", hooks: ["schicksal","natur"] },
         ]
       },
       {
@@ -3788,8 +3787,8 @@ export const THEMEBOOKS = {
           { text: "von alten Wunden gezeichnet", hooks: ["verlust","kampf"] },
         ],
         quests: [
-          { title: "Die Bande anführen", description: "Eine Schar erprobter Veteranen steht dem Helden zur Seite, alte Waffenbrüder, die jede Schlachtordnung kennen und die Stellung halten. Doch ohne Hauptmann sind sie führerlos, zerstritten und von alten Wunden gezeichnet. Der Held sieht die Stärke, die in diesen Männern noch schlummert, und will derjenige werden, der sie wieder zu einer Einheit schmiedet und in den Kampf führt.", hooks: ["kampf","macht"] },
-          { title: "Einen letzten Feldzug beenden", description: "Die Veteranenbande hat schon manche Schlacht geschlagen, doch der Krieg ließ ihren letzten Auftrag unvollendet, und seither nagt das Unfertige an den zerstrittenen Männern. Der Held erkennt, dass diese Wunde tiefer sitzt als jede Narbe. Gemeinsam mit den alten Waffenbrüdern will er den unterbrochenen Feldzug zu Ende bringen, damit die Bande endlich Frieden findet.", hooks: ["kampf","verlust"] },
+          { title: "Die Bande anführen", description: "Eine Schar erprobter Veteranen steht ihm zur Seite, alte Waffenbrüder, die jede Schlachtordnung kennen, doch ohne Hauptmann sind sie führerlos und zerstritten. Er sieht die Stärke, die in diesen Männern noch schlummert, und will derjenige werden, der sie wieder zu einer Einheit schmiedet.", hooks: ["kampf","macht"] },
+          { title: "Einen letzten Feldzug beenden", description: "Die Veteranenbande hat schon manche Schlacht geschlagen, doch der Krieg ließ ihren letzten Auftrag unvollendet, und seither nagt das Unfertige an den zerstrittenen Männern. Gemeinsam mit den alten Waffenbrüdern will er den unterbrochenen Feldzug zu Ende bringen, damit die Bande endlich Frieden findet.", hooks: ["kampf","verlust"] },
         ]
       },
       {
@@ -3797,16 +3796,16 @@ export const THEMEBOOKS = {
         powerTags: [
           { text: "entfacht Feuer", hooks: ["magie","natur"] },
           { text: "bändigt Wind und Welle", hooks: ["magie","natur"] },
-          { text: "roher Urgewalt", hooks: ["magie","macht"] },
           { text: "prüft meinen Willen", hooks: ["schicksal","magie"] },
+          { text: "roher Urgewalt", hooks: ["magie","macht"] },
         ],
         weaknessTags: [
           { text: "noch nicht gebunden", hooks: ["magie","schicksal"] },
           { text: "entgleitet bei Schwäche", hooks: ["magie","verlust"] },
         ],
         quests: [
-          { title: "Die Probe bestehen", description: "Roher Urgewalt entsprungen, entfacht der Elementargeist Feuer und bändigt Wind und Welle, doch noch ist er nicht gebunden und prüft unablässig den Willen des Helden. Bei jeder Schwäche droht die Macht ihm zu entgleiten. Der Held weiß, dass der Geist nur bleibt, wenn er sich seiner würdig erweist, und stellt sich entschlossen jeder Prüfung, die das Wesen ihm auferlegt.", hooks: ["magie","schicksal"] },
-          { title: "Den Pakt besiegeln", description: "Noch dient der Elementargeist nur auf Probe und entgleitet dem Helden, sobald dessen Wille wankt, eine ungezähmte Urgewalt, die jederzeit fortzustürmen droht. Der Held will dieser Ungewissheit ein Ende setzen und das Wesen dauerhaft an sich binden. Gelingt es ihm, den Pakt zu besiegeln, so steht ihm die Macht von Feuer, Wind und Welle für immer zur Seite.", hooks: ["magie","macht"] },
+          { title: "Die Probe bestehen", description: "Roher Urgewalt entsprungen, entfacht der Elementargeist Feuer und bändigt Wind und Welle, doch noch ist er nicht gebunden und prüft unablässig seinen Willen. Bei jeder Schwäche droht die Macht ihm zu entgleiten, und er stellt sich entschlossen jeder Prüfung, die das Wesen ihm auferlegt.", hooks: ["magie","schicksal"] },
+          { title: "Den Pakt besiegeln", description: "Noch dient der Elementargeist nur auf Probe und entgleitet ihm, sobald sein Wille wankt. Er will dieser Ungewissheit ein Ende setzen und das Wesen dauerhaft an sich binden. Gelingt es ihm, den Pakt zu besiegeln, so steht ihm die Macht von Feuer, Wind und Welle für immer zur Seite.", hooks: ["magie","macht"] },
         ]
       },
     ]
