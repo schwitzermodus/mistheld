@@ -3415,7 +3415,7 @@ export const THEMEBOOKS = {
       {
         text: "Sturmtitan", hooks: ["schicksal","natur","macht"],
         powerTags: [
-          { text: "rufe Stürme", hooks: ["magie","natur"] },
+          { text: "ruft Stürme herbei", hooks: ["magie","natur"] },
           { text: "verändert das Wetter", hooks: ["natur","schicksal"] },
           { text: "erschütternder Donnerschrei", hooks: ["macht","kampf"] },
           { text: "gigantische Schritte", hooks: ["natur"] },
@@ -3425,8 +3425,8 @@ export const THEMEBOOKS = {
           { text: "löst überall Panik aus", hooks: ["außenseiter","schicksal"] },
         ],
         quests: [
-          { title: "Zorn am Himmel", description: "Der Held ruft Stürme und biegt das Wetter nach seinem Willen, doch in seiner Brust glüht alter Zorn. Sterbliche haben sein Reich entweiht, ohne die Macht zu ahnen, die sie reizten. Nun sammelt er die Wolken über ihren Köpfen, denn sein erschütternder Donnerschrei soll sie lehren, was es heißt, einen Titan herauszufordern.", hooks: ["natur","macht"] },
-          { title: "Ruhe finden", description: "Jeder seiner gigantischen Schritte erschüttert den Boden, und wo der Held auftaucht, bricht Panik aus. Er ist zu groß für die Menschenwelt, und seine tobenden Kräfte gehorchen ihm nur halb. Bevor ein einziger Wutausbruch alles um ihn herum fortreißt, sucht er nach Stille in sich, nach einem Weg, den Sturm zu zügeln.", hooks: ["schicksal","verlust"] },
+          { title: "Zorn am Himmel", description: "Er ruft Stürme und biegt das Wetter nach seinem Willen, denn in seiner Brust glüht alter Zorn. Sterbliche haben sein Reich entweiht, ohne die Macht zu ahnen, die sie reizten. Nun sammelt er die Wolken über ihren Köpfen, denn sein Donnerschrei soll sie lehren, was es heißt, einen Titan herauszufordern.", hooks: ["natur","macht"] },
+          { title: "Ruhe finden", description: "Jeder seiner Schritte erschüttert den Boden, und wo er auftaucht, bricht Panik aus, denn er ist zu groß für die Menschenwelt, und seine Kräfte gehorchen ihm nur halb. Ehe ein einziger Wutausbruch alles um ihn fortreißt, sucht er nach Stille in sich, nach einem Weg, den Sturm zu zügeln.", hooks: ["schicksal","verlust"] },
         ]
       },
       {
@@ -3439,11 +3439,11 @@ export const THEMEBOOKS = {
         ],
         weaknessTags: [
           { text: "eine verwundbare Stelle", hooks: ["kampf","geheimnis"] },
-          { text: "an Sumpf und Wasser gebunden", hooks: ["natur","außenseiter"] },
+          { text: "gebunden ans Moor", hooks: ["natur","außenseiter"] },
         ],
         quests: [
-          { title: "Herr des Sumpfes", description: "Aus verschleierndem Nebel wachen die vielen Köpfe des Helden über jeden Pfad durch das Moor. Dies ist sein Revier, an Sumpf und Wasser gebunden, und jeder Eindringling stört die uralte Ordnung. Mit nachwachsenden Gliedern und tödlichem Gift treibt er jeden zurück, der es wagt, in seine trübe Welt einzudringen.", hooks: ["natur","kampf"] },
-          { title: "Niemals enthauptet", description: "Schlägt man dem Helden einen Kopf ab, wachsen zwei nach, doch er kennt die eine verwundbare Stelle, die ihn enden ließe. Jäger lernen dazu, und eines Tages werden auch sie das Geheimnis entdecken. Darum sucht er selbst nach der Wahrheit über seinen letzten Kopf, ehe ein Fremder sie gegen ihn wendet.", hooks: ["geheimnis","verlust"] },
+          { title: "Herrin des Sumpfes", description: "Aus verschleierndem Nebel wachen ihre vielen Köpfe über jeden Pfad durchs Moor, das ihr Revier ist, an das sie gebunden bleibt. Jeder Eindringling stört die uralte Ordnung. Mit nachwachsenden Gliedern und tödlichem Gift treibt sie jeden zurück, der es wagt, in ihre trübe Welt einzudringen.", hooks: ["natur","kampf"] },
+          { title: "Niemals enthauptet", description: "Schlägt man ihr einen Kopf ab, wachsen zwei nach, doch sie kennt die eine verwundbare Stelle, die sie enden ließe. Jäger lernen dazu, und eines Tages werden auch sie das Geheimnis entdecken. Darum sucht sie selbst nach der Wahrheit über ihren letzten Kopf, ehe ein Fremder sie gegen sie wendet.", hooks: ["geheimnis","verlust"] },
         ]
       },
       {
@@ -3456,11 +3456,11 @@ export const THEMEBOOKS = {
         ],
         weaknessTags: [
           { text: "an die Tiefe gebunden", hooks: ["natur","außenseiter"] },
-          { text: "begehrte Jagdtrophäe", hooks: ["kampf","außenseiter"] },
+          { text: "von Jägern belagert", hooks: ["kampf","außenseiter"] },
         ],
         quests: [
-          { title: "Legende bleiben", description: "In den lautlosen Tiefen des Sees ist der Held kaum mehr als ein Schauder, ein Gerücht unter Fischern. Seine enorme Größe macht ihn zur begehrten Trophäe, sobald er sich zeigt. Darum hütet er sein Geheimnis und bleibt ein Flüstern am Lagerfeuer, das sich niemals ganz dem Tageslicht offenbart.", hooks: ["geheimnis","natur"] },
-          { title: "Der trockengelegte See", description: "Der uralte Seegrund ist Versteck und Heimat des Helden, an die Tiefe gebunden wie an sein eigenes Blut. Doch Menschen graben Kanäle und senken die Fluten, Stück um Stück. Bevor sie sein Gewässer zerstören und ihn dem gierigen Blick der Jäger preisgeben, muss er ihr Werk vereiteln und die Tiefe bewahren.", hooks: ["natur","verlust"] },
+          { title: "Legende bleiben", description: "In den lautlosen Tiefen ist es kaum mehr als ein Schauder, ein Gerücht unter Fischern, doch seine enorme Größe macht es zur begehrten Beute, sobald es sich zeigt. Darum hütet es sein Geheimnis und bleibt ein Flüstern am Lagerfeuer, das sich niemals ganz dem Tageslicht offenbart.", hooks: ["geheimnis","natur"] },
+          { title: "Der trockengelegte See", description: "Der uralte Seegrund ist Versteck und Heimat, an die Tiefe gebunden wie an sein eigenes Blut. Doch Menschen graben Kanäle und senken die Fluten, Stück um Stück. Ehe sie sein Gewässer zerstören und es dem gierigen Blick der Jäger preisgeben, muss es ihr Werk vereiteln und die Tiefe bewahren.", hooks: ["natur","verlust"] },
         ]
       },
       {
@@ -3476,8 +3476,8 @@ export const THEMEBOOKS = {
           { text: "verwundbar durch Feuer", hooks: ["kampf","natur"] },
         ],
         quests: [
-          { title: "Hüter des alten Hains", description: "Der Held spricht die Sprache der Erde, und die Tiere des Waldes folgen seinem Wort. Doch jenseits des Dickichts blitzen Äxte, und Rauch kündet von Bränden, die sein Wesen versengen könnten. Langsam, aber unbeirrbar zieht er seine wuchernden Wurzeln zusammen, um den letzten Urwald vor Axt und Flamme zu schützen.", hooks: ["natur","glaube"] },
-          { title: "Wachsen ohne Ende", description: "Wo der Held seine Ranken ausstreckt, erwacht totes Land zu grünem Leben. Das verödete Reich ringsum ruft nach ihm, nach Wurzeln und Schatten und der alten Ordnung des Hains. Schwerfällig, doch unermüdlich breitet er sein lebendiges Reich aus, bis selbst die kahlsten Ebenen unter seinem Dickicht atmen.", hooks: ["natur","macht"] },
+          { title: "Hüter des alten Hains", description: "Er spricht die Sprache der Erde, und die Tiere des Waldes folgen seinem Wort. Doch jenseits des Dickichts blitzen Äxte, und Rauch kündet von Bränden, die sein Wesen versengen könnten. Langsam, aber unbeirrbar zieht er seine wuchernden Wurzeln zusammen, um den letzten Urwald vor Axt und Flamme zu schützen.", hooks: ["natur","glaube"] },
+          { title: "Wachsen ohne Ende", description: "Wo er seine Ranken ausstreckt, erwacht totes Land zu grünem Leben, und ein verödetes Reich ruft nach ihm, nach Wurzeln, Schatten und der alten Ordnung des Hains. Schwerfällig, doch unermüdlich breitet er sein lebendiges Reich aus, bis selbst die kahlsten Ebenen unter seinem Dickicht atmen.", hooks: ["natur","macht"] },
         ]
       },
       {
@@ -3493,8 +3493,8 @@ export const THEMEBOOKS = {
           { text: "zu groß für die Menschenwelt", hooks: ["außenseiter","natur"] },
         ],
         quests: [
-          { title: "Die geschändeten Gipfel", description: "Mit übermächtiger Stärke und einer Haut aus Fels und Erz ist der Held eins mit dem Gebirge, das ihn gebar. Doch Bergleute schlagen Stollen in sein uraltes Gestein und reißen Wunden in seinen Grund. Mit baumfällendem Schwanz vertreibt er die Eindringlinge, denn fern der Berge schwindet seine Kraft, und dieses Revier ist alles.", hooks: ["natur","kampf"] },
-          { title: "Ältestes Blut", description: "In den Adern des Helden pocht das Blut der Urwesen, älter als jede Chronik der Menschen. Wer waren sie, und warum blieb nur er zurück? Bevor das Wissen für immer im Stein verschüttet wird, folgt er den verwitterten Spuren durch sein Gebirge, um den Ursprung seines uralten Geschlechts zu ergründen.", hooks: ["schicksal","geheimnis"] },
+          { title: "Die geschändeten Gipfel", description: "Mit übermächtiger Stärke und einer Haut aus Fels und Erz ist er eins mit dem Gebirge, das ihn gebar. Doch Bergleute schlagen Stollen in sein uraltes Gestein und reißen Wunden in seinen Grund. Mit seinem Schwanz vertreibt er die Eindringlinge, denn fern der Berge schwindet seine Kraft, und dieses Revier ist alles, was er hat.", hooks: ["natur","kampf"] },
+          { title: "Ältestes Blut", description: "In seinen Adern pocht das Blut der Urwesen, älter als jede Chronik der Menschen. Wer waren sie, und warum blieb nur er zurück? Ehe das Wissen für immer im Stein verschüttet wird, folgt er den verwitterten Spuren durch sein Gebirge, um den Ursprung seines uralten Geschlechts zu ergründen.", hooks: ["schicksal","geheimnis"] },
         ]
       },
       {
@@ -3507,11 +3507,11 @@ export const THEMEBOOKS = {
         ],
         weaknessTags: [
           { text: "endlose Einsamkeit", hooks: ["außenseiter","verlust"] },
-          { text: "begehrte Jagdtrophäe", hooks: ["kampf","außenseiter"] },
+          { text: "von Sammlern gejagt", hooks: ["kampf","außenseiter"] },
         ],
         quests: [
-          { title: "Ich finde meinesgleichen", description: "Der Held altert nicht und übersteht jede Wunde, doch keine Macht heilt die endlose Einsamkeit in ihm. Aus den Zeitaltern, die er durchwandert hat, ist niemand seiner Art geblieben. Mit unergründlichem Blick durchsucht er die Welt nach einem Zeichen, einem Atemzug, der ihm verriete, dass irgendwo noch ein anderer überlebt hat.", hooks: ["außenseiter","verlust"] },
-          { title: "Letztes Erbe", description: "Der Held trägt das Wissen vergangener Zeitalter, ein Schatz, der mit ihm zu verlöschen droht. Jäger sehen in ihm nur eine begehrte Trophäe, nicht das Vermächtnis, das er hütet. Bevor seine Art ganz aus der Erinnerung fällt, sucht er einen Würdigen, dem er all das anvertrauen kann, was nur er noch weiß.", hooks: ["verlust","schicksal"] },
+          { title: "Meinesgleichen finden", description: "Es altert nicht und übersteht jede Wunde, doch keine Macht heilt seine endlose Einsamkeit. Aus den Zeitaltern, die es durchwandert hat, ist niemand seiner Art geblieben. Mit unergründlichem Blick durchsucht es die Welt nach einem Zeichen, das ihm verriete, dass irgendwo noch ein anderer überlebt hat.", hooks: ["außenseiter","verlust"] },
+          { title: "Letztes Erbe", description: "Es trägt das Wissen vergangener Zeitalter, ein Schatz, der mit ihm zu verlöschen droht, während Sammler in ihm nur ein seltenes Präparat sehen, nicht das Vermächtnis, das es hütet. Ehe seine Art ganz aus der Erinnerung fällt, sucht es einen Würdigen, dem es alles anvertrauen kann, was nur es noch weiß.", hooks: ["verlust","schicksal"] },
         ]
       },
       {
@@ -3524,11 +3524,11 @@ export const THEMEBOOKS = {
         ],
         weaknessTags: [
           { text: "verblassende Göttlichkeit", hooks: ["verlust","schicksal"] },
-          { text: "an den alten Namen gebunden", hooks: ["magie","geheimnis"] },
+          { text: "gebunden an den alten Namen", hooks: ["magie","geheimnis"] },
         ],
         quests: [
-          { title: "Verlorene Göttlichkeit", description: "Einst war der Held mehr als sterblich, umgeben von einer Aura der Furcht und einem Blut jenseits aller Magie. Doch seine Göttlichkeit verblasst, Funke um Funke, gebunden an einen alten Namen, den kaum noch jemand kennt. Verzweifelt sucht er einen Weg, die schwindende Macht zurückzurufen, ehe von ihm nur ein Schatten bleibt.", hooks: ["glaube","verlust"] },
-          { title: "Letzte Anbeter", description: "Noch beten Gläubige zu dem Helden, und in ihren Gebeten lebt der letzte Funke seiner Göttlichkeit fort. Doch der Kult schrumpft, die Altäre verwaisen, und mit jedem vergessenen Namen verblasst auch er. Darum wacht er über seine letzten Anbeter, denn solange einer ihn ruft, ist er noch nicht ganz dahin.", hooks: ["glaube","schicksal"] },
+          { title: "Verlorene Göttlichkeit", description: "Einst war er mehr als sterblich, umgeben von einer Aura der Furcht, doch seine Göttlichkeit verblasst, Funke um Funke, gebunden an einen alten Namen, den kaum noch jemand kennt. Verzweifelt sucht er einen Weg, die schwindende Macht zurückzurufen, ehe von ihm nur ein Schatten bleibt.", hooks: ["glaube","verlust"] },
+          { title: "Letzte Anbeter", description: "Noch beten Gläubige zu ihm, und in ihren Gebeten lebt der letzte Funke seiner Göttlichkeit fort, doch der Kult schrumpft, die Altäre verwaisen, und mit jedem vergessenen Namen verblasst auch er. Darum wacht er über seine letzten Anbeter, denn solange einer ihn ruft, ist er noch nicht ganz dahin.", hooks: ["glaube","schicksal"] },
         ]
       },
       {
@@ -3544,8 +3544,8 @@ export const THEMEBOOKS = {
           { text: "verwundbar im Erwachen", hooks: ["kampf","geheimnis"] },
         ],
         quests: [
-          { title: "Nicht geweckt werden", description: "Tief im Eis schläft der Held, und sein Schlaf formt die Welt in stillen, gewaltigen Strömungen. Doch er ist verwundbar im Erwachen, und Narren mit Hacken und Feuer wollen ihn vor der Zeit befreien. Ehe sie ihn ungeschützt aus dem Frost brechen, muss er sie aufhalten, damit die rechte Stunde nicht zu früh schlägt.", hooks: ["geheimnis","schicksal"] },
-          { title: "Die Stunde des Erwachens", description: "Eisige Kälte umgibt den Helden, während seine Träume bis in ferne Lande reichen. Wenn er endgültig erwacht, wird unermessliche Kraft mit ihm aufsteigen, doch der Zeitpunkt liegt im Dunkeln. In seinen Träumen sucht er das eine Zeichen, das sein Erwachen verkündet, damit er nicht schwach und unvorbereitet ans Licht tritt.", hooks: ["schicksal","verlust"] },
+          { title: "Nicht geweckt werden", description: "Tief im Eis schläft es, und sein Schlaf formt die Welt in stillen, gewaltigen Strömungen, doch es ist verwundbar im Erwachen, und Narren mit Hacken und Feuer wollen es vor der Zeit befreien. Ehe sie es ungeschützt aus dem Frost brechen, muss es sie aufhalten, damit die rechte Stunde nicht zu früh schlägt.", hooks: ["geheimnis","schicksal"] },
+          { title: "Die Stunde des Erwachens", description: "Eisige Kälte umgibt es, während seine Träume bis in ferne Lande reichen. Wenn es endgültig erwacht, wird unermessliche Kraft mit ihm aufsteigen, doch der Zeitpunkt liegt im Dunkeln. In seinen Träumen sucht es das eine Zeichen, das sein Erwachen verkündet, damit es nicht schwach ans Licht tritt.", hooks: ["schicksal","verlust"] },
         ]
       },
       {
@@ -3561,8 +3561,8 @@ export const THEMEBOOKS = {
           { text: "gebunden an alte Riten", hooks: ["glaube","schicksal"] },
         ],
         quests: [
-          { title: "Untergegangene Welt", description: "Der Held trägt die übermächtige Stärke und das Wissen einer toten Welt, der Zeit entrückt und fremd in dieser Gegenwart. Alles, was er kannte, ist Staub und Sage geworden. Mit einem Schrei, der die Erde erschüttert, durchstreift er das Land auf der Suche nach den letzten Resten seines versunkenen Zeitalters.", hooks: ["verlust","wissen"] },
-          { title: "Ich überdauere", description: "Fremd in dieser Zeit und gebunden an alte Riten findet der Held keinen Platz unter den neuen Völkern. Doch er weiß, dass Welten kommen und gehen, und dass auch diese eines Tages Wesen wie ihn rufen wird. Darum harrt er aus, geduldig wie der Stein, bis die Stunde der Titanen wiederkehrt.", hooks: ["schicksal","glaube"] },
+          { title: "Untergegangene Welt", description: "Er trägt Stärke und Wissen einer toten Welt, der Zeit entrückt und fremd in dieser Gegenwart, denn alles, was er kannte, ist Staub und Sage geworden. Mit einem Schrei, der die Erde erschüttert, durchstreift er das Land auf der Suche nach den letzten Resten seines versunkenen Zeitalters.", hooks: ["verlust","wissen"] },
+          { title: "Ich überdauere", description: "Fremd in dieser Zeit und gebunden an alte Riten findet er keinen Platz unter den neuen Völkern, doch er weiß, dass Welten kommen und gehen, und dass auch diese eines Tages Wesen wie ihn rufen wird. Darum harrt er aus, geduldig wie der Stein, bis die Stunde der Titanen wiederkehrt.", hooks: ["schicksal","glaube"] },
         ]
       },
       {
@@ -3578,8 +3578,8 @@ export const THEMEBOOKS = {
           { text: "muss jedem Pakt gehorchen", hooks: ["magie","schicksal"] },
         ],
         quests: [
-          { title: "Ewige Wache", description: "Ein Schreckenskreis umgibt den Helden, und er spürt den Tod auf Meilen herannahen. An die Schwelle gebunden, kennt er das Rätsel der Pforte, die er bewacht, und das Grauen dahinter. Was auch immer hindurchdrängt, lässt er nicht vorbei, denn fiele das Tor, fiele mehr als nur ein Wächter.", hooks: ["glaube","kampf"] },
-          { title: "Von der Pflicht erlöst", description: "Endlos währt die Wacht des Helden an der Schwelle, gebunden an jeden Pakt, den er einst schwor. Die Jahrhunderte haben ihn ausgehöhlt, doch verlassen darf er den Posten nicht. So sucht er insgeheim einen Würdigen, dem er das Rätsel der Pforte und die ewige Pflicht übertragen kann, um endlich Ruhe zu finden.", hooks: ["glaube","verlust"] },
+          { title: "Ewige Wache", description: "Ein Schreckenskreis umgibt ihn, und er spürt den Tod auf Meilen herannahen. An die Schwelle gebunden, kennt er das Rätsel der Pforte, die er bewacht, und das Grauen dahinter. Was auch immer hindurchdrängt, lässt er nicht vorbei, denn fiele das Tor, fiele mehr als nur ein Wächter.", hooks: ["glaube","kampf"] },
+          { title: "Von der Pflicht erlöst", description: "Endlos währt seine Wacht an der Schwelle, gebunden an jeden Pakt, den er einst schwor. Die Jahrhunderte haben ihn ausgehöhlt, doch verlassen darf er den Posten nicht. So sucht er insgeheim einen Würdigen, dem er das Rätsel der Pforte und die ewige Pflicht übertragen kann.", hooks: ["glaube","verlust"] },
         ]
       },
       {
@@ -3595,8 +3595,8 @@ export const THEMEBOOKS = {
           { text: "löst überall Panik aus", hooks: ["außenseiter","schicksal"] },
         ],
         quests: [
-          { title: "Den Hunger zähmen", description: "Ein unstillbarer Hunger treibt den Helden, und seine zermalmenden Schlünde verschlingen alles, was ihm zu nahe kommt. Doch dieser Trieb übermannt ihn, reißt ihn fort, bis nichts mehr bleibt. Bevor der Hunger das Letzte in ihm verzehrt, sucht er einen Weg, den uralten Drang zu beherrschen, statt ihm willenlos zu dienen.", hooks: ["natur","verlust"] },
-          { title: "Unter Menschen wandeln", description: "Der Held kann auf Menschengröße schrumpfen und seine Diener gehorchen ihm aus den Tiefen. Doch wo er auftaucht, bricht Panik aus, sobald jemand sein wahres Wesen erahnt. Verkleinert und verborgen will er unter Sterblichen leben, ihre Welt verstehen und seinen Hunger zähmen, ohne dass das Ungeheuer in ihm ans Licht kommt.", hooks: ["geheimnis","außenseiter"] },
+          { title: "Den Hunger zähmen", description: "Ein unstillbarer Hunger treibt ihn, und seine zermalmenden Schlünde verschlingen alles, was ihm zu nahe kommt, doch dieser Trieb übermannt ihn, reißt ihn fort, bis nichts mehr bleibt. Ehe der Hunger das Letzte in ihm verzehrt, sucht er einen Weg, den uralten Drang zu beherrschen.", hooks: ["natur","verlust"] },
+          { title: "Unter Menschen wandeln", description: "Er kann auf Menschengröße schrumpfen, und seine Diener gehorchen ihm aus den Tiefen, doch wo er auftaucht, bricht Panik aus, sobald jemand sein wahres Wesen erahnt. Verkleinert und verborgen will er unter Sterblichen leben, ihre Welt verstehen und seinen Hunger zähmen, ohne dass das Ungeheuer in ihm ans Licht kommt.", hooks: ["geheimnis","außenseiter"] },
         ]
       },
     ]
