@@ -1085,208 +1085,207 @@ export const THEMEBOOKS = {
     type: "Origin",
     titles: [
       {
-        text: "Hinterland-Spurenleser", hooks: ["natur","handwerk"],
+        text: "Fährtenleser", hooks: ["natur","handwerk"],
         powerTags: [
-          { text: "kennt jede Spur im Wald", hooks: ["natur"] },
-          { text: "liest die Karte", hooks: ["natur","wissen"] },
-          { text: "wittert eine Falle", hooks: ["natur","handwerk"] },
-          { text: "findet immer Orientierung", hooks: ["natur","fahrend"] },
+          { text: "kennt den Wald", hooks: ["natur"] },
+          { text: "kartenkundig", hooks: ["natur","wissen"] },
+          { text: "wittert Fallen", hooks: ["natur","handwerk"] },
+          { text: "Orientierungssinn", hooks: ["natur","fahrend"] },
         ],
         weaknessTags: [
-          { text: "kennt nur die Wildnis", hooks: ["natur","außenseiter"] },
-          { text: "misstrauisch beobachtet", hooks: ["außenseiter"] },
+          { text: "fremd in der Stadt", hooks: ["natur","außenseiter"] },
+          { text: "Sonderling", hooks: ["außenseiter"] },
         ],
         quests: [
-          { title: "Ich finde Anwendung für meine Kunst", description: "Der Held kennt jede Spur im Wald und liest das Land wie andere ein Buch, doch fern der Wildnis fühlt sich dieses Können nutzlos an. Misstrauisch beäugt von jenen, die seine Gabe nicht verstehen, sucht er einen Ort, an dem sein Auge gebraucht wird. Irgendwo wartet eine Fährte, die seinem Talent endlich einen Sinn gibt.", hooks: ["natur","handwerk"] },
-          { title: "Ich folge der ältesten Spur", description: "Wo andere nur Erde und Laub sehen, erkennt der Held Zeichen, die niemand mehr zu deuten weiß. Eine uralte Fährte zieht ihn fort, tiefer ins Land, als je ein Mensch gegangen ist. Sein Gespür für Fallen und seine untrügliche Orientierung sind alles, was ihn dort draußen leitet, doch das Rätsel lässt ihm keine Ruhe.", hooks: ["natur","geheimnis"] },
+          { title: "Ich suche die Fährte, die zählt.", description: "Im Dorf zählt, wer säen und schmieden kann; für einen wie ihn hat man höchstens ein Schulterzucken übrig. Dabei weiß er, dass sein Blick Leben retten könnte, wenn man ihn nur ließe. Er sucht die eine Aufgabe, nach der niemand mehr fragt, wozu einer wie er gut sein soll.", hooks: ["natur","handwerk"] },
+          { title: "Der ältesten Fährte folgen", description: "Im tiefsten Wald kreuzt manchmal eine Spur seinen Weg, die keinem Tier gehört, das er kennt, und die älter wirkt als der Wald selbst. Zweimal hat er sie verloren, ehe er Mut fasste. Diesmal will er ihr folgen, bis er weiß, was sie hinterließ.", hooks: ["natur","geheimnis"] },
         ]
       },
       {
         text: "Schmied der Berge", hooks: ["handwerk","natur"],
         powerTags: [
-          { text: "meisterhaft an der Esse", hooks: ["handwerk"] },
-          { text: "Stahl bis zur Klinge", hooks: ["handwerk"] },
-          { text: "kennt jedes Material", hooks: ["handwerk","natur"] },
+          { text: "Meister an der Esse", hooks: ["handwerk"] },
+          { text: "kennt jedes Metall", hooks: ["handwerk","natur"] },
           { text: "fester Griff", hooks: ["handwerk"] },
           { text: "erkennt gute Arbeit", hooks: ["handwerk"] },
         ],
         weaknessTags: [
-          { text: "reagiert gereizt auf Pfusch", hooks: ["handwerk"] },
-          { text: "überfordert ohne Werkzeug", hooks: ["handwerk"] },
+          { text: "erträgt keinen Pfusch", hooks: ["handwerk"] },
+          { text: "hilflos ohne Werkzeug", hooks: ["handwerk"] },
         ],
         quests: [
-          { title: "Ich werde der Beste in meinem Fach", description: "An der Esse fühlt sich der Held lebendig, der Hammer in der Hand und der Geruch von heißem Stahl in der Luft. Er kennt jedes Material und erkennt gute Arbeit auf den ersten Blick, doch das genügt ihm nicht. Wenn die Leute künftig an Schmiedekunst denken, sollen sie zuerst seinen Namen nennen, und für dieses Ziel duldet er keinen Pfusch.", hooks: ["handwerk"] },
-          { title: "Ich baue etwas das die Zeit besteht", description: "Mit festem Griff und meisterhafter Hand formt der Held Stahl bis zur vollendeten Klinge. Doch ein Werk soll mehr sein als der nächste Auftrag, der wieder vergeht. Er sehnt sich danach, eine Klinge zu schmieden, die noch aufrecht steht, wenn er selbst längst Asche ist. Etwas Bleibendes zu erschaffen, treibt ihn an die Esse zurück.", hooks: ["handwerk"] },
+          { title: "Der Beste meines Fachs werden", description: "An der Esse ist er lebendig, überall sonst nur halb. Er hat einen Meister gekannt, dessen Klingen man am Klang erkannte, und schwor sich, eines Tages so genannt zu werden. Er sucht die Aufträge und Lehrmeister, die ihn diesem Ruf näherbringen.", hooks: ["handwerk"] },
+          { title: "Etwas schmieden, das die Zeit übersteht", description: "Alles, was er fertigt, wird stumpf, zerbricht oder rostet, und das nagt an ihm. Einmal will er eine Klinge schaffen, die noch schneidet, wenn sein Name vergessen ist. Er sucht den seltenen Stahl und das Feuer, heiß genug, um sie zu vollenden.", hooks: ["handwerk"] },
         ]
       },
       {
-        text: "taschendiebischer Wandersmann", hooks: ["außenseiter","fahrend","stadt"],
+        text: "fahrender Beutelschneider", hooks: ["außenseiter","fahrend","stadt"],
         powerTags: [
           { text: "flinke Finger", hooks: ["handwerk","stadt"] },
-          { text: "leise Schritte", hooks: ["stadt","außenseiter"] },
+          { text: "lautlose Schritte", hooks: ["stadt","außenseiter"] },
           { text: "umgeht jede Wache", hooks: ["stadt","außenseiter"] },
-          { text: "geht in der Menge unter", hooks: ["stadt","geheimnis"] },
+          { text: "unauffällig", hooks: ["stadt","geheimnis"] },
         ],
         weaknessTags: [
-          { text: "misstrauisch beobachtet", hooks: ["außenseiter"] },
-          { text: "das Recht schützt ihn nie", hooks: ["außenseiter","verlust"] },
+          { text: "überall beobachtet", hooks: ["außenseiter"] },
+          { text: "vogelfrei", hooks: ["außenseiter","verlust"] },
         ],
         quests: [
-          { title: "Ich baue mir einen ehrlichen Platz", description: "Flinke Finger und leise Schritte haben den Helden bislang durchgebracht, doch das Recht hat ihn dabei nie geschützt, und überall folgen ihm misstrauische Blicke. Müde des Lebens aus fremden Taschen sehnt er sich nach etwas Eigenem. Nur das, was er ohne Diebstahl erwirbt, soll ihm wirklich gehören, und diesen Platz will er sich endlich erkämpfen.", hooks: ["außenseiter","fahrend"] },
-          { title: "Ich begleiche jede alte Schuld", description: "Der Held kennt jeden Schleichweg und schlüpft ungesehen an jeder Wache vorbei, doch hinter ihm liegt eine Spur bestohlener Menschen. Das Gewicht dieser alten Taten lässt ihn nicht los. Was er einst nahm, will er auf seine eigene Weise zurückgeben, heimlich oder offen. Erst wenn die Rechnung beglichen ist, kann er wirklich frei atmen.", hooks: ["verlust","stadt"] },
+          { title: "Mir einen ehrlichen Platz aufbauen", description: "Sein Leben lang lebte er aus fremden Taschen, und noch nie gehörte ihm etwas, das er behalten durfte. Er ist müde, bei jedem Blick zusammenzuzucken. Er sucht den Ort und die Arbeit, mit denen er sich etwas Eigenes verdient, das ihm keiner nehmen kann.", hooks: ["außenseiter","fahrend"] },
+          { title: "Jede alte Schuld begleichen", description: "Hinter ihm liegt eine Spur bestohlener Menschen, und manche Gesichter kehren nachts wieder. Er führt inzwischen selbst Buch darüber. Was er nahm, will er zurückgeben, heimlich in eine Tasche gesteckt oder offen in die Hand, bis die Liste leer ist.", hooks: ["verlust","stadt"] },
         ]
       },
       {
         text: "Heilkundige", hooks: ["handwerk","wissen"],
         powerTags: [
-          { text: "kennt heilende Kräuter", hooks: ["handwerk","natur"] },
+          { text: "Heilkräuter", hooks: ["handwerk","natur"] },
           { text: "einfache Heilkunst", hooks: ["handwerk"] },
           { text: "fachkundiger Blick", hooks: ["handwerk","wissen"] },
           { text: "ruhige Hände", hooks: ["handwerk"] },
         ],
         weaknessTags: [
-          { text: "kann nicht Nein sagen", hooks: ["glaube"] },
-          { text: "überfordert ohne Werkzeug", hooks: ["handwerk"] },
+          { text: "kann nicht nein sagen", hooks: ["glaube"] },
+          { text: "hilflos ohne Werkzeug", hooks: ["handwerk"] },
         ],
         quests: [
-          { title: "Ich rette mit meinem Handwerk ein Leben", description: "Mit ruhigen Händen und dem Wissen um heilende Kräuter steht der Held an manchem Krankenlager, das andere längst aufgegeben haben. Er kann keine Bitte abschlagen, auch wenn ihn das oft an seine Grenzen bringt. Heute aber zählt nur eines: dass seine Hände das Richtige tun und ein Mensch durch sie weiterlebt, statt zu vergehen.", hooks: ["handwerk","wissen"] },
-          { title: "Ich gebe mein Wissen weiter", description: "Jahre am Krankenbett haben dem Helden einen fachkundigen Blick und einfache, doch verlässliche Heilkunst geschenkt. Er weiß, dass kein Mensch ewig die Hände rührt, und fürchtet, dass mit ihm auch sein Wissen vergeht. Was er über Wunden und Kräuter gelernt hat, soll nicht mit ihm sterben, sondern in jüngeren Händen weiterheilen, lange nach seiner Zeit.", hooks: ["handwerk","wissen"] },
+          { title: "Mit meinem Handwerk ein Leben retten", description: "Sie hat viele durchgebracht und einige verloren, und die Verlorenen wiegen schwerer. Jetzt liegt ihr ein Fall vor, den andere aufgegeben haben. Sie will beweisen, ihren Zweiflern und sich selbst, dass ihre Hände auch dann noch das Richtige tun, wenn alle sagen, es sei zu spät.", hooks: ["handwerk","wissen"] },
+          { title: "Mein Wissen weitergeben", description: "Kein Heiler rührt ewig die Hände, das weiß sie, und ihr Wissen steht in keinem Buch. Sie fürchtet, dass es mit ihr verschwindet wie ein ausgeblasenes Licht. Sie sucht die Hände, die lernen wollen, ehe die ihren zu müde werden.", hooks: ["handwerk","wissen"] },
         ]
       },
       {
         text: "Steuermann", hooks: ["handwerk","fahrend"],
         powerTags: [
-          { text: "liest die Karte", hooks: ["fahrend","wissen"] },
+          { text: "liest jede Karte", hooks: ["fahrend","wissen"] },
           { text: "kennt jeden Knoten", hooks: ["handwerk","fahrend"] },
-          { text: "ruhig in der Krise", hooks: ["handwerk","fahrend"] },
-          { text: "kennt die Zeichen des Wetters", hooks: ["natur","fahrend"] },
+          { text: "ruhig im Sturm", hooks: ["handwerk","fahrend"] },
+          { text: "wetterkundig", hooks: ["natur","fahrend"] },
         ],
         weaknessTags: [
           { text: "verloren ohne sein Schiff", hooks: ["fahrend","verlust"] },
-          { text: "kennt nur eine Welt", hooks: ["handwerk"] },
+          { text: "kennt nur das Deck", hooks: ["handwerk"] },
         ],
         quests: [
-          { title: "Ich finde den sichersten Kurs", description: "Der Held liest die Karte und die Zeichen des Wetters, als spräche das Meer zu ihm allein. Ohne sein Schiff fühlt er sich verloren, denn das Deck ist die einzige Welt, die er wirklich kennt. Ruhig auch im wildesten Sturm trägt er die Verantwortung für jede Seele an Bord. Sein einziges Ziel ist es, Schiff und Mannschaft heil heimzubringen.", hooks: ["fahrend","handwerk"] },
-          { title: "Ich segle ein Gewässer das keiner kennt", description: "Jeden Knoten und jede Strömung beherrscht der Held, doch die vertrauten Routen langweilen ihn längst. Hinter dem letzten Riff, das die Karten kennen, ahnt er einen Weg, den noch niemand befuhr. Die Ruhe in der Krise und sein Gespür fürs Wetter sollen ihn dorthin tragen, wo das Meer seine letzten Geheimnisse hütet, koste es, was es wolle.", hooks: ["fahrend","geheimnis"] },
+          { title: "Den sichersten Kurs finden", description: "Er trägt Verantwortung für jede Seele an Bord, und ein einziger Fehler ertränkt sie alle. Eine Fahrt steht bevor, gefährlicher als alles, was er kennt. Er sucht den Kurs, der Schiff und Mannschaft durch das schlimmste Wasser heil hindurchbringt.", hooks: ["fahrend","handwerk"] },
+          { title: "Ein Gewässer befahren, das keiner kennt", description: "Die vertrauten Routen langweilen ihn längst, und hinter dem letzten kartierten Riff ahnt er einen Weg, den noch kein Kiel zog. Alte Seeleute sprechen von einer Strömung, die nirgendwo hinführt oder überallhin. Er will es mit eigenen Augen sehen.", hooks: ["fahrend","geheimnis"] },
         ]
       },
       {
         text: "Bogenbauer", hooks: ["handwerk"],
         powerTags: [
-          { text: "Pfeil und Bogen geübt", hooks: ["handwerk","kampf"] },
-          { text: "gut gemachte Werkzeuge", hooks: ["handwerk"] },
           { text: "kennt jedes Holz", hooks: ["handwerk","natur"] },
-          { text: "arbeitet schnell ohne Fehler", hooks: ["handwerk"] },
+          { text: "fehlerfreie Arbeit", hooks: ["handwerk"] },
+          { text: "treffsicher", hooks: ["handwerk","kampf"] },
+          { text: "gutes Werkzeug", hooks: ["handwerk"] },
         ],
         weaknessTags: [
           { text: "verliert sich in der Arbeit", hooks: ["handwerk"] },
-          { text: "reagiert gereizt auf Pfusch", hooks: ["handwerk"] },
+          { text: "erträgt keinen Pfusch", hooks: ["handwerk"] },
         ],
         quests: [
-          { title: "Ich baue den vollkommenen Bogen", description: "Der Held kennt jedes Holz und arbeitet schnell und ohne Fehler, doch über der Werkbank vergisst er manchmal die Welt um sich her. Ein Gedanke lässt ihn nicht los: ob seine Hände schaffen können, was keinem anderen gelingt. Nicht für Lob, sondern aus reinem Drang sucht er den einen, vollkommenen Bogen, der all sein Können in sich vereint.", hooks: ["handwerk"] },
-          { title: "Ich bewahre mein Handwerk vor dem Vergessen", description: "Mit geübter Hand fertigt der Held Bögen, wie sie kaum noch jemand zu bauen versteht. Er sieht, wie das alte Wissen ringsum verstummt, und das schmerzt ihn mehr als jeder Pfusch. Solange er Bögen baut und sein Können an andere weitergibt, bleibt die Kunst lebendig. Diese Kette nicht abreißen zu lassen, ist ihm zur stillen Pflicht geworden.", hooks: ["handwerk","verlust"] },
+          { title: "Den vollkommenen Bogen bauen", description: "Ein Gedanke lässt ihn nicht schlafen: ob seine Hände einen Bogen schaffen können, wie es keinen zweiten gibt. Nicht für Lob, nur um es zu wissen. Er sucht das eine gewachsene Holz, von dem die Alten erzählen, das singt, wenn man es spannt.", hooks: ["handwerk"] },
+          { title: "Mein Handwerk vor dem Vergessen bewahren", description: "Ringsum verstummt das alte Wissen, und immer weniger verstehen noch, wie ein guter Bogen entsteht. Das schmerzt ihn mehr als jeder Pfusch. Er sucht Hände, die lernen wollen, und trägt die Kunst dorthin, wo sie sonst erlischt.", hooks: ["handwerk","verlust"] },
         ]
       },
       {
         text: "Gerber am Fluss", hooks: ["handwerk","natur"],
         powerTags: [
-          { text: "verlässliche Routine", hooks: ["handwerk"] },
-          { text: "kennt jedes Material", hooks: ["handwerk","natur"] },
-          { text: "schätzt Maß und Gewicht", hooks: ["handwerk","wissen"] },
-          { text: "kennt den Preis jedes Rohstoffs", hooks: ["handwerk","stadt"] },
+          { text: "sichere Routine", hooks: ["handwerk"] },
+          { text: "kennt jedes Leder", hooks: ["handwerk","natur"] },
+          { text: "schätzt Maß und Wert", hooks: ["handwerk","wissen"] },
+          { text: "zäh und geduldig", hooks: ["handwerk"] },
         ],
         weaknessTags: [
-          { text: "wirkt einseitig", hooks: ["handwerk"] },
-          { text: "schlechte Verhandlungskünste", hooks: ["handwerk"] },
+          { text: "wirkt stumpf und einsilbig", hooks: ["handwerk"] },
+          { text: "schlechter Händler", hooks: ["handwerk"] },
         ],
         quests: [
-          { title: "Ich mache mein Gewerbe geachtet", description: "Tag für Tag steht der Held am Fluss bei der verlässlichen, doch wenig geliebten Arbeit des Gerbens, und mancher rümpft die Nase, wenn er vorübergeht. Er kennt jedes Material und den Preis jedes Rohstoffs, doch Achtung bringt ihm das nicht. Er will beweisen, dass sein Gewerbe ehrbar ist und niemand mehr auf das herabsieht, was seine Hände schaffen.", hooks: ["handwerk","stadt"] },
-          { title: "Ich finde Sinn in meiner Arbeit", description: "Mit sicherem Maß und ruhiger Routine verwandelt der Held rohe Häute in festes Leder, doch im Verhandeln war er nie geschickt. Allmählich fragt er sich, ob der bloße Gewinn alles sein kann, was bleibt. Sein Leder soll mehr tragen als die nächste Münze; es soll einem höheren Zweck dienen. Diesen tieferen Sinn in seinem Werk zu finden, treibt ihn um.", hooks: ["handwerk"] },
+          { title: "Mein Gewerbe geachtet machen", description: "Man rümpft die Nase, wenn er vorbeigeht, denn sein Handwerk stinkt und gilt als niedrig. Dabei trägt halb das Dorf, was seine Hände gerbten. Er will beweisen, dass ehrbar ist, was nützlich ist, und dass niemand auf ihn herabsehen sollte.", hooks: ["handwerk","stadt"] },
+          { title: "Einen tieferen Sinn in meiner Arbeit finden", description: "Häute werden zu Leder, Leder zu Münzen, und die Münzen zerrinnen; allmählich fragt er sich, ob das alles ist. Er möchte, dass sein Leder etwas trägt, das zählt, einen Sattel für einen Boten, Riemen für eine gute Sache. Er sucht den Zweck, der seiner Mühe Gewicht gibt.", hooks: ["handwerk"] },
         ]
       },
       {
         text: "Brauerin der alten Rezepte", hooks: ["handwerk"],
         powerTags: [
-          { text: "gut sortierte Vorratskammer", hooks: ["handwerk"] },
-          { text: "erkennt gute Arbeit", hooks: ["handwerk"] },
+          { text: "volle Vorratskammer", hooks: ["handwerk"] },
           { text: "kennt jedes Rezept", hooks: ["handwerk","wissen"] },
-          { text: "verlässliche Routine", hooks: ["handwerk"] },
+          { text: "feine Zunge", hooks: ["handwerk"] },
+          { text: "sichere Routine", hooks: ["handwerk"] },
         ],
         weaknessTags: [
-          { text: "verliert sich in der Arbeit", hooks: ["handwerk"] },
-          { text: "kennt nur eine Welt", hooks: ["handwerk"] },
+          { text: "verliert sich im Sudkessel", hooks: ["handwerk"] },
+          { text: "weltfremd", hooks: ["handwerk"] },
         ],
         quests: [
-          { title: "Ich bewahre die alten Rezepte", description: "In ihrer gut gefüllten Vorratskammer hütet die Heldin Rezepte, die schon ihre Vorfahren brauten und die sonst niemand mehr kennt. Vertieft in ihre verlässliche Arbeit, vergisst sie oft die Welt jenseits des Sudkessels. Doch der Gedanke, dass dieses Erbe mit ihr verschwinden könnte, lässt sie nicht ruhen. Die alten Rezepte zu bewahren, ist ihr ein heiliges Versprechen geworden.", hooks: ["handwerk","verlust"] },
-          { title: "Ich braue ein einziges Meisterstück", description: "Die Heldin kennt jedes Rezept und erkennt gutes Handwerk sofort, doch ein Traum übersteigt die tägliche Routine. Einmal will sie ein Gebräu schaffen, das alle anderen übertrifft und von dem die Leute noch lange erzählen. Versunken in ihre Kunst feilt sie an dieser einen Mischung. Dieses eine Meisterstück zu vollenden, ist das Ziel, dem sie alles unterordnet.", hooks: ["handwerk"] },
+          { title: "Die alten Rezepte bewahren", description: "In ihrem Kopf leben Gebräue, die schon ihre Urgroßmutter ansetzte und die sonst niemand mehr kennt. Sie fürchtet, dass sie mit ihr verschwinden wie Schaum. Sie sucht die letzten, die noch davon wissen, und schreibt zusammen, was nie aufgeschrieben wurde.", hooks: ["handwerk","verlust"] },
+          { title: "Ein einziges Meisterstück brauen", description: "Einmal will sie ein Gebräu schaffen, von dem man noch in Generationen erzählt, so wie sie heute von den Alten erzählt. Ihr fehlt eine Zutat, die nur an einem Ort wächst, von dem niemand mehr genau weiß, wo. Sie zieht aus, ihn zu finden.", hooks: ["handwerk"] },
         ]
       },
       {
         text: "Kräutersammlerin", hooks: ["natur","handwerk"],
         powerTags: [
-          { text: "kennt verborgene Heilpflanzen", hooks: ["natur","wissen"] },
-          { text: "kennt jede Spur im Wald", hooks: ["natur"] },
-          { text: "trägt das Wissen der Alten", hooks: ["natur","wissen"] },
-          { text: "findet überall Nahrung", hooks: ["natur","handwerk"] },
+          { text: "kennt jede Heilpflanze", hooks: ["natur","wissen"] },
+          { text: "findet essbares Grün", hooks: ["natur","handwerk"] },
+          { text: "kennt den Wald", hooks: ["natur"] },
+          { text: "Wissen der Alten", hooks: ["natur","wissen"] },
         ],
         weaknessTags: [
-          { text: "misstrauisch gegen Fremde", hooks: ["außenseiter","natur"] },
-          { text: "kennt nur die Wildnis", hooks: ["natur","außenseiter"] },
+          { text: "misstraut Fremden", hooks: ["außenseiter","natur"] },
+          { text: "fremd in der Stadt", hooks: ["natur","außenseiter"] },
         ],
         quests: [
-          { title: "Ich finde die seltenste Pflanze", description: "Die Heldin kennt jede Spur im Wald und trägt das Wissen der Alten über verborgene Heilpflanzen in sich. Fremden begegnet sie mit Misstrauen, denn die Wildnis ist die einzige Welt, der sie wirklich traut. Doch ein Kraut fehlt noch, das ihre Sammlung und ihr Wissen vollkommen machen würde. Diese seltenste aller Pflanzen aufzuspüren, lockt sie tiefer ins Unbekannte.", hooks: ["natur","geheimnis"] },
-          { title: "Ich gebe mein Pflanzenwissen weiter", description: "Wo andere verhungern würden, findet die Heldin Nahrung und Heilung, denn die Pflanzen sind ihr vertraut wie alte Freunde. Sie spürt, dass dieses Wissen zu kostbar ist, um mit ihr in der Wildnis zu vergehen. Was sie über Kräuter und ihre Kräfte lernte, soll andere Hände heilen lehren. Ihr Erbe weiterzutragen, überwindet selbst ihr tiefes Misstrauen.", hooks: ["natur","wissen"] },
+          { title: "Die seltenste Pflanze finden", description: "Ein Kraut fehlt ihr, von dem nur ein einziges vergilbtes Blatt in ihrem Buch zeugt, gezeichnet von einer Hand, die längst tot ist. Es soll nur einmal im Menschenleben blühen. Sie sucht den Hang, an dem es wächst, und den Mond, unter dem es sich zeigt.", hooks: ["natur","geheimnis"] },
+          { title: "Mein Pflanzenwissen weitergeben", description: "Was sie über Kräuter weiß, könnte Fieber brechen und Wunden schließen, und doch trägt sie es allein durch die Wälder. Sie beginnt zu fürchten, dass es mit ihr verwildert. Sie sucht die Hände, die es lernen wollen, auch wenn ihr Misstrauen bei jedem Fremden aufsteht.", hooks: ["natur","wissen"] },
         ]
       },
       {
         text: "Bote der schnellen Füße", hooks: ["fahrend","handwerk"],
         powerTags: [
-          { text: "findet immer Orientierung", hooks: ["fahrend","natur"] },
+          { text: "Orientierungssinn", hooks: ["fahrend","natur"] },
           { text: "kennt jeden Schleichweg", hooks: ["fahrend","stadt"] },
-          { text: "reist mit leichtem Gepäck", hooks: ["fahrend"] },
-          { text: "ruhig in der Krise", hooks: ["fahrend","handwerk"] },
+          { text: "reist leicht", hooks: ["fahrend"] },
+          { text: "ausdauernde Beine", hooks: ["fahrend"] },
         ],
         weaknessTags: [
           { text: "nie lange am selben Ort", hooks: ["fahrend","verlust"] },
           { text: "gehetzt vom nächsten Auftrag", hooks: ["fahrend"] },
         ],
         quests: [
-          { title: "Ich überbringe die wichtigste Botschaft", description: "Mit leichtem Gepäck und untrüglichem Orientierungssinn eilt der Held über jeden Schleichweg, getrieben vom nächsten Auftrag. Ruhig auch in Gefahr, hat er schon manche Nachricht durch Sturm und Hinterhalt getragen. Doch diese eine Botschaft wiegt schwerer als alle zuvor: Sie muss ankommen, koste es, was es wolle. Sie sicher ans Ziel zu bringen, ist ihm zum einzigen Gedanken geworden.", hooks: ["fahrend","handwerk"] },
-          { title: "Ich finde einen Ort zum Bleiben", description: "Nie lange am selben Ort, hetzt der Held von Auftrag zu Auftrag, immer die nächste Strecke vor Augen. Seine schnellen Füße haben ihn weit getragen, doch ein Heim hat er dabei nie gefunden. Heimlich sehnt er sich nach einem Platz, an dem sein rastloser Lauf endlich endet. Irgendwo da draußen, glaubt er, wartet ein Ort, an dem er bleiben darf.", hooks: ["fahrend","verlust"] },
+          { title: "Die wichtigste Botschaft überbringen", description: "Er hat schon Nachrichten durch Sturm und Hinterhalt getragen, doch diese wiegt schwerer als alle. Wovon sie kündet, weiß er nicht, nur dass Menschen sterben, wenn sie zu spät kommt. Sie ans Ziel zu bringen ist der einzige Gedanke, der ihn vorantreibt.", hooks: ["fahrend","handwerk"] },
+          { title: "Einen Ort zum Bleiben finden", description: "Seine Füße haben ihn weiter getragen als die meisten je kommen, und doch nie nach Hause. Nachts, in fremden Scheunen, denkt er an einen Platz, an dem sein Laufen endet. Er sucht ihn, obwohl er fürchtet, das Stillhalten nicht mehr zu ertragen.", hooks: ["fahrend","verlust"] },
         ]
       },
       {
-        text: "Tischler der feinen Art", hooks: ["handwerk"],
+        text: "feiner Tischler", hooks: ["handwerk"],
         powerTags: [
-          { text: "Werkzeug meines Handwerks", hooks: ["handwerk"] },
-          { text: "baut auch im Dunkeln", hooks: ["handwerk"] },
-          { text: "repariert Unbrauchbares", hooks: ["handwerk"] },
           { text: "ungewöhnlich präzise", hooks: ["handwerk"] },
+          { text: "baut auch im Dunkeln", hooks: ["handwerk"] },
+          { text: "flickt Unbrauchbares", hooks: ["handwerk"] },
+          { text: "gutes Werkzeug", hooks: ["handwerk"] },
         ],
         weaknessTags: [
-          { text: "reagiert gereizt auf Pfusch", hooks: ["handwerk"] },
-          { text: "Berufsehre macht kompromisslos", hooks: ["handwerk","glaube"] },
+          { text: "erträgt keinen Pfusch", hooks: ["handwerk"] },
+          { text: "kompromisslose Berufsehre", hooks: ["handwerk","glaube"] },
         ],
         quests: [
-          { title: "Ich baue das schwierigste Stück", description: "Mit dem vertrauten Werkzeug seines Handwerks arbeitet der Held ungewöhnlich präzise und fertigt selbst im Halbdunkel, was anderen misslingt. Seine Berufsehre macht ihn kompromisslos, und Pfusch erträgt er nicht. Nun reizt ihn das schwierigste Stück, das er sich denken kann, nicht des Lobes wegen, sondern weil er wissen muss, ob seine Hände der Aufgabe gewachsen sind.", hooks: ["handwerk"] },
-          { title: "Ich schaffe ein Werk für die Ewigkeit", description: "Der Held repariert, was andere längst verworfen haben, und fügt das Holz mit unbeirrbarer Genauigkeit. Doch all die täglichen Arbeiten vergehen, und das nagt an ihm. Einmal will er etwas tischlern, das die Zeit überdauert und noch aufrecht steht, wenn er selbst nicht mehr ist. Ein bleibendes Werk zu hinterlassen, ist der Antrieb, der seine kompromisslose Sorgfalt befeuert.", hooks: ["handwerk"] },
+          { title: "Das schwierigste Stück bauen", description: "Ihn reizt das eine Werkstück, an dem sich Meister die Zähne ausbeißen, nicht des Lobes wegen, sondern weil er wissen muss, ob seine Hände ihm gewachsen sind. Er hat Zeichnungen davon gesehen, in einem Buch, das ein Fremder nur widerwillig zeigte. Er sucht das Buch und das Holz.", hooks: ["handwerk"] },
+          { title: "Ein Werk für die Ewigkeit schaffen", description: "Alles, was er tischlert, verschleißt und wird ersetzt, und das nagt an ihm. Einmal will er etwas fügen, das noch steht, wenn seine Enkel Enkel haben. Er sucht die Aufgabe, die eines solchen Werks würdig ist, und die Zeit, es zu vollenden.", hooks: ["handwerk"] },
         ]
       },
       {
-        text: "Seiltänzerin auf Jahrmärkten", hooks: ["handwerk","fahrend"],
+        text: "Seiltänzerin", hooks: ["handwerk","fahrend"],
         powerTags: [
-          { text: "eingespielte Schrittfolge", hooks: ["handwerk"] },
           { text: "sicheres Gleichgewicht", hooks: ["handwerk"] },
           { text: "einnehmender Auftritt", hooks: ["fahrend","stadt"] },
           { text: "flink und gelenkig", hooks: ["handwerk","natur"] },
+          { text: "schwindelfrei", hooks: ["handwerk"] },
         ],
         weaknessTags: [
           { text: "ein Sturz beendet alles", hooks: ["handwerk","verlust"] },
           { text: "nie lange am selben Ort", hooks: ["fahrend","außenseiter"] },
         ],
         quests: [
-          { title: "Ich wage den unmöglichen Tanz", description: "Auf den Jahrmärkten balanciert die Heldin mit eingespielter Schrittfolge und sicherem Gleichgewicht hoch über der staunenden Menge. Doch ein einziger Sturz könnte alles beenden, und das Wandern von Markt zu Markt zehrt an ihr. Einmal will sie das Seil dort spannen, wo es noch niemand wagte. Diesen unmöglichen Tanz zu vollbringen, lockt sie stärker als jede Furcht vor dem Fall.", hooks: ["handwerk","fahrend"] },
-          { title: "Ich finde Beifall der wirklich zählt", description: "Flink und gelenkig zieht die Heldin mit einnehmendem Auftritt die Blicke auf sich, und der Jubel der Menge begleitet sie von Ort zu Ort. Doch der Applaus verklingt rasch und lässt sie seltsam leer zurück. Hinter all dem Lärm sucht sie nach Augen, die nicht nur die Vorführung, sondern sie selbst wirklich sehen. Diesen einen wahren Beifall zu finden, treibt sie weiter.", hooks: ["fahrend","verlust"] },
+          { title: "Den unmöglichen Tanz wagen", description: "Sie will das Seil dort spannen, wo es noch niemand wagte, über einer Schlucht, zwischen zwei Türmen, vor einem Publikum, das den Atem anhält. Ein alter Artist hat ihr davon erzählt, kurz bevor er stürzte. Sie sucht den Ort, der ihres Tanzes würdig ist.", hooks: ["handwerk","fahrend"] },
+          { title: "Beifall finden, der wirklich zählt", description: "Der Jubel der Menge verklingt schnell und lässt sie leer zurück, von Markt zu Markt derselbe Lärm. Hinter all den Blicken sucht sie den einen, der nicht die Vorführung sieht, sondern sie. Diesen wahren Beifall zu finden, treibt sie weiter, Seil um Seil.", hooks: ["fahrend","verlust"] },
         ]
       },
     ]
