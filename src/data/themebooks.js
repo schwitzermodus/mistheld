@@ -2762,17 +2762,16 @@ export const THEMEBOOKS = {
           { text: "Blutrecht der Krone", hooks: ["adel","macht","schicksal"] },
           { text: "die Welt hört auf mich", hooks: ["schicksal","macht"] },
           { text: "Treue eines ganzen Reiches", hooks: ["adel","macht"] },
-          { text: "ihr Wort trägt Gewicht", hooks: ["schicksal","macht"] },
           { text: "geborene Herrscherin", hooks: ["adel","macht","schicksal"] },
         ],
         weaknessTags: [
           { text: "Rivalen wollen den Thron", hooks: ["adel","macht","kampf"] },
           { text: "andere fordern meinen Tod", hooks: ["schicksal","kampf"] },
-          { text: "Last der Krone", hooks: ["adel","verlust"] },
+          { text: "die Last der Krone", hooks: ["adel","verlust"] },
         ],
         quests: [
-          { title: "Ich erringe den Thron, der mir gebührt", description: "Das Blut der Krone fließt in den Adern des Helden, und ein ganzes Reich wartet auf seinen rechtmäßigen Herrscher. Doch Rivalen umkreisen den leeren Thron und schmieden Ränke gegen sein Erbe. Geboren, um zu gebieten, folgt der Held diesem Ruf und wird einfordern, was ihm von Geburt an gehört.", hooks: ["adel","macht","schicksal"] },
-          { title: "Ich beweise mich als würdige Herrscherin", description: "Eine Krone allein macht noch keinen Herrscher, und das spürt der Held mit jedem Schritt schwerer. Die Last der Verantwortung drückt, während andere an seinem Recht zweifeln und nach seinem Sturz trachten. So zieht der Held aus, um durch Taten statt durch Blut zu beweisen, dass er der Würde des Throns gewachsen ist.", hooks: ["adel","macht"] },
+          { title: "Den Thron erringen, der mir gebührt", description: "Ein ganzes Reich wartet auf seinen rechtmäßigen Herrscher, und das Blut der Krone fließt in ihren Adern. Doch drei Rivalen umkreisen den leeren Thron, jeder mit eigenem Heer und eigenem Anspruch. Sie zieht aus, einzufordern, was ihr von Geburt an gehört.", hooks: ["adel","macht","schicksal"] },
+          { title: "Mich als würdige Herrscherin beweisen", description: "Eine Krone allein macht noch keine Herrscherin, und die Last der Verantwortung drückt mit jedem Schritt schwerer, während andere an ihrem Recht zweifeln. Ein Aufstand in einer entlegenen Provinz stellt sie auf die Probe. Durch Taten statt durch Blut will sie beweisen, dass sie der Würde des Throns gewachsen ist.", hooks: ["adel","macht"] },
         ]
       },
       {
@@ -2781,7 +2780,6 @@ export const THEMEBOOKS = {
           { text: "erkennt das Ende in allem", hooks: ["schicksal","verlust"] },
           { text: "überlebt das Unmögliche", hooks: ["schicksal"] },
           { text: "sieht das nahende Unheil", hooks: ["schicksal","geheimnis"] },
-          { text: "unerschütterlicher Mut", hooks: ["kampf","schicksal"] },
           { text: "steht immer wieder auf", hooks: ["schicksal","kampf"] },
         ],
         weaknessTags: [
@@ -2790,15 +2788,14 @@ export const THEMEBOOKS = {
           { text: "vom Ende gezeichnet", hooks: ["schicksal","verlust"] },
         ],
         quests: [
-          { title: "Ich rette die Welt vor dem Ende", description: "Der Held sieht das nahende Unheil, wo andere nur Frieden wähnen, denn er ist gezeichnet vom Ende der Dinge. Schon einmal überlebte er das Unmögliche, und dieser unerschütterliche Mut treibt ihn weiter. Wenn sonst niemand sich der drohenden Katastrophe stellen will, dann stellt der Held sich ihr in den Weg und weicht nicht.", hooks: ["schicksal","kampf"] },
-          { title: "Ich verhindere den vorhergesagten Untergang", description: "Eine düstere Bestimmung läuft auf die Vernichtung zu, und ihr Schatten liegt schwer auf dem Helden, der vom Ende gezeichnet ist. Die Prophezeiung fordert Opfer und Feinde wollen ihn an seinem Werk hindern. Doch der Held glaubt nicht an ein unausweichliches Schicksal und wird die vorhergesagte Stunde des Untergangs mit eigener Hand zerbrechen.", hooks: ["schicksal","verlust"] },
+          { title: "Die Welt vor dem Ende retten", description: "Er sieht das nahende Unheil, wo andere nur Frieden wähnen, denn er ist gezeichnet vom Ende der Dinge. Ein Zeichen am Himmel, das nur er richtig deutet, kündigt den Beginn an. Wenn sonst niemand sich der Katastrophe entgegenstellt, tut er es, und weicht nicht.", hooks: ["schicksal","kampf"] },
+          { title: "Den vorhergesagten Untergang verhindern", description: "Eine düstere Bestimmung läuft auf die Vernichtung zu, und ihr Schatten liegt schwer auf ihm. Die Prophezeiung fordert Opfer, und Feinde, die von seinem Untergang profitieren, wollen ihn an seinem Werk hindern. Er glaubt nicht an ein unausweichliches Schicksal und wird die vorhergesagte Stunde mit eigener Hand zerbrechen.", hooks: ["schicksal","verlust"] },
         ]
       },
       {
         text: "Sucher des Erzählers", hooks: ["schicksal","geheimnis"],
         powerTags: [
           { text: "findet Zeichen im Zufall", hooks: ["schicksal","geheimnis"] },
-          { text: "Zeichen weisen den Weg", hooks: ["schicksal","geheimnis"] },
           { text: "liest den Faden der Geschichte", hooks: ["schicksal","wissen"] },
           { text: "verbotene Türen öffnen sich", hooks: ["schicksal","geheimnis"] },
           { text: "spürt verborgene Wahrheit", hooks: ["geheimnis","wissen"] },
@@ -2809,8 +2806,8 @@ export const THEMEBOOKS = {
           { text: "zweifelt an der Prophezeiung", hooks: ["schicksal","geheimnis"] },
         ],
         quests: [
-          { title: "Ich entdecke wer mich auserwählt hat", description: "Überall liest der Held Zeichen im Zufall und folgt dem verborgenen Faden der Geschichte, der sich um sein Leben spinnt. Etwas oder jemand hat ihn zu einer Bestimmung erkoren, doch der schmale Pfad lässt ihn an allem zweifeln. Besessen von der Suche wird der Held nicht ruhen, bis er der Hand begegnet, die ihn auserwählte.", hooks: ["schicksal","geheimnis"] },
-          { title: "Ich finde den Erzähler hinter allem", description: "Verbotene Türen öffnen sich vor dem Helden, als wollten sie ihn tiefer in ein Geheimnis locken. Er spürt, dass eine unsichtbare Hand die Geschichte lenkt, in der er selbst nur eine Figur zu sein scheint. Getrieben von dieser Wahrheit sucht der Held den Erzähler hinter allem, um ihm endlich von Angesicht zu Angesicht gegenüberzustehen.", hooks: ["schicksal","geheimnis"] },
+          { title: "Entdecken, wer mich auserwählt hat", description: "Überall liest sie Zeichen im Zufall und folgt dem verborgenen Faden, der sich um ihr Leben spinnt. Etwas oder jemand hat sie zu einer Bestimmung erkoren, doch der schmale Pfad lässt sie an allem zweifeln. Besessen von der Suche wird sie nicht ruhen, bis sie der Hand begegnet, die sie auserwählte.", hooks: ["schicksal","geheimnis"] },
+          { title: "Den Erzähler hinter allem finden", description: "Verbotene Türen öffnen sich vor ihr, als wollten sie sie tiefer in ein Geheimnis locken. Sie spürt, dass eine unsichtbare Hand die Geschichte lenkt, in der sie selbst nur eine Figur zu sein scheint. Getrieben von dieser Wahrheit sucht sie den Erzähler hinter allem, um ihm von Angesicht zu Angesicht gegenüberzustehen.", hooks: ["schicksal","geheimnis"] },
         ]
       },
       {
@@ -2818,7 +2815,6 @@ export const THEMEBOOKS = {
         powerTags: [
           { text: "Segen der Götter", hooks: ["glaube","schicksal","magie"] },
           { text: "wundersame Rettung", hooks: ["schicksal","magie"] },
-          { text: "Schicksal beschützt mich", hooks: ["schicksal"] },
           { text: "Verbündete erscheinen", hooks: ["schicksal"] },
           { text: "trägt göttliche Autorität", hooks: ["glaube","macht","schicksal"] },
         ],
@@ -2828,8 +2824,8 @@ export const THEMEBOOKS = {
           { text: "Ketzer fordern meinen Tod", hooks: ["glaube","kampf"] },
         ],
         quests: [
-          { title: "Ich erfülle den Willen der Götter", description: "Der Segen der Götter ruht auf dem Helden, und wundersame Rettung begleitet seine Schritte, wo andere längst gefallen wären. Eine höhere Macht hat ihn gewählt und fordert nun Gehorsam von ihm. Mit göttlicher Autorität im Rücken folgt der Held diesem Ruf, auch wenn Hochmut ihn verfolgt und Ketzer nach seinem Leben trachten.", hooks: ["schicksal","glaube"] },
-          { title: "Ich entscheide ob ich das Schicksal annehme", description: "Verbündete erscheinen wie aus dem Nichts, und das Schicksal scheint den Helden zu beschützen, doch ein Zweifel nagt an ihm. Vielleicht ist er wahrhaft der Auserwählte, vielleicht aber auch nur eine Lüge der Götter. Bevor er sich ihrem Willen ganz ergibt, will der Held die Wahrheit ergründen und selbst entscheiden, ob er dieses Schicksal annimmt.", hooks: ["schicksal","glaube"] },
+          { title: "Den Willen der Götter erfüllen", description: "Der Segen der Götter ruht auf ihm, und wundersame Rettung begleitet seine Schritte, wo andere längst gefallen wären. Eine höhere Macht hat ihn gewählt und fordert nun Gehorsam. Mit göttlicher Autorität im Rücken folgt er diesem Ruf, auch wenn Ketzer nach seinem Leben trachten.", hooks: ["schicksal","glaube"] },
+          { title: "Entscheiden, ob ich das Schicksal annehme", description: "Verbündete erscheinen wie aus dem Nichts, und das Schicksal scheint ihn zu beschützen, doch ein Zweifel nagt an ihm: Ist er wahrhaft der Auserwählte, oder nur eine Lüge der Götter? Ehe er sich ihrem Willen ganz ergibt, will er die Wahrheit ergründen und selbst entscheiden.", hooks: ["schicksal","glaube"] },
         ]
       },
       {
@@ -2838,7 +2834,6 @@ export const THEMEBOOKS = {
           { text: "leuchtet in der Finsternis", hooks: ["glaube","schicksal","magie"] },
           { text: "zieht die Richtigen an", hooks: ["schicksal"] },
           { text: "gibt allen Hoffnung", hooks: ["glaube","schicksal"] },
-          { text: "Verbündete erscheinen", hooks: ["schicksal"] },
           { text: "hält die Dunkelheit zurück", hooks: ["glaube","kampf","magie"] },
         ],
         weaknessTags: [
@@ -2847,8 +2842,8 @@ export const THEMEBOOKS = {
           { text: "trägt aller Hoffnung Last", hooks: ["glaube","verlust"] },
         ],
         quests: [
-          { title: "Ich halte das Licht aufrecht", description: "Wo der Held steht, leuchtet ein Licht in der Finsternis, das die Richtigen anzieht und allen Hoffnung gibt. Doch die Dunkelheit drückt von allen Seiten und jagt ihn, denn sie weiß, was sein Schein bedeutet. Auf seinen Schultern liegt die Last aller Hoffnung, und so weicht der Held keinen Schritt zurück und hält das Licht am Brennen.", hooks: ["glaube","schicksal"] },
-          { title: "Ich vertreibe die kommende Dunkelheit", description: "Ein Schatten wächst heran und droht die Welt zu verschlingen, während der Held als letztes Licht gegen ihn steht. Die Finsternis jagt ihn unablässig, denn sein Schein darf niemals erlöschen. Statt nur die Stellung zu halten, sammelt der Held seine Verbündeten und zieht aus, um die kommende Dunkelheit ein für alle Mal zu vertreiben.", hooks: ["glaube","kampf"] },
+          { title: "Das Licht aufrecht halten", description: "Wo sie steht, leuchtet ein Licht in der Finsternis, das die Richtigen anzieht und allen Hoffnung gibt. Die Dunkelheit drückt von allen Seiten und jagt sie, denn sie weiß, was dieser Schein bedeutet. Auf ihren Schultern liegt die Last aller Hoffnung, und so weicht sie keinen Schritt zurück.", hooks: ["glaube","schicksal"] },
+          { title: "Die kommende Dunkelheit vertreiben", description: "Ein Schatten wächst heran und droht die Welt zu verschlingen, während sie als letztes Licht gegen ihn steht. Statt nur die Stellung zu halten, sammelt sie ihre Verbündeten und zieht aus, um die kommende Dunkelheit ein für alle Mal zu vertreiben, ehe ihr eigener Schein erlischt.", hooks: ["glaube","kampf"] },
         ]
       },
       {
@@ -2857,7 +2852,6 @@ export const THEMEBOOKS = {
           { text: "die Sterne stehen günstig", hooks: ["schicksal","magie"] },
           { text: "Glück folgt meinen Schritten", hooks: ["schicksal"] },
           { text: "Vorhersehung leitet mich", hooks: ["schicksal","geheimnis"] },
-          { text: "die Welt richtet sich aus", hooks: ["schicksal","magie"] },
           { text: "liest den Himmel", hooks: ["wissen","magie","schicksal"] },
         ],
         weaknessTags: [
@@ -2866,8 +2860,8 @@ export const THEMEBOOKS = {
           { text: "fremd unter Menschen", hooks: ["außenseiter","schicksal"] },
         ],
         quests: [
-          { title: "Ich erfülle wozu ich geboren wurde", description: "Die Sterne stehen günstig für den Helden, und das Glück folgt seinen Schritten, als richte sich die ganze Welt nach ihm aus. Lange hat er sich gegen die Vorhersehung gewehrt, die ihn leitet. Doch nun hört der Held auf zu kämpfen und nimmt an, dass alles in ihm angelegt ist, um zu erfüllen, wozu er geboren wurde.", hooks: ["schicksal","magie"] },
-          { title: "Ich beweise dass ich frei bin", description: "Man sagt dem Helden, sein Pfad stehe längst in den Sternen geschrieben und er habe keine freie Wahl mehr. Doch fremd unter den Menschen und an den Sternenlauf gebunden, lehnt er sich gegen diese Gewissheit auf. Mit jedem Schritt, den der Held bewusst anders setzt, will er beweisen, dass sein Schicksal ihm allein gehört.", hooks: ["schicksal","außenseiter"] },
+          { title: "Erfüllen, wozu ich geboren wurde", description: "Das Glück folgt seinen Schritten, als richte sich die Welt nach ihm aus, und lange hat er sich gegen die Vorhersehung gewehrt, die ihn leitet. Nun hört er auf zu kämpfen und nimmt an, dass alles in ihm angelegt ist, um zu erfüllen, wozu er geboren wurde.", hooks: ["schicksal","magie"] },
+          { title: "Beweisen, dass ich frei bin", description: "Man sagt ihm, sein Pfad stehe längst in den Sternen geschrieben, und er habe keine freie Wahl mehr. Fremd unter den Menschen und an den Sternenlauf gebunden, lehnt er sich gegen diese Gewissheit auf. Mit jedem Schritt, den er bewusst anders setzt, will er beweisen, dass sein Schicksal ihm allein gehört.", hooks: ["schicksal","außenseiter"] },
         ]
       },
       {
@@ -2876,8 +2870,7 @@ export const THEMEBOOKS = {
           { text: "das Mal weist mich aus", hooks: ["schicksal","geheimnis","magie"] },
           { text: "verbotene Türen öffnen sich", hooks: ["schicksal","geheimnis"] },
           { text: "die Alten erkennen mich", hooks: ["schicksal","wissen"] },
-          { text: "Zeichen pulsiert bei Gefahr", hooks: ["schicksal","magie"] },
-          { text: "schwer zu widerstehen", hooks: ["schicksal","macht"] },
+          { text: "das Zeichen pulsiert bei Gefahr", hooks: ["schicksal","magie"] },
         ],
         weaknessTags: [
           { text: "das Mal zieht Jäger an", hooks: ["schicksal","kampf","geheimnis"] },
@@ -2885,8 +2878,8 @@ export const THEMEBOOKS = {
           { text: "gezeichnet für immer", hooks: ["schicksal","verlust"] },
         ],
         quests: [
-          { title: "Ich enträtsle das alte Zeichen", description: "Ein altes Mal weist den Helden aus, lässt verbotene Türen sich öffnen und die Alten ihn erkennen. Doch er kennt die wahre Last nicht, die das Zeichen ihm auferlegt, und Jäger folgen seiner Spur. Getrieben von der Ungewissheit wird der Held der Bedeutung des Mals auf den Grund gehen, das ihn für immer gezeichnet hat.", hooks: ["schicksal","geheimnis"] },
-          { title: "Ich trage die Bürde des Zeichens", description: "Das alte Zeichen pulsiert bei jeder Gefahr und verlangt seinen Preis vom Helden, der es für immer trägt. Es lockt Jäger an und macht ihn zur Beute, doch fliehen kann er vor ihm nicht. Statt an der Bürde zu zerbrechen, sucht der Held einen Weg, mit dem Mal zu leben und seine Macht in seinem Sinne zu wenden.", hooks: ["schicksal","verlust"] },
+          { title: "Das alte Zeichen enträtseln", description: "Ein altes Mal weist sie aus, lässt verbotene Türen sich öffnen und die Alten sie erkennen, doch sie kennt die wahre Last nicht, die es ihr auferlegt. Jäger folgen ihrer Spur. Getrieben von der Ungewissheit wird sie der Bedeutung des Mals auf den Grund gehen, das sie für immer gezeichnet hat.", hooks: ["schicksal","geheimnis"] },
+          { title: "Die Bürde des Zeichens tragen", description: "Das alte Zeichen pulsiert bei jeder Gefahr und verlangt seinen Preis, und fliehen kann sie vor ihm nicht. Es lockt Jäger an und macht sie zur Beute. Statt an der Bürde zu zerbrechen, sucht sie einen Weg, mit dem Mal zu leben und seine Macht in ihrem Sinne zu wenden.", hooks: ["schicksal","verlust"] },
         ]
       },
       {
@@ -2895,7 +2888,6 @@ export const THEMEBOOKS = {
           { text: "bannt das Eindringende", hooks: ["magie","kampf","schicksal"] },
           { text: "Wege öffnen sich", hooks: ["schicksal"] },
           { text: "spürt den Riss der Welt", hooks: ["magie","geheimnis","schicksal"] },
-          { text: "die Welt richtet sich aus", hooks: ["schicksal","magie"] },
           { text: "hält die Schwelle", hooks: ["magie","kampf"] },
         ],
         weaknessTags: [
@@ -2904,8 +2896,8 @@ export const THEMEBOOKS = {
           { text: "Kreaturen jenseits jagen mich", hooks: ["magie","kampf"] },
         ],
         quests: [
-          { title: "Ich schließe den Riss endgültig", description: "Der Held spürt den Riss der Welt, aus dessen Spalt Verderben in die Wirklichkeit dringt. Wege öffnen sich ihm, und er allein vermag das Eindringende zu bannen und die Schwelle zu halten. Auch wenn der Riss an seinen Kräften zehrt und Kreaturen von jenseits ihn jagen, wird der Held den Spalt endgültig versiegeln.", hooks: ["schicksal","magie"] },
-          { title: "Ich finde wer den Riss öffnete", description: "Der Spalt in der Welt entstand nicht von selbst, das weiß der Held, der seine zerstörerische Kraft am eigenen Leib fühlt. Die Bestimmung fordert Opfer, und Wesen von jenseits trachten ihm nach dem Leben. Doch der Held gibt sich nicht mit dem bloßen Schließen zufrieden und wird die Hand aufspüren, die den Riss öffnete.", hooks: ["geheimnis","magie"] },
+          { title: "Den Riss endgültig schließen", description: "Sie spürt den Riss der Welt, aus dessen Spalt Verderben in die Wirklichkeit dringt, und sie allein vermag das Eindringende zu bannen. Auch wenn der Riss an ihren Kräften zehrt und Kreaturen von jenseits sie jagen, wird sie den Spalt endgültig versiegeln.", hooks: ["schicksal","magie"] },
+          { title: "Herausfinden, wer den Riss öffnete", description: "Der Spalt entstand nicht von selbst, das weiß sie, die seine zerstörerische Kraft am eigenen Leib fühlt. Die Bestimmung fordert Opfer, und Wesen von jenseits trachten ihr nach dem Leben. Sie gibt sich nicht mit dem bloßen Schließen zufrieden und wird die Hand aufspüren, die den Riss öffnete.", hooks: ["geheimnis","magie"] },
         ]
       },
       {
@@ -2913,7 +2905,6 @@ export const THEMEBOOKS = {
         powerTags: [
           { text: "Träume offenbaren Geheimnisse", hooks: ["schicksal","geheimnis"] },
           { text: "Stimmen der Tiefe leiten mich", hooks: ["geheimnis","magie","schicksal"] },
-          { text: "verborgene Helfer", hooks: ["schicksal","geheimnis"] },
           { text: "kennt die alten Weissagungen", hooks: ["wissen","geheimnis","schicksal"] },
           { text: "übersteht das verborgene Grauen", hooks: ["schicksal","kampf"] },
         ],
@@ -2923,8 +2914,8 @@ export const THEMEBOOKS = {
           { text: "Albträume rauben den Schlaf", hooks: ["geheimnis","verlust"] },
         ],
         quests: [
-          { title: "Ich ergründe die Prophezeiung der Tiefe", description: "In seinen Träumen offenbaren sich dem Helden Geheimnisse, und Stimmen aus der Tiefe leiten seine Schritte. Sie verkünden ein Schicksal, das er noch nicht versteht, während Albträume ihm den Schlaf rauben. Trotz aller Zweifel an der Prophezeiung folgt der Held den verborgenen Helfern und alten Weissagungen, um zu ergründen, was die Tiefe ihm bestimmt hat.", hooks: ["schicksal","geheimnis"] },
-          { title: "Ich widerstehe dem Ruf der Tiefe", description: "Etwas Uraltes ruft nach dem Helden aus der Tiefe und will ihn ganz für sich gewinnen. Die Stimmen dringen in seine Träume, und der Schlaf wird ihm zur Qual, während der Zweifel an seiner Bestimmung wächst. Doch der Held hat das verborgene Grauen überstanden und schwört sich, dem lockenden Ruf der Tiefe niemals zu gehören.", hooks: ["schicksal","verlust"] },
+          { title: "Die Prophezeiung der Tiefe ergründen", description: "In ihren Träumen offenbaren sich Geheimnisse, und Stimmen aus der Tiefe leiten ihre Schritte hin zu einem Schicksal, das sie noch nicht versteht, während Albträume ihr den Schlaf rauben. Trotz aller Zweifel folgt sie den alten Weissagungen, um zu ergründen, was die Tiefe ihr bestimmt hat.", hooks: ["schicksal","geheimnis"] },
+          { title: "Dem Ruf der Tiefe widerstehen", description: "Etwas Uraltes ruft nach ihr aus der Tiefe und will sie ganz für sich gewinnen, und die Stimmen dringen tiefer in ihre Träume, je länger sie zögert. Sie hat das verborgene Grauen schon einmal überstanden und schwört sich, dem lockenden Ruf niemals zu gehören.", hooks: ["schicksal","verlust"] },
         ]
       },
       {
@@ -2932,8 +2923,7 @@ export const THEMEBOOKS = {
         powerTags: [
           { text: "Wissen zweier Welten", hooks: ["wissen","schicksal"] },
           { text: "Brücke zwischen alt und neu", hooks: ["schicksal","geheimnis"] },
-          { text: "Bestimmung pulsiert in mir", hooks: ["schicksal"] },
-          { text: "übersteht den Wandel der Zeit", hooks: ["schicksal","verlust"] },
+          { text: "die Bestimmung pulsiert in mir", hooks: ["schicksal"] },
           { text: "erinnert das vergangene Zeitalter", hooks: ["wissen","verlust"] },
         ],
         weaknessTags: [
@@ -2942,8 +2932,8 @@ export const THEMEBOOKS = {
           { text: "von beiden Seiten misstraut", hooks: ["außenseiter","geheimnis"] },
         ],
         quests: [
-          { title: "Ich überbrücke die zwei Zeitalter", description: "Der Held trägt das Wissen zweier Welten in sich und erinnert das vergangene Zeitalter, während er im neuen steht. Doch in keiner Zeit ist er ganz zu Hause, und beide Seiten begegnen ihm mit Misstrauen. Gerade diese Zerrissenheit aber wird gebraucht, und so wird der Held zur lebendigen Brücke zwischen dem Alten und dem Neuen.", hooks: ["schicksal","verlust"] },
-          { title: "Ich leite den Wandel der Zeitalter", description: "Eine Welt geht zu Ende und eine andere beginnt, und der Held steht an der Schwelle zwischen beiden. Die Bestimmung pulsiert in ihm, doch zerrissen zwischen den Welten findet er nirgends Halt. Statt sich vom Wandel forttragen zu lassen, nimmt der Held das Erbe zweier Zeitalter auf und will den Übergang mit eigener Hand lenken.", hooks: ["schicksal","macht"] },
+          { title: "Die zwei Zeitalter überbrücken", description: "Er trägt das Wissen zweier Welten in sich und erinnert das vergangene Zeitalter, während er im neuen steht, doch in keiner Zeit ist er ganz zu Hause, und beide Seiten begegnen ihm mit Misstrauen. Gerade diese Zerrissenheit macht ihn zur einzigen möglichen Brücke zwischen Altem und Neuem.", hooks: ["schicksal","verlust"] },
+          { title: "Den Wandel der Zeitalter lenken", description: "Eine Welt geht zu Ende und eine andere beginnt, und er steht an der Schwelle zwischen beiden. Die Bestimmung pulsiert in ihm, doch zerrissen zwischen den Welten findet er nirgends Halt. Statt sich vom Wandel forttragen zu lassen, will er das Erbe zweier Zeitalter aufnehmen und den Übergang mit eigener Hand lenken.", hooks: ["schicksal","macht"] },
         ]
       },
       {
@@ -2952,7 +2942,6 @@ export const THEMEBOOKS = {
           { text: "spricht das vergessene Wort", hooks: ["geheimnis","magie","schicksal"] },
           { text: "verbotene Türen öffnen sich", hooks: ["schicksal","geheimnis"] },
           { text: "kennt die verlorene Weissagung", hooks: ["wissen","geheimnis"] },
-          { text: "die Welt richtet sich aus", hooks: ["schicksal","magie"] },
           { text: "ihr Wort trägt Gewicht", hooks: ["schicksal","macht"] },
         ],
         weaknessTags: [
@@ -2961,16 +2950,15 @@ export const THEMEBOOKS = {
           { text: "darf das Wort nie missbrauchen", hooks: ["schicksal","glaube"] },
         ],
         quests: [
-          { title: "Ich finde das fehlende Wort", description: "Der Held kennt nur ein Bruchstück des vergessenen Wortes, dessen verbotene Türen sich ihm öffnen. Doch das Ganze verändert alles, und viele begehren die Macht, die in ihm schlummert. Im Wissen, dass er das Wort niemals missbrauchen darf, sucht der Held das fehlende Stück der verlorenen Weissagung, nach der die Welt sich auszurichten beginnt.", hooks: ["schicksal","geheimnis"] },
-          { title: "Ich vollende das vergessene Wort", description: "Eine uralte Verheißung wartet darauf, durch die Stimme des Helden ihre Erfüllung zu finden. Das Wort, das er spricht, trägt Gewicht, doch es verlangt einen Preis, und viele wollen es für sich. Gebunden an das Gebot, es nie zu missbrauchen, nimmt der Held die Last auf sich und wird das vergessene Wort vollenden.", hooks: ["schicksal","magie"] },
+          { title: "Das fehlende Wort finden", description: "Sie kennt nur ein Bruchstück des vergessenen Wortes, doch das Ganze verändert alles, und viele begehren die Macht, die darin schlummert. Im Wissen, dass sie es niemals missbrauchen darf, sucht sie das fehlende Stück der verlorenen Weissagung, nach der die Welt sich auszurichten beginnt.", hooks: ["schicksal","geheimnis"] },
+          { title: "Das vergessene Wort vollenden", description: "Eine uralte Verheißung wartet darauf, durch ihre Stimme ihre Erfüllung zu finden, doch das Wort verlangt einen Preis, und viele wollen es für sich. Gebunden an das Gebot, es nie zu missbrauchen, nimmt sie die Last auf sich und wird das vergessene Wort vollenden.", hooks: ["schicksal","magie"] },
         ]
       },
       {
         text: "Schlusspunkt der Geschichte", hooks: ["schicksal"],
         powerTags: [
-          { text: "Bestimmung pulsiert in mir", hooks: ["schicksal"] },
+          { text: "die Bestimmung pulsiert in mir", hooks: ["schicksal"] },
           { text: "mein Antlitz erkennt jeder", hooks: ["schicksal","macht"] },
-          { text: "handelt instinktiv richtig", hooks: ["schicksal"] },
           { text: "alle Wege enden bei mir", hooks: ["schicksal","macht"] },
           { text: "überlebt das Unmögliche", hooks: ["schicksal"] },
         ],
@@ -2980,8 +2968,8 @@ export const THEMEBOOKS = {
           { text: "zieht ungesuchte Feinde an", hooks: ["schicksal","kampf"] },
         ],
         quests: [
-          { title: "Ich bringe die Geschichte zum Abschluss", description: "Alle Wege enden beim Helden, dessen Antlitz ein jeder erkennt und in dem die Bestimmung pulsiert. Schon einmal überlebte er das Unmögliche, und nun läuft alles auf ihn zu. Auch wenn das nahende Ende schwer auf ihm lastet und ungesuchte Feinde ihn umkreisen, wird der Held die Geschichte in sich zu ihrem Abschluss bringen.", hooks: ["schicksal"] },
-          { title: "Ich bereite vor was nach mir kommt", description: "Der Held weiß, dass er der Schlusspunkt einer großen Geschichte ist und ihm keine freie Wahl mehr bleibt. Wenn sein Werk vollbracht ist, wird die Welt eine andere sein. Statt nur das Ende zu erwarten, handelt der Held instinktiv richtig und sorgt dafür, dass jemand bereitsteht für das, was nach ihm kommt.", hooks: ["schicksal","glaube"] },
+          { title: "Die Geschichte zum Abschluss bringen", description: "Alle Wege enden bei ihm, dessen Antlitz jeder erkennt, und in dem die Bestimmung pulsiert. Schon einmal überlebte er das Unmögliche, und nun läuft alles auf ihn zu. Auch wenn das nahende Ende schwer auf ihm lastet und ungesuchte Feinde ihn umkreisen, wird er die Geschichte zu ihrem Abschluss bringen.", hooks: ["schicksal"] },
+          { title: "Vorbereiten, was nach mir kommt", description: "Er weiß, dass er der Schlusspunkt einer großen Geschichte ist, und ihm bleibt keine freie Wahl mehr. Wenn sein Werk vollbracht ist, wird die Welt eine andere sein. Statt nur das Ende zu erwarten, sorgt er dafür, dass jemand bereitsteht für das, was nach ihm kommt.", hooks: ["schicksal","glaube"] },
         ]
       },
     ]
