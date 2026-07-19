@@ -4026,17 +4026,17 @@ export const THEMEBOOKS = {
         text: "handgefertigte Panflöte", hooks: ["handwerk","fahrend"],
         powerTags: [
           { text: "seelenbewegende Weise", hooks: ["fahrend","handwerk"] },
-          { text: "selbst geschnitztes Rohr", hooks: ["handwerk","natur"] },
           { text: "lockt Lauscher an", hooks: ["fahrend","stadt"] },
           { text: "stets griffbereit am Gürtel", hooks: ["handwerk","fahrend"] },
+          { text: "selbst geschnitztes Rohr", hooks: ["handwerk","natur"] },
         ],
         weaknessTags: [
           { text: "zerbrechliches Holz", hooks: ["handwerk","verlust"] },
           { text: "verrät meine Anwesenheit", hooks: ["geheimnis","fahrend"] },
         ],
         quests: [
-          { title: "Ich spiele die verlorene Melodie wieder", description: "Die selbst geschnitzte Panflöte hängt griffbereit am Gürtel, doch eine Weise aus Kindheitstagen ist dem Held entfallen, so sehr er auch sucht. Jede halb erinnerte Note schmerzt wie ein verlorenes Stück seiner selbst. Er wird nicht ruhen, bis die seelenbewegende Melodie wieder rein aus dem Rohr klingt und ihn heimholt.", hooks: ["fahrend","verlust"] },
-          { title: "Ich vollende mein Meisterstück", description: "Mit eigenen Händen schnitzte der Held das Rohr, und sein Klang lockt jeden Lauscher herbei. Doch das Holz ist zerbrechlich, und ein feiner Misston nagt an seinem Ohr. Er feilt und probt unermüdlich weiter, denn erst wenn jeder Ton vollkommen rein erklingt, ist die Flöte wahrhaft sein Werk.", hooks: ["handwerk"] },
+          { title: "Die verlorene Melodie wiederfinden", description: "Die selbst geschnitzte Panflöte hängt griffbereit am Gürtel, doch eine Weise aus Kindheitstagen ist ihm entfallen, so sehr er auch sucht. Jede halb erinnerte Note schmerzt wie ein verlorenes Stück seiner selbst. Er wird nicht ruhen, bis die Melodie wieder rein aus dem Rohr klingt und ihn heimholt.", hooks: ["fahrend","verlust"] },
+          { title: "Mein Meisterstück vollenden", description: "Mit eigenen Händen schnitzte er das Rohr, und sein Klang lockt jeden Lauscher herbei, doch das Holz ist zerbrechlich, und ein feiner Misston nagt an seinem Ohr. Er feilt und probt unermüdlich weiter, denn erst wenn jeder Ton vollkommen rein erklingt, ist die Flöte wahrhaft sein Werk.", hooks: ["handwerk"] },
         ]
       },
       {
@@ -4052,8 +4052,8 @@ export const THEMEBOOKS = {
           { text: "taugt nur aus der Nähe", hooks: ["kampf","verlust"] },
         ],
         quests: [
-          { title: "Ich bewahre meine Klingen geheim", description: "Unter dem Mantel trägt der Held stets eine versteckte Waffe, blitzschnell gezogen, wenn die Not es verlangt. Sein Vorteil lebt allein davon, dass niemand ahnt, wie viele Dolche ihn wirklich umgürten. Eine Leibesvisitation könnte alles verraten, darum wahrt er sein Geheimnis sorgsam und lässt keinen zu nah an seine verborgenen Klingen.", hooks: ["geheimnis","kampf"] },
-          { title: "Ich räche mit verborgenem Stahl", description: "Eine alte Schuld lastet auf dem Held, ein Unrecht, das nach Vergeltung verlangt. Aus der Nähe trifft sein verborgener Stahl im Dunkeln, ehe das Opfer den Streich kommen sieht. Geduldig wartet er auf den einen Augenblick, in dem die Klinge, die niemand erwartet, die Rechnung endgültig begleicht.", hooks: ["kampf","verlust"] },
+          { title: "Meine Klingen geheim bewahren", description: "Unter dem Mantel trägt sie stets eine versteckte Waffe, blitzschnell gezogen, wenn die Not es verlangt. Ihr Vorteil lebt allein davon, dass niemand ahnt, wie viele Dolche sie wirklich umgürten. Eine Leibesvisitation könnte alles verraten, darum wahrt sie ihr Geheimnis sorgsam.", hooks: ["geheimnis","kampf"] },
+          { title: "Mit verborgenem Stahl Rache üben", description: "Eine alte Schuld lastet auf ihr, ein Unrecht, das nach Vergeltung verlangt. Aus der Nähe trifft ihr verborgener Stahl im Dunkeln, ehe das Opfer den Streich kommen sieht. Geduldig wartet sie auf den einen Augenblick, in dem die Klinge, die niemand erwartet, die Rechnung endgültig begleicht.", hooks: ["kampf","verlust"] },
         ]
       },
       {
@@ -4069,8 +4069,8 @@ export const THEMEBOOKS = {
           { text: "das Pferd braucht Pflege", hooks: ["natur","handwerk"] },
         ],
         quests: [
-          { title: "Ich beschütze mein treues Ross", description: "Durch jede Schlacht trug das gehorsame Pferd den Held, unermüdlich im Sattel und treuer als mancher Mensch. Doch das Tier braucht Pflege, und ohne es bliebe nur ein halber Krieger zurück. Was auch komme, er lässt sein Ross niemals im Stich und stellt sich vor jeden, der ihm Leid antun will.", hooks: ["fahrend","glaube"] },
-          { title: "Ich erringe Ruhm zu Pferde", description: "Mit gut gewarteter Rüstung und sturmreifer Reiterattacke fühlt sich der Held nur im offenen Feld ganz lebendig. Zu Fuß ist er schwerfällig, doch hoch zu Ross kennt seine Kühnheit keine Grenzen. Er sucht die große Schlacht, in der eine einzige donnernde Attacke beweist, was ein wahrer Reiter zu vollbringen vermag.", hooks: ["kampf","macht"] },
+          { title: "Mein treues Ross beschützen", description: "Durch jede Schlacht trug das gehorsame Pferd ihn, unermüdlich im Sattel und treuer als mancher Mensch. Doch das Tier braucht Pflege, und ohne es bliebe nur ein halber Krieger zurück. Was auch komme, er lässt sein Ross niemals im Stich und stellt sich vor jeden, der ihm Leid antun will.", hooks: ["fahrend","glaube"] },
+          { title: "Ruhm zu Pferde erringen", description: "Mit gut gewarteter Rüstung und sturmreifer Reiterattacke fühlt er sich nur im offenen Feld ganz lebendig. Zu Fuß ist er schwerfällig, doch hoch zu Ross kennt seine Kühnheit keine Grenzen. Er sucht die große Schlacht, in der eine einzige donnernde Attacke beweist, was ein wahrer Reiter zu vollbringen vermag.", hooks: ["kampf","macht"] },
         ]
       },
       {
@@ -4086,8 +4086,8 @@ export const THEMEBOOKS = {
           { text: "bindet an fremde Befehle", hooks: ["adel","macht"] },
         ],
         quests: [
-          { title: "Ich überbringe den Brief sicher", description: "Ein versiegelter Brief des Fürsten liegt schwer in der Tasche des Held und öffnet ihm verschlossene Tore und das Recht auf Audienz. Doch Spione lauern auf die fürstliche Gunst, und falsche Befehle binden ihn an fremden Willen. Was im Siegel ruht, muss seinen Empfänger erreichen, koste es, was es wolle.", hooks: ["adel","fahrend"] },
-          { title: "Ich lese die wahre Botschaft", description: "Höfliche Worte zieren das Schreiben, doch der Held spürt, dass die hochfürstliche Gunst einen Preis trägt, den niemand ihm nennt. Hinter den Floskeln verbirgt sich ein Geheimnis, das ihn an fremde Befehle ketten könnte. Ehe er sein Leben dafür riskiert, will er entschlüsseln, was dieser Brief in Wahrheit fordert.", hooks: ["geheimnis","adel"] },
+          { title: "Den Brief sicher überbringen", description: "Ein versiegelter Brief liegt schwer in ihrer Tasche und öffnet ihr verschlossene Tore und das Recht auf Audienz. Doch Spione lauern auf die fürstliche Gunst, und falsche Befehle binden sie an fremden Willen. Was im Siegel ruht, muss seinen Empfänger erreichen, koste es, was es wolle.", hooks: ["adel","fahrend"] },
+          { title: "Die wahre Botschaft lesen", description: "Höfliche Worte zieren das Schreiben, doch sie spürt, dass die hochfürstliche Gunst einen Preis trägt, den niemand ihr nennt. Hinter den Floskeln verbirgt sich ein Geheimnis, das sie an fremde Befehle ketten könnte. Ehe sie ihr Leben dafür riskiert, will sie entschlüsseln, was dieser Brief in Wahrheit fordert.", hooks: ["geheimnis","adel"] },
         ]
       },
       {
@@ -4103,42 +4103,42 @@ export const THEMEBOOKS = {
           { text: "verletzlich gegen Diebe", hooks: ["stadt"] },
         ],
         quests: [
-          { title: "Ich kaufe mir einen Platz im Adel", description: "Die goldene Kette am Hals des Held öffnet Türen und verleiht ihm edles Ansehen, wo immer er sie zeigt. Was die Geburt ihm verwehrte, will er sich mit ihrem Wert erkaufen, Stufe um Stufe hinauf. Doch das Gold ist auffällig und lockt Diebe, darum wagt er den Aufstieg, ehe ihn jemand wieder herabstößt.", hooks: ["adel","macht"] },
-          { title: "Ich gebe das Gold gerecht aus", description: "Jederzeit ließe sich die wertvolle Kette zu Geld machen, doch der Held weiß, dass ihm dieser Reichtum nicht allein gehört. Während Diebe nach dem auffälligen Schmuck schielen, denkt er an jene, die nichts haben. Was ihm zufiel, will er gerecht unter den Bedürftigen teilen, statt es eifersüchtig zu horten.", hooks: ["glaube","außenseiter"] },
+          { title: "Mir einen Platz im Adel erkaufen", description: "Die goldene Kette an seinem Hals öffnet Türen und verleiht ihm edles Ansehen, wo immer er sie zeigt. Was die Geburt ihm verwehrte, will er sich mit ihrem Wert erkaufen, Stufe um Stufe hinauf. Doch das Gold ist auffällig und lockt Diebe, darum wagt er den Aufstieg, ehe ihn jemand wieder herabstößt.", hooks: ["adel","macht"] },
+          { title: "Das Gold gerecht verteilen", description: "Jederzeit ließe sich die wertvolle Kette zu Geld machen, doch er weiß, dass ihm dieser Reichtum nicht allein gehört. Während Diebe nach dem auffälligen Schmuck schielen, denkt er an jene, die nichts haben. Was ihm zufiel, will er gerecht unter den Bedürftigen teilen, statt es eifersüchtig zu horten.", hooks: ["glaube","außenseiter"] },
         ]
       },
       {
-        text: "mein Werkzeugkasten", hooks: ["handwerk"],
+        text: "Werkzeugkasten", hooks: ["handwerk"],
         powerTags: [
           { text: "Werkzeug für jeden Fall", hooks: ["handwerk"] },
           { text: "repariert Unbrauchbares", hooks: ["handwerk"] },
-          { text: "hat immer ein Ersatzteil", hooks: ["handwerk","fahrend"] },
           { text: "stets einsatzbereit", hooks: ["handwerk"] },
+          { text: "hat immer ein Ersatzteil", hooks: ["handwerk","fahrend"] },
         ],
         weaknessTags: [
           { text: "hilflos ohne den Besitz", hooks: ["handwerk","verlust"] },
           { text: "schwer zu schleppen", hooks: ["handwerk","fahrend"] },
         ],
         quests: [
-          { title: "Ich verbessere mein Werkzeug stetig", description: "Für jeden Fall trägt der Held das rechte Werkzeug bei sich, stets einsatzbereit und mit einem Ersatzteil für alle Lagen. Ohne diesen Besitz fühlt er sich hilflos, denn der Kasten ist ein Teil von ihm geworden. Beständig bessert er ihn aus und ergänzt ihn, damit er ganz wird, was er sein kann.", hooks: ["handwerk"] },
-          { title: "Ich repariere das Unmögliche", description: "Man bringt dem Held, was alle längst aufgegeben haben, zerschlagen und scheinbar verloren. Mit dem Werkzeug für jeden Fall und einem Blick für jeden Kniff nimmt er die Herausforderung an. Schwer schleppt er seinen Kasten überallhin, doch seine Hände beweisen am Ende, dass selbst das Unrettbare sich noch retten lässt.", hooks: ["handwerk","schicksal"] },
+          { title: "Mein Werkzeug stetig verbessern", description: "Für jeden Fall trägt er das rechte Werkzeug bei sich, stets einsatzbereit und mit einem Ersatzteil für alle Lagen. Ohne diesen Besitz fühlt er sich hilflos, denn der Kasten ist ein Teil von ihm geworden. Beständig bessert er ihn aus, damit er ganz wird, was er sein kann.", hooks: ["handwerk"] },
+          { title: "Das Unmögliche reparieren", description: "Man bringt ihm, was alle längst aufgegeben haben, zerschlagen und scheinbar verloren. Mit dem Werkzeug für jeden Fall und einem Blick für jeden Kniff nimmt er die Herausforderung an. Schwer schleppt er seinen Kasten überallhin, doch seine Hände beweisen am Ende, dass selbst das Unrettbare sich noch retten lässt.", hooks: ["handwerk","schicksal"] },
         ]
       },
       {
         text: "Truhe mit fremden Münzen", hooks: ["fahrend","geheimnis"],
         powerTags: [
-          { text: "Truhe mit Wertsachen", hooks: ["macht"] },
           { text: "kennt jeden Wert genau", hooks: ["stadt","handwerk"] },
           { text: "handelt mit Gewinn", hooks: ["stadt"] },
           { text: "Münzen aus fernen Reichen", hooks: ["fahrend","geheimnis"] },
+          { text: "Truhe mit Wertsachen", hooks: ["macht"] },
         ],
         weaknessTags: [
           { text: "begehrt von anderen", hooks: ["geheimnis","stadt"] },
           { text: "verschwenderisch im Überfluss", hooks: ["stadt"] },
         ],
         quests: [
-          { title: "Ich enträtsle die Herkunft der Münzen", description: "In der Truhe des Held liegen Münzen aus fernen Reichen, fremde Prägungen, deren Wert er genau zu deuten weiß. Doch jede erzählt eine Geschichte von Wegen und Händen, die er nie sah. Andere begehren den Schatz, ihn aber treibt die Frage, woher diese seltsamen Stücke wirklich stammen und was sie verbergen.", hooks: ["geheimnis","fahrend"] },
-          { title: "Ich mehre den Schatz durch Handel", description: "Der Held kennt jeden Wert genau und handelt mit Gewinn, wo andere übers Ohr gehauen werden. Was in der Truhe ruht, soll nicht müßig liegen, sondern durch geschickten Tausch wachsen. Doch sein Überfluss verführt ihn leicht zur Verschwendung, und andere lauern auf den Hort, den er Münze um Münze zu mehren sucht.", hooks: ["stadt","macht"] },
+          { title: "Die Herkunft der Münzen enträtseln", description: "In ihrer Truhe liegen Münzen aus fernen Reichen, fremde Prägungen, deren Wert sie genau zu deuten weiß, doch jede erzählt eine Geschichte von Wegen und Händen, die sie nie sah. Andere begehren den Schatz, sie aber treibt die Frage, woher diese seltsamen Stücke wirklich stammen.", hooks: ["geheimnis","fahrend"] },
+          { title: "Den Schatz durch Handel mehren", description: "Sie kennt jeden Wert genau und handelt mit Gewinn, wo andere übers Ohr gehauen werden. Was in der Truhe ruht, soll nicht müßig liegen, sondern durch geschickten Tausch wachsen. Doch ihr Überfluss verführt sie leicht zur Verschwendung, und andere lauern auf den Hort, den sie zu mehren sucht.", hooks: ["stadt","macht"] },
         ]
       },
       {
@@ -4154,8 +4154,8 @@ export const THEMEBOOKS = {
           { text: "erinnert an Verlust", hooks: ["verlust"] },
         ],
         quests: [
-          { title: "Ich werde dem Erbe würdig", description: "Das verzierte Wams trägt einen ehrwürdigen Namen, doch es sitzt schlecht und erinnert den Held an längst vergangene Größe. Noch beeindruckt die alte Pracht, auch wenn sie ihm zu weit geschnitten ist. Er will in dieses Erbe hineinwachsen, bis der Name nicht mehr nur am Stoff hängt, sondern an ihm selbst.", hooks: ["adel","verlust"] },
-          { title: "Ich behalte das Erbstück um jeden Preis", description: "Unbequem und schlecht sitzend ist das geerbte Wams, und es weckt im Held die Erinnerung an alles, was er verlor. Doch es ist das Letzte, was ihm von denen vor ihm blieb, ein Faden zu vergangener Größe. Mag es noch so drücken, er gibt dieses Erbstück um keinen Preis aus der Hand.", hooks: ["adel","glaube"] },
+          { title: "Dem Erbe würdig werden", description: "Das verzierte Wams trägt einen ehrwürdigen Namen, doch es sitzt schlecht und erinnert ihn an längst vergangene Größe. Noch beeindruckt die alte Pracht, auch wenn sie ihm zu weit geschnitten ist. Er will in dieses Erbe hineinwachsen, bis der Name nicht mehr nur am Stoff hängt, sondern an ihm selbst.", hooks: ["adel","verlust"] },
+          { title: "Das Erbstück um jeden Preis behalten", description: "Unbequem und schlecht sitzend ist das geerbte Wams, und es weckt in ihm die Erinnerung an alles, was er verlor. Doch es ist das Letzte, was ihm von denen vor ihm blieb, ein Faden zu vergangener Größe. Mag es noch so drücken, er gibt dieses Erbstück um keinen Preis aus der Hand.", hooks: ["adel","glaube"] },
         ]
       },
       {
@@ -4171,25 +4171,25 @@ export const THEMEBOOKS = {
           { text: "lastet schwer auf der Seele", hooks: ["verlust","glaube"] },
         ],
         quests: [
-          { title: "Ich ehre die gefallenen Gefährten", description: "Stahl mit Schlachtenehre und das Banner der gefallenen Truppe trägt der Held nun allein, jeden Kniff der Veteranen im Gedächtnis. Ihre Feinde verfolgen ihn noch, und die Ausrüstung lastet schwer auf seiner Seele. Doch ihre Waffen zu führen heißt, ihr Andenken weiterzutragen, und das ist er den toten Gefährten schuldig.", hooks: ["kampf","verlust"] },
-          { title: "Ich vollende ihren letzten Auftrag", description: "Die Kompanie fiel, ehe ihr Werk getan war, und dem Held blieb die gut gewartete Kampfausrüstung als schwere Bürde. Alte Feinde sind ihm auf den Fersen, doch er weicht nicht. Was seine Gefährten nicht mehr zu Ende brachten, führt er an ihrer statt zum Schluss, damit ihr Opfer nicht umsonst war.", hooks: ["kampf","glaube"] },
+          { title: "Die gefallenen Gefährten ehren", description: "Das Banner der gefallenen Truppe trägt er nun allein, jeden Kniff der Veteranen im Gedächtnis. Ihre Feinde verfolgen ihn noch, und die Ausrüstung lastet schwer auf seiner Seele. Doch ihre Waffen zu führen heißt, ihr Andenken weiterzutragen, und das ist er den toten Gefährten schuldig.", hooks: ["kampf","verlust"] },
+          { title: "Ihren letzten Auftrag vollenden", description: "Die Kompanie fiel, ehe ihr Werk getan war, und ihm blieb die gut gewartete Kampfausrüstung als schwere Bürde. Alte Feinde sind ihm auf den Fersen, doch er weicht nicht. Was seine Gefährten nicht mehr zu Ende brachten, führt er an ihrer statt zum Schluss, damit ihr Opfer nicht umsonst war.", hooks: ["kampf","glaube"] },
         ]
       },
       {
         text: "Karte mit Geheimnissen", hooks: ["fahrend","geheimnis"],
         powerTags: [
-          { text: "Reisekarten", hooks: ["fahrend"] },
           { text: "zeigt verborgene Wege", hooks: ["fahrend","geheimnis"] },
           { text: "markierte Schätze", hooks: ["geheimnis","macht"] },
           { text: "führt durch jedes Land", hooks: ["fahrend","wissen"] },
+          { text: "Reisekarten", hooks: ["fahrend"] },
         ],
         weaknessTags: [
           { text: "begehrt von anderen", hooks: ["geheimnis","stadt"] },
           { text: "unvollständig und verschlüsselt", hooks: ["geheimnis","wissen"] },
         ],
         quests: [
-          { title: "Ich finde was die Karte verbirgt", description: "Die Reisekarte des Held zeigt verborgene Wege und markierte Schätze, doch sie ist unvollständig und in Teilen verschlüsselt. Andere begehren sie, denn die eingezeichneten Zeichen führen zu etwas Verheißungsvollem. Er folgt jeder Markierung durch fremdes Land, fest entschlossen, das aufzuspüren, was unter ihren rätselhaften Linien auf einen Finder wartet.", hooks: ["fahrend","geheimnis"] },
-          { title: "Ich entschlüssele die letzten Zeichen", description: "Durch jedes Land führt die Karte den Held verlässlich, doch einige ihrer Zeichen bleiben dunkel und verschlüsselt. Solange er sie nicht deutet, bleibt ihr Geheimnis unvollständig, und andere strecken die Hand danach aus. Er beugt sich Nacht für Nacht über die rätselhaften Symbole, bis er endlich liest, was sie verschweigen.", hooks: ["geheimnis","wissen"] },
+          { title: "Finden, was die Karte verbirgt", description: "Ihre Reisekarte zeigt verborgene Wege und markierte Schätze, doch sie ist unvollständig und in Teilen verschlüsselt. Andere begehren sie, denn die eingezeichneten Zeichen führen zu etwas Verheißungsvollem. Sie folgt jeder Markierung durch fremdes Land, fest entschlossen, aufzuspüren, was unter den rätselhaften Linien wartet.", hooks: ["fahrend","geheimnis"] },
+          { title: "Die letzten Zeichen entschlüsseln", description: "Durch jedes Land führt die Karte sie verlässlich, doch einige ihrer Zeichen bleiben dunkel und verschlüsselt. Solange sie sie nicht deutet, bleibt das Geheimnis unvollständig, und andere strecken die Hand danach aus. Sie beugt sich Nacht für Nacht über die rätselhaften Symbole, bis sie endlich liest, was sie verschweigen.", hooks: ["geheimnis","wissen"] },
         ]
       },
       {
@@ -4197,16 +4197,16 @@ export const THEMEBOOKS = {
         powerTags: [
           { text: "weckt Mut in Hoffnungslosen", hooks: ["verlust","fahrend"] },
           { text: "spendet Trost in der Fremde", hooks: ["verlust","glaube"] },
-          { text: "verbindet mit den Meinen", hooks: ["fahrend","glaube"] },
           { text: "weckt vertraute Kraft", hooks: ["verlust","natur"] },
+          { text: "verbindet mit den Meinen", hooks: ["fahrend","glaube"] },
         ],
         weaknessTags: [
           { text: "Bindung an einen Ort", hooks: ["natur","verlust"] },
           { text: "unersetzlich wenn verloren", hooks: ["verlust","handwerk"] },
         ],
         quests: [
-          { title: "Ich kehre einst nach Hause zurück", description: "In der Fremde trägt der Held ein letztes Stück Heimat bei sich, das an bessere Tage erinnert und ihn mit den Seinen verbindet. Es spendet Trost und weckt vertraute Kraft, doch es bindet ihn auch schmerzlich an einen fernen Ort. Dieses kleine Andenken hält die Erinnerung wach, bis er den Weg heim findet.", hooks: ["fahrend","verlust"] },
-          { title: "Ich bewahre die Heimat in der Fremde", description: "Wäre dieses Stück verloren, bliebe es unersetzlich, denn es ist alles, was dem Held von daheim geblieben ist. In dunklen Stunden weckt es vertraute Kraft und tröstet ihn unter Fremden. Solange er es bei sich trägt, ist er nie ganz fort von den Seinen, und das will er um jeden Preis bewahren.", hooks: ["verlust","glaube"] },
+          { title: "Einst nach Hause zurückkehren", description: "In der Fremde trägt sie ein letztes Stück Heimat bei sich, das an bessere Tage erinnert und sie mit den Ihren verbindet. Es spendet Trost und weckt vertraute Kraft, doch es bindet sie auch schmerzlich an einen fernen Ort. Dieses kleine Andenken hält die Erinnerung wach, bis sie den Weg heim findet.", hooks: ["fahrend","verlust"] },
+          { title: "Die Heimat in der Fremde bewahren", description: "Wäre dieses Stück verloren, bliebe es unersetzlich, denn es ist alles, was ihr von daheim geblieben ist. In dunklen Stunden weckt es vertraute Kraft und tröstet sie unter Fremden. Solange sie es bei sich trägt, ist sie nie ganz fort von den Ihren, und das will sie um jeden Preis bewahren.", hooks: ["verlust","glaube"] },
         ]
       },
       {
@@ -4214,16 +4214,16 @@ export const THEMEBOOKS = {
         powerTags: [
           { text: "Aufzeichnungen des Vermissten", hooks: ["geheimnis","wissen"] },
           { text: "getarnter Reisemantel", hooks: ["geheimnis","fahrend"] },
-          { text: "birgt verborgene Ressourcen", hooks: ["fahrend","verlust"] },
           { text: "Spuren einer letzten Reise", hooks: ["fahrend","geheimnis"] },
+          { text: "birgt verborgene Ressourcen", hooks: ["fahrend","verlust"] },
         ],
         weaknessTags: [
           { text: "weckt fremde Feinde", hooks: ["geheimnis","verlust"] },
           { text: "rätselhaft und unvollständig", hooks: ["geheimnis","wissen"] },
         ],
         quests: [
-          { title: "Ich kläre das Schicksal des Verschollenen", description: "Eine unerwartete Hinterlassenschaft fiel dem Held zu, Aufzeichnungen eines Vermissten und Spuren seiner letzten Reise. Das Bündel ist rätselhaft und unvollständig, und es weckt fremde Feinde, die nach ihm greifen. Was mit dem Verschollenen geschah, liegt im Dunkeln, doch er wird die Wahrheit Stück für Stück ans Licht bringen.", hooks: ["geheimnis","verlust"] },
-          { title: "Ich vollende seine letzte Reise", description: "Den getarnten Reisemantel und die Notizen des Verschollenen trägt der Held nun selbst, gezeichnet von einem unvollendeten Weg. Fremde Feinde wittern die Spur und setzen ihm nach. Doch wohin der Vermisste nicht mehr gelangte, will er an dessen statt gelangen, damit die unterbrochene Reise endlich ihr Ziel erreicht.", hooks: ["fahrend","verlust"] },
+          { title: "Das Schicksal des Verschollenen klären", description: "Eine unerwartete Hinterlassenschaft fiel ihr zu, Aufzeichnungen eines Vermissten und Spuren seiner letzten Reise. Das Bündel ist rätselhaft und unvollständig, und es weckt fremde Feinde, die nach ihm greifen. Was mit dem Verschollenen geschah, liegt im Dunkeln, doch sie wird die Wahrheit Stück für Stück ans Licht bringen.", hooks: ["geheimnis","verlust"] },
+          { title: "Seine letzte Reise vollenden", description: "Den getarnten Reisemantel und die Notizen des Verschollenen trägt sie nun selbst, gezeichnet von einem unvollendeten Weg. Fremde Feinde wittern die Spur und setzen ihr nach. Doch wohin der Vermisste nicht mehr gelangte, will sie an dessen statt gelangen, damit die unterbrochene Reise endlich ihr Ziel erreicht.", hooks: ["fahrend","verlust"] },
         ]
       },
     ]
