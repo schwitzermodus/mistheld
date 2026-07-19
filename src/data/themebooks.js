@@ -13,6 +13,10 @@
    siehe TAGS.md im Projekt-Root. (max. 5 Wörter, bevorzugt 1–3, kein Satz,
    kein Komma; Power = nützlich, Weakness = einschränkend; verwandt zum
    Titel; passend zur Might-Stufe; Balance spezifisch/breit.)
+   Zusätzlich verbindlich: TAG-STYLE.md im Projekt-Root (Inhalts-/Voice-Regeln —
+   Kürze, einfache Sprache, Fähigkeit statt Handlung, Might-Passung inkl.
+   Titel-Klang, Differenzierung im Theme+Pool, Quest-Regeln). Maschinenlesbare
+   Fassung: src/data/criteria.js STYLE_RULES.
    Quests sind KEINE Tags (Ich-Ziel-Satz erlaubt). Durchsetzung: tools/validate_tags.cjs.
 ===================================================== */
 
